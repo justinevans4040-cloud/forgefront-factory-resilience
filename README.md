@@ -80,6 +80,33 @@ A geographically distributed production system makes coordination as important a
 
 ---
 
+## The small shops that keep aerospace moving
+
+![ForgeFront Factory Resilience for small and midsize aerospace suppliers, connecting precision machining, production, quality, and deliveries to large aircraft programs](assets/showcase/forgefront-small-shops-resilience.jpg)
+
+### Stronger shops. Stronger skies.
+
+A modern aircraft is built by an entire industrial ecosystem. Independent CNC job shops, fabrication teams, heat-treat providers, finishing houses, inspection labs, component manufacturers, and local logistics partners keep the world's largest aerospace programs moving.
+
+**Factory Resilience is built around their challenges, too.** A smaller manufacturer has fewer machines, tighter production windows, and less margin for an unexpected material hold, missed shipment, or quality discrepancy. Clearer information and faster decisions can have an immediate impact on the shop floor.
+
+| What a smaller supplier needs | How Factory Resilience can help | What the shop can measure |
+|:--|:--|:--|
+| **More productive spindle time** | Identify which jobs are affected by an issue and keep available machines working on unaffected orders | Machine utilization; lost production hours |
+| **Fewer scrapped or reworked parts** | Connect certificate, material, and job evidence before more machining value is added | Scrap rate; rework hours; first-pass yield |
+| **On-time customer deliveries** | Compare recovery plans when material, tooling, or capacity changes | On-time delivery; overdue work orders |
+| **Faster quality investigations** | Bring purchase orders, material certifications, traveler records, and inspection results into one traceable incident | Time to investigate; hold duration |
+| **Better use of limited resources** | Evaluate alternate routing, qualified material, subcontract capacity, and realistic schedule tradeoffs | Lead time; queue time; recovery time |
+| **Stronger customer confidence** | Produce a clear account of the incident, the affected work, and the plan to protect delivery commitments | Response time; repeat supplier performance |
+
+### Precision at the shop level. Resilience across the supply chain.
+
+When a supplier catches a discrepancy before it reaches the next operation, that helps the shop protect its own schedule **and** helps the customers relying on its parts. A connected response can make a small manufacturer more dependable, competitive, and ready to take on increasingly complex aerospace programs.
+
+**The advantage belongs to the whole network, from a single CNC cell to final aircraft assembly.**
+
+---
+
 ## The measurable improvement opportunity
 
 | Operating objective | How Factory Resilience approaches it | Pilot measurement |
