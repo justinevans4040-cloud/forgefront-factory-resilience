@@ -132,7 +132,7 @@ The roadmap contains **13 structured build phases**, beginning with the factory 
 
 ### Meta Global AI Developer Hackathon 2026
 
-The project has been entered into the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon), where it will explore the intersection of intelligent evidence analysis, industrial operations, and actionable manufacturing decisions.
+An application has been submitted for the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon), centered on intelligent evidence analysis, industrial operations, and actionable manufacturing decisions.
 
 ---
 
