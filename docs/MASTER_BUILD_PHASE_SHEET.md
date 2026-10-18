@@ -64,19 +64,19 @@ That foundation becomes the reference scenario for cross-document intelligence, 
 
 | Phase | Planned window | Delivery focus | Accountable function |
 |---|---|---|---|
-| [P00](../issues/1) | Oct 17 | Factory foundation and benchmark demonstration | Engineering / verification |
-| [P01](../issues/2) | Oct 17–25 | Competition participation and requirements | Project owner |
-| [P02](../issues/3) | Oct 17–25 | Factory evidence model and evaluation scenarios | Engineering |
-| [P03](../issues/4) | Oct 26–27 | Multi-document investigation | Engineering |
-| [P04](../issues/5) | Oct 27–28 | Meta AI reasoning and evaluation | AI engineering |
-| [P05](../issues/6) | Oct 28–29 | Manufacturing consequence network | Engineering |
-| [P06](../issues/7) | Oct 29–30 | Recovery and adaptive decision simulation | Engineering |
-| [P07](../issues/8) | Oct 30–31 | Incident workflow and historical continuity | Engineering |
-| [P08](../issues/9) | Oct 31–Nov 1 | Operator command environment | Product / engineering |
-| [P09](../issues/10) | Nov 1–2 | Intensive scenario and device validation | Verification |
-| [P10](../issues/11) | Nov 2–3 | Competition demonstration and release | Product / engineering |
-| [P11](../issues/12) | Nov 4 | Final competition entry | Project owner |
-| [P12](../issues/13) | Nov 5–9 | Event follow-through and product next steps | Project owner |
+| [P00](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/1) | Oct 17 | Factory foundation and benchmark demonstration | Engineering / verification |
+| [P01](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/2) | Oct 17–25 | Competition participation and requirements | Project owner |
+| [P02](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/3) | Oct 17–25 | Factory evidence model and evaluation scenarios | Engineering |
+| [P03](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/4) | Oct 26–27 | Multi-document investigation | Engineering |
+| [P04](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/5) | Oct 27–28 | Meta AI reasoning and evaluation | AI engineering |
+| [P05](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/6) | Oct 28–29 | Manufacturing consequence network | Engineering |
+| [P06](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/7) | Oct 29–30 | Recovery and adaptive decision simulation | Engineering |
+| [P07](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/8) | Oct 30–31 | Incident workflow and historical continuity | Engineering |
+| [P08](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/9) | Oct 31–Nov 1 | Operator command environment | Product / engineering |
+| [P09](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/10) | Nov 1–2 | Intensive scenario and device validation | Verification |
+| [P10](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/11) | Nov 2–3 | Competition demonstration and release | Product / engineering |
+| [P11](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/12) | Nov 4 | Final competition entry | Project owner |
+| [P12](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/13) | Nov 5–9 | Event follow-through and product next steps | Project owner |
 
 P00 is the completed foundation milestone. The linked issues show the detailed execution activity and ongoing progress for each subsequent phase.
 
