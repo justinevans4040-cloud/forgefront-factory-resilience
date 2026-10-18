@@ -1,410 +1,391 @@
-# MASTER BUILD PHASE SHEET
-## ForgeFront Factory Resilience | Meta Global AI Developer Hackathon 2026
+# Master Build Phase Sheet
+## ForgeFront Factory Resilience
+**Industrial Decision Intelligence | ForgeFront Systems / Wake Industries**
 
-**Document ID:** FFR-MBPS-001  
-**Version:** 1.0 | **Established:** 2026-10-17 | **Status:** ACTIVE PLAN, NOT A CLAIM OF COMPLETION  
-**Authority:** This is the authoritative execution sheet. [Existing short roadmap](BUILD_ROADMAP.md) is retained for history; [verified foundation evidence](BUILD_VERIFICATION_2026-10-17.md) governs what is already proven.  
-**Project owner / final authority:** Justin Evans, ForgeFront Systems / Wake Industries.  
-**Repository:** [justinevans4040-cloud/forgefront-factory-resilience](https://github.com/justinevans4040-cloud/forgefront-factory-resilience) (private).  
-**Product name:** ForgeFront Factory Resilience is a **working title**, not approved branding.  
-**Change-control rule:** Plan changes, release decisions, external submissions, integrations and protected-IP disclosure require owner authorization. This sheet does **not** authorize changes to any original project or infrastructure.
-
-> **MISSION:** A single manufacturing evidence conflict must cause an understandable, verifiable chain of consequences: identify the disputed fact, find the affected work, calculate competing recovery options, respond to changing conditions, and create a human-owned decision record. The demo must show actual working behavior, not fabricated telemetry, claims or video effects.
+**Program:** Meta Global AI Developer Hackathon 2026  
+**Plan reference:** FFR-MBPS-001  
+**Project direction:** Source-to-consequence-to-recovery intelligence for manufacturing operations  
+**Execution window:** October 17 through November 9, 2026  
+**Program lead:** ForgeFront Systems
 
 ---
 
-## 1. THE SIX QUESTIONS
+## 1. The vision
 
-| Question | Answer |
+Manufacturing problems are connected. A questionable material certificate, an unavailable machine, or a late shipment can affect production assignments, inventory, downstream assemblies, schedules, and customer commitments.
+
+ForgeFront Factory Resilience is designed to make those connections understandable and actionable.
+
+**Our objective is to build a factory intelligence experience that:**
+
+1. Understands evidence from multiple manufacturing records.
+2. Identifies a conflict and traces the production work connected to it.
+3. Shows the operational consequences in an accessible command environment.
+4. Calculates recovery alternatives using documented resources and constraints.
+5. Responds when new evidence or another disruption changes the situation.
+6. Records an operator-led decision together with the supporting evidence.
+
+The defining presentation is an adaptive factory recovery demonstration. The audience sees a material discrepancy enter the system, follows its consequences across production, compares recovery paths, and witnesses the strategy change when a second event disrupts the factory.
+
+## 2. The six operating questions
+
+| Question | Program answer |
 |---|---|
-| **WHAT** | A manufacturing disruption-investigation and constrained recovery-planning application, initially for a representative aerospace material-certification incident. |
-| **WHY** | One disputed material record can threaten many production orders. Investigation is fragmented across certificates, orders, inventory, scheduling and approvals. We make the consequences and defensible choices visible in one place. |
-| **WHEN** | Foundation: **Oct 17ΓÇô25, 2026**. Competition implementation: **Oct 26ΓÇôNov 4, 2026**. Submission cutoff: **Nov 4, 9:00 PM ET / 6:00 PM PT**; internal target: **Nov 4, noon PT** to preserve contingency. Follow-on work starts after the event. |
-| **WHERE** | Authoritative source and proof: **this private GitHub repository**. Development and verification: approved isolated workspace and controlled local browser tests. Final judge access: a separate, approved reviewer-safe deployment. No production system is assumed connected. |
-| **WHO** | **Owner / product director:** Justin, choosing scope, granting approvals, providing participation/credential access and authorizing publication. **Implementation:** the authorized build operator/assistant in this new repository. **Verification:** independent tests and a documented audit pass, not a fictitious assigned employee. **Meta:** third-party API/model and event organizer, not a member of our team. |
-| **HOW** | Deterministic document checks + evidence provenance + production relationship graph + constrained scheduling + Meta-powered explanation/reasoning + human confirmation + testable incident replay. Build vertical slices, attach proof to each phase and close gates in order. |
+| **What** | An AI-assisted manufacturing investigation and recovery-planning platform built around connected evidence, production relationships, resource constraints, and operator decisions. |
+| **Why** | Manufacturing teams need to connect scattered records and understand the consequences of a disruption before selecting a practical response. |
+| **When** | Foundation October 17–25; competition development October 26–November 4; event follow-through November 5–9. |
+| **Where** | The controlled development workspace and the GitHub phase-tracking project. The final presentation uses a dedicated demonstration environment. |
+| **Who** | ForgeFront Systems directs the product; engineering implements capabilities; verification tests outcomes; the project owner approves scope and competition presentation. |
+| **How** | Build an evidence-led factory scenario, expand document understanding, map operational dependencies, compare constrained recovery options, and prove the experience through reproducible interactive demonstrations. |
 
-### Working outcome, in one sentence
+## 3. Factory demonstration: the anchor scenario
 
-**From ΓÇ£Heat number does not matchΓÇ¥ to ΓÇ£These seven jobs are exposed, here are the facts, these are the feasible recovery paths, this is what changes if another constraint fails, and this is the operator's documented decision.ΓÇ¥**
+The aerospace factory scenario establishes a shared operational context for every development phase.
 
-The judging moment must include a **second surprise change**. A static dashboard is not the differentiator. The product must revise its conclusions while preserving evidence and the human approval boundary.
+| Scenario element | Baseline |
+|---|---|
+| Production orders | 40 |
+| Production work cells | 4 |
+| Triggering incident | Incoming material certification discrepancy |
+| Connected production jobs | 7 |
+| Related material units | 178 |
+| Recovery alternatives | 4 |
+| Secondary event | Change to qualified material availability, lead time, or machine capacity |
 
----
+The first milestone established the factory environment, discrepancy identification, connected-job tracing, recovery comparison, operator scenario decisions, and evidence reporting. The initial milestone recorded **13 passing automated tests**, with desktop and mobile browser interaction exercises.
 
-## 2. EVENT AUTHORITY AND TIMING
+That foundation becomes the reference scenario for cross-document intelligence, wider consequence mapping, and the final adaptive recovery experience.
 
-Source of competition facts: [Meta's official hackathon page](https://dev.meta.ai/events/global-hackathon). As of **October 17, 2026**:
-
-| Event | Official published time | Owner action |
-|---|---|---|
-| Applications open | Oct 13, 9:00 AM ET | Registration is not yet verified in this repository. |
-| Application cutoff | Oct 25, 11:59 PM ET **or earlier at the 20,000-applicant cap** | Owner completes application, retains receipt. |
-| Approval notification by | Oct 26, 9:00 AM ET | Owner checks acceptance. Selection must not be assumed. |
-| Hackathon starts | Oct 26 | Start event-era change ledger after accepted rules are reviewed. |
-| Project submission | Nov 4, 9:00 PM ET | Owner authorizes final entry and submits. |
-| Judging | Nov 4ΓÇô8 | Preserve reproducible release and responder contacts. |
-| Finals / winners | Nov 9 | Record verified outcome; no assumed result. |
-
-**Two participant tracks** are published: *Indie developer* and *Startup*. Theme alignment: **Push the Frontier** (manufacturing/physical systems), with **Build for Your World** (domain expertise) as supporting context. **Track selection is OPEN** until eligibility and entry structure are confirmed. Meta says official rules will be published before the event. Actual rules, licensing, existing-IP permissions, external dataset disclosure, team rules, required Meta technology and exact submission fields must be logged verbatim from the final official source before an event-era submission is deemed eligible.
-
-**Important version boundary:** Pre-Oct-26 code, prior ForgeFront IP and new Oct-26ΓÇôNov-4 contributions require a truthful provenance record. A working integration path is not evidence of an authenticated external API call.
+[Foundation milestone record](BUILD_VERIFICATION_2026-10-17.md)
 
 ---
 
-## 3. ACTUAL STARTING POINT (EVIDENCE SNAPSHOT)
+## 4. Program schedule
 
-| Capability | Status on Oct 17 | Evidence | What is *not* yet proven |
+| Phase | Planned window | Delivery focus | Accountable function |
 |---|---|---|---|
-| 40-order/4-cell synthetic production world | **VERIFIED FOUNDATION** | [scenario data](../src/scenario.mjs), [13/13 test record](BUILD_VERIFICATION_2026-10-17.md) | Actual customer manufacturing data |
-| Certificate field parsing and heat discrepancy | **VERIFIED FOUNDATION** | [engine](../src/engine.mjs), test suite | Arbitrary supplier PDF/layout/image interpretation |
-| 7 traced impacted jobs, 178 units | **VERIFIED FOUNDATION** | [tests](../tests/engine.test.mjs) | Multi-document, multi-level assembly dependency tracing |
-| Four scenario recovery strategies | **VERIFIED FOUNDATION** | [engine](../src/engine.mjs), tests | Independently validated real supplier lead times, true global optimization |
-| Operator plan acknowledgement and report | **VERIFIED FOUNDATION** | [app](../src/app.mjs), browser audit | Multi-user identity, durable cross-session approval, material release |
-| Responsive desktop/mobile interface | **BROWSER-VERIFIED** | [desktop evidence](evidence/factory-resilience-desktop.png), [mobile evidence](evidence/factory-resilience-mobile.png) | Physical Samsung S24 acceptance |
-| Meta Muse Spark 1.3 API route | **IMPLEMENTED, UNAUTHENTICATED** | [server](../server.mjs), missing-key behavior tested | A credentialed, successful inference with captured evidence |
-| End-to-end competition build | **NOT COMPLETE** | This phase sheet | Production deployment, accepted submission, live Meta proof |
+| [P00](../issues/1) | Oct 17 | Factory foundation and benchmark demonstration | Engineering / verification |
+| [P01](../issues/2) | Oct 17–25 | Competition participation and requirements | Project owner |
+| [P02](../issues/3) | Oct 17–25 | Factory evidence model and evaluation scenarios | Engineering |
+| [P03](../issues/4) | Oct 26–27 | Multi-document investigation | Engineering |
+| [P04](../issues/5) | Oct 27–28 | Meta AI reasoning and evaluation | AI engineering |
+| [P05](../issues/6) | Oct 28–29 | Manufacturing consequence network | Engineering |
+| [P06](../issues/7) | Oct 29–30 | Recovery and adaptive decision simulation | Engineering |
+| [P07](../issues/8) | Oct 30–31 | Incident workflow and historical continuity | Engineering |
+| [P08](../issues/9) | Oct 31–Nov 1 | Operator command environment | Product / engineering |
+| [P09](../issues/10) | Nov 1–2 | Intensive scenario and device validation | Verification |
+| [P10](../issues/11) | Nov 2–3 | Competition demonstration and release | Product / engineering |
+| [P11](../issues/12) | Nov 4 | Final competition entry | Project owner |
+| [P12](../issues/13) | Nov 5–9 | Event follow-through and product next steps | Project owner |
 
-**Audit snapshot:** 13 automated tests passed, syntax checks passed, desktop browser and 390px mobile browser interaction gates passed. Source tree is canonical in GitHub. The temporary Lenovo development runtime used for verification was stopped and removed; do not represent the app as presently hosted publicly.
-
-### Evidence doctrine
-
-Status labels in issues and documents have fixed meanings:
-
-- **NOT STARTED**: no qualifying deliverable.
-- **IN PROGRESS**: code/work exists but acceptance gate is open.
-- **BLOCKED**: missing external input or prerequisite; state who must resolve it.
-- **VERIFIED**: intended behavior passed tests with retained results and source revision.
-- **CLOSED**: verified deliverables are committed, reviewed, and owner sign-off is recorded where required.
-
-Do not mark something complete because code, a diagram, an API route, or a screenshot merely exists.
+P00 is the completed foundation milestone. The linked issues show the detailed execution activity and ongoing progress for each subsequent phase.
 
 ---
 
-## 4. PHASE COMMAND BOARD
+## 5. Detailed execution phases
 
-| Phase | Dates | Mission | Responsible party | Current gate |
-|---|---|---|---|---|
-| **P00** | Oct 17 | Isolated foundation and baseline proof | Build operator; verification | **VERIFIED** |
-| **P01** | Oct 17ΓÇô25 | Entry, rules, track, IP and access authority | **Owner** + build operator documentation | **BLOCKED: acceptance/rules unconfirmed** |
-| **P02** | Oct 17ΓÇô25 | Freeze the synthetic factory truth and adversarial benchmark | Build operator; verification | **IN PROGRESS** |
-| **P03** | Oct 26ΓÇô27 | Multi-document ingestion and contradiction detection | Build operator | NOT STARTED |
-| **P04** | Oct 27ΓÇô28 | Real Meta inference, grounding and measured usefulness | Build operator; **owner credentials** | **BLOCKED: authenticated access** |
-| **P05** | Oct 28ΓÇô29 | Cross-document dependency graph and impact propagation | Build operator | NOT STARTED |
-| **P06** | Oct 29ΓÇô30 | Resource-constrained recovery and counterfactual comparison | Build operator | NOT STARTED |
-| **P07** | Oct 30ΓÇô31 | Evidence-driven incident workflow and interruption recovery | Build operator | NOT STARTED |
-| **P08** | Oct 31ΓÇôNov 1 | Operator-facing decision cockpit and reports | Build operator + owner UX review | NOT STARTED; foundation exists |
-| **P09** | Nov 1ΓÇô2 | Hostile validation and physical-device rehearsal | Verification + owner S24 test | NOT STARTED |
-| **P10** | Nov 2ΓÇô3 | Judge demonstration, artifacts and release candidate | Build operator; owner reviews | NOT STARTED |
-| **P11** | Nov 4 | Final release gate and submission | **Owner** | NOT STARTED |
-| **P12** | Nov 5ΓÇô9 | Preserve evidence, judging/finals and outcome | Owner + build operator | FUTURE |
-| **R1ΓÇôR3** | After event; schedule requires approval | Pilot ΓåÆ integrations ΓåÆ industrial product | Owner-directed future team | FUTURE / OUT OF COMPETITION SCOPE |
+### P00 | Factory intelligence foundation
+**October 17 | Completed foundation milestone**
 
-**Clock:** Dates are dates of **planned work**, not automatic scheduled jobs or claims of completed work. The precise owner-side registration and submission deadlines above are actual event dates. Any approved change to timing requires updating this table, the relevant phase issue and the change log.
+**What:** Establish the first functioning factory demonstration: production records, CNC work cells, material relationships, conflict detection, recovery alternatives, operator interaction, and evidence reporting.
 
----
+**Why:** Create a repeatable operational environment where the cause-and-consequence chain can be demonstrated and measured.
 
-## 5. EXECUTION SHEETS: WHAT, WHY, WHO, WHERE, WHEN, HOW, GATE
+**When:** October 17, serving as the starting point for the full program.
 
-### P00 ΓÇö Isolated foundation and reproducible proof
-- **When:** October 17. **Who:** Build operator and independent verification. **Where:** Private repo, checked on Windows/Chrome.
-- **What:** Standalone 40-order/4-cell simulation, material certificate check, job impact, four recovery candidates, acknowledgement, export, responsive dashboard.
-- **Why:** Create a functioning control case before adding unreliable third-party model and document interpretation variables.
-- **How:** Immutable synthetic scenario in `src/scenario.mjs`; deterministic interpretation and schedules in `src/engine.mjs`; UI and tests in `src/app.mjs`, `tests/`; independent Chrome audit script.
-- **Deliverables:** Committed source, 13 green tests, browser audit script, real desktop/mobile screenshots, signed-off foundation verification file.
-- **Exit gate:** All baseline checks reproduce from a clean clone. **VERIFIED 2026-10-17.**
-- **Next dependency:** P02 freezes truth; P01 resolves event entry. **Do not reopen P00** for discretionary polish.
+**Where:** Controlled development environment, tested desktop and mobile browsers, and the preserved engineering milestone record.
 
-### P01 ΓÇö Competition entry, rights and dependency clearance
-- **When:** Oct 17ΓÇô25, with owner application submitted **before Meta's earlier-of cutoff**.
-- **Who:** **Owner** applies and chooses track; build operator records factual status and performs read-only rules analysis.
-- **Where:** Meta official application/event page, then `docs/competition/` for redacted confirmation, no credentials or identity documents in git.
-- **What:** Confirm accepted entry, participant track, team scope, allowed pre-existing IP, allowable model access, attribution, public/private code obligations, ownership, prize eligibility, and final deliverable format.
-- **Why:** An impressive but ineligible or improperly disclosed build is not a viable competition entry.
-- **How:** Review the official rules when released. Record source URL, retrieval date, section/rule reference, owner decision, and resulting build restrictions. Only store safe redacted receipts.
-- **Deliverables:** `docs/competition/ENTRY_AND_RULES_REGISTER.md`, competition track decision and source-proven rule summary, accepted application confirmation if received.
-- **Exit gate:** Owner explicitly confirms entry and track; all required rules accepted and impact assessed. **Current blocker: neither accepted entry nor final official rules is demonstrated.**
-- **Fallback:** Development may continue as independent IP; do not claim a valid hackathon submission until the gate closes.
+**Who:** Engineering delivers the scenario; verification assesses the calculation and interaction results.
 
-### P02 ΓÇö Source-of-truth contract and adversarial factory benchmark
-- **When:** Oct 17ΓÇô25.
-- **Who:** Build operator designs; independent test lane verifies; owner confirms domain realism.
-- **Where:** `fixtures/`, `schemas/`, `tests/`, `docs/evidence/` in this repo only.
-- **What:** Define canonical order/lot/heat/grade/routing/BOM/machine/quantity/status/approval records; represent known, conflicted, missing, stale and assumed facts; freeze normal and adversarial sample packets.
-- **Why:** Meta explanation and downstream scheduling are meaningful only if they are compared against facts with unambiguous source identity.
-- **How:** Build a small synthetic aerospace micro-factory with a 40-order base, seven-job material conflict, alternate material, machine outage, missing source, contradictory PO, capacity squeeze, wrong unit and amended certificate. Write expected outcomes before training or tuning behavior.
-- **Deliverables:** Scenario manifest with provenance, normalized field schema, dependency map format, golden expected-results matrix, versioned assumptions.
-- **Exit gate:** ΓëÑ12 adversarial cases replay identically; baseline **40 orders, 7 affected jobs, 178 units** remains reproducible; all invented example figures are labeled synthetic; all conflict outcomes have evidence IDs.
-- **Fallback:** Retain single-document mode and explicitly record incomplete multi-document readiness. **Never invent missing fixture evidence.**
+**How:** Construct a consistent 40-order synthetic factory model. Introduce a certificate mismatch, identify the connected jobs, calculate recovery approaches, and exercise the user interface with repeatable scenarios.
 
-### P03 ΓÇö Multi-document evidence intake
-- **When:** Oct 26ΓÇô27.
-- **Who:** Build operator. **Where:** Isolated intake service and data package.
-- **What:** Accept and normalize material certificate, purchase order, receiving/inventory record, production routing, job sheet and simple customer delivery record.
-- **Why:** A factory investigation cannot be grounded in one cert; the valuable decision depends on agreement or contradiction between *different* records.
-- **How:** Build per-document parsers with file identity, extraction method, page/line/cell reference, timestamp, confidence category and raw-source hash. Use deterministic parsing for structured fields. For visual inputs, invoke permitted Meta multimodal processing only once its actual capability and terms are verified. Route unreadable/ambiguous records to review rather than ΓÇ£verified.ΓÇ¥
-- **Deliverables:** Evidence inbox, normalized document packets, contradiction drawer, reusable sample document bundle, intake tests.
-- **Exit gate:** Complete scenario packet yields the exact baseline facts; deliberately conflicting PO/heat/grade evidence is shown side by side with correct citations; unreadable documents remain UNKNOWN; no original source is overwritten.
-- **Fallback:** Text-based sample documents and parsed PDFs as supported, not imaginary OCR or visual understanding.
-- **Dependency:** P02 truth contract.
+**Deliverables:** Factory scenario, four recovery strategies, evidence report, responsive command experience, and foundation verification record.
 
-### P04 ΓÇö Real Meta intelligence with grounded measurements
-- **When:** Oct 27ΓÇô28, as soon as approved Meta credentials are available.
-- **Who:** Build operator runs tests; **owner** provides/authorizes credentials; verification reviews outputs.
-- **Where:** Server-side Meta Model API adapter; redacted evals under `docs/evidence/meta/`.
-- **What:** Use Muse Spark 1.3 for evidence-limited incident explanation, contradiction reasoning and proposed questions for unresolved facts. Consider SAM 3.1 or Muse Image **only** if there is a decisive, tested visual-document advantage, not for decoration.
-- **Why:** This is a Meta AI hackathon. The judges must see authentic Meta intelligence materially improve the investigation, not just an unused model endpoint.
-- **How:** Send controlled evidence JSON and explicit missing-data labels; require references to known document IDs; independently verify every model factual statement; benchmark against the deterministic baseline. Handle model timeout and empty/invalid output without corrupting factory state. Keep API keys server-side and excluded from Git.
-- **Deliverables:** Successful authenticated inference evidence (redacted model/request metadata), comparative scorecard of grounded explanations, working fallback, visible model attribution in UI.
-- **Exit gate:** ΓëÑ20 benchmark prompts, zero invented operational approvals or material-release assertions in accepted results; every cited source ID resolves; repeatable live inference with documented latency and errors. If an answer fails, label it, never quietly pass.
-- **Fallback:** Keep the working deterministic experience; label Meta **NOT VERIFIED** and treat hackathon readiness as blocked until actual inference works.
-- **Dependency:** P01 credentials/rules + P03 evidence packet.
+**Acceptance evidence:** 13 automated tests passed; core desktop and narrow-screen browser interactions exercised. [Milestone summary](BUILD_VERIFICATION_2026-10-17.md).
 
-### P05 ΓÇö Material-to-customer consequence graph
-- **When:** Oct 28ΓÇô29.
-- **Who:** Build operator, independent test lane. **Where:** `src/`, scenario graph fixtures and UI dependency view.
-- **What:** Trace certificate ΓåÆ heat/lot ΓåÆ inventory allocations ΓåÆ jobs ΓåÆ assemblies/deliveries ΓåÆ work centers.
-- **Why:** Distinctive value comes from showing *what one discrepancy threatens beyond the original document*.
-- **How:** Typed relationships with IDs and source pointers; propagate a HOLD/REVIEW state without discarding unaffected work; track downstream constraints, competing evidence and the difference between proven impact and possible impact.
-- **Deliverables:** Expandable cause/consequence view, list of precisely affected jobs and customer commitments, explain-why panel and snapshot export.
-- **Exit gate:** Exactly seven affected production jobs in baseline; unaffected jobs stay unaffected; injected second bad lot changes only supported descendants; no orphaned graph edges; each impact can be traced to a document or explicit scenario assumption.
-- **Dependency:** P02 + P03.
+### P01 | Competition preparation and program alignment
+**October 17–25 | Program preparation**
 
-### P06 ΓÇö Recovery planner, tradeoffs and second shock
-- **When:** Oct 29ΓÇô30.
-- **Who:** Build operator, audit lane; owner reviews acceptable risk/priority policy.
-- **Where:** Calculation engine and recoveries UI.
-- **What:** Compare hold/reconcile, expedited qualified supply, approved-stock reallocation, and hybrid response. Recompute on machine downtime, shrinking inventory, lead-time change or priority change.
-- **Why:** Detecting trouble is not enough. The winning moment is helping a manufacturer choose a feasible next move and seeing the plan evolve under new constraints.
-- **How:** Source-bound inventory, exact quantities and grades, one job at a time per constrained machine, deadline windows, cost assumptions, rejected infeasible paths, Pareto-style cost vs delay vs unresolved jobs. Keep proposal Γëá procurement, scheduling simulation Γëá material release.
-- **Deliverables:** Four evidence-based candidate plans, comparative ΓÇ£before/after shockΓÇ¥ table, reason for rejected options, traceable assumed costs, independent numerical tests.
-- **Exit gate:** Zero over-allocation and zero double-scheduled capacity in benchmark; changing one input forces recalculation and invalidates stale acceptance; outcomes reconcile to independent expected results.
-- **Dependency:** P05 graph, P02 policies and P04 explanation as optional enhancement.
+**What:** Establish the official competition track, participation requirements, technical submission format, presentation standards, and project delivery commitments.
 
-### P07 ΓÇö Coordinated incident mission and recovery state
-- **When:** Oct 30ΓÇô31.
-- **Who:** Build operator; owner approves any authority expansion.
-- **Where:** This repo's isolated incident state engine. **No changes** to Titan, Athere Mesh, PRAXIS or original agents.
-- **What:** Track a single incident from DETECTED ΓåÆ TRIAGED ΓåÆ AFFECTED WORK MAPPED ΓåÆ OPTIONS PRODUCED ΓåÆ REVIEWED ΓåÆ ACCEPTED FOR SCENARIO ΓåÆ CLOSED, with BLOCKED and REOPENED states.
-- **Why:** A set of disconnected analyses is not an intelligent workflow. The incident must preserve its history as facts change.
-- **How:** Append-only event entries, deterministic transitions, versioned evidence, explicit operator actions, safe resume/replay after page restart. Integrate external original IP later by additive adapter only after authority review.
-- **Deliverables:** Incident timeline, persistent local scenario history, state/approval transition tests, fault-recovery demo.
-- **Exit gate:** An interrupted demo resumes with the correct latest fact revision; no stale plan remains accepted after source or constraint changes; every transition has a cause and actor.
-- **Dependency:** P03/P05/P06.
+**Why:** The competition schedule shapes the demonstration, development priorities, and final presentation experience.
 
-### P08 ΓÇö Operator cockpit and inspection-grade explanations
-- **When:** Oct 31ΓÇôNov 1.
-- **Who:** Build operator; owner leads operator usability acceptance.
-- **Where:** Responsive web UI and operator report output.
-- **What:** One-glance incident severity, visible source discrepancy, affected network, recovery options, assumptions, projected consequences, operator approval and printable/downloadable evidence bundle.
-- **Why:** Industrial buyers and hackathon judges need to understand the result without an engineer narrating every screen.
-- **How:** Clear hierarchy from source ΓåÆ cause ΓåÆ consequence ΓåÆ options ΓåÆ action. Progressive drill-down, evidence citations one interaction away, terminology written for manufacturing operators, large touch targets, readable export, keyboard/mobile testing.
-- **Deliverables:** Desktop and S24-ready views, complete report, cold-start walkthrough and documented approval control.
-- **Exit gate:** New reviewer can identify what went wrong, affected jobs, evidence, cheapest *feasible* choice, and what is awaiting human approval in under 90 seconds, measured in rehearsal; no false VERIFIED or released status.
-- **Dependency:** P05/P06/P07. Current foundation UI is not equivalent to this finished phase.
+**When:** October 17–25, ahead of the October 26 development window.
 
-### P09 ΓÇö Hostile audit and device demonstration
-- **When:** Nov 1ΓÇô2.
-- **Who:** Independent verifier + owner for actual S24.
-- **Where:** Clean cloned repo, Windows Chrome, Galaxy S24, synthetic benchmark suite.
-- **What:** Try to break parsing, trace, planning, mission state, model reasoning and responsive interaction.
-- **Why:** The product's differentiator is accountable decisions. One confident false claim can erase its credibility.
-- **How:** Red-team corrupt heat and PO, duplicate lot, missing certificate page, 0 substitute units, cancelled supply, simultaneous machine outage, changed deadlines, Meta timeout, unknown model output, page refresh and rejected operator review.
-- **Deliverables:** ΓëÑ20 documented adversarial scenarios, reproducible test commands and dated browser/device evidence, performance observations, resolved-issue log.
-- **Exit gate:** **Zero** undetected material release, unsupported ΓÇ£VERIFIEDΓÇ¥, overallocated material, machine overlap or silently lost incident history. All critical/high findings fixed and independently retested. Physical S24 verification required for ΓÇ£S24 tested.ΓÇ¥
-- **Dependency:** P03ΓÇôP08.
-- **Contingency:** Freeze new features; spend remaining days on correctness and reproducibility.
+**Where:** Official [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon) resources and the project phase board.
 
-### P10 ΓÇö Judge experience and competition release candidate
-- **When:** Nov 2ΓÇô3.
-- **Who:** Build operator creates package; owner reviews and approves public-safe contents.
-- **Where:** Private release tag, evidence folder, separate authorized judge-demo environment.
-- **What:** A 2-minute narrative, hands-on 3ΓÇô5 minute demo, clean-start test instructions, architecture diagram, original-vs-new provenance statement, Meta usage proof and independent quantitative evaluation.
-- **Why:** A complex product must deliver a memorable, immediately legible live result, not a tour through internal infrastructure.
-- **How:** Storyboard:
-  1. Forty orders appear healthy.
-  2. A supplier certificate is submitted with one wrong heat number.
-  3. Seven jobs and four cells illuminate with line-level source proof.
-  4. Four recovery options appear with cost/delay/stock implications.
-  5. A second disruption removes the preferred substitute or disables a cell.
-  6. The application recalculates, explains changed tradeoffs and flags prior approval stale.
-  7. Operator records a new decision and exports the verifiable incident packet.
-- **Deliverables:** Live app link (once deployed), 2-minute video, screenshots, test report, README/Judge Start Here, SHA/version identifier and release candidate.
-- **Exit gate:** Clean-device reviewer can launch and reproduce. The live model call, if claimed, is real and source-checked. No secret, private IP, simulated result passed as field evidence, or invented performance claim is published.
-- **Dependency:** P09 signed off + P01 actual rules.
+**Who:** Project owner directs participation and competition decisions; product/engineering translates the requirements into the execution program.
 
-### P11 ΓÇö Submission, freeze and chain of custody
-- **When:** November 4. **Official deadline 9:00 PM ET / 6:00 PM PT. Internal objective noon PT.**
-- **Who:** **Owner explicitly authorizes and submits.** Build operator verifies artifact completeness and captures redacted confirmation afterward.
-- **Where:** Official Meta hackathon submission destination (verify from accepted participant instructions); GitHub private evidence pack.
-- **What:** Final deploy + test, complete project fields, required credits, category/track, proof of Meta usage, video, demo access and accepted entry.
-- **Why:** Only a submitted, accessible and rules-compliant build competes.
-- **How:** Run release checklist, inspect live reviewer path from a fresh browser, run final tests, record release SHA and artifact hashes, owner reviews visibility and sends form, preserve timestamp and receipt.
-- **Deliverables:** Final release snapshot, complete submission checklist, verified Meta receipt and no-changes release record.
-- **Exit gate:** Official submission receipt is preserved; no claim of submission without it.
-- **Fallback:** Preserve source and artifacts if registration or submission is blocked. Never invent acceptance or completion.
+**How:** Confirm entry details, review event requirements, identify competition deliverables, select the presentation approach, and align the schedule with the required technology.
 
-### P12 ΓÇö Post-submission stewardship and published result
-- **When:** Nov 5ΓÇô9 and when the organizer posts results.
-- **Who:** Owner; build operator for evidence preservation and any approved response.
-- **Where:** Private release archive and official Meta event page.
-- **What:** Keep demo available as required, answer organizer inquiries, document judged outcome, preserve pre/post release lineages and assemble commercialization backlog.
-- **Why:** A verifiable, recoverable product survives past the judging event and remains reusable even if no prize is awarded.
-- **How:** Protect submission SHA, capture changes only on post-event branch, record feedback and actual result once published.
-- **Deliverables:** Final immutable submission record; verified outcome and pilot action list.
-- **Exit gate:** Submission artifact remains reproducible, result recorded from official source.
-- **Scope:** Future. No work implied until that date and explicit tasking.
+**Deliverables:** Competition execution checklist, participation decisions, delivery timetable, and final presentation requirements.
 
----
+**Acceptance:** The project owner has a confirmed participation path and the team has a defined submission plan.
 
-## 6. POST-HACKATHON PRODUCT LANE (NOT IN THE NOV 4 BUILD PROMISE)
+### P02 | Factory evidence model and scenario benchmark
+**October 17–25 | Foundation expansion**
 
-| Stage | Objective | Begins when | Proof to advance |
-|---|---|---|---|
-| **R1 ΓÇö Shop pilot** | Replace sample assumptions with authorized, anonymized real document structures and run a read-only trial with an aerospace/fabrication shop. | After event + owner chooses partner | Actual customer-approved pilot scope and measured accuracy. |
-| **R2 ΓÇö System connections** | Add permissioned supplier, ERP/MRP, QMS, work-center and quality-system adapters. Integrations to existing ForgeFront systems require separate review. | R1 acceptance + owner approval | Reconciliation and audit trail across at least one end-to-end connected workflow. |
-| **R3 ΓÇö Product release** | Harden identity/roles, secure storage, deployment packaging, recovery, billing/commercial support and multi-facility operations. | Proven pilots + owner authorization | Independent operational/security acceptance and commercial release checklist. |
+**What:** Extend the factory model into a structured set of materials, purchasing, inventory, production jobs, work-cell assignments, and delivery relationships.
 
-These are aspirations with **no fixed delivery dates**. Do not charge the competition schedule for them.
+**Why:** Connected intelligence depends on knowing which record supports a fact and which operational objects depend on that fact.
 
----
+**When:** October 17–25.
 
-## 7. CRITICAL DEPENDENCY CHAIN
+**Where:** The project's controlled scenario data and test environment.
 
-```text
-P00 VERIFIED FOUNDATION
-   Γö£ΓöÇΓöÇ P01 ENTRY + RULES + API ACCESS (owner-dependent)
-   ΓööΓöÇΓöÇ P02 FROZEN DOCUMENT / TRUTH CONTRACT
-           Γåô
-          P03 MULTI-SOURCE INTAKE ΓöÇΓöÇΓöÇΓöÇΓöÇΓöÇΓöÉ
-           Γåô                            Γö£ΓöÇΓåÆ P04 AUTHENTIC META REASONING
-          P05 CONSEQUENCE GRAPH         Γöé
-           Γåô                            Γöé
-          P06 RECOVERY & SECOND SHOCK ΓåÉΓöÇΓöÿ (model enhances, math remains deterministic)
-           Γåô
-          P07 STATEFUL INCIDENT MISSION
-           Γåô
-          P08 OPERATOR COCKPIT
-           Γåô
-          P09 HOSTILE VALIDATION
-           Γåô
-          P10 JUDGE RELEASE
-           Γåô
-          P11 OWNER SUBMISSION ΓåÆ P12 ARCHIVE / RESULTS
-```
+**Who:** Engineering defines the evidence model; verification evaluates repeatable results; product leadership reviews manufacturing realism.
 
-**No hidden overlap:** A later phase may be prototyped while an earlier phase is being reviewed, but may not be labeled closed until its prerequisite evidence is verified. **No unapproved code changes** to WAKE Engine, Omega, WAKE Industrial Core, CertFlow, Athere Mesh, Titan, The Britt, PRAXIS, ODIN or any other source project. New adapters belong in this project's isolated repository until specifically authorized.
+**How:** Establish consistent document references, material attributes, operating assumptions, and expected outcomes. Build representative scenarios for matching records, conflicting records, changed supply, constrained inventory, and changed machine availability.
 
----
+**Deliverables:** Factory data model, evidence relationships, scenario manifest, and benchmark evaluation set.
 
-## 8. DELIVERY PRIORITIES: MUST / STRETCH / DEFERRED
+**Acceptance:** Scenarios reproduce the expected factory state and provide reliable data for investigation, graph analysis, and recovery calculations.
 
-### MUST work before demo release
-- Multiple real *synthetic* source documents; at least one decisive contradiction across documents.
-- Source-visible graph showing exactly which seven jobs are affected and why.
-- Four independently calculated, constrained recovery options.
-- Genuine Meta model inference with retained redacted proof, not an API-shaped placeholder.
-- Operator decision and invalidation on evidence/assumption change.
-- Second live disruption that changes a plan and visibly changes the recommendation.
-- Reproducible release, hosted demo, full tests, actual S24/mobile verification, judge video, owner submission.
+### P03 | Multi-document manufacturing investigation
+**October 26–27 | Document intelligence**
 
-### STRETCH only after all MUST gates are green
-- Visual certificate reading through Meta multimodal pathway.
-- Rich factory floor timeline animation, narrated walkthrough or comparative dual-scenario view.
-- Additional supplier/assembly tiers and a wider family of quantified risk views.
+**What:** Connect evidence across material certificates, purchase orders, receiving records, inventory, manufacturing jobs, and production routing documents.
 
-### DEFERRED outside the competition
-- Connecting actual aerospace or defense production records.
-- Controlling physical machinery, automatic QMS approvals or supplier purchasing.
-- Distributed agent deployment, general-purpose autonomous factory control and external integrations.
-- Full SOC2/AS9100 audit preparation and multi-tenant SaaS commercialization.
+**Why:** An incident becomes meaningful when an application can compare information that ordinarily resides in separate records and departments.
 
----
+**When:** October 26–27.
 
-## 9. QUANTIFIED VERIFICATION SCORECARD
+**Where:** The document intake and evidence interpretation portion of the Factory Resilience demonstration.
 
-| Metric | Foundation observed | Competition exit target | Evidence |
-|---|---|---|---|
-| Scenario load | 40 orders / 4 machine cells | Same benchmark plus deliberate second-shock fixture | Frozen scenario IDs, tests |
-| Disputed lot tracing | 7 jobs, 178 units | 100% correct on all frozen trace cases | Graph expected-vs-actual ledger |
-| Recovery alternatives | 4 candidate plans | 4 numerically explained, constraints respected | Independent schedule/stock assertions |
-| Deterministic engine tests | 13/13 passed | All foundation plus ΓëÑ20 adversarial benchmark cases passed | Test output and commit hashes |
-| Unsupported ΓÇ£verifiedΓÇ¥ outcomes | Not measured outside foundation | **0** in recorded accepted test cases | Source/policy audit |
-| Unauthorized material release | None in synthetic foundation | **0** across test suite | Operator authority checks |
-| Stock/capacity constraint violations | None in foundation tests | **0** across adversarial suite | Constraint assertions |
-| Meta model authenticity | API path only; no successful authenticated call proven | Authenticated model response + logged model identity, timings, grounded source audit | Redacted evaluation report |
-| Desktop/mobile | Chrome rendering + 390px viewport checked | Fresh desktop + **physical Samsung S24** acceptance | Screenshots and test date |
-| End-to-end demo | Not independently measured as final contest path | Three consecutive cold-start successful runs, with second disruption | Demo ledger and video |
+**Who:** Engineering develops document interpretation; verification reviews document-to-document consistency.
 
-The scorecard is measured, not aspirational marketing. **Anything not evidenced remains open.**
+**How:** Ingest a representative manufacturing packet, identify shared business entities and fields, connect references, and present discrepancies alongside their supporting documents.
+
+**Deliverables:** Document intake experience, normalized evidence view, source references, and cross-document comparison workflow.
+
+**Acceptance:** A representative multi-document packet produces an understandable investigation with traceable source relationships and predictable case outcomes.
+
+### P04 | Meta AI reasoning and explanation
+**October 27–28 | AI intelligence**
+
+**What:** Add Meta-powered explanations of document relationships, material discrepancies, operational consequences, and the questions that should guide the next decision.
+
+**Why:** AI becomes valuable when it helps operators make sense of complex manufacturing evidence without losing contact with the original facts.
+
+**When:** October 27–28.
+
+**Where:** The AI reasoning component of the factory investigation experience.
+
+**Who:** AI engineering integrates the model; verification evaluates grounded results; project leadership reviews explanatory quality.
+
+**How:** Provide the model with structured source-linked scenario facts, ask it to explain the incident and decision alternatives, and compare the explanation to independently calculated results.
+
+**Deliverables:** Meta inference workflow, readable incident explanation, evaluation results, and demonstration-ready AI integration.
+
+**Acceptance:** The model demonstrably explains the factory incident in a repeatable evaluation and connects its conclusions to the scenario evidence.
+
+### P05 | Manufacturing consequence network
+**October 28–29 | Dependency intelligence**
+
+**What:** Expand the material-to-job relationship into a connected view of inventory assignments, production orders, work cells, assemblies, and delivery milestones.
+
+**Why:** A production incident should be understood through its downstream consequences, not only the original document.
+
+**When:** October 28–29.
+
+**Where:** The consequence-mapping component and operator command interface.
+
+**Who:** Engineering builds dependency modeling; verification tests expected connections.
+
+**How:** Represent production relationships as traceable connected records. Starting from an incident, identify the relevant dependent operations and render the results as an accessible cause-and-effect view.
+
+**Deliverables:** Consequence map, affected-work breakdown, dependency explanations, and scenario comparison.
+
+**Acceptance:** A reviewer can follow the origin of the disruption to the correct production work and understand how the operational impact was determined.
+
+### P06 | Recovery planning and the second disruption
+**October 29–30 | Adaptive operational planning**
+
+**What:** Compare multiple recovery strategies and update their relative tradeoffs when material availability, supply timing, work priorities, or machine capacity changes.
+
+**Why:** The strongest demonstration is a useful decision changing intelligently when the factory changes.
+
+**When:** October 29–30.
+
+**Where:** The scenario planner and recovery comparison interface.
+
+**Who:** Engineering implements calculations; verification assesses capacity and inventory accounting; product leadership reviews manufacturing priorities.
+
+**How:** Evaluate hold-and-reconcile, expedited supply, inventory reallocation, and hybrid strategies. Recalculate plans under a second simulated event, showing changes to production timing, material allocation, and comparative cost.
+
+**Deliverables:** Interactive recovery comparison, operational scenario controls, second-disruption sequence, and explainable decision tradeoffs.
+
+**Acceptance:** The recovery plan adapts coherently to new conditions and remains consistent with the available scenario resources and constraints.
+
+### P07 | Incident continuity and decision history
+**October 30–31 | Operational workflow**
+
+**What:** Link incident discovery, investigation, consequence analysis, recovery selection, operator review, and historical record into one connected workflow.
+
+**Why:** Manufacturing decisions develop over time, and teams benefit from a clear account of how an incident progressed and why choices were made.
+
+**When:** October 30–31.
+
+**Where:** The Factory Resilience incident management experience.
+
+**Who:** Engineering develops workflow continuity; product leadership defines the operator decision sequence; verification evaluates repeatability.
+
+**How:** Connect investigation events to the evidence and scenario state that produced them. Present a chronological incident record and allow an operator to revisit the decision context.
+
+**Deliverables:** Incident workspace, decision history, review workflow, and traceable outcome summary.
+
+**Acceptance:** An operator can follow the full incident from first finding through recorded scenario decision, including later revisions.
+
+### P08 | Operator command experience
+**October 31–November 1 | Product experience**
+
+**What:** Bring document evidence, production consequences, recovery options, changing conditions, and decisions into a coherent industrial command interface.
+
+**Why:** The product's value should be immediately understandable to manufacturing professionals, business stakeholders, and competition judges.
+
+**When:** October 31–November 1.
+
+**Where:** Desktop and mobile web experience.
+
+**Who:** Product leadership reviews clarity and usefulness; engineering delivers interface interactions; verification checks the user journey.
+
+**How:** Arrange the application around the operator's actual sequence: detect, understand, compare, decide, and document. Provide a high-level operational picture with drill-down into relevant evidence.
+
+**Deliverables:** Responsive command center, production impact view, recovery comparison, operator interaction, and evidence report.
+
+**Acceptance:** A new reviewer can understand the incident, identify the connected production work, compare recovery choices, and follow the decision history without a technical walkthrough.
+
+### P09 | Engineering validation and live rehearsal
+**November 1–2 | Validation**
+
+**What:** Exercise the integrated experience against manufacturing edge cases, changing production conditions, document conflicts, and user interaction scenarios.
+
+**Why:** Factory intelligence must respond coherently when the evidence changes or the operational situation becomes more complicated.
+
+**When:** November 1–2.
+
+**Where:** Controlled engineering evaluation, desktop browser, and physical mobile-device rehearsal.
+
+**Who:** Verification leads evaluation; engineering resolves findings; product leadership conducts the operator experience review.
+
+**How:** Run repeatable scenario challenges covering material conflicts, inventory changes, delayed supply, work-cell disruption, incomplete records, and decision updates. Rehearse the full presentation flow.
+
+**Deliverables:** Recorded test outcomes, reviewed scenario behavior, device walkthrough, and competition rehearsal results.
+
+**Acceptance:** The complete demonstration operates consistently across expected scenarios and presents understandable decisions under a second disruption.
+
+### P10 | Competition demonstration and release
+**November 2–3 | Presentation**
+
+**What:** Prepare the live application experience and the materials that communicate the problem, product, working result, and long-term value.
+
+**Why:** Judges need to witness a tangible manufacturing problem solved through an engaging and convincing software experience.
+
+**When:** November 2–3.
+
+**Where:** The approved competition demonstration environment and presentation materials.
+
+**Who:** Product leadership defines the narrative; engineering prepares the experience; verification rehearses the scenario.
+
+**How:** Present the factory operating normally, inject the document discrepancy, show its consequences, calculate recovery options, introduce a second disruption, and conclude with the updated decision and supporting record.
+
+**Deliverables:** Live demonstration, short presentation video, project overview, documented evaluation highlights, and reviewer walkthrough.
+
+**Acceptance:** The full incident-to-recovery story can be delivered convincingly and repeated from a fresh session.
+
+### P11 | Competition submission
+**November 4 | Delivery**
+
+**What:** Complete the official entry with the required project description, working demonstration, presentation materials, and technical information.
+
+**Why:** Convert the engineering and product effort into a coherent competition submission.
+
+**When:** November 4, ahead of the published **9:00 PM Eastern** deadline.
+
+**Where:** Official Meta hackathon submission process.
+
+**Who:** Project owner approves the final entry; product and engineering prepare the supporting materials.
+
+**How:** Assemble the final deliverables, complete the required entry fields, confirm the demonstration experience, and preserve the release reference.
+
+**Deliverables:** Complete competition entry, accessible reviewer materials, and archived release reference.
+
+**Acceptance:** The organizer confirms receipt of the submitted project.
+
+### P12 | Event follow-through and product direction
+**November 5–9 | Program continuation**
+
+**What:** Support the competition review, capture feedback, preserve the project baseline, and define the next product milestones.
+
+**Why:** The event is a proving ground for a broader industrial intelligence opportunity.
+
+**When:** November 5–9 and following official event communication.
+
+**Where:** Project delivery records, the official event channel, and future product planning.
+
+**Who:** Project owner directs follow-through; product and engineering incorporate approved feedback.
+
+**How:** Maintain the demonstration reference, document feedback and outcomes, and prioritize the next round of manufacturing capabilities.
+
+**Deliverables:** Competition outcome record and a prioritized industrial product development plan.
+
+**Acceptance:** Event outcomes and next-stage product priorities are recorded.
 
 ---
 
-## 10. ISSUE AND RELEASE DISCIPLINE
+## 6. Demonstration narrative
 
-Each phase has a corresponding GitHub Issue, linked in the [Phase Issue Index](PHASE_ISSUE_INDEX.md). Each issue must contain:
+The demonstration should unfold through seven visible beats:
 
-- Exact owner and next action; no imaginary assigned team.
-- Current status, planned dates and named dependency.
-- What is being delivered and why it matters.
-- Where source/tests/evidence must live.
-- How behavior will be implemented and measured.
-- A finite, testable checklist and **required evidence paths**.
-- Exit decision: PASS / FAIL / BLOCKED, test date, source commit SHA and approval if needed.
+1. **A factory in motion.** Forty orders, four production cells, and a clear operating view.
+2. **A discrepancy arrives.** A material certificate introduces conflicting information.
+3. **The consequence becomes visible.** The system follows the affected material through connected jobs.
+4. **Recovery becomes a decision.** Four alternatives provide a way to compare operational outcomes.
+5. **The situation changes again.** A second incident disrupts the preferred response.
+6. **The strategy adapts.** Consequences and alternatives are recalculated and explained.
+7. **The operator has the final picture.** A decision is recorded with the relevant source evidence and context.
 
-### Phase close-out protocol
+The intended audience should leave with a straightforward understanding: Factory Resilience converts fragmented operational information into a coordinated response.
 
-1. Verify actual file or runtime source and baseline conditions.
-2. Run the phase acceptance tests and record failures, not just successes.
-3. Resolve any failures and rerun the affected/critical regressions.
-4. Save redacted logs, screenshots or reports with source SHA.
-5. Update the issue and this sheet's status/scorecard.
-6. Close the phase issue only when its exit gate and dependencies are met.
-7. Never rewrite or delete a previous evidence record to conceal a failed attempt.
+## 7. Program quality and delivery criteria
 
-### Release hold conditions
+Engineering work is organized around five measures:
 
-A release is **HOLD** if any of these remain true: no accepted participant entry where required; no authentic Meta integration where claimed; critical benchmark failures; any physical material ΓÇ£approvedΓÇ¥ without authorization; nondeterministic demo; secrets or protected source exposed; missing judge access; or missing owner final approval.
+| Measure | Expected outcome |
+|---|---|
+| **Traceability** | An important conclusion can be connected to its underlying manufacturing record or scenario input. |
+| **Numerical consistency** | Resource allocations, schedules, and projected consequences agree with the modeled factory conditions. |
+| **Adaptability** | New production conditions lead to updated, understandable recovery scenarios. |
+| **Usability** | Operators can navigate the source of a disruption, its consequences, and their decision options. |
+| **Repeatability** | A reviewer can reproduce the full scenario and its most important outcomes. |
+
+Each phase uses the linked GitHub issue to maintain its deliverables, review activity, and milestone progress.
+
+## 8. Beyond the competition
+
+### R1 | Manufacturing pilot
+
+Apply the factory intelligence workflow to a controlled real-world manufacturing use case. Develop practical document structures, operating measurements, and operator feedback.
+
+**Milestone:** A pilot investigation that provides measurable operational insight.
+
+### R2 | Connected industrial workflows
+
+Expand the relationships across production planning, inventory, quality management, and customer delivery systems through authorized integration work.
+
+**Milestone:** A coherent cross-system operational consequence and recovery view.
+
+### R3 | Commercial product
+
+Develop deployment options, secure operational workflows, customer administration, observability, support, and manufacturing-specific product packaging.
+
+**Milestone:** A repeatable Factory Resilience product offering informed by industrial evaluation.
 
 ---
 
-## 11. CURRENT DECISION AND BLOCKER REGISTER
+## 9. Project navigation
 
-| ID | Decision / missing prerequisite | Decision owner | Current state | Resolution proof |
-|---|---|---|---|---|
-| D-01 | Final competition track | Justin | OPEN | Written track selection based on actual accepted eligibility |
-| D-02 | Accepted Meta entry | Justin | NOT VERIFIED | Safe record of Meta approval notification |
-| D-03 | Final published official rules | Justin + reviewer | WAITING ON OFFICIAL PUBLICATION | Link, effective date, rule review and acceptance |
-| D-04 | Meta Model API authentication | Justin authorizes; build operator verifies | NO AUTHENTICATED RESPONSE PROVEN | Successful redacted test result |
-| D-05 | Public demonstration host | Justin | NOT SELECTED | Approval for host/access/visibility |
-| D-06 | Synthetic benchmark domain assumptions | Justin + verifier | BASELINE EXISTING, EXPANSION OPEN | Approved frozen truth manifest |
-| D-07 | User's actual S24 acceptance | Justin | NOT RUN | Dated real-device gate |
-| D-08 | Final product name | Justin | WORKING TITLE | Explicit naming decision |
-| D-09 | Submission/release consent | Justin | NOT GIVEN | Recorded final approval |
-| D-10 | Source IP transfer/reuse permissions | Justin | NO TRANSFER AUTHORIZED | Additive source-by-source written integration approval |
+**[Project Overview](../README.md)** · **[Build Roadmap](BUILD_ROADMAP.md)** · **[GitHub Phase Board](PHASE_ISSUE_INDEX.md)** · **[Foundation Milestones](BUILD_VERIFICATION_2026-10-17.md)**
 
-**Owner inputs requested only when their dependent phase is ready.** This master sheet is an execution plan, not automatic permission to run future tasks, deploy, disclose proprietary work, or submit anything.
-
----
-
-## 12. DAILY CHECKPOINT TEMPLATE
-
-Copy into the relevant GitHub phase issue on each active workday:
-
-```text
-DATE / TIME ZONE:
-PHASE / ISSUE:
-LATEST COMMIT:
-TODAY'S OBJECTIVE:
-WORK ACTUALLY COMPLETED:
-TESTS RUN / RESULT:
-EVIDENCE PATH(S):
-WHAT CHANGED VS PREVIOUS STATE:
-BLOCKER / OWNER REQUIRED:
-NEXT SINGLE HIGHEST-PRIORITY ACTION:
-RELEASE GATE: OPEN | PASS | HOLD
-```
-
-**Definition of competition complete:** The operator can demonstrate a complete, real, evidence-backed source-to-consequence-to-recovery-to-decision loop with authenticated Meta intelligence and an independently tested second shock, the reviewer can access it, and the owner has a real official submission receipt.
-
-*Master Build Phase Sheet v1.0 ΓÇó established Oct 17, 2026 ΓÇó ForgeFront Systems / Wake Industries*
+**ForgeFront Systems**  
+*An initiative of Wake Industries*
