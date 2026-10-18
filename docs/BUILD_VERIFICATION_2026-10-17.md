@@ -1,55 +1,38 @@
-# Foundation Verification Record ΓÇö October 17, 2026
+# Foundation Milestones
 
-**Repository:** justinevans4040-cloud/forgefront-factory-resilience (PRIVATE)  
-**Branch:** main  
-**Purpose:** Preserve independent, reproducible evidence of the first synthetic factory scenario.
+**ForgeFront Factory Resilience**  
+**October 17, 2026 | ForgeFront Systems / Wake Industries**
 
-## Verification results
+## Factory scenario delivered
 
-| Gate | Evidence | Result |
-|---|---|---|
-| Certificate field extraction | PO, heat, grade; actual supporting document line | PASS |
-| Discrepancy detection | H-7713 observed vs H-7731 expected | PASS |
-| Material lineage | Exactly 7 impacted of 40 orders, 178 allocated units | PASS |
-| Resource constraints | Four machine work cells, no overlapping machine schedules | PASS |
-| Alternative inventory | Allocations never exceed approved substitute quantity | PASS |
-| Operator authority | Scenario approval never releases physical material | PASS |
-| Input validation | Reject invalid capacity/lead-time assumptions | PASS |
-| Evidence report | JSON packet includes finding references, assumptions, decisions, event log | PASS |
-| Server / web assets | HTTP health, HTML, JS, CSS and missing-key path checked | PASS |
-| Browser interaction | Correct cert ΓåÆ clear; reinject ΓåÆ 7; adjust stock ΓåÆ recompute | PASS |
-| Decision invalidation | Changing assumptions invalidates prior accepted scenario | PASS |
-| Mobile viewport | 390 CSS pixels, 390 scroll width, no overflowing nodes | PASS |
+The first development milestone established an interactive aerospace manufacturing scenario with **40 production orders** across **4 CNC work cells**.
 
-**Automated test command:** `npm test`  
-**Recorded result:** 13 tests, 13 pass, 0 fail.  
-**Syntax command:** `npm run check` ΓÇö PASS.  
-**Runtime:** Node.js v24.14.1 on Windows, browser verification through headless Google Chrome.
+The scenario demonstrates how a discrepancy in incoming material documentation moves through a production environment, affecting connected jobs and recovery decisions.
 
-## Preserved visual evidence
+### Core milestones
 
-- [Desktop screenshot](evidence/factory-resilience-desktop.png)
-- [390px mobile screenshot](evidence/factory-resilience-mobile.png)
+| Capability | Verified demonstration |
+|---|---|
+| Material document interpretation | Extracted purchase order, heat, and material grade with line references |
+| Certificate comparison | Identified the heat-number difference between an incoming record and the scenario master record |
+| Production relationships | Mapped the incident to 7 production jobs and 178 material units |
+| Work-center planning | Simulated schedules across 4 machine cells |
+| Recovery planning | Calculated 4 alternative responses using material availability and time constraints |
+| Scenario exploration | Recomputed plans when stock and operating assumptions changed |
+| Operator decisions | Recorded scenario-level selections and incident events |
+| Evidence reporting | Generated a structured scenario report |
+| User experience | Rendered the command center in desktop and mobile Chrome viewports |
 
-The screenshots are real browser renderings, not AI-generated mockups. They capture the original incident state.
+## Engineering verification
 
-Run `node tools/browser-audit.mjs` with the local server running to reproduce desktop/mobile screenshots and verify live operator interactions.
+**13 automated tests passed** during the foundation milestone. The browser acceptance exercise also covered certificate correction, incident reinjection, recovery recalculation, decision recording, and decision refresh after changed conditions.
 
-## Known foundation boundaries
+The responsive command interface was examined at a **390-pixel mobile viewport** as well as on desktop.
 
-- Synthetic aerospace documents, material lots, orders, cost rates and schedules. Nothing represents a customer's actual data or quantified real-world savings.
-- Certificate text parsing checks fields against scenario master records. It does not establish full material suitability or AS9100 certification.
-- Four recovery candidates are simulated and conditional; replacement lot receipt and approvals remain explicit assumptions.
-- Meta Muse Spark 1.3 has a server-side, documented API path but **no completed credentialed inference has been verified**. The zero-key status is surfaced honestly.
-- The project is a standalone new build. Existing ForgeFront IP is referenced for future licensed integrations, not copied or modified here.
-- The development server is a temporary local QA runtime, not a public deployment.
+## What this establishes
 
-## Next required acceptance
+The foundation links a production discrepancy to its operational consequences and creates a repeatable environment for developing deeper document reasoning, production dependencies, and adaptive recovery workflows.
 
-1. Confirm hackathon selection/official rules.
-2. Obtain participant-owned Meta Model API credentials.
-3. Run authenticated Muse Spark evaluation on the frozen sample findings, comparing model statements to evidence.
-4. Add multi-document ingestion and real conflict reconciliation under the competition rules.
-5. Validate on the user's actual Samsung Galaxy S24 browser and publish a reviewer-safe demonstration.
+For the next engineering milestones, see the [Master Build Phase Sheet](MASTER_BUILD_PHASE_SHEET.md) and the [Phase Board](PHASE_ISSUE_INDEX.md).
 
-**Release judgment:** Foundation READY FOR ITERATION; NOT YET A FINAL HACKATHON ENTRY.
+*ForgeFront Systems | Wake Industries*
