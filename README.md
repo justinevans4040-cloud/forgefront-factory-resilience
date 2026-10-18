@@ -1,15 +1,56 @@
 # ForgeFront Factory Resilience
 
-## Project planning and phase status
+**Industrial Decision Intelligence**  
+*ForgeFront Systems | Wake Industries*
 
-**Documentation and GitHub issue tracking only. No executable source, application, model credentials, environment files, tests, build artifacts, screenshots, or implementation bundles are published in the current repository branch.**
+## See the consequence. Shape the recovery.
 
-- [Master Build Phase Sheet (P00â€“P12)](docs/MASTER_BUILD_PHASE_SHEET.md)
-- [Phase issue board and checklists](docs/PHASE_ISSUE_INDEX.md)
-- [Concise roadmap](docs/BUILD_ROADMAP.md)
-- [Foundation verification record (historical summary)](docs/BUILD_VERIFICATION_2026-10-17.md)
-- [GitHub issues](../../issues)
+Modern manufacturing is a network of materials, machines, production orders, quality records, people, and commitments. When one part of that network changes, the consequences can spread across an entire production schedule.
 
-The working implementation has been removed from the current GitHub branch and preserved by its owner in a local protected archive. Old source, tests, and screenshot links intentionally no longer resolve in the current branch. The phase documentation is retained to preserve the project plan.
+**ForgeFront Factory Resilience** is being developed to bring those relationships into one intelligent operational view, turning isolated production disruptions into clear, evidence-backed decisions.
 
-**Status:** Foundation previously tested; competition build is incomplete. Original source and private IP are not published in the current documentation tree.
+### The mission
+
+Detect an operational conflict, trace every affected dependency, evaluate practical recovery options, and give manufacturing teams the context they need to respond confidently.
+
+The experience follows one connected sequence:
+
+**Evidence intake → Conflict identification → Production impact → Recovery simulation → Human decision → Traceable record**
+
+### Inside the factory scenario
+
+The project's aerospace manufacturing demonstration explores:
+
+| Factory environment | Demonstration |
+|---|---|
+| **40 active production orders** | A connected view of live scheduling dependencies in the scenario |
+| **4 CNC production cells** | Machine assignments and capacity-aware planning |
+| **1 material certification discrepancy** | Evidence-linked identification of affected work |
+| **7 impacted jobs** | Clear production exposure across the material lineage |
+| **4 recovery approaches** | Comparative responses built around inventory, lead times, and workload |
+
+The signature moment is **adaptive recovery**: introduce another disruption, change a constraint, and watch the operational picture evolve.
+
+### Why it matters
+
+Manufacturing decisions are often delayed by information scattered across quality, purchasing, inventory, scheduling, and production. A connected intelligence layer can make cause, consequence, and recovery easier to understand, evaluate, and communicate.
+
+This project brings industrial experience together with modern AI to explore a new kind of operational decision support.
+
+## Development program
+
+Our development plan is organized into **13 defined phases**, from the initial factory scenario through multi-document investigation, AI-driven analysis, dependency modeling, recovery simulation, operational workflow, and competition presentation.
+
+- **[Master Build Phase Sheet](docs/MASTER_BUILD_PHASE_SHEET.md)**: complete scope, objectives, responsibilities, timing, execution methods, deliverables, and acceptance criteria.
+- **[Build Phase Board](docs/PHASE_ISSUE_INDEX.md)**: phase-by-phase progress with direct links to the GitHub issues.
+- **[Development Roadmap](docs/BUILD_ROADMAP.md)**: high-level delivery sequence.
+- **[Foundation Milestones](docs/BUILD_VERIFICATION_2026-10-17.md)**: documented results from the first factory simulation.
+
+### Meta Global AI Developer Hackathon 2026
+
+ForgeFront Factory Resilience is being developed as a candidate for the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon), centered on the intersection of AI, manufacturing expertise, and real-world operational decision-making.
+
+---
+
+**ForgeFront Systems**  
+*An initiative of Wake Industries*
