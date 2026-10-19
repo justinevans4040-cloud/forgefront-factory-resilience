@@ -1,3 +1,7 @@
+<p align="center">
+<img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Factory Resilience: evidence-led production recovery, featuring the official ForgeFront Winged Emblem C" />
+</p>
+
 # ForgeFront Factory Resilience
 
 **ForgeFront Systems | Wake Industries**
@@ -31,6 +35,8 @@ Factory Resilience is designed around a problem familiar to large aerospace manu
 
 ### Boeing | Production continuity at scale
 
+![Commercial aircraft production resilience concept with ForgeFront Winged Emblem C](assets/showcase/commercial-production-resilience.jpg)
+
 Imagine linking material certificates, fuselage and engine dependencies, production cells, and final-assembly schedules in one coherent operational picture.
 
 **Where Factory Resilience could make a difference:**
@@ -44,6 +50,8 @@ Imagine linking material certificates, fuselage and engine dependencies, product
 
 ### Lockheed Martin | Mission-critical manufacturing readiness
 
+![Mission-critical aerospace manufacturing resilience concept with ForgeFront Winged Emblem C](assets/showcase/mission-critical-resilience.jpg)
+
 In high-consequence aerospace programs, a missing qualified component, a supplier exception, or a production constraint must be understood through its program-level dependencies.
 
 **Where Factory Resilience could make a difference:**
@@ -56,6 +64,8 @@ In high-consequence aerospace programs, a missing qualified component, a supplie
 **Metrics to improve:** first-pass yield, nonconformance aging, recovery cycle time, supply-risk lead time, and schedule stability.
 
 ### Airbus | Connected industrial operations
+
+![Connected aerospace assembly resilience concept with ForgeFront Winged Emblem C](assets/showcase/global-assembly-resilience.jpg)
 
 A geographically distributed production system makes coordination as important as the individual manufacturing steps. Factory Resilience could connect supplier evidence, plant capacity, material availability, and aircraft-program milestones.
 
@@ -71,6 +81,8 @@ A geographically distributed production system makes coordination as important a
 ---
 
 ## The small shops that keep aerospace moving
+
+![Resilience for independent CNC shops and aerospace suppliers, featuring official ForgeFront Winged Emblem C](assets/showcase/small-shop-resilience.jpg)
 
 ### Stronger shops. Stronger skies.
 
