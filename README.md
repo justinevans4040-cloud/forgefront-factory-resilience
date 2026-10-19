@@ -1,8 +1,6 @@
-<p align="center">
-  <img src="assets/showcase/forgefront-hero-red.jpg" width="100%" alt="ForgeFront Factory Resilience industrial intelligence concept hero with red ForgeFront emblem and aerospace production command interface" />
-</p>
-
 # ForgeFront Factory Resilience
+
+**ForgeFront Systems | Wake Industries**
 
 **See the consequence. Shape the recovery.**  
 **ForgeFront Systems** · An initiative of **Wake Industries**
@@ -33,8 +31,6 @@ Factory Resilience is designed around a problem familiar to large aerospace manu
 
 ### Boeing | Production continuity at scale
 
-![Boeing aerospace production-resilience concept: aircraft assembly operations, supplier network and recovery planning](assets/showcase/boeing-concept.jpg)
-
 Imagine linking material certificates, fuselage and engine dependencies, production cells, and final-assembly schedules in one coherent operational picture.
 
 **Where Factory Resilience could make a difference:**
@@ -47,8 +43,6 @@ Imagine linking material certificates, fuselage and engine dependencies, product
 **Metrics to improve:** on-time delivery, schedule adherence, disruption-to-decision time, first-pass yield, and rework hours per incident.
 
 ### Lockheed Martin | Mission-critical manufacturing readiness
-
-![Lockheed Martin mission-critical manufacturing intelligence concept: aircraft systems, dependency tracing and readiness-oriented recovery](assets/showcase/lockheed-martin-concept.jpg)
 
 In high-consequence aerospace programs, a missing qualified component, a supplier exception, or a production constraint must be understood through its program-level dependencies.
 
@@ -63,8 +57,6 @@ In high-consequence aerospace programs, a missing qualified component, a supplie
 
 ### Airbus | Connected industrial operations
 
-![Airbus industrial-resilience concept: commercial aircraft final assembly, connected supply-chain visibility and operational health](assets/showcase/airbus-concept.jpg)
-
 A geographically distributed production system makes coordination as important as the individual manufacturing steps. Factory Resilience could connect supplier evidence, plant capacity, material availability, and aircraft-program milestones.
 
 **Where Factory Resilience could make a difference:**
@@ -76,13 +68,9 @@ A geographically distributed production system makes coordination as important a
 
 **Metrics to improve:** assembly flow efficiency, work-in-process aging, inventory shortages, on-time delivery, and mean time to recovery.
 
-<sub>These aerospace visuals illustrate proposed use cases, not live customer deployments or partnerships. All dashboard values are conceptual, not manufacturer performance data.</sub>
-
 ---
 
 ## The small shops that keep aerospace moving
-
-![ForgeFront Factory Resilience for small and midsize aerospace suppliers, connecting precision machining, production, quality, and deliveries to large aircraft programs](assets/showcase/forgefront-small-shops-resilience.jpg)
 
 ### Stronger shops. Stronger skies.
 
