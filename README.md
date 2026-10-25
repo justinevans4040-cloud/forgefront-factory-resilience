@@ -8,6 +8,8 @@ ForgeFront Factory Resilience is an AI-assisted manufacturing investigation and 
 
 Developed by ForgeFront Systems / Wake Industries for the Meta Global AI Developer Hackathon 2026, the project focuses on a concrete operational challenge: turning fragmented manufacturing records into a coordinated recovery plan.
 
+ForgeFront Factory Resilience is an approved entry in the Meta Global AI Developer Hackathon, held October 26 through November 4, 2026. The project is proprietary.
+
 ## From material evidence to a production decision
 
 A conflicting material certificate can affect inventory, production assignments, and delivery commitments. Factory Resilience brings the investigation and its operational consequences into a shared command experience.
