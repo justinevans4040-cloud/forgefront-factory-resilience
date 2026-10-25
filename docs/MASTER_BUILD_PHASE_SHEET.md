@@ -10,13 +10,11 @@
 
 ---
 
-## 1. The vision
+## 1. Product objective
 
 Manufacturing problems are connected. A questionable material certificate, an unavailable machine, or a late shipment can affect production assignments, inventory, downstream assemblies, schedules, and customer commitments.
 
-ForgeFront Factory Resilience is designed to make those connections understandable and actionable.
-
-**Our objective is to build a factory intelligence experience that:**
+Build a manufacturing investigation and recovery platform that:
 
 1. Understands evidence from multiple manufacturing records.
 2. Identifies a conflict and traces the production work connected to it.
@@ -25,18 +23,13 @@ ForgeFront Factory Resilience is designed to make those connections understandab
 5. Responds when new evidence or another disruption changes the situation.
 6. Records an operator-led decision together with the supporting evidence.
 
-The defining presentation is an adaptive factory recovery demonstration. The audience sees a material discrepancy enter the system, follows its consequences across production, compares recovery paths, and witnesses the strategy change when a second event disrupts the factory.
+The planned demonstration traces a material discrepancy through production, compares recovery options, and recalculates the response after a second disruption.
 
-## 2. The six operating questions
+## 2. Program responsibilities
 
-| Question | Program answer |
-|---|---|
-| **What** | An AI-assisted manufacturing investigation and recovery-planning platform built around connected evidence, production relationships, resource constraints, and operator decisions. |
-| **Why** | Manufacturing teams need to connect scattered records and understand the consequences of a disruption before selecting a practical response. |
-| **When** | Foundation October 17–25; competition development October 26–November 4; event follow-through November 5–9. |
-| **Where** | The controlled development workspace and the GitHub phase-tracking project. The final presentation uses a dedicated demonstration environment. |
-| **Who** | ForgeFront Systems directs the product; engineering implements capabilities; verification tests outcomes; the project owner approves scope and competition presentation. |
-| **How** | Build an evidence-led factory scenario, expand document understanding, map operational dependencies, compare constrained recovery options, and prove the experience through reproducible interactive demonstrations. |
+ForgeFront Systems directs the product. Engineering implements capabilities, verification tests outcomes, and the project owner approves scope and competition presentation.
+
+The program covers foundation work October 17–25, competition development October 26–November 4, and event follow-through November 5–9.
 
 ## 3. Factory demonstration: the anchor scenario
 
@@ -89,8 +82,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Establish the first functioning factory demonstration: production records, CNC work cells, material relationships, conflict detection, recovery alternatives, operator interaction, and evidence reporting.
 
-**Why:** Create a repeatable operational environment where the cause-and-consequence chain can be demonstrated and measured.
-
 **When:** October 17, serving as the starting point for the full program.
 
 **Where:** Controlled development environment, tested desktop and mobile browsers, and the preserved engineering milestone record.
@@ -107,8 +98,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 **October 17–25 | Program preparation**
 
 **What:** Establish the official competition track, participation requirements, technical submission format, presentation standards, and project delivery commitments.
-
-**Why:** The competition schedule shapes the demonstration, development priorities, and final presentation experience.
 
 **When:** October 17–25, ahead of the October 26 development window.
 
@@ -127,8 +116,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Extend the factory model into a structured set of materials, purchasing, inventory, production jobs, work-cell assignments, and delivery relationships.
 
-**Why:** Connected intelligence depends on knowing which record supports a fact and which operational objects depend on that fact.
-
 **When:** October 17–25.
 
 **Where:** The project's controlled scenario data and test environment.
@@ -145,8 +132,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 **October 26–27 | Document intelligence**
 
 **What:** Connect evidence across material certificates, purchase orders, receiving records, inventory, manufacturing jobs, and production routing documents.
-
-**Why:** An incident becomes meaningful when an application can compare information that ordinarily resides in separate records and departments.
 
 **When:** October 26–27.
 
@@ -165,8 +150,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Add Meta-powered explanations of document relationships, material discrepancies, operational consequences, and the questions that should guide the next decision.
 
-**Why:** AI becomes valuable when it helps operators make sense of complex manufacturing evidence without losing contact with the original facts.
-
 **When:** October 27–28.
 
 **Where:** The AI reasoning component of the factory investigation experience.
@@ -175,16 +158,14 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **How:** Provide the model with structured source-linked scenario facts, ask it to explain the incident and decision alternatives, and compare the explanation to independently calculated results.
 
-**Deliverables:** Meta inference workflow, readable incident explanation, evaluation results, and demonstration-ready AI integration.
+**Deliverables:** Meta inference workflow, readable incident explanation, evaluation results, and AI integration.
 
-**Acceptance:** The model demonstrably explains the factory incident in a repeatable evaluation and connects its conclusions to the scenario evidence.
+**Acceptance:** The model explains the factory incident in a repeatable evaluation and connects its conclusions to the scenario evidence.
 
 ### P05 | Manufacturing consequence network
 **October 28–29 | Dependency intelligence**
 
 **What:** Expand the material-to-job relationship into a connected view of inventory assignments, production orders, work cells, assemblies, and delivery milestones.
-
-**Why:** A production incident should be understood through its downstream consequences, not only the original document.
 
 **When:** October 28–29.
 
@@ -203,8 +184,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Compare multiple recovery strategies and update their relative tradeoffs when material availability, supply timing, work priorities, or machine capacity changes.
 
-**Why:** The strongest demonstration is a useful decision changing intelligently when the factory changes.
-
 **When:** October 29–30.
 
 **Where:** The scenario planner and recovery comparison interface.
@@ -221,8 +200,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 **October 30–31 | Operational workflow**
 
 **What:** Link incident discovery, investigation, consequence analysis, recovery selection, operator review, and historical record into one connected workflow.
-
-**Why:** Manufacturing decisions develop over time, and teams benefit from a clear account of how an incident progressed and why choices were made.
 
 **When:** October 30–31.
 
@@ -241,8 +218,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Bring document evidence, production consequences, recovery options, changing conditions, and decisions into a coherent industrial command interface.
 
-**Why:** The product's value should be immediately understandable to manufacturing professionals, business stakeholders, and competition judges.
-
 **When:** October 31–November 1.
 
 **Where:** Desktop and mobile web experience.
@@ -259,8 +234,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 **November 1–2 | Validation**
 
 **What:** Exercise the integrated experience against manufacturing edge cases, changing production conditions, document conflicts, and user interaction scenarios.
-
-**Why:** Factory intelligence must respond coherently when the evidence changes or the operational situation becomes more complicated.
 
 **When:** November 1–2.
 
@@ -279,8 +252,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Prepare the live application experience and the materials that communicate the problem, product, working result, and long-term value.
 
-**Why:** Judges need to witness a tangible manufacturing problem solved through an engaging and convincing software experience.
-
 **When:** November 2–3.
 
 **Where:** The approved competition demonstration environment and presentation materials.
@@ -291,14 +262,12 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **Deliverables:** Live demonstration, short presentation video, project overview, documented evaluation highlights, and reviewer walkthrough.
 
-**Acceptance:** The full incident-to-recovery story can be delivered convincingly and repeated from a fresh session.
+**Acceptance:** The full incident-to-recovery story can be delivered and repeated from a fresh session.
 
 ### P11 | Competition submission
 **November 4 | Delivery**
 
 **What:** Complete the official entry with the required project description, working demonstration, presentation materials, and technical information.
-
-**Why:** Convert the engineering and product effort into a coherent competition submission.
 
 **When:** November 4, ahead of the published **9:00 PM Eastern** deadline.
 
@@ -317,8 +286,6 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 **What:** Support the competition review, capture feedback, preserve the project baseline, and define the next product milestones.
 
-**Why:** The event is a proving ground for a broader industrial intelligence opportunity.
-
 **When:** November 5–9 and following official event communication.
 
 **Where:** Project delivery records, the official event channel, and future product planning.
@@ -335,7 +302,7 @@ P00 is the completed foundation milestone. The linked issues show the detailed e
 
 ## 6. Demonstration narrative
 
-The demonstration should unfold through seven visible beats:
+Planned demonstration sequence:
 
 1. **A factory in motion.** Forty orders, four production cells, and a clear operating view.
 2. **A discrepancy arrives.** A material certificate introduces conflicting information.
@@ -344,8 +311,6 @@ The demonstration should unfold through seven visible beats:
 5. **The situation changes again.** A second incident disrupts the preferred response.
 6. **The strategy adapts.** Consequences and alternatives are recalculated and explained.
 7. **The operator has the final picture.** A decision is recorded with the relevant source evidence and context.
-
-The intended audience should leave with a straightforward understanding: Factory Resilience converts fragmented operational information into a coordinated response.
 
 ## 7. Program quality and delivery criteria
 

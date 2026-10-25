@@ -2,7 +2,7 @@
 
 **ForgeFront Factory Resilience | ForgeFront Systems / Wake Industries**
 
-The build program is organized into **13 phases**, each with a dedicated GitHub issue containing the scope, ownership, implementation approach, milestones, and completion criteria.
+The build program has **13 phases**, each with a dedicated GitHub issue covering scope, ownership, implementation, milestones, and acceptance criteria.
 
 [Read the complete Master Build Phase Sheet](MASTER_BUILD_PHASE_SHEET.md) | [Open the GitHub Issue Board](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues)
 
@@ -21,12 +21,6 @@ The build program is organized into **13 phases**, each with a dedicated GitHub 
 | [P10](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/11) | Nov 2–3 | Competition presentation and release | Product and engineering |
 | [P11](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/12) | Nov 4 | Competition submission | Project owner |
 | [P12](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/issues/13) | Nov 5–9 | Competition outcome and next steps | Project owner |
-
-## Reading the plan
-
-The **Master Build Phase Sheet** answers six questions for every phase: **What are we delivering? Why does it matter? When is it scheduled? Where does the work happen? Who is responsible? How will it be completed and demonstrated?**
-
-Each linked issue provides an actionable place to follow the phase's work and milestones.
 
 ## Program objective
 

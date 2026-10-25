@@ -5,7 +5,7 @@
 
 ForgeFront Factory Resilience connects manufacturing evidence, material traceability, production schedules, and recovery decisions into one operational intelligence experience.
 
-The roadmap moves from a working factory scenario to a complete investigation and recovery demonstration for the **Meta Global AI Developer Hackathon 2026**.
+The roadmap moves from a working factory scenario to an investigation and recovery demonstration for the **Meta Global AI Developer Hackathon 2026**.
 
 ### Stage 1 | Foundation and design
 **October 17–25, 2026**
@@ -40,7 +40,7 @@ Connect investigation, production consequence, scenario planning, and operator d
 
 Exercise the system against unexpected conditions, conduct desktop and mobile trials, refine the live experience, and prepare the competition narrative.
 
-**Delivery:** An end-to-end factory recovery experience, evaluated scenarios, and a compelling judge presentation.
+**Delivery:** An end-to-end factory recovery experience, evaluated scenarios, and a judge presentation.
 
 ### Stage 6 | Submission and next chapter
 **November 4–9, 2026**
@@ -52,8 +52,6 @@ Assemble the competition release, submit through the official event process, pre
 ## The demonstration story
 
 A manufacturing team discovers a conflicting material certificate. The system identifies the connected production work, displays the evidence, calculates recovery alternatives, and responds when an additional factory constraint changes.
-
-The outcome is a decision process that is understandable, traceable, and grounded in the operating scenario.
 
 ## Phase-by-phase execution
 

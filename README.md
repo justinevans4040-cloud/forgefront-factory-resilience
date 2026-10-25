@@ -6,15 +6,15 @@
 
 ForgeFront Factory Resilience is an AI-assisted manufacturing investigation and recovery-planning platform. It connects material evidence, production relationships, machine capacity, and schedules to help operators understand a disruption, compare practical responses, and record a decision with supporting evidence.
 
-Developed by ForgeFront Systems / Wake Industries for the Meta Global AI Developer Hackathon 2026, the project focuses on a concrete operational challenge: turning fragmented manufacturing records into a coordinated recovery plan.
+Developed by ForgeFront Systems / Wake Industries.
 
-ForgeFront Factory Resilience is an approved entry in the Meta Global AI Developer Hackathon, held October 26 through November 4, 2026. The project is proprietary.
+ForgeFront Factory Resilience is an approved entry in the Meta Global AI Developer Hackathon, October 26 through November 4, 2026. The project is proprietary.
 
 ## From material evidence to a production decision
 
 A conflicting material certificate can affect inventory, production assignments, and delivery commitments. Factory Resilience brings the investigation and its operational consequences into a shared command experience.
 
-The workflow follows the operator's decision process:
+Operator workflow:
 
 1. **Examine the evidence.** Extract material details and compare an incoming certificate with the scenario master record, retaining source line references.
 2. **Trace affected production.** Connect the material finding to the jobs and material units involved.
@@ -26,7 +26,7 @@ The workflow follows the operator's decision process:
 
 The aerospace machining scenario contains **40 production orders across four CNC work cells**. An incoming material record contains a heat-number conflict. The investigation maps the incident to **seven production jobs and 178 material units**, then calculates **four recovery alternatives**.
 
-Operators can explore how changed stock and operating assumptions affect the response, review the resulting schedules, and record their chosen approach. The demonstration connects the source record to a production decision through visible evidence and calculations.
+Operators can explore how changed stock and operating assumptions affect the response, review the resulting schedules, and record their chosen approach.
 
 The [October 17 foundation milestone](docs/BUILD_VERIFICATION_2026-10-17.md) records **13 passing automated tests** and browser acceptance exercises covering certificate correction, incident reinjection, recovery recalculation, decision recording, and decision refresh after conditions change. The command interface was examined on desktop and at a **390-pixel mobile viewport**.
 
@@ -58,7 +58,7 @@ The factory scenario brings material investigation, CNC scheduling, and recovery
 
 ## Meta hackathon development
 
-The competition program builds on the factory foundation with multi-document investigation, Meta AI reasoning, broader production consequence mapping, and adaptive recovery planning.
+Planned competition development includes multi-document investigation, Meta AI reasoning, broader production consequence mapping, and adaptive recovery planning.
 
 The planned Meta AI workflow uses structured, source-linked scenario facts to explain document relationships, operational consequences, and decision alternatives. Evaluation compares those explanations with independently calculated scenario results.
 
@@ -75,4 +75,4 @@ The development program spans 13 phases, from the factory foundation through inv
 
 ---
 
-Copyright © 2026 Justin Evans / ForgeFront Systems. [License](LICENSE)
+[Copyright © 2026 Justin Evans / ForgeFront Systems.](LICENSE)
