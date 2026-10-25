@@ -33,6 +33,8 @@ The aerospace factory demonstration begins with a material-certification conflic
 
 Factory Resilience is designed around a problem familiar to large aerospace manufacturers: a single change in material quality, supplier availability, tooling, or production capacity can create a cascade across an entire program.
 
+*The company examples below are illustrative use cases only. They do not represent customers, partners, or deployments.*
+
 ### Boeing | Production continuity at scale
 
 ![Commercial aircraft production resilience concept with ForgeFront Winged Emblem C](assets/showcase/commercial-production-resilience.jpg)
@@ -159,8 +161,10 @@ The roadmap contains **13 structured build phases**, beginning with the factory 
 
 ### Meta Global AI Developer Hackathon 2026
 
-An application has been submitted for the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon), centered on intelligent evidence analysis, industrial operations, and actionable manufacturing decisions.
+Approved on October 20, 2026 for the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon) (October 26 – November 4, 2026), centered on intelligent evidence analysis, industrial operations, and actionable manufacturing decisions.
 
 ---
+
+Copyright © 2026 Justin Evans / ForgeFront Systems. All rights reserved. See [LICENSE](LICENSE).
 
 <p align="center"><strong>ForgeFront Systems</strong><br><em>Wake Industries</em></p>
