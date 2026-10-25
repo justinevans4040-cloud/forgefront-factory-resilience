@@ -1,15 +1,15 @@
 <p align="center">
 <img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Factory Resilience: evidence-led production recovery, featuring the official ForgeFront Winged Emblem C" />
 </p>
+<p align="center"><sub>Artwork by Justin Evans</sub></p>
 
 # ForgeFront Factory Resilience
 
 **ForgeFront Systems | Wake Industries**
 
 **See the consequence. Shape the recovery.**  
-**ForgeFront Systems** · An initiative of **Wake Industries**
 
-Manufacturing is a living network of suppliers, materials, people, machines, schedules, quality records, and customer commitments. **Factory Resilience brings those relationships together**, turning one operational disruption into a clear picture of its consequences and the most practical ways forward.
+Manufacturing is a living network of suppliers, materials, people, machines, schedules, quality records, and customer commitments. **Factory Resilience brings those relationships together**, turning one operational disruption into a clear picture of its consequences and the fastest credible path back to full production.
 
 **Detect → Connect → Understand → Simulate → Decide → Recover**
 
@@ -31,13 +31,15 @@ The aerospace factory demonstration begins with a material-certification conflic
 
 ## Built for aerospace manufacturing complexity
 
-Factory Resilience is designed around a problem familiar to large aerospace manufacturers: a single change in material quality, supplier availability, tooling, or production capacity can create a cascade across an entire program.
+Factory Resilience takes on a problem every major aerospace manufacturer knows: a single change in material quality, supplier availability, tooling, or production capacity can create a cascade across an entire program.
 
 *The company examples below are illustrative use cases only. They do not represent customers, partners, or deployments.*
 
 ### Boeing | Production continuity at scale
 
 ![Commercial aircraft production resilience concept with ForgeFront Winged Emblem C](assets/showcase/commercial-production-resilience.jpg)
+
+<sub>Artwork by Justin Evans</sub>
 
 Imagine linking material certificates, fuselage and engine dependencies, production cells, and final-assembly schedules in one coherent operational picture.
 
@@ -54,6 +56,8 @@ Imagine linking material certificates, fuselage and engine dependencies, product
 
 ![Mission-critical aerospace manufacturing resilience concept with ForgeFront Winged Emblem C](assets/showcase/mission-critical-resilience.jpg)
 
+<sub>Artwork by Justin Evans</sub>
+
 In high-consequence aerospace programs, a missing qualified component, a supplier exception, or a production constraint must be understood through its program-level dependencies.
 
 **Where Factory Resilience could make a difference:**
@@ -68,6 +72,8 @@ In high-consequence aerospace programs, a missing qualified component, a supplie
 ### Airbus | Connected industrial operations
 
 ![Connected aerospace assembly resilience concept with ForgeFront Winged Emblem C](assets/showcase/global-assembly-resilience.jpg)
+
+<sub>Artwork by Justin Evans</sub>
 
 A geographically distributed production system makes coordination as important as the individual manufacturing steps. Factory Resilience could connect supplier evidence, plant capacity, material availability, and aircraft-program milestones.
 
@@ -85,6 +91,8 @@ A geographically distributed production system makes coordination as important a
 ## The small shops that keep aerospace moving
 
 ![Resilience for independent CNC shops and aerospace suppliers, featuring official ForgeFront Winged Emblem C](assets/showcase/small-shop-resilience.jpg)
+
+<sub>Artwork by Justin Evans</sub>
 
 ### Stronger shops. Stronger skies.
 
@@ -142,11 +150,11 @@ TRACEABLE INCIDENT RECORD
 
 ### What makes this distinctive
 
-Factory Resilience does more than identify that something went wrong. It seeks to answer the questions an operator actually needs answered:
+Most tools tell you something went wrong. Factory Resilience answers the questions an operator actually needs answered:
 
 **What changed? What production is affected? What can still run? Which recovery options are feasible? What happens when the factory changes again?**
 
-That last question is central. The system is being developed to make recovery plans *adaptive*, not static.
+That last question is the heart of it. Factory Resilience makes recovery plans *adaptive*, not static.
 
 ## The development program
 
@@ -159,12 +167,12 @@ The roadmap contains **13 structured build phases**, beginning with the factory 
 | [Development Roadmap](docs/BUILD_ROADMAP.md) | Delivery sequence and milestones |
 | [Foundation Milestones](docs/BUILD_VERIFICATION_2026-10-17.md) | Recorded results from the first manufacturing scenario |
 
-### Meta Global AI Developer Hackathon 2026
+## Meta Global AI Developer Hackathon 2026
 
-Approved on October 20, 2026 for the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon) (October 26 – November 4, 2026), centered on intelligent evidence analysis, industrial operations, and actionable manufacturing decisions.
+Approved on October 20, 2026 for the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon) (October 26 – November 4, 2026). Factory Resilience competes in the Push the Frontier theme, bringing AI-driven evidence analysis to the factory floor, where one bad record can stop a production line.
 
 ---
 
-Copyright © 2026 Justin Evans / ForgeFront Systems. All rights reserved. See [LICENSE](LICENSE).
+Copyright © 2026 Justin Evans / ForgeFront Systems. All rights reserved. All artwork and imagery by Justin Evans. See [LICENSE](LICENSE).
 
 <p align="center"><strong>ForgeFront Systems</strong><br><em>Wake Industries</em></p>
