@@ -73,4 +73,4 @@ The development program spans 13 phases, from the factory foundation through inv
 
 ---
 
-Copyright © 2026 Justin Evans / ForgeFront Systems. All rights reserved. See [LICENSE](LICENSE).
+Copyright © 2026 Justin Evans / ForgeFront Systems. [License](LICENSE)
