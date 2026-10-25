@@ -4,134 +4,73 @@
 
 # ForgeFront Factory Resilience
 
-**ForgeFront Systems | Wake Industries**
+ForgeFront Factory Resilience is an AI-assisted manufacturing investigation and recovery-planning platform. It connects material evidence, production relationships, machine capacity, and schedules to help operators understand a disruption, compare practical responses, and record a decision with supporting evidence.
 
-**See the impact. Plan the recovery.**
+Developed by ForgeFront Systems / Wake Industries for the Meta Global AI Developer Hackathon 2026, the project focuses on a concrete operational challenge: turning fragmented manufacturing records into a coordinated recovery plan.
 
-Factory Resilience is an AI-assisted platform for manufacturing disruption response. It connects material records, production orders, machine capacity, and schedules, so that when something goes wrong, operators can see exactly what is affected and choose the best way to recover.
+## From material evidence to a production decision
 
-**Detect · Connect · Understand · Simulate · Decide · Recover**
+A conflicting material certificate can affect inventory, production assignments, and delivery commitments. Factory Resilience brings the investigation and its operational consequences into a shared command experience.
 
----
+The workflow follows the operator's decision process:
 
-## How it works
+1. **Examine the evidence.** Extract material details and compare an incoming certificate with the scenario master record, retaining source line references.
+2. **Trace affected production.** Connect the material finding to the jobs and material units involved.
+3. **Compare recovery options.** Calculate alternatives using material availability, time constraints, and work-cell schedules.
+4. **Explore changing conditions.** Recompute plans as stock and operating assumptions change.
+5. **Record the response.** Capture the operator's scenario selection, incident events, and a structured evidence report.
 
-The demonstration models an aerospace machining operation. A material certification conflict is detected, and Factory Resilience traces it through the factory: which lots are involved, which jobs used them, and which deliveries are at risk. It then lays out recovery options side by side.
+## The factory demonstration
 
-| Demonstration factory | |
-|:--|:--|
-| **40** production orders | Linked to their material and evidence records |
-| **4** CNC work cells | Scheduled against real capacity |
-| **7** affected jobs | Identified automatically from the source record |
-| **178** material units | Tracked from lot to job |
-| **4** recovery strategies | Compared side by side |
+The aerospace machining scenario contains **40 production orders across four CNC work cells**. An incoming material record contains a heat-number conflict. The investigation maps the incident to **seven production jobs and 178 material units**, then calculates **four recovery alternatives**.
 
-When a second disruption hits, such as a machine going down or a supplier slipping, the recovery plan updates to match the new conditions.
+Operators can explore how changed stock and operating assumptions affect the response, review the resulting schedules, and record their chosen approach. The demonstration connects the source record to a production decision through visible evidence and calculations.
 
-## The questions it answers
+The [October 17 foundation milestone](docs/BUILD_VERIFICATION_2026-10-17.md) records **13 passing automated tests** and browser acceptance exercises covering certificate correction, incident reinjection, recovery recalculation, decision recording, and decision refresh after conditions change. The command interface was examined on desktop and at a **390-pixel mobile viewport**.
 
-- What changed?
-- Which production is affected?
-- What can keep running?
-- Which recovery options are realistic?
-- What happens when conditions change again?
+## Manufacturing contexts
 
-```text
-DOCUMENTS & SIGNALS
-        ↓
-EVIDENCE RECONCILIATION
-        ↓
-MATERIAL & PRODUCTION DEPENDENCIES
-        ↓
-SCHEDULE & INVENTORY IMPACT
-        ↓
-RECOVERY OPTIONS
-        ↓
-OPERATOR DECISION
-        ↓
-TRACEABLE INCIDENT RECORD
-```
-
----
-
-## Where it applies
-
-### Large-scale aircraft production
+### Aircraft production
 
 ![Commercial aircraft production](assets/showcase/commercial-production-resilience.jpg)
 
-A single material or supplier problem can ripple through fuselage, engine, and final-assembly schedules. Factory Resilience shows which work is affected and which can keep moving, so production does not stop wholesale while the problem is resolved.
-
-- Find downstream conflicts early
-- Keep unaffected work on schedule
-- Catch questionable material before it reaches assembly
-- Put production, purchasing, quality, and scheduling on one plan
+The project is designed to connect material and supplier issues with production assignments, downstream assemblies, and delivery commitments. That visibility helps teams identify affected work and evaluate where production can continue.
 
 ### Mission-critical programs
 
 ![Mission-critical aerospace manufacturing](assets/showcase/mission-critical-resilience.jpg)
 
-In high-consequence programs, every exception has to be traced to its source and its full impact understood before a decision is made.
+Source-linked evidence and documented decisions support investigations where material identity, production dependencies, and the reasoning behind a response need to remain traceable.
 
-- Tie each discrepancy to its originating record and affected assemblies
-- Give teams a repeatable, traceable investigation workflow
-- Identify single points of failure in the supply chain
-- Show how a disruption changes capacity and priorities
-
-### Multi-site assembly
+### Connected assembly operations
 
 ![Connected aerospace assembly](assets/showcase/global-assembly-resilience.jpg)
 
-When production spans plants and suppliers, coordination matters as much as any single operation.
-
-- See how a late or nonconforming part affects work across sites
-- Reassign jobs, work cells, and inventory within real constraints
-- Compare recovery options using current supply and capacity data
+The development plan extends the dependency model across inventory assignments, production orders, work cells, assemblies, and delivery milestones. Recovery comparisons account for available resources and changing factory constraints.
 
 ### Independent shops and suppliers
 
 ![Independent CNC shops and aerospace suppliers](assets/showcase/small-shop-resilience.jpg)
 
-Aerospace runs on a network of CNC job shops, fabricators, heat-treat and finishing houses, and inspection labs. These shops have fewer machines and less room for an unexpected material hold or missed shipment.
+The factory scenario brings material investigation, CNC scheduling, and recovery comparison into the same workflow. Operators can examine the affected jobs, compare material and capacity choices, and preserve the evidence behind their response.
 
-| Shop priority | How Factory Resilience helps | What to measure |
-|:--|:--|:--|
-| **Spindle time** | Keeps machines running on unaffected orders | Utilization; lost hours |
-| **Scrap and rework** | Flags bad material before more value is added | Scrap rate; rework hours; first-pass yield |
-| **On-time delivery** | Compares recovery plans when material or capacity changes | On-time delivery; overdue orders |
-| **Quality investigations** | Brings POs, certs, travelers, and inspections into one record | Time to investigate; hold duration |
-| **Customer confidence** | Produces a clear account of the issue and the recovery plan | Response time; supplier rating |
+## Meta hackathon development
 
----
+The competition program builds on the factory foundation with multi-document investigation, Meta AI reasoning, broader production consequence mapping, and adaptive recovery planning.
 
-## Measurable outcomes
+The planned Meta AI workflow uses structured, source-linked scenario facts to explain document relationships, operational consequences, and decision alternatives. Evaluation compares those explanations with independently calculated scenario results.
 
-| Goal | Approach | Measure |
-|:--|:--|:--|
-| **Contain disruptions** | Trace lot-to-job-to-assembly relationships | Units affected beyond the first detection point |
-| **Reduce scrap and rework** | Flag evidence conflicts early | Scrap cost; rework hours |
-| **Recover schedules faster** | Evaluate capacity-constrained recovery paths | Mean time to recovery; schedule adherence |
-| **Decide with confidence** | Show the evidence and tradeoffs behind each option | Time to a documented decision |
+The planned adaptive recovery demonstration introduces a second change to material availability, supply timing, or machine capacity. It compares hold-and-reconcile, expedited supply, inventory reallocation, and hybrid strategies, showing how new constraints change the recovery decision.
 
----
+## Project documentation
 
-## Development
+The development program spans 13 phases, from the factory foundation through investigation, recovery planning, operator experience, validation, and competition submission.
 
-The program runs in 13 phases, from the factory foundation through document reconciliation, AI reasoning, dependency analysis, recovery planning, operator experience, verification, and final presentation.
-
-| | |
-|:--|:--|
-| [Master Build Phase Sheet](docs/MASTER_BUILD_PHASE_SHEET.md) | Phases, deliverables, and acceptance criteria |
-| [Phase Board](docs/PHASE_ISSUE_INDEX.md) | Issue tracking for each phase |
-| [Roadmap](docs/BUILD_ROADMAP.md) | Delivery sequence and milestones |
-| [Foundation Milestones](docs/BUILD_VERIFICATION_2026-10-17.md) | Results from the first scenario |
-
-## Meta Global AI Developer Hackathon 2026
-
-Factory Resilience is competing in the [Meta Global AI Developer Hackathon](https://dev.meta.ai/events/global-hackathon), October 26 to November 4, 2026, in the Push the Frontier theme.
+- [Master Build Phase Sheet](docs/MASTER_BUILD_PHASE_SHEET.md) — Scope, deliverables, and acceptance criteria for each phase.
+- [Phase Board](docs/PHASE_ISSUE_INDEX.md) — Phase schedules and linked GitHub issues.
+- [Build Roadmap](docs/BUILD_ROADMAP.md) — Development stages and delivery milestones.
+- [Foundation Milestones](docs/BUILD_VERIFICATION_2026-10-17.md) — Demonstrated capabilities and engineering verification.
 
 ---
 
 Copyright © 2026 Justin Evans / ForgeFront Systems. All rights reserved. See [LICENSE](LICENSE).
-
-<p align="center"><strong>ForgeFront Systems</strong><br><em>Wake Industries</em></p>
