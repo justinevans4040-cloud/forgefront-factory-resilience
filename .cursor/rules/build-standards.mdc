@@ -1,0 +1,56 @@
+---
+description: ForgeFront Factory Resilience build standards (Justin Evans) — apply to every change in this repo
+alwaysApply: true
+---
+
+# ForgeFront Factory Resilience — build standards
+
+This is ForgeFront Systems' entry for the Meta Global AI Developer Hackathon, judged by top AI
+researchers (Impact 30%, Use of Meta AI tooling 25%, Demo 25%, Technical depth 20%). It must be top tier.
+
+## Justin's rules (follow exactly)
+
+1. **Full effort, A through Z.** Finish every item; nothing is left behind to be forgotten.
+2. **Dynamic and genuinely functional.** Every feature is computed from real state (engine output,
+   session, ledger, scenario inputs) — never hardcoded values and never generic code that only
+   satisfies an A-to-B test.
+3. **Fix with real capability.** When a claim and the code disagree, make the claim TRUE by building
+   the capability. Never reword, reduce, remove or water down scope. Rewording is acceptable only for
+   things that physically cannot exist yet (the live Muse Spark key, the S24 device test) — and even
+   then the full live path is built so it switches on when the dependency arrives.
+4. **Raise the bar** where it fits the demo and judging, while keeping scope disciplined enough that
+   everything ships verified, tested and working in the browser.
+5. **Ownership.** Codex builds a separate parallel version; this build (Izzy lane) is owned here. Never
+   read from, write to or merge with the other build's folder unless Justin explicitly asks.
+
+## Standing rules
+
+- **Code stays private.** Never push source to a public repository. Private remotes only.
+- **Muse Spark is explain-only.** No model or API path may set `operationalRelease: true`; the model
+  cannot alter jobs, substitute material or approve release. Output passes `src/output-screen.mjs`.
+- **Evidence-tagged claims.** Every model sentence carries `[evidence:<id>]` tags from the
+  server-built registry (`[evidence:pm:…]` for PM numbers); the claim checker removes sentences whose
+  numbers, entities or commitments are not in the cited evidence.
+- **Honest labeling.** Synthetic data, illustrative Haas-class cells (not OEM specs), synthetic EVM and
+  "Sample mode (no live Muse Spark key)" are labeled wherever they appear (UI, event log, export).
+  The audit ledger is "hash-chained, tamper-evident" — never "tamper-proof".
+- **Athere spelling:** the product name is always spelled Athere (A-T-H-E-R-E), as in Athere Mesh.
+  Any other spelling (Aether, Athere Mesh, Ather, etc.) is a misspelling of Athere, not a different
+  product; correct it in anything you write.
+- **Verify before stating:** do not guess or pattern-match. Check evidence first (read the file, run
+  the command, check git/GitHub, test the endpoint) before stating any fact, status, location, or that
+  something is done/working/missing. Say where each fact came from. If uncertain, say what is verified
+  and what is not. If blocked, say BLOCKED and name the exact gap.
+- **Security model stays intact:** session + CSRF (`GET /api/session`, `X-Session-Token`,
+  `X-CSRF-Token`); Host/Origin allowlist; rate limits with 429 + `Retry-After` on every API route;
+  two-step consent (review token → typed `APPROVE <planId>` confirm, server-recomputed plan hash,
+  session-bound operator, expiring, single-use, invalidated on scenario change); HMAC-keyed,
+  head-anchored audit ledger verified on demand and periodically; consent envelope (plan-parameter
+  hash, TTL <= 15 min, persisted single-use nonce); typed mission-chain events with idempotency keys
+  on approvals and Kanban moves; deterministic-first answers with provenance (engine -> cache ->
+  Muse Spark, escalation reason ledgered); strict CSP `script-src 'self'`;
+  zero npm runtime dependencies; browser code imports no `node:*` modules.
+- **Definition of done:** `npm test` passes in full, and the browser smoke
+  (`node --experimental-websocket tools/browser-smoke.mjs` on Node 20) clicks through the full demo
+  with zero console errors, including the Prove-it panel (5/5) and a complete mission chain. Add a test for every fix. Update docs, demo script and test counts in the
+  same change. Never send email or external messages on Justin's behalf unasked.

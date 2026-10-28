@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b163eb8e946e5c97f45997e285b
+      - uses: actions/setup-node@0a39408cb933f16b538696571532c22099a3d0d8
+        with:
+          node-version: "20"
+      - run: npm run check
+      - run: npm test
+      - name: Install Chromium for browser smoke
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq chromium-browser || sudo apt-get install -y -qq chromium
+      - run: npm run smoke:browser
+      - name: Live model verification (skip if no credentials)
+        run: node tools/live-model-verify.mjs
+        env:
+          MODEL_API_KEY: ${{ secrets.MODEL_API_KEY }}
+          OLLAMA_ENDPOINT: ${{ secrets.OLLAMA_ENDPOINT }}

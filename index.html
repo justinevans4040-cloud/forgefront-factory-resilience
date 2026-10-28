@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en" class="page-scroll-lock">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#2B2E31">
+<meta name="description" content="ForgeFront Factory Resilience: evidence-based manufacturing impact and recovery intelligence.">
+<title>Factory Resilience | ForgeFront Systems</title>
+<link rel="icon" href="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png">
+<link rel="stylesheet" href="/src/styles.css">
+<script type="module" src="/src/app.mjs"></script>
+</head>
+<body>
+  <aside role="note" style="padding:12px;background:#17212b;color:#fff">Synthetic demonstration. Company names, including Boeing, Lockheed Martin, Airbus, Haas and Spirit, are illustrative references only. No affiliation, endorsement, customer relationship or OEM performance claim. See PROVENANCE.md for the pre-event foundation boundary.</aside>
+<div class="app-shell plant-hmi page-mode">
+  <header class="command-mast">
+    <div class="mast-brand">
+      <img class="brand-emblem" src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="ForgeFront Systems" width="40" height="40">
+      <div>
+        <strong>FORGEFRONT</strong>
+        <small>FACTORY RESILIENCE · R18 · PLANT HMI</small>
+      </div>
+    </div>
+    <div class="mast-center">
+      <span class="mast-crumb">FORGEFRONT <b>/</b> RESILIENCE <b>/</b> <span id="crumbPage">PLANT VIEW</span></span>
+      <span class="synthetic-tag">SYNTHETIC DEMONSTRATION</span>
+    </div>
+    <div class="mast-status">
+      <span class="dot-live" aria-hidden="true"></span>
+      <span>ENGINE LIVE</span>
+      <span class="separator"></span>
+      <span id="buildTag">BUILD R18</span>
+      <span class="separator"></span>
+      <span id="clock"></span>
+      <span class="separator"></span>
+      <span id="modelStatus" class="model-status">Meta Muse Spark: Sample mode (no live Muse Spark key)</span>
+    </div>
+  </header>
+
+  <nav class="page-index side-nav" id="pageIndex" aria-label="Page index">
+    <a href="#overview" class="index-link side-link active" data-page="overview">Plant</a>
+    <a href="#evidence" class="index-link side-link" data-page="evidence">Evidence</a>
+    <a href="#impact" class="index-link side-link" data-page="impact">Impact</a>
+    <a href="#recovery" class="index-link side-link" data-page="recovery">Strategies</a>
+    <a href="#pm" class="index-link side-link" data-page="pm">PM</a>
+    <a href="#kanban" class="index-link side-link" data-page="kanban">Kanban</a>
+    <a href="#program" class="index-link side-link" data-page="program">Program</a>
+    <a href="#arbitration" class="index-link side-link" data-page="arbitration">Arbitration</a>
+    <a href="#decision" class="index-link side-link" data-page="decision">Action</a>
+    <a href="#mission" class="index-link side-link" data-page="mission">Mission</a>
+    <a href="#proveit" class="index-link side-link" data-page="proveit">Prove it</a>
+  </nav>
+
+  <ol class="demo-story" id="demoStoryRail" aria-label="Demo storyline beats" hidden>
+    <li class="demo-story-step is-active" data-story="disruption">Disruption<small>Certificate conflict</small></li>
+    <li class="demo-story-step" data-story="analysis">AI analysis<small>Evidence citations</small></li>
+    <li class="demo-story-step" data-story="recovery">Recovery<small>Capacity-checked plans</small></li>
+    <li class="demo-story-step" data-story="consent">Consent<small>Two-step operator gate</small></li>
+    <li class="demo-story-step" data-story="ledger">Ledger<small>Tamper-evident chain</small></li>
+  </ol>
+
+  <main class="workspace">
+    <div id="ledgerIntegrityBanner" class="ledger-tamper-banner" hidden role="alert"></div>
+
+    <!-- PAGE: Plant view (ISA-101) -->
+    <section id="overview" class="page is-active" data-page="overview" aria-labelledby="pageTitle-overview">
+      <div class="page-body">
+        <header class="page-head plant-head">
+          <div>
+            <h1 id="pageTitle-overview">Plant view</h1>
+            <p class="page-lead">Flat schematic of the four-cell line. Normal state is gray on gray — no green for OK. Disruption paints the bad certificate and downstream orders first, with shape and text as well as color.</p>
+          </div>
+          <div id="heroStatus" class="hero-status" role="status"><strong>INVESTIGATING</strong><small>Material lineage incident</small></div>
+        </header>
+
+        <div class="scenario-controls">
+          <button class="btn btn-hot" id="injectBtn">Inject certificate conflict</button>
+          <button class="btn" id="correctBtn">Replace with matching cert</button>
+          <button class="btn btn-warn" id="secondShockBtn">Second shock (lot + cell)</button>
+          <button class="btn btn-ghost" id="resetBtn">Reset scenario</button>
+          <span class="scenario-code">INCIDENT / <span id="incidentState">DETECTED</span></span>
+        </div>
+
+        <section class="plant-stage" aria-label="Plant schematic">
+          <div id="plantSchematic" class="plant-schematic" role="img" aria-label="Certificate to cells to forty orders"></div>
+          <aside class="plant-rail">
+            <div class="form-label">LINE STATE</div>
+            <dl class="plant-metrics" aria-label="Process values vs normal">
+              <div class="plant-metric">
+                <dt class="form-label">ORDERS</dt>
+                <dd><strong id="metricOrders">40</strong><span class="band-mark">N 40</span></dd>
+                <div id="consequenceSparkline" class="sparkline-wrap band-trend" role="img" aria-label="Order exposure trend"></div>
+              </div>
+              <div class="plant-metric">
+                <dt class="form-label">IMPACTED</dt>
+                <dd><strong id="metricAffected">7</strong><span class="band-mark">N 0</span></dd>
+                <small id="metricAffectedCaption">Traceable to flagged lot</small>
+              </div>
+              <div class="plant-metric">
+                <dt class="form-label">EXPOSURE</dt>
+                <dd><strong id="metricExposure">$0</strong><span class="band-mark">N $0</span></dd>
+              </div>
+              <div class="plant-metric">
+                <dt class="form-label">PLANS</dt>
+                <dd><strong id="metricPlans">4</strong><span class="band-mark">N —</span></dd>
+              </div>
+            </dl>
+            <div class="form-label">SESSION MARKS</div>
+            <ol id="incidentTimeline" class="incident-timeline" aria-live="polite"></ol>
+            <p class="rail-note">40 active aerospace orders · 4 illustrative Haas-class cells · Deterministic analysis online · Use page index for Evidence, Impact, Strategies, Action</p>
+          </aside>
+        </section>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Synthetic demonstration · Competition preparation · BUILD R18</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Material evidence -->
+    <section id="evidence" class="page" data-page="evidence" aria-labelledby="pageTitle-evidence" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-evidence">Material evidence</h1>
+          <p class="page-lead">Incoming material certification checked against the master record. Edit the certificate text, upload a PDF text layer, or load the sample to investigate.</p>
+          <span id="certStatus" class="pill pill-red page-pill">REVIEW REQUIRED</span>
+        </header>
+        <div class="panel page-panel">
+          <div class="evidence-layout">
+            <div>
+              <label for="certText" class="form-label">CERTIFICATE TEXT / EDIT TO INVESTIGATE</label>
+              <textarea id="certText" spellcheck="false" aria-label="Incoming certificate text"></textarea>
+              <div class="panel-actions">
+                <button id="analyseBtn" class="btn btn-primary">Analyze certificate →</button>
+                <label class="btn btn-outline pdf-upload-btn" title="Extracts the PDF text layer (FlateDecode, ToUnicode fonts). Scanned image-only PDFs need OCR, which this build does not do.">Upload PDF cert (text layer)<input id="pdfUpload" type="file" accept="application/pdf,.pdf" hidden></label>
+                <button id="samplePdfBtn" class="btn btn-ghost" type="button" title="Runs the bundled Chrome-printed (compressed) sample certificate through the same PDF pipeline">Load sample PDF</button>
+                <span id="pdfRoute" class="pdf-route"></span>
+              </div>
+            </div>
+            <div class="evidence-findings">
+              <div class="form-label">DOCUMENT vs MASTER RECORD</div>
+              <div id="findings"></div>
+              <div class="packet-block">
+                <div class="packet-head"><span class="form-label">MULTI-DOCUMENT PACKET</span><span id="packetStatus" class="pill pill-red">REVIEW REQUIRED</span></div>
+                <div id="packetContradictions" class="packet-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Material evidence · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Impact network -->
+    <section id="impact" class="page" data-page="impact" aria-labelledby="pageTitle-impact" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-impact">Impact network</h1>
+          <p class="page-lead">Material-to-production impact: which jobs, cells, and units are held when the certificate conflicts with the master record.</p>
+          <span class="pill page-pill" id="impactPill">LIVE TRACE</span>
+        </header>
+        <div class="panel page-panel">
+          <div class="network" id="networkMap" aria-label="Dependency map"></div>
+          <div id="impactConstellation" class="constellation-wrap" role="img" aria-label="Impact order marks from engine jobs"></div>
+          <p id="graphSummary" class="graph-summary"></p>
+          <div class="impact-caption" id="impactCaption"></div>
+          <div class="table-scroll"><table><thead><tr><th>JOB / ORDER</th><th>CELL</th><th>UNITS</th><th>PRIORITY</th><th>STATUS</th></tr></thead><tbody id="jobRows"></tbody></table></div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Impact network · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Recovery / strategy gapper -->
+    <section id="recovery" class="page" data-page="recovery" aria-labelledby="pageTitle-recovery" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-recovery">Strategy gapper</h1>
+          <p class="page-lead">Four recovery strategies vs a do-nothing reference (lateness / $ exposure over time). Small-multiples show all forty orders per strategy. Point a sparkline to drill into that order.</p>
+          <span class="pill page-pill">NO AUTOMATIC RELEASE</span>
+        </header>
+        <div class="panel page-panel recovery-panel">
+          <div class="scenario-params">
+            <label>QUALIFIED SUBSTITUTE STOCK <strong id="stockVal">96</strong> units<input id="stockRange" type="range" min="0" max="180" step="6" value="96"></label>
+            <label>EXPEDITED REPLACEMENT ETA <strong id="etaVal">20</strong> hrs<input id="etaRange" type="range" min="8" max="60" step="2" value="20"></label>
+            <label>HORIZONTAL CELL OUTAGE <strong id="outageVal">0</strong> hrs<input id="outageRange" type="range" min="0" max="32" step="2" value="0"></label>
+          </div>
+          <div id="planCompare" class="plan-compare strategy-gapper" role="img" aria-label="Strategy gapper: lateness and exposure vs do nothing"></div>
+          <div id="orderSparklines" class="order-sparklines" role="img" aria-label="Forty-order sparklines per strategy"></div>
+          <div id="orderDrill" class="order-drill" aria-live="polite"></div>
+          <div id="planCards" class="plan-grid plan-rows"></div>
+          <div class="plan-footer"><span>Numbers are estimated from explicit demo assumptions. Proposed inbound material cannot be released until its documents are checked.</span><button id="exportBtn" class="btn btn-outline">↓ Export evidence report</button><button id="exportAuditRawBtn" class="btn btn-outline" type="button" title="Separate UNVERIFIED file via audit API only">↓ Export raw model (audit)</button></div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Strategy gapper · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Project metrics -->
+    <section id="pm" class="page" data-page="pm" aria-labelledby="pageTitle-pm" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-pm">Project metrics</h1>
+          <p class="page-lead">Critical path, EVM, WSJF, and Little’s Law metrics from the deterministic engine — synthetic rates, not actual financials.</p>
+          <span class="pill page-pill">SYNTHETIC EVM</span>
+        </header>
+        <div class="panel page-panel pm-panel">
+          <div id="pmPanel"></div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Project metrics · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Kanban -->
+    <section id="kanban" class="page" data-page="kanban" aria-labelledby="pageTitle-kanban" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-kanban">Kanban board</h1>
+          <p class="page-lead">Post-consent recovery execution board. Cards unlock after an operator accepts a scenario recovery plan.</p>
+          <span class="pill page-pill">POST-CONSENT</span>
+        </header>
+        <div class="panel page-panel kanban-panel">
+          <div id="kanbanBoard" class="kanban-board"></div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Kanban board · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Program + Comms -->
+    <section id="program" class="page" data-page="program" aria-labelledby="pageTitle-program" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-program">Program + Comms</h1>
+          <p class="page-lead">Command Center V3 — Project + Communications OS. Logistics arm of Resilience. Bridge status updates from Resilience decisions; workspace below is the Program UI.</p>
+          <span id="programPill" class="pill page-pill">BRIDGE IDLE</span>
+        </header>
+        <div id="programBridgeSummary" class="program-bridge-summary" aria-live="polite">Waiting for Resilience events…</div>
+        <p class="support-text"><a class="btn btn-outline" href="/program" target="_blank" rel="noopener">Open Program workspace (top-level)</a></p>
+        <div class="program-frame-wrap">
+          <iframe id="programFrame" class="program-frame" title="ForgeFront Command Center V3 Project Management" src="/vendor/command-center-v3/ForgeFront_PM.html" loading="lazy" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads"></iframe>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Program + Comms · Command Center V3</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Arbitration -->
+    <section id="arbitration" class="page" data-page="arbitration" aria-labelledby="pageTitle-arbitration" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-arbitration">Conflict arbitration</h1>
+          <p class="page-lead">When shocks or claims collide, competing claims are scored on weighted factors. Agreeing claims merge; a clear winner resolves; a close call escalates to a human.</p>
+          <span class="pill page-pill">WEIGHTED CLAIMS</span>
+        </header>
+        <div class="panel page-panel arbitration-panel">
+          <div id="arbitrationPanel" class="arbitration-body">Arbitration runs when two disruptions compete for the same Haas cell, or when a model sentence disagrees with engine evidence.</div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Conflict arbitration · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Decision / proposed action + dense ledger -->
+    <section id="decision" class="page" data-page="decision" aria-labelledby="pageTitle-decision" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-decision">Proposed action</h1>
+          <p class="page-lead">Muse Spark output is a staged action with editable typed parameters. Every claim carries a citation chip to the certificate field, order, or ledger row. Two-key ARM then COMMIT seals the existing HMAC consent envelope.</p>
+          <span class="pill page-pill">OPERATOR REVIEW</span>
+        </header>
+        <div id="ledgerChain" class="ledger-chain dense-ledger" role="img" aria-label="Tamper-evident ledger chain from session events"></div>
+        <div class="section-grid page-grid">
+          <div class="panel page-panel">
+            <div class="panel-header"><div><div class="section-kicker">TWO-KEY CONSENT</div><h2>Scenario acceptance</h2></div></div>
+            <p class="support-text">Select a recovery option on Strategies, then ARM a review token and COMMIT with the typed phrase. Acceptance never authorizes physical material release.</p>
+            <div id="approvalState" class="approval-state">No recovery strategy selected.</div>
+            <div class="two-key-hint support-text">Guarded controls: ARM issues the review token; COMMIT confirms with the exact phrase against the server-recomputed plan hash.</div>
+            <div class="ledger-row"><div id="ledgerStatus" class="ledger-status">Audit ledger: checking…</div><button id="ledgerVerifyBtn" class="btn btn-ghost" type="button">Verify ledger now</button></div>
+            <div class="form-label ledger-title">DENSE LEDGER · HASH PREFIXES</div>
+            <ol id="eventLog" class="event-log dense-event-log" aria-live="polite"></ol>
+          </div>
+          <div class="panel page-panel ai-panel action-card-panel">
+            <div class="panel-header"><div><div class="section-kicker">STAGED ACTION</div><h2>Muse Spark proposed action</h2></div><span id="metaPill" class="pill pill-amber">MUSE SPARK 1.3 · SAMPLE MODE</span></div>
+            <p class="support-text">Not a chat. Facts and math come from the independent scenario engine. The model explains through read-only tools; it cannot alter a job, substitute material, or approve a release.</p>
+            <p id="metaModeNote" class="support-text meta-mode-note">Sample mode (no live Muse Spark key).</p>
+            <div class="action-params" id="actionParams" aria-label="Editable action parameters">
+              <label class="form-label" for="actionPlanSelect">STRATEGY ID</label>
+              <select id="actionPlanSelect" aria-label="Proposed strategy id"></select>
+              <label class="form-label" for="actionOperatorNote">OPERATOR NOTE (TYPED, LOCAL)</label>
+              <input id="actionOperatorNote" maxlength="120" placeholder="Optional note bound to this session only" autocomplete="off">
+            </div>
+            <div class="ai-actions">
+              <button class="btn btn-primary" id="metaBtn">Generate brief · Sample mode (no live Muse Spark key)</button>
+              <button class="btn btn-outline" id="adversarialBtn" title="Feeds known-bad sentences (wrong numbers, spelled-out numbers, invented supplier commitments, fake IDs) through the same claim checker">Run adversarial brief (red-team test)</button>
+            </div>
+            <div id="claimMeter" class="claim-meter">Uncited / mis-cited sentences blocked (last brief): <strong id="claimBlockedCount">0</strong></div>
+            <div id="aiOutput" class="ai-output action-card" role="status">Generate a brief to stage a proposed action. Claims appear with citation chips — no unsourced headline numbers.</div>
+            <div id="aiTrace" class="ai-trace"></div>
+            <div id="aiBlocked" class="ai-blocked"></div>
+            <details id="aiRawPanel" class="ai-raw-panel" hidden>
+              <summary>Raw model output (unverified, audit only)</summary>
+              <p class="support-text">Free-text model prose is never shown in the decision or export bundle. It is retained here for audit review only.</p>
+              <div id="aiRawOutput" class="ai-output ai-raw-output"></div>
+            </details>
+          </div>
+        </div>
+        <div class="panel page-panel ask-panel">
+          <div class="ask-box">
+            <div class="form-label">ASK FORGEFRONT · DETERMINISTIC-FIRST LADDER</div>
+            <p class="support-text">Engine first, then a cache of verified answers, then Muse Spark for the questions that need reasoning across engine facts. Every answer shows where it came from.</p>
+            <div class="ask-row"><input id="askInput" maxlength="300" placeholder="e.g. Which recovery option is cheapest?" autocomplete="off"><button id="askBtn" class="btn btn-primary" type="button">Ask</button></div>
+            <div class="ask-chips">
+              <button class="ask-chip" type="button" data-q="Which recovery option is cheapest?">Which option is cheapest?</button>
+              <button class="ask-chip" type="button" data-q="What should we fix first?">What should we fix first?</button>
+              <button class="ask-chip" type="button" data-q="Why is the priority split better than holding for verification?">Why the priority split over holding?</button>
+              <button class="ask-chip" type="button" data-q="Approve material release for LOT-TI-001 now">Approve release now (test)</button>
+            </div>
+            <div id="askOutput" class="ask-output" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Proposed action · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Mission chain -->
+    <section id="mission" class="page" data-page="mission" aria-labelledby="pageTitle-mission" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-mission">Mission chain</h1>
+          <p class="page-lead">Intent → plan → approval → effect → outcome. Every ledger entry carries a typed envelope inside its hashed body. Approvals and Kanban moves are idempotent.</p>
+          <span class="pill page-pill">TYPED EVENTS</span>
+        </header>
+        <div class="panel page-panel mission-panel">
+          <div id="missionPanel" class="mission-body">No mission yet. Reviewing a recovery plan opens one.</div>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Mission chain · Synthetic demonstration</span>
+      </footer>
+    </section>
+
+    <!-- PAGE: Prove it -->
+    <section id="proveit" class="page" data-page="proveit" aria-labelledby="pageTitle-proveit" hidden>
+      <div class="page-body">
+        <header class="page-head">
+          <h1 id="pageTitle-proveit">Prove it</h1>
+          <p class="page-lead">Live checks against this running server with a separate probe session: expired approval, replayed approval, tampered ledger, hostile intake, and offline engine.</p>
+          <span class="pill pill-amber page-pill">LIVE CHECKS</span>
+        </header>
+        <div class="panel page-panel proveit-panel">
+          <button id="proveItBtn" class="btn btn-primary" type="button">Run all five checks</button>
+          <ol id="proveItResults" class="proveit-results"></ol>
+        </div>
+      </div>
+      <footer class="page-footer">
+        <div class="page-footer-brand"><img src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="" width="28" height="28"><span><strong>ForgeFront Systems</strong> · Factory Resilience</span></div>
+        <span>Prove it · Synthetic demonstration</span>
+      </footer>
+    </section>
+  </main>
+
+  <footer class="time-conductor" id="timeConductor" aria-label="Time conductor">
+    <div class="tc-meta">
+      <span class="form-label">TIME CONDUCTOR</span>
+      <span id="tcBeatLabel" class="tc-beat-label">disruption</span>
+    </div>
+    <div class="tc-track-wrap">
+      <input type="range" id="tcScrubber" class="tc-scrubber" min="0" max="4" step="1" value="0" aria-label="Scrub demo beat">
+      <ol class="tc-marks" id="tcMarks">
+        <li data-beat="disruption"><button type="button" data-beat="disruption">Disruption</button></li>
+        <li data-beat="analysis"><button type="button" data-beat="analysis">Muse Spark</button></li>
+        <li data-beat="options"><button type="button" data-beat="options">Options</button></li>
+        <li data-beat="consent"><button type="button" data-beat="consent">Consent</button></li>
+        <li data-beat="ledger"><button type="button" data-beat="ledger">Ledger</button></li>
+      </ol>
+    </div>
+  </footer>
+</div>
+<dialog id="approveDialog" aria-labelledby="approvalTitle">
+  <div class="dialog-inner"><div class="section-kicker">TWO-KEY GUARDED CONTROL</div><h2 id="approvalTitle">Accept scenario recovery plan</h2>
+  <p id="approvalDescription"></p>
+  <label class="form-label" for="operatorInput">OPERATOR NAME OR INITIALS (BOUND TO THIS SESSION)</label><input id="operatorInput" placeholder="Enter operator" maxlength="64" autocomplete="off">
+  <div class="dialog-step two-key-row"><button class="btn btn-arm" id="issueToken" type="button">ARM</button><span class="two-key-gap" aria-hidden="true"></span><button class="btn btn-commit" id="confirmApproval" disabled>COMMIT</button></div>
+  <label class="form-label" for="approvalPhrase">TYPE EXACT PHRASE</label><input id="approvalPhrase" placeholder="APPROVE hybrid" maxlength="64" autocomplete="off" spellcheck="false">
+  <p id="consentHint" class="support-text"></p>
+  <div id="envelopePreview" class="envelope-preview" hidden></div>
+  <div class="dialog-actions"><button class="btn" id="cancelApproval">Cancel</button></div>
+  </div>
+</dialog>
+</body>
+</html>

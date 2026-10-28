@@ -1,0 +1,35 @@
+DCE Command Center V3 — optional server provider configuration
+
+Realtime sync and stakeholder portal work with no paid provider credentials once the V3 server is running.
+
+For in-app email (Resend):
+DCE_RESEND_API_KEY=...
+DCE_EMAIL_FROM=DCE Projects <demo@example.invalid>
+
+For SMS + click-to-call (Twilio):
+TWILIO_ACCOUNT_SID=...
+TWILIO_AUTH_TOKEN=...
+TWILIO_FROM_NUMBER=+1...
+DCE_CALLER_NUMBER=+1...   (the PM phone that should ring first for click-to-call)
+
+Optional inbound communications webhook protection:
+DCE_WEBHOOK_SECRET=...
+
+Optional server port:
+DCE_PORT=8787
+
+Do not put these secrets into DCE_Command_Center_V3.html.
+
+SECURITY — RECOMMENDED FOR PHONE / OTHER-PC ACCESS
+By default the server now binds only to 127.0.0.1.
+For Tailscale/LAN access, set BOTH:
+DCE_HOST=0.0.0.0
+DCE_API_TOKEN=<long-random-secret>
+
+The browser will ask for the token once per session and keeps it in sessionStorage only.
+The server refuses a non-loopback bind without DCE_API_TOKEN unless you deliberately set:
+DCE_ALLOW_UNAUTHENTICATED=1
+Do not use that override on an internet-reachable host.
+
+Inbound communications are disabled unless this is set:
+DCE_WEBHOOK_SECRET=<long-random-secret>

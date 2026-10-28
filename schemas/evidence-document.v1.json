@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "forgefront/evidence-document/v1",
+  "title": "ForgeFront evidence document record",
+  "type": "object",
+  "required": ["docId", "docType", "sha256", "extractedAt", "fields"],
+  "properties": {
+    "docId": { "type": "string", "minLength": 1 },
+    "docType": {
+      "enum": ["material_certificate", "purchase_order", "inventory_receipt", "routing", "delivery_commitment"]
+    },
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "extractedAt": { "type": "string", "format": "date-time" },
+    "extractionMethod": { "enum": ["deterministic-text", "fixture", "unverified-ocr"] },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["value", "confidence"],
+        "properties": {
+          "value": { "type": ["string", "null"] },
+          "confidence": { "enum": ["KNOWN", "UNKNOWN", "INFERRED"] },
+          "line": { "type": "integer", "minimum": 1 },
+          "quote": { "type": "string" },
+          "cell": { "type": "string" }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,14 @@
+{
+  "name": "forgefront-factory-resilience",
+  "version": "0.9.0",
+  "private": true,
+  "type": "module",
+  "description": "Evidence-backed synthetic factory incident and recovery demo",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "smoke:browser": "node tools/browser-smoke.mjs",
+    "check": "node --check server.mjs && node --check src/engine.mjs && node --check src/app.mjs && node --check src/intake.mjs && node --check src/graph.mjs && node --check src/incident.mjs && node --check src/meta-grounding.mjs && node --check src/epistemic.mjs && node --check src/claim-checker.mjs && node --check src/model-adapter.mjs && node --check src/pdf-intake.mjs && node --check src/consent-gate.mjs && node --check src/audit-ledger.mjs && node --check src/audit-ledger-persist.mjs && node --check src/prompt-defense.mjs && node --check src/output-screen.mjs && node --check src/security/http-utils.mjs && node --check src/security/ollama-url.mjs && node --check src/security/consent-secret.mjs && node --check src/security/request-guard.mjs && node --check src/security/session-auth.mjs && node --check src/security/brief-assertion-gate.mjs && node --check src/security/instruction-intake.mjs && node --check src/structured-brief.mjs && node --check src/security/strict-json.mjs && node --check src/security/commentary-decision-screen.mjs && node --check src/structured-advisory.mjs && node --check src/raw-model-audit-store.mjs && node --check src/security/rate-limit.mjs && node --check src/pm/cpm-calculator.mjs && node --check src/pm/evm-calculator.mjs && node --check src/pm/wsjf-calculator.mjs && node --check src/pm/kanban.mjs && node --check src/pm/pm-analysis.mjs && node --check src/pm/operator-state.mjs && node --check src/machine-routing.mjs && node --check src/sha256.mjs && node --check tools/live-model-verify.mjs && node --check tools/browser-smoke.mjs && node --check src/scenario-hash.mjs && node --check src/brief-context.mjs && node --check src/pdf-text.mjs && node --check src/arbitration.mjs && node --check src/mission.mjs && node --check src/resolution-ladder.mjs && node --check src/prove-it.mjs && node --check src/engine-digest.mjs && node --check src/security/nonce-store.mjs && node --check src/security/idempotency.mjs && node --check tools/network-off.mjs && node --check tools/engine-offline-check.mjs",
+    "verify-live-model": "node tools/live-model-verify.mjs"
+  }
+}

@@ -1,78 +1,61 @@
-<p align="center">
-<img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="ForgeFront Factory Resilience" />
-</p>
-
 # ForgeFront Factory Resilience
 
-ForgeFront Factory Resilience is an AI-assisted manufacturing investigation and recovery-planning platform. It connects material evidence, production relationships, machine capacity, and schedules to help operators understand a disruption, compare practical responses, and record a decision with supporting evidence.
+A local synthetic factory disruption and recovery demonstrator by Justin Evans / ForgeFront Systems. It traces material-certificate discrepancies to scheduled jobs, compares constrained recovery plans, and records operator review. It combines a deterministic engine, optional model explanations, project planning calculations and a Command Center bridge.
 
-Developed by ForgeFront Systems / Wake Industries.
+This is an engineering demonstration, not a manufacturing release system. All factory data, costs, schedules and scenarios are synthetic or illustrative. Boeing, Lockheed Martin, Airbus, Haas, Spirit and other company names are illustrative references only: no affiliation, endorsement, customer relationship or OEM specification claim.
 
-ForgeFront Factory Resilience is an approved entry in the Meta Global AI Developer Hackathon, October 26 through November 4, 2026. The project is proprietary.
+**Competition status: preparation only; eligibility is not established.** Imported R18 functionality is pre-event foundation work. Read [PROVENANCE.md](PROVENANCE.md) before recording or submitting a demo.
 
-## From material evidence to a production decision
+## Run and test
 
-A conflicting material certificate can affect inventory, production assignments, and delivery commitments. Factory Resilience brings the investigation and its operational consequences into a shared command experience.
+Use Node.js 24 (used for this release check) and npm. There are no declared npm dependencies.
 
-Operator workflow:
+```sh
+npm install
+npm start
+# Open http://127.0.0.1:4173
+```
 
-1. **Examine the evidence.** Extract material details and compare an incoming certificate with the scenario master record, retaining source line references.
-2. **Trace affected production.** Connect the material finding to the jobs and material units involved.
-3. **Compare recovery options.** Calculate alternatives using material availability, time constraints, and work-cell schedules.
-4. **Explore changing conditions.** Recompute plans as stock and operating assumptions change.
-5. **Record the response.** Capture the operator's scenario selection, incident events, and a structured evidence report.
+In a second terminal:
 
-## The factory demonstration
+```sh
+npm test
+npm run check
+```
 
-The aerospace machining scenario contains **40 production orders across four CNC work cells**. An incoming material record contains a heat-number conflict. The investigation maps the incident to **seven production jobs and 178 material units**, then calculates **four recovery alternatives**.
+The server binds to loopback; `PORT` changes its port. Run from this directory. Runtime data and ledger secrets are generated locally and ignored by Git. Never publish them. Environment files are excluded; set configuration in the server process environment.
 
-Operators can explore how changed stock and operating assumptions affect the response, review the resulting schedules, and record their chosen approach.
+`npm run smoke:browser` launches a supported local Chrome/Edge for the full walkthrough and creates temporary state. A skipped smoke test is not verification. Consult the publish report for checks actually performed.
 
-The [October 17 foundation milestone](docs/BUILD_VERIFICATION_2026-10-17.md) records **13 passing automated tests** and browser acceptance exercises covering certificate correction, incident reinjection, recovery recalculation, decision recording, and decision refresh after conditions change. The command interface was examined on desktop and at a **390-pixel mobile viewport**.
+## Muse Spark / Meta Model API
 
-## Manufacturing contexts
+`src/model-adapter.mjs` implements a configurable chat-completions path, bounded read-only tool calls and structured JSON output. Server-built evidence and claim checks constrain the displayed brief. Raw model prose is quarantined from the normal brief. The model cannot approve plans or set operational release.
 
-### Aircraft production
+Without credentials the app uses a labeled fixture/sample explanation, not a live Meta result. For authenticated use, set `MODEL_API_KEY`, `MODEL_API_BASE` (provider-approved base without `/chat/completions`) and `MODEL_NAME` in the server environment. `MODEL_PROVIDER=muse-spark` selects that adapter; `META_BRIEF_MODE=sample` forces sample mode. An optional Ollama adapter also exists.
 
-![Commercial aircraft production](assets/showcase/commercial-production-resilience.jpg)
+The code's default endpoint and model ID are implementation assumptions, not independently verified Meta specifications. Confirm them against your authorized account. `npm run verify-live-model` is the separate authenticated check. No live API success is claimed for this release.
 
-The project is designed to connect material and supplier issues with production assignments, downstream assemblies, and delivery commitments. That visibility helps teams identify affected work and evaluate where production can continue.
+## Architecture
 
-### Mission-critical programs
+Browser (`index.html`, `src/app.mjs`) → loopback Node server (`server.mjs`) → deterministic engine and PM calculators → optional model adapter and claim screening → operator consent, mission events, Kanban and local audit storage.
 
-![Mission-critical aerospace manufacturing](assets/showcase/mission-critical-resilience.jpg)
+- Engine, scenario and machine-routing modules calculate impact and recovery plans.
+- `src/pm/` implements CPM, EVM, WSJF and Kanban calculations.
+- Claim-checker and structured brief/advisory modules validate evidence and restrict rendering.
+- Consent and security modules provide session-bound review, confirmation, nonce and request controls.
+- Audit modules store hash-chained, HMAC-anchored, tamper-evident records.
+- `src/program-bridge.mjs` and `vendor/command-center-v3/` provide the synthetic Command Center integration and pre-event reference code.
 
-Source-linked evidence and documented decisions support investigations where material identity, production dependencies, and the reasoning behind a response need to remain traceable.
+## Security model and limits
 
-### Connected assembly operations
+The implementation includes session and CSRF checks, Host/Origin validation, rate limiting, expiring two-step consent, single-use nonces, idempotency controls and a content security policy. These controls are not production certification. Keep credentials server-side and obtain a separate deployment and identity review before exposing the server publicly.
 
-![Connected aerospace assembly](assets/showcase/global-assembly-resilience.jpg)
+The ledger is tamper-evident, not tamper-proof. An attacker controlling local storage and all signing/anchor secrets can alter the local evidence set. Independently retained export anchors provide an additional comparison point. Use synthetic documents only; exported or quarantined model text may contain untrusted input.
 
-The development plan extends the dependency model across inventory assignments, production orders, work cells, assemblies, and delivery milestones. Recovery comparisons account for available resources and changing factory constraints.
+## Provenance and rights
 
-### Independent shops and suppliers
+Read [PROVENANCE.md](PROVENANCE.md), the historical [derivation table](docs/PROVENANCE.md) and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The existing proprietary [LICENSE](LICENSE) is preserved; this is not an MIT release. Vendored code and artwork require supporting rights evidence before submission.
 
-![Independent CNC shops and aerospace suppliers](assets/showcase/small-shop-resilience.jpg)
+## Demo video
 
-The factory scenario brings material investigation, CNC scheduling, and recovery comparison into the same workflow. Operators can examine the affected jobs, compare material and capacity choices, and preserve the evidence behind their response.
-
-## Meta hackathon development
-
-Planned competition development includes multi-document investigation, Meta AI reasoning, broader production consequence mapping, and adaptive recovery planning.
-
-The planned Meta AI workflow uses structured, source-linked scenario facts to explain document relationships, operational consequences, and decision alternatives. Evaluation compares those explanations with independently calculated scenario results.
-
-The planned adaptive recovery demonstration introduces a second change to material availability, supply timing, or machine capacity. It compares hold-and-reconcile, expedited supply, inventory reallocation, and hybrid strategies, showing how new constraints change the recovery decision.
-
-## Project documentation
-
-The development program spans 13 phases, from the factory foundation through investigation, recovery planning, operator experience, validation, and competition submission.
-
-- [Master Build Phase Sheet](docs/MASTER_BUILD_PHASE_SHEET.md) — Scope, deliverables, and acceptance criteria for each phase.
-- [Phase Board](docs/PHASE_ISSUE_INDEX.md) — Phase schedules and linked GitHub issues.
-- [Build Roadmap](docs/BUILD_ROADMAP.md) — Development stages and delivery milestones.
-- [Foundation Milestones](docs/BUILD_VERIFICATION_2026-10-17.md) — Demonstrated capabilities and engineering verification.
-
----
-
-[Copyright © 2026 Justin Evans / ForgeFront Systems.](LICENSE)
+Placeholder: add a public video URL after the eligible October 26–November 4, 2026 contribution scope is evidenced. Clearly identify original event work and pre-event foundation. Pre-event demo materials do not prove event-period development.

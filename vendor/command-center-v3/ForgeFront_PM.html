@@ -1,0 +1,995 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2B2E31" />
+  <title>ForgeFront Systems - Project Management</title>
+  <link rel="icon" href="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png">
+    <style>
+:root{
+  /* Pass 3b neutral dark gray plant HMI (ISA-101) — match Factory Resilience shell */
+  --bg:#2B2E31;--panel:#34383C;--panel2:#3D4146;--panel3:#454A50;--text:#E6E8EA;--muted:#A9AFB5;
+  --line:#4A4F55;--accent:#8A9098;--accent2:#8C939A;--forge:#A9AFB5;--crimson:#D9534F;--strong:#E6E8EA;
+  --good:#A9AFB5;--warn:#E0A030;--bad:#D9534F;--shadow:none;
+  --display:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --pass3-ia:plant-hmi;
+  --pass3b-palette:neutral-dark-gray;
+}
+*{box-sizing:border-box} html,body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);min-height:100%;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit} button{cursor:pointer}
+#app{display:grid;grid-template-columns:264px 1fr;min-height:100vh}
+.sidebar{position:sticky;top:0;height:100vh;background:var(--panel);border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;z-index:30}
+.brand{display:flex;gap:11px;align-items:center;padding:8px 8px 18px}.brand-mark{width:48px;height:48px;object-fit:contain;border-radius:0;background:transparent;box-shadow:none;filter:none}.brand strong{display:block;font-family:var(--display);font-size:13px;letter-spacing:.14em;font-weight:800;color:var(--strong)}.brand span{display:block;color:var(--muted);font-size:11px;margin-top:2px;text-transform:uppercase;letter-spacing:.12em}
+nav{display:flex;flex-direction:column;gap:4px;overflow:auto;padding-right:2px}.nav-btn{display:flex;gap:11px;align-items:center;width:100%;border:0;background:transparent;color:var(--muted);padding:10px 12px;border-radius:0;text-align:left;font-size:13px}.nav-btn:hover{background:var(--panel2);color:var(--strong)}.nav-btn.active{background:var(--panel2);color:var(--strong);border:1px solid var(--line)}.nav-btn .ico{width:22px;text-align:center;opacity:.9}.nav-btn .ico:empty{display:none}
+.sidebar-footer{margin-top:auto;display:grid;gap:8px;padding:12px 6px}.full{width:100%}.file-label{text-align:center;cursor:pointer}
+.main{min-width:0}.topbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 24px;background:var(--panel);border-bottom:1px solid var(--line)}h1,h2,h3,p{margin:0}.topbar h1{font-family:var(--display);font-size:22px;letter-spacing:-.02em;color:var(--strong)}.eyebrow{font-size:10px;letter-spacing:.16em;color:var(--muted);font-weight:800;margin-bottom:4px}.top-actions{display:flex;gap:10px;align-items:center}.project-select{min-width:235px}.title-wrap{display:flex;align-items:center;gap:12px;min-width:0;flex:1}.title-copy{min-width:0}.back-btn{display:inline-flex;align-items:center;gap:7px;white-space:nowrap;border:1px solid var(--line);background:var(--panel2);color:var(--strong);border-radius:0;padding:9px 11px;font-weight:800;font-size:12px;min-height:38px}.back-btn:hover:not(:disabled){background:var(--panel3);border-color:var(--strong)}.back-btn:disabled{opacity:.35;cursor:default}
+.content{padding:22px 24px 42px}.grid{display:grid;gap:14px}.kpi-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.two-col{grid-template-columns:1.3fr .7fr}.three-col{grid-template-columns:repeat(3,minmax(0,1fr))}.card{background:var(--panel);border:1px solid var(--line);border-radius:0;box-shadow:none}.card-pad{padding:16px}.kpi{padding:15px}.kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.kpi .value{font-size:18px;font-weight:750;margin:6px 0 2px;color:var(--strong);font-family:ui-monospace,monospace}.kpi .sub{font-size:11px;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.section-head h2{font-size:16px;color:var(--strong)}.section-head p{color:var(--muted);font-size:12px;margin-top:3px}.section-actions{display:flex;gap:8px;flex-wrap:wrap}
+.primary,.ghost,.danger{border:1px solid transparent;border-radius:0;padding:9px 12px;font-weight:750;font-size:12px}.primary{background:var(--strong);border-color:var(--strong);color:var(--bg)}.primary:hover{filter:none;background:#000;color:#fff}.ghost{background:var(--panel2);border-color:var(--line);color:var(--text)}.ghost:hover{background:var(--panel3);border-color:var(--strong)}.danger{background:#3F2A2A;border-color:var(--bad);color:var(--bad)}.icon-btn{width:38px;height:38px;border:1px solid var(--line);background:var(--panel2);color:var(--strong);border-radius:0;font-size:20px;line-height:1}
+.table-wrap{overflow:auto;border-radius:0;border:1px solid var(--line)}table{width:100%;border-collapse:collapse;min-width:900px;background:var(--bg)}th{position:sticky;top:0;background:var(--panel2);color:var(--muted);text-transform:uppercase;letter-spacing:.07em;font-size:10px;text-align:left;padding:11px;border-bottom:1px solid var(--line)}td{padding:11px;border-bottom:1px solid var(--line);font-size:12px;vertical-align:top}tr:hover td{background:var(--panel)}.row-actions{display:flex;gap:6px}.row-actions button{padding:5px 8px;font-size:11px}
+.status{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;border:1px solid}.status.green,.status.complete,.status.approved,.status.on-track,.status.ready,.status.closed{color:#9ff0bc;background:rgba(117,226,160,.08);border-color:rgba(117,226,160,.3)}.status.amber,.status.at-risk,.status.pending,.status.in-progress,.status.open,.status.watch{color:#ffe092;background:rgba(248,207,107,.08);border-color:rgba(248,207,107,.3)}.status.red,.status.blocked,.status.rejected,.status.critical,.status.overdue{color:#ffaaaa;background:rgba(255,125,125,.08);border-color:rgba(255,125,125,.3)}.status.neutral,.status.not-started,.status.draft{color:#cbd5df;background:#1b232b;border-color:#3a4652}
+.progress{height:7px;background:#202932;border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;background:linear-gradient(90deg,#A06B32,#C9894A,#5EC8D8);border-radius:99px;box-shadow:0 0 10px rgba(94,200,216,.35)}.muted{color:var(--muted)}.tiny{font-size:10px}.small{font-size:12px}.strong{font-weight:800}.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}.spacer{height:14px}.spacer-lg{height:22px}
+.project-card{padding:15px;display:grid;gap:12px}.project-card .project-top{display:flex;justify-content:space-between;gap:10px}.project-card h3{font-size:15px}.project-card .meta{font-size:11px;color:var(--muted);margin-top:4px}.project-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mini-stat{background:#10151a;border:1px solid #222d36;border-radius:10px;padding:9px}.mini-stat span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.06em}.mini-stat strong{display:block;font-size:13px;margin-top:3px}
+.alert-list{display:grid;gap:9px}.alert-item{border:1px solid var(--line);background:#12181d;border-radius:11px;padding:11px}.alert-item .alert-title{font-size:12px;font-weight:800}.alert-item .alert-meta{font-size:10px;color:var(--muted);margin-top:4px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}.toolbar input,.toolbar select{min-width:150px}.search{min-width:260px!important}
+input,select,textarea{background:#11171c;border:1px solid #303c47;color:#eef3f7;border-radius:9px;padding:9px 10px;outline:none}input:focus,select:focus,textarea:focus{border-color:#5EC8D8;box-shadow:0 0 0 3px rgba(94,200,216,.12)}textarea{min-height:86px;resize:vertical}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:grid;gap:5px}.field.full{grid-column:1/-1}.field label{font-size:10px;text-transform:uppercase;color:#9eabb7;letter-spacing:.07em;font-weight:750}
+.modal{width:min(760px,calc(100vw - 24px));max-height:90vh;background:#11161b;border:1px solid #33414d;border-radius:16px;color:var(--text);padding:0;box-shadow:var(--shadow)}.modal::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(4px)}.modal form{display:flex;flex-direction:column;max-height:90vh}.modal-head{display:flex;justify-content:space-between;align-items:center;padding:17px 18px;border-bottom:1px solid var(--line)}.modal-head h2{font-size:18px}.modal-body{padding:18px;overflow:auto}.modal-actions{display:flex;justify-content:flex-end;gap:8px;padding:14px 18px;border-top:1px solid var(--line)}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);border:1px solid var(--line);border-radius:12px;overflow:hidden}.cal-head,.cal-cell{border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:100px;padding:8px}.cal-head{min-height:auto;background:#182027;color:#9facb8;font-size:10px;text-transform:uppercase}.cal-cell .day{font-size:11px;color:#a8b4bf}.event-pill{display:block;margin-top:5px;border-left:3px solid var(--accent);background:#17232b;padding:5px;border-radius:6px;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.command-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.command-tile{padding:15px}.check-row{display:flex;align-items:flex-start;gap:9px;padding:9px 0;border-bottom:1px solid #232d36}.check-row:last-child{border:0}.check-row input{margin-top:2px}.check-row label{font-size:12px}.check-row label.done{text-decoration:line-through;color:var(--muted)}
+.report{background:#f6f8fa;color:#1b2229;border-radius:12px;padding:24px}.report h2,.report h3{color:#10151a}.report .report-meta{color:#596570;font-size:11px;margin-top:6px}.report-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.report-box{border:1px solid #d5dde4;border-radius:9px;padding:12px}.report-box span{font-size:9px;text-transform:uppercase;color:#6f7d89}.report-box strong{display:block;font-size:16px;margin-top:4px}.report ul{margin:8px 0 0 18px;padding:0}.report li{margin:5px 0;font-size:12px}
+.toast{position:fixed;right:20px;bottom:20px;background:#e9f8ff;color:#071117;padding:11px 14px;border-radius:9px;font-size:12px;font-weight:800;transform:translateY(20px);opacity:0;pointer-events:none;transition:.22s;z-index:100}.toast.show{transform:none;opacity:1}.mobile-only{display:none}
+@media(max-width:1180px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.three-col{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}}
+@media(max-width:820px){#app{grid-template-columns:1fr}.sidebar{position:fixed;left:-280px;width:270px;transition:.2s;box-shadow:var(--shadow)}.sidebar.open{left:0}.mobile-only{display:inline-grid}.topbar{padding:14px}.topbar h1{font-size:18px}.top-actions{margin-left:auto}.project-select{max-width:155px;min-width:0}.content{padding:14px}.kpi-grid{grid-template-columns:1fr 1fr}.three-col{grid-template-columns:1fr}.command-grid{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.calendar-grid{grid-template-columns:1fr}.cal-head{display:none}.cal-cell{min-height:70px;border-right:0}.report-grid{grid-template-columns:1fr}.topbar .eyebrow{display:none}}
+@media(max-width:520px){.project-select{display:none}.kpi-grid{grid-template-columns:1fr 1fr}.kpi .value{font-size:22px}.content{padding:10px}.topbar{padding:10px}.top-actions .primary{padding:8px 10px}.card-pad{padding:12px}.command-tile{padding:12px}}
+
+/* V2 information architecture */
+.nav-section{margin:13px 9px 5px;color:#667581;font-size:9px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+.nav-section:first-child{margin-top:2px}.project-card[data-open-project]{cursor:pointer;transition:.16s transform,.16s border-color}.project-card[data-open-project]:hover{transform:translateY(-2px);border-color:#48606f}
+.priority-list{display:grid;gap:8px}.priority-item{display:grid;grid-template-columns:8px minmax(0,1fr) auto;gap:11px;align-items:center;padding:11px 12px;border:1px solid var(--line);background:#12181d;border-radius:11px}.priority-bar{height:100%;min-height:42px;border-radius:8px;background:#60717f}.priority-bar.red{background:var(--bad)}.priority-bar.amber{background:var(--warn)}.priority-bar.green{background:var(--good)}.priority-title{font-size:12px;font-weight:850}.priority-meta{font-size:10px;color:var(--muted);margin-top:4px}.priority-actions{display:flex;gap:6px;align-items:center}
+.phase-ribbon{display:grid;grid-template-columns:repeat(6,minmax(110px,1fr));gap:7px;overflow:auto;padding-bottom:2px}.phase-step{min-width:110px;padding:10px;border:1px solid var(--line);background:#11171c;border-radius:10px}.phase-step .num{font-size:9px;color:var(--muted);font-weight:900;letter-spacing:.08em}.phase-step .name{font-size:10px;font-weight:800;margin-top:4px;line-height:1.25}.phase-step.done{border-color:rgba(117,226,160,.35);background:rgba(117,226,160,.06)}.phase-step.current{border-color:rgba(201,137,74,.55);background:rgba(201,137,74,.10);box-shadow:inset 0 0 0 1px rgba(201,137,74,.08)}
+.gate{padding:15px;border-radius:12px;border:1px solid var(--line);background:#10161b}.gate-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.gate h3{font-size:14px}.gate ul{margin:10px 0 0 18px;padding:0}.gate li{font-size:11px;margin:5px 0;color:#c7d1da}.context-required{text-align:center;padding:40px 20px}.context-required h2{font-size:20px}.context-required p{color:var(--muted);margin:8px auto 18px;max-width:540px;font-size:12px}.project-chooser{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.overview-actions{display:flex;gap:8px;flex-wrap:wrap}.jump-chip{border:1px solid var(--line);background:#151d23;color:#dce5eb;padding:8px 10px;border-radius:9px;font-size:11px;font-weight:750}.jump-chip:hover{border-color:#4c6574;background:#1a252d}
+.timeline-section{margin-bottom:16px}.timeline-section h3{font-size:12px;text-transform:uppercase;letter-spacing:.09em;color:#91a0ac;margin-bottom:8px}.timeline-row{display:grid;grid-template-columns:112px 100px minmax(0,1fr) 110px;gap:10px;align-items:center;padding:10px 11px;border-bottom:1px solid #222c35;background:#12171c}.timeline-row:first-of-type{border-radius:10px 10px 0 0}.timeline-row:last-child{border-radius:0 0 10px 10px;border-bottom:0}.timeline-title{font-size:12px;font-weight:750}.timeline-meta{font-size:10px;color:var(--muted)}
+.project-context-banner{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 12px;margin-bottom:14px;border:1px solid rgba(229,34,45,.2);background:rgba(229,34,45,.05);border-radius:10px}.project-context-banner strong{font-size:12px}.project-context-banner span{font-size:10px;color:var(--muted)}
+@media(max-width:820px){.priority-item{grid-template-columns:7px minmax(0,1fr)}.priority-actions{grid-column:2}.timeline-row{grid-template-columns:90px 1fr}.timeline-row>div:nth-child(2),.timeline-row>div:nth-child(4){display:none}.phase-ribbon{grid-template-columns:repeat(6,140px)}}
+@media(max-width:520px){.project-select{display:block;max-width:126px!important;font-size:10px;padding:8px 6px}.top-actions{gap:6px}.top-actions .primary{font-size:11px}.back-btn{padding:8px 9px}.back-btn .back-label{display:none}.title-wrap{gap:8px}.topbar h1{font-size:17px}.eyebrow{font-size:8px}}
+
+
+/* V3 collaboration, publishing, realtime */
+.sync-pill{display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:#11181d;color:#b9c5cf;padding:7px 9px;border-radius:999px;font-size:10px;font-weight:850;white-space:nowrap}.sync-dot{width:7px;height:7px;border-radius:50%;background:#7e8b95}.sync-pill.live{border-color:rgba(117,226,160,.35);color:#a8efc1;background:rgba(117,226,160,.06)}.sync-pill.live .sync-dot{background:var(--good);box-shadow:0 0 0 4px rgba(117,226,160,.08)}.sync-pill.connecting .sync-dot{background:var(--warn)}.sync-pill.offline .sync-dot{background:var(--bad)}
+.comms-layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:14px}.contact-stack,.thread-stack{display:grid;gap:7px}.contact-row{display:flex;gap:10px;align-items:center;padding:10px;border:1px solid var(--line);background:#11171c;border-radius:10px}.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#20313b;border:1px solid #38505f;font-size:11px;font-weight:900}.contact-row strong{font-size:12px}.contact-row span{display:block;font-size:10px;color:var(--muted);margin-top:2px}.contact-actions{margin-left:auto;display:flex;gap:4px}.mini-btn{border:1px solid var(--line);background:#182027;color:#dbe5ec;border-radius:7px;padding:5px 7px;font-size:10px}
+.composer{display:grid;gap:10px}.channel-tabs{display:flex;gap:7px;flex-wrap:wrap}.channel-tab{border:1px solid var(--line);background:#12191f;color:#bfcbd5;border-radius:999px;padding:7px 10px;font-size:10px;font-weight:850}.channel-tab.active{background:rgba(229,34,45,.12);border-color:rgba(229,34,45,.45);color:#F7F7F4}.compose-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.compose-grid .full{grid-column:1/-1}.message-feed{display:grid;gap:8px;max-height:430px;overflow:auto;padding-right:3px}.message{border:1px solid var(--line);background:#11171c;border-radius:11px;padding:11px}.message.outbound{border-left:3px solid var(--accent)}.message.inbound{border-left:3px solid var(--good)}.message .msg-head{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:var(--muted)}.message .msg-body{font-size:12px;margin-top:6px;white-space:pre-wrap}.message .msg-subj{font-weight:850;color:#eef4f8;margin-top:5px;font-size:11px}.channel-icon{font-weight:900;color:var(--accent)}
+.meeting-layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:14px}.meeting-stage{min-height:560px;background:#080b0e;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:grid;place-items:center}.meeting-stage iframe{width:100%;height:70vh;min-height:560px;border:0}.meeting-empty{text-align:center;max-width:520px;padding:30px}.meeting-empty h2{font-size:22px}.meeting-empty p{color:var(--muted);font-size:12px;line-height:1.55;margin:9px 0 18px}.meeting-card{border:1px solid var(--line);background:#11171c;border-radius:11px;padding:11px;margin-bottom:8px}.meeting-card h3{font-size:12px}.meeting-card p{font-size:10px;color:var(--muted);margin-top:4px}.meeting-card .section-actions{margin-top:9px}
+.access-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.stakeholder-row{display:grid;grid-template-columns:minmax(0,1.3fr) 110px minmax(0,1fr) auto;gap:10px;align-items:center;padding:11px;border-bottom:1px solid #232d36}.stakeholder-row:last-child{border-bottom:0}.stakeholder-row .name{font-size:12px;font-weight:850}.stakeholder-row .meta{font-size:10px;color:var(--muted);margin-top:3px}.access-chip{display:inline-flex;padding:4px 7px;border:1px solid var(--line);border-radius:999px;font-size:9px;color:#cbd6de;margin:2px}.link-box{display:flex;gap:7px}.link-box input{min-width:0;flex:1}
+.publish-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.export-card{padding:15px}.export-card h3{font-size:13px}.export-card p{color:var(--muted);font-size:10px;line-height:1.5;margin:6px 0 12px}.export-card .primary,.export-card .ghost{margin:3px 3px 0 0}.publication-item{padding:10px 0;border-bottom:1px solid #232d36}.publication-item:last-child{border:0}.publication-item strong{font-size:11px}.publication-item span{display:block;color:var(--muted);font-size:9px;margin-top:3px}
+.integration-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.integration{padding:15px}.integration-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.integration h3{font-size:13px}.integration p{font-size:10px;color:var(--muted);line-height:1.5;margin:7px 0}.provider-state{font-size:9px;font-weight:900;text-transform:uppercase;padding:5px 7px;border-radius:999px;border:1px solid var(--line)}.provider-state.ready{color:#a8efc1;border-color:rgba(117,226,160,.35);background:rgba(117,226,160,.06)}.provider-state.needs{color:#ffe092;border-color:rgba(248,207,107,.32);background:rgba(248,207,107,.06)}
+.activity-stream{display:grid;gap:7px}.activity-event{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:9px;align-items:start;padding:8px;border-bottom:1px solid #222c35}.activity-event:last-child{border:0}.activity-bullet{width:22px;height:22px;border-radius:7px;background:#1e2c35;display:grid;place-items:center;font-size:10px}.activity-event strong{font-size:11px}.activity-event p{font-size:9px;color:var(--muted);margin-top:3px}.activity-event time{font-size:9px;color:#71808c;white-space:nowrap}
+.command-shortcuts{display:flex;gap:7px;flex-wrap:wrap}.shortcut{border:1px solid rgba(229,34,45,.22);background:rgba(229,34,45,.05);color:#ffd0d3;padding:8px 10px;border-radius:9px;font-size:10px;font-weight:850}
+.portal-note{padding:12px;border:1px solid rgba(248,207,107,.28);background:rgba(248,207,107,.05);border-radius:10px;color:#ebdfbd;font-size:10px;line-height:1.5}.top-comms{white-space:nowrap}
+@media(max-width:1050px){.publish-grid,.integration-grid{grid-template-columns:1fr 1fr}.comms-layout,.meeting-layout,.access-grid{grid-template-columns:1fr}.meeting-stage iframe{height:62vh}.stakeholder-row{grid-template-columns:1fr 90px auto}.stakeholder-row>div:nth-child(3){grid-column:1/-1}}
+@media(max-width:680px){.publish-grid,.integration-grid{grid-template-columns:1fr}.compose-grid{grid-template-columns:1fr}.compose-grid .full{grid-column:auto}.sync-pill span#syncText{display:none}.sync-pill{padding:8px}.top-comms{display:none}.stakeholder-row{grid-template-columns:1fr auto}.stakeholder-row>div:nth-child(2),.stakeholder-row>div:nth-child(3){grid-column:1/-1}.meeting-stage{min-height:450px}.meeting-stage iframe{min-height:450px;height:60vh}}
+
+
+/* Solar Sales V1 */
+.solar-live-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(320px,.65fr);gap:14px}.solar-lead-strip{display:grid;grid-template-columns:minmax(180px,1.2fr) repeat(4,minmax(110px,.7fr));gap:10px}.solar-mini{border:1px solid var(--line);background:#11171c;border-radius:10px;padding:10px}.solar-mini span{display:block;color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.07em}.solar-mini strong{display:block;font-size:12px;margin-top:4px;overflow-wrap:anywhere}.solar-stage{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.solar-stage-badge{display:inline-flex;padding:6px 9px;border-radius:999px;border:1px solid rgba(229,34,45,.35);background:rgba(229,34,45,.08);color:#F7F7F4;font-size:10px;font-weight:900;letter-spacing:.06em}.solar-guidance{border:1px solid rgba(229,34,45,.28);background:linear-gradient(180deg,rgba(229,34,45,.07),rgba(229,34,45,.025));border-radius:12px;padding:15px}.solar-guidance h3{font-size:15px;line-height:1.4}.solar-line{font-size:16px;line-height:1.55;margin-top:12px;color:#f6fbff}.solar-warning{margin-top:10px;padding:9px 10px;border-radius:9px;border:1px solid rgba(248,207,107,.32);background:rgba(248,207,107,.06);color:#f2dfaa;font-size:10px;line-height:1.45}.solar-reference{margin-top:10px;color:#81909c;font-size:9px;line-height:1.45}.solar-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.solar-action{border:1px solid var(--line);background:#182027;color:#dce6ed;border-radius:9px;padding:9px 11px;font-size:11px;font-weight:800}.solar-action:hover{border-color:#4c6574;background:#202b34}.solar-action.primary-path{border-color:rgba(229,34,45,.42);background:rgba(229,34,45,.09);color:#F7F7F4}.solar-action.stop{border-color:rgba(255,125,125,.38);background:rgba(255,125,125,.06);color:#ffb1b1}.solar-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.solar-form .full{grid-column:1/-1}.solar-form label{display:grid;gap:5px;color:#9eabb7;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}.solar-form input,.solar-form select,.solar-form textarea{width:100%}.solar-form textarea{min-height:70px}.solar-unresolved{display:grid;gap:7px}.solar-unresolved-item{border-left:3px solid var(--warn);background:#161b1f;border-radius:8px;padding:9px 10px;font-size:10px}.solar-history{display:grid;gap:6px;max-height:340px;overflow:auto}.solar-history-row{display:grid;grid-template-columns:78px minmax(0,1fr);gap:9px;border-bottom:1px solid #222c35;padding:7px 0}.solar-history-row time{font-size:9px;color:#72818d}.solar-history-row strong{display:block;font-size:10px}.solar-history-row span{display:block;color:var(--muted);font-size:9px;margin-top:2px}.solar-empty{padding:34px;text-align:center}.solar-empty h2{font-size:20px}.solar-empty p{max-width:560px;margin:8px auto 18px;color:var(--muted);font-size:12px;line-height:1.5}.solar-required{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.solar-required span{font-size:9px;padding:4px 6px;border:1px solid var(--line);border-radius:999px;color:#aab7c1}.solar-config{display:grid;grid-template-columns:1fr 1fr auto;gap:8px;align-items:end}.solar-config label{display:grid;gap:5px;color:#9eabb7;font-size:9px;text-transform:uppercase;font-weight:800;letter-spacing:.06em}.solar-source-pill{display:inline-flex;align-items:center;padding:5px 7px;border:1px solid rgba(117,226,160,.28);background:rgba(117,226,160,.05);border-radius:999px;color:#a8efc1;font-size:9px;font-weight:850}
+@media(max-width:1100px){.solar-live-grid{grid-template-columns:1fr}.solar-lead-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:680px){.solar-lead-strip,.solar-form,.solar-config{grid-template-columns:1fr}.solar-form .full{grid-column:auto}.solar-line{font-size:14px}}
+
+/* Embed-safe topbar: Resilience Program iframe / constrained widths.
+   Prevents eyebrow stacking one letter per line when top-actions crowd the title. */
+.topbar{flex-wrap:wrap;row-gap:10px;align-items:flex-start}
+.title-wrap{flex:1 1 240px;min-width:200px;max-width:100%}
+.title-copy{min-width:0;flex:1 1 auto;overflow:hidden}
+.eyebrow{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;letter-spacing:.12em}
+.topbar h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+.top-actions{flex:1 1 280px;justify-content:flex-end;flex-wrap:wrap;gap:8px;min-width:0}
+.project-select{min-width:140px;max-width:min(235px,100%)}
+@media(max-width:1200px){
+  .sync-pill{display:none}
+  .top-comms{display:none}
+  .project-select{min-width:130px}
+}
+@media(max-width:900px){
+  .topbar{padding:14px 16px}
+  .back-btn .back-label{display:none}
+  .eyebrow{display:none}
+  .topbar h1{font-size:18px}
+}
+</style>
+
+<style id="forgefront-mobile-release">
+.empty-portfolio{max-width:720px;margin:18px auto;padding:28px;display:grid;grid-template-columns:70px minmax(0,1fr);gap:20px;align-items:start}.empty-portfolio .empty-mark{width:62px;height:62px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,#e8c08a,#C9894A);color:#061018;font-weight:950;font-size:20px}.empty-portfolio h2{font-size:24px;margin:2px 0 8px}.empty-portfolio p{color:var(--muted);font-size:13px;line-height:1.55;margin:0 0 18px}
+@media(max-width:600px){
+  .topbar{display:grid!important;grid-template-columns:44px minmax(0,1fr) auto!important;grid-template-areas:"menu title add" "back filter filter"!important;padding:10px 12px 12px!important;gap:8px!important;align-items:center!important}
+  #menuBtn{grid-area:menu!important;width:42px!important;height:42px!important}
+  .title-wrap{display:contents!important}
+  .title-copy{grid-area:title!important;min-width:0!important}.topbar h1{font-size:18px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top-actions{display:contents!important}.top-actions .primary{grid-area:add!important;min-height:42px!important;padding:8px 13px!important;font-size:12px!important}
+  .project-select{grid-area:filter!important;display:block!important;width:100%!important;max-width:none!important;min-width:0!important;height:44px!important;padding:8px 10px!important;font-size:13px!important}
+  .sync-pill,.top-comms{display:none!important}.topbar .eyebrow{display:none!important}
+  .back-btn{grid-area:back!important;width:42px!important;min-width:42px!important;padding:8px!important;justify-content:center!important}.back-label{display:none!important}
+  .content{padding:12px!important;padding-bottom:64px!important}.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.section-head{align-items:flex-start!important}.section-actions{width:100%}
+  .command-shortcuts{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.command-shortcuts .shortcut{width:100%!important;min-width:0!important;white-space:normal!important;text-align:center!important}
+  .empty-portfolio{margin:4px 0;padding:22px 18px;grid-template-columns:1fr;gap:12px}.empty-portfolio .empty-mark{width:52px;height:52px;border-radius:15px}.empty-portfolio h2{font-size:22px}.empty-portfolio p{font-size:13px}.empty-portfolio .primary{width:100%;min-height:46px}
+}
+@media(max-width:390px){.kpi-grid{grid-template-columns:1fr!important}.command-shortcuts{grid-template-columns:1fr!important}.topbar{grid-template-columns:42px minmax(0,1fr) auto!important;padding-left:8px!important;padding-right:8px!important}.topbar h1{font-size:17px!important}.top-actions .primary{padding:8px 11px!important}.content{padding:9px!important;padding-bottom:64px!important}}
+</style>
+
+<!-- Must follow forgefront-mobile-release so display:contents cannot crush the Program iframe topbar. -->
+<style id="embed-safe-override">
+html.embedded,html.embedded body{
+  height:100%!important;max-height:100%!important;min-height:0!important;
+  overflow:hidden!important;margin:0!important;
+}
+html.embedded #app{
+  grid-template-columns:1fr!important;
+  height:100%!important;min-height:0!important;max-height:100%!important;
+  display:flex!important;flex-direction:column!important;overflow:hidden!important;
+}
+html.embedded .sidebar{display:none!important}
+html.embedded .mobile-only{display:none!important}
+html.embedded .main{
+  flex:1 1 auto!important;min-height:0!important;min-width:0!important;
+  display:flex!important;flex-direction:column!important;overflow:hidden!important;
+}
+html.embedded .topbar{
+  display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;
+  flex-shrink:0!important;
+  grid-template-columns:none!important;grid-template-areas:none!important;
+  gap:10px 16px!important;padding:14px 18px!important
+}
+html.embedded .content{
+  flex:1 1 auto!important;min-height:0!important;
+  overflow-x:hidden!important;overflow-y:auto!important;
+  overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;scrollbar-color:rgba(229,34,45,.45) transparent;
+}
+html.embedded .content::-webkit-scrollbar{width:10px}
+html.embedded .content::-webkit-scrollbar-track{background:transparent}
+html.embedded .content::-webkit-scrollbar-thumb{background:rgba(229,34,45,.4);border-radius:8px;border:2px solid transparent;background-clip:padding-box}
+html.embedded .title-wrap{
+  display:flex!important;flex:1 1 260px!important;min-width:220px!important;max-width:100%!important;
+  align-items:center!important;gap:12px!important
+}
+html.embedded .title-copy{display:block!important;min-width:0!important;flex:1 1 auto!important;overflow:hidden!important}
+html.embedded .eyebrow{
+  display:block!important;white-space:nowrap!important;overflow:hidden!important;
+  text-overflow:ellipsis!important;max-width:100%!important;letter-spacing:.12em!important
+}
+html.embedded .topbar h1{
+  white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  max-width:100%!important;font-size:20px!important
+}
+html.embedded .top-actions{
+  display:flex!important;flex:1 1 220px!important;flex-wrap:wrap!important;justify-content:flex-end!important;
+  align-items:center!important;gap:8px!important;min-width:0!important;width:auto!important
+}
+html.embedded .top-actions .primary{grid-area:auto!important}
+html.embedded .project-select{
+  grid-area:auto!important;min-width:140px!important;max-width:min(220px,100%)!important;
+  width:auto!important;height:auto!important
+}
+html.embedded .back-btn{grid-area:auto!important;width:auto!important;min-width:0!important}
+html.embedded .sync-pill,html.embedded .top-comms{display:none!important}
+html.embedded .content{padding:16px 18px 36px!important}
+html.embedded .kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+</style>
+<style id="competition-polish">
+/* R18 2026-10-25 mission-control redesign — visual only; capabilities unchanged */
+body{
+  background:
+    radial-gradient(1100px 620px at 92% -8%,rgba(181,18,27,.26),transparent 55%),
+    radial-gradient(800px 480px at -12% 38%,rgba(112,11,18,.18),transparent 52%),
+    linear-gradient(180deg,#08090b 0%,#030304 50%,#010101 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.4) 100%);
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.sidebar{box-shadow:8px 0 36px rgba(0,0,0,.45);position:relative}
+.sidebar::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;z-index:2;
+  background:linear-gradient(90deg,transparent,#5EC8D8,#C9894A,transparent);
+}
+.brand-mark{
+  width:58px!important;height:58px!important;
+  filter:drop-shadow(0 0 18px rgba(229,34,45,.42)) drop-shadow(0 8px 14px rgba(0,0,0,.5))!important;
+  transition:transform .3s ease,filter .3s ease;
+}
+.brand:hover .brand-mark{
+  transform:scale(1.04);
+  filter:drop-shadow(0 0 26px rgba(229,34,45,.55)) drop-shadow(0 10px 18px rgba(0,0,0,.55))!important;
+}
+.brand strong{text-shadow:0 0 20px rgba(229,34,45,.3);letter-spacing:.14em}
+.nav-btn{transition:transform .15s,background .15s,border-color .15s}
+.nav-btn:hover{transform:translateX(2px)}
+.nav-btn.active{box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 0 20px rgba(181,18,27,.12)}
+.topbar{box-shadow:0 1px 0 rgba(229,34,45,.22),0 14px 36px rgba(0,0,0,.35)}
+.topbar h1{text-shadow:0 2px 24px rgba(0,0,0,.45)}
+.eyebrow{text-shadow:0 0 16px rgba(229,34,45,.25)}
+.card,.kpi,.project-card,.alert-item,.command-tile,.export-card,.integration,.meeting-card,.contact-row,.message{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 12px 32px rgba(0,0,0,.28);
+  transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+.card:hover,.kpi:hover,.project-card:hover{
+  transform:translateY(-2px);
+  border-color:rgba(229,34,45,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 18px 40px rgba(0,0,0,.4),0 0 0 1px rgba(229,34,45,.12);
+}
+.kpi .value{
+  font-family:var(--display);
+  background:linear-gradient(180deg,#F7F7F4,#b8bbc3);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-variant-numeric:tabular-nums;
+}
+.section-head h2,.project-card h3{font-family:var(--display)}
+.card,.kpi{border-color:rgba(181,18,27,.32)!important;border-radius:12px}
+.primary{box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 8px 22px rgba(181,18,27,.3);letter-spacing:.04em;text-transform:uppercase}
+.ghost{box-shadow:inset 0 1px 0 rgba(255,255,255,.03)}
+.shortcut,.channel-tab,.jump-chip{
+  transition:border-color .15s,background .15s,box-shadow .15s;
+}
+.shortcut:hover,.channel-tab:hover,.jump-chip:hover{
+  box-shadow:0 0 18px rgba(229,34,45,.18);
+}
+.toast{background:linear-gradient(135deg,#C9894A,#5EC8D8)!important;color:#0A1628!important;box-shadow:0 12px 32px rgba(94,200,216,.35)}
+.mini-stat,.priority-item{border-color:rgba(181,18,27,.28);background:linear-gradient(180deg,#14161c,#0c0d10)}
+.priority-bar.red{box-shadow:0 0 12px rgba(229,34,45,.35)}
+html.embedded body{background:#2B2E31}
+html.embedded .topbar{
+  background:linear-gradient(180deg,rgba(12,8,9,.96),rgba(5,5,5,.92))!important;
+  border-bottom:1px solid rgba(229,34,45,.4)!important;
+  box-shadow:0 12px 40px rgba(0,0,0,.4)!important;
+}
+html.embedded .content{
+  background:radial-gradient(700px 320px at 80% 0%,rgba(181,18,27,.12),transparent 55%);
+}
+@media (prefers-reduced-motion:reduce){
+  .brand-mark,.card,.kpi,.project-card,.nav-btn{transition:none!important;transform:none!important}
+}
+/* Interactive affordance law inside Program embed */
+button,.primary,.ghost,.danger,.nav-btn,.shortcut,.channel-tab,.jump-chip,.back-btn,.icon-btn,.top-comms,.mini-btn,.solar-action,.file-label,[role="button"]{cursor:pointer}
+.nav-btn,.shortcut,.channel-tab,.jump-chip,.primary,.ghost,.back-btn,.icon-btn,.mini-btn,.solar-action{
+  transition:background .15s,border-color .15s,color .15s,transform .12s,box-shadow .15s,filter .15s
+}
+.nav-btn:hover,.shortcut:hover,.channel-tab:hover,.jump-chip:hover,.ghost:hover,.back-btn:hover,.mini-btn:hover,.solar-action:hover{
+  transform:translateY(-1px);border-color:rgba(229,34,45,.55)!important;box-shadow:0 0 16px rgba(229,34,45,.16)
+}
+.primary:hover{transform:translateY(-1px);filter:brightness(1.08);box-shadow:0 8px 24px rgba(181,18,27,.4)}
+.nav-btn:active,.shortcut:active,.channel-tab:active,.jump-chip:active,.primary:active,.ghost:active,.back-btn:active{transform:scale(.985)}
+.nav-btn:focus-visible,.shortcut:focus-visible,.channel-tab:focus-visible,.primary:focus-visible,.ghost:focus-visible,.back-btn:focus-visible,.icon-btn:focus-visible{
+  outline:2px solid #5EC8D8;outline-offset:3px
+}
+.card[data-open-project],.project-card[data-open-project],.priority-item{cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.card[data-open-project]:hover,.project-card[data-open-project]:hover,.priority-item:hover{
+  transform:translateY(-2px);border-color:rgba(229,34,45,.55);box-shadow:0 14px 32px rgba(0,0,0,.35)
+}
+/* Pass 3 calm-gray flatten (ISA-101) — kill leftover Pass-2 glow/gradient chrome */
+html,body,#app{background:var(--bg)!important;color:var(--text)!important}
+.sidebar,.topbar,.card,.kpi,.modal,.kanban-col,.priority-item,.gate,.phase-step,.alert-item,.mini-stat{
+  background:var(--panel)!important;border-color:var(--line)!important;border-radius:0!important;box-shadow:none!important;
+  backdrop-filter:none!important;filter:none!important
+}
+.progress>span,.toast,body::before,.brand-mark{background:var(--strong)!important;box-shadow:none!important;filter:none!important}
+.nav-btn:hover,.shortcut:hover,.channel-tab:hover,.jump-chip:hover,.ghost:hover,.back-btn:hover,.mini-btn:hover,.solar-action:hover,
+.card[data-open-project]:hover,.project-card[data-open-project]:hover,.priority-item:hover,.primary:hover{
+  transform:none!important;box-shadow:none!important;filter:none!important;border-color:var(--strong)!important
+}
+.nav-btn:focus-visible,.shortcut:focus-visible,.channel-tab:focus-visible,.primary:focus-visible,.ghost:focus-visible,.back-btn:focus-visible,.icon-btn:focus-visible{
+  outline:2px solid var(--strong)!important;outline-offset:2px
+}
+.status.green,.status.complete,.status.approved,.status.on-track,.status.ready,.status.closed{color:var(--muted)!important;background:var(--panel2)!important;border-color:var(--line)!important}
+.status.red,.status.blocked,.status.rejected,.status.critical,.status.overdue{color:var(--bad)!important;background:#3F2A2A!important;border-color:var(--bad)!important}
+.status.amber,.status.at-risk,.status.pending,.status.in-progress,.status.open,.status.watch{color:var(--warn)!important;background:#3D3420!important;border-color:var(--warn)!important}
+input,select,textarea{background:var(--bg)!important;border-color:var(--line)!important;color:var(--text)!important;border-radius:0!important;box-shadow:none!important}
+html.embedded body{background:var(--bg)!important}
+</style>
+<script>
+(function(){
+  try{
+    if(window.self!==window.top){document.documentElement.classList.add('embedded');}
+  }catch(_e){document.documentElement.classList.add('embedded');}
+})();
+</script>
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <img class="brand-mark" src="/vendor/command-center-v3/brand/forgefront-winged-emblem-C.png" alt="ForgeFront Systems" width="58" height="58">
+        <div><strong>Command Center V3</strong><span>Project + Communications OS</span></div>
+      </div>
+      <nav id="nav"></nav>
+      <div class="sidebar-footer">
+        <button class="ghost full" id="installApp" type="button">Install on Device</button>
+        <button class="ghost full" data-action="export">Export Backup</button>
+        <label class="ghost full file-label">Import Backup<input id="importFile" type="file" accept="application/json" hidden></label>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-only" id="menuBtn" aria-label="Menu">Menu</button>
+        <div class="title-wrap">
+          <button class="back-btn" id="backBtn" type="button" aria-label="Go back"><span aria-hidden="true"><-</span><span class="back-label">Back</span></button>
+          <div class="title-copy">
+            <div class="eyebrow" id="pageEyebrow">WHAT REQUIRES ACTION NOW</div>
+            <h1 id="pageTitle">Control Room</h1>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div class="sync-pill local" id="syncPill" title="Connection status"><span class="sync-dot"></span><span id="syncText">Local</span></div>
+          <button class="ghost top-comms" id="topComms" type="button">Comms</button>
+          <select id="projectFilter" class="project-select"></select>
+          <button class="primary" id="quickAdd">+ Add</button>
+        </div>
+      </header>
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <dialog id="modal" class="modal">
+    <form method="dialog" id="modalForm">
+      <div class="modal-head">
+        <div><div class="eyebrow" id="modalEyebrow">RECORD</div><h2 id="modalTitle">Add record</h2></div>
+        <button type="button" class="icon-btn" id="modalClose">-</button>
+      </div>
+      <div id="modalBody" class="modal-body"></div>
+      <div class="modal-actions">
+        <button type="button" class="ghost" id="modalCancel">Cancel</button>
+        <button type="submit" class="primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script src="./demo-portfolio-seed.js"></script>
+  <script>
+(() => {
+  const STORAGE_KEY = 'forgefront-pm-v1';
+  const V3_VERSION = '3.0';
+  const CLIENT_ID = localStorage.getItem('forgefront-pm-client-id') || uidSeed();
+  localStorage.setItem('forgefront-pm-client-id',CLIENT_ID);
+  function uidSeed(){return `client_${Math.random().toString(36).slice(2,9)}_${Date.now().toString(36)}`;}
+  const $ = s => document.querySelector(s);
+  const $$ = s => [...document.querySelectorAll(s)];
+  const uid = p => `${p}_${Math.random().toString(36).slice(2,9)}_${Date.now().toString(36)}`;
+  const today = () => new Date().toISOString().slice(0,10);
+  const money = n => new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(Number(n||0));
+  const pct = n => `${Math.round(Number(n||0))}%`;
+  const esc = v => String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+  const fmtDate = d => d ? new Date(`${d}T12:00:00`).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}) : '-';
+  const daysFromNow = d => d ? Math.ceil((new Date(`${d}T12:00:00`) - new Date())/86400000) : 9999;
+  const statusClass = s => String(s||'neutral').toLowerCase().replace(/[^a-z0-9]+/g,'-');
+  const badge = s => `<span class="status ${statusClass(s)}">${esc(s||'Neutral')}</span>`;
+
+
+  // Competition portfolio: Meta AI build timeline + synthetic aerospace demos.
+  // Source of truth: ./demo-portfolio-seed.js (window.FFR_DEMO_PORTFOLIO).
+  // Never re-embed private org registries here.
+  const DEMO = (typeof window !== 'undefined' && window.FFR_DEMO_PORTFOLIO) || { version: 0, projects: [], tasks: [], actions: [], raid: [], approvals: [] };
+  const FORGEFRONT_ORG_SEED_VERSION = Number(DEMO.version || 11);
+
+  const seed = () => ({
+    settings: Object.assign({ company: 'ForgeFront Systems', currency: 'USD' }, DEMO.settings || {}),
+    projects: [],
+    tasks: [],
+    approvals: [],
+    production: [],
+    logistics: [],
+    budgets: [],
+    raid: [],
+    changes: [],
+    actions: [],
+    onsite: [],
+    calendar: [],
+    pubs: [],
+    accessTokens: [],
+    contacts: [],
+    meetings: [],
+    stakeholders: [],
+    solarLeads: [],
+    solarCalls: [],
+    solarDnc: [],
+    solarConfig: {}
+  });
+
+  let state = load();
+
+  const GENERIC_SEEDED_CODE = /^(CORE|AGENT|APP|EDU|ODIN|TRADE|SEC|INFRA|CREATIVE|BRAND|EVID|BIZ)[ -]\d+$/i;
+  function bootstrapForgeFrontPortfolio() {
+    state.meta = state.meta || {};
+    if (Number(state.meta.orgPortfolioSeedVersion || 0) >= FORGEFRONT_ORG_SEED_VERSION) return;
+    if (!Array.isArray(DEMO.projects) || !DEMO.projects.length) return;
+    // Wipe prior private/org/synthetic seeds so v11 Meta timeline is the only portfolio.
+    state.projects = [];
+    state.actions = [];
+    state.tasks = [];
+    state.raid = [];
+    state.approvals = [];
+    DEMO.projects.forEach(x => state.projects.push({ ...x }));
+    (DEMO.tasks || []).forEach(x => state.tasks.push({ ...x }));
+    (DEMO.actions || []).forEach(x => state.actions.push({ ...x }));
+    (DEMO.raid || []).forEach(x => state.raid.push({ ...x }));
+    (DEMO.approvals || []).forEach(x => state.approvals.push({ ...x }));
+    if (DEMO.settings) state.settings = Object.assign({}, state.settings || {}, DEMO.settings);
+    state.meta.orgPortfolioSeedVersion = FORGEFRONT_ORG_SEED_VERSION;
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {}
+  }
+
+  let currentView = 'control';
+  let currentProject = 'all';
+  let navigationHistory = [];
+  let modalContext = null;
+
+  const SAFE_STATE_ID=/^[A-Za-z0-9_.:-]{1,120}$/;
+  function assertSafeStateIds(candidate){
+    const forbidden=new Set(['__proto__','prototype','constructor']);
+    const walk=(value,key='')=>{
+      if(Array.isArray(value)){
+        if(key==='projectIds') value.forEach(v=>{if(v&&!SAFE_STATE_ID.test(String(v)))throw new Error('Unsafe project ID in workspace data')});
+        else value.forEach(v=>walk(v,''));
+        return;
+      }
+      if(!value||typeof value!=='object') return;
+      for(const [k,v] of Object.entries(value)){
+        if(forbidden.has(k)) throw new Error('Unsafe object key in workspace data');
+        if((k==='id'||/Id$/.test(k))&&v!==''&&v!=null&&!SAFE_STATE_ID.test(String(v))) throw new Error(`Unsafe identifier in workspace data: ${k}`);
+        walk(v,k);
+      }
+    };
+    walk(candidate);
+    return candidate;
+  }
+  function load(){
+    try{ const x=localStorage.getItem(STORAGE_KEY); return x?JSON.parse(x):seed(); }catch{return seed();}
+  }
+  function reset(){ if(confirm('Reset ForgeFront Systems PM to an empty workspace? This replaces local data.')){state=seed();save();render();toast('Workspace reset');} }
+  function toast(msg){ const t=$('#toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800); }
+  function project(id){return state.projects.find(p=>p.id===id)}
+  function scoped(arr){return currentProject==='all'?arr:arr.filter(x=>x.projectId===currentProject)}
+  function projectOptions(sel){return state.projects.map(p=>`<option value="${p.id}" ${sel===p.id?'selected':''}>${esc(p.name)} - ${esc(p.client)}</option>`).join('')}
+
+  function locationState(){return {view:currentView,project:currentProject};}
+  function sameLocation(a,b){return a.view===b.view&&a.project===b.project;}
+  function navigate(view=currentView,projectId=currentProject,record=true){
+    const next={view:view||currentView,project:projectId===undefined?currentProject:projectId};
+    const here=locationState();
+    if(record&&!sameLocation(here,next)) navigationHistory.push(here);
+    currentView=next.view; currentProject=next.project;
+    $('#sidebar').classList.remove('open');
+    render();
+  }
+  function goBack(){
+    if(navigationHistory.length){
+      const prev=navigationHistory.pop(); currentView=prev.view; currentProject=prev.project; render(); return;
+    }
+    if(currentView!=='control'||currentProject!=='all'){currentView='control';currentProject='all';render();return;}
+    toast('You are at the starting screen');
+  }
+  function updateBackButton(){
+    const b=$('#backBtn'); if(!b)return;
+    const atStart=currentView==='control'&&currentProject==='all'&&navigationHistory.length===0;
+    b.disabled=atStart;
+    b.title=atStart?'Starting screen':'Go back to the previous screen';
+  }
+
+  const navGroups = [
+    ['COMMAND', [['control','','Control Room'],['dashboard','','Portfolio']]],
+    ['COLLABORATION', [['communications','','Comms Hub'],['meetings','','Meeting Rooms'],['stakeholders','','Stakeholder Hub']]],
+    ['PROJECT DELIVERY', [['overview','','Project Overview'],['schedule','','Plan & Schedule'],['approvals','','Design & Approvals'],['production','','Build & Production'],['logistics','','Logistics']]],
+    ['PROJECT CONTROL', [['budget','','Commercial'],['risks','','Risks & Changes'],['actions','','Actions & Decisions']]],
+    ['FIELD & LEADERSHIP', [['onsite','','On-site Command'],['calendar','','Delivery Calendar'],['reports','','Reports & KPIs'],['publish','','Publish & Export']]],
+    ['SYSTEM', [['integrations','','Integrations'],['templates','','Setup']]]
+  ];
+
+  function buildNav(){
+    $('#nav').innerHTML=navGroups.map(([group,items])=>`<div class="nav-section">${group}</div>${items.map(([id,ico,label])=>`<button class="nav-btn ${currentView===id?'active':''}" data-view="${id}"><span class="ico">${ico}</span>${label}</button>`).join('')}`).join('');
+    $$('#nav .nav-btn').forEach(b=>b.onclick=()=>navigate(b.dataset.view,currentProject));
+  }
+  function buildProjectFilter(){
+    $('#projectFilter').innerHTML=`<option value="all">All Projects / Portfolio</option>${projectOptions(currentProject)}`;
+    $('#projectFilter').value=currentProject;
+    $('#projectFilter').onchange=e=>navigate(currentView,e.target.value);
+  }
+  function setHeader(title,eyebrow='FORGEFRONT SYSTEMS'){$('#pageTitle').textContent=title;$('#pageEyebrow').textContent=eyebrow;}
+  function render(){buildNav();buildProjectFilter();updateBackButton();const f=views[currentView]||views.dashboard;f();}
+
+
+  const PHASES=['Initiation & Kickoff','Concept & Design','Technical Planning & Approval','Production & Logistics','Installation & Live Event','Teardown & Wrap-up'];
+  function selectedProject(){return currentProject==='all'?null:project(currentProject)}
+  function derivedHealth(p){
+    const tasks=state.tasks.filter(x=>x.projectId===p.id), approvals=state.approvals.filter(x=>x.projectId===p.id), raids=state.raid.filter(x=>x.projectId===p.id), logs=state.logistics.filter(x=>x.projectId===p.id);
+    const criticalIssue=raids.some(x=>x.status!=='Closed'&&x.severity==='Critical');
+    const criticalLate=tasks.some(x=>x.status!=='Complete'&&x.critical&&daysFromNow(x.due)<0);
+    const blockLate=approvals.some(x=>x.status==='Pending'&&x.blocks&&daysFromNow(x.due)<0);
+    const red=criticalIssue||criticalLate||blockLate;
+    const amber=raids.some(x=>x.status!=='Closed'&&x.severity==='High')||logs.some(x=>['At Risk','Blocked'].includes(x.status))||(+p.forecast||0)>(+p.budget||0)*1.05||approvals.some(x=>x.status==='Pending'&&x.blocks&&daysFromNow(x.due)<=3);
+    return red?'Red':amber?'Amber':'Green';
+  }
+  function gateFor(p){
+    const phaseIndex=Math.max(0,PHASES.indexOf(p.phase));
+    const apps=state.approvals.filter(x=>x.projectId===p.id), prod=state.production.filter(x=>x.projectId===p.id), logs=state.logistics.filter(x=>x.projectId===p.id), site=state.onsite.filter(x=>x.projectId===p.id), issues=state.raid.filter(x=>x.projectId===p.id&&x.kind==='Issue'&&x.status!=='Closed');
+    let name='Project Closeout', blockers=[];
+    if(phaseIndex<=0){name='Concept Direction'; blockers=apps.filter(x=>['Concept Design','Client'].includes(x.type)&&x.status==='Pending').map(x=>`Pending approval: ${x.item}`)}
+    else if(phaseIndex===1){name='Design Freeze'; blockers=apps.filter(x=>['Concept Design','Graphics','Client'].includes(x.type)&&x.status!=='Approved'&&x.blocks).map(x=>`Approval: ${x.item}`)}
+    else if(phaseIndex===2){name='Fabrication Release'; blockers=apps.filter(x=>['Technical','Venue','Fabrication Release'].includes(x.type)&&x.status!=='Approved'&&x.blocks).map(x=>`Approval: ${x.item}`)}
+    else if(phaseIndex===3){name='Dispatch Readiness'; blockers=[...prod.filter(x=>x.status!=='Complete'||x.qc==='Fail'||!x.ready).slice(0,4).map(x=>`Production: ${x.package}`),...logs.filter(x=>['At Risk','Blocked'].includes(x.status)).slice(0,3).map(x=>`Logistics: ${x.leg}`)]}
+    else if(phaseIndex===4){name='Client Handover'; blockers=[...site.filter(x=>x.critical&&x.status!=='Complete').slice(0,5).map(x=>`Site: ${x.item}`),...issues.filter(x=>['Critical','High'].includes(x.severity)).slice(0,3).map(x=>`Issue: ${x.title}`)]}
+    else {blockers=issues.map(x=>`Open issue: ${x.title}`).slice(0,4)}
+    return {name,blockers,status:blockers.length?'Blocked':'Ready'};
+  }
+  function requireProjectContext(title,eyebrow='PROJECT CONTROL'){
+    if(currentProject!=='all')return false;
+    setHeader(title,eyebrow);
+    $('#content').innerHTML=`<div class="card context-required"><h2>Select a project first</h2><p>${esc(title)} changes operational records. Portfolio context is too broad for this screen, so the Command Center will not silently choose a project for you.</p><div class="project-chooser">${state.projects.map(p=>`<button class="primary" data-choose-project="${p.id}">${esc(p.name)} - ${esc(p.client)}</button>`).join('')}</div></div>`;
+    $$('[data-choose-project]').forEach(b=>b.onclick=()=>navigate(currentView,b.dataset.chooseProject));
+    return true;
+  }
+  function jump(view,pid){navigate(view,pid===undefined?currentProject:pid)}
+  window.forgefrontAndroidBack=()=>{if(navigationHistory.length){goBack();return true;}if(currentView!=='control'||currentProject!=='all'){navigate('control','all');return true;}return false;};
+  function contextBanner(p){return `<div class="project-context-banner"><div><strong>${esc(p.name)}</strong><br><span>${esc(p.client)}  ·  ${esc(p.event)}  ·  ${esc(p.city)}</span></div>${badge(derivedHealth(p))}</div>`}
+
+  function controlRoom(){
+    setHeader('Control Room','WHAT REQUIRES ACTION NOW');
+    const scopeProjects=currentProject==='all'?state.projects:state.projects.filter(p=>p.id===currentProject); const ids=new Set(scopeProjects.map(p=>p.id));
+    const items=[]; const add=(rank,color,title,meta,view,pid,due='')=>items.push({rank,color,title,meta,view,pid,due});
+    state.raid.filter(x=>ids.has(x.projectId)&&x.status!=='Closed'&&x.kind==='Issue'&&['Critical','High'].includes(x.severity)).forEach(x=>add(x.severity==='Critical'?1:2,x.severity==='Critical'?'red':'amber',x.title,`${project(x.projectId)?.name||''}  ·  ISSUE  ·  ${x.owner}  ·  due ${fmtDate(x.due)}`,'risks',x.projectId,x.due));
+    state.approvals.filter(x=>ids.has(x.projectId)&&x.status==='Pending'&&x.blocks).forEach(x=>add(daysFromNow(x.due)<0?2:3,daysFromNow(x.due)<0?'red':'amber',`Blocking approval: ${x.item}`,`${project(x.projectId)?.name||''}  ·  ${x.approver}  ·  due ${fmtDate(x.due)}`,'approvals',x.projectId,x.due));
+    state.tasks.filter(x=>ids.has(x.projectId)&&x.status!=='Complete'&&x.critical&&daysFromNow(x.due)<0).forEach(x=>add(2,'red',`Critical path overdue: ${x.name}`,`${project(x.projectId)?.name||''}  ·  ${x.owner}  ·  due ${fmtDate(x.due)}`,'schedule',x.projectId,x.due));
+    state.logistics.filter(x=>ids.has(x.projectId)&&['At Risk','Blocked'].includes(x.status)).forEach(x=>add(3,x.status==='Blocked'?'red':'amber',`Logistics exception: ${x.leg}`,`${project(x.projectId)?.name||''}  ·  ${x.carrier}  ·  delivery ${fmtDate(x.delivery)}`,'logistics',x.projectId,x.delivery));
+    state.raid.filter(x=>ids.has(x.projectId)&&x.status!=='Closed'&&x.kind!=='Issue'&&['Critical','High'].includes(x.severity)).forEach(x=>add(x.severity==='Critical'?3:4,x.severity==='Critical'?'red':'amber',`${x.kind}: ${x.title}`,`${project(x.projectId)?.name||''}  ·  ${x.owner}  ·  due ${fmtDate(x.due)}`,'risks',x.projectId,x.due));
+    scopeProjects.filter(p=>(+p.forecast||0)>(+p.budget||0)*1.05).forEach(p=>add(4,'amber',`Forecast above baseline: ${p.name}`,`${p.code}  ·  variance ${money((+p.forecast||0)-(+p.budget||0))}`,'budget',p.id,p.showOpen));
+    state.actions.filter(x=>ids.has(x.projectId)&&x.status!=='Complete'&&daysFromNow(x.due)<0).forEach(x=>add(5,'amber',`Overdue ${x.kind.toLowerCase()}: ${x.title}`,`${project(x.projectId)?.name||''}  ·  ${x.owner}  ·  due ${fmtDate(x.due)}`,'actions',x.projectId,x.due));
+    items.sort((a,b)=>a.rank-b.rank||(a.due||'9999').localeCompare(b.due||'9999'));
+    const top=items.slice(0,12); const nextShows=[...scopeProjects].sort((a,b)=>(a.health===b.health?Number(a.progress||0)-Number(b.progress||0):(a.health==='Red'?-1:b.health==='Red'?1:a.health==='Amber'?-1:1))).slice(0,4);
+    $('#content').innerHTML=`<div class="grid kpi-grid">${kpi('Immediate Exceptions',items.filter(x=>x.rank<=2).length,'Critical / overdue')}${kpi('Blocking Approvals',state.approvals.filter(x=>ids.has(x.projectId)&&x.status==='Pending'&&x.blocks).length,'Stops downstream work')}${kpi('Critical Path Overdue',state.tasks.filter(x=>ids.has(x.projectId)&&x.status!=='Complete'&&x.critical&&daysFromNow(x.due)<0).length,'Schedule intervention')}${kpi('Logistics Exceptions',state.logistics.filter(x=>ids.has(x.projectId)&&['At Risk','Blocked'].includes(x.status)).length,'Freight / access')}${kpi('Open Decisions',state.actions.filter(x=>ids.has(x.projectId)&&x.kind==='Decision'&&x.status!=='Complete').length,'Authority required')}${kpi('Projects at Risk',scopeProjects.filter(p=>derivedHealth(p)!=='Green').length,'Derived control health')}</div><div class="spacer-lg"></div><div class="grid two-col">${card('Priority Queue','Sorted by operational consequence, not by module',`<div class="priority-list">${top.length?top.map(x=>`<div class="priority-item"><div class="priority-bar ${x.color}"></div><div><div class="priority-title">${esc(x.title)}</div><div class="priority-meta">${esc(x.meta)}</div></div><div class="priority-actions"><button class="ghost" data-jump="${x.view}" data-project="${x.pid}">Open</button></div></div>`).join(''):'<div class="muted small">No priority exceptions in the current scope.</div>'}</div>`)}${card('Priority Projects','Fast entry into the project workspace',`<div class="alert-list">${nextShows.map(p=>{const g=gateFor(p);return `<div class="alert-item"><div style="display:flex;justify-content:space-between;gap:8px"><div class="alert-title">${esc(p.name)}</div>${badge(derivedHealth(p))}</div><div class="alert-meta">${esc(p.client)}  ·  ${esc(p.city)}  ·  ${p.progress}%  ·  Next: ${esc(p.nextMilestone||g.name)}</div><div style="margin-top:8px"><button class="ghost" data-jump="overview" data-project="${p.id}">Open project</button></div></div>`}).join('')}</div>`)}</div>`;
+    $('#content').insertAdjacentHTML('afterbegin',`<div class="command-shortcuts" style="margin-bottom:14px"><button class="shortcut" data-v3jump="communications">Comms Hub</button><button class="shortcut" data-v3jump="meetings">Meeting Room</button><button class="shortcut" data-v3jump="stakeholders">Stakeholders</button><button class="shortcut" data-v3jump="publish">Publish Update</button></div>`);
+    $$('[data-v3jump]').forEach(b=>b.onclick=()=>jump(b.dataset.v3jump,currentProject));
+    $$('[data-jump]').forEach(b=>b.onclick=()=>jump(b.dataset.jump,b.dataset.project));
+  }
+
+  function projectOverview(){
+    if(requireProjectContext('Project Overview','PROJECT WORKSPACE'))return; const p=selectedProject(), g=gateFor(p), phaseIndex=Math.max(0,PHASES.indexOf(p.phase));
+    const tasks=state.tasks.filter(x=>x.projectId===p.id), raids=state.raid.filter(x=>x.projectId===p.id&&x.status!=='Closed'), apps=state.approvals.filter(x=>x.projectId===p.id&&x.status==='Pending'), actions=state.actions.filter(x=>x.projectId===p.id&&x.status!=='Complete').sort((a,b)=>a.due.localeCompare(b.due));
+    const overdue=tasks.filter(x=>x.status!=='Complete'&&daysFromNow(x.due)<0); const variance=(+p.forecast||0)-(+p.budget||0); const days=p.showOpen?daysFromNow(p.showOpen):null;
+    setHeader(p.name,'PROJECT WORKSPACE');
+    const ribbon=`<div class="phase-ribbon">${PHASES.map((ph,i)=>`<div class="phase-step ${i<phaseIndex?'done':i===phaseIndex?'current':''}"><div class="num">PHASE ${i+1}</div><div class="name">${esc(ph)}</div></div>`).join('')}</div>`;
+    const gate=`<div class="gate"><div class="gate-top"><div><div class="eyebrow">NEXT CONTROL GATE</div><h3>${esc(g.name)}</h3></div>${badge(g.status)}</div>${g.blockers.length?`<ul>${g.blockers.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'<div class="small muted" style="margin-top:9px">No blocking conditions detected from current records.</div>'}</div>`;
+    $('#content').innerHTML=`${contextBanner(p)}${card('Current Authority','Hostile-audited source of truth, refreshed from the 2026-10-07 authority ledger',`<div class="alert-list"><div class="alert-item"><div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start"><div><div class="eyebrow">AUTHORITY STATUS</div><div class="alert-title">${esc(p.authorityVerdict||p.city||'Unknown')}</div></div>${badge(p.authorityHealth||'Amber')}</div><div class="alert-meta" style="margin-top:8px"><strong>Verified:</strong> ${esc(p.authorityVerified||'Not recorded')}</div><div class="alert-meta" style="margin-top:6px"><strong>Current authority:</strong> ${esc(p.authoritySource||p.venue||'Not recorded')}</div><div class="alert-meta" style="margin-top:6px"><strong>Correction / rule:</strong> ${esc(p.authorityCorrection||'Use current authority only')}</div></div></div>`)}<div class="spacer"></div>${card('Lifecycle','Where this project is in the ForgeFront delivery flow',ribbon)}<div class="spacer"></div><div class="grid kpi-grid">${kpi('Target Date',p.showOpen?(days<0?`${Math.abs(days)}d ago`:`${days}d`):'Not set',p.showOpen?fmtDate(p.showOpen):'Set when scheduled')}${kpi('Derived Health',derivedHealth(p),'From live controls')}${kpi('Schedule Progress',pct(p.progress),'PM-entered progress')}${kpi('Overdue Tasks',overdue.length,'Open past due')}${kpi('Pending Approvals',apps.length,'Client / technical gates')}${kpi('Forecast Variance',money(variance),variance>0?'Above baseline':'Within baseline')}</div><div class="spacer-lg"></div><div class="grid two-col">${gate}${card('Next Commitments','The next work that needs ownership',`<div class="alert-list">${actions.slice(0,6).map(x=>`<div class="alert-item"><div style="display:flex;justify-content:space-between;gap:8px"><div class="alert-title">${esc(x.title)}</div>${badge(x.status)}</div><div class="alert-meta">${esc(x.owner)}  ·  due ${fmtDate(x.due)}  ·  ${esc(x.authority||'')}</div></div>`).join('')||'<div class="muted small">No open commitments.</div>'}</div>`)}</div><div class="spacer-lg"></div>${card('Project Control Surfaces','Move directly to the record set you need',`<div class="overview-actions"><button class="jump-chip" data-jump="schedule">Plan & Schedule</button><button class="jump-chip" data-jump="approvals">Design & Approvals</button><button class="jump-chip" data-jump="production">Build & Production</button><button class="jump-chip" data-jump="logistics">Logistics</button><button class="jump-chip" data-jump="budget">Commercial</button><button class="jump-chip" data-jump="risks">Risks & Changes</button><button class="jump-chip" data-jump="actions">Actions & Decisions</button><button class="jump-chip" data-jump="onsite">On-site Command</button></div>`)}`;
+    $$('[data-jump]').forEach(b=>b.onclick=()=>jump(b.dataset.jump,p.id));
+  }
+
+  const kpi = (label,value,sub='')=>`<div class="card kpi"><div class="label">${esc(label)}</div><div class="value">${value}</div><div class="sub">${esc(sub)}</div></div>`;
+  const card = (title,subtitle,body,actions='')=>`<div class="card card-pad"><div class="section-head"><div><h2>${esc(title)}</h2>${subtitle?`<p>${esc(subtitle)}</p>`:''}</div><div class="section-actions">${actions}</div></div>${body}</div>`;
+
+  function dashboard(){
+    setHeader('Portfolio','PORTFOLIO CONTROL');
+    const projects=currentProject==='all'?state.projects:state.projects.filter(p=>p.id===currentProject);
+    if(!projects.length){
+      $('#content').innerHTML=`<div class="card card-pad empty-portfolio"><div class="empty-mark">FF</div><div><div class="eyebrow">FORGEFRONT PROGRAM MANAGEMENT</div><h2>Create your first project</h2><p>Start a project workspace to unlock schedule, approvals, production, logistics, budget, RAID, actions, field command, and reporting.</p><button class="primary" id="emptyCreateProject">+ New Project</button></div></div>`;
+      $('#emptyCreateProject').onclick=()=>openModal('projects');
+      return;
+    }
+    const tasks=scoped(state.tasks); const risks=scoped(state.raid).filter(r=>r.status!=='Closed'); const approvals=scoped(state.approvals).filter(a=>a.status==='Pending');
+    const budget=projects.reduce((s,p)=>s+Number(p.budget||0),0); const forecast=projects.reduce((s,p)=>s+Number(p.forecast||0),0);
+    const overdue=tasks.filter(t=>t.status!=='Complete'&&daysFromNow(t.due)<0).length;
+    const atRisk=projects.filter(p=>p.health!=='Green').length;
+    const projectCards=projects.map(p=>{const g=gateFor(p);return `<div class="card project-card" data-open-project="${p.id}"><div class="project-top"><div><h3>${esc(p.name)}</h3><div class="meta">${esc(p.client)}  ·  ${esc(p.event)}  ·  ${esc(p.city)}</div></div>${badge(derivedHealth(p))}</div><div><div class="progress"><span style="width:${Math.min(100,p.progress)}%"></span></div><div class="tiny muted" style="margin-top:5px">${p.progress}% complete  ·  ${esc(p.phase)}</div></div><div class="project-stats"><div class="mini-stat"><span>Budget</span><strong>${money(p.budget)}</strong></div><div class="mini-stat"><span>Forecast</span><strong>${money(p.forecast)}</strong></div><div class="mini-stat"><span>Next gate</span><strong>${esc(g.name)}</strong></div></div></div>`}).join('');
+    const alerts=[...risks.filter(r=>['Critical','High'].includes(r.severity)).map(r=>({title:r.title,meta:`${project(r.projectId)?.name||''}  ·  ${r.kind}  ·  ${r.owner}`,status:r.severity})),...approvals.map(a=>({title:`Approval: ${a.item}`,meta:`${project(a.projectId)?.name||''}  ·  due ${fmtDate(a.due)}  ·  ${a.approver}`,status:daysFromNow(a.due)<0?'Overdue':'Pending'}))].slice(0,8);
+    $('#content').innerHTML=`<div class="grid kpi-grid">${kpi('Active Projects',projects.length,'Current portfolio')}${kpi('At-Risk Projects',atRisk,'Amber / red health')}${kpi('Overdue Tasks',overdue,'Needs owner action')}${kpi('Pending Approvals',approvals.length,'Client / technical gates')}${kpi('Portfolio Budget',money(budget),'Approved baseline')}${kpi('Forecast Variance',money(forecast-budget),forecast>budget?'Above baseline':'Within baseline')}</div><div class="spacer-lg"></div><div class="grid two-col"><div><div class="grid ${projects.length>2?'three-col':''}">${projectCards}</div></div>${card('Exceptions Requiring Attention','Risks, issues and approval gates',`<div class="alert-list">${alerts.length?alerts.map(a=>`<div class="alert-item"><div style="display:flex;justify-content:space-between;gap:10px"><div class="alert-title">${esc(a.title)}</div>${badge(a.status)}</div><div class="alert-meta">${esc(a.meta)}</div></div>`).join(''):'<div class="muted small">No current exceptions.</div>'}</div>`)}</div>`;
+    $$('[data-open-project]').forEach(c=>c.onclick=()=>jump('overview',c.dataset.openProject));
+  }
+
+  function projectsView(){
+    setHeader('Project Register','PORTFOLIO & PROJECT WORKSPACES');
+    const rows=state.projects.map(p=>`<tr><td><strong>${esc(p.name)}</strong><br><span class="muted">${esc(p.client)}</span></td><td><strong>${esc(p.authorityVerdict||p.city||p.event)}</strong><br><span class="muted">${esc(p.authoritySource||p.venue)}</span></td><td>${esc(p.pm)}</td><td>${esc(p.phase)}</td><td>${badge(p.health)}</td><td><div class="progress"><span style="width:${p.progress}%"></span></div><span class="tiny muted">${p.progress}%</span></td><td>${money(p.budget)}</td><td>${money(p.forecast)}</td><td>${fmtDate(p.showOpen)}</td><td class="row-actions"><button class="ghost" data-edit="projects" data-id="${p.id}">Edit</button></td></tr>`).join('');
+    $('#content').innerHTML=card('ForgeFront Project Portfolio','Canonical ForgeFront and WAKE projects, products, systems, agents, infrastructure and IP',table(['Project','Current Authority / Source','Owner','Phase','Health','Progress','Budget','Forecast','Target Date',''],rows),`<button class="primary" data-add="projects">+ New Project</button>`);
+    bindCrud();
+  }
+
+  function table(headers,rows){return `<div class="table-wrap"><table><thead><tr>${headers.map(h=>`<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows||`<tr><td colspan="${headers.length}" class="muted">No records.</td></tr>`}</tbody></table></div>`}
+  function genericView(cfg){
+    setHeader(cfg.title,cfg.eyebrow||'PROJECT CONTROL');
+    let records=scoped(state[cfg.key]);
+    const rows=records.map(r=>`<tr>${cfg.cols.map(c=>`<td>${c.render?c.render(r):esc(r[c.key]??'-')}</td>`).join('')}<td class="row-actions"><button class="ghost" data-edit="${cfg.key}" data-id="${r.id}">Edit</button><button class="danger" data-delete="${cfg.key}" data-id="${r.id}">Delete</button></td></tr>`).join('');
+    $('#content').innerHTML=card(cfg.cardTitle||cfg.title,cfg.subtitle||'',table([...cfg.cols.map(c=>c.label),''],rows),`<button class="primary" data-add="${cfg.key}">+ Add</button>`);bindCrud();
+  }
+
+  function schedule(){genericView({key:'tasks',title:'Master Schedule',eyebrow:'WBS / MILESTONES / DEPENDENCIES',subtitle:'Integrated project schedule with ownership and critical-path visibility',cols:[{label:'Task / Milestone',render:r=>`<strong>${esc(r.name)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}</span>`},{label:'Phase',key:'phase'},{label:'Owner',key:'owner'},{label:'Start',render:r=>fmtDate(r.start)},{label:'Due',render:r=>`${fmtDate(r.due)}${r.status!=='Complete'&&daysFromNow(r.due)<0?' '+badge('Overdue'):''}`},{label:'Status',render:r=>badge(r.status)},{label:'Priority',key:'priority'},{label:'Progress',render:r=>`<div class="progress"><span style="width:${r.progress}%"></span></div><span class="tiny muted">${r.progress}%</span>`},{label:'Dependency',key:'dependency'}]});}
+  function approvals(){genericView({key:'approvals',title:'Design & Approvals',eyebrow:'CONTROLLED APPROVAL GATES',subtitle:'Concept, graphics, technical and fabrication-release approvals',cols:[{label:'Item',render:r=>`<strong>${esc(r.item)}</strong><br><span class="muted">${esc(r.type)}  ·  ${esc(r.version)}</span>`},{label:'Project',render:r=>esc(project(r.projectId)?.name||'')},{label:'Approver',key:'approver'},{label:'Requested',render:r=>fmtDate(r.requested)},{label:'Due',render:r=>fmtDate(r.due)},{label:'Status',render:r=>badge(r.status)},{label:'Blocks Work',render:r=>r.blocks?badge('Critical'):'No'},{label:'Decision',render:r=>fmtDate(r.decision)}]});}
+  function production(){genericView({key:'production',title:'Production & Fabrication',eyebrow:'SHOP-FLOOR DELIVERY CONTROL',subtitle:'Work packages, suppliers, quality and dispatch readiness',cols:[{label:'Work Package',render:r=>`<strong>${esc(r.package)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}  ·  ${esc(r.trade)}</span>`},{label:'Shop / Vendor',key:'shop'},{label:'Qty',key:'qty'},{label:'Planned Start',render:r=>fmtDate(r.plannedStart)},{label:'Planned Finish',render:r=>fmtDate(r.plannedFinish)},{label:'Status',render:r=>badge(r.status)},{label:'QC',render:r=>badge(r.qc)},{label:'Rework',render:r=>String(r.rework||0)},{label:'Dispatch Ready',render:r=>r.ready?badge('Ready'):badge('Not Started')}]});}
+  function logistics(){genericView({key:'logistics',title:'Logistics Control',eyebrow:'FREIGHT / VENUE / ACCESS',subtitle:'Shipment legs, delivery windows, customs, dock slots and owners',cols:[{label:'Route / Leg',render:r=>`<strong>${esc(r.leg)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}</span>`},{label:'Carrier',key:'carrier'},{label:'Mode',key:'mode'},{label:'Reference',key:'reference'},{label:'Pickup',render:r=>fmtDate(r.pickup)},{label:'Delivery',render:r=>fmtDate(r.delivery)},{label:'Status',render:r=>badge(r.status)},{label:'Customs',key:'customs'},{label:'Venue / Dock',key:'dock'},{label:'Owner',key:'owner'}]});}
+  function budget(){
+    setHeader('Budget Control','COMMERCIAL / FORECAST / COMMITMENTS');
+    const rec=scoped(state.budgets);const totals=rec.reduce((a,r)=>(a.budget+=+r.budget||0,a.committed+=+r.committed||0,a.actual+=+r.actual||0,a.forecast+=+r.forecast||0,a),{budget:0,committed:0,actual:0,forecast:0});
+    const rows=rec.map(r=>`<tr><td><strong>${esc(r.category)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}</span></td><td>${esc(r.supplier)}</td><td>${esc(r.po||'-')}</td><td>${money(r.budget)}</td><td>${money(r.committed)}</td><td>${money(r.actual)}</td><td>${money(r.forecast)}</td><td>${money((+r.forecast||0)-(+r.budget||0))}</td><td>${badge(r.status)}</td><td class="row-actions"><button class="ghost" data-edit="budgets" data-id="${r.id}">Edit</button><button class="danger" data-delete="budgets" data-id="${r.id}">Delete</button></td></tr>`).join('');
+    $('#content').innerHTML=`<div class="grid kpi-grid">${kpi('Approved Budget',money(totals.budget),'Current scope')}${kpi('Committed',money(totals.committed),'POs / supplier commitments')}${kpi('Actual Cost',money(totals.actual),'Recorded actuals')}${kpi('Forecast',money(totals.forecast),'Estimate at completion')}${kpi('Forecast Variance',money(totals.forecast-totals.budget),totals.forecast>totals.budget?'Over baseline':'Within baseline')}${kpi('Contingency Headroom',money(Math.max(0,totals.budget-totals.forecast)),'Remaining against baseline')}</div><div class="spacer-lg"></div>${card('Cost & Commitment Register','Not accounting software - project commercial control',table(['Category','Supplier','PO','Budget','Committed','Actual','Forecast','Variance','Status',''],rows),`<button class="primary" data-add="budgets">+ Cost Line</button>`)}`;bindCrud();
+  }
+  function raid(){genericView({key:'raid',title:'RAID Register',eyebrow:'RISK / ASSUMPTION / ISSUE / DEPENDENCY',subtitle:'Named exposure, owner, mitigation and escalation',cols:[{label:'Type',render:r=>badge(r.kind)},{label:'Exposure',render:r=>`<strong>${esc(r.title)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}</span>`},{label:'Owner',key:'owner'},{label:'Impact',key:'impact'},{label:'Likelihood',key:'likelihood'},{label:'Severity',render:r=>badge(r.severity)},{label:'Mitigation',key:'mitigation'},{label:'Due',render:r=>fmtDate(r.due)},{label:'Status',render:r=>badge(r.status)},{label:'Escalated',render:r=>r.escalated?badge('Critical'):'No'}]});}
+  function changes(){genericView({key:'changes',title:'Change Control',eyebrow:'SCOPE / COST / SCHEDULE GOVERNANCE',subtitle:'Trace changes from request through impact analysis and approval',cols:[{label:'Change',render:r=>`<strong>${esc(r.title)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}  ·  ${esc(r.requester)}</span>`},{label:'Reason',key:'reason'},{label:'Cost Impact',render:r=>money(r.costImpact)},{label:'Schedule Impact',key:'scheduleImpact'},{label:'Status',render:r=>badge(r.status)},{label:'Approver',key:'approver'},{label:'Decision Date',render:r=>fmtDate(r.decisionDate)}]});}
+
+  function risksChanges(){
+    setHeader('Risks & Changes','EXPOSURE / SCOPE / COST / SCHEDULE CONTROL');
+    const rr=scoped(state.raid), cc=scoped(state.changes);
+    const riskRows=rr.map(r=>`<tr><td>${badge(r.kind)}</td><td><strong>${esc(r.title)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}</span></td><td>${esc(r.owner)}</td><td>${badge(r.severity)}</td><td>${esc(r.mitigation)}</td><td>${fmtDate(r.due)}</td><td>${badge(r.status)}</td><td class="row-actions"><button class="ghost" data-edit="raid" data-id="${r.id}">Edit</button><button class="danger" data-delete="raid" data-id="${r.id}">Delete</button></td></tr>`).join('');
+    const changeRows=cc.map(r=>`<tr><td><strong>${esc(r.title)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}  ·  ${esc(r.requester)}</span></td><td>${money(r.costImpact)}</td><td>${esc(r.scheduleImpact)}</td><td>${badge(r.status)}</td><td>${esc(r.approver)}</td><td>${fmtDate(r.decisionDate)}</td><td class="row-actions"><button class="ghost" data-edit="changes" data-id="${r.id}">Edit</button><button class="danger" data-delete="changes" data-id="${r.id}">Delete</button></td></tr>`).join('');
+    $('#content').innerHTML=`<div class="grid two-col">${card('RAID Register','Risks, assumptions, issues and dependencies',table(['Type','Exposure','Owner','Severity','Response','Due','Status',''],riskRows),'<button class="primary" data-add="raid">+ RAID</button>')}${card('Change Control','Approved scope is protected here',table(['Change','Cost Impact','Schedule Impact','Status','Approver','Decision',''],changeRows),'<button class="primary" data-add="changes">+ Change</button>')}</div>`;bindCrud();
+  }
+
+  function actions(){genericView({key:'actions',title:'Actions & Decisions',eyebrow:'COMMITMENTS / AUTHORITY / EVIDENCE',subtitle:'What must happen, who owns it, and by when',cols:[{label:'Type',render:r=>badge(r.kind)},{label:'Commitment / Decision',render:r=>`<strong>${esc(r.title)}</strong><br><span class="muted">${esc(project(r.projectId)?.name||'')}</span>`},{label:'Owner',key:'owner'},{label:'Due',render:r=>`${fmtDate(r.due)}${r.status!=='Complete'&&daysFromNow(r.due)<0?' '+badge('Overdue'):''}`},{label:'Status',render:r=>badge(r.status)},{label:'Authority',key:'authority'},{label:'Evidence / Reference',key:'evidence'}]});}
+
+  function calendar(){
+    setHeader('Delivery Calendar','MILESTONES / APPROVALS / FREIGHT / SHOW DATES');
+    const events=[];scoped(state.tasks).forEach(x=>events.push({date:x.due,title:x.name,type:'Task',projectId:x.projectId,view:'schedule'}));scoped(state.approvals).filter(x=>x.status!=='Approved').forEach(x=>events.push({date:x.due,title:`Approval: ${x.item}`,type:'Approval',projectId:x.projectId,view:'approvals'}));scoped(state.logistics).forEach(x=>events.push({date:x.pickup,title:`Pickup: ${x.leg}`,type:'Pickup',projectId:x.projectId,view:'logistics'},{date:x.delivery,title:`Delivery: ${x.leg}`,type:'Delivery',projectId:x.projectId,view:'logistics'}));(currentProject==='all'?state.projects:state.projects.filter(p=>p.id===currentProject)).forEach(x=>{if(x.showOpen)events.push({date:x.showOpen,title:`TARGET - ${x.name}`,type:'Target',projectId:x.id,view:'overview'});if(x.showClose)events.push({date:x.showClose,title:`COMPLETION - ${x.name}`,type:'Completion',projectId:x.id,view:'overview'});});
+    events.sort((a,b)=>a.date.localeCompare(b.date)); const groups=[['Overdue',events.filter(e=>daysFromNow(e.date)<0)],['Next 7 Days',events.filter(e=>daysFromNow(e.date)>=0&&daysFromNow(e.date)<=7)],['Later',events.filter(e=>daysFromNow(e.date)>7).slice(0,30)]];
+    $('#content').innerHTML=`${groups.map(([name,arr])=>`<div class="timeline-section"><h3>${name}</h3><div class="card">${arr.length?arr.map(e=>`<div class="timeline-row"><div><strong>${fmtDate(e.date)}</strong></div><div>${badge(e.type)}</div><div><div class="timeline-title">${esc(e.title)}</div><div class="timeline-meta">${esc(project(e.projectId)?.name||'')}  ·  ${esc(project(e.projectId)?.client||'')}</div></div><div><button class="ghost" data-jump="${e.view}" data-project="${e.projectId}">Open</button></div></div>`).join(''):'<div class="card-pad muted small">Nothing in this window.</div>'}</div></div>`).join('')}`;
+    $$('[data-jump]').forEach(b=>b.onclick=()=>jump(b.dataset.jump,b.dataset.project));
+  }
+
+  function onsite(){
+    if(requireProjectContext('On-site Command','INSTALL / LIVE EVENT / HANDOVER / TEARDOWN'))return;
+    setHeader('On-site Command','INSTALL / LIVE EVENT / HANDOVER / TEARDOWN');
+    const rec=scoped(state.onsite);const proj=project(currentProject);const done=rec.filter(x=>x.status==='Complete').length;
+    const rows=rec.map(r=>`<div class="check-row"><input type="checkbox" data-onsite="${r.id}" ${r.status==='Complete'?'checked':''}><label class="${r.status==='Complete'?'done':''}"><strong>${esc(r.item)}</strong><br><span class="muted tiny">${esc(r.zone)}  ·  ${esc(r.owner)}  ·  due ${fmtDate(r.due)} ${r.critical?' ·  CRITICAL':''}</span></label></div>`).join('');
+    const issues=scoped(state.raid).filter(r=>r.kind==='Issue'&&r.status!=='Closed');
+    $('#content').innerHTML=`<div class="grid kpi-grid">${kpi('Show / Project',esc(proj?.event||'Portfolio'),'Current command context')}${kpi('Checklist Complete',`${done}/${rec.length}`,'Live readiness items')}${kpi('Open Issues',issues.length,'Requires containment')}${kpi('Critical Open',rec.filter(x=>x.critical&&x.status!=='Complete').length,'Site readiness blockers')}${kpi('Client Handover',rec.some(x=>/handover/i.test(x.item)&&x.status==='Complete')?'Complete':'Pending','Final acceptance')}${kpi('Command Health',issues.some(x=>x.severity==='Critical')?'RED':'GREEN','Derived from open issues')}</div><div class="spacer-lg"></div><div class="command-grid">${card('Live Readiness Checklist','Tap items complete from a phone',rows,`<button class="primary" data-add="onsite">+ Checklist Item</button>`)}${card('Open Site / Delivery Issues','Only active issues are shown',`<div class="alert-list">${issues.length?issues.map(x=>`<div class="alert-item"><div style="display:flex;justify-content:space-between"><div class="alert-title">${esc(x.title)}</div>${badge(x.severity)}</div><div class="alert-meta">${esc(x.owner)}  ·  ${esc(x.mitigation)}</div></div>`).join(''):'<div class="muted small">No open issues.</div>'}</div>`)}</div>`;
+    $$('[data-onsite]').forEach(cb=>cb.onchange=()=>{const r=state.onsite.find(x=>x.id===cb.dataset.onsite);r.status=cb.checked?'Complete':'Not Started';save();onsite();});bindCrud();
+  }
+
+  function reports(){
+    if(requireProjectContext('Reports & KPIs','EXECUTIVE & CLIENT REPORTING'))return;
+    setHeader('Reports & KPIs','EXECUTIVE & CLIENT REPORTING');
+    const proj=project(currentProject);if(!proj)return;
+    const tasks=state.tasks.filter(x=>x.projectId===proj.id), risks=state.raid.filter(x=>x.projectId===proj.id&&x.status!=='Closed'), approvals=state.approvals.filter(x=>x.projectId===proj.id&&x.status==='Pending');
+    const done=tasks.filter(x=>x.status==='Complete').map(x=>x.name).slice(0,5), next=tasks.filter(x=>x.status!=='Complete').sort((a,b)=>a.due.localeCompare(b.due)).slice(0,5);
+    const variance=(+proj.forecast||0)-(+proj.budget||0);const snapshot={id:uid('rep'),projectId:proj.id,date:today(),health:proj.health,budgetVariance:variance,pendingApprovals:approvals.length,openRisks:risks.length};
+    $('#content').innerHTML=`<div class="toolbar"><button class="primary" id="saveSnapshot">Save Report Snapshot</button><button class="ghost" onclick="window.print()">Print / Save PDF</button></div><div class="report"><div class="eyebrow">ForgeFront AGENCY - WEEKLY PROJECT STATUS</div><h2>${esc(proj.name)}</h2><div class="report-meta">${esc(proj.code)}  ·  ${esc(proj.client)}  ·  Report date ${fmtDate(today())}  ·  PM ${esc(proj.pm)}  ·  Authority verified ${esc(proj.authorityVerified||'not recorded')}</div><div class="report-grid"><div class="report-box"><span>Overall Health</span><strong>${esc(proj.health)}</strong></div><div class="report-box"><span>Schedule Progress</span><strong>${pct(proj.progress)}</strong></div><div class="report-box"><span>Forecast Variance</span><strong>${money(variance)}</strong></div></div><h3>Executive Summary</h3><p class="small" style="margin-top:7px">Current phase: <strong>${esc(proj.phase)}</strong>. Next milestone: <strong>${esc(proj.nextMilestone)}</strong>. ${risks.length} open RAID exposures and ${approvals.length} pending approvals are being controlled.</p><div class="spacer"></div><div class="grid two-col"><div><h3>Completed / Progressed</h3><ul>${done.length?done.map(x=>`<li>${esc(x)}</li>`).join(''):'<li>No completed milestones recorded this period.</li>'}</ul></div><div><h3>Next Commitments</h3><ul>${next.map(x=>`<li>${esc(x.name)} - ${fmtDate(x.due)} (${esc(x.owner)})</li>`).join('')}</ul></div></div><div class="spacer"></div><h3>Top Risks / Issues</h3><ul>${risks.slice(0,5).map(x=>`<li><strong>${esc(x.severity)}</strong> - ${esc(x.title)} - Owner: ${esc(x.owner)} - Mitigation: ${esc(x.mitigation)}</li>`).join('')||'<li>No active exposures.</li>'}</ul><div class="spacer"></div><h3>Pending Decisions / Approvals</h3><ul>${approvals.map(x=>`<li>${esc(x.item)} - ${esc(x.approver)} - due ${fmtDate(x.due)}</li>`).join('')||'<li>No pending approvals.</li>'}</ul></div>`;
+    const budgets=state.budgets.filter(x=>x.projectId===proj.id), prod=state.production.filter(x=>x.projectId===proj.id), logs=state.logistics.filter(x=>x.projectId===proj.id); const b=budgets.reduce((s,x)=>s+(+x.budget||0),0), f=budgets.reduce((s,x)=>s+(+x.forecast||0),0); const critical=risks.filter(x=>x.severity==='Critical').length, overdue=tasks.filter(x=>x.status!=='Complete'&&daysFromNow(x.due)<0).length;
+    $('#content').insertAdjacentHTML('beforeend',`<div class="spacer-lg"></div>${card('Project KPI Snapshot','Decision triggers for this project',`<div class="grid kpi-grid">${kpi('Overdue Tasks',overdue,'Open past due')}${kpi('Blocking Approvals',approvals.filter(x=>x.blocks).length,'Pending controlled gates')}${kpi('Critical Exposures',critical,'Immediate attention')}${kpi('Production Rework',prod.reduce((s,x)=>s+(+x.rework||0),0),'Recorded rework')}${kpi('Logistics Exceptions',logs.filter(x=>['At Risk','Blocked'].includes(x.status)).length,'Freight / venue')}${kpi('Cost Forecast Variance',money(f-b),'Cost-line forecast')}</div>`)} `);
+    $('#saveSnapshot').onclick=()=>{state.reports.push(snapshot);save();toast('Weekly report snapshot saved');};
+  }
+
+  function metrics(){
+    setHeader('KPI Dashboard','DELIVERY PERFORMANCE & CONTINUOUS IMPROVEMENT');
+    const tasks=scoped(state.tasks), apps=scoped(state.approvals), prod=scoped(state.production), log=scoped(state.logistics), budgets=scoped(state.budgets), raids=scoped(state.raid);
+    const complete=tasks.filter(x=>x.status==='Complete').length;const onTime=tasks.filter(x=>x.status==='Complete'&&daysFromNow(x.due)>=0).length;const overdue=tasks.filter(x=>x.status!=='Complete'&&daysFromNow(x.due)<0).length;const pend=apps.filter(x=>x.status==='Pending').length;const rework=prod.reduce((s,x)=>s+(+x.rework||0),0);const lateLog=log.filter(x=>['At Risk','Blocked'].includes(x.status)).length;const bud=budgets.reduce((s,x)=>s+(+x.budget||0),0), fc=budgets.reduce((s,x)=>s+(+x.forecast||0),0);const critical=raids.filter(x=>x.severity==='Critical'&&x.status!=='Closed').length;
+    const m=[['Task Completion',tasks.length?Math.round(100*complete/tasks.length):0,'% complete'],['Overdue Tasks',overdue,'open overdue'],['Pending Approvals',pend,'gates waiting'],['Production Rework',rework,'recorded units / events'],['Logistics Exceptions',lateLog,'at risk / blocked'],['Budget Variance',bud?Math.round(100*(fc-bud)/bud):0,'% forecast vs budget'],['Critical Exposures',critical,'open RAID'],['Show-Open Readiness',Math.max(0,100-critical*15-overdue*5),'derived readiness score']];
+    $('#content').innerHTML=`<div class="grid kpi-grid">${m.slice(0,6).map(x=>kpi(x[0],x[0]==='Budget Variance'?`${x[1]}%`:x[1],x[2])).join('')}</div><div class="spacer-lg"></div><div class="grid two-col">${card('Operational Metric Dictionary','Metrics are decision triggers, not decoration',table(['Metric','Current','Decision Trigger'],m.map(x=>`<tr><td><strong>${esc(x[0])}</strong></td><td>${esc(x[1])}${typeof x[1]==='number'&&['Task Completion','Show-Open Readiness'].includes(x[0])?'%':''}</td><td>${x[0]==='Overdue Tasks'?'Any critical-path overdue item escalates':x[0]==='Budget Variance'?'Forecast >5% above approved baseline requires recovery / change review':x[0]==='Pending Approvals'?'Blocking approval inside 3 working days requires escalation':x[0]==='Critical Exposures'?'Immediate owner and management attention':'Trend weekly and act on material deterioration'}</td></tr>`).join('')))}${card('ForgeFront Target Standards','Initial operating targets; tune after baseline data',`<div class="alert-list"><div class="alert-item"><div class="alert-title">Milestone on-time delivery  90%</div><div class="alert-meta">Measure accepted milestone completion against baseline.</div></div><div class="alert-item"><div class="alert-title">Budget forecast within 5%</div><div class="alert-meta">Escalate forecast movement before the overrun becomes committed cost.</div></div><div class="alert-item"><div class="alert-title">Zero uncontrolled fabrication release</div><div class="alert-meta">Blocking client/technical approvals must be complete before shop release.</div></div><div class="alert-item"><div class="alert-title">Zero unowned critical risks</div><div class="alert-meta">Every critical exposure requires an owner, mitigation and due date.</div></div></div>`)}</div>`;
+  }
+
+  function templates(){
+    setHeader('Setup','STANDARD ForgeFront PROJECT BLUEPRINT');
+    $('#content').innerHTML=`<div class="grid two-col">${card('New Exhibition Project Blueprint','Creates the standard ForgeFront lifecycle and control gates',`<div class="alert-list"><div class="alert-item"><div class="alert-title">1. Intake & Kickoff</div><div class="alert-meta">Client brief, objective, budget, venue, dates, RACI, success measures.</div></div><div class="alert-item"><div class="alert-title">2. Concept & Design</div><div class="alert-meta">Concept development, feedback rounds, graphics, client design freeze.</div></div><div class="alert-item"><div class="alert-title">3. Technical Planning & Approval</div><div class="alert-meta">IFC drawings, structural, electrical, fire, rigging, venue submission, fabrication release.</div></div><div class="alert-item"><div class="alert-title">4. Production & Logistics</div><div class="alert-meta">Work packages, shop capacity, QC, packing, freight, customs, venue slots, crew bookings.</div></div><div class="alert-item"><div class="alert-title">5. Installation & Live Event</div><div class="alert-meta">On-site command, build zones, snagging, commissioning, handover, support.</div></div><div class="alert-item"><div class="alert-title">6. Teardown & Wrap-up</div><div class="alert-meta">Dismantle, return freight, asset disposition, final cost, client feedback, lessons learned.</div></div></div>`,`<button class="primary" id="createFromTemplate">Create Project from Blueprint</button>`)}${card('System Administration','Local system controls and data portability',`<div class="alert-list"><div class="alert-item"><div class="alert-title">Persistent local data</div><div class="alert-meta">Changes save automatically in this browser.</div></div><div class="alert-item"><div class="alert-title">JSON backup / restore</div><div class="alert-meta">Export the entire system, move it, or restore a prior state.</div></div><div class="alert-item"><div class="alert-title">PWA capable</div><div class="alert-meta">When served over localhost/HTTPS the app can be installed like an application.</div></div></div><div class="spacer"></div><button class="danger" id="resetDemo">Reset Demo Data</button>`)}</div>`;
+    $('#createFromTemplate').onclick=()=>openModal('projects');$('#resetDemo').onclick=reset;
+  }
+
+
+
+  // ===== ForgeFront COMMAND CENTER V3: collaboration, realtime, stakeholder delivery =====
+  let realtimeChannel=null, eventSource=null, deferredInstallPrompt=null, syncMode='local', integrationStatus={}, serverAvailable=false;
+  const API_TOKEN_KEY='forgefront-v3-api-token';
+  function apiToken(){try{return sessionStorage.getItem(API_TOKEN_KEY)||''}catch{return''}}
+  function setApiToken(v){try{if(v)sessionStorage.setItem(API_TOKEN_KEY,v);else sessionStorage.removeItem(API_TOKEN_KEY)}catch{}}
+  function apiHeaders(extra={}){const token=apiToken();return Object.assign({},extra,token?{'x-forgefront-api-token':token}:{})}
+  function apiFetch(url,options={}){return fetch(url,Object.assign({},options,{headers:apiHeaders(options.headers||{})}))}
+  function apiEventUrl(){const token=apiToken();return token?`/api/events?token=${encodeURIComponent(token)}`:'/api/events'}
+  async function probeServer(){
+    if(!location.protocol.startsWith('http')){serverAvailable=false;return false}
+    try{
+      const r=await fetch('/api/health',{cache:'no-store'});if(!r.ok){serverAvailable=false;return false}
+      const j=await r.json().catch(()=>({}));serverAvailable=true;
+      if(j.authRequired&&!apiToken()){const token=prompt('ForgeFront server access token');if(token)setApiToken(token.trim())}
+      return true;
+    }catch{serverAvailable=false;return false}
+  }
+  function nowIso(){return new Date().toISOString()}
+  function ensureV3State(){
+    state.raid=Array.isArray(state.raid)?state.raid:(Array.isArray(state.risks)?state.risks:[]);
+    state.budgets=Array.isArray(state.budgets)?state.budgets:(Array.isArray(state.budget)?state.budget:[]);
+    state.meta=state.meta||{}; state.meta.version=V3_VERSION; state.meta.revision=Number(state.meta.revision||0); state.meta.updatedAt=state.meta.updatedAt||nowIso();
+    state.settings=Object.assign({company:'ForgeFront Systems',currency:'USD',ownerName:'Project Manager',ownerEmail:'',ownerPhone:'',workspace:'ForgeFront Command Center'},state.settings||{});
+    state.contacts=state.contacts||[
+            {id:'ct2',name:'',company:'ForgeFront Systems',role:'Project Manager',email:'jordan@example.com',phone:'+44205550120',projectIds:['p2']},
+          ];
+    state.communications=state.communications||[
+      {id:'cm1',projectId:'p1',contactId:'ct3',channel:'email',direction:'outbound',to:'',from:'ForgeFront PM',subject:'Fascia artwork V2 - decision required',body:'Please confirm approval or consolidated comments so production can release the graphics package.',status:'Logged',time:'2026-08-08T15:20:00Z'},
+      {id:'cm2',projectId:'p1',contactId:'ct1',channel:'sms',direction:'inbound',to:'ForgeFront PM',from:'',subject:'',body:'Client can take a 2:30 review call. I will send the marked-up V2 beforehand.',status:'Received',time:'2026-08-08T16:02:00Z'}
+    ];
+    state.meetings=state.meetings||[
+          ];
+    state.stakeholders=state.stakeholders||[
+            {id:'sh2',name:'ForgeFront Operations Director',email:'ops@example.com',role:'Executive',projectIds:['p1','p2'],access:'Full Executive View',active:true,inviteUrl:''}
+    ];
+    state.publications=state.publications||[];
+    state.solarLeads=state.solarLeads||[];
+    state.solarCalls=state.solarCalls||[];
+    state.solarDnc=state.solarDnc||[];
+    state.solarConfig=Object.assign({repName:'',repId:'',companyIdentity:'',companyIdentityApproved:false,sourceVersion:'Nancy+Jeff V1 Hostile Audit',activeLeadId:''},state.solarConfig||{});
+    state.activity=state.activity||[
+      {id:'ev1',projectId:'p1',kind:'system',message:'Command Center V3 collaboration workspace initialized',time:nowIso(),actor:'System'}
+    ];
+  }
+  ensureV3State();
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{}
+
+  function logActivity(kind,message,projectId='',actor='You'){
+    state.activity=state.activity||[]; state.activity.unshift({id:uid('ev'),projectId,kind,message,time:nowIso(),actor}); state.activity=state.activity.slice(0,300);
+  }
+  function updateSyncBadge(mode,label){
+    syncMode=mode; const p=$('#syncPill'),x=$('#syncText'); if(!p||!x)return; p.className=`sync-pill ${mode}`; x.textContent=label||({live:'Live',connecting:'Syncing',offline:'Offline',local:'Local'}[mode]||mode);
+  }
+  async function save(){
+    state.meta=state.meta||{}; state.meta.version=V3_VERSION; state.meta.revision=Number(state.meta.revision||0)+1; state.meta.updatedAt=nowIso(); state.meta.clientId=CLIENT_ID;
+    try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{}
+    try{realtimeChannel?.postMessage({type:'state',revision:state.meta.revision,state,source:CLIENT_ID});}catch{}
+    if(serverAvailable){
+      updateSyncBadge('connecting','Syncing');
+      try{const r=await apiFetch('/api/state',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(state)}); if(r.ok)updateSyncBadge('live','Live'); else if(r.status===401)updateSyncBadge('offline','Locked'); else updateSyncBadge('offline','Server');}catch{updateSyncBadge('offline','Offline');}
+    }else updateSyncBadge('local','Local');
+  }
+  async function initRealtime(){
+    try{
+      realtimeChannel=new BroadcastChannel('forgefront-command-center-v3');
+      realtimeChannel.onmessage=e=>{const m=e.data||{}; if(m.type==='state'&&m.source!==CLIENT_ID&&m.state&&Number(m.revision||0)>Number(state.meta?.revision||0)){try{assertSafeStateIds(m.state)}catch{return}state=m.state;ensureV3State();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}catch{}render();toast('Workspace updated');}};
+    }catch{}
+    if(!(await probeServer())){updateSyncBadge('local','Local');return;}
+    updateSyncBadge('connecting','Connecting');
+    try{
+      const initial=await apiFetch('/api/state',{cache:'no-store'});
+      if(initial.status===401){setApiToken('');updateSyncBadge('offline','Locked');toast('Server token rejected - reconnect to enter it again');return;}
+      if(initial.ok){const remote=await initial.json();if(remote?.projects){try{assertSafeStateIds(remote)}catch{return}state=remote;ensureV3State();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));render();}}
+      eventSource=new EventSource(apiEventUrl());
+      eventSource.addEventListener('state',async()=>{try{const r=await apiFetch('/api/state',{cache:'no-store'});if(!r.ok)return;const remote=await r.json();if(remote?.projects&&Number(remote.meta?.revision||0)>=Number(state.meta?.revision||0)){try{assertSafeStateIds(remote)}catch{return}state=remote;ensureV3State();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));render();updateSyncBadge('live','Live');}}catch{}});
+      eventSource.onopen=()=>updateSyncBadge('live','Live'); eventSource.onerror=()=>updateSyncBadge('offline','Offline');
+    }catch{updateSyncBadge('offline','Offline')}
+  }
+  function scopedProjectIds(){return new Set((currentProject==='all'?state.projects:state.projects.filter(p=>p.id===currentProject)).map(p=>p.id))}
+  function initials(name){return String(name||'?').split(/\s+/).slice(0,2).map(x=>x[0]).join('').toUpperCase()}
+  function timeLabel(x){try{return new Date(x).toLocaleString(undefined,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}catch{return x||''}}
+  function contact(id){return state.contacts.find(x=>x.id===id)}
+  function downloadFile(name,content,type='text/plain') {const b=new Blob([content],{type}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),500);}
+  function safeCsvCell(value){
+    const raw=String(value??'');
+    const protectedValue=(typeof value==='string'&&/^[\s]*[=+\-@]/.test(raw))?`'${raw}`:raw;
+    return `"${protectedValue.replace(/"/g,'""')}"`;
+  }
+  function csv(rows,cols){return [cols.map(c=>safeCsvCell(c[1])).join(','),...rows.map(r=>cols.map(c=>safeCsvCell(r[c[0]])).join(','))].join('\r\n')}
+  function icsText(value){return String(value??'').replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}
+  function icsDate(value){return String(value??'').replace(/[^0-9]/g,'').slice(0,8)}
+  function reportScope(){const ps=currentProject==='all'?state.projects:state.projects.filter(p=>p.id===currentProject);return {ps,ids:new Set(ps.map(p=>p.id))}}
+  function scopeLabel(){return currentProject==='all'?'ForgeFront Portfolio':(project(currentProject)?.code+' - '+project(currentProject)?.name)}
+
+  function activityHTML(limit=12){const ids=scopedProjectIds(),arr=state.activity.filter(x=>!x.projectId||ids.has(x.projectId)).slice(0,limit);return `<div class="activity-stream">${arr.length?arr.map(x=>`<div class="activity-event"><div class="activity-bullet">${x.kind==='email'?'E':x.kind==='sms'?'S':x.kind==='call'?'C':x.kind==='meeting'?'M':'·'}</div><div><strong>${esc(x.message)}</strong><p>${esc(x.actor||'')} ${x.projectId?' ·  '+esc(project(x.projectId)?.name||''):''}</p></div><time>${esc(timeLabel(x.time))}</time></div>`).join(''):'<div class="muted small">No activity yet.</div>'}</div>`}
+
+  function communications(){
+    setHeader('Comms Hub','EMAIL  ·  TEXT  ·  CALL  ·  PROJECT CONVERSATIONS');
+    const ids=scopedProjectIds(); const msgs=state.communications.filter(x=>currentProject==='all'||ids.has(x.projectId)).sort((a,b)=>String(b.time).localeCompare(String(a.time)));
+    const contacts=state.contacts.filter(c=>currentProject==='all'||(c.projectIds||[]).some(id=>ids.has(id)));
+    $('#content').innerHTML=`<div class="comms-layout"><div class="grid" style="align-content:start">${card('People & Stakeholders','Project-aware contact directory',`<div class="contact-stack">${contacts.map(c=>`<div class="contact-row"><div class="avatar">${esc(initials(c.name))}</div><div><strong>${esc(c.name)}</strong><span>${esc(c.role)}  ·  ${esc(c.company||'')}</span></div><div class="contact-actions"><button class="mini-btn" data-fill-contact="${c.id}" data-channel="email">Email</button><button class="mini-btn" data-fill-contact="${c.id}" data-channel="sms">Text</button><button class="mini-btn" data-fill-contact="${c.id}" data-channel="call">Call</button></div></div>`).join('')||'<div class="muted small">No contacts in this scope.</div>'}</div>`,`<button class="ghost" data-add="contacts">+ Contact</button>`)}${card('Live Activity','Changes and communications across the workspace',activityHTML(10))}</div><div class="grid" style="align-content:start">${card('Compose','Send without leaving the project workspace',`<div class="composer"><div class="channel-tabs"><button class="channel-tab active" data-comms-channel="email">Email</button><button class="channel-tab" data-comms-channel="sms">Text / SMS</button><button class="channel-tab" data-comms-channel="call">Click-to-call</button></div><div class="compose-grid"><div class="field"><label>To</label><input id="commsTo" placeholder="email or phone"></div><div class="field"><label>Contact</label><select id="commsContact"><option value="">Direct address</option>${contacts.map(c=>`<option value="${c.id}">${esc(c.name)}</option>`).join('')}</select></div><div class="field full" id="subjectField"><label>Subject</label><input id="commsSubject" placeholder="Decision, update, request..."></div><div class="field full"><label>Message / Call Note</label><textarea id="commsBody" placeholder="Write the project communication here..."></textarea></div></div><div class="section-actions"><button class="primary" id="sendComms">Send from Command Center</button><button class="ghost" id="saveDraft">Save Draft</button><span class="muted tiny" id="commsProviderHint">Provider status will be verified before send.</span></div></div>`)}${card('Conversation Log','One record across email, SMS, calls and project updates',`<div class="message-feed">${msgs.length?msgs.map(m=>`<div class="message ${m.direction||'outbound'}"><div class="msg-head"><span><span class="channel-icon">${m.channel==='email'?'EMAIL':m.channel==='sms'?'SMS':m.channel==='call'?'CALL':esc(m.channel)}</span>  ·  ${esc(m.direction||'')}</span><span>${esc(timeLabel(m.time))}</span></div>${m.subject?`<div class="msg-subj">${esc(m.subject)}</div>`:''}<div class="msg-body">${esc(m.body||'')}</div><div class="tiny muted" style="margin-top:6px">${esc(m.from||'')}  ->  ${esc(m.to||'')}  ·  ${esc(m.status||'Logged')}</div></div>`).join(''):'<div class="muted small">No communications logged.</div>'}</div>`)} </div></div>`;
+    let channel='email';
+    const setChannel=c=>{channel=c;$$('[data-comms-channel]').forEach(b=>b.classList.toggle('active',b.dataset.commsChannel===c));$('#subjectField').style.display=c==='email'?'grid':'none';$('#sendComms').textContent=c==='call'?'Start Call from Command Center':'Send from Command Center';};
+    $$('[data-comms-channel]').forEach(b=>b.onclick=()=>setChannel(b.dataset.commsChannel));
+    $$('[data-fill-contact]').forEach(b=>b.onclick=()=>{const c=contact(b.dataset.fillContact);if(!c)return;setChannel(b.dataset.channel);$('#commsContact').value=c.id;$('#commsTo').value=b.dataset.channel==='email'?c.email:c.phone;});
+    $('#commsContact').onchange=e=>{const c=contact(e.target.value);if(c)$('#commsTo').value=channel==='email'?c.email:c.phone;};
+    $('#saveDraft').onclick=()=>saveCommunication('Draft',channel,false);
+    $('#sendComms').onclick=()=>saveCommunication('Sending',channel,true);
+    bindCrud();
+  }
+  async function saveCommunication(initialStatus,channel,transmit){
+    const to=$('#commsTo')?.value.trim(),subject=$('#commsSubject')?.value.trim(),body=$('#commsBody')?.value.trim(),contactId=$('#commsContact')?.value||'';
+    if(!to){toast('Add a recipient first');return} if(channel!=='call'&&!body){toast('Write a message first');return}
+    const rec={id:uid('cm'),projectId:currentProject==='all'?'':currentProject,contactId,channel,direction:'outbound',to,from:state.settings.ownerName||'ForgeFront PM',subject:channel==='email'?subject:'',body,status:initialStatus,time:nowIso()};
+    state.communications.unshift(rec); logActivity(channel,`${channel==='email'?'Email':channel==='sms'?'Text':'Call'} ${transmit?'initiated':'draft saved'}: ${to}`,rec.projectId); await save(); render();
+    if(!transmit){toast('Draft saved');return}
+    if(!location.protocol.startsWith('http')){rec.status='Provider not connected - run V3 server';await save();render();toast('Saved - communications server is not connected');return}
+    try{const r=await apiFetch('/api/comms/send',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({channel,to,subject,body,projectId:rec.projectId,contactId})});const j=await r.json().catch(()=>({}));rec.status=r.ok?(j.status||'Sent'):(j.error||'Provider not configured'); if(j.reference)rec.reference=j.reference;await save();render();toast(r.ok?(channel==='call'?'Call initiated':'Sent'):'Saved - provider needs connection');}catch{rec.status='Send failed - offline';await save();render();toast('Saved - server unavailable')}
+  }
+
+  function meetings(){
+    setHeader('Meeting Rooms','IN-APP VIDEO  ·  AUDIO  ·  SCREEN SHARE');
+    const ids=scopedProjectIds(),ms=state.meetings.filter(m=>currentProject==='all'||ids.has(m.projectId)).sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time));
+    $('#content').innerHTML=`<div class="meeting-layout"><div class="grid" style="align-content:start">${card('Meeting Control','Start or schedule project rooms',`<div class="section-actions"><button class="primary" id="instantRoom">Start Instant Room</button><button class="ghost" data-add="meetings">+ Schedule</button></div><div class="spacer"></div>${ms.map(m=>`<div class="meeting-card"><h3>${esc(m.title)}</h3><p>${esc(project(m.projectId)?.code||'Portfolio')}  ·  ${esc(fmtDate(m.date))} ${esc(m.time||'')}<br>${esc(m.participants||'')}</p><div class="section-actions"><button class="ghost" data-room="${esc(m.room)}" data-meeting-id="${m.id}">Open Room</button><button class="mini-btn" data-edit="meetings" data-id="${m.id}">Edit</button></div></div>`).join('')||'<div class="muted small">No meetings scheduled.</div>'}`)}${card('Meeting Output','Keep decisions inside the operating system',`<div class="alert-list"><div class="alert-item"><div class="alert-title">Decisions  ->  Actions & Decisions</div><div class="alert-meta">Convert meeting outcomes into owned commitments instead of losing them in notes.</div></div><div class="alert-item"><div class="alert-title">Screen share + video</div><div class="alert-meta">The room is embedded in the workspace, so schedule, risks, approvals and live video can stay open together.</div></div></div>`)}</div><div class="meeting-stage" id="meetingStage"><div class="meeting-empty"><h2>ForgeFront Meeting Room</h2><p>Video, microphone, chat and screen sharing run inside the Command Center using an embedded meeting room. Start an instant room or open a scheduled room.</p><button class="primary" id="stageInstant">Start Room</button></div></div></div>`;
+    const startInstant=()=>openMeeting(`ForgeFront-${currentProject==='all'?'PORTFOLIO':project(currentProject)?.code||'PROJECT'}-${Date.now().toString(36)}`,'Instant ForgeFront room');
+    $('#instantRoom').onclick=startInstant;$('#stageInstant').onclick=startInstant;$$('[data-room]').forEach(b=>b.onclick=()=>openMeeting(b.dataset.room,state.meetings.find(x=>x.id===b.dataset.meetingId)?.title||'Meeting'));bindCrud();
+  }
+  async function openMeeting(room,title){
+    room=String(room||'').replace(/[^a-zA-Z0-9_-]/g,'-'); const url=`https://meet.jit.si/${encodeURIComponent(room)}#config.prejoinPageEnabled=false&config.disableDeepLinking=true`;
+    $('#meetingStage').innerHTML=`<iframe src="${url}" allow="camera; microphone; fullscreen; display-capture; autoplay" referrerpolicy="origin" title="${esc(title)}"></iframe>`;
+    logActivity('meeting',`Meeting room opened: ${title}`,currentProject==='all'?'':currentProject); await save();
+  }
+
+  function stakeholders(){
+    setHeader('Stakeholder Hub','CONTROLLED ACCESS  ·  CLIENT / EXECUTIVE / VENDOR VIEWS');
+    const arr=state.stakeholders.filter(s=>currentProject==='all'||(s.projectIds||[]).includes(currentProject));
+    $('#content').innerHTML=`<div class="access-grid">${card('Workspace Access','Give the right people the right project view',`<div>${arr.map(s=>`<div class="stakeholder-row"><div><div class="name">${esc(s.name)}</div><div class="meta">${esc(s.email)}</div></div><div>${badge(s.active?'Active':'Disabled')}</div><div><span class="access-chip">${esc(s.role)}</span>${String(s.access||'').split(',').map(x=>`<span class="access-chip">${esc(x.trim())}</span>`).join('')}</div><div class="row-actions"><button class="mini-btn" data-invite="${s.id}">Invite</button><button class="mini-btn" data-edit="stakeholders" data-id="${s.id}">Edit</button></div>${s.inviteUrl?`<div class="link-box" style="grid-column:1/-1"><input value="${esc(s.inviteUrl)}" readonly><button class="ghost" data-copy="${esc(s.inviteUrl)}">Copy</button></div>`:''}</div>`).join('')||'<div class="muted small">No stakeholders in this scope.</div>'}</div>`,`<button class="primary" data-add="stakeholders">+ Stakeholder</button>`)}<div class="grid" style="align-content:start">${card('Access Model','Designed for real project communication',`<div class="alert-list"><div class="alert-item"><div class="alert-title">Executive</div><div class="alert-meta">Portfolio health, financial forecast, top risks, decisions and published reports.</div></div><div class="alert-item"><div class="alert-title">Client</div><div class="alert-meta">Approved project status, schedule, approvals, decisions and published client updates.</div></div><div class="alert-item"><div class="alert-title">Vendor / Crew</div><div class="alert-meta">Only the delivery information they need: assignments, logistics, dates, drawings/status references and site tasks.</div></div></div>`)}${card('Published Updates','What stakeholders can be given as controlled snapshots',`<div>${state.publications.filter(x=>currentProject==='all'||x.projectId===currentProject).slice(0,8).map(x=>`<div class="publication-item"><strong>${esc(x.title)}</strong><span>${esc(x.audience)}  ·  ${esc(timeLabel(x.time))}</span></div>`).join('')||'<div class="muted small">No published snapshots yet. Use Publish & Export.</div>'}</div>`)}</div></div>`;
+    $$('[data-invite]').forEach(b=>b.onclick=()=>createInvite(b.dataset.invite));$$('[data-copy]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText(b.dataset.copy);toast('Access link copied')}catch{}});bindCrud();
+  }
+  async function createInvite(id){
+    const s=state.stakeholders.find(x=>x.id===id); if(!s)return;
+    if(!serverAvailable){toast('Run V3 server to create controlled access links');return}
+    try{const r=await apiFetch('/api/access/invite',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}),j=await r.json();if(!r.ok)throw new Error(j.error||'invite failed');s.inviteUrl=j.url;logActivity('access',`Stakeholder access created for ${s.name}`,(s.projectIds||[])[0]||'');await save();render();toast('Stakeholder link created');}catch(e){toast('Access server unavailable')}
+  }
+
+  function publishExport(){
+    setHeader('Publish & Export','PRESENTATION  ·  INTRANET  ·  OFFICE COMMS  ·  DATA EXCHANGE');
+    $('#content').innerHTML=`<div class="publish-grid"><div class="card export-card"><h3>Executive Presentation Pack</h3><p>Landscape 16:9 stakeholder presentation with portfolio/project health, schedule, commercial forecast, top risks and decisions.</p><button class="primary" data-export-v3="presentation">Export HTML</button><button class="ghost" data-export-v3="print">Print / PDF</button></div><div class="card export-card"><h3>Weekly Status / Office Brief</h3><p>Management-ready Word-compatible status brief for circulation, review meetings and document libraries.</p><button class="primary" data-export-v3="word">Export .doc</button><button class="ghost" data-export-v3="copybrief">Copy Summary</button></div><div class="card export-card"><h3>Intranet Bulletin</h3><p>Clean internal communication for SharePoint, Notion, Confluence or other intranet pages.</p><button class="primary" data-export-v3="intranet">Export HTML</button><button class="ghost" data-export-v3="publish">Publish Snapshot</button></div><div class="card export-card"><h3>Project Data Exchange</h3><p>Operational datasets in established exchange formats for downstream analysis and office tools.</p><button class="ghost" data-export-v3="schedulecsv">Schedule CSV</button><button class="ghost" data-export-v3="raidcsv">RAID CSV</button><button class="ghost" data-export-v3="actioncsv">Actions CSV</button><button class="ghost" data-export-v3="budgetcsv">Budget CSV</button></div><div class="card export-card"><h3>Calendar Exchange</h3><p>Share milestones, due dates and show dates with Outlook, Google Calendar and compatible calendar systems.</p><button class="primary" data-export-v3="ics">Export .ICS</button></div><div class="card export-card"><h3>Full Workspace Backup</h3><p>Portable JSON snapshot of the operating system. Use for transfer, audit archive or disaster recovery.</p><button class="ghost" data-action="export-v3-backup">Export JSON</button></div></div><div class="spacer-lg"></div>${card('Recent Publications','Audit trail of stakeholder-ready snapshots',`<div>${state.publications.slice(0,12).map(x=>`<div class="publication-item"><strong>${esc(x.title)}</strong><span>${esc(x.audience)}  ·  ${esc(scopeLabelFor(x.projectId))}  ·  ${esc(timeLabel(x.time))}</span></div>`).join('')||'<div class="muted small">No publications yet.</div>'}</div>`)}`;
+    $$('[data-export-v3]').forEach(b=>b.onclick=()=>runExport(b.dataset.exportV3));$('[data-action="export-v3-backup"]').onclick=()=>downloadFile(`ForgeFront_Command_Center_V3_Backup_${today()}.json`,JSON.stringify(state,null,2),'application/json');
+  }
+  function scopeLabelFor(pid){if(!pid)return'ForgeFront Portfolio';const p=project(pid);return p?`${p.code} - ${p.client}`:'Project'}
+  function exportContext(){const {ps,ids}=reportScope();const tasks=state.tasks.filter(x=>ids.has(x.projectId)),raid=state.raid.filter(x=>ids.has(x.projectId)&&x.status!=='Closed'),actions=state.actions.filter(x=>ids.has(x.projectId)&&x.status!=='Complete'),budgets=state.budgets.filter(x=>ids.has(x.projectId));return{ps,ids,tasks,raid,actions,budgets}}
+  function executiveSummaryText(){const {ps,tasks,raid,actions}=exportContext();const atRisk=ps.filter(p=>derivedHealth(p)!=='Green');const late=tasks.filter(x=>x.status!=='Complete'&&daysFromNow(x.due)<0);const top=raid.filter(x=>['Critical','High'].includes(x.severity)).slice(0,5);return `${scopeLabel()} - Status ${today()}\nProjects: ${ps.length} | At risk: ${atRisk.length} | Overdue work: ${late.length} | Open decisions/actions: ${actions.length}\nTop exposure: ${top.map(x=>x.title).join('; ')||'No high/critical open exposures.'}`}
+  function presentationHTML(){const {ps,raid,actions}=exportContext();const projectSlides=ps.map(p=>{const risks=raid.filter(x=>x.projectId===p.id).slice(0,4),acts=actions.filter(x=>x.projectId===p.id).slice(0,5);return `<section class="slide"><div class="ey">PROJECT STATUS</div><h1>${esc(p.code)} - ${esc(p.name)}</h1><div class="metrics"><div><span>Health</span><b>${esc(derivedHealth(p))}</b></div><div><span>Progress</span><b>${esc(p.progress)}%</b></div><div><span>Forecast</span><b>${esc(money(p.forecast))}</b></div><div><span>Show Opens</span><b>${esc(fmtDate(p.showOpen))}</b></div></div><h2>Current phase</h2><p>${esc(p.phase)} - ${esc(p.nextMilestone||'')}</p><div class="cols"><div><h2>Top risks / issues</h2><ul>${risks.map(x=>`<li><b>${esc(x.severity)}</b> - ${esc(x.title)}</li>`).join('')||'<li>No high-priority exposures.</li>'}</ul></div><div><h2>Decisions / commitments</h2><ul>${acts.map(x=>`<li>${esc(x.title)} - ${esc(x.owner)} - ${esc(fmtDate(x.due))}</li>`).join('')||'<li>No open commitments.</li>'}</ul></div></div></section>`}).join('');return `<!doctype html><meta charset="utf-8"><title>${esc(scopeLabel())} Presentation</title><style>body{margin:0;background:#0d1115;color:#f5f7fa;font-family:Arial,sans-serif}.slide{box-sizing:border-box;min-height:100vh;aspect-ratio:16/9;padding:6vh 7vw;page-break-after:always;background:linear-gradient(145deg,#10171d,#17242c)}.ey{color:#E5222D;font-weight:800;letter-spacing:.18em;font-size:12px}h1{font-size:42px;margin:12px 0 30px}h2{font-size:20px;margin:28px 0 10px}p,li{font-size:17px;line-height:1.5;color:#d0d9e0}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.metrics div{border:1px solid #344550;border-radius:12px;padding:18px}.metrics span{display:block;color:#8fa0ac;font-size:11px;text-transform:uppercase}.metrics b{display:block;font-size:26px;margin-top:7px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:40px}@media print{.slide{height:7.5in;width:13.333in;min-height:0}}</style><section class="slide"><div class="ey">ForgeFront COMMAND CENTER V3</div><h1>${esc(scopeLabel())}</h1><p>Executive project control briefing  ·  ${esc(today())}</p><div class="metrics"><div><span>Projects</span><b>${ps.length}</b></div><div><span>At Risk</span><b>${ps.filter(p=>derivedHealth(p)!=='Green').length}</b></div><div><span>Open Risks</span><b>${raid.length}</b></div><div><span>Open Actions</span><b>${actions.length}</b></div></div><h2>Operating summary</h2><p>${esc(executiveSummaryText())}</p></section>${projectSlides}`}
+  function wordBriefHTML(){const {ps,raid,actions}=exportContext();return `<html><head><meta charset="utf-8"><style>body{font-family:Calibri,Arial;color:#1d2830}h1{color:#12364a}table{border-collapse:collapse;width:100%}td,th{border:1px solid #ccd5db;padding:7px;font-size:10pt}th{background:#eef4f7}</style></head><body><h1>${esc(scopeLabel())} - Weekly Status</h1><p>${esc(today())}</p><p>${esc(executiveSummaryText()).replace(/\n/g,'<br>')}</p><h2>Project Status</h2><table><tr><th>Project</th><th>Health</th><th>Phase</th><th>Progress</th><th>Forecast</th><th>Show</th></tr>${ps.map(p=>`<tr><td>${esc(p.code)} - ${esc(p.client)}</td><td>${esc(derivedHealth(p))}</td><td>${esc(p.phase)}</td><td>${esc(p.progress)}%</td><td>${esc(money(p.forecast))}</td><td>${esc(fmtDate(p.showOpen))}</td></tr>`).join('')}</table><h2>Top Risks / Issues</h2><ul>${raid.slice(0,8).map(x=>`<li><b>${esc(x.severity)}</b> ${esc(x.title)} - ${esc(x.owner)}</li>`).join('')}</ul><h2>Open Actions / Decisions</h2><ul>${actions.slice(0,10).map(x=>`<li>${esc(x.title)} - ${esc(x.owner)} - due ${esc(fmtDate(x.due))}</li>`).join('')}</ul></body></html>`}
+  function intranetHTML(){const {ps,raid,actions}=exportContext();return `<!doctype html><meta charset="utf-8"><title>${esc(scopeLabel())} Update</title><style>body{font:15px Arial;max-width:1000px;margin:40px auto;color:#18232b}.hero{background:#12364a;color:#fff;padding:28px;border-radius:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}.box{border:1px solid #d7e0e5;border-radius:10px;padding:14px}table{width:100%;border-collapse:collapse}td,th{padding:9px;border-bottom:1px solid #e1e7ea;text-align:left}</style><div class="hero"><h1>${esc(scopeLabel())}</h1><p>Project operations update  ·  ${esc(today())}</p></div><div class="grid"><div class="box"><b>${ps.length}</b><br>Projects</div><div class="box"><b>${ps.filter(p=>derivedHealth(p)!=='Green').length}</b><br>Need attention</div><div class="box"><b>${actions.length}</b><br>Open actions / decisions</div></div><h2>Status by project</h2><table><tr><th>Project</th><th>Health</th><th>Phase</th><th>Next milestone</th></tr>${ps.map(p=>`<tr><td>${esc(p.code)} - ${esc(p.client)}</td><td>${esc(derivedHealth(p))}</td><td>${esc(p.phase)}</td><td>${esc(p.nextMilestone||'')}</td></tr>`).join('')}</table><h2>Leadership attention</h2><ul>${raid.filter(x=>['Critical','High'].includes(x.severity)).slice(0,6).map(x=>`<li>${esc(x.title)} - ${esc(x.owner)}</li>`).join('')||'<li>No high/critical open exposure.</li>'}</ul>`}
+  async function runExport(kind){const {ps,ids,tasks,raid,actions,budgets}=exportContext();if(kind==='presentation')downloadFile(`ForgeFront_Presentation_${today()}.html`,presentationHTML(),'text/html');else if(kind==='word')downloadFile(`ForgeFront_Weekly_Status_${today()}.doc`,wordBriefHTML(),'application/msword');else if(kind==='intranet')downloadFile(`ForgeFront_Intranet_Update_${today()}.html`,intranetHTML(),'text/html');else if(kind==='schedulecsv')downloadFile(`ForgeFront_Schedule_${today()}.csv`,csv(tasks,[['projectId','Project ID'],['name','Task'],['phase','Phase'],['owner','Owner'],['start','Start'],['due','Due'],['status','Status'],['priority','Priority'],['progress','Progress %'],['dependency','Dependency'],['critical','Critical Path']]),'text/csv');else if(kind==='raidcsv')downloadFile(`ForgeFront_RAID_${today()}.csv`,csv(raid,[['projectId','Project ID'],['kind','Type'],['title','Exposure'],['owner','Owner'],['severity','Severity'],['mitigation','Response'],['due','Due'],['status','Status']]),'text/csv');else if(kind==='actioncsv')downloadFile(`ForgeFront_Actions_${today()}.csv`,csv(actions,[['projectId','Project ID'],['kind','Type'],['title','Action / Decision'],['owner','Owner'],['due','Due'],['status','Status'],['authority','Authority'],['evidence','Evidence']]),'text/csv');else if(kind==='budgetcsv')downloadFile(`ForgeFront_Budget_${today()}.csv`,csv(budgets,[['projectId','Project ID'],['category','Category'],['supplier','Supplier'],['po','PO'],['budget','Budget'],['committed','Committed'],['actual','Actual'],['forecast','Forecast'],['status','Status']]),'text/csv');else if(kind==='ics'){let s='BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//ForgeFront Systems - Project Management//EN\r\n';tasks.filter(x=>x.due).forEach(x=>{const d=icsDate(x.due);if(!d)return;s+=`BEGIN:VEVENT\r\nUID:${icsText(x.id)}@forgefront-v3\r\nDTSTART;VALUE=DATE:${d}\r\nSUMMARY:${icsText(String(project(x.projectId)?.code||'ForgeFront')+' - '+x.name)}\r\nDESCRIPTION:${icsText(String(x.owner||'')+' - '+String(x.status||''))}\r\nEND:VEVENT\r\n`});ps.forEach(p=>{const d=icsDate(p.showOpen);if(!d)return;s+=`BEGIN:VEVENT\r\nUID:${icsText(p.id)}-show@forgefront-v3\r\nDTSTART;VALUE=DATE:${d}\r\nSUMMARY:${icsText(String(p.code||'ForgeFront')+' - SHOW OPEN - '+String(p.event||''))}\r\nEND:VEVENT\r\n`});s+='END:VCALENDAR\r\n';downloadFile(`ForgeFront_Calendar_${today()}.ics`,s,'text/calendar')}else if(kind==='copybrief'){try{await navigator.clipboard.writeText(executiveSummaryText());toast('Executive summary copied')}catch{}}else if(kind==='print'){const w=window.open('','_blank');if(w){w.document.write(presentationHTML());w.document.close();setTimeout(()=>w.print(),400)}}else if(kind==='publish'){const audience=currentProject==='all'?'Leadership':'Project Stakeholders';state.publications.unshift({id:uid('pub'),projectId:currentProject==='all'?'':currentProject,title:`${scopeLabel()} - Status ${today()}`,audience,time:nowIso(),summary:executiveSummaryText()});logActivity('publish',`Status snapshot published for ${audience}`,currentProject==='all'?'':currentProject);await save();render();toast('Stakeholder snapshot published')}}
+
+  async function integrations(){
+    setHeader('Integrations','PHONE + PC  ·  REALTIME  ·  COMMUNICATION PROVIDERS');
+    let s=integrationStatus; if(serverAvailable){try{const r=await apiFetch('/api/integrations/status');if(r.ok)s=integrationStatus=await r.json()}catch{}}
+    const item=(name,desc,ready,detail)=>`<div class="card integration"><div class="integration-top"><h3>${esc(name)}</h3><span class="provider-state ${ready?'ready':'needs'}">${ready?'Connected':'Needs setup'}</span></div><p>${esc(desc)}</p><div class="tiny muted">${esc(detail||'')}</div></div>`;
+    $('#content').innerHTML=`<div class="integration-grid">${item('Realtime Workspace','Live state updates between PCs, phones and browser sessions connected to the same V3 server.',syncMode==='live',syncMode==='live'?'SSE + local BroadcastChannel active':'Local mode works now; server enables cross-device sync.')}${item('Email','Send project email directly from the Comms Hub and keep the communication in the project record.',!!s.email,s.email?'Email provider ready':'Configure ForgeFront_RESEND_API_KEY and ForgeFront_EMAIL_FROM on the V3 server.')}${item('Text / SMS','Send stakeholder and vendor text messages from the same project workspace.',!!s.sms,s.sms?'Twilio messaging ready':'Configure Twilio account SID, auth token and from number.')}${item('Click-to-call','Start a call from the Command Center. The configured PM phone rings, then connects to the recipient.',!!s.call,s.call?'Click-to-call ready':'Configure Twilio plus ForgeFront_CALLER_NUMBER.')}${item('Video Meeting Rooms','Embedded video, audio, chat and screen share without navigating away from the Command Center.',navigator.onLine,'Jitsi room adapter - internet connection required.')}${item('Stakeholder Portal','Create controlled read-only project links for people you authorize.',!!s.portal,s.portal?'V3 access-link service ready':'Run the V3 server to issue controlled links.')} </div><div class="spacer-lg"></div><div class="grid two-col">${card('Device Integration','Install and work from phone + PC',`<div class="alert-list"><div class="alert-item"><div class="alert-title">PWA install</div><div class="alert-meta">When served from HTTPS or localhost, V3 can install to the desktop/home screen and run in its own app window.</div></div><div class="alert-item"><div class="alert-title">Responsive field mode</div><div class="alert-meta">On-site Command, Comms, approvals, actions and stakeholder updates are mobile responsive.</div></div><div class="alert-item"><div class="alert-title">Offline/local continuity</div><div class="alert-meta">Browser storage keeps work usable if the server is temporarily unreachable; sync resumes when connected.</div></div></div><div class="spacer"></div><div class="section-actions"><button class="primary" id="installFromView">Install App</button><button class="ghost" id="testServer">Test Live Server</button></div>`)}${card('Security Boundary','Do not put provider secrets in this HTML file',`<div class="portal-note">Email, SMS and phone provider credentials belong on the V3 server as environment variables. The browser only receives connection status and sends authorized project communications to the server adapter. Stakeholder links are read-only capability links; internet-facing production deployment should add company SSO or another identity provider before confidential data is exposed publicly.</div>`)}</div>`;
+    $('#installFromView').onclick=triggerInstall;$('#testServer').onclick=async()=>{const ok=await probeServer();toast(ok?'V3 server is online':'V3 is in local-only mode')};
+  }
+
+  function triggerInstall(){if(deferredInstallPrompt){deferredInstallPrompt.prompt();deferredInstallPrompt.userChoice.finally(()=>{deferredInstallPrompt=null})}else toast(location.protocol.startsWith('http')?'Use your browser Install App / Add to Home Screen option':'Run V3 through its server before installing')}
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;});
+
+
+
+
+  // ===== SOLAR SALES V1: Nancy + Jeff behavioral engine =====
+  function solarLead(id){return state.solarLeads.find(x=>x.id===id)}
+  function solarNormPhone(v){return String(v||'').replace(/\D/g,'').slice(-10)}
+  function solarNormEmail(v){return String(v||'').trim().toLowerCase()}
+  function solarNormAddress(v){return String(v||'').trim().toLowerCase().replace(/\s+/g,' ')}
+  function isSolarLeadDnc(lead){
+    if(!lead)return false;
+    if(lead.status==='Do Not Contact')return true;
+    const phone=solarNormPhone(lead.phone),alt=solarNormPhone(lead.alternatePhone),email=solarNormEmail(lead.email),address=solarNormAddress(lead.address);
+    return (state.solarDnc||[]).some(x=>(phone&&phone===x.phone)||(alt&&alt===x.phone)||(email&&email===x.email)||(address&&address===x.address));
+  }
+  function recordSolarDnc(lead,call){
+    const rec={id:uid('dnc'),leadId:lead.id||'',name:lead.name||'',phone:solarNormPhone(lead.phone)||solarNormPhone(lead.alternatePhone),email:solarNormEmail(lead.email),address:solarNormAddress(lead.address),time:nowIso(),callId:call?.id||'',reason:'Prospect requested no further contact'};
+    const exists=(state.solarDnc||[]).some(x=>(rec.phone&&x.phone===rec.phone)||(rec.email&&x.email===rec.email)||(rec.address&&x.address===rec.address));
+    if(!exists)state.solarDnc.unshift(rec);
+  }
+  function solarLatestCall(leadId){return [...state.solarCalls].filter(x=>x.leadId===leadId).sort((a,b)=>String(b.updatedAt||b.startedAt||'').localeCompare(String(a.updatedAt||a.startedAt||'')))[0]||null}
+  function solarActiveCall(leadId){return [...state.solarCalls].filter(x=>x.leadId===leadId&&!['COMPLETE','TERMINATED'].includes(x.stage)).sort((a,b)=>String(b.updatedAt||b.startedAt||'').localeCompare(String(a.updatedAt||a.startedAt||'')))[0]||null}
+  function solarActiveLead(){const id=state.solarConfig?.activeLeadId;return solarLead(id)||state.solarLeads[0]||null}
+  function solarEventLabel(event){return String(event||'').replaceAll('_',' ').replace(/\b\w/g,c=>c.toUpperCase())}
+  function solarLeadStatus(lead,call){if(lead?.status)return lead.status;if(call?.stage==='COMPLETE')return 'Appointment Ready';if(call?.stage==='TERMINATED')return 'Do Not Contact';if(call)return 'In Call';return 'New'}
+  function solarFormValue(id){const el=document.getElementById(id);if(!el)return'';if(el.type==='checkbox')return !!el.checked;if(el.type==='number')return Number(el.value||0);return el.value||''}
+  function solarSnapshotPayload(){return {
+    name:solarFormValue('solarName'),phone:solarFormValue('solarPhone'),alternatePhone:solarFormValue('solarAltPhone'),email:solarFormValue('solarEmail'),address:solarFormValue('solarAddress'),street:solarFormValue('solarStreet'),utility:solarFormValue('solarUtility'),highestBill:solarFormValue('solarHighestBill'),averageBill:solarFormValue('solarAverageBill'),sunExposure:solarFormValue('solarSun'),shadeNotes:solarFormValue('solarShade'),futureLoad:solarFormValue('solarFutureLoad'),roofAgeYears:solarFormValue('solarRoofAge'),roofInstaller:solarFormValue('solarRoofInstaller'),roofConcern:solarFormValue('solarRoofConcern'),decisionMakers:solarFormValue('solarDecisionMakers'),priorSolarExperience:solarFormValue('solarPriorSolar'),householdConcern:solarFormValue('solarHouseholdConcern'),localWorkVerified:solarFormValue('solarLocalWorkVerified'),notes:solarFormValue('solarNotes'),appointmentType:solarFormValue('solarApptType'),appointmentDate:solarFormValue('solarApptDate'),appointmentTime:solarFormValue('solarApptTime'),assignedCloser:solarFormValue('solarCloser'),assignedVerifier:solarFormValue('solarVerifier')
+  }}
+  function saveSolarConfig(){state.solarConfig.repName=solarFormValue('solarRepName');state.solarConfig.repId=solarFormValue('solarRepId');state.solarConfig.companyIdentity=solarFormValue('solarCompanyIdentity');state.solarConfig.companyIdentityApproved=solarFormValue('solarIdentityApproved');save();render();toast('Solar settings saved')}
+  function saveSolarLeadSnapshot(leadId){const lead=solarLead(leadId);if(!lead)return;Object.assign(lead,solarSnapshotPayload(),{updatedAt:nowIso()});if(!lead.createdAt)lead.createdAt=nowIso();save();render();toast('Lead updated')}
+  function startSolarCall(leadId){
+    const lead=solarLead(leadId);if(!lead)return;
+    if(isSolarLeadDnc(lead)){toast('Do Not Contact - call start blocked');return;}
+    if(!state.solarConfig.repName||!state.solarConfig.repId||!state.solarConfig.companyIdentity||state.solarConfig.companyIdentityApproved!==true){toast('Complete and approve caller identity before starting');return;}
+    state.solarConfig.activeLeadId=leadId;
+    let call=solarActiveCall(leadId);
+    if(!call){call=SolarCallEngine.createSession({id:uid('sc'),leadId,repName:state.solarConfig.repName||'',repId:state.solarConfig.repId||''});state.solarCalls.unshift(call);lead.status='In Call';lead.updatedAt=nowIso();logActivity('call',`Solar call started for ${lead.name||lead.address||'lead'}`,'',state.solarConfig.repName||'You');}
+    save();render();
+  }
+  function applySolarEvent(event,payload={}){
+    const lead=solarActiveLead();if(!lead)return;
+    let call=solarActiveCall(lead.id);if(!call){call=SolarCallEngine.createSession({id:uid('sc'),leadId:lead.id,repName:state.solarConfig.repName||''});state.solarCalls.unshift(call);}
+    const snapshot=solarSnapshotPayload();
+    let eventPayload=Object.assign({},payload||{});
+    if(event==='qualification_update')eventPayload=snapshot;
+    if(['roof_old','roof_warranty','research_trust','decision_maker','bill_unavailable','moving_transfer','term_duration','payment_structure','household_succession','general_resistance'].includes(event))eventPayload=Object.assign({},snapshot,eventPayload);
+    if(event==='appointment_booked')eventPayload=Object.assign({},snapshot,{appointmentType:snapshot.appointmentType,appointmentDate:snapshot.appointmentDate,appointmentTime:snapshot.appointmentTime,email:snapshot.email,phone:snapshot.phone});
+    if(event==='bill_received')eventPayload={billReceived:true};
+    const next=SolarCallEngine.applyEvent(call,event,eventPayload);
+    const idx=state.solarCalls.findIndex(x=>x.id===call.id);state.solarCalls[idx]=next;
+    const last=next.history?.[next.history.length-1];
+    Object.assign(lead,snapshot,{updatedAt:nowIso()});
+    if(last?.type==='invalid_transition'||last?.type==='invalid_event'){save();render();toast('Action blocked - invalid call transition');return;}
+    if(event==='roof_old')lead.roofConcern=lead.roofConcern||'Older roof / replacement horizon';
+    if(event==='roof_warranty')lead.roofConcern=lead.roofConcern||'Existing roof warranty concern';
+    if(event==='appointment_booked')lead.status='Appointment Booked';
+    if(event==='bill_received')lead.billReceived=true;
+    if(event==='bill_requested')lead.status='Bill Requested';
+    if(event==='verification_complete'){lead.verificationStatus='Complete';lead.status='Appointment Ready';}
+    if(event==='do_not_contact'){lead.status='Do Not Contact';recordSolarDnc(lead,next);}
+    logActivity('call',`Solar: ${solarEventLabel(event)} - ${lead.name||lead.address||'lead'}`,'',state.solarConfig.repName||'You');
+    save();render();
+  }
+  function solarActionClass(id){return id==='do_not_contact'?'solar-action stop':['explanation_complete','ready_for_savings','ready_for_appointment','appointment_booked','verification_complete'].includes(id)?'solar-action primary-path':'solar-action'}
+  function solarLeadQueue(){
+    setHeader('Solar Lead Queue','SALES  ·  NANCY + JEFF V1');
+    const leads=[...state.solarLeads].sort((a,b)=>String(b.updatedAt||b.createdAt||'').localeCompare(String(a.updatedAt||a.createdAt||'')));
+    const rows=leads.map(l=>{const c=solarLatestCall(l.id);return `<tr><td><strong>${esc(l.name||'Unnamed lead')}</strong><div class="tiny muted">${esc(l.address||l.street||'')}</div></td><td>${esc(l.utility||'-')}</td><td>${l.highestBill?money(l.highestBill):'-'}<div class="tiny muted">avg ${l.averageBill?money(l.averageBill):'-'}</div></td><td>${esc(l.roofConcern||'-')}</td><td>${c?badge(c.stage):badge('New')}<div class="tiny muted">${esc(c?.branch||'')}</div></td><td>${badge(solarLeadStatus(l,c))}</td><td>${l.billReceived?'Yes':'No'}</td><td>${l.appointmentDate?`${esc(fmtDate(l.appointmentDate))}<div class="tiny muted">${esc(l.appointmentTime||'')}</div>`:'-'}</td><td>${esc(l.verificationStatus||'Pending')}</td><td><div class="row-actions"><button class="primary" data-solar-open="${l.id}">Open Call</button><button class="ghost" data-edit="solarLeads" data-id="${l.id}">Edit</button><button class="danger" data-delete="solarLeads" data-id="${l.id}">Delete</button></div></td></tr>`}).join('');
+    $('#content').innerHTML=`<div class="section-head"><div><h2>Solar pipeline</h2><p>Behavior model: Nancy + Jeff example calls. Factual claims stay gated until verified.</p></div><div class="section-actions"><span class="solar-source-pill">Nancy + Jeff V1</span><button class="primary" data-add="solarLeads">+ New Lead</button></div></div>${table(['Lead','Utility','Bill','Roof','Call Stage','Status','Bill','Appointment','Verification','Actions'],rows)}`;
+    $$('[data-solar-open]').forEach(b=>b.onclick=()=>{state.solarConfig.activeLeadId=b.dataset.solarOpen;save();navigate('solar-live','all');});bindCrud();
+  }
+  function solarLiveCall(){
+    setHeader('Solar Live Call','SALES  ·  NEXT BEST ACTION');
+    const lead=solarActiveLead();
+    if(!lead){$('#content').innerHTML=`<div class="card solar-empty"><h2>No solar leads yet</h2><p>Create the first lead, then the engine will guide the call using the Nancy + Jeff behavioral model.</p><button class="primary" data-add="solarLeads">+ Create Lead</button></div>`;bindCrud();return;}
+    state.solarConfig.activeLeadId=lead.id;
+    const call=solarActiveCall(lead.id)||solarLatestCall(lead.id);
+    const preview=call||SolarCallEngine.createSession({id:'preview',leadId:lead.id,repName:state.solarConfig.repName||'',repId:state.solarConfig.repId||''});
+    const guidance=SolarCallEngine.getGuidance(preview,{repName:state.solarConfig.repName||'',repId:state.solarConfig.repId||'',companyIdentity:state.solarConfig.companyIdentity||'',companyIdentityApproved:state.solarConfig.companyIdentityApproved===true,leadName:lead.name||'',street:lead.street||lead.address||'',localWorkVerified:lead.localWorkVerified===true});
+    const actionButtons=(call&&!['COMPLETE','TERMINATED'].includes(call.stage)?SolarCallEngine.getAvailableActions(call):[]).map(a=>`<button class="${solarActionClass(a.id)}" data-solar-event="${esc(a.id)}">${esc(a.label)}</button>`).join('');
+    const unresolved=(call?.unresolved||[]).map(x=>`<div class="solar-unresolved-item">${esc(solarEventLabel(x))}</div>`).join('')||'<div class="tiny muted">No unresolved technical/contract questions recorded.</div>';
+    const history=[...(call?.history||[])].reverse().slice(0,40).map(h=>`<div class="solar-history-row"><time>${esc(timeLabel(h.time))}</time><div><strong>${esc(solarEventLabel(h.event))}</strong><span>${esc(h.stage)}${h.branch?'  ·  '+esc(h.branch):''}</span></div></div>`).join('')||'<div class="tiny muted">Start the call to create a timeline.</div>';
+    const leadOptions=state.solarLeads.map(l=>`<option value="${l.id}" ${l.id===lead.id?'selected':''}>${esc(l.name||l.address||'Unnamed lead')}</option>`).join('');
+    $('#content').innerHTML=`
+      <div class="card card-pad" style="margin-bottom:14px"><div class="solar-config"><label>Rep name<input id="solarRepName" value="${esc(state.solarConfig.repName||'')}"></label><label>Rep ID<input id="solarRepId" value="${esc(state.solarConfig.repId||'')}"></label><label>Approved company / vendor identity<input id="solarCompanyIdentity" value="${esc(state.solarConfig.companyIdentity||'')}"></label><label style="display:flex;align-items:center;gap:8px;align-self:end"><input id="solarIdentityApproved" type="checkbox" ${state.solarConfig.companyIdentityApproved?'checked':''}> Identity verified/approved</label><button class="ghost" id="solarSaveConfig">Save Identity</button></div></div>
+      <div class="toolbar"><select id="solarLeadSelect">${leadOptions}</select><button class="ghost" data-edit="solarLeads" data-id="${lead.id}">Edit Lead</button><button class="ghost" data-add="solarLeads">+ New Lead</button>${(!call||['COMPLETE','TERMINATED'].includes(call.stage))&&!isSolarLeadDnc(lead)?`<button class="primary" id="solarStartCall">Start New Call</button>`:isSolarLeadDnc(lead)?'<span class="solar-warning">Do Not Contact - call start blocked</span>':''}<span class="solar-source-pill">${esc(state.solarConfig.sourceVersion||'Nancy+Jeff V1')}</span></div>
+      <div class="solar-lead-strip" style="margin-bottom:14px"><div class="solar-mini"><span>Lead</span><strong>${esc(lead.name||'Unnamed')}</strong></div><div class="solar-mini"><span>Utility</span><strong>${esc(lead.utility||'-')}</strong></div><div class="solar-mini"><span>Highest Bill</span><strong>${lead.highestBill?money(lead.highestBill):'-'}</strong></div><div class="solar-mini"><span>Roof</span><strong>${esc(lead.roofConcern||'No concern logged')}</strong></div><div class="solar-mini"><span>Appointment</span><strong>${lead.appointmentDate?`${esc(fmtDate(lead.appointmentDate))} ${esc(lead.appointmentTime||'')}`:'-'}</strong></div></div>
+      <div class="solar-live-grid">
+        <div class="grid">
+          <div class="card card-pad"><div class="solar-stage"><span class="solar-stage-badge">${esc(preview.stage)}</span>${preview.branch?`<span class="status neutral">${esc(preview.branch)}</span>`:''}${badge(solarLeadStatus(lead,call))}</div><div class="spacer"></div><div class="solar-guidance"><div class="eyebrow">NEXT OBJECTIVE</div><h3>${esc(guidance.objective)}</h3><div class="solar-line">${esc(guidance.recommendedLine)}</div>${guidance.warning?`<div class="solar-warning">${esc(guidance.warning)}</div>`:''}${guidance.observedReference?`<div class="solar-reference">Observed-call basis: ${esc(guidance.observedReference)}</div>`:''}<div class="solar-required">${(guidance.requiredFields||[]).map(x=>`<span>${esc(x)}</span>`).join('')}</div>${call&&!['COMPLETE','TERMINATED'].includes(call.stage)?`<div class="solar-actions">${actionButtons}</div>`:'<div class="solar-warning">Start a new call to activate the decision buttons.</div>'}</div></div>
+          <div class="card card-pad"><div class="section-head"><div><h2>Qualification + handoff data</h2><p>Fast capture; save at any point.</p></div><button class="ghost" id="solarSaveLead">Save Lead</button></div><div class="solar-form"><label>Name<input id="solarName" value="${esc(lead.name||'')}"></label><label>Phone<input id="solarPhone" value="${esc(lead.phone||'')}"></label><label>Alternate phone<input id="solarAltPhone" value="${esc(lead.alternatePhone||'')}"></label><label>Email<input id="solarEmail" type="email" value="${esc(lead.email||'')}"></label><label class="full">Address<input id="solarAddress" value="${esc(lead.address||'')}"></label><label>Street / local hook<input id="solarStreet" value="${esc(lead.street||'')}"></label><label style="display:flex;align-items:center;gap:8px"><input id="solarLocalWorkVerified" type="checkbox" ${lead.localWorkVerified?'checked':''}> Nearby work verified</label><label>Utility<select id="solarUtility"><option value="">Unknown</option>${['ComEd','Ameren','Other'].map(x=>`<option ${lead.utility===x?'selected':''}>${x}</option>`).join('')}</select></label><label>Highest bill<input id="solarHighestBill" type="number" step="1" value="${esc(lead.highestBill||'')}"></label><label>Average bill<input id="solarAverageBill" type="number" step="1" value="${esc(lead.averageBill||'')}"></label><label>Sun exposure<select id="solarSun"><option value="">Unknown</option>${['High','Medium','Low','Needs Review'].map(x=>`<option ${lead.sunExposure===x?'selected':''}>${x}</option>`).join('')}</select></label><label>Shade notes<input id="solarShade" value="${esc(lead.shadeNotes||'')}"></label><label>Future load<input id="solarFutureLoad" value="${esc(lead.futureLoad||'')}"></label><label>Roof age (years)<input id="solarRoofAge" type="number" step="1" value="${esc(lead.roofAgeYears||'')}"></label><label>Roof installer<input id="solarRoofInstaller" value="${esc(lead.roofInstaller||'')}"></label><label class="full">Roof concern<input id="solarRoofConcern" value="${esc(lead.roofConcern||'')}"></label><label>Decision makers<input id="solarDecisionMakers" value="${esc(lead.decisionMakers||'')}"></label><label>Prior solar experience<input id="solarPriorSolar" value="${esc(lead.priorSolarExperience||'')}"></label><label class="full">Household / succession concern<textarea id="solarHouseholdConcern">${esc(lead.householdConcern||'')}</textarea></label><label>Appointment type<select id="solarApptType"><option value="">Select</option>${['Phone','Zoom','In-person','Other'].map(x=>`<option ${lead.appointmentType===x?'selected':''}>${x}</option>`).join('')}</select></label><label>Appointment date<input id="solarApptDate" type="date" value="${esc(lead.appointmentDate||'')}"></label><label>Appointment time<input id="solarApptTime" type="time" value="${esc(lead.appointmentTime||'')}"></label><label>Assigned closer<input id="solarCloser" value="${esc(lead.assignedCloser||'')}"></label><label>Assigned verifier<input id="solarVerifier" value="${esc(lead.assignedVerifier||'')}"></label><label class="full">Notes<textarea id="solarNotes">${esc(lead.notes||'')}</textarea></label></div></div>
+        </div>
+        <div class="grid">
+          <div class="card card-pad"><div class="section-head"><div><h2>Unresolved</h2><p>Questions that must survive handoff.</p></div></div><div class="solar-unresolved">${unresolved}</div></div>
+          <div class="card card-pad"><div class="section-head"><div><h2>Call timeline</h2><p>Deterministic event history.</p></div></div><div class="solar-history">${history}</div></div>
+          <div class="card card-pad"><div class="section-head"><div><h2>Claim guardrails</h2><p>Observed call language is not automatically verified.</p></div></div><div class="alert-list">${['utility_affiliation','local_work','savings_40','savings_50','state_federal_funding','no_monthly_payment','roof_warranty','transfer_terms','rate_hike_18'].map(id=>{const c=SolarCallEngine.getClaimStatus(id);return `<div class="alert-item"><div style="display:flex;justify-content:space-between;gap:8px"><div class="alert-title">${esc(c.label)}</div>${badge(c.status)}</div><div class="alert-meta">${esc(c.fallback)}</div></div>`}).join('')}</div></div>
+        </div>
+      </div>`;
+    $('#solarLeadSelect').onchange=e=>{state.solarConfig.activeLeadId=e.target.value;save();render();};
+    $('#solarSaveConfig').onclick=saveSolarConfig;$('#solarSaveLead').onclick=()=>saveSolarLeadSnapshot(lead.id);$('#solarStartCall')?.addEventListener('click',()=>startSolarCall(lead.id));
+    $$('[data-solar-event]').forEach(b=>b.onclick=()=>applySolarEvent(b.dataset.solarEvent));bindCrud();
+  }
+
+  const views={control:controlRoom,dashboard,overview:projectOverview,'solar-live':solarLiveCall,'solar-leads':solarLeadQueue,projects:projectsView,schedule,approvals,production,logistics,budget,risks:risksChanges,raid,changes,actions,calendar,onsite,reports,metrics,communications,meetings,stakeholders,publish:publishExport,integrations,templates};
+
+  const schemas={
+    projects:[['code','Project Code','text',true],['name','Project Name','text',true],['client','Organization / Business Unit','text',true],['event','Project Type / Function','text',true],['venue','','text'],['city','','text'],['pm','','text'],['account','','text'],['phase','Current Phase','select',['Initiation & Kickoff','Concept & Design','Technical Planning & Approval','Production & Logistics','Installation & Live Event','Teardown & Wrap-up']],['health','Health','select',['Green','Amber','Red']],['progress','','number'],['budget','','number'],['forecast','','number'],['start','','date'],['showOpen','Target Date','date'],['showClose','Completion Date','date'],['nextMilestone','Next Milestone','text'],['objective','','textarea']],
+    tasks:[['projectId','Project','project',true],['name','Task / Milestone','text',true],['phase','Phase','select',['Initiation & Kickoff','Concept & Design','Technical Planning & Approval','Production & Logistics','Installation & Live Event','Teardown & Wrap-up']],['owner','','text'],['start','','date'],['due','','date'],['status','Status','select',['Not Started','In Progress','At Risk','Blocked','Complete']],['priority','Priority','select',['Low','Medium','High','Critical']],['progress','','number'],['dependency','','text'],['critical','','checkbox']],
+    approvals:[['projectId','Project','project',true],['type','Approval Type','select',['Concept Design','Graphics','Technical','Client','Venue','Fabrication Release']],['item','Approval Item','text',true],['approver','','text'],['requested','','date'],['due','','date'],['status','Status','select',['Draft','Pending','Approved','Rejected']],['decision','','date'],['blocks','','checkbox'],['version','','text']],
+    production:[['projectId','Project','project',true],['package','Work Package','text',true],['shop','','text'],['trade','Trade','select',['CNC','Carpentry','Joinery','Metalwork','Graphics','AV','Electrical','Furniture','Finishing','Assembly','Other']],['qty','','text'],['plannedStart','Planned Start','date'],['plannedFinish','Planned Finish','date'],['actualFinish','Actual Finish','date'],['status','Status','select',['Not Started','In Progress','At Risk','Blocked','Complete']],['qc','QC Result','select',['Pending','Pass','Fail']],['rework','','number'],['ready','','checkbox']],
+    logistics:[['projectId','Project','project',true],['leg','Route / Shipment Leg','text',true],['carrier','','text'],['mode','Mode','select',['Road Freight','Air Freight','Sea Freight','Courier','Hand Carry','Other']],['reference','','text'],['pickup','','date'],['delivery','','date'],['status','Status','select',['Not Started','On Track','At Risk','Blocked','Delivered']],['customs','','text'],['dock','','text'],['owner','','text']],
+    budgets:[['projectId','Project','project',true],['category','Cost Category','text',true],['supplier','','text'],['po','','text'],['budget','','number'],['committed','','number'],['actual','','number'],['forecast','','number'],['status','Status','select',['Open','Watch','Closed']]],
+    raid:[['projectId','Project','project',true],['kind','RAID Type','select',['Risk','Assumption','Issue','Dependency']],['title','Exposure','text',true],['owner','','text'],['impact','Impact','select',['Low','Medium','High']],['likelihood','Likelihood','select',['Low','Medium','High','Current']],['severity','Severity','select',['Low','Medium','High','Critical']],['mitigation','','textarea'],['due','','date'],['status','Status','select',['Open','In Progress','Closed']],['escalated','','checkbox']],
+    changes:[['projectId','Project','project',true],['title','Change Title','text',true],['requester','','text'],['reason','','textarea'],['costImpact','Cost Impact','number'],['scheduleImpact','Schedule Impact','text'],['status','Status','select',['Draft','Pending','Approved','Rejected']],['approver','','text'],['decisionDate','Decision Date','date']],
+    actions:[['projectId','Project','project',true],['kind','Type','select',['Action','Decision']],['title','Commitment / Decision','text',true],['owner','','text'],['due','','date'],['status','Status','select',['Open','In Progress','Complete','Blocked']],['authority','','text'],['evidence','','text']],
+    onsite:[['projectId','Project','project',true],['item','Checklist / Command Item','text',true],['zone','','text'],['owner','','text'],['due','','date'],['status','Status','select',['Not Started','In Progress','Blocked','Complete']],['critical','','checkbox']],
+    solarLeads:[['name','Name','text',true],['phone','','tel'],['alternatePhone','Alternate Phone','tel'],['email','','email'],['address','','text'],['street','','text'],['localWorkVerified','Nearby Work Verified','checkbox'],['utility','Utility','select',['','ComEd','Ameren','Other']],['highestBill','Highest Bill','number'],['averageBill','Average Bill','number'],['sunExposure','Sun Exposure','select',['','High','Medium','Low','Needs Review']],['shadeNotes','Shade Notes','text'],['futureLoad','Future Load / EV / Pool / Hot Tub','text'],['roofAgeYears','Roof Age (Years)','number'],['roofInstaller','Roof Installer','text'],['roofConcern','Roof Concern','text'],['decisionMakers','Decision Makers','text'],['priorSolarExperience','Prior Solar Experience','text'],['householdConcern','Household / Succession Concern','textarea'],['notes','','textarea'],['status','Lead Status','select',['New','In Call','Needs Follow-up','Appointment Booked','Bill Requested','Appointment Ready','Do Not Contact']],['billReceived','Bill Received','checkbox'],['verificationStatus','Verification Status','select',['Pending','Complete','Failed']],['appointmentType','Appointment Type','select',['','Phone','Zoom','In-person','Other']],['appointmentDate','Appointment Date','date'],['appointmentTime','Appointment Time','time'],['assignedCloser','Assigned Closer','text'],['assignedVerifier','Assigned Verifier','text']],
+    contacts:[['name','Name','text',true],['company','','text'],['role','','text'],['email','','email'],['phone','','tel'],['projectIds','Project Access IDs (comma-separated)','text']],
+    meetings:[['projectId','Project','project',true],['title','Meeting Title','text',true],['date','','date'],['time','','time'],['participants','','text'],['room','','text'],['status','Status','select',['Scheduled','Live','Complete','Cancelled']],['notes','','textarea']],
+    stakeholders:[['name','Name','text',true],['email','','email'],['role','Role','select',['Executive','Client','Internal','Vendor','Crew']],['projectIds','Project Access IDs (comma-separated)','text'],['access','','text'],['active','','checkbox']]
+  };
+
+  function fieldHTML([key,label,type,opts],value){
+    const v=Array.isArray(value)?value.join(', '):(value??'');let input='';
+    if(type==='select') input=`<select name="${key}">${opts.map(o=>`<option ${String(v)===o?'selected':''}>${esc(o)}</option>`).join('')}</select>`;
+    else if(type==='project') input=`<select name="${key}">${projectOptions(v|| (currentProject!=='all'?currentProject:state.projects[0]?.id))}</select>`;
+    else if(type==='textarea') input=`<textarea name="${key}">${esc(v)}</textarea>`;
+    else if(type==='checkbox') input=`<input name="${key}" type="checkbox" ${v?'checked':''}>`;
+    else input=`<input name="${key}" type="${type}" value="${esc(v)}" ${type==='number'?'step="any"':''}>`;
+    return `<div class="field ${type==='textarea'?'full':''}"><label>${esc(label)}</label>${input}</div>`;
+  }
+  function openModal(key,id=null){
+    const schema=schemas[key];if(!schema)return;const rec=id?state[key].find(x=>x.id===id):{};modalContext={key,id};$('#modalEyebrow').textContent=key.toUpperCase();$('#modalTitle').textContent=`${id?'Edit':'Add'} ${key.replace(/s$/,'')}`;$('#modalBody').innerHTML=`<div class="form-grid">${schema.map(f=>fieldHTML(f,rec?.[f[0]])).join('')}</div>`;$('#modal').showModal();
+  }
+  function submitModal(e){e.preventDefault();const {key,id}=modalContext||{};if(!key)return;const schema=schemas[key],fd=new FormData(e.currentTarget),obj=id?state[key].find(x=>x.id===id):{id:uid(key.slice(0,2))};schema.forEach(([k,,type])=>{if(type==='checkbox')obj[k]=e.currentTarget.elements[k].checked;else if(type==='number')obj[k]=Number(fd.get(k)||0);else obj[k]=fd.get(k)||'';});if(Object.prototype.hasOwnProperty.call(obj,'projectIds')&&typeof obj.projectIds==='string')obj.projectIds=obj.projectIds.split(',').map(x=>x.trim()).filter(Boolean);if(key==='solarLeads'){obj.updatedAt=nowIso();obj.createdAt=obj.createdAt||obj.updatedAt;obj.status=obj.status||'New';}if(!id)state[key].push(obj);if(key==='solarLeads'&&!state.solarConfig.activeLeadId)state.solarConfig.activeLeadId=obj.id;logActivity('record',`${id?'Updated':'Added'} ${key.replace(/s$/,'')}`,obj.projectId||((obj.projectIds||[])[0])||'');save();$('#modal').close();toast(id?'Record updated':'Record added');render();}
+  function bindCrud(){
+    $$('[data-add]').forEach(b=>b.onclick=()=>openModal(b.dataset.add));$$('[data-edit]').forEach(b=>b.onclick=()=>openModal(b.dataset.edit,b.dataset.id));$$('[data-delete]').forEach(b=>b.onclick=()=>{if(confirm('Delete this record?')){state[b.dataset.delete]=state[b.dataset.delete].filter(x=>x.id!==b.dataset.id);save();render();toast('Record deleted');}});
+  }
+
+  $('#modalForm').addEventListener('submit',submitModal);$('#modalClose').onclick=()=>$('#modal').close();$('#modalCancel').onclick=()=>$('#modal').close();$('#menuBtn').onclick=()=>$('#sidebar').classList.toggle('open');$('#backBtn').onclick=goBack;$('#topComms').onclick=()=>navigate('communications',currentProject);$('#installApp').onclick=triggerInstall;
+  $('#quickAdd').onclick=()=>{const map={dashboard:'projects',overview:'tasks',schedule:'tasks',approvals:'approvals',production:'production',logistics:'logistics',budget:'budgets',risks:'raid',actions:'actions',onsite:'onsite',calendar:'tasks',reports:'actions',control:'actions',communications:'contacts',meetings:'meetings',stakeholders:'stakeholders',publish:'actions',integrations:'contacts','solar-live':'solarLeads','solar-leads':'solarLeads'};openModal(map[currentView]||'tasks');};
+  document.querySelector('[data-action="export"]').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`ForgeFront_Command_Center_Backup_${today()}.json`;a.click();URL.revokeObjectURL(a.href);toast('Backup exported');};
+  $('#importFile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const imported=JSON.parse(r.result);assertSafeStateIds(imported);state=imported;ensureV3State();save();render();toast('Backup imported');}catch(err){alert(`Backup rejected: ${err?.message||'invalid workspace data'}`);}};r.readAsText(f);};
+  if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./ForgeFront_V3_sw.js').catch(()=>{});
+  bootstrapForgeFrontPortfolio();
+  initRealtime();
+  render();
+})();
+
+</script>
+</body>
+</html>

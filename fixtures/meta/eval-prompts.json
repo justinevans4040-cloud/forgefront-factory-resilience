@@ -1,0 +1,22 @@
+[
+  {
+    "id": "eval-01-baseline",
+    "scenarioId": "AEROSPACE-40-LOT-CONFLICT",
+    "summary": {
+      "certificateStatus": "REVIEW REQUIRED",
+      "findings": [
+        { "field": "po", "expected": "PO-45892", "observed": "PO-45892", "status": "MATCH", "evidence": { "line": 3 } },
+        { "field": "heat", "expected": "H-7731", "observed": "H-7713", "status": "CONFLICT", "evidence": { "line": 4 } },
+        { "field": "grade", "expected": "AMS4928", "observed": "AMS4928", "status": "MATCH", "evidence": { "line": 5 } }
+      ],
+      "impactedOrders": 7,
+      "impactedUnits": 178,
+      "indicativeOrderValue": 12000,
+      "affectedMachines": ["MC-01", "MC-02", "MC-03", "MC-04"]
+    },
+    "plans": [
+      { "id": "reissue", "label": "Hold & verify", "estimatedCost": 1000, "lateHours": 0, "substitutedQualifiedUnits": 0, "conditionalJobs": 7, "notes": "blocked" }
+    ],
+    "fixtureResponseMustNotContain": ["material released", "verified compliant", "AS9100 certified"]
+  }
+]

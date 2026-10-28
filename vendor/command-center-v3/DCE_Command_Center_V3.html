@@ -1,0 +1,2496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#050912">
+<link rel="manifest" href="/DCE_V3.webmanifest">
+<link rel="apple-touch-icon" href="/DCE_V3_192.png">
+<title>ForgeFront // Command</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+:root{
+  --bg:#050912;
+  --bg2:#08101d;
+  --panel:rgba(14,23,38,.78);
+  --panel2:rgba(18,30,49,.88);
+  --line:rgba(255,255,255,.075);
+
+  --text:#f6f8fb;
+  --muted:#7f91a8;
+
+  --blue:#4da3ff;
+  --blue2:#2563eb;
+  --orange:#ff7a1a;
+  --orange2:#ff9d42;
+  --green:#4ade80;
+  --red:#fb7185;
+  --yellow:#fbbf24;
+
+  --radius:18px;
+  --shadow:0 24px 70px rgba(0,0,0,.38);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  background:
+    radial-gradient(circle at 72% 15%,rgba(37,99,235,.15),transparent 29%),
+    radial-gradient(circle at 18% 84%,rgba(255,122,26,.08),transparent 28%),
+    linear-gradient(145deg,#04070d,#07101c 52%,#050912);
+  color:var(--text);
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+}
+
+body{
+  overflow:hidden;
+}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+button:focus,input:focus,select:focus,textarea:focus{
+  outline:none;
+}
+
+.bg-grid{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:38px 38px;
+  mask-image:linear-gradient(to bottom,#000,transparent 90%);
+}
+
+.topbar{
+  height:70px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:0 22px;
+  border-bottom:1px solid var(--line);
+  background:rgba(5,10,18,.78);
+  backdrop-filter:blur(22px);
+  position:relative;
+  z-index:10;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-width:230px;
+}
+
+.logoMark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  display:grid;
+  place-items:center;
+  font-family:"Space Grotesk";
+  font-weight:700;
+  font-size:13px;
+  color:white;
+  background:
+    linear-gradient(135deg,var(--blue2),#1d4ed8 52%,var(--orange));
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.08),
+    0 10px 35px rgba(37,99,235,.28);
+}
+
+.logoText{
+  line-height:1.05;
+}
+
+.logoText strong{
+  display:block;
+  font-family:"Space Grotesk";
+  font-size:15px;
+  letter-spacing:.04em;
+}
+
+.logoText span{
+  display:block;
+  margin-top:4px;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:.16em;
+}
+
+.navTabs{
+  display:flex;
+  gap:6px;
+  padding:5px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  border-radius:13px;
+}
+
+.tab{
+  border:0;
+  color:#8da0b7;
+  background:transparent;
+  border-radius:9px;
+  padding:9px 14px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+
+.tab.active{
+  color:#fff;
+  background:linear-gradient(135deg,rgba(37,99,235,.88),rgba(29,78,216,.8));
+  box-shadow:0 8px 24px rgba(37,99,235,.22);
+}
+
+.topStatus{
+  display:flex;
+  gap:7px;
+  align-items:center;
+}
+
+.statusChip{
+  height:32px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0 11px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.025);
+  border-radius:999px;
+  font-size:10px;
+  color:#9eb0c4;
+  font-weight:700;
+}
+
+.statusDot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 13px rgba(74,222,128,.7);
+}
+
+.spacer{flex:1}
+
+.dceButton{
+  height:38px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.035);
+  color:#dce7f3;
+  padding:0 14px;
+  border-radius:11px;
+  font-size:11px;
+  font-weight:700;
+}
+
+.dceButton:hover{
+  background:rgba(255,255,255,.07);
+}
+
+.workspace{
+  height:calc(100vh - 70px);
+  width:100%;
+  max-width:100%;
+  display:grid;
+  grid-template-columns:minmax(0,280px) minmax(0,1fr) minmax(0,280px);
+  gap:12px;
+  padding:12px;
+  position:relative;
+  z-index:2;
+  overflow:hidden;
+  box-sizing:border-box;
+}
+
+.rail,.main{
+  min-height:0;
+  min-width:0;
+  max-width:100%;
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+.rail{
+  overflow:auto;
+  scrollbar-width:thin;
+  scrollbar-color:#24364e transparent;
+}
+
+.glass{
+  background:
+    linear-gradient(180deg,rgba(17,28,45,.82),rgba(9,17,29,.82));
+  border:1px solid var(--line);
+  backdrop-filter:blur(18px);
+  box-shadow:var(--shadow);
+}
+
+.card{
+  border-radius:var(--radius);
+  margin-bottom:10px;
+}
+
+.cardHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 14px 10px;
+}
+
+.cardTitle{
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.12em;
+  color:#a7b5c6;
+  text-transform:uppercase;
+}
+
+.cardSub{
+  font-size:10px;
+  color:#586c84;
+}
+
+.cardBody{
+  padding:0 14px 14px;
+}
+
+.field{
+  margin-top:10px;
+}
+
+.field label{
+  display:block;
+  margin:0 0 5px 2px;
+  color:#71869e;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+
+.field input,
+.field select,
+.field textarea{
+  width:100%;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(1,8,16,.62);
+  color:#edf4ff;
+  border-radius:10px;
+  padding:10px 11px;
+  transition:.18s ease;
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover{
+  border-color:rgba(77,163,255,.24);
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  border-color:rgba(77,163,255,.64);
+  box-shadow:0 0 0 3px rgba(77,163,255,.09);
+}
+
+.field textarea{
+  min-height:66px;
+  resize:vertical;
+}
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.compactDetails{
+  overflow:hidden;
+}
+
+.compactDetails summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px;
+  cursor:pointer;
+}
+
+.compactDetails summary::-webkit-details-marker{display:none}
+
+.compactDetails summary:after{
+  content:"+";
+  color:#67809c;
+  font-weight:500;
+}
+
+.compactDetails[open] summary:after{
+  content:"—";
+}
+
+.btnRow{
+  display:flex;
+  gap:7px;
+}
+
+.smallBtn{
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.04);
+  color:#b8c7d7;
+  border-radius:9px;
+  padding:7px 9px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.primaryBtn{
+  background:linear-gradient(135deg,var(--blue2),#1d4ed8);
+  color:white;
+  border-color:transparent;
+}
+
+.main{
+  overflow:auto;
+  scrollbar-width:thin;
+  scrollbar-color:#24364e transparent;
+}
+
+.liveHero{
+  min-height:325px;
+  border-radius:22px;
+  position:relative;
+  overflow:hidden;
+  padding:25px;
+  margin-bottom:12px;
+  background:
+    radial-gradient(circle at 92% 10%,rgba(77,163,255,.23),transparent 30%),
+    radial-gradient(circle at 8% 90%,rgba(255,122,26,.09),transparent 28%),
+    linear-gradient(145deg,rgba(15,28,49,.95),rgba(6,14,25,.96));
+  border:1px solid rgba(77,163,255,.18);
+  box-shadow:
+    inset 0 1px rgba(255,255,255,.03),
+    0 25px 80px rgba(0,0,0,.33);
+}
+
+.liveHero:before{
+  content:"";
+  position:absolute;
+  width:210px;
+  height:210px;
+  border-radius:50%;
+  right:-50px;
+  top:-65px;
+  border:1px solid rgba(77,163,255,.16);
+  box-shadow:
+    0 0 0 34px rgba(77,163,255,.025),
+    0 0 0 70px rgba(77,163,255,.017);
+}
+
+.heroTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:relative;
+  z-index:2;
+}
+
+.liveLabel{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  color:#8eb5e9;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.18em;
+}
+
+.livePulse{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--orange);
+  box-shadow:0 0 18px rgba(255,122,26,.75);
+  animation:pulse 1.7s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.75);opacity:.55}
+}
+
+.heroStage{
+  font-family:"Space Grotesk";
+  font-size:38px;
+  font-weight:700;
+  letter-spacing:-.035em;
+  margin:40px 0 7px;
+  position:relative;
+  z-index:2;
+}
+
+.heroObjective{
+  color:#7790ab;
+  font-size:13px;
+  position:relative;
+  z-index:2;
+}
+
+.scriptBlock{
+  position:relative;
+  z-index:2;
+  margin-top:26px;
+  padding:20px;
+  border-radius:15px;
+  background:rgba(1,8,16,.56);
+  border:1px solid rgba(255,255,255,.075);
+}
+
+.scriptLabel{
+  color:var(--orange2);
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.18em;
+  margin-bottom:10px;
+}
+
+.scriptText{
+  font-family:"Space Grotesk";
+  font-size:20px;
+  line-height:1.46;
+  font-weight:500;
+  max-width:900px;
+  color:#f7faff;
+}
+
+.copilotCard{padding:12px 12px;display:grid;gap:10px;min-width:0;max-width:100%;overflow:hidden}
+.copilotTop{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.copilotControls{display:flex;flex-direction:column;gap:8px;width:100%;min-width:0}
+.copilotControls #copilotListen,.copilotControls #copilotStop{min-height:48px;width:100%;padding:0 12px;font-size:14px;font-weight:900;letter-spacing:.04em;min-width:0!important}
+.copilotControls #copilotListen{background:linear-gradient(135deg,#2563eb,#3b82f6);color:white}
+.copilotControls #copilotStop{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4);color:#ff9b9b}
+.copilotStatus{font-size:10px;font-weight:900;letter-spacing:.12em;color:#7790ab}
+.copilotStatus.listening{color:#ff9a45}
+.copilotTranscript{min-height:58px;max-height:130px;overflow:auto;white-space:pre-wrap;color:#9fb0c1;font-size:12px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:10px}
+.copilotAnswer{font-family:"Space Grotesk";font-size:18px;line-height:1.4;color:#f5f7fa}
+.copilotMove{font-size:12px;color:#8da0b3}
+.copilotManual{display:grid;grid-template-columns:1fr auto;gap:8px}
+.copilotFields{font-size:11px;color:#ffb36f}
+
+.warning{
+  margin-top:12px;
+  padding:10px 12px;
+  border-radius:10px;
+  color:#ffd991;
+  font-size:11px;
+  background:rgba(251,191,36,.06);
+  border:1px solid rgba(251,191,36,.14);
+}
+
+.stageTrack{
+  display:flex;
+  gap:5px;
+  flex-wrap:wrap;
+  margin:0 0 12px;
+}
+
+.fullScript{margin:0 0 12px;padding:0;overflow:hidden}
+.fullScript summary{cursor:pointer;padding:13px 16px;font-size:11px;font-weight:900;letter-spacing:.12em;color:#d8e8ff;list-style:none}
+.fullScript summary::-webkit-details-marker{display:none}
+.fullScriptBody{padding:0 16px 16px;display:grid;gap:14px;max-height:46vh;overflow:auto}
+.scriptStep{border-left:3px solid rgba(77,163,255,.55);padding-left:12px}
+.scriptStep h3{margin:0 0 6px;color:#ffad63;font-size:10px;letter-spacing:.12em}
+.scriptStep p{margin:0;color:#eef6ff;font:600 16px/1.5 Georgia,serif}
+.scriptStep .prompt{margin-top:7px;color:#9eb2c9;font:600 13px/1.45 Inter,system-ui,sans-serif}
+
+.stagePill{
+  flex:1;
+  min-width:58px;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:6px 5px;
+  border-radius:9px;
+  border:1px solid var(--line);
+  color:#53687f;
+  background:rgba(255,255,255,.02);
+  font-size:8px;
+  line-height:1.35;
+  font-weight:900;
+  letter-spacing:.06em;
+  white-space:normal;
+  overflow-wrap:normal;
+  cursor:pointer;
+}
+
+.stagePill.active{
+  background:linear-gradient(135deg,rgba(37,99,235,.24),rgba(77,163,255,.1));
+  color:#9cc8ff;
+  border-color:rgba(77,163,255,.35);
+  box-shadow:inset 0 0 18px rgba(77,163,255,.05);
+}
+
+.actionArea{
+  border-radius:18px;
+  padding:15px;
+  margin-bottom:12px;
+}
+
+.sectionLabel{
+  font-size:10px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#71869c;
+  font-weight:900;
+  margin-bottom:12px;
+}
+
+.actionGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+}
+
+.objectionBackRow{margin-bottom:10px}
+.objectionBackRow .smallBtn{width:100%;min-height:46px;font-size:13px;font-weight:900;letter-spacing:.04em}
+
+.actionBtn{
+  min-height:58px;
+  text-align:left;
+  border:1px solid rgba(77,163,255,.16);
+  color:#cfe4ff;
+  background:
+    linear-gradient(145deg,rgba(37,99,235,.11),rgba(255,255,255,.02));
+  border-radius:13px;
+  padding:12px 13px;
+  font-size:11px;
+  font-weight:700;
+  transition:.18s ease;
+}
+
+.actionBtn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(77,163,255,.42);
+  background:rgba(37,99,235,.16);
+}
+
+.actionBtn.danger{
+  border-color:rgba(251,113,133,.18);
+  color:#ffbec8;
+  background:rgba(251,113,133,.06);
+}
+
+.notesCard{
+  padding:15px;
+  border-radius:18px;
+}
+
+.notesCard textarea{
+  width:100%;
+  min-height:100px;
+  background:rgba(1,8,16,.52);
+  border:1px solid var(--line);
+  color:#eaf2fb;
+  padding:12px;
+  border-radius:12px;
+  resize:vertical;
+}
+
+.metric{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:11px 0;
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+
+.metric:last-child{
+  border-bottom:0;
+}
+
+.metric span{
+  font-size:10px;
+  color:#71869a;
+}
+
+.metric strong{
+  font-size:11px;
+}
+
+.good{color:var(--green)}
+.warn{color:var(--yellow)}
+.bad{color:var(--red)}
+
+.readinessGauge{
+  height:7px;
+  background:rgba(255,255,255,.05);
+  border-radius:999px;
+  overflow:hidden;
+  margin:5px 0 14px;
+}
+
+.readinessGauge div{
+  height:100%;
+  width:0%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--blue2),var(--blue),var(--orange));
+  transition:.3s ease;
+}
+
+.signal{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+  margin-top:9px;
+  padding:10px;
+  border-radius:11px;
+  background:rgba(255,255,255,.022);
+}
+
+.signalDot{
+  margin-top:5px;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--orange);
+}
+
+.signalText{
+  font-size:10px;
+  color:#879aaf;
+  line-height:1.45;
+}
+
+.unresolvedTag{
+  display:inline-flex;
+  margin:3px 3px 3px 0;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:9px;
+  color:#ffcf9e;
+  border:1px solid rgba(255,122,26,.18);
+  background:rgba(255,122,26,.055);
+}
+
+.queue{
+  display:none;
+  height:calc(100vh - 70px);
+  overflow:auto;
+  padding:18px;
+  position:relative;
+  z-index:2;
+}
+
+.queue.active{display:block}
+.workspace.hidden{display:none}
+
+.queueHeader{
+  display:flex;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.queueHeader h1{
+  font-family:"Space Grotesk";
+  font-size:28px;
+  margin:0;
+}
+
+.board{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:10px;
+  min-width:0;
+}
+
+.pipelineCol{
+  min-height:520px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:rgba(9,17,29,.76);
+  padding:10px;
+}
+
+.pipelineHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:4px 3px 11px;
+  font-size:10px;
+  color:#8397ae;
+  font-weight:800;
+  letter-spacing:.1em;
+}
+
+.count{
+  background:rgba(255,255,255,.05);
+  color:#c5d2df;
+  border-radius:999px;
+  padding:3px 7px;
+}
+
+.leadCard{
+  border:1px solid rgba(255,255,255,.065);
+  background:linear-gradient(145deg,rgba(18,31,50,.87),rgba(9,17,29,.88));
+  border-radius:13px;
+  padding:12px;
+  margin-bottom:8px;
+}
+
+.leadCard strong{
+  display:block;
+  font-size:12px;
+}
+
+.leadMeta{
+  margin-top:5px;
+  color:#657a92;
+  font-size:9px;
+}
+
+.openLead{
+  width:100%;
+  margin-top:10px;
+  border:0;
+  border-radius:9px;
+  padding:7px;
+  background:rgba(37,99,235,.14);
+  color:#93c5fd;
+  font-size:9px;
+  font-weight:900;
+}
+
+@media(max-width:1180px){
+  .workspace{
+    grid-template-columns:285px 1fr;
+  }
+  .rightRail{display:none}
+}
+
+@media(max-width:820px){
+  body{overflow:auto}
+  .workspace{
+    height:auto;
+    display:block;
+  }
+  .rail,.main{
+    overflow:visible;
+  }
+  .topStatus{display:none}
+  .logo{min-width:auto}
+  .logoText span{display:none}
+}
+
+/* FIT_SCREEN_CSS */
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow:hidden;
+}
+.topbar{
+  min-width:0;
+  max-width:100%;
+  overflow:hidden;
+}
+.logo{min-width:0}
+.sectionLabel,.cardTitle,.copilotStatus{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+#roamDceLink, #roamDceLink *{
+  max-width:100%;
+  overflow-wrap:anywhere;
+  word-break:break-word;
+}
+#roamDceLink{min-width:0}
+.rail .dceButton{width:100%; min-width:0; height:auto; min-height:38px; white-space:normal}
+.talkHiddenFields{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0 0 0 0) !important;
+  clip-path:inset(50%) !important;
+  border:0 !important;
+  white-space:nowrap !important;
+  left:0 !important;
+}
+#talkLeadStrip{position:relative; overflow:hidden}
+.liveHero{min-height:0}
+#sayLine.scriptText, #sayLine{
+  font-size:clamp(16px, 2.1vw, 26px) !important;
+  line-height:1.3 !important;
+  font-weight:700 !important;
+  max-width:100% !important;
+  overflow-wrap:anywhere;
+}
+#copilotSayNext{
+  font-size:15px !important;
+  line-height:1.35 !important;
+  font-weight:600 !important;
+  overflow-wrap:anywhere;
+}
+.talkRef,.talkHide{display:none !important}
+.compactDetails{display:none !important}
+.rightRail{min-width:0; overflow-x:hidden}
+.metric, .cardSub{overflow-wrap:anywhere}
+.btnRow{flex-wrap:wrap}
+@media(max-width:1180px){
+  .workspace{
+    grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,0.9fr) !important;
+  }
+  .rightRail{display:flex !important; flex-direction:column}
+}
+
+</style>
+</head>
+
+<body>
+<div id="deviceUnlock" hidden style="display:none!important;visibility:hidden!important;pointer-events:none!important" aria-hidden="true"></div>
+
+<script id="DCE_FULL_CLEAN_SLATE_WIPE" type="application/x-disabled">
+(async () => {
+
+    const q = new URLSearchParams(location.search);
+
+    if (q.get("fullwipe") !== "1") return;
+
+    try {
+        localStorage.removeItem("forgefrontSolarRepProfileV2");
+    } catch(e) {}
+
+    try {
+        sessionStorage.clear();
+    } catch(e) {}
+
+    try {
+        if (indexedDB.databases) {
+            const dbs = await indexedDB.databases();
+
+            for (const db of dbs) {
+                if (db.name) {
+                    try {
+                        indexedDB.deleteDatabase(db.name);
+                    } catch(e) {}
+                }
+            }
+        }
+    } catch(e) {}
+
+    try {
+        if ("caches" in window) {
+            const names = await caches.keys();
+
+            for (const name of names) {
+                await caches.delete(name);
+            }
+        }
+    } catch(e) {}
+
+    history.replaceState(
+        {},
+        "",
+        location.pathname + "?clean=" + Date.now()
+    );
+
+    setTimeout(() => location.reload(), 250);
+
+})();
+</script>
+
+
+
+
+
+
+
+<div class="bg-grid"></div>
+
+<header class="topbar">
+  <div class="logo">
+    <div class="logoMark">FF</div>
+    <div class="logoText">
+      <strong>FORGEFRONT SOLAR</strong>
+      <span>FIELD SALES OPERATIONS</span>
+    </div>
+  </div>
+
+  <div class="navTabs">
+    <button id="liveTab" class="tab active">LIVE CALL</button>
+    <button id="queueTab" class="tab">PIPELINE</button>
+  </div>
+
+  <div class="topStatus">
+    <div class="statusChip">
+      <span class="statusDot"></span>
+      ENGINE ONLINE
+    </div>
+
+    <div class="statusChip" id="stageTop">OPEN</div>
+    <div class="statusChip" id="leadTop">NO LEAD</div>
+  </div>
+
+  <div class="spacer"></div>
+
+  <button class="dceButton"
+          onclick="location.href='/DCE_Command_Center_V3.html'">
+    ← FORGEFRONT
+  </button>
+  <a class="backBtn" href="/README_SOLAR_COMMAND.md" target="_blank" rel="noopener">HOW TO USE</a>
+</header>
+
+
+<div id="workspace" class="workspace">
+
+  <!-- LEFT -->
+  <aside class="rail">
+
+    <section class="glass card">
+      <div class="cardHead">
+        <div>
+          <div class="cardTitle">Active Lead</div>
+          <div class="cardSub">Homeowner profile</div>
+        </div>
+        <div class="btnRow">
+          <button id="newLead" class="smallBtn">NEW</button>
+          <button id="saveLead" class="smallBtn primaryBtn">SAVE</button>
+        </div>
+      </div>
+
+      <div class="cardBody" style="padding-top:0">
+        <div class="btnRow" style="flex-wrap:wrap">
+          <span id="solarSaveStatus" class="smallBtn">READY</span>
+          <span class="smallBtn">CALL <strong id="solarCallTimer">00:00</strong></span>
+          <button id="solarSunroof" class="smallBtn">SUNROOF</button>
+          <button id="solarCopyBill" class="smallBtn">COPY BILL TEXT</button>
+          <button id="solarCopyHandoff" class="smallBtn primaryBtn">CLOSER PACKET</button>
+          <button id="solarCleanSlate" class="smallBtn">CLEAN SLATE</button>
+        </div>
+        <div id="appointmentLatchStatus" class="cardSub" style="margin-top:8px"></div>
+        <div class="btnRow" style="flex-wrap:wrap;margin-top:8px">
+          <button id="outcomeBooked" class="smallBtn primaryBtn">BOOKED</button>
+          <button id="outcomeCallback" class="smallBtn">CALLBACK</button>
+          <button id="outcomeDead" class="smallBtn">DEAD</button>
+        </div>
+        <div id="scoreboardPanel" class="cardSub" style="margin-top:8px"></div>
+        <div class="cardSub" style="margin-top:8px">Ctrl+S Save • Alt+L Live Call • Alt+P Pipeline</div>
+      </div>
+
+      <div class="cardBody" id="talkLeadStrip">
+        <div class="cardSub" style="margin:0 0 8px;color:#3dd6c6;font-weight:700">TALK MODE — AI fills this from the call. You do not type.</div>
+        <div id="talkLeadLive" class="scriptText" style="font-size:18px;min-height:1.4em">Waiting for name / phone from the call…</div>
+        <div id="talkLeadMeta" class="cardSub" style="margin-top:8px"></div>
+        <div class="talkHiddenFields" aria-hidden="true">
+          <input id="leadName" tabindex="-1">
+          <input id="phone" tabindex="-1">
+          <select id="utility"><option></option><option>ComEd</option><option>Ameren</option><option>Other</option></select>
+          <input id="email" tabindex="-1">
+          <input id="address" tabindex="-1">
+        </div>
+      </div>
+    </section>
+
+    <section class="glass copilotCard" aria-label="Private Solar Copilot">
+      <div class="copilotTop">
+        <div>
+          <div class="sectionLabel">PRIVATE SOLAR COPILOT</div>
+          <div id="copilotStatus" class="copilotStatus">READY</div>
+        </div>
+        <div class="copilotControls">
+          
+      <div id="roamDceLink" class="glass" style="margin:10px 0 14px;padding:12px 14px;border:1px solid rgba(77,163,255,.35)">
+        <div class="cardTitle" style="margin:0 0 6px">ROAM → FORGEFRONT LINK</div>
+        <div class="cardSub" id="roamDceStatus">Not linked. Use Chrome. Share the Roam meeting window with system audio.</div>
+        <div class="cardSub" style="margin:8px 0 10px">Chrome → LINK ROAM AUDIO → share Roam + system audio → START CALL. Then just talk.</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button id="roamLinkBtn" class="dceButton" type="button">LINK ROAM AUDIO</button>
+          <button id="roamUnlinkBtn" class="dceButton" type="button" hidden>UNLINK ROAM</button>
+        </div>
+      </div>
+
+          <button id="copilotListen" class="dceButton">START CALL</button>
+          <button id="copilotStop" class="dceButton" hidden>END CALL</button>
+          <button id="copilotClear" class="dceButton" hidden>CLEAR</button>
+        </div>
+      </div>
+      <div id="copilotTranscript" class="copilotTranscript">Transcript will appear here.</div>
+      <div>
+        <div class="scriptLabel">COPILOT — SAY THIS NEXT</div>
+        <div id="copilotSayNext" class="copilotAnswer"></div>
+        <div id="copilotNextMove" class="copilotMove"></div>
+      </div>
+      <div id="copilotFields" class="copilotFields"></div>
+      <button id="copilotAccept" class="dceButton" hidden style="display:none">CONFIRM FIELD UPDATES</button>
+      <div class="copilotManual" style="display:none">
+        <input id="copilotManualText" placeholder="Type the homeowner response if microphone transcription is unavailable">
+        <button id="copilotSubmit" class="dceButton">ANALYZE</button>
+      </div>
+    </section>
+
+
+    <details class="glass card compactDetails talkHide" style="display:none">
+      <summary>
+        <span class="cardTitle">Qualification</span>
+      </summary>
+
+      <div class="cardBody">
+        <div class="two">
+          <div class="field">
+            <label>Highest Bill</label>
+            <input id="highestBill">
+          </div>
+
+          <div class="field">
+            <label>Average Bill</label>
+            <input id="averageBill">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Sun / Shade</label>
+          <input id="sunExposure">
+        </div>
+
+        <div class="field">
+          <label>Future Load / EV</label>
+          <input id="futureLoad">
+        </div>
+      </div>
+    </details>
+
+
+    <details class="glass card compactDetails">
+      <summary>
+        <span class="cardTitle">Roof Intelligence</span>
+      </summary>
+
+      <div class="cardBody">
+        <div class="two">
+          <div class="field">
+            <label>Roof Age</label>
+            <input id="roofAgeYears">
+          </div>
+
+          <div class="field">
+            <label>Installer</label>
+            <input id="roofInstaller">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Roof / Warranty Notes</label>
+          <textarea id="roofConcern"></textarea>
+        </div>
+      </div>
+    </details>
+
+
+    <details class="glass card compactDetails">
+      <summary>
+        <span class="cardTitle">Appointment</span>
+      </summary>
+
+      <div class="cardBody">
+        <div class="field">
+          <label>Appointment Type</label>
+          <select id="appointmentType">
+            <option></option>
+            <option>Phone</option>
+            <option>Zoom</option>
+            <option>In-person</option>
+          </select>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label>Date</label>
+            <input id="appointmentDate" type="date">
+          </div>
+
+          <div class="field">
+            <label>Time</label>
+            <input id="appointmentTime" type="time">
+          </div>
+        </div>
+
+        <div class="two">
+          <div class="field">
+            <label>Bill</label>
+            <select id="billReceived">
+              <option></option>
+              <option value="true">Received</option>
+              <option value="false">Needed</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Verification</label>
+            <select id="verificationStatus">
+              <option></option>
+              <option>Pending</option>
+              <option>Complete</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </details>
+
+
+    <details class="glass card compactDetails">
+      <summary>
+        <span class="cardTitle">Rep Identity</span>
+      </summary>
+
+      <div class="cardBody">
+        <div class="two">
+          <div class="field">
+            <label>Rep Name</label>
+            <input id="repName" autocomplete="name">
+          </div>
+
+          <div class="field" hidden>
+            <label>Rep ID</label>
+            <input id="repId">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Approved Company / Vendor</label>
+          <input id="companyIdentity" autocomplete="organization">
+          <div class="hint" style="margin-top:6px;opacity:.75;font-size:11px">Saved on this device. Clean Slate clears the lead only — not you.</div>
+        </div>
+
+        <div class="field">
+          <label style="display:flex;align-items:center;gap:7px;text-transform:none">
+            <input
+              type="checkbox"
+              id="companyIdentityApproved"
+              style="width:auto">
+            Approved identity confirmed
+          </label>
+        </div>
+      </div>
+    </details>
+
+  </aside>
+
+
+  <!-- CENTER -->
+  <main class="main">
+
+    <details class="glass fullScript talkRef" style="display:none">
+                        <summary>FULL SALES SCRIPT - IL JUNE 2026 (operator) - KEEP OPEN WHILE YOU CALL</summary>
+      <div id="fullScriptBody" style="display:grid;gap:12px;padding:12px 4px 4px">
+        <div class="scriptStep"><h3>1 - OPEN</h3><p>Heeey [Homeowner]? Hey [Homeowner], this is [Your Name].</p></div>
+        <div class="scriptStep"><h3>2 - WHY YOU&apos;RE CALLING</h3><p>We&apos;re doing some work over on [Street Name] for an approved local solar offer. I&apos;ll only use the vendor/program name your company approved for this shift.</p><div class="prompt">Ask: Have you looked at solar for this home yet — or heard of the approved program we&apos;re calling about?</div></div>
+        <div class="scriptStep"><h3>3 - MOST PEOPLE HAVEN&apos;T</h3><p>Most people haven&apos;t, and that&apos;s exactly why I&apos;m calling.</p></div>
+        <div class="scriptStep"><h3>4 - QUICK REASON</h3><p>the utility rates keep going up, the grid is under a lot of demand, and qualified homes can get panels without taking out a loan and without paying out of pocket for the equipment.</p></div>
+        <div class="scriptStep"><h3>5 - NOT SELLING PANELS TODAY</h3><p>I&apos;m not calling to sell you panels today. We&apos;re simply checking if your home qualifies. If it does, we schedule a quick visit so you can see a side-by-side savings projection in black and white.</p></div>
+        <div class="scriptStep"><h3>6 - SIMPLE VERSION</h3><p>Here&apos;s the simple version: explain only the ownership, maintenance, and bill model from your approved vendor packet. Do not invent financing, ownership, or utility partnership claims.</p></div>
+        <div class="scriptStep"><h3>7 - SAME HOUSE / SAME POWER / LOWER RATE</h3><p>Same house. Same power. Lower rate.</p></div>
+        <div class="scriptStep"><h3>8 - SOFT ASK</h3><p>Would you at least be open to checking if your home qualifies?</p><div class="prompt">If yes: highest bill through the year? How long ago did you buy the home? Then book specialist side-by-side.</div></div>
+        <div class="scriptStep"><h3>9 - BOOK + BILL</h3><p>I can get that side-by-side set up. Is earlier or later usually better for you?</p><div class="prompt">Lock day/time/format. Text for usage bar + recent charges.</div></div>
+        <div class="scriptStep"><h3>10 - OBJECTIONS</h3><p>&quot;Totally fair — that&apos;s why this step is just checking qualification and a written side-by-side, not a decision today.&quot;</p></div>
+      </div>
+    </details>
+
+    <details class="glass fullScript talkRef" style="display:none">
+      <summary>FUNDAMENTALS OF RAPPORT - USE ON EVERY CALL (first 90 seconds)</summary>
+      <div id="rapportBody" style="display:grid;gap:10px;padding:12px 4px 4px">
+        <div class="scriptStep"><h3>R1 - NAME (3x / first 2 min)</h3><p>Say their first name on the hello, once when you bridge, once before your first real question. Stop there. More than that sounds salesy.</p></div>
+        <div class="scriptStep"><h3>R2 - PACE + VOLUME MATCH</h3><p>Match their speed within about 15%. Match volume one notch. If they are calm, drop to a late-night DJ voice. Do not overpower a quiet homeowner.</p></div>
+        <div class="scriptStep"><h3>R3 - MIRROR LAST 2-3 WORDS</h3><p>When they finish a thought, repeat their last 2-3 words with a slight upward tone, then shut up. Let them keep talking. That is discovery, not a trick.</p></div>
+        <div class="scriptStep"><h3>R4 - ENERGY MATCH</h3><p>Friendly opener is fine (Heeey). If they answer flat or busy, immediately tone down. Match their energy before you pitch the approved offer.</p></div>
+        <div class="scriptStep"><h3>R5 - LISTEN BEFORE EXPLAIN</h3><p>Ask if they know the approved program/offer. Hear the answer fully. Only then give the quick reason. Never talk over them.</p></div>
+        <div class="scriptStep"><h3>R6 - LABEL THE FEELING</h3><p>If they push back: &quot;Sounds like the timing is the issue&quot; / &quot;It seems like you already got numbers.&quot; Label first, answer second.</p></div>
+        <div class="scriptStep"><h3>R7 - EARN THE NEXT STEP</h3><p>Rapport goal is not friendship. Goal is enough trust to check qualification and book a written side-by-side. Soft ask after they feel heard.</p></div>
+        <div class="prompt">Live check: name used? pace matched? at least one mirror? listened before the explain? Then continue ForgeFront script step 4+.</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>APPROVED OFFER TRUTH (do not invent beyond vendor packet)</summary>
+      <div class="scriptBlock">
+        <div class="scriptStep"><h3>WHAT IT IS</h3><p>Use only the program/offer description from the approved vendor packet for this shift. If it is not in the packet, do not say it.</p></div>
+        <div class="scriptStep"><h3>SAY THIS (SAFE)</h3><p>&quot;I can walk you through the approved offer and whether this home even qualifies — no pressure to buy on this call.&quot;</p></div>
+        <div class="scriptStep"><h3>DO NOT CLAIM</h3><p>Do not invent savings percentages, free panels, loan terms, ownership language, or utility partnerships beyond approved materials.</p></div>
+      </div>
+    </details>
+
+
+    <details class="glass fullScript talkRef" style="display:none">
+      <summary>TOMORROW NOON PACK — 6 PREQUALS + CLOSE-THE-BOX (Magic Minutes)</summary>
+      <div id="noonPackBody" style="display:grid;gap:10px;padding:12px 4px 4px">
+        <div class="scriptStep"><h3>BOOT</h3><p>Headset on · Roam pins · Dialer alone · Calendar+maps together · ForgeFront LINK ROAM AUDIO → MIC+ROAM</p></div>
+        <div class="scriptStep"><h3>P1 HOME OWNER</h3><p>Confirm homeowner / decision path before you sell the dream.</p></div>
+        <div class="scriptStep"><h3>P2 STRUCTURE</h3><p>House, townhome, or duplex only. No apartments, condos, mobiles.</p></div>
+        <div class="scriptStep"><h3>P3 BILL</h3><p>Electric averages over $100/month.</p></div>
+        <div class="scriptStep"><h3>P4 SUN</h3><p>Roof sun OK — check Project Sunroof / maps while talking.</p></div>
+        <div class="scriptStep"><h3>P5 MOBILE TEXTS</h3><p>Number that receives confirmation texts.</p></div>
+        <div class="scriptStep"><h3>P6 EMAIL</h3><p>Confirm carefully. Do not embarrass them into a hangup.</p></div>
+        <div class="scriptStep"><h3>CLOSE THE BOX</h3><p>Acknowledge → one-line rebuttal → close box → keep walking. Do not open every objection box.</p></div>
+        <div class="scriptStep"><h3>OWNERSHIP PUSHBACK</h3><p>Same as the dish or the pole outside — service gear, not something you buy. Cancel and they take it back.</p></div>
+        <div class="scriptStep"><h3>BOOK ONLY IF GREEN</h3><p>Weak sets explode on verification. Notes: bill ballpark, sun/roof, motivation, who else on title.</p></div>
+        <div class="prompt">Calendar: the utility top-left · Firstletter-only names · Dialer dispositions every hangup · personal callback box for YOUR agenda.</div>
+      </div>
+    </details>
+
+    <details class="glass fullScript talkRef" style="display:none">
+      <summary>operator FUNDAMENTALS — ASSUME CUSTOMER + SHORT REBUTTALS</summary>
+      <div id="operatorFundBody" style="display:grid;gap:10px;padding:12px 4px 4px">
+        <div class="scriptStep"><h3>F1 ALREADY YOUR CUSTOMER</h3><p>Before you pick up: assume they are already a customer. Talk like a regular, not a stranger.</p></div>
+        <div class="scriptStep"><h3>F2 ENERGY TRANSFER</h3><p>Body language / confidence transfers on the phone. Warmth of a 15-year regular.</p></div>
+        <div class="scriptStep"><h3>F3 STRUCTURE</h3><p>Script + prequals. Do not wander the hallway opening boxes.</p></div>
+        <div class="scriptStep"><h3>F4 RAPPORT WHILE YOU QUALIFY</h3><p>Name, pace match, listen — then qualify. Soft ask after they feel heard.</p></div>
+        <div class="scriptStep"><h3>F5 SHORT SWEET REBUTTALS</h3><p>Being confident is good. Having a tight answer for everything is better. Keep it short.</p></div>
+        <div class="scriptStep"><h3>F6 ASSURED FINISH</h3><p>Only book when the quality checklist is green. Protect verification.</p></div>
+      </div>
+    </details>
+
+
+
+    <div id="flow" class="stageTrack"></div>
+
+    <section class="liveHero">
+
+      <div class="heroTop">
+        <div class="liveLabel">
+          <span class="livePulse"></span>
+          LIVE CALL GUIDANCE
+        </div>
+
+        <div id="heroBranch" class="statusChip">STANDARD FLOW</div>
+      </div>
+
+      <div id="stageTitle" class="heroStage">OPEN</div>
+      <div id="objective" class="heroObjective"></div>
+
+      <div class="scriptBlock">
+        <div class="scriptLabel">SAY THIS NEXT</div>
+        <div id="sayLine" class="scriptText"></div>
+      </div>
+
+    </section>
+
+
+    <section class="glass actionArea">
+      <div class="sectionLabel">Homeowner response / next move</div>
+      <div id="objectionBackRow" class="objectionBackRow" hidden>
+        <button id="objectionBackBtn" type="button" class="smallBtn primaryBtn">← BACK TO OBJECTION LIST</button>
+      </div>
+      <div id="actions" class="actionGrid"></div>
+    </section>
+
+
+    <section class="glass notesCard">
+      <div class="sectionLabel">Closer notes</div>
+      <textarea
+        id="notes"
+        placeholder="Capture objections, motivation, household details, roof notes, timing, or anything the closer needs..."
+      ></textarea>
+    </section>
+
+  </main>
+
+
+  <!-- RIGHT -->
+  <aside class="rail rightRail">
+
+    <section class="glass card">
+      <div class="cardHead">
+        <div>
+          <div class="cardTitle">Call Readiness</div>
+          <div id="readyPercent" class="cardSub">0% complete</div>
+        </div>
+      </div>
+
+      <div class="cardBody">
+        <div class="readinessGauge">
+          <div id="gaugeFill"></div>
+        </div>
+
+        <div class="metric">
+          <span>Contact</span>
+          <strong id="rContact"></strong>
+        </div>
+
+        <div class="metric">
+          <span>Usage</span>
+          <strong id="rUsage"></strong>
+        </div>
+
+        <div class="metric">
+          <span>Roof</span>
+          <strong id="rRoof"></strong>
+        </div>
+
+        <div class="metric">
+          <span>Appointment</span>
+          <strong id="rAppt"></strong>
+        </div>
+
+        <div class="metric">
+          <span>Utility Bill</span>
+          <strong id="rBill"></strong>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="glass card">
+      <div class="cardHead">
+        <div>
+          <div class="cardTitle">Call Intelligence</div>
+          <div class="cardSub">Live engine state</div>
+        </div>
+      </div>
+
+      <div class="cardBody">
+        <div class="metric">
+          <span>Stage</span>
+          <strong id="intelStage">OPEN</strong>
+        </div>
+
+        <div class="metric">
+          <span>Branch</span>
+          <strong id="intelBranch">—</strong>
+        </div>
+
+        <div class="metric">
+          <span>Disposition</span>
+          <strong id="intelDisposition">—</strong>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="glass card">
+      <div class="cardHead">
+        <div>
+          <div class="cardTitle">Open Issues</div>
+          <div class="cardSub">Needs resolution</div>
+        </div>
+      </div>
+
+      <div class="cardBody">
+        <div id="unresolved"></div>
+      </div>
+    </section>
+
+
+  </aside>
+
+</div>
+
+
+<div id="queuePage" class="queue">
+
+  <div class="queueHeader">
+    <div>
+      <h1>Solar Pipeline</h1>
+      <div style="color:#637991;font-size:11px;margin-top:4px">
+        Active sales opportunities
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <div class="btnRow">
+      <button id="queueNew" class="dceButton">NEW LEAD</button>
+      <button id="queueRefresh" class="dceButton">REFRESH</button>
+    </div>
+  </div>
+
+  <div id="board" class="board"></div>
+
+</div>
+
+
+<script src="/solar_call_engine.js"></script>
+<script src="./solar_operator_runtime.js"></script>
+<script src="./solar_copilot_ui.js"></script>
+
+<script>
+const E = window.SolarCallEngine;
+const OperatorRuntime = window.SolarOperatorRuntime;
+const NAV = ['SALES','PIPELINE'];
+const EMPTY_SOLAR_STATE = {solarLeads:[],solarCalls:[],solarDnc:[],solarConfig:{}};
+const REP_PROFILE_KEY = OperatorRuntime.REP_PROFILE_KEY || 'forgefrontSolarRepProfileV2';
+const IDENTITY_KEYS = ['repName','repId','companyIdentity','companyIdentityApproved'];
+let serverAvailable = false;
+let autosaveTimer = null;
+let callStartedAt = 0;
+let callTimerTicker = null;
+
+const STAGES = [
+  "OPEN",
+  "EXPLAIN",
+  "QUALIFY",
+  "OBJECTION",
+  "SAVINGS_BRIDGE",
+  "APPOINTMENT",
+  "BILL_REQUEST",
+  "VERIFICATION",
+  "COMPLETE",
+  "TERMINATED"
+];
+
+const F = [
+  "repName",
+  "repId",
+  "companyIdentity",
+  "companyIdentityApproved",
+  "leadName",
+  "phone",
+  "email",
+  "address",
+  "utility",
+  "highestBill",
+  "averageBill",
+  "sunExposure",
+  "futureLoad",
+  "roofAgeYears",
+  "roofInstaller",
+  "roofConcern",
+  "appointmentType",
+  "appointmentDate",
+  "appointmentTime",
+  "billReceived",
+  "verificationStatus",
+  "notes"
+];
+
+const $ = id => document.getElementById(id);
+
+const esc = v => String(v ?? "").replace(
+  /[&<>"']/g,
+  c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c])
+);
+
+let session = null;
+let leadId = "";
+
+function assertSafeStateIds(candidate){
+  const unsafeKey = key => key === '__proto__' || key === 'prototype' || key === 'constructor';
+  const walk = value => {
+    if(!value || typeof value !== 'object') return;
+    for(const key of Object.keys(value)){
+      if(unsafeKey(key)) throw new Error('Unsafe object key in workspace data');
+      if((key === 'id' || key.endsWith('Id')) && typeof value[key] === 'string' && !/^[a-zA-Z0-9_.:@-]*$/.test(value[key])) throw new Error('Unsafe identifier in workspace data');
+      walk(value[key]);
+    }
+  };
+  walk(candidate);
+  return candidate;
+}
+
+function safeCsvCell(value){
+    const text=String(value??'');
+    const safe=/^[\s]*[=+\-@]/.test(text)?"'"+text:text;
+    return '"'+safe.replace(/"/g,'""')+'"';
+  }
+function icsText(value){return String(value??'').replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}
+
+async function probeServer(){
+  try{
+    const r=await fetch('/api/health',{cache:'no-store'});
+    serverAvailable=r.ok;
+    if(r.ok){
+      const j=await r.json().catch(()=>({}));
+      authRequired=!!j.authRequired;
+      if(!authRequired){
+        apiToken='';
+        try{localStorage.removeItem(API_TOKEN_KEY);}catch(e){}
+        hideDeviceUnlock();
+      }
+    }
+  }catch{serverAvailable=false;}
+  return serverAvailable;
+}
+
+const API_TOKEN_KEY='dceSolarApiTokenV1';
+let apiToken='';
+let authRequired=false;
+function showDeviceUnlock(message=''){
+  if(!authRequired)return;
+  const panel=$('deviceUnlock');
+  if(!panel)return;
+  panel.hidden=false;
+  panel.style.display='flex';
+  if($('deviceUnlockMsg'))$('deviceUnlockMsg').textContent=message||'This device is not unlocked yet.';
+  if($('deviceUnlockToken'))$('deviceUnlockToken').focus();
+}
+function hideDeviceUnlock(){
+  const panel=$('deviceUnlock');
+  if(!panel)return;
+  panel.hidden=true;
+  panel.style.display='none';
+}
+async function ensureApiToken(){
+  if(!authRequired)return '';
+  if(apiToken)return apiToken;
+  try{
+    const r=await fetch('/api/session/bootstrap',{cache:'no-store'});
+    if(r.ok){
+      const j=await r.json();
+      authRequired=!!j.authRequired;
+      if(!authRequired){apiToken='';try{localStorage.removeItem(API_TOKEN_KEY);}catch(e){}hideDeviceUnlock();return '';}
+      apiToken=String(j.token||'');
+      if(apiToken){localStorage.setItem(API_TOKEN_KEY,apiToken);hideDeviceUnlock();return apiToken;}
+    }
+  }catch{}
+  showDeviceUnlock('Paste the fleet token once to unlock this phone/tablet.');
+  return '';
+}
+async function unlockDeviceWithToken(raw){
+  if(!authRequired)return true;
+  const token=String(raw||'').trim();
+  if(!token){showDeviceUnlock('Token required.');return false;}
+  apiToken=token;
+  localStorage.setItem(API_TOKEN_KEY,apiToken);
+  const r=await fetch('/api/state',{cache:'no-store',headers:{'x-dce-api-token':apiToken}});
+  if(!r.ok){
+    apiToken='';localStorage.removeItem(API_TOKEN_KEY);
+    showDeviceUnlock('Token rejected. Copy a fresh one from Lenovo ForgeFront boot.');
+    return false;
+  }
+  hideDeviceUnlock();
+  return true;
+}
+function apiHeaders(extra={}){
+  const headers={...extra};
+  if(authRequired&&apiToken)headers['x-dce-api-token']=apiToken;
+  return headers;
+}
+async function apiFetch(url,options={}){
+  if(authRequired)await ensureApiToken();
+  if(authRequired&&!apiToken&&!String(url).includes('/api/health')&&!String(url).includes('/api/session/bootstrap')){
+    showDeviceUnlock('Unlock this device to sync with ForgeFront.');
+    throw new Error('device locked');
+  }
+  const headers=apiHeaders(options.headers||{});
+  const r=await fetch(url,{...options,headers});
+  if(authRequired&&r.status===401){
+    apiToken='';localStorage.removeItem(API_TOKEN_KEY);
+    showDeviceUnlock('Session expired. Paste token again.');
+    throw new Error('unauthorized');
+  }
+  return r;
+}
+
+function refreshTalkLeadStrip(){const name=val('leadName')||'';const phone=val('phone')||'';const util=val('utility')||'';const addr=val('address')||'';const live=$('talkLeadLive');const meta=$('talkLeadMeta');if(!live)return;live.textContent=(!name&&!phone)?'Waiting for name / phone from the call…':[name||'Unknown',phone].filter(Boolean).join(' · ');if(meta) meta.textContent=[util,addr].filter(Boolean).join(' · ');}
+function updateSaveStatus(text){const el=$('solarSaveStatus');if(el)el.textContent=text;try{refreshTalkLeadStrip();}catch(e){}}
+function updateCallTimer(){const el=$('solarCallTimer');if(!el)return;const sec=callStartedAt?Math.floor((Date.now()-callStartedAt)/1000):0;el.textContent=String(Math.floor(sec/60)).padStart(2,'0')+':'+String(sec%60).padStart(2,'0');}
+function startTimer(){if(!callStartedAt)callStartedAt=Date.now();clearInterval(callTimerTicker);callTimerTicker=setInterval(updateCallTimer,1000);updateCallTimer();}
+function stopTimer(){clearInterval(callTimerTicker);callTimerTicker=null;}
+function solarLiveCall(){showLive();}
+function solarLeadQueue(){showQueue();}
+function isSolarLeadDnc(lead){const phone=String(lead?.phone||'').replace(/\D/g,'');const email=String(lead?.email||'').trim().toLowerCase();return solarDncCache.some(x=>x.phone===phone&&phone||x.email===email&&email);}
+let solarDncCache=[];
+let sharedRevision=0,sharedCopilotAt='',applyingShared=false;
+function captureRepProfile(){
+  const stored=OperatorRuntime.loadRepProfile();
+  const live={
+    repName:String(val('repName')||'').trim(),
+    repId:String(val('repId')||'').trim(),
+    companyIdentity:String(val('companyIdentity')||'').trim(),
+    companyIdentityApproved:!!val('companyIdentityApproved')
+  };
+  return OperatorRuntime.saveRepProfile({
+    repName:live.repName||stored.repName,
+    repId:live.repId||stored.repId,
+    companyIdentity:live.companyIdentity||stored.companyIdentity,
+    companyIdentityApproved:live.companyIdentity?live.companyIdentityApproved:(live.companyIdentityApproved||stored.companyIdentityApproved)
+  });
+}
+function applyRepProfile(profile){
+  const p=profile||OperatorRuntime.loadRepProfile();
+  setv('repName',p.repName||'');
+  setv('repId',p.repId||'');
+  setv('companyIdentity',p.companyIdentity||p.approvedCompany||'');
+  setv('companyIdentityApproved',!!(p.companyIdentityApproved??p.identityConfirmed));
+}
+async function startSolarCall(id=leadId){const s=await readState();const lead=s.solarLeads.find(x=>x.id===id)||data();if(isSolarLeadDnc(lead)){alert('Do Not Contact — call start blocked');return false;}startTimer();return true;}
+async function applySolarEvent(event,payload={}){sync();session=E.applyEvent(session,event,{...data(),...payload});render();await save();}
+function queueAutosave(){clearTimeout(autosaveTimer);updateSaveStatus('UNSAVED');if(!data().leadName&&!data().phone&&!data().email&&!data().address)return;autosaveTimer=setTimeout(()=>save().catch(()=>updateSaveStatus('SAVE ERROR')),700);}
+function copyText(text){navigator.clipboard.writeText(text).catch(()=>{});}
+function solarCleanSlate(){captureRepProfile();fresh();updateSaveStatus('READY');}
+function appointmentLatchOk(){return OperatorRuntime.appointmentLatch(data()).ok;}
+function renderAppointmentLatch(){
+  const el=$('appointmentLatchStatus'); if(!el)return;
+  const latch=OperatorRuntime.appointmentLatch(data());
+  el.textContent=latch.ok?'APPOINTMENT LATCH: READY':'APPOINTMENT LATCH: NEED '+latch.missing.join(', ').toUpperCase();
+  el.style.color=latch.ok?'#7dffa8':'#ffb347';
+}
+function buildCloserPacketText(){
+  const live=window.solarCopilotController?.getState?.()||{};
+  return OperatorRuntime.buildCloserPacket({
+    lead:data(),
+    session:session||{},
+    copilot:live,
+    rep:{repName:val('repName'),companyIdentity:val('companyIdentity')}
+  });
+}
+function copyCloserPacket(){
+  const text=buildCloserPacketText();
+  copyText(text);
+  updateSaveStatus('PACKET COPIED');
+  return text;
+}
+function renderScoreboard(){
+  const el=$('scoreboardPanel'); if(!el)return;
+  const ranked=OperatorRuntime.rankScoreboard(OperatorRuntime.loadScoreboard()).slice(0,5);
+  if(!ranked.length){el.textContent='SCOREBOARD: no outcomes yet — tap BOOKED / CALLBACK / DEAD after calls.';return;}
+  el.innerHTML='SCOREBOARD<br>'+ranked.map(r=>`${esc(r.objection)} · ${r.booked}B/${r.callback}C/${r.dead}D · ${Math.round(r.bookRate*100)}%`).join('<br>');
+}
+async function recordOutcome(outcome){
+  const live=window.solarCopilotController?.getState?.()||{};
+  if(outcome==='booked' && !appointmentLatchOk()){
+    alert('BOOKED requires appointment latch: type, date, time, and bill status.');
+    return;
+  }
+  OperatorRuntime.recordCallOutcome({
+    objection:live.objection||session?.branch||'',
+    branch:session?.branch||'',
+    outcome,
+    stage:session?.stage||''
+  });
+  if(outcome==='booked'){
+    copyCloserPacket();
+    if(session && session.stage!=='COMPLETE' && session.stage!=='TERMINATED'){
+      session={...session,stage:'COMPLETE',disposition:'Appointment Booked',updatedAt:new Date().toISOString()};
+    }
+  }
+  renderScoreboard();
+  if(data().leadName||data().phone||data().email||data().address){
+    try{await save();}catch{}
+  }
+  updateSaveStatus(String(outcome).toUpperCase());
+}
+
+
+function val(k){
+  const e = $(k);
+
+  if(e.type === "checkbox"){
+    return e.checked;
+  }
+
+  if(k === "billReceived"){
+    if(e.value === "true") return true;
+    if(e.value === "false") return false;
+  }
+
+  return e.value;
+}
+
+
+function setv(k,v){
+  const e = $(k);
+
+  if(e.type === "checkbox"){
+    e.checked = !!v;
+    return;
+  }
+
+  if(k === "billReceived" && typeof v === "boolean"){
+    e.value = v ? "true" : "false";
+    return;
+  }
+
+  e.value = v ?? "";
+}
+
+
+
+function forgefrontSanitizeIdentityFields(){
+  const banned=["Illinois Shines","IL Shines","LightReach","Sara","SARA","Agent 32","Agent32","Nova Mobility","Helix Bio"];
+  const dirty=v=>banned.some(b=>String(v||'').toLowerCase().includes(String(b).toLowerCase()));
+  try{
+    if(dirty(val('companyIdentity'))){ setv('companyIdentity',''); setv('companyIdentityApproved', false); }
+    if(String(val('repId')||'')==='32') setv('repId','');
+  }catch(e){}
+}
+
+function data(){ forgefrontSanitizeIdentityFields();
+  const o = {};
+  F.forEach(k => o[k] = val(k));
+  return o;
+}
+
+
+async function readState(){
+  if(!serverAvailable) await probeServer();
+  if(!serverAvailable) throw new Error("Server unavailable");
+  const r = await apiFetch("/api/state",{
+    cache:"no-store"
+  });
+
+  if(!r.ok){
+    throw new Error("State read failed");
+  }
+
+  const remote = await r.json();
+  assertSafeStateIds(remote);
+  const s = remote;
+
+  s.solarSales ||= {
+    leads:[],
+    sessions:[]
+  };
+
+  s.solarSales.leads ||= [];
+  s.solarSales.sessions ||= [];
+  s.solarLeads ||= s.solarSales.leads;
+  s.solarCalls ||= s.solarSales.sessions;
+  s.solarDnc ||= [];
+  s.solarConfig ||= {};
+  solarDncCache=s.solarDnc.map(x=>({phone:String(x.phone||'').replace(/\D/g,''),email:String(x.email||'').trim().toLowerCase()}));
+
+  return s;
+}
+
+
+async function writeState(s){
+  if(!serverAvailable) throw new Error("Server unavailable");
+  assertSafeStateIds(s);
+  s.solarSales={leads:s.solarLeads||s.solarSales?.leads||[],sessions:s.solarCalls||s.solarSales?.sessions||[]};
+  const serverState=s;
+  delete serverState.solarConfig.repName;
+  s.meta ||= {};
+  s.meta.revision = Number(s.meta.revision || 0) + 1;
+  s.meta.updatedAt = new Date().toISOString();
+  sharedRevision=s.meta.revision;
+
+  const r = await apiFetch("/api/state",{
+    method:"PUT",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify(s)
+  });
+
+  if(!r.ok){
+    throw new Error("State write failed");
+  }
+}
+
+
+function sync(){
+  if(!session) return;
+
+  const d = data();
+
+  session.repName = d.repName;
+  session.repId = d.repId;
+
+  session.data = {
+    ...(session.data || {}),
+    ...d
+  };
+}
+
+
+function readiness(id,ok){
+  const e = $(id);
+
+  e.textContent = ok ? "READY" : "NEEDED";
+  e.className = ok ? "good" : "warn";
+
+  return ok ? 1 : 0;
+}
+
+function inObjectionDetail(){
+  const copilotObj=window.solarCopilotController?.getState?.()?.objection;
+  return !!(session?.branch || (session?.stage==='OBJECTION' && copilotObj && copilotObj!=='operator_command'));
+}
+async function backToObjectionMenu(){
+  if(!session)return;
+  session={...session,branch:'',stage:session.stage==='OBJECTION'?session.stage:'QUALIFY',updatedAt:new Date().toISOString(),history:[...(session.history||[]),{type:'objection_menu_back',event:'objection_menu_back',stage:session.stage,branch:'',time:new Date().toISOString(),payload:{}}]};
+  if(window.solarCopilotController){
+    const st=window.solarCopilotController.getState();
+    st.objection='';st.sayNext='';st.nextMove='';st.source='';
+    renderCopilot(st);
+  }
+  sharedCopilotAt='';
+  apiFetch('/api/solar/copilot/live',{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({sayNext:'',objection:'',nextMove:'',listening:!!window.solarCopilotController?.getState?.()?.listening,leadFields:data()})}).catch(()=>{});
+  render();
+  if(data().leadName||data().phone||data().email||data().address)await save();
+}
+
+function renderFullScript(g,live={}){
+  const branch=session?.branch||'';
+  const followUps={
+    competitor_comparison:'Which part matters most to you: the numbers, installation, maintenance, or the company itself?',roof_old:'About how old is the roof, and are you already considering replacement?',roof_warranty:'How recently was it installed, and which part of the warranty concerns you?',research_trust:'What is the biggest claim or concern you want verified?',decision_maker:'Who else needs to see the numbers, and when can both of you be available?',bill_unavailable:'When will you have access to the bill or online utility account?',moving_transfer:'Are you planning to move soon, or are you asking for long-term planning?',term_duration:'Is your main concern the length of the agreement or what happens during it?',payment_structure:'Is the concern having another monthly obligation, or how the payment compares with the utility bill?',household_succession:'What specific long-term responsibility are you concerned could fall on the household?',general_resistance:'What part is giving you the most hesitation?'
+  };
+  const objection=String(live.objection||branch||'').replaceAll('_',' '),first=live.sayNext||g.recommendedLine||'',diagnose=live.nextMove||followUps[branch]||'Listen to the answer, identify the real concern, and respond to that concern—not the first surface objection.',title=objection?`REBUTTAL PATH — ${objection.toUpperCase()}`:'LIVE SALES SCRIPT';
+  const steps=objection?[["1 · ACKNOWLEDGE",first],["2 · FIND THE REAL CONCERN",diagnose],["3 · ANSWER BRIEFLY",'Answer only the concern they actually gave you. Keep it conversational, then check whether that resolved it.'],["4 · CHECK",'Does that answer the main concern, or is there another part you want me to clarify?'],["5 · RETURN TO THE CALL",'If that works for you, let’s finish the quick qualification and get the written comparison set up.']]:[["1 · SAY THIS NOW",first],["2 · LISTEN",'Let them finish. Use the matching response button below, or type their exact response into the copilot and press ANALYZE.'],["3 · QUALIFY",'Capture the bill, utility, roof, future electric use, motivation, and the issue that matters most to them.'],["4 · BRIDGE",'Offer the written savings comparison as the next low-pressure step.'],["5 · BOOK",'Confirm the day, time, format, bill follow-up, and handoff notes.']];
+  $('fullScriptBody').innerHTML=`<div class="scriptStep"><h3>${esc(title)}</h3><p>${esc(g.objective||'Follow the live call path.')}</p></div>`+steps.map(([h,p])=>`<div class="scriptStep"><h3>${esc(h)}</h3><p>${esc(p)}</p></div>`).join('');
+}
+
+
+function render(){
+  if(!session) return;
+
+  sync();
+
+  $("flow").innerHTML = STAGES.map(
+    s => `
+      <button type="button" class="stagePill ${session.stage === s ? "active" : ""}" data-stage-jump="${esc(s)}">
+        ${s.replace("_"," ")}
+      </button>
+    `
+  ).join("");
+
+  document.querySelectorAll('[data-stage-jump]').forEach(button=>button.onclick=async()=>{
+    const target=button.dataset.stageJump;
+    if((target==='COMPLETE'||target==='VERIFICATION') && !appointmentLatchOk()){
+      alert('Appointment latch: fill type, date, time, and bill status before '+target+'.');
+      return;
+    }
+    session={...session,stage:target,branch:'',updatedAt:new Date().toISOString(),history:[...(session.history||[]),{type:'manual_stage_jump',event:'manual_stage_jump',stage:target,branch:'',time:new Date().toISOString(),payload:{}}]};
+    if(target==='OBJECTION' && window.solarCopilotController){
+      const st=window.solarCopilotController.getState();
+      if(st.objection && st.objection!=='operator_command'){st.objection='';st.sayNext='';st.nextMove='';renderCopilot(st);}
+    }
+    render();
+    if(data().leadName||data().phone||data().email||data().address)await save();
+  });
+
+
+  const g = E.getGuidance(session,{
+    repName:val("repName"),
+    repId:val("repId"),
+    leadName:val("leadName"),
+    companyIdentity:val("companyIdentity"),
+    companyIdentityApproved:val("companyIdentityApproved")
+  });
+
+  renderFullScript(g);
+
+
+  $("stageTitle").textContent =
+    (g.stage || session.stage).replace("_"," ");
+
+  $("objective").textContent =
+    g.objective || "";
+
+  $("sayLine").textContent =
+    g.recommendedLine || "";
+
+  $("stageTop").textContent =
+    session.stage.replace("_"," ");
+
+  $("leadTop").textContent =
+    val("leadName") || "LIVE — listening for lead";
+
+  $("intelStage").textContent =
+    session.stage.replace("_"," ");
+
+  $("intelBranch").textContent =
+    session.branch || "—";
+
+  $("intelDisposition").textContent =
+    session.disposition || "—";
+
+  $("heroBranch").textContent =
+    session.branch || "STANDARD FLOW";
+
+  const showBack=inObjectionDetail();
+  const backRow=$('objectionBackRow');
+  if(backRow)backRow.hidden=!showBack;
+
+  let actionList=g.actions||[];
+  if(session.stage==='OBJECTION' && !session.branch){
+    actionList=E.getAvailableActions({...session,stage:'QUALIFY'});
+  }
+
+  $("actions").innerHTML = actionList.map(
+    a => `
+      <button
+        class="actionBtn ${a.id === "do_not_contact" ? "danger" : ""}"
+        data-action="${esc(a.id)}" data-solar-event="${esc(a.id)}">
+        ${esc(a.label)}
+      </button>
+    `
+  ).join("");
+
+
+  document.querySelectorAll("[data-action]").forEach(
+    b => b.onclick = async () => {
+      sync();
+
+      session = E.applyEvent(
+        session,
+        b.dataset.action,
+        data()
+      );
+
+      render();
+      await save();
+    }
+  );
+
+
+  $("unresolved").innerHTML =
+    (session.unresolved || []).length
+      ? session.unresolved.map(
+          x => `<span class="unresolvedTag">${esc(x)}</span>`
+        ).join("")
+      : `<div style="color:#647990;font-size:10px">No unresolved issues.</div>`;
+
+
+  const r1 = readiness(
+    "rContact",
+    !!(val("leadName") && val("phone"))
+  );
+
+  const r2 = readiness(
+    "rUsage",
+    !!(val("highestBill") && val("averageBill"))
+  );
+
+  const r3 = readiness(
+    "rRoof",
+    !!(val("roofConcern") || val("roofAgeYears"))
+  );
+
+  const r4 = readiness(
+    "rAppt",
+    !!(
+      val("appointmentDate") &&
+      val("appointmentTime") &&
+      val("appointmentType")
+    )
+  );
+
+  const r5 = readiness(
+    "rBill",
+    val("billReceived") === true
+  );
+
+  const score = Math.round(
+    ((r1+r2+r3+r4+r5) / 5) * 100
+  );
+
+  $("readyPercent").textContent =
+    score + "% complete";
+
+  $("gaugeFill").style.width =
+    score + "%";
+
+  renderAppointmentLatch();
+  renderScoreboard();
+}
+
+
+function fresh(){
+  const keep=captureRepProfile();
+  leadId = "";
+
+  F.forEach(k => {
+    if(IDENTITY_KEYS.includes(k)) return;
+    setv(k, "");
+  });
+
+  applyRepProfile(keep);
+  session = E.createSession({});
+  if(window.solarCopilotController)window.solarCopilotController.reset();
+  callStartedAt=0;stopTimer();updateCallTimer();
+  render();
+}
+
+
+async function save(){
+  sync();
+
+  const d = data();
+  if(!d.leadName && !d.phone && !d.email && !d.address){
+    updateSaveStatus('READY');
+    throw new Error('Solar lead needs a name, phone, email, or address');
+  }
+  updateSaveStatus('SAVING');
+
+  const s = await readState();
+  s.solarConfig ||= {};
+
+  if(!leadId){
+    leadId = "lead_" + Date.now();
+  }
+  s.solarConfig.activeLeadId=leadId;
+
+  const lead = {
+    id:leadId,
+    ...d,
+    stage:session.stage,
+    branch:session.branch || "",
+    disposition:session.disposition || "",
+    unresolved:session.unresolved || [],
+    sessionId:session.id,
+    updatedAt:new Date().toISOString()
+  };
+
+  if(session.stage === 'TERMINATED'){
+    const dnc={phone:String(d.phone||'').replace(/\D/g,''),email:String(d.email||'').trim().toLowerCase(),leadId,createdAt:new Date().toISOString()};
+    if(!s.solarDnc.some(x=>(dnc.phone&&String(x.phone||'').replace(/\D/g,'')===dnc.phone)||(dnc.email&&String(x.email||'').toLowerCase()===dnc.email)))s.solarDnc.push(dnc);
+    solarDncCache=s.solarDnc;
+  }
+
+  const li = s.solarSales.leads.findIndex(
+    x => x.id === leadId
+  );
+
+  if(li >= 0){
+    s.solarSales.leads[li] = lead;
+  }
+  else{
+    s.solarSales.leads.unshift(lead);
+  }
+
+
+  const si = s.solarSales.sessions.findIndex(
+    x => x.id === session.id
+  );
+
+  if(si >= 0){
+    s.solarSales.sessions[si] = session;
+  }
+  else{
+    s.solarSales.sessions.unshift(session);
+  }
+
+  await writeState(s);
+  s.solarLeads=s.solarSales.leads;
+  s.solarCalls=s.solarSales.sessions;
+  try{captureRepProfile();}catch{}
+  updateSaveStatus('SAVED');
+}
+
+
+function bucket(l){
+
+  if(l.stage === "TERMINATED"){
+    return "DNC";
+  }
+
+  if([
+    "APPOINTMENT",
+    "BILL_REQUEST",
+    "VERIFICATION",
+    "COMPLETE"
+  ].includes(l.stage)){
+    return "APPOINTMENT";
+  }
+
+  if([
+    "QUALIFY",
+    "SAVINGS_BRIDGE"
+  ].includes(l.stage)){
+    return "QUALIFIED";
+  }
+
+  if([
+    "EXPLAIN",
+    "OBJECTION"
+  ].includes(l.stage)){
+    return "CONTACTED";
+  }
+
+  return "NEW";
+}
+
+
+async function renderBoard(){
+
+  const s = await readState();
+  const leads = s.solarSales.leads || [];
+
+  const names = [
+    "NEW",
+    "CONTACTED",
+    "QUALIFIED",
+    "APPOINTMENT",
+    "DNC"
+  ];
+
+  $("board").innerHTML = names.map(
+    name => {
+
+      const subset = leads.filter(
+        l => bucket(l) === name
+      );
+
+      return `
+        <section class="pipelineCol">
+
+          <div class="pipelineHead">
+            <span>${name}</span>
+            <span class="count">${subset.length}</span>
+          </div>
+
+          ${
+            subset.length
+              ? subset.map(
+                  l => `
+                    <div class="leadCard">
+
+                      <strong>
+                        ${esc(l.leadName || "Unnamed homeowner")}
+                      </strong>
+
+                      <div class="leadMeta">
+                        ${esc(l.phone || "")}
+                      </div>
+
+                      <div class="leadMeta">
+                        ${esc(l.utility || "")}
+                        ·
+                        ${esc(l.stage || "OPEN")}
+                      </div>
+
+                      <button
+                        class="openLead"
+                        data-open="${esc(l.id)}">
+                        OPEN LEAD
+                      </button>
+
+                    </div>
+                  `
+                ).join("")
+              : `
+                <div style="
+                  color:#52667c;
+                  font-size:10px;
+                  padding:8px 3px">
+                  No leads
+                </div>
+              `
+          }
+
+        </section>
+      `;
+    }
+  ).join("");
+
+
+  document.querySelectorAll("[data-open]").forEach(
+    b => b.onclick = () => openLead(b.dataset.open)
+  );
+}
+
+
+async function openLead(id){
+
+  const s = await readState();
+
+  const l = s.solarSales.leads.find(
+    x => x.id === id
+  );
+
+  if(!l) return;
+
+  leadId = id;
+
+  F.forEach(k => setv(k,l[k]));
+
+  session =
+    s.solarSales.sessions.find(
+      x => x.id === l.sessionId
+    ) ||
+    E.createSession({
+      leadId:id,
+      repName:l.repName || "",
+      repId:l.repId || ""
+    });
+
+  showLive();
+  render();
+}
+
+
+function showLive(){
+
+  $("workspace").classList.remove("hidden");
+  $("queuePage").classList.remove("active");
+
+  $("liveTab").classList.add("active");
+  $("queueTab").classList.remove("active");
+}
+
+
+function showQueue(){
+
+  $("workspace").classList.add("hidden");
+  $("queuePage").classList.add("active");
+
+  $("liveTab").classList.remove("active");
+  $("queueTab").classList.add("active");
+
+  renderBoard();
+}
+
+
+$("liveTab").onclick = showLive;
+$("queueTab").onclick = showQueue;
+
+$("newLead").onclick = fresh;
+
+$("saveLead").onclick =
+  () => save().catch(
+    e => alert(e.message)
+  );
+
+$("solarSunroof").onclick=()=>{const address=val('address').trim();if(!address)return alert('Enter the exact property address first.');window.open('https://sunroof.withgoogle.com/building/'+encodeURIComponent(address),'_blank','noopener');};
+$("solarCopyBill").onclick=()=>copyText(`Please send a clear photo or PDF of the complete electric bill for ${val('address')||'the property'}.`);
+$("solarCopyHandoff").onclick=()=>copyCloserPacket();
+$("solarCleanSlate").onclick=solarCleanSlate;
+$("outcomeBooked").onclick=()=>recordOutcome('booked');
+$("outcomeCallback").onclick=()=>recordOutcome('callback');
+$("outcomeDead").onclick=()=>recordOutcome('dead');
+
+function makeLocalSpeechAdapter(handlers){
+  let stream=null,callStream=null,context=null,sources=[],processor=null,chunks=[],sampleCount=0,busy=false,active=false;
+  const flatten=()=>{const out=new Float32Array(sampleCount);let at=0;for(const chunk of chunks){out.set(chunk,at);at+=chunk.length}chunks=[];sampleCount=0;return out};
+  const send=async samples=>{if(busy||samples.length<3200)return;busy=true;try{const wav=SolarCopilotUI.encodeWav(samples,context.sampleRate);const r=await apiFetch('/api/solar/copilot/transcribe',{method:'POST',headers:{'content-type':'audio/wav'},body:wav});if(!r.ok)throw new Error('transcription unavailable');const result=await r.json();if(result.text)await handlers.onFinal(result.text)}catch(e){handlers.onError(e)}finally{busy=false}};
+  const micConstraints=base=>({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true,autoGainControl:true,...base}});
+  async function openJLabMic(){
+    let media=await navigator.mediaDevices.getUserMedia(micConstraints());
+    try{
+      const inputs=(await navigator.mediaDevices.enumerateDevices()).filter(d=>d.kind==='audioinput');
+      const preferred=inputs.find(d=>/jlab|jbuds|headset|headphone|hands-free/i.test(String(d.label||'')))||inputs.find(d=>!/array|stereo mix|cable|virtual|moises/i.test(String(d.label||'')));
+      if(preferred?.deviceId){
+        const current=media.getAudioTracks()[0]?.getSettings?.().deviceId;
+        if(current!==preferred.deviceId){
+          media.getTracks().forEach(t=>t.stop());
+          media=await navigator.mediaDevices.getUserMedia(micConstraints({deviceId:{exact:preferred.deviceId}}));
+        }
+      }
+    }catch{}
+    return media;
+  }
+  
+let roamShareStream=null;
+function setRoamDceStatus(text, ok){
+  const el=$('roamDceStatus');
+  if(!el)return;
+  el.textContent=text;
+  el.style.color=ok===true?'#4ade80':(ok===false?'#fb7185':'#9eb2c9');
+}
+async function linkRoamAudioToDce(){
+  try{
+    if(roamShareStream){
+      roamShareStream.getTracks().forEach(t=>t.stop());
+      roamShareStream=null;
+    }
+    const media=await navigator.mediaDevices.getDisplayMedia({
+      video:true,
+      audio:true,
+      systemAudio:'include',
+      preferCurrentTab:false,
+      selfBrowserSurface:'exclude',
+      surfaceSwitching:'include'
+    });
+    const atracks=media.getAudioTracks();
+    if(!atracks.length){
+      media.getTracks().forEach(t=>t.stop());
+      setRoamDceStatus('FAILED: no system audio on that share. Re-do and check Also share system audio.', false);
+      throw new Error('ROAM share had no system audio');
+    }
+    atracks.forEach(t=>{ t.onended=()=>{ setRoamDceStatus('ROAM share ended — link again before the next call.', false); roamShareStream=null; if($('roamUnlinkBtn'))$('roamUnlinkBtn').hidden=true; }; });
+    roamShareStream=media;
+    setRoamDceStatus('LINKED · MIC will mix with ROAM system audio. Press START CALL.', true);
+    if($('roamUnlinkBtn'))$('roamUnlinkBtn').hidden=false;
+    return media;
+  }catch(e){
+    if(String(e&&e.message||e).includes('no system audio')) throw e;
+    setRoamDceStatus('Share cancelled or blocked. Use Google Chrome, not Firefox.', false);
+    throw e;
+  }
+}
+function unlinkRoamAudio(){
+  if(roamShareStream){ roamShareStream.getTracks().forEach(t=>t.stop()); roamShareStream=null; }
+  if($('roamUnlinkBtn'))$('roamUnlinkBtn').hidden=true;
+  setRoamDceStatus('Unlinked. Click LINK ROAM AUDIO before START CALL.', false);
+}
+
+async function openRoamAudio(){
+    try{
+      if(roamShareStream && roamShareStream.getAudioTracks().some(tr=>tr.readyState==='live')){
+        return roamShareStream;
+      }
+      const media=await linkRoamAudioToDce();
+      if(!media.getAudioTracks().length){
+        media.getTracks().forEach(t=>t.stop());
+        throw new Error('ROAM share had no system audio');
+      }
+      return media;
+    }catch(err){
+      return {error:err};
+    }
+  }
+  return {
+    async start(){
+      try{
+        active=true;
+        stream=await openJLabMic();
+        const roam=await openRoamAudio();
+        callStream=roam && !roam.error ? roam : null;
+        context=new(window.AudioContext||window.webkitAudioContext)();
+        if(context.state==='suspended') await context.resume().catch(()=>{});
+        sources=[context.createMediaStreamSource(stream)];
+        if(callStream&&callStream.getAudioTracks().length){
+          sources.push(context.createMediaStreamSource(callStream));
+          if(handlers.onStatus)handlers.onStatus('LISTENING · MIC+ROAM');
+        }else{
+          if(handlers.onStatus)handlers.onStatus('LISTENING · MIC ONLY — re-share ROAM with system audio');
+        }
+        const mix=context.createGain();
+        mix.gain.value=1;
+        sources.forEach(s=>s.connect(mix));
+        processor=context.createScriptProcessor(4096,1,1);
+        processor.onaudioprocess=e=>{if(!active)return;const chunk=new Float32Array(e.inputBuffer.getChannelData(0));chunks.push(chunk);sampleCount+=chunk.length;if(sampleCount>=context.sampleRate*4)send(flatten())};
+        mix.connect(processor);
+        processor.connect(context.destination);
+      }catch(e){active=false;handlers.onError(e)}
+    },
+    stop(){active=false;if(sampleCount)send(flatten());if(processor)processor.disconnect();sources.forEach(s=>{try{s.disconnect()}catch{}});if(stream)stream.getTracks().forEach(t=>t.stop());if(callStream)callStream.getTracks().forEach(t=>t.stop());if(context)context.close();}
+  };
+}
+function renderCopilot(state,fromShared=false){
+  $('copilotStatus').textContent=state.status;$('copilotStatus').classList.toggle('listening',state.listening);
+  $('copilotListen').textContent='START CALL';$('copilotListen').hidden=state.listening;$('copilotStop').hidden=!state.listening;
+  $('copilotTranscript').textContent=state.transcript||'Transcript will appear here.';
+  $('copilotSayNext').textContent=state.sayNext||'';$('copilotNextMove').textContent=state.nextMove||'';
+  const answerLabel=$('copilotSayNext')?.previousElementSibling;if(answerLabel)answerLabel.textContent=state.objection==='operator_command'?'COPILOT — ANSWER TO YOU':'COPILOT — SAY THIS NEXT';
+  const entries=Object.entries(state.fieldSuggestions||{});$('copilotFields').textContent=entries.map(([k,v])=>`${k}: ${v}`).join(' • ');
+  $('copilotAccept').hidden=true;if(entries.length && window.solarCopilotController){try{window.solarCopilotController.acceptFields();refreshTalkLeadStrip();}catch(e){}}
+  if(state.sayNext||state.objection){const guidance=E.getGuidance(session,{repName:val('repName'),leadName:val('leadName'),companyIdentity:val('companyIdentity'),companyIdentityApproved:val('companyIdentityApproved')});renderFullScript(guidance,state);}
+  if(!fromShared&&(state.transcript||state.sayNext||state.objection))apiFetch('/api/solar/copilot/live',{method:'PUT',headers:{'content-type':'application/json'},body:JSON.stringify({...state,leadId,leadFields:data()})}).catch(()=>{});
+}
+async function followSharedScreen(){if(applyingShared||$('solarSaveStatus')?.textContent==='UNSAVED'||$('solarSaveStatus')?.textContent==='SAVING')return;try{const s=await readState(),rev=Number(s.meta?.revision||0),active=s.solarConfig?.activeLeadId;if(rev>sharedRevision&&active){const l=s.solarSales.leads.find(x=>x.id===active),remoteSession=l&&s.solarSales.sessions.find(x=>x.id===l.sessionId);if(l&&remoteSession){applyingShared=true;leadId=active;F.forEach(k=>setv(k,l[k]));session=remoteSession;render();applyingShared=false;}sharedRevision=rev;}const live=await apiFetch('/api/solar/copilot/live',{cache:'no-store'}).then(r=>r.json());if(live.updatedAt&&live.updatedAt!==sharedCopilotAt){sharedCopilotAt=live.updatedAt;renderCopilot(live,true);}}catch{}}
+window.solarCopilotController=SolarCopilotUI.createSolarCopilotUI({
+  context:()=>{const guidance=E.getGuidance(session,{repName:val('repName'),repId:val('repId'),leadName:val('leadName'),companyIdentity:val('companyIdentity'),companyIdentityApproved:val('companyIdentityApproved')});return {stage:session.stage,branch:session.branch||'',deterministicGuidance:guidance,leadFields:data()};},
+  request:async payload=>{const r=await apiFetch('/api/solar/copilot/suggest',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)});if(!r.ok)throw new Error('copilot unavailable');return r.json();},
+  applyFields:fields=>{const updates=SolarCopilotUI.mergeConfirmedFields(data(),fields);for(const [key,value]of Object.entries(updates))if(F.includes(key))setv(key,value);render();queueAutosave();},
+  speechFactory:handlers=>makeLocalSpeechAdapter({
+    ...handlers,
+    onStatus:status=>{if(window.solarCopilotController){const st=window.solarCopilotController.getState();st.status=status;renderCopilot(st);}}
+  }),
+  onState:renderCopilot
+});
+
+(function wipeBannedSolarIdentity(){
+  const banned=["Illinois Shines","IL Shines","LightReach","Sara","SARA","Agent 32","Agent32","Nova Mobility","Helix Bio"];
+  const dirty=v=>banned.some(b=>String(v||'').toLowerCase().includes(String(b).toLowerCase()));
+  try{
+    const keys=[];
+    for(let i=0;i<localStorage.length;i++){ const k=localStorage.key(i); if(k) keys.push(k); }
+    for(const k of keys){
+      const raw=localStorage.getItem(k)||'';
+      if(dirty(raw) || /solar|forgefront|dce|repProfile|lead/i.test(k) && dirty(raw)){
+        // If this key holds solar identity pollution, drop it
+        if(dirty(raw)) localStorage.removeItem(k);
+      }
+    }
+  }catch(e){}
+  try{
+    if(typeof val==='function' && typeof setv==='function'){
+      if(dirty(val('companyIdentity'))) { setv('companyIdentity',''); setv('companyIdentityApproved', false); }
+      if(String(val('repId')||'')==='32') setv('repId','');
+      if(/justin\s*evans/i.test(String(val('repName')||''))) setv('repName','');
+    }
+  }catch(e){}
+})();
+
+(function seedTalkDefaults(){try{if(!val('repName')) setv('repName','the rep');if(!val('repId')) setv('repId','');if(!val('companyIdentity')) setv('companyIdentity','');setv('companyIdentityApproved', false);if(typeof captureRepProfile==='function') captureRepProfile();refreshTalkLeadStrip();}catch(e){}})();
+$('copilotListen').onclick=async()=>{if(!await startSolarCall())return;window.solarCopilotController.start();};
+$('copilotStop').onclick=async()=>{
+  window.solarCopilotController.stop();
+  stopTimer();
+  const latch=OperatorRuntime.appointmentLatch(data());
+  if(['APPOINTMENT','BILL_REQUEST','VERIFICATION','COMPLETE'].includes(session?.stage) && !latch.ok){
+    alert('Call ended. Appointment latch still missing: '+latch.missing.join(', ')+'. Tap BOOKED only after those are filled, or CALLBACK/DEAD.');
+  }
+  if(data().leadName||data().phone||data().email||data().address)await save().catch(()=>{});
+};
+$('copilotClear').onclick=()=>window.solarCopilotController.reset();
+$('copilotAccept').onclick=()=>window.solarCopilotController.acceptFields();
+$('copilotSubmit').onclick=()=>{const text=val('copilotManualText');setv('copilotManualText','');window.solarCopilotController.submitManual(text)};
+
+document.addEventListener('keydown',e=>{
+  if(e.ctrlKey&&e.key.toLowerCase()==='s'){e.preventDefault();save().catch(x=>alert(x.message));}
+  if(e.altKey&&e.key.toLowerCase()==='l'){e.preventDefault();solarLiveCall();}
+  if(e.altKey&&e.key.toLowerCase()==='p'){e.preventDefault();solarLeadQueue();}
+});
+
+function importWorkspace(text){const imported=JSON.parse(text);assertSafeStateIds(imported);return imported;}
+
+$("queueNew").onclick =
+  () => {
+    fresh();
+    showLive();
+  };
+
+$("queueRefresh").onclick =
+  renderBoard;
+
+
+F.forEach(k => {
+
+  $(k).addEventListener(
+    "input",
+    () => {
+      if(IDENTITY_KEYS.includes(k)) captureRepProfile();
+      render();
+      queueAutosave();
+    }
+  );
+
+  $(k).addEventListener(
+    "change",
+    () => {
+      if(IDENTITY_KEYS.includes(k)) captureRepProfile();
+      render();
+      queueAutosave();
+    }
+  );
+
+});
+
+
+if($('roamLinkBtn'))$('roamLinkBtn').onclick=()=>linkRoamAudioToDce().catch(()=>{});
+if($('roamUnlinkBtn'))$('roamUnlinkBtn').onclick=()=>unlinkRoamAudio();
+if($('objectionBackBtn'))$('objectionBackBtn').onclick=()=>backToObjectionMenu().catch(e=>alert(e.message));
+applyRepProfile();
+probeServer().then(()=>{fresh();applyRepProfile();setInterval(followSharedScreen,1000);});
+</script>
+
+</body>
+</html>
