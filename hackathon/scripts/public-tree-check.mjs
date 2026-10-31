@@ -4,7 +4,7 @@ import {resolve,dirname,join,relative,isAbsolute} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {publicFiles} from './public-set.mjs';
-import {auditPublicFiles} from './judge-check.mjs';
+import {auditPublicFiles,checkPublicLinks} from './judge-check.mjs';
 import {redactEvidence} from './public-evidence.mjs';
 const source=fileURLToPath(new URL('../../',import.meta.url));
 export function checkPublicTree(){
@@ -17,9 +17,9 @@ export function checkPublicTree(){
   if(!existsSync(npm))throw Error('Run through npm run check:public-tree so the npm entry is available');
   const tests=spawnSync(process.execPath,[npm,'test','--prefix','hackathon'],{cwd:temporary,env,encoding:'utf8',windowsHide:true,maxBuffer:32*1024*1024});
   process.stdout.write(redactEvidence((tests.stdout??'')+(tests.stderr??'')));
-  const scan=auditPublicFiles({root:temporary});
-  if(tests.error||tests.status!==0||scan.findings.length)throw Error('Public tree verification failed: '+JSON.stringify({testStatus:tests.status,findings:scan.findings}));
-  return {files:files.length,tests:'pass',scan:'pass',keys:'absent',rootPackage:'absent',cleanup:'removed'};
+  const scan=auditPublicFiles({root:temporary});const links=checkPublicLinks({root:temporary});
+  if(tests.error||tests.status!==0||(scan.findings.length||links.length))throw Error('Public tree verification failed: '+JSON.stringify({testStatus:tests.status,findings:scan.findings,links}));
+  return {files:files.length,tests:'pass',scan:'pass',links:'pass',keys:'absent',rootPackage:'absent',cleanup:'removed'};
  }finally{
   const path=resolve(temporary),parent=resolve(tmpdir()),rel=relative(parent,path);
   if(!rel||rel.startsWith('..')||isAbsolute(rel)||!rel.startsWith('ffr-public-tree-'))throw Error('Refuse unsafe temporary cleanup');

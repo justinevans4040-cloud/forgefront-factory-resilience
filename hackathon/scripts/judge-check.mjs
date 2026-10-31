@@ -14,6 +14,20 @@ export function auditPublicFiles({root:base=root}={}){
   }
   return {files:files.length,findings};
 }
+// Check public prose against the same exact copy set, including directory links.
+export function checkPublicLinks({root:base=root}={}){
+ const files=publicFiles(base),set=new Set(files),errors=[];
+ for(const file of files.filter(f=>/\.md$/i.test(f))){
+  const content=readFileSync(resolve(base,file),'utf8');
+  for(const match of content.matchAll(/(?:\]\(|(?:src|href)=["'])([^)"'\s]+)[)"']/g)){
+   const target=match[1];if(/^(?:https?:|mailto:|#)/i.test(target))continue;
+   const clean=decodeURIComponent(target.split(/[?#]/)[0]);
+   const path=relative(base,resolve(base,dirname(file),clean)).split(sep).join('/');
+   if(!set.has(path)&&!files.some(f=>f.startsWith(path.replace(/\/$/,'')+'/')))errors.push({file,target});
+  }
+ }
+ return errors;
+}
 export function checkReadmeCommands(text=read('README.md')){
   const errors=[];
   for(const match of text.matchAll(/(?:^|[`\n])npm\s+(?:(?:run)\s+)?([\w:-]+)([^\n`]*)/g)){
@@ -38,6 +52,6 @@ export function checkTrackedDemo({tracked=new Set(trackedFiles())}={}){
   return {required:[...required].sort(),missing:[...required].filter(p=>!tracked.has(p)||!existsSync(resolve(root,p))).sort()};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  const result={public:auditPublicFiles(),readme:checkReadmeCommands(),demo:checkTrackedDemo()};
-  console.log(JSON.stringify(result,null,2));process.exitCode=result.public.findings.length||result.readme.length||result.demo.missing.length?1:0;
+  const result={public:auditPublicFiles(),readme:[...checkReadmeCommands(),...checkReadmeCommands(read('hackathon/README.md'))],links:checkPublicLinks(),demo:checkTrackedDemo()};
+  console.log(JSON.stringify(result,null,2));process.exitCode=result.public.findings.length||result.readme.length||result.links.length||result.demo.missing.length?1:0;
 }

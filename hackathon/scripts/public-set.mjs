@@ -3,15 +3,20 @@ import {join} from 'node:path';
 const top=new Set(['README.md','LICENSE','.env.example','.gitignore','.github/workflows/ci.yml']);
 export function publicFiles(root){
  const out=[];
+ const evidence=join(root,'hackathon','evidence');
+ let newest=null;
+ try{newest=readdirSync(evidence,{withFileTypes:true}).filter(e=>e.isDirectory()&&/^run\d+$/.test(e.name)).map(e=>e.name).sort((a,b)=>Number(b.slice(3))-Number(a.slice(3)))[0]??null;}catch(error){if(error.code!=='ENOENT')throw error;}
  function walk(dir,prefix=''){
   for(const entry of readdirSync(dir,{withFileTypes:true})){
    const file=prefix+entry.name;
    if(entry.isSymbolicLink())throw Error('Public set refuses symbolic links');
    if(entry.isDirectory()){
+    if(/\.bak$/i.test(entry.name))continue;
+    if(prefix==='hackathon/evidence/'&&/^run\d+$/.test(entry.name)&&entry.name!==newest)continue;
     if(['.git','node_modules','data','evidence-backups','.playwright-cli'].includes(entry.name))continue;
     if(!prefix&&!['hackathon','assets','.github'].includes(entry.name))continue;
     walk(join(dir,entry.name),file+'/');
-   }else if(!/\.bak$/.test(file)&&(file.startsWith('hackathon/')||file.startsWith('assets/showcase/')||top.has(file)))out.push(file);
+   }else if(!/\.bak$/i.test(file)&&(file.startsWith('hackathon/')||file.startsWith('assets/showcase/')||top.has(file)))out.push(file);
   }
  }
  walk(root);return out.sort();

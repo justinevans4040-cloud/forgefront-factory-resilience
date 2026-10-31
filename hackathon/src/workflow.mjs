@@ -110,13 +110,13 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');
       if(jobs.size>=32){const done=[...jobs].find(([,j])=>j.status!=='running');if(done)jobs.delete(done[0]);else fail('JOB_CAPACITY');}
       const jobId=randomUUID();const job={jobId,actor:hash(actor),status:'running'};jobs.set(jobId,job);
-      this.investigate(client,operator).then(result=>{job.status='completed';job.result=result;},error=>{job.status='failed';job.failure=typeof error?.message==='string'&&error.message?error.message:'INVESTIGATION_FAILED_OR_STALE';});
+      this.investigate(client,operator,call=>{job.call=call;}).then(result=>{job.status='completed';job.result=result;},error=>{job.status='failed';job.failure=typeof error?.message==='string'&&error.message?error.message:'INVESTIGATION_FAILED_OR_STALE';});
       return {jobId,status:job.status};
     },
-    investigationStatus(jobId,actor){verify();const job=jobs.get(jobId);if(!job||job.actor!==hash(actor))fail('UNKNOWN_INVESTIGATION_JOB');const {actor:owner,...result}=job;return result;},
-    async investigate(client,operator={id:'local-operator',role:'operator'}){
+    investigationStatus(jobId,actor){verify();const job=jobs.get(jobId);if(!job||job.actor!==hash(actor))fail('UNKNOWN_INVESTIGATION_JOB');const {actor:owner,...result}=job;return {...result,...(job.call?{call:{...job.call,remainingMs:job.call.status==='waiting'?Math.max(0,job.call.timeoutMs-(Date.now()-job.call.startedAt)):0}}:{})};},
+    async investigate(client,operator={id:'local-operator',role:'operator'},progress=()=>{}){
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');active=true;const bound=snapshot;
-      try{const result=await investigate({snapshot:bound,client,secrets,record:async entry=>append('model_call',{...entry,operatorId:operator.id,operatorRole:operator.role})});const r={...result,operatorId:operator.id,operatorRole:operator.role};
+      try{const result=await investigate({snapshot:bound,client,secrets,progress,record:async entry=>append('model_call',{...entry,operatorId:operator.id,operatorRole:operator.role})});const r={...result,operatorId:operator.id,operatorRole:operator.role};
         if(snapshot.snapshotDigest!==bound.snapshotDigest)fail('STALE_INVESTIGATION');
         append('investigation_completed',r);runs.push(r);return r;
       }finally{active=false;}

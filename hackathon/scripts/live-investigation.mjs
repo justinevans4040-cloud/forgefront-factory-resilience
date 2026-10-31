@@ -17,6 +17,6 @@ for(const provider of ['wonder','baseten','fireworks']){
  outcomes.push({provider,ok:result.proposalValid && result.run.toolCalls>=2 && result.claims.accepted.length>0,stopReason:result.run.stopReason,turns:result.run.turns,toolCalls:result.run.toolCalls,validatedClaims:result.claims.accepted.length,rejectedClaims:result.claims.rejected.length,elapsedMs:result.run.elapsedMs,runId:result.runId});
  console.log(JSON.stringify(outcomes.at(-1)));
 }
-const evidence=new URL('../evidence/run8/investigation/',import.meta.url);mkdirSync(evidence,{recursive:true});
+const evidence=new URL('../evidence/investigation/',import.meta.url);mkdirSync(evidence,{recursive:true});
 for(const [name,value]of [['summary.json',outcomes],['packet.json',workflow.exportPacket()]]){const file=new URL(name,evidence);writeEvidence(file,JSON.stringify(value,null,2));}
 if(outcomes.some(r=>!r.ok))process.exitCode=1;

@@ -8,7 +8,7 @@ This section supersedes historical public-readiness descriptions below. The publ
 
 The sign-in screen supplies the isolated rehearsal token on screen, explains private operator provisioning and starts no inference. Route guidance separates configured live Spark Open/Wonder from explicit offline Sample. Empty, pending, elapsed slow-wait, complete and stopped states are visible. The indeterminate activity indicator never invents a completion percentage. A twelve-second status-request deadline and an overall bounded browser wait stop a disconnected view; server inference retains its independent one-minute bound. No automatic provider retry, model switch or replacement narrative is introduced. Controlled slow/timeout evidence is labeled controlled and is separate from genuine live calls.
 
-Fresh verification evidence is in evidence/run9/. Desktop and mobile-width live guided flows include same-snapshot Spark Open and Wonder, typed advisory acceptance, second-shock invalidation, fresh acceptance, ledger verification, encrypted export and checkpoint inspection. Responsive emulation is not a physical-phone result. Model identity remains provider-reported. Human filming, upload, rights/eligibility/account checks, signed-out link checks and signed-in form submission remain owner actions. No external completion or certification is claimed.
+Fresh verification evidence is in evidence/README.md Desktop and mobile-width live guided flows include same-snapshot Spark Open and Wonder, typed advisory acceptance, second-shock invalidation, fresh acceptance, ledger verification, encrypted export and checkpoint inspection. Responsive emulation is not a physical-phone result. Model identity remains provider-reported. Human filming, upload, rights/eligibility/account checks, signed-out link checks and signed-in form submission remain owner actions. No external completion or certification is claimed.
 
 # Security controls map (Meta Hackathon build)
 
@@ -66,7 +66,7 @@ Meta model output (`operationalRelease` always false).
 - Unknown meta routes no longer invoke providers; prototype workflow paths return 404.
 - Tests: `tests/unit/audit-hardening.test.mjs` plus expanded `operators.test.mjs`.
 
-Secret-scan adjudication: the legacy empty root env template causes two multiline variable-name false positives in the extra working-tree scan. gitleaks.toml extends default rules with an exact path AND literal-variable-name match; synthetic nonempty credentials remain detected in three regression cases. Required history scan and product scan use default rules. See evidence/run4/SECRET_SCAN_NOTES.md. No broad detector or file exclusion is used.
+Secret-scan adjudication: the legacy empty root env template causes two multiline variable-name false positives in the extra working-tree scan. gitleaks.toml extends default rules with an exact path AND literal-variable-name match; synthetic nonempty credentials remain detected in three regression cases. Required history scan and product scan use default rules. See evidence/README.md No broad detector or file exclusion is used.
 
 Named identity tests: integration/operators.test.mjs proves separate seats, named decision attribution, auditor-denied mutations and diagnostic inference, auditor-allowed checkpoint/report/verify, cross-session confirm denial, usable read/export permissions and fail-closed invalid/duplicate config. Browser smoke verifies visible named auditor identity and read-only controls. Operator secrets are included in centralized redaction and remain env-only. No self-asserted identity or privilege is accepted from workflow request bodies.
 
@@ -100,7 +100,7 @@ Encrypted evidence packet export is now the primary UI action, available to auth
 
 Use a strong unique export passphrase; minimum length does not prove entropy. Losing it loses access. Securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json` to produce intentional plaintext for inspection/checkpoint verification. The decoder refuses an existing output; wrong password or modified ciphertext fails authentication. Keep passphrase, decrypted packet and independently retained checkpoint secure and separate.
 
-Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. independent audit four pinned explicit scrypt options, added clock-rollback / persist-failure / corrupt-quota startup coverage, clarified the advanced plaintext wording, and extended this control map. Current counts, scans, process cleanup and browser evidence are recorded in evidence/run6/ and this control map. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No SOC 2 certification. No external account, eligibility, filming, publication or submission evidence is invented.
+Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. independent audit four pinned explicit scrypt options, added clock-rollback / persist-failure / corrupt-quota startup coverage, clarified the advanced plaintext wording, and extended this control map. Current counts, scans, process cleanup and browser evidence are recorded in evidence/README.md and this control map. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No SOC 2 certification. No external account, eligibility, filming, publication or submission evidence is invented.
 
 
 ## Build run seven / independent audit five controls
@@ -113,18 +113,18 @@ Run seven (build run) added shared UI/API export-passphrase strength feedback, r
 - `API_CONTRACT.md` and `EVAL_SPEC.md` no longer describe length-only export rejection or automatic transient retry as current behavior.
 - Historical run-four “single transient retry” wording in `HACKATHON_CONTRIBUTIONS.md` is marked superseded by run seven.
 
-Evidence: `tests/unit/run7-readiness.test.mjs`, `tests/integration/run7-cold-start.test.mjs`, `tests/unit/audit5-hardening.test.mjs`, `evidence/run7/`, `SECURITY_CONTROLS.md (independent audit 5)`. Targeted accessibility coverage is not a WCAG certification. No SOC 2 certification. Physical-phone filming, eligibility, form submission and public release remain owner actions.
+Evidence: `tests/unit/run7-readiness.test.mjs`, `tests/integration/run7-cold-start.test.mjs`, `tests/unit/audit5-hardening.test.mjs`, `evidence/README.md`, `SECURITY_CONTROLS.md (independent audit 5)`. Targeted accessibility coverage is not a WCAG certification. No SOC 2 certification. Physical-phone filming, eligibility, form submission and public release remain owner actions.
 
 
 ## Build run eight public evidence and review controls
 
 | Control theme | Implementation | Tests / evidence | Limit |
 |---|---|---|---|
-| Public artifact minimization | scripts/public-evidence.mjs shared by retained diagnostic writers; scripts/capture-evidence.mjs retains child exit code; test runner redacts output | tests/unit/run8-public-readiness.test.mjs; evidence/run8/judge-check.txt | Active text filtering, not history removal or proof that arbitrary sensitive prose is safe |
+| Public artifact minimization | scripts/public-evidence.mjs shared by retained diagnostic writers; scripts/capture-evidence.mjs retains child exit code; test runner redacts output | tests/unit/run8-public-readiness.test.mjs; evidence/README.md | Active text filtering, not history removal or proof that arbitrary sensitive prose is safe |
 | Reproducible judge entry | scripts/judge-check.mjs checks README scripts and tracked demo import/asset closure; cold-start test launches the real entry | run8-public-readiness; run7-cold-start | No clone/pristine-checkout claim; new review files need inclusion by independent review |
 | Least-privilege CI | Root .github/workflows/ci.yml, contents: read, commit-pinned actions, checksum-pinned gitleaks CLI; no provider secrets | run8-public-readiness CI assertions; local suites/scans | Hosted run for uncommitted diff cannot be claimed |
-| Accessible decision transitions | public/app.mjs and index.html focus/name/description changes; visible focus in style.css | scripts/browser-smoke.mjs real keyboard and CDP tree checks; evidence/run8/browser and browser-mobile | Targeted automated coverage, no WCAG conformance or physical-phone certification |
-| Public path scrub (profile / file URL / mirror names) | `scripts/judge-check.mjs` `auditPublicFiles` rejects Windows user-profile absolute paths, local file-URL drive roots, and named Desktop mirror-folder labels in tracked public text; evidence writers emit redacted/`Desktop/<role-mirror>/` relative destinations only | `tests/unit/run8-public-readiness.test.mjs` path-scrub assertions; mirror JSON under `evidence/run5`–`run8` | Historical scope note: the current check scopes by the public set above; internal files and ignored backups are not published. Git history is not rewritten |
+| Accessible decision transitions | public/app.mjs and index.html focus/name/description changes; visible focus in style.css | scripts/browser-smoke.mjs real keyboard and CDP tree checks; evidence/README.md and browser-mobile | Targeted automated coverage, no WCAG conformance or physical-phone certification |
+| Public path scrub (profile / file URL / mirror names) | `scripts/judge-check.mjs` `auditPublicFiles` rejects Windows user-profile absolute paths, local file-URL drive roots, and named Desktop mirror-folder labels in tracked public text; evidence writers emit redacted/`Desktop/<role-mirror>/` relative destinations only | `tests/unit/run8-public-readiness.test.mjs` path-scrub assertions; mirror JSON under `evidence/README.md`–`run8` | Historical scope note: the current check scopes by the public set above; internal files and ignored backups are not published. Git history is not rewritten |
 | Approval-expiry regression under load | Root consent TTL uses returned `expiresAt` wait plus poll; `APPROVAL_TTL_SEC=3` leaves headroom for parallel suite load | `tests/round8.test.mjs` H1 | Wall-clock expiry remains process-local; not a distributed clock claim |
 
 ## Independent audit six controls
@@ -142,7 +142,7 @@ Audit-two-through-five protections remain mandatory and unchanged: fail-closed p
 | Theme | Control and evidence | Boundary |
 |---|---|---|
 | Confidentiality / artifact minimization | Exact public-set scanner, UTF-16 decoding and fail-closed unreadable text; scripts/public-set.mjs, scripts/judge-check.mjs, tests/unit/run9-public-tree.test.mjs | No history rewrite or arbitrary-prose confidentiality certification |
-| Change assurance / reproducibility | Public file-copy verification without provider keys or internal packages; scripts/public-tree-check.mjs and evidence/run9/public-tree.txt | Local copy proof; hosted CI and publication remain separate |
+| Change assurance / reproducibility | Public file-copy verification without provider keys or internal packages; scripts/public-tree-check.mjs and evidence/README.md | Local copy proof; hosted CI and publication remain separate |
 | Availability / honest failure | Elapsed wait status, bounded status requests, stopped-state guidance; public/investigation-status.mjs, tests/unit/run9-demo.test.mjs, live and controlled browser evidence | No provider uptime guarantee, automatic retry or operational release |
 
 This maps SOC 2-style themes only. It is not SOC 2 certification, attestation or a production safety claim.
@@ -152,8 +152,31 @@ This maps SOC 2-style themes only. It is not SOC 2 certification, attestation or
 | Control theme | Implementation | Test / evidence | Honest gap |
 |---|---|---|---|
 | Public-set publishability | Exact enumerator + forbidden-term/date/encoding scan across the public file set; UTF-16 historical evidence re-encoded and path-sanitized; evidence writers emit relative paths only | `check:judge`, `run9-public-tree.test.mjs`, `run8-public-readiness.test.mjs`; 425 public files, 0 findings this audit | Ignored backups and git history are not rewritten; future prose still needs review before copy |
-| Public-tree self-sufficiency | `check:public-tree` copies only the public set, strips provider keys, runs hackathon tests + scan, removes the temp copy; CI runs public commands and optionally root `npm test` only when root `package.json` exists | `public-tree-check.mjs`; evidence/run9/public-tree.txt; CI workflow assertions | Hosted CI for the published candidate remains an external verification step |
+| Public-tree self-sufficiency | `check:public-tree` copies only the public set, strips provider keys, runs hackathon tests + scan, removes the temp copy; CI runs public commands and optionally root `npm test` only when root `package.json` exists | `public-tree-check.mjs`; evidence/README.md; CI workflow assertions | Hosted CI for the published candidate remains an external verification step |
 | Mock live-brief isolation | Root mock live meta-brief tests require health-label identity, mock hit counts, and reject fixture `COMPLETE` masquerading as a bypass result; nested suite strips inherited provider keys | `tests/round11-13-stepladder-fixes.test.mjs`, `tests/round17-stepladder-fixes.test.mjs` nested env scrub | Parallel port reuse remains an OS-level risk; identity checks reduce but do not certify zero races |
 | Judge README integrity | Five `assets/showcase` images remain byte-for-byte unchanged; broken forbidden-term substitution in landing prose corrected without reintroducing restricted wording | Showcase SHA256 vs HEAD; `auditPublicFiles` clean | Captions/dates on images remain forbidden; no visual redesign claimed |
 
 Audit-two-through-six protections remain mandatory. This map is **not** SOC 2 certification.
+
+## The Meta Hackathon build — current control mapping
+
+| SOC 2-style theme | Control and proof | Limit |
+| --- | --- | --- |
+| Confidentiality and change assurance | Newest-run public evidence selection; case-insensitive backup-file/directory exclusion; all public Markdown/image links checked by both judge and isolated-copy checks; run10-judge.test.mjs | Older data is retained locally. No history rewrite, certification or remote publication is implied |
+| Availability and failure transparency | Real provider pre-flight GREEN/RED with no retries; owner-bound per-call timeout metadata from the exact provider request; stopped call keeps a single failure; progress and provider timeout/429 tests | Point-in-time response and provider-reported identity only; network latency is not completion progress |
+| Usability verification | Offline real keyboard decision path, visible focus, landmarks/control names, ARIA targets and tested sRGB contrast calculation | Targeted checks only; no WCAG certification, screen-reader audit or physical-phone result |
+
+See [current evidence](evidence/README.md). All audit-two-through-seven runtime guards remain required. The new progress field contains timing/status only, not prompts, credentials or raw responses; it is returned only through existing session-owned job polling. No endpoint or role permission is added.
+
+## Independent audit eight controls
+
+| Control theme | Implementation | Test / evidence | Boundary |
+|---|---|---|---|
+| Judge-facing copy integrity | Root and hackathon README pitches lead with product capability; hedge phrases and internal field names stay out of the landing pitch | `tests/unit/run10-judge.test.mjs` copy-standard assertions; root README vs approved landing style | Operational docs retain precise control language; landing pitch invents no features |
+| Public evidence path scrub | Public set includes the newest numbered run; profile paths, local file-URL drives and mirror-folder labels remain rejected across that set including run10 | `run8-public-readiness.test.mjs`, `run10-judge.test.mjs` path-scrub coverage; `check:judge` | Ignored backups and git history are not rewritten |
+| Provider pre-flight confidentiality | `scripts/provider-check.mjs` reports GREEN/RED from one nonce/identity call per route; env key values never appear in results or evidence | `run10-judge.test.mjs` credential-echo denial; `evidence/run10/providers.json` | Point-in-time route health only |
+| Per-call timeout honesty | Owner-bound investigation status exposes call number, remaining ms and configured timeout; UI countdowns use that metadata | `investigation-status.mjs`, `workflow.mjs`, `run10-judge.test.mjs` | Remaining time is budget remaining, not completion percent |
+| Offline accessibility path | Keyboard-only Sample flow with landmarks, names, focus, contrast and mobile overflow; inherited live flags cannot activate providers | `accessibility.mjs`, `browser-options.mjs`, `check:a11y`, run10 browser-offline evidence | Targeted checks; not WCAG or physical-phone certification |
+| Lean public set | Newest-run selection plus shared evidence; backup files/directories excluded; public links must resolve inside the set | `public-set.mjs`, `public-tree-check.mjs`, `run10-judge.test.mjs` | Older runs retained locally outside publication |
+
+Audit-two-through-seven protections remain mandatory. This map is SOC 2-style control mapping only and is not SOC 2 certification.

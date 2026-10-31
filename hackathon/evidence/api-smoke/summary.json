@@ -10,9 +10,9 @@
       "passed": true,
       "status": "PASS",
       "returnedModel": "muse-wonder-1.0",
-      "requestId": "resp_6ae600838cd8426459024ee5",
-      "text": "SMOKE_OK_9e6ca34a16d73214",
-      "elapsedMs": 2072
+      "requestId": "resp_6ae67252413ee4449619498e",
+      "text": "SMOKE_OK_62e8a09c9f614b09",
+      "elapsedMs": 1134
     },
     {
       "provider": "spark-baseten",
@@ -23,9 +23,9 @@
       "passed": true,
       "status": "PASS",
       "returnedModel": "meta-models/muse-spark-open",
-      "requestId": "chatcmpl-c03774f26e504000bed4f4a88e562f80",
-      "text": "SMOKE_OK_9e6ca34a16d73214",
-      "elapsedMs": 1181
+      "requestId": "chatcmpl-22103517f881411383ca4bdf825ab0dc",
+      "text": "SMOKE_OK_62e8a09c9f614b09",
+      "elapsedMs": 856
     },
     {
       "provider": "spark-fireworks",
@@ -36,9 +36,9 @@
       "passed": true,
       "status": "PASS",
       "returnedModel": "accounts/fireworks/models/muse-spark-open",
-      "requestId": "chatcmpl-19a263b775074e0294a4dd41d0dccf41",
-      "text": "SMOKE_OK_9e6ca34a16d73214",
-      "elapsedMs": 4441
+      "requestId": "chatcmpl-bab94968251f4dff8596aa98d2f9ee3c",
+      "text": "SMOKE_OK_62e8a09c9f614b09",
+      "elapsedMs": 7461
     }
   ]
 }

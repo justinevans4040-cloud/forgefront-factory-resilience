@@ -52,13 +52,13 @@ function render(){
 }
 $('login').addEventListener('submit',event=>{event.preventDefault();busy($('login').querySelector('button'),async()=>{const response=await fetch('/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+$('admin').value},signal:AbortSignal.timeout(12000)});$('admin').value='';const s=await response.json();if(!response.ok)throw new Error(s.error?.message??'Authentication failed');auth={'X-CSRF-Token':s.csrf};await refresh();$('guide-title').focus();notice('Recovery room open. Inspect evidence, then choose an investigation route.');});});
 $('investigate').addEventListener('click',()=>busy($('investigate'),async()=>{
- const route=$('provider').selectedOptions[0].textContent,start=Date.now();
- const update=()=>{$('investigation-status').textContent=investigationStatus({phase:'running',elapsedMs:Date.now()-start,route});};
+ const route=$('provider').selectedOptions[0].textContent,start=Date.now();let observedCall=null,observedAt=0;
+ const update=()=>{$('investigation-status').textContent=investigationStatus({phase:'running',elapsedMs:Date.now()-start,route,call:observedCall?{...observedCall,remainingMs:Math.max(0,observedCall.remainingMs-(Date.now()-observedAt))}:null});};
  $('investigation-pending').hidden=false;$('model-output').hidden=true;update();const timer=setInterval(update,1000);
  try{
   notice('Selected route: '+route+'. Investigating with read-only tools. Live runs are bounded to six turns and one minute.');
   const job=await api('investigation-start',{provider:$('provider').value});let result;
-  do{if(Date.now()-start>65000)throw Error('Status wait exceeded. The server job remains bounded; refresh status before a deliberate new attempt.');await new Promise(r=>setTimeout(r,700));result=await api('investigation-status',{jobId:job.jobId});}while(result.status==='running');
+  do{if(Date.now()-start>65000)throw Error('Status wait exceeded. The server job remains bounded; refresh status before a deliberate new attempt.');await new Promise(r=>setTimeout(r,700));result=await api('investigation-status',{jobId:job.jobId});observedCall=result.call??null;observedAt=Date.now();update();}while(result.status==='running');
   if(result.status==='failed'){await refresh();throw Error((result.failure||'INVESTIGATION_FAILED_OR_STALE')+'. No replacement answer was generated. Select the route and press Investigate to retry explicitly.');}
   await refresh();
   $('investigation-status').textContent=investigationStatus({phase:run?.proposalValid?'complete':'failed',route});

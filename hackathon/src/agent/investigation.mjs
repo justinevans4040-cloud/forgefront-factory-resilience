@@ -6,11 +6,12 @@ import { buildEvidenceRegistry } from '../domain/evidence.mjs';
 import { redactSecrets } from '../security/redact.mjs';
 
 const digest = value => createHash('sha256').update(value).digest('hex');
-export async function investigate({snapshot,client,record=async()=>{},secrets=[]}) {
+export async function investigate({snapshot,client,record=async()=>{},secrets=[],progress=()=>{}}) {
   const runId=randomUUID(); const calls=[]; let final=null;
   const clean=value=>redactSecrets(value,secrets);
   const wrapped={...client, async complete(request){
     let started=Date.now(); let result; let status='rejected'; let failure=null;
+    progress({number:calls.length+1,status:'waiting',startedAt:started,timeoutMs:request.timeoutMs});
     try {
       // A tested JSON envelope is shared across Responses and Chat Completions.
       // No native Wonder tool support is assumed.
@@ -40,7 +41,7 @@ export async function investigate({snapshot,client,record=async()=>{},secrets=[]
     }catch(error){failure=error?.name==='AbortError'?'MODEL_TIMEOUT':error?.status ? `MODEL_HTTP_${error.status}` : ['MODEL_IDENTITY_MISMATCH','INVALID_MODEL_ENVELOPE'].includes(error.message)?error.message:'INVALID_OR_FAILED_MODEL_RESPONSE'; throw new Error(failure);}
     finally {
       const entry=clean({type:'model_call',runId,snapshotDigest:snapshot.snapshotDigest,provider:client.route?.provider??null,requestedModel:client.route?.model??null,returnedModel:result?.modelId??null,requestId:result?.requestId??null,mode:client.mode,sample:Boolean(client.sample),status,failure,latencyMs:Date.now()-started,usage:result?.usage??null,responseDigest:result?.text?digest(result.text):null,protocol:'JSON_ENVELOPE',operationalRelease:false});
-      calls.push(entry);await record(entry);
+      calls.push(entry);await record(entry);progress({number:calls.length,status:failure?'stopped':'returned',startedAt:started,timeoutMs:request.timeoutMs});
     }
   }};
   const run=await createAgentLoop().run({snapshot,tools:createToolDispatcher(snapshot),modelClient:wrapped});

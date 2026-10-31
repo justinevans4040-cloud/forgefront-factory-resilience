@@ -25,3 +25,7 @@ The independent fixture additions and scoped documentation were retained. The re
 ## Verified provider execution
 
 All three configured Meta routes passed live nonce-and-returned-model checks in evidence/api-smoke. Baseten needs a completion budget that includes reasoning tokens; the smoke reserves 1024 tokens and still requires an exact final nonce. Authenticated, session-bound and CSRF-protected diagnostic requests returned live text from all three providers. Provider-reported identity is not independent attestation. See server.json for sanitized route results.
+
+## The Meta Hackathon build — presenter pre-flight
+
+From the repository root run `npm run check:providers --prefix hackathon`. It sends one actual nonce/identity request to each configured allowlisted route and reports GREEN/RED without keys, with a one-minute per-request deadline. Missing credentials and failed requests remain RED; the exit code is nonzero if any route is RED. It performs no automatic retry or route switch. Wonder resolves MUSE_API_KEY then MODEL_API_KEY; the Spark Open hosts use their own keys. This is a point-in-time access check, not a provider uptime or account-credit claim. Retained results are linked from the [evidence index](../evidence/README.md).

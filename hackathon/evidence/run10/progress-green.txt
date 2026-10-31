@@ -1,0 +1,11 @@
+✔ contrast calculation rejects low contrast and accepts the key text palette (1.6016ms)
+✔ owner-bound running job exposes only call timing and preserves single failure evidence (368.6604ms)
+✔ per-call countdown distinguishes each bounded request from overall wait (0.4434ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 444.7806

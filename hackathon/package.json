@@ -21,6 +21,8 @@
     "test:integration": "node scripts/test.mjs integration",
     "start": "node server.mjs",
     "check:judge": "node scripts/judge-check.mjs",
-    "check:public-tree": "node scripts/public-tree-check.mjs"
+    "check:public-tree": "node scripts/public-tree-check.mjs",
+    "check:providers": "node scripts/provider-check.mjs",
+    "check:a11y": "node scripts/browser-smoke.mjs --keyboard"
   }
 }

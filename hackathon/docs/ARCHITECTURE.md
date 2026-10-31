@@ -1,6 +1,6 @@
 # Recovery-room architecture
 
-Synthetic manufacturing data and illustrative costs only. Meta models investigate and explain; deterministic code controls feasibility. Every advisory decision keeps operationalRelease false. Current implementation evidence belongs to the root run-six report and evidence/run6; this document is not a compliance or safety certification.
+Synthetic manufacturing data and illustrative costs only. Meta models investigate and explain; deterministic code controls feasibility. Every advisory decision keeps operationalRelease false. Current implementation evidence belongs to the root run-six report and ../evidence/README.md; this document is not a compliance or safety certification.
 
 ```mermaid
 flowchart TD
@@ -47,7 +47,7 @@ Encrypted evidence packet export is now the primary UI action, available to auth
 
 Use a strong unique export passphrase; minimum length does not prove entropy. Losing it loses access. Securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json` to produce intentional plaintext for inspection/checkpoint verification. The decoder refuses an existing output; wrong password or modified ciphertext fails authentication. Keep passphrase, decrypted packet and independently retained checkpoint secure and separate.
 
-Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. Current counts, scans, process cleanup and browser evidence are recorded in the evidence/run6/ and evidence/run6. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No external account, eligibility, filming, publication or submission evidence is invented.
+Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. Current counts, scans, process cleanup and browser evidence are recorded in the ../evidence/README.md and ../evidence/README.md. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No external account, eligibility, filming, publication or submission evidence is invented.
 
 
 ## Build run seven candidate controls
@@ -58,7 +58,7 @@ Provider errors stop the investigation with recorded failure, no substitute narr
 
 Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
 
-Current-run evidence is under evidence/run7 and the evidence/run7/. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. The source repository is public for judging as reported by the owner; filming and submission are not claimed. Independent review must audit the uncommitted diff before an actual freeze.
+Current-run evidence is under ../evidence/README.md and the ../evidence/README.md Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. The source repository is public for judging as reported by the owner; filming and submission are not claimed. Independent review must audit the uncommitted diff before an actual freeze.
 
 
 ```mermaid

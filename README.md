@@ -15,6 +15,58 @@ A disputed material certificate can freeze production for days while teams chase
 - **Provable decisions** — hash-chained, HMAC-anchored ledger with encrypted export and an independent checkpoint verifier.
 - **Zero dependencies** — one command, no install, no build step.
 
+## Run it in 60 seconds
+
+Node.js 20+ and a browser. Nothing to install.
+
+```sh
+# Meta keys in the server environment
+export MUSE_API_KEY=...          # Muse Wonder (Meta Model API)
+export BASETEN_API_KEY=...       # Muse Spark Open (Baseten)
+export FIREWORKS_API_KEY=...     # Muse Spark Open (Fireworks)
+
+npm run demo --prefix hackathon
+```
+
+Open **http://127.0.0.1:8791**, sign in with the rehearsal token shown on screen, and click **Start guided synthetic scenario**. No keys handy? Pick **SAMPLE - OFFLINE; NO LIVE AI** in the route selector to walk the full workflow offline. Before filming, run `npm run check:providers --prefix hackathon` for a GREEN/RED live route check. More options in the [run guide](hackathon/RUN_GUIDE.md).
+
+## 3-minute demo path
+
+1. **Understand** — start the guided scenario and open the certificate discrepancy and its source records.
+2. **Investigate** — run Muse Spark Open, then Muse Wonder, on the same snapshot. Compare validated claims, tool traces and latency.
+3. **Decide** — weigh replenishment, verified substitution and split-capacity plans, then accept one by typing its exact consent phrase.
+4. **Challenge** — take a machine offline. Watch the earlier acceptance get invalidated, re-investigate and accept a revised plan.
+5. **Prove** — verify the tamper-evident ledger and export an encrypted evidence packet with its independent checkpoint.
+
+The guide advances on real application state. Shot-by-shot: [demo runbook](hackathon/docs/DEMO_RUNBOOK.md).
+
+## How Meta models are used
+
+| Model | Host | What it does |
+|---|---|---|
+| **Muse Spark Open** (`meta-models/muse-spark-open`) | Baseten | The investigator: drives a bounded loop of read-only evidence and calculation tools to trace the certificate discrepancy and test recovery options |
+| **Muse Spark Open** (`accounts/fireworks/models/muse-spark-open`) | Fireworks | The same investigator on a second host, selectable per run |
+| **Muse Wonder** (`muse-wonder-1.0`) | Meta Model API | The strategist: writes the recovery story and counterfactual tradeoffs for the plans on the table |
+
+Meta models are the only AI in the product, locked to an allowlist of these exact routes. The observed-run comparison shows each model's identity, latency and accepted versus rejected claims on the same snapshot. Details: [Meta model usage](hackathon/docs/META_MODEL_USAGE.md).
+
+```mermaid
+flowchart TD
+  UI[Browser recovery room] --> API[Loopback Node server: session, CSRF, quotas]
+  API --> Engine[Deterministic snapshot and recovery engine]
+  API --> Agent[Bounded read-only investigation]
+  Agent --> Wonder[Muse Wonder / Meta Model API]
+  Agent --> Spark[Muse Spark Open / Baseten or Fireworks]
+  Agent --> Tools[Allowlisted evidence and calculation tools]
+  Tools --> Engine
+  Agent --> Claims[Exact source claim validation]
+  Claims --> Human[Human review and typed consent]
+  Human --> Ledger[Encrypted events and HMAC anchor]
+  Ledger --> Export[Encrypted packet and independent checkpoint]
+  Engine --> UI
+  Export --> UI
+```
+
 ## Manufacturing contexts
 
 ### Aircraft production
@@ -41,60 +93,6 @@ Recovery comparisons account for inventory, production orders, work cells and ma
 
 Material investigation, CNC scheduling and recovery comparison live in the same workflow, so operators can examine affected jobs, compare material and capacity choices, and preserve the evidence behind their response.
 
-## How Meta powers it
-
-| Model | Host | What it does |
-|---|---|---|
-| **Muse Spark Open** (`meta-models/muse-spark-open`) | Baseten | The investigator: drives a bounded loop of read-only evidence and calculation tools to trace the certificate discrepancy and test recovery options |
-| **Muse Spark Open** (`accounts/fireworks/models/muse-spark-open`) | Fireworks | The same investigator on a second host, selectable per run |
-| **Muse Wonder** (`muse-wonder-1.0`) | Meta Model API | The strategist: writes the recovery story and counterfactual tradeoffs for the plans on the table |
-
-Meta models are the only AI in the product, locked to an allowlist of these exact routes. The observed-run comparison shows each model's identity, latency and accepted versus rejected claims on the same snapshot. Details: [Meta model usage](hackathon/docs/META_MODEL_USAGE.md).
-
-## 60-second quick start
-
-Node.js 20+ and a browser. Nothing to install.
-
-```sh
-# Meta keys in the server environment
-export MUSE_API_KEY=...          # Muse Wonder (Meta Model API)
-export BASETEN_API_KEY=...       # Muse Spark Open (Baseten)
-export FIREWORKS_API_KEY=...     # Muse Spark Open (Fireworks)
-
-npm run demo --prefix hackathon
-```
-
-Open **http://127.0.0.1:8791**, sign in with the rehearsal token shown on screen, and click **Start guided synthetic scenario**. No keys handy? Pick **SAMPLE - OFFLINE; NO LIVE AI** in the route selector to walk the full workflow offline. More options in the [run guide](hackathon/RUN_GUIDE.md).
-
-## The 3-minute walkthrough
-
-1. **Understand** — start the guided scenario and open the certificate discrepancy and its source records.
-2. **Investigate** — run Muse Spark Open, then Muse Wonder, on the same snapshot. Compare validated claims, tool traces and latency.
-3. **Decide** — weigh replenishment, verified substitution and split-capacity plans, then accept one by typing its exact consent phrase.
-4. **Challenge** — take a machine offline. Watch the earlier acceptance get invalidated, re-investigate and accept a revised plan.
-5. **Prove** — verify the tamper-evident ledger and export an encrypted evidence packet with its independent checkpoint.
-
-The guide advances on real application state. Shot-by-shot: [demo runbook](hackathon/docs/DEMO_RUNBOOK.md).
-
-## Architecture
-
-```mermaid
-flowchart TD
-  UI[Browser recovery room] --> API[Loopback Node server: session, CSRF, quotas]
-  API --> Engine[Deterministic snapshot and recovery engine]
-  API --> Agent[Bounded read-only investigation]
-  Agent --> Wonder[Muse Wonder / Meta Model API]
-  Agent --> Spark[Muse Spark Open / Baseten or Fireworks]
-  Agent --> Tools[Allowlisted evidence and calculation tools]
-  Tools --> Engine
-  Agent --> Claims[Exact source claim validation]
-  Claims --> Human[Human review and typed consent]
-  Human --> Ledger[Encrypted events and HMAC anchor]
-  Ledger --> Export[Encrypted packet and independent checkpoint]
-  Engine --> UI
-  Export --> UI
-```
-
 ## Security built in
 
 - **Session and CSRF protection** with Host/Origin checks on every request.
@@ -114,10 +112,12 @@ Full control mapping: [SECURITY_CONTROLS.md](hackathon/SECURITY_CONTROLS.md).
 npm test --prefix hackathon
 npm run check:judge --prefix hackathon
 npm run check:public-tree --prefix hackathon
+npm run check:providers --prefix hackathon
+npm run check:a11y --prefix hackathon
 npm run smoke:browser --prefix hackathon
 ```
 
-The suite runs without credentials and covers recovery arithmetic, provider allowlists, evidence rejection, consent replay, ledger recovery, quotas and exports. Recorded results: [`hackathon/evidence/run9/public-tree.txt`](hackathon/evidence/run9/public-tree.txt).
+The suite runs without credentials and covers recovery arithmetic, provider allowlists, evidence rejection, consent replay, ledger recovery, quotas and exports. Current proof index: [`hackathon/evidence/README.md`](hackathon/evidence/README.md).
 
 ## Contributions and license
 

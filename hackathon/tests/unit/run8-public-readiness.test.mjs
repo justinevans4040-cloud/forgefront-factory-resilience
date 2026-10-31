@@ -45,9 +45,9 @@ test('public docs point verification outcomes at in-tree evidence folders',()=>{
  assert.doesNotMatch(rootReadme,/handoff report|root build report/i);
  assert.doesNotMatch(hackReadme,/\bin the build report\b/i);
  assert.doesNotMatch(gates,/root build report/i);
- assert.match(rootReadme,/hackathon\/evidence\/run9\/public-tree\.txt/);
- assert.match(hackReadme,/evidence\/run9\//);
- assert.match(gates,/evidence\/run9\//);
+ assert.match(rootReadme,/hackathon\/evidence\/README\.md/);
+ assert.match(hackReadme,/evidence\/README\.md/);
+ assert.match(gates,/evidence\/README\.md/);
 });
 test('tracked demo dependency closure needs no ignored or untracked files and detects omissions',async()=>{
  const {checkTrackedDemo}=await import('../../scripts/judge-check.mjs');const result=checkTrackedDemo();assert.deepEqual(result.missing,[]);assert.ok(result.required.includes('hackathon/public/passphrase.mjs'));assert.ok(result.required.includes('hackathon/fixtures/scenario-v1.json'));

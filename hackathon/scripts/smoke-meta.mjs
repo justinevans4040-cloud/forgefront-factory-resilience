@@ -3,7 +3,7 @@ import { mkdir } from 'node:fs/promises';
 import { randomBytes } from 'node:crypto';
 import { createWonderClient } from '../src/models/wonder.mjs';
 import { createSparkOpenClient } from '../src/models/spark-open.mjs';
-import { WONDER_ROUTE, SPARK_BASETEN_ROUTE, SPARK_FIREWORKS_ROUTE } from '../src/models/routes.mjs';
+import { resolveWonderApiKey, WONDER_ROUTE, SPARK_BASETEN_ROUTE, SPARK_FIREWORKS_ROUTE } from '../src/models/routes.mjs';
 
 export function redact(value, env = process.env) {
   let text = String(value);
@@ -13,7 +13,7 @@ export function redact(value, env = process.env) {
   return redactEvidence(text,env).replace(/Bearer\s+[^\s"']+/gi, 'Bearer [REDACTED]');
 }
 
-export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch } = {}) {
+export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch, timeoutMs = 60000 } = {}) {
   const nonce = `SMOKE_OK_${randomBytes(8).toString('hex')}`;
   const results = [];
   for (const [provider, route, authEnv] of [
@@ -21,16 +21,17 @@ export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch
     ['spark-baseten', SPARK_BASETEN_ROUTE, 'BASETEN_API_KEY'],
     ['spark-fireworks', SPARK_FIREWORKS_ROUTE, 'FIREWORKS_API_KEY'],
   ]) {
+    const key = provider === 'wonder' ? resolveWonderApiKey(env) : env[authEnv];
     const record = { provider, endpoint: route.endpoint, requestedModel: route.model, authEnv,
-      keyPresent: Boolean(env[authEnv]?.trim()), passed: false, status: 'BLOCKED' };
+      keyPresent: Boolean(key?.trim()), passed: false, status: 'BLOCKED' };
     const started = performance.now();
     if (!record.keyPresent) record.error = `${authEnv} is unavailable to this process`;
     else {
       try {
         const client = provider === 'wonder'
-          ? createWonderClient({ apiKey: env[authEnv], fetchImpl })
-          : createSparkOpenClient({ apiKey: env[authEnv], route, fetchImpl });
-        const response = await client.complete({ prompt: `Reply with exactly ${nonce} and nothing else.`, maxTokens: 1024 });
+          ? createWonderClient({ apiKey: key, fetchImpl })
+          : createSparkOpenClient({ apiKey: key, route, fetchImpl });
+        const response = await client.complete({ prompt: `Reply with exactly ${nonce} and nothing else.`, maxTokens: 1024, timeoutMs });
         record.returnedModel = response.modelId;
         record.requestId = response.requestId;
         record.text = response.text;
