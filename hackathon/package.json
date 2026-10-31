@@ -1,0 +1,24 @@
+{
+  "name": "forgefront-factory-resilience-hackathon",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Fresh Meta Hackathon build under hackathon/ (Meta hackathon submission).",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "smoke:meta": "node scripts/smoke-meta.mjs",
+    "smoke:investigation": "node scripts/live-investigation.mjs",
+    "smoke:browser": "node scripts/browser-smoke.mjs",
+    "smoke:browser:live": "node scripts/browser-smoke.mjs --live",
+    "demo": "node scripts/rehearse.mjs",
+    "verify:checkpoint": "node scripts/verify-checkpoint.mjs",
+    "migrate:state": "node scripts/migrate-state.mjs",
+    "rehearse": "node scripts/rehearse.mjs",
+    "test": "node scripts/test.mjs",
+    "test:unit": "node scripts/test.mjs unit",
+    "test:integration": "node scripts/test.mjs integration",
+    "start": "node server.mjs"
+  }
+}

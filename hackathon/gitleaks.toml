@@ -1,0 +1,12 @@
+title = "ForgeFront narrow empty-template false-positive handling"
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+[[rules.allowlists]]
+description = "Empty template assignments can make the multiline rule capture the next env variable name"
+condition = "AND"
+regexTarget = "secret"
+regexes = ['''^(LEDGER_NOTARY_SECRET|LEDGER_VERIFY_INTERVAL_MS)=?$''']
+paths = ['''^\.env\.example$''']

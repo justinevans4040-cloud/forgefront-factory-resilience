@@ -1,0 +1,38 @@
+{
+  "fixtureSchema": "independent-evaluation-v1",
+  "id": "machine-outage",
+  "synthetic": true,
+  "baseScenarioId": "certificate-hold",
+  "baseVersion": 1,
+  "resultVersion": 2,
+  "changes": [
+    {
+      "entity": "cell",
+      "id": "B",
+      "field": "availableHours",
+      "value": 24,
+      "evidenceId": "OUTAGE-1:L1"
+    }
+  ],
+  "text": "SYNTHETIC: B unavailable until elapsed hour 24; other inputs unchanged.",
+  "expectedInvalidation": [
+    "prior proposal",
+    "pending consent envelope",
+    "prior acceptance"
+  ],
+  "operationalRelease": false,
+  "preconditions": [
+    "Active snapshot is base version and digest",
+    "Review or accept v1 split before applying outage"
+  ],
+  "expectedState": {
+    "version": 2,
+    "digestMustChange": true,
+    "priorAcceptanceValid": false,
+    "priorEnvelopeUsable": false,
+    "priorProposalCurrent": false,
+    "freshReviewRequired": true,
+    "operationalRelease": false
+  },
+  "raceOracle": "Either serialized order is permitted; once shock commits, no v1 acceptance remains current."
+}

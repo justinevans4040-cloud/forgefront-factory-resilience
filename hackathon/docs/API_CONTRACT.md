@@ -1,0 +1,34 @@
+# Local API contract
+
+All /api routes enforce Host/Origin and rate limits; quotas return 429 plus Retry-After. Only static assets and minimal /health are public. JSON has a body-size cap; nonempty bodies require application/json. Unexpected errors are sanitized.
+
+POST /api/meta/session requires Bearer admin or named operator/auditor env token. It creates a ten-minute HttpOnly/SameSite=Strict cookie (Secure on direct TLS) and returns CSRF plus a session token for CLI compatibility. Browser uses cookie and X-CSRF-Token; tools may use X-Session-Token. Static HTML grants no seat. POST /api/meta/logout requires session/CSRF, revokes seat and clears cookie. No browser localStorage token.
+
+POST /api/workflow/status returns current immutable snapshot, analysis, registry, runs, advisory decision, integrity/storage status and route-configuration booleans, never credential values.
+
+POST /api/workflow/investigation-start with provider wonder/baseten/fireworks/explicit sample returns owner-bound jobId and running status. POST /investigation-status with jobId returns running/completed/failed; completed includes the recorded result. Retention is bounded to 32, evicting completed/failed entries. Concurrent investigations and cross-session reads fail. The synchronous /investigate route remains for local tools. All inference stays within six turns, ten calls and one minute. Restart drops job handles and seats. Unexpired encrypted pending reviews survive, bound to the same named identity after reauthentication. Status exposes only reviews owned by the current session or recovered original identity.
+
+POST /review with runId/optionId returns a sealed actor/run/snapshot/plan/nonce/expiry envelope. POST /confirm with nonce and exact typed APPROVE optionId records advisory acceptance once. POST /revoke invalidates acceptance/reviews. POST /shock with cellId creates changed snapshot; POST /reset creates fresh default scenario identity. No model tool can invoke these privileged transitions.
+
+POST /verify checks encrypted disk chain/HMAC. POST /export returns sanitized plaintext JSON only with acknowledgePlaintext: EXPORT PLAINTEXT. POST /checkpoint returns FORGEFRONT_CHECKPOINT_V1 head/count/signature for independent retention. POST /report returns plaintext Markdown in text only with the same explicit acknowledgePlaintext field. All decisions keep operationalRelease false. Intentional conflicts return 409; unexpected failures return generic INTERNAL, never a path/stack/provider body.
+
+HACKATHON_OPERATORS_JSON configures named operator/auditor seats; session response/status include operator id/role. Auditor mutations/diagnostic inference fail 403, with read/verify/export permitted. Identities originate from validated server env, never request fields. New consent/model/decision/shock events record operator ID; envelopes remain bound to the session actor digest. Only admin can reset a scenario; only named operator can revoke acceptance. Shared investigation and advisory confirmation rights are intentional; this is separated rights, not dual-control approval. Login attempts are limited to 12 per minute per direct client and failed credentials are ledgered without credentials. API and authenticated-route quotas are 240 and 120 per minute per client. Forwarded headers do not select quota identity.
+
+Accepted decisions retain the original sealed review actor and separately record confirmationActor (the confirming session digest) and resumedAfterRestart. Original envelope HMAC fields remain intact; historical decisions without these new fields are labeled not recorded in the readable report.
+
+## Encrypted packet export and persistent quotas
+
+POST /api/workflow/encrypted-export requires the existing session, CSRF and authenticated quota. Body has exactly one field, passphrase (16–160 characters). Auditors may export. It returns FFR_ENCRYPTED_EXPORT_V1 with fixed scrypt-N16384-r8-p1, base64 salt/iv/tag/data; never the raw packet. Rejected length or rejected local strength heuristic returns 400. Decryption retains length-only validation for existing packets. No plaintext acknowledgement applies to this encrypted response. Existing /export and /report still require acknowledgePlaintext: EXPORT PLAINTEXT. No generic diagnostic provider route was added.
+
+API/login/authenticated workflow quotas persist encrypted counters under the normal private state directory/key. Global credential-failure audit records are capped at twelve per rolling minute across clients and restart; the last warns of potentially omitted further attempts. See SECURITY_CONTROLS.md for local-file custody and single-process limits.
+
+
+## Build run seven candidate controls
+
+Run seven adds shared local export-passphrase feedback and API enforcement: 16–160 characters, at least eight distinct case-folded characters, and three distinct whitespace-separated words or three character types. Repeated/predictable prefixes are rejected. This heuristic does not prove entropy; use unique randomly selected words and keep the passphrase separately. Decryption retains the earlier length-only check so existing packets remain recoverable. Pinned scrypt and authenticated encryption remain unchanged.
+
+Provider errors stop the investigation with recorded failure, no substitute narrative and no automatic retry. Select the route and press Investigate to start a deliberate new attempt. The UI labels the stopped live Meta investigation and preserves its trace. No provider switch or automatic Sample occurs. A fresh scenario clears consent, export acknowledgement/passphrase and guide state; reset records a new snapshot and opening decision state, preserved on verified restart. Earlier events remain retained.
+
+Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
+
+Current-run evidence is under evidence/run7. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. Source stays private; no publication, filming or submission is claimed. Cursor must audit the uncommitted diff before an actual freeze.

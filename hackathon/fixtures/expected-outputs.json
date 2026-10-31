@@ -1,0 +1,238 @@
+{
+  "synthetic": true,
+  "oracle": "independent calculation, not captured app output",
+  "affectedJobs": [
+    "J1",
+    "J2",
+    "J3"
+  ],
+  "affectedUnits": 120,
+  "baselineBusyHours": 7.5,
+  "baselineProcessingCost": 750,
+  "v1": {
+    "wait": {
+      "feasible": true,
+      "finishHours": 15.5,
+      "incrementalCost": 0,
+      "completionHours": {
+        "J1": 11.5,
+        "J2": 14,
+        "J3": 15.5
+      },
+      "lateJobs": [
+        "J1",
+        "J2",
+        "J3"
+      ]
+    },
+    "substitute": {
+      "feasible": true,
+      "finishHours": 7.5,
+      "incrementalCost": 240,
+      "completionHours": {
+        "J1": 3.5,
+        "J2": 6,
+        "J3": 7.5
+      },
+      "lateJobs": []
+    },
+    "split": {
+      "feasible": true,
+      "assignment": {
+        "A": [
+          "J1",
+          "J3"
+        ],
+        "B": [
+          "J2"
+        ]
+      },
+      "busyHours": {
+        "A": 5,
+        "B": 3.5
+      },
+      "finishHours": 5,
+      "processingCost": 920,
+      "incrementalCost": 410,
+      "completionHours": {
+        "J1": 3.5,
+        "J2": 3.5,
+        "J3": 5
+      },
+      "lateJobs": []
+    }
+  },
+  "v2": {
+    "wait": {
+      "feasible": true,
+      "finishHours": 15.5,
+      "incrementalCost": 0
+    },
+    "substitute": {
+      "feasible": true,
+      "finishHours": 7.5,
+      "incrementalCost": 240
+    },
+    "split": {
+      "feasible": false,
+      "reason": "required B cannot finish within horizon"
+    },
+    "fastestFeasibleOption": "substitute",
+    "finishIncreaseVersusV1FastestHours": 2.5,
+    "decision": {
+      "priorAcceptanceValid": false,
+      "priorEnvelopeUsable": false,
+      "freshReviewRequired": true
+    }
+  },
+  "comparison": {
+    "splitHoursSavedVersusSubstitute": 2.5,
+    "splitExtraCostVersusSubstitute": 170
+  },
+  "operationalRelease": false,
+  "splitEnumeration": [
+    {
+      "assignment": {
+        "A": [
+          "J1",
+          "J3"
+        ],
+        "B": [
+          "J2"
+        ]
+      },
+      "busyHours": {
+        "A": 5,
+        "B": 3.5
+      },
+      "finishHours": 5,
+      "processingCost": 920,
+      "incrementalCost": 410,
+      "completionHours": {
+        "J1": 3.5,
+        "J2": 3.5,
+        "J3": 5
+      }
+    },
+    {
+      "assignment": {
+        "A": [
+          "J2",
+          "J3"
+        ],
+        "B": [
+          "J1"
+        ]
+      },
+      "busyHours": {
+        "A": 4,
+        "B": 5
+      },
+      "finishHours": 5,
+      "processingCost": 1000,
+      "incrementalCost": 490,
+      "completionHours": {
+        "J1": 5,
+        "J2": 2.5,
+        "J3": 4
+      }
+    },
+    {
+      "assignment": {
+        "A": [
+          "J1"
+        ],
+        "B": [
+          "J2",
+          "J3"
+        ]
+      },
+      "busyHours": {
+        "A": 3.5,
+        "B": 5.5
+      },
+      "finishHours": 5.5,
+      "processingCost": 1010,
+      "incrementalCost": 500,
+      "completionHours": {
+        "J1": 3.5,
+        "J2": 3.5,
+        "J3": 5.5
+      }
+    },
+    {
+      "assignment": {
+        "A": [
+          "J1",
+          "J2"
+        ],
+        "B": [
+          "J3"
+        ]
+      },
+      "busyHours": {
+        "A": 6,
+        "B": 2
+      },
+      "finishHours": 6,
+      "processingCost": 840,
+      "incrementalCost": 330,
+      "completionHours": {
+        "J1": 3.5,
+        "J2": 6,
+        "J3": 2
+      }
+    },
+    {
+      "assignment": {
+        "A": [
+          "J2"
+        ],
+        "B": [
+          "J1",
+          "J3"
+        ]
+      },
+      "busyHours": {
+        "A": 2.5,
+        "B": 7
+      },
+      "finishHours": 7,
+      "processingCost": 1090,
+      "incrementalCost": 580,
+      "completionHours": {
+        "J1": 5,
+        "J2": 2.5,
+        "J3": 7
+      }
+    },
+    {
+      "assignment": {
+        "A": [
+          "J3"
+        ],
+        "B": [
+          "J1",
+          "J2"
+        ]
+      },
+      "busyHours": {
+        "A": 1.5,
+        "B": 8.5
+      },
+      "finishHours": 8.5,
+      "processingCost": 1170,
+      "incrementalCost": 660,
+      "completionHours": {
+        "J1": 5,
+        "J2": 8.5,
+        "J3": 1.5
+      }
+    }
+  ],
+  "adversarialArithmetic": {
+    "stockShortfallPieces": 1,
+    "noOptionsWaitFinishHours": 24.5,
+    "minimumOutageSplitCompletionHours": 26
+  }
+}

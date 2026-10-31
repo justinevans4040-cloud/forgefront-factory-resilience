@@ -1,0 +1,41 @@
+[
+  {
+    "provider": "wonder",
+    "endpoint": "https://api.meta.ai/v1/responses",
+    "requestedModel": "muse-wonder-1.0",
+    "authEnv": "MUSE_API_KEY",
+    "keyPresent": true,
+    "passed": true,
+    "status": "PASS",
+    "returnedModel": "muse-wonder-1.0",
+    "requestId": "resp_6ae64acd2fdb262b67fe41da",
+    "text": "SMOKE_OK_8e1f180244784734",
+    "elapsedMs": 1438
+  },
+  {
+    "provider": "spark-baseten",
+    "endpoint": "https://inference.baseten.co/v1/chat/completions",
+    "requestedModel": "meta-models/muse-spark-open",
+    "authEnv": "BASETEN_API_KEY",
+    "keyPresent": true,
+    "passed": true,
+    "status": "PASS",
+    "returnedModel": "meta-models/muse-spark-open",
+    "requestId": "chatcmpl-dab06e8c57e4482484f3a4637630789c",
+    "text": "SMOKE_OK_8e1f180244784734",
+    "elapsedMs": 1043
+  },
+  {
+    "provider": "spark-fireworks",
+    "endpoint": "https://us.api.fireworks.ai/inference/v1/chat/completions",
+    "requestedModel": "accounts/fireworks/models/muse-spark-open",
+    "authEnv": "FIREWORKS_API_KEY",
+    "keyPresent": true,
+    "passed": true,
+    "status": "PASS",
+    "returnedModel": "accounts/fireworks/models/muse-spark-open",
+    "requestId": "chatcmpl-cc61a7f7a89e4a5f9fa44442753483c5",
+    "text": "SMOKE_OK_8e1f180244784734",
+    "elapsedMs": 2747
+  }
+]

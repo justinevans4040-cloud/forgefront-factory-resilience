@@ -1,0 +1,35 @@
+[
+  {
+    "provider": "wonder",
+    "ok": true,
+    "stopReason": "MODEL_STOP",
+    "turns": 3,
+    "toolCalls": 2,
+    "validatedClaims": 3,
+    "rejectedClaims": 0,
+    "elapsedMs": 10888,
+    "runId": "8e5b60b5-8911-4b5c-acd2-8cbdb14baeb6"
+  },
+  {
+    "provider": "baseten",
+    "ok": true,
+    "stopReason": "MODEL_STOP",
+    "turns": 3,
+    "toolCalls": 2,
+    "validatedClaims": 3,
+    "rejectedClaims": 0,
+    "elapsedMs": 6021,
+    "runId": "317a7414-c5e5-4eca-93b8-db817734fa29"
+  },
+  {
+    "provider": "fireworks",
+    "ok": true,
+    "stopReason": "MODEL_STOP",
+    "turns": 3,
+    "toolCalls": 2,
+    "validatedClaims": 3,
+    "rejectedClaims": 0,
+    "elapsedMs": 35398,
+    "runId": "846f2753-6317-4881-bde3-d2d6a22298f2"
+  }
+]

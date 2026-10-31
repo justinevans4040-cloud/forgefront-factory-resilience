@@ -1,0 +1,133 @@
+{
+  "fixtureSchema": "independent-evaluation-v1",
+  "id": "certificate-hold",
+  "version": 1,
+  "synthetic": true,
+  "operationalRelease": false,
+  "units": {
+    "time": "elapsed hours from scenario origin",
+    "stock": "pieces",
+    "money": "illustrative credits"
+  },
+  "rules": {
+    "horizonHours": 16,
+    "piecesPerFinishedUnit": 1,
+    "yield": 1,
+    "jobsDivisible": false,
+    "setupHoursPerJob": 0.5,
+    "queueOrder": "ascending dueHours then ID",
+    "splitObjective": "minimum makespan, then incremental cost, then lexicographic A job IDs",
+    "baseline": "All jobs on A with verified original material available at origin",
+    "incrementalCost": "busy processing cost minus baseline plus substitute premium; waiting free; no delay penalty",
+    "secondShockSemantics": "Outage availability is earliest start, never usable capacity; all prior decisions are invalidated by changed snapshot digest."
+  },
+  "incident": {
+    "id": "INC-1",
+    "evidenceId": "CERT-1:L1",
+    "text": "SYNTHETIC: lot HOLD-1 certificate grade differs from required G; all 120 pieces are held."
+  },
+  "materials": [
+    {
+      "id": "HOLD-1",
+      "pieces": 120,
+      "grade": "unverified",
+      "status": "held",
+      "availableHours": 0,
+      "evidenceId": "CERT-1:L1"
+    },
+    {
+      "id": "SUB-1",
+      "pieces": 120,
+      "grade": "G",
+      "status": "verified",
+      "availableHours": 0,
+      "premiumPerPiece": 2,
+      "evidenceId": "STOCK-1:L1"
+    },
+    {
+      "id": "REPL-1",
+      "pieces": 120,
+      "grade": "G",
+      "status": "verified",
+      "availableHours": 8,
+      "premiumPerPiece": 0,
+      "evidenceId": "REPL-1:L1",
+      "assumption": "Synthetic documented arrival, no real supplier commitment"
+    }
+  ],
+  "jobs": [
+    {
+      "id": "J1",
+      "units": 60,
+      "dueHours": 6,
+      "evidenceId": "JOBS-1:L1",
+      "requiredGrade": "G",
+      "affectedLot": "HOLD-1"
+    },
+    {
+      "id": "J2",
+      "units": 40,
+      "dueHours": 8,
+      "evidenceId": "JOBS-1:L2",
+      "requiredGrade": "G",
+      "affectedLot": "HOLD-1"
+    },
+    {
+      "id": "J3",
+      "units": 20,
+      "dueHours": 10,
+      "evidenceId": "JOBS-1:L3",
+      "requiredGrade": "G",
+      "affectedLot": "HOLD-1"
+    }
+  ],
+  "cells": [
+    {
+      "id": "A",
+      "grades": [
+        "G"
+      ],
+      "availableHours": 0,
+      "cycleHoursPerUnit": 0.05,
+      "costPerBusyHour": 100,
+      "evidenceId": "CELL-1:L1"
+    },
+    {
+      "id": "B",
+      "grades": [
+        "G"
+      ],
+      "availableHours": 0,
+      "cycleHoursPerUnit": 0.075,
+      "costPerBusyHour": 120,
+      "evidenceId": "CELL-1:L2"
+    }
+  ],
+  "options": [
+    {
+      "id": "wait",
+      "material": "REPL-1",
+      "cells": [
+        "A"
+      ]
+    },
+    {
+      "id": "substitute",
+      "material": "SUB-1",
+      "cells": [
+        "A"
+      ]
+    },
+    {
+      "id": "split",
+      "material": "SUB-1",
+      "cells": [
+        "A",
+        "B"
+      ],
+      "requireBothCells": true
+    }
+  ],
+  "evidenceLocatorRule": "Each evidenceId identifies its synthetic record; cite exact JSON fields as quantity locators. Narrative is untrusted data.",
+  "evaluationBoundary": "Independent whole-job scheduling oracle; runtime uses a different schema and must be mapped explicitly. Expected outputs are never production lookup data."
+}

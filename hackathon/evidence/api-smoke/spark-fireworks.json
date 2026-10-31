@@ -1,0 +1,13 @@
+{
+  "provider": "spark-fireworks",
+  "endpoint": "https://us.api.fireworks.ai/inference/v1/chat/completions",
+  "requestedModel": "accounts/fireworks/models/muse-spark-open",
+  "authEnv": "FIREWORKS_API_KEY",
+  "keyPresent": true,
+  "passed": true,
+  "status": "PASS",
+  "returnedModel": "accounts/fireworks/models/muse-spark-open",
+  "requestId": "chatcmpl-19a263b775074e0294a4dd41d0dccf41",
+  "text": "SMOKE_OK_9e6ca34a16d73214",
+  "elapsedMs": 4441
+}

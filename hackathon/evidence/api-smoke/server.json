@@ -1,0 +1,30 @@
+{
+  "server": "http://127.0.0.1:8787",
+  "health": 200,
+  "results": [
+    {
+      "provider": "wonder",
+      "httpStatus": 200,
+      "liveOutputConfirmed": true,
+      "mode": "live",
+      "requestedModel": "muse-wonder-1.0",
+      "error": null
+    },
+    {
+      "provider": "baseten",
+      "httpStatus": 200,
+      "liveOutputConfirmed": true,
+      "mode": "live",
+      "requestedModel": "meta-models/muse-spark-open",
+      "error": null
+    },
+    {
+      "provider": "fireworks",
+      "httpStatus": 200,
+      "liveOutputConfirmed": true,
+      "mode": "live",
+      "requestedModel": "accounts/fireworks/models/muse-spark-open",
+      "error": null
+    }
+  ]
+}

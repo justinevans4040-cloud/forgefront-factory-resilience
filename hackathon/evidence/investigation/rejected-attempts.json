@@ -1,0 +1,157 @@
+{
+  "label": "GENUINE REJECTED LIVE ATTEMPTS; NOT SUCCESS EVIDENCE",
+  "attempts": [
+    {
+      "runId": "c4d64ad8-d001-4899-8938-e65083d24630",
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "stopReason": "MODEL_ERROR",
+      "turns": 5,
+      "toolCalls": 4,
+      "elapsedMs": 60026,
+      "calls": [
+        {
+          "type": "model_call",
+          "runId": "c4d64ad8-d001-4899-8938-e65083d24630",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-ac0b1b885f6a4a95abf7a822fa6d774b",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 3930,
+          "usage": {
+            "prompt_tokens": 668,
+            "total_tokens": 770,
+            "completion_tokens": 102,
+            "prompt_tokens_details": {
+              "cached_tokens": 576
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 57
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 57
+            }
+          },
+          "responseDigest": "ab83a85969e02988f0d20ed983a03ae7172e326cff4e9a6d84e9e7e656fd0aaa",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "c4d64ad8-d001-4899-8938-e65083d24630",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-382824c139784fc99b1f8abc04539f81",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 4879,
+          "usage": {
+            "prompt_tokens": 1157,
+            "total_tokens": 1341,
+            "completion_tokens": 184,
+            "prompt_tokens_details": {
+              "cached_tokens": 576
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 133
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 133
+            }
+          },
+          "responseDigest": "77812f9830b22960615f0930e452357bb098a7e38a0459162754576daaa3da2a",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "c4d64ad8-d001-4899-8938-e65083d24630",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-5c4e2e0b4dc5460c993f32e977c4c6b5",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 4123,
+          "usage": {
+            "prompt_tokens": 1319,
+            "total_tokens": 1511,
+            "completion_tokens": 192,
+            "prompt_tokens_details": {
+              "cached_tokens": 1088
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 153
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 153
+            }
+          },
+          "responseDigest": "5eb7697e4b65a3cd1b027e6ae559ad51237d14bb5babb54c564472cdac3cb44c",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "c4d64ad8-d001-4899-8938-e65083d24630",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-ace3fd406382413ab359e5d824ab925a",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 29033,
+          "usage": {
+            "prompt_tokens": 1986,
+            "total_tokens": 3145,
+            "completion_tokens": 1159,
+            "prompt_tokens_details": {
+              "cached_tokens": 1216
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 1113
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 1113
+            }
+          },
+          "responseDigest": "ff0289bce9b00b0f871bb96c3d10bd94b13e9b156f324f1162917882212a6258",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "c4d64ad8-d001-4899-8938-e65083d24630",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": null,
+          "requestId": null,
+          "mode": "live",
+          "sample": false,
+          "status": "rejected",
+          "failure": "INVALID_OR_FAILED_MODEL_RESPONSE",
+          "latencyMs": 18031,
+          "usage": null,
+          "responseDigest": null,
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        }
+      ]
+    }
+  ]
+}
