@@ -1,5 +1,5 @@
+import {redactEvidence,writeEvidence} from './public-evidence.mjs';
 import { randomBytes } from 'node:crypto';
-import { writeFile } from 'node:fs/promises';
 import { mkdtempSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -21,6 +21,6 @@ for (const provider of ['wonder', 'baseten', 'fireworks']) {
     error: body.error?.message ?? null });
 }
 const evidence = { server: base, health: (await fetch(`${base}/health`)).status, results };
-await writeFile(new URL('../evidence/api-smoke/server.json', import.meta.url), JSON.stringify(evidence, null, 2) + '\n');
+writeEvidence(new URL('../evidence/api-smoke/server.json', import.meta.url), JSON.stringify(evidence, null, 2) + '\n');
 console.log(JSON.stringify(evidence, null, 2));
-console.log('Server remains running; ephemeral admin session credentials are not logged.');
+await app.close();

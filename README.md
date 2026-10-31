@@ -4,28 +4,11 @@
 
 # ForgeFront Factory Resilience
 
-**Evidence before action for factory disruptions, built on Meta Muse models.**
+**A factory recovery room where Meta AI investigates, calculations establish feasibility, and a human records the decision.**
 
-Meta Hackathon build for the Cerebral Valley x Meta Global AI Developer Hackathon (Indie track).
+A disputed material certificate can hold production while teams reconcile evidence, find substitute stock and restore a workable schedule. ForgeFront connects those steps: inspect the source discrepancy, compare three recovery plans computed from the current factory snapshot, investigate with read-only Meta model tools, and retain an inspectable decision trail. A second machine outage changes the constraints and invalidates the earlier acceptance.
 
-[![tests](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/actions/workflows/ci.yml/badge.svg)](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/actions/workflows/ci.yml)
-
-## The problem
-
-When a supplier certificate doesn't match what arrived at the dock, a plant has minutes to decide: hold the line, substitute material, or reschedule. Today that call is made from scattered PDFs, ERP screens and tribal knowledge, and nobody can later prove *why* a decision was made. AI can speed this up, but an AI that silently "approves" material is a safety and compliance risk.
-
-## What it does
-
-ForgeFront turns a manufacturing discrepancy into a **source-grounded recovery investigation**:
-
-1. A Meta model investigates through bounded, read-only tools over an immutable snapshot of evidence (certificates, receipts, inventory, machine capacity).
-2. Every quantitative claim must cite an exact source record. Unsupported or invented claims are **visibly rejected**.
-3. A deterministic engine (not the model) computes stock, capacity, feasibility, hours and illustrative cost.
-4. A named human types a single-use consent to accept the advisory plan. No model can release material, change inventory or run equipment (`operationalRelease` is always `false`).
-5. When a second shock hits (a machine outage), prior decisions are invalidated and the case is reinvestigated.
-6. The whole disruption-to-recovery history lands in an encrypted, tamper-evident ledger and an exportable evidence packet that can be verified offline.
-
-All factory data is synthetic and costs are illustrative.
+The judge entry is the Meta Hackathon build under [`hackathon/`](hackathon/README.md). Factory records are synthetic, costs illustrative, and every decision advisory: `operationalRelease` is always `false`. This is a local engineering demonstration. It does not control machinery or release material.
 
 ## Manufacturing contexts
 
@@ -52,100 +35,82 @@ Recovery comparisons account for inventory, production orders, work cells and ma
 ![Independent CNC shops and aerospace suppliers](assets/showcase/small-shop-resilience.jpg)
 
 Material investigation, CNC scheduling and recovery comparison live in the same workflow, so operators can examine affected jobs, compare material and capacity choices, and preserve the evidence behind their response.
-## Meta models used
 
-The product's AI runs only on Meta models. No other model provider is used at runtime.
+## Start the recovery room
 
-| Role | Model | Host |
-| --- | --- | --- |
-| Recovery story and counterfactual | `muse-wonder-1.0` (Muse Wonder) | Meta Model API, `https://api.meta.ai/v1/responses` |
-| Tool-using investigator | `meta-models/muse-spark-open` (Muse Spark Open) | Baseten |
-| Tool-using investigator (operator-selected alternative) | `accounts/fireworks/models/muse-spark-open` (Muse Spark Open) | Fireworks |
-
-Model identities are allowlisted. There is no arbitrary inference URL, no model override and no silent provider switch. Details: [hackathon/docs/META_MODEL_USAGE.md](hackathon/docs/META_MODEL_USAGE.md) and [hackathon/docs/MODEL_COMPARISON.md](hackathon/docs/MODEL_COMPARISON.md).
-
-## Quickstart
-
-Requires Node 20 or newer. Zero runtime npm dependencies, no build step.
+Use **Node.js 20 or later**, npm and a current browser. No npm dependencies, installation or build step are required. From the repository root:
 
 ```sh
-git clone https://github.com/justinevans4040-cloud/forgefront-factory-resilience.git
-cd forgefront-factory-resilience
 npm run demo --prefix hackathon
 ```
 
-Open http://127.0.0.1:8791 and sign in with the public demo token `synthetic-browser-rehearsal`.
+Open **http://127.0.0.1:8791** and use the public synthetic rehearsal token shown on the sign-in screen. This isolated loopback demo creates fresh disposable state on each launch. Stop it with **Ctrl+C**.
 
-For live Meta model runs, set these in your shell environment before starting (see [.env.example](.env.example); never commit values):
+- **With keys:** securely provision `MUSE_API_KEY` (or `MODEL_API_KEY`) for Wonder and `BASETEN_API_KEY` or `FIREWORKS_API_KEY` for Spark Open in the server's environment, then run the same command. Select the route explicitly. No inference starts automatically.
+- **Without keys:** run the same command, open the investigation-route selector and deliberately choose **SAMPLE - OFFLINE; NO LIVE AI**. Sample exercises the local workflow but cannot satisfy the live guided-demo gates. Missing live credentials fail closed; there is no automatic Sample substitution.
 
-```
-MUSE_API_KEY        # Meta Model API (Muse Wonder)
-BASETEN_API_KEY     # Muse Spark Open on Baseten
-FIREWORKS_API_KEY   # Muse Spark Open on Fireworks
-```
+Both environment templates contain empty values only. The app does not auto-load `.env`. Keep real keys, tokens, export passphrases and local state out of source, logs, screenshots and issues. See the [run guide](hackathon/RUN_GUIDE.md) for persistent operation, named roles and checkpoint verification.
 
-Missing keys fail closed. An offline sample mode exists only when chosen explicitly and is labeled `SAMPLE - OFFLINE; NO LIVE AI`.
+## Three-minute demo story
 
-## Demo walkthrough (about 3 minutes)
+Actual provider latency can extend a rehearsal; the guide advances on observed state, never a timer. The [shot-by-shot runbook](hackathon/docs/DEMO_RUNBOOK.md) and [caption draft](hackathon/docs/CAPTIONS_DRAFT.srt) support filming.
 
-1. Choose **Start guided synthetic scenario**, then **Show next action**. The guide advances on real app state, never a timer.
-2. Open the sources: a certificate says 120 units, the receipt says 80.
-3. Run the investigation on Muse Spark Open (Baseten or Fireworks) and the recovery story on Muse Wonder, against the same snapshot.
-4. Review accepted versus rejected claims, then type consent to accept the advisory plan.
-5. Trigger a machine outage. The snapshot digest changes, the old decision is invalidated, and you reinvestigate.
-6. Accept the new plan and export a passphrase-encrypted evidence packet plus a checkpoint for offline verification.
+1. **Understand:** authenticate, start the guided synthetic scenario and inspect the certificate discrepancy and source records.
+2. **Investigate:** run Spark Open, then Wonder on the same snapshot. Compare source-validated claims, read-only tool traces, latency and explicitly unvalidated narrative.
+3. **Decide:** compare replenishment, verified substitution and split-capacity plans. Review a feasible option and type its exact acceptance phrase.
+4. **Challenge:** take a machine offline. Observe invalidated acceptance, investigate the changed snapshot and deliberately accept a revised plan.
+5. **Prove:** verify the hash-chained, tamper-evident ledger. Export an encrypted packet with a separate strong passphrase and retain its independent checkpoint separately.
 
-Full runbook: [hackathon/docs/DEMO_RUNBOOK.md](hackathon/docs/DEMO_RUNBOOK.md).
+No filmed video or completed submission is claimed here. [Contribution disclosure](hackathon/HACKATHON_CONTRIBUTIONS.md) identifies the hackathon work and separates legacy reference code. [Plan coverage](hackathon/docs/PLAN_COVERAGE.md) and the [submission checklist](hackathon/docs/SUBMISSION_CHECKLIST.md) retain the owner-only gates.
 
-## Architecture
+## Meta models in the product
+
+| Model | Host and exact route | Role |
+|---|---|---|
+| Muse Wonder (`muse-wonder-1.0`) | Meta Model API, `https://api.meta.ai/v1/responses` | Evidence investigation, advisory recovery narrative and counterfactual tradeoffs |
+| Muse Spark Open (`meta-models/muse-spark-open`) | Baseten, `https://inference.baseten.co/v1/chat/completions` | Bounded read-only recovery investigation |
+| Muse Spark Open (`accounts/fireworks/models/muse-spark-open`) | Fireworks, `https://us.api.fireworks.ai/inference/v1/chat/completions` | Explicit alternative Spark Open host |
+
+The hackathon product uses only these Meta routes. Deterministic calculations own quantities, feasibility, duration and illustrative cost. Claims require exact server-built evidence matches; free narrative remains visibly unvalidated. Model identity is checked against the allowlist but is provider-reported, not independent attestation. Failures retain labeled trace evidence, with no automatic retry or provider switch. See [model usage](hackathon/docs/META_MODEL_USAGE.md).
 
 ```mermaid
 flowchart TD
-  UI[Recovery room and guided story] --> API[Loopback Node API: session, CSRF, guards, quotas]
-  API --> S[Immutable synthetic snapshot and source registry]
-  S --> E[Deterministic recovery engine]
-  API --> J[Owner-bound async job]
-  J --> L[Bounded agent loop: six turns, ten tools, one minute]
-  L <--> M[Muse Wonder or Muse Spark Open]
-  L --> T[Allowlisted read-only tools]
-  T --> S
-  T --> E
-  L --> V[Exact source validation and visible rejection]
-  V --> H[Human typed single-use consent]
-  H --> A[AES-GCM encrypted ledger with HMAC hash chain]
-  A --> P[Passphrase-encrypted evidence packet and checkpoint]
-  P --> C[Independent offline verifier]
+  UI[Browser recovery room] --> API[Loopback Node server: session, CSRF, quotas]
+  API --> Engine[Deterministic snapshot and recovery engine]
+  API --> Agent[Bounded read-only investigation]
+  Agent --> Wonder[Muse Wonder / Meta Model API]
+  Agent --> Spark[Muse Spark Open / Baseten or Fireworks]
+  Agent --> Tools[Allowlisted evidence and calculation tools]
+  Tools --> Engine
+  Agent --> Claims[Exact source claim validation]
+  Claims --> Human[Human review and typed consent]
+  Human --> Ledger[Encrypted events and HMAC anchor]
+  Ledger --> Export[Encrypted packet and independent checkpoint]
+  Engine --> UI
+  Export --> UI
 ```
 
-More: [hackathon/docs/ARCHITECTURE.md](hackathon/docs/ARCHITECTURE.md), [hackathon/docs/API_CONTRACT.md](hackathon/docs/API_CONTRACT.md).
+## Security and limits
 
-## Security
+[SECURITY_CONTROLS.md](hackathon/SECURITY_CONTROLS.md) maps **SOC 2-style control themes** to implementation and tests. This is **not SOC 2 certification**, an attestation, a complete accessibility audit or a production-safety claim.
 
-Designed against SOC 2-style controls, documented in [hackathon/SECURITY_CONTROLS.md](hackathon/SECURITY_CONTROLS.md):
+The demo includes session/CSRF protection, Host/Origin checks, encrypted persistent quotas that fail closed, capped failed-login auditing, separated admin/operator/auditor permissions, expiring single-use sealed consent, encrypted verified ledger recovery and pinned-scrypt AES-GCM evidence export. Advanced plaintext downloads require acknowledgement. A privileged local attacker controlling keys and all anchors remains outside the authenticity guarantee. HTTP is loopback-only; no remote transport-security claim is made. Use synthetic data only. Keep vulnerability reports private through the repository security reporting interface.
 
-- Fail closed when keys are missing; keys come only from environment variables and are never logged
-- Session auth, CSRF protection, per-client rate limits and durable quotas, separate operator and auditor roles
-- AES-256-GCM encryption at rest, HMAC hash-chained tamper-evident ledger, crash-safe write-ahead recovery
-- Prompt-injection defenses: read-only tools, schema validation, exact source matching
-- Encrypted exports by default (scrypt + AES-GCM); plaintext exports require explicit acknowledgement
-- CI runs the test suite and a gitleaks secret scan on every push
-
-This project has **not** undergone a SOC 2 audit and makes no SOC 2 certification claim.
-
-## Verify it yourself
+## Verify locally
 
 ```sh
-npm test --prefix hackathon                    # 112 tests, no API keys needed
-npm run smoke:browser --prefix hackathon       # offline browser flow (needs Chrome or Edge)
-npm run smoke:meta --prefix hackathon          # live calls to all three Meta routes (needs keys)
+npm test --prefix hackathon
+npm run check:judge --prefix hackathon
+npm run check:public-tree --prefix hackathon
+npm run smoke:browser --prefix hackathon
 ```
 
-Recorded run evidence (screenshots, packets, provider results) is in [hackathon/evidence](hackathon/evidence).
+The hackathon suite exercises deterministic arithmetic, provider allowlists, evidence rejection, consent/replay, recovery, quotas, exports and public readiness without live credentials. `check:judge` audits the exact public text set, README script names and demo dependency closure. Browser smoke needs local Chrome/Edge (`CHROME_PATH` overrides discovery); on Node 20 enable WebSocket with `NODE_OPTIONS=--experimental-websocket`. Add `-- --live --guided` to the browser command for the real Meta flow, and `-- --live --guided --mobile` for the mobile-width flow. Supply keys privately. Sample smoke is explicitly offline.
 
-## Built during the hackathon
+CI runs the public test suite, public-tree isolation and judge checks and checksum-pinned gitleaks without provider secrets, using read-only permissions and commit-pinned actions. Local run-eight and run-nine outcomes live under [`hackathon/evidence/run8/changed-files.json`](hackathon/evidence/run8/changed-files.json) and [`hackathon/evidence/run9/public-tree.txt`](hackathon/evidence/run9/public-tree.txt); hosted CI for uncommitted changes is not claimed.
 
-Everything in this repository was built for the hackathon: the Meta model clients and allowlist, the bounded tool-using investigation loop, source validation, the deterministic recovery engine, the guided recovery room UI, the encrypted tamper-evident ledger, consent flow, exports and offline verifier, and the test suite. See [hackathon/HACKATHON_CONTRIBUTIONS.md](hackathon/HACKATHON_CONTRIBUTIONS.md).
+## Contributions and license
 
-## License
+See [HACKATHON_CONTRIBUTIONS.md](hackathon/HACKATHON_CONTRIBUTIONS.md) and [THIRD_PARTY_NOTICES.md](hackathon/THIRD_PARTY_NOTICES.md). The root runtime and vendored Command Center are historical reference and are excluded from the hackathon demo.
 
-See [LICENSE](LICENSE). Third-party notices: [hackathon/THIRD_PARTY_NOTICES.md](hackathon/THIRD_PARTY_NOTICES.md).
+The existing [LICENSE](LICENSE) is **proprietary, all rights reserved**. Public visibility allows judges to inspect the source; it does not grant an open-source license or permission to reuse it. No license grant or rights clearance is invented by this build.

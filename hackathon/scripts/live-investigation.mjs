@@ -1,8 +1,9 @@
+import {redactEvidence,writeEvidence} from './public-evidence.mjs';
 import { createModelClient } from '../src/models/client.mjs';
 import { SPARK_BASETEN_ROUTE,SPARK_FIREWORKS_ROUTE } from '../src/models/routes.mjs';
 import { createWorkflow } from '../src/workflow.mjs';
 import { randomBytes } from 'node:crypto';
-import { mkdtempSync, mkdirSync, writeFileSync, copyFileSync, existsSync } from 'node:fs';
+import { mkdtempSync, mkdirSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 const directory=mkdtempSync(join(tmpdir(),'ffr-live-investigation-'));
@@ -16,6 +17,6 @@ for(const provider of ['wonder','baseten','fireworks']){
  outcomes.push({provider,ok:result.proposalValid && result.run.toolCalls>=2 && result.claims.accepted.length>0,stopReason:result.run.stopReason,turns:result.run.turns,toolCalls:result.run.toolCalls,validatedClaims:result.claims.accepted.length,rejectedClaims:result.claims.rejected.length,elapsedMs:result.run.elapsedMs,runId:result.runId});
  console.log(JSON.stringify(outcomes.at(-1)));
 }
-const evidence=new URL('../evidence/run5/investigation/',import.meta.url);mkdirSync(evidence,{recursive:true});
-for(const [name,value]of [['summary.json',outcomes],['packet.json',workflow.exportPacket()]]){const file=new URL(name,evidence);if(existsSync(file))copyFileSync(file,new URL(name+'.bak',evidence));writeFileSync(file,JSON.stringify(value,null,2));}
+const evidence=new URL('../evidence/run8/investigation/',import.meta.url);mkdirSync(evidence,{recursive:true});
+for(const [name,value]of [['summary.json',outcomes],['packet.json',workflow.exportPacket()]]){const file=new URL(name,evidence);writeEvidence(file,JSON.stringify(value,null,2));}
 if(outcomes.some(r=>!r.ok))process.exitCode=1;

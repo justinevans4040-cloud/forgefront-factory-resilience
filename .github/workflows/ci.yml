@@ -1,28 +1,36 @@
-name: tests
+name: CI
 on:
   push:
   pull_request:
 permissions:
   contents: read
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
-  test:
+  verify:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [20, 24]
+    permissions:
+      contents: read
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Run hackathon test suite (no API keys needed)
-        run: npm test --prefix hackathon
-  secret-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803
         with:
           fetch-depth: 0
-      - uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
+        with:
+          node-version: "20"
+      - run: npm test --prefix hackathon
+      - name: Root suite when the full repository package is present
+        if: hashFiles('package.json') != ''
+        run: npm test
+      - run: npm run check:judge --prefix hackathon
+      - run: npm run check:public-tree --prefix hackathon
+      - name: Scan full history and tracked working tree without credentials
+        shell: bash
+        run: |
+          curl --fail --silent --show-error --location --output "$RUNNER_TEMP/gitleaks.tar.gz" https://github.com/gitleaks/gitleaks/releases/download/v8.24.3/gitleaks_8.24.3_linux_x64.tar.gz
+          echo "9991e0b2903da4c8f6122b5c3186448b927a5da4deef1fe45271c3793f4ee29c  $RUNNER_TEMP/gitleaks.tar.gz" | sha256sum --check
+          tar -xzf "$RUNNER_TEMP/gitleaks.tar.gz" -C "$RUNNER_TEMP" gitleaks
+          "$RUNNER_TEMP/gitleaks" detect --source . --redact
+          "$RUNNER_TEMP/gitleaks" detect --source . --no-git --redact

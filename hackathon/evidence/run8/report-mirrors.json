@@ -1,0 +1,24 @@
+{
+  "source": "evidence/run8/",
+  "sha256": "c0943c72d6751fd6520500879ae46de2c8d3dff530b788b52aa370b1bb01647d",
+  "mirrors": [
+    {
+      "destination": "Desktop/build-mirror/evidence/run8/",
+      "sha256": "c0943c72d6751fd6520500879ae46de2c8d3dff530b788b52aa370b1bb01647d",
+      "matches": true,
+      "existingDestinationBackedUp": false
+    },
+    {
+      "destination": "Desktop/brain-mirror/evidence/run8/",
+      "sha256": "c0943c72d6751fd6520500879ae46de2c8d3dff530b788b52aa370b1bb01647d",
+      "matches": true,
+      "existingDestinationBackedUp": false
+    },
+    {
+      "destination": "Desktop/session-memory-mirror/evidence/run8/",
+      "sha256": "c0943c72d6751fd6520500879ae46de2c8d3dff530b788b52aa370b1bb01647d",
+      "matches": true,
+      "existingDestinationBackedUp": false
+    }
+  ]
+}

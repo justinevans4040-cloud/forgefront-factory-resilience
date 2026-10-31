@@ -6,7 +6,7 @@ Product AI uses Meta Muse Wonder and Muse Spark Open only. No model releases mat
 
 ## Run the judge demo
 
-Requires Node with built-in fetch and test runner; browser verification also requires built-in WebSocket. Verified on Node 20.20.2 and Node 24.14.1; exact outcomes are recorded in the build report. Zero runtime npm dependencies and no build step.
+Requires Node with built-in fetch and test runner; browser verification also requires built-in WebSocket. Verified on Node 20.20.2 and Node 24.14.1; exact outcomes are recorded under `evidence/run9/`. Zero runtime npm dependencies and no build step.
 
 From the repository root:
 
@@ -53,16 +53,17 @@ A second shock changes the digest, invalidates prior decisions and prevents stal
 
 ```sh
 npm test --prefix hackathon
+npm test
 npm run smoke:browser --prefix hackathon
 node hackathon/scripts/browser-smoke.mjs --live --guided
 npm run smoke:investigation --prefix hackathon
 ```
 
-Browser checks require installed Chrome or Edge (or CHROME_PATH); they fail rather than skip. Tools use disposable state and close server/browser in finally blocks. Live commands make real requests. Run-specific test counts, live/offline browser checks, scans and remaining gates are recorded in the reproducible checks listed in the root README. Earlier candidate evidence remains in evidence/run4; it is not a claim about a changed candidate. The independent runtime oracle is tests/unit/runtime-oracle.test.mjs; planning fixtures are not product inputs or observed results.
+Browser checks require installed Chrome or Edge (or CHROME_PATH); they fail rather than skip. Tools use disposable state and close server/browser in finally blocks. Live commands make real requests. Run-specific test counts, live/offline browser checks, scans and remaining gates are recorded in the evidence/run6/ and evidence/run6. Earlier candidate evidence remains in evidence/run4; it is not a claim about a changed candidate. The independent runtime oracle is tests/unit/runtime-oracle.test.mjs; planning fixtures are not product inputs or observed results.
 
 ## Submission and boundaries
 
-[Contributions](HACKATHON_CONTRIBUTIONS.md), [timed shots and captions](docs/DEMO_RUNBOOK.md), [plan coverage](docs/PLAN_COVERAGE.md), [security controls](SECURITY_CONTROLS.md), [release gates](docs/RELEASE_GATES.md) and [submission draft](docs/SUBMISSION_DRAFT.md) are text-only artifacts. Legacy root footage is excluded. No filming, publication, deployment, eligibility certification or submission receipt is claimed.
+[Contributions](HACKATHON_CONTRIBUTIONS.md), [timed shots and captions](docs/DEMO_RUNBOOK.md), [plan coverage](docs/PLAN_COVERAGE.md), [security controls](SECURITY_CONTROLS.md), [release gates](docs/RELEASE_GATES.md) and [submission draft](docs/SUBMISSION_DRAFT.md) are text-only artifacts. Legacy root footage is excluded. No filming, publication, deployment, eligibility certification or submission receipt is claimed. The source repository is public for judging; rights declarations and media release still require owner review.
 
 [Submission checklist](docs/SUBMISSION_CHECKLIST.md) separates repo evidence from owner filming/upload/form actions. [Timed caption draft](docs/CAPTIONS_DRAFT.srt) must be retimed to actual narration; no film is claimed. Normal encrypted quota counters survive restart with the same private state directory/key; disposable demo launches intentionally start fresh. Failed-login audit growth is capped globally at twelve records per minute, including an omission warning. See [security controls](SECURITY_CONTROLS.md) for trust limits.
 
@@ -75,4 +76,4 @@ Provider errors stop the investigation with recorded failure, no substitute narr
 
 Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
 
-Current-run evidence is under evidence/run7. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. Source is published in this repository for hackathon judging.
+Current-run evidence is under evidence/run7 and the evidence/run7/. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. The source repository is public for judging as reported by the owner; filming and submission are not claimed. Independent review must audit the uncommitted diff before an actual freeze.

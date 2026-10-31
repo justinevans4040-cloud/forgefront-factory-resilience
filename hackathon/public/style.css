@@ -4,3 +4,12 @@ svg.timeline{width:100%;height:18px;display:block}
 .skip{position:absolute;left:16px;top:-100px;padding:12px;background:#c6ed8d;color:#101514;z-index:10}.skip:focus{top:12px}.guide{display:flex;justify-content:space-between;gap:24px;border-color:#91aa70;margin:20px 0}.guide>div:last-child{display:flex;flex-direction:column;gap:10px;min-width:240px}progress{width:100%;accent-color:#c6ed8d;height:10px}.footer-actions{flex-wrap:wrap;justify-content:flex-end;max-width:560px}button[aria-busy=true]{opacity:.8}button:disabled{cursor:default;opacity:.65}.source:focus{outline:2px solid #dafb9a;outline-offset:4px}code,.source,.claim,#model-label{overflow-wrap:anywhere}@media(max-width:800px){.guide{display:block}.guide>div:last-child{margin-top:16px;min-width:0}.footer-actions{justify-content:flex-start}.panel{padding:20px}.brand{font-size:18px}.metrics{gap:18px}.metric strong{font-size:30px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 
 .footer-actions{align-items:stretch}.footer-actions>label,.footer-actions>input,.footer-actions>details{flex-basis:100%}.footer-actions>label small{display:block;margin-top:4px}.footer-actions>details label{display:block;margin:12px 0}.footer-actions>details button{margin:6px 8px 6px 0}#encrypted-export{width:100%}#export-passphrase{width:100%}
+
+/* Programmatic focus remains visible at workflow transitions and source targets. */
+[tabindex="-1"]:focus{outline:2px solid #dafb9a;outline-offset:4px;scroll-margin:24px}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.login{display:grid;grid-template-columns:minmax(250px,1fr) auto;gap:12px 20px;align-items:center}
+.login>label,.login>#sign-in-help{grid-column:1/-1}.login>#sign-in-help{margin:0 0 8px;max-width:85ch}
+.login>input{width:100%}.login>button{white-space:nowrap}#investigation-pending{width:100%;accent-color:#c6ed8d}
+@media(max-width:800px){.login{grid-template-columns:minmax(0,1fr)}.login>label,.login>#sign-in-help{grid-column:1}.login>button{width:100%}.model-controls{min-width:0;max-width:100%}}

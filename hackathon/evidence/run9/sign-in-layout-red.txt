@@ -1,0 +1,5 @@
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(await evaluate(`document.querySelector('#login label').getBoundingClientRect().width>=250`))
+
+    at hackathon/scripts/browser-smoke.mjs:37:130

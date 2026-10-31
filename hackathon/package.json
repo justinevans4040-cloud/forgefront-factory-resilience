@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Fresh Meta Hackathon build under hackathon/ (Meta hackathon submission).",
+  "description": "Meta Hackathon build under hackathon/ (reference-only ancestry outside this folder).",
   "engines": {
     "node": ">=20"
   },
@@ -19,6 +19,8 @@
     "test": "node scripts/test.mjs",
     "test:unit": "node scripts/test.mjs unit",
     "test:integration": "node scripts/test.mjs integration",
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "check:judge": "node scripts/judge-check.mjs",
+    "check:public-tree": "node scripts/public-tree-check.mjs"
   }
 }

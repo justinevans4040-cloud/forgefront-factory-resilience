@@ -1,0 +1,4271 @@
+{
+  "snapshot": {
+    "version": 1,
+    "scenarioId": "scenario-cert-hold-v1",
+    "label": "SYNTHETIC",
+    "incident": {
+      "incidentId": "inc-cert-alloy-hold",
+      "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+      "heldMaterialId": "MAT-ALLOY-A",
+      "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+    },
+    "materials": [
+      {
+        "materialId": "MAT-ALLOY-A",
+        "unit": "each",
+        "onHand": 80,
+        "held": 80,
+        "available": 0,
+        "substitutes": [
+          "MAT-ALLOY-B"
+        ],
+        "replenishmentHours": 48,
+        "unitCostUsd": 12
+      },
+      {
+        "materialId": "MAT-ALLOY-B",
+        "unit": "each",
+        "onHand": 100,
+        "held": 0,
+        "available": 100,
+        "substitutes": [],
+        "replenishmentHours": null,
+        "unitCostUsd": 14
+      }
+    ],
+    "cells": [
+      {
+        "cellId": "CELL-MILL-1",
+        "availableHours": 40,
+        "hourlyCostUsd": 85,
+        "compatibleMaterials": [
+          "MAT-ALLOY-A",
+          "MAT-ALLOY-B"
+        ],
+        "online": true
+      },
+      {
+        "cellId": "CELL-MILL-2",
+        "availableHours": 24,
+        "hourlyCostUsd": 90,
+        "compatibleMaterials": [
+          "MAT-ALLOY-B"
+        ],
+        "online": true
+      }
+    ],
+    "jobs": [
+      {
+        "jobId": "JOB-1001",
+        "materialId": "MAT-ALLOY-A",
+        "unitsRequired": 40,
+        "hoursPerUnit": 0.5,
+        "preferredCellId": "CELL-MILL-1",
+        "dueHours": 36
+      },
+      {
+        "jobId": "JOB-1002",
+        "materialId": "MAT-ALLOY-A",
+        "unitsRequired": 30,
+        "hoursPerUnit": 0.5,
+        "preferredCellId": "CELL-MILL-1",
+        "dueHours": 48
+      }
+    ],
+    "evidenceRecords": [
+      {
+        "evidenceId": "ev-cert-qty",
+        "documentId": "doc-cert-441",
+        "recordId": "rec-cert-line-3",
+        "lineId": "L3",
+        "field": "quantity",
+        "quantity": {
+          "value": 120,
+          "unit": "each"
+        },
+        "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+      },
+      {
+        "evidenceId": "ev-recv-qty",
+        "documentId": "doc-recv-882",
+        "recordId": "rec-recv-posted",
+        "lineId": "R1",
+        "field": "quantity",
+        "quantity": {
+          "value": 80,
+          "unit": "each"
+        },
+        "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+      },
+      {
+        "evidenceId": "ev-sub-stock",
+        "documentId": "doc-inv-snap",
+        "recordId": "rec-inv-alloy-b",
+        "lineId": null,
+        "field": "onHand",
+        "quantity": {
+          "value": 100,
+          "unit": "each"
+        },
+        "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+      }
+    ],
+    "assumptions": [
+      "All quantities are synthetic demo values.",
+      "Illustrative cell costs are not OEM quotes."
+    ],
+    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af"
+  },
+  "analysis": {
+    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+    "scenarioId": "scenario-cert-hold-v1",
+    "incident": {
+      "incidentId": "inc-cert-alloy-hold",
+      "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+      "heldMaterialId": "MAT-ALLOY-A",
+      "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+    },
+    "impacted": {
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "heldMaterialId": "MAT-ALLOY-A",
+      "jobs": [
+        {
+          "jobId": "JOB-1001",
+          "materialId": "MAT-ALLOY-A",
+          "unitsRequired": 40,
+          "hoursPerUnit": 0.5,
+          "preferredCellId": "CELL-MILL-1",
+          "dueHours": 36,
+          "totalHours": 20
+        },
+        {
+          "jobId": "JOB-1002",
+          "materialId": "MAT-ALLOY-A",
+          "unitsRequired": 30,
+          "hoursPerUnit": 0.5,
+          "preferredCellId": "CELL-MILL-1",
+          "dueHours": 48,
+          "totalHours": 15
+        }
+      ],
+      "impactedJobCount": 2,
+      "impactedUnits": 70
+    },
+    "recovery": {
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "impacted": {
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "heldMaterialId": "MAT-ALLOY-A",
+        "jobs": [
+          {
+            "jobId": "JOB-1001",
+            "materialId": "MAT-ALLOY-A",
+            "unitsRequired": 40,
+            "hoursPerUnit": 0.5,
+            "preferredCellId": "CELL-MILL-1",
+            "dueHours": 36,
+            "totalHours": 20
+          },
+          {
+            "jobId": "JOB-1002",
+            "materialId": "MAT-ALLOY-A",
+            "unitsRequired": 30,
+            "hoursPerUnit": 0.5,
+            "preferredCellId": "CELL-MILL-1",
+            "dueHours": 48,
+            "totalHours": 15
+          }
+        ],
+        "impactedJobCount": 2,
+        "impactedUnits": 70
+      },
+      "options": [
+        {
+          "optionId": "wait_replenishment",
+          "feasible": true,
+          "rejectReason": null,
+          "impactedUnits": 70,
+          "finishHours": 83,
+          "incrementalCostUsd": 0,
+          "assumptions": [
+            "All quantities are synthetic demo values.",
+            "Illustrative cell costs are not OEM quotes.",
+            "Documented replenishment lead time 48 hours"
+          ],
+          "constraints": [
+            "Held lot remains unavailable until replenishment posts"
+          ],
+          "evidenceIds": [
+            "ev-cert-qty",
+            "ev-recv-qty"
+          ],
+          "detail": {
+            "replenishmentHours": 48,
+            "productionHours": 35
+          }
+        },
+        {
+          "optionId": "allocate_substitute",
+          "feasible": true,
+          "rejectReason": null,
+          "impactedUnits": 70,
+          "finishHours": 35,
+          "incrementalCostUsd": 3115,
+          "assumptions": [
+            "All quantities are synthetic demo values.",
+            "Illustrative cell costs are not OEM quotes.",
+            "Substitute allocation uses only verified available stock"
+          ],
+          "constraints": [
+            "Held MAT lot remains on hold",
+            "No supplier messaging"
+          ],
+          "evidenceIds": [
+            "ev-sub-stock",
+            "ev-recv-qty"
+          ],
+          "detail": {
+            "draws": [
+              {
+                "materialId": "MAT-ALLOY-B",
+                "units": 70,
+                "hours": 35,
+                "laborCostUsd": 2975,
+                "materialPremiumUsd": 140,
+                "cells": [
+                  {
+                    "cellId": "CELL-MILL-1",
+                    "hours": 35,
+                    "costUsd": 2975
+                  }
+                ]
+              }
+            ],
+            "materialPremiumUsd": 140,
+            "laborCostUsd": 2975
+          }
+        },
+        {
+          "optionId": "split_capacity",
+          "feasible": true,
+          "rejectReason": null,
+          "impactedUnits": 70,
+          "finishHours": 17.5,
+          "incrementalCostUsd": 3202.5,
+          "assumptions": [
+            "All quantities are synthetic demo values.",
+            "Illustrative cell costs are not OEM quotes.",
+            "Production hours split across compatible online cells"
+          ],
+          "constraints": [
+            "Held primary material not issued",
+            "Illustrative incremental cost only"
+          ],
+          "evidenceIds": [
+            "ev-sub-stock"
+          ],
+          "detail": {
+            "materialId": "MAT-ALLOY-B",
+            "allocations": [
+              {
+                "cellId": "CELL-MILL-1",
+                "hours": 17.5,
+                "costUsd": 1487.5
+              },
+              {
+                "cellId": "CELL-MILL-2",
+                "hours": 17.5,
+                "costUsd": 1575
+              }
+            ]
+          }
+        }
+      ],
+      "feasibleCount": 3,
+      "status": "options_available",
+      "message": "3 feasible recovery option(s) computed from snapshot inputs"
+    },
+    "capacity": {
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "cells": [
+        {
+          "cellId": "CELL-MILL-1",
+          "online": true,
+          "availableHours": 40,
+          "hourlyCostUsd": 85,
+          "compatibleMaterials": [
+            "MAT-ALLOY-A",
+            "MAT-ALLOY-B"
+          ]
+        },
+        {
+          "cellId": "CELL-MILL-2",
+          "online": true,
+          "availableHours": 24,
+          "hourlyCostUsd": 90,
+          "compatibleMaterials": [
+            "MAT-ALLOY-B"
+          ]
+        }
+      ]
+    },
+    "evidenceCount": 3
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-cert-qty",
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "source": {
+        "documentId": "doc-cert-441",
+        "recordId": "rec-cert-line-3",
+        "lineId": "L3",
+        "field": "quantity"
+      },
+      "quantity": {
+        "value": 120,
+        "unit": "each"
+      },
+      "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+    },
+    {
+      "evidenceId": "ev-recv-qty",
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "source": {
+        "documentId": "doc-recv-882",
+        "recordId": "rec-recv-posted",
+        "lineId": "R1",
+        "field": "quantity"
+      },
+      "quantity": {
+        "value": 80,
+        "unit": "each"
+      },
+      "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+    },
+    {
+      "evidenceId": "ev-sub-stock",
+      "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+      "source": {
+        "documentId": "doc-inv-snap",
+        "recordId": "rec-inv-alloy-b",
+        "lineId": null,
+        "field": "onHand"
+      },
+      "quantity": {
+        "value": 100,
+        "unit": "each"
+      },
+      "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+    }
+  ],
+  "runs": [
+    {
+      "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+      "run": {
+        "ok": true,
+        "stopReason": "MODEL_STOP",
+        "turns": 3,
+        "toolCalls": 2,
+        "elapsedMs": 11791,
+        "limits": {
+          "maxTurns": 6,
+          "maxToolCalls": 10,
+          "maxWallClockMs": 60000
+        },
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "mode": "live",
+        "sample": false,
+        "label": "LIVE — Muse Wonder",
+        "text": "Advisory only, unvalidated: split_capacity finishes in 17.5h for $3202.50, using verified substitute stock against 70 impacted units and due hours of 36 and 48. Counterfactuals: wait_replenishment would cost $0 but finish in 83h, missing both dues, while allocate_substitute would finish in 35h for $3115, saving only $87.50 but taking twice as long. Assumptions: all quantities are synthetic demo values, illustrative cell costs are not OEM quotes, production hours split across compatible online cells, substitute allocation uses only verified available stock, and the held lot remains unavailable/not issued.",
+        "trace": [
+          {
+            "type": "model_turn",
+            "turn": 1,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Wonder",
+            "modelId": "muse-wonder-1.0",
+            "toolCallCount": 1,
+            "textDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41"
+          },
+          {
+            "type": "tool_result",
+            "turn": 1,
+            "toolCallIndex": 1,
+            "name": "get_incident",
+            "ok": true,
+            "observation": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "incident": {
+                "incidentId": "inc-cert-alloy-hold",
+                "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+                "heldMaterialId": "MAT-ALLOY-A",
+                "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+              },
+              "label": "SYNTHETIC",
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes."
+              ],
+              "evidence": [
+                {
+                  "evidenceId": "ev-cert-qty",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-cert-441",
+                    "recordId": "rec-cert-line-3",
+                    "lineId": "L3",
+                    "field": "quantity"
+                  },
+                  "quantity": {
+                    "value": 120,
+                    "unit": "each"
+                  },
+                  "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+                },
+                {
+                  "evidenceId": "ev-recv-qty",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-recv-882",
+                    "recordId": "rec-recv-posted",
+                    "lineId": "R1",
+                    "field": "quantity"
+                  },
+                  "quantity": {
+                    "value": 80,
+                    "unit": "each"
+                  },
+                  "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+                },
+                {
+                  "evidenceId": "ev-sub-stock",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-inv-snap",
+                    "recordId": "rec-inv-alloy-b",
+                    "lineId": null,
+                    "field": "onHand"
+                  },
+                  "quantity": {
+                    "value": 100,
+                    "unit": "each"
+                  },
+                  "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+                }
+              ]
+            }
+          },
+          {
+            "type": "model_turn",
+            "turn": 2,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Wonder",
+            "modelId": "muse-wonder-1.0",
+            "toolCallCount": 1,
+            "textDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d"
+          },
+          {
+            "type": "tool_result",
+            "turn": 2,
+            "toolCallIndex": 2,
+            "name": "compare_recovery_options",
+            "ok": true,
+            "observation": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "impacted": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "heldMaterialId": "MAT-ALLOY-A",
+                "jobs": [
+                  {
+                    "jobId": "JOB-1001",
+                    "materialId": "MAT-ALLOY-A",
+                    "unitsRequired": 40,
+                    "hoursPerUnit": 0.5,
+                    "preferredCellId": "CELL-MILL-1",
+                    "dueHours": 36,
+                    "totalHours": 20
+                  },
+                  {
+                    "jobId": "JOB-1002",
+                    "materialId": "MAT-ALLOY-A",
+                    "unitsRequired": 30,
+                    "hoursPerUnit": 0.5,
+                    "preferredCellId": "CELL-MILL-1",
+                    "dueHours": 48,
+                    "totalHours": 15
+                  }
+                ],
+                "impactedJobCount": 2,
+                "impactedUnits": 70
+              },
+              "options": [
+                {
+                  "optionId": "wait_replenishment",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 83,
+                  "incrementalCostUsd": 0,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Documented replenishment lead time 48 hours"
+                  ],
+                  "constraints": [
+                    "Held lot remains unavailable until replenishment posts"
+                  ],
+                  "evidenceIds": [
+                    "ev-cert-qty",
+                    "ev-recv-qty"
+                  ],
+                  "detail": {
+                    "replenishmentHours": 48,
+                    "productionHours": 35
+                  }
+                },
+                {
+                  "optionId": "allocate_substitute",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 35,
+                  "incrementalCostUsd": 3115,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Substitute allocation uses only verified available stock"
+                  ],
+                  "constraints": [
+                    "Held MAT lot remains on hold",
+                    "No supplier messaging"
+                  ],
+                  "evidenceIds": [
+                    "ev-sub-stock",
+                    "ev-recv-qty"
+                  ],
+                  "detail": {
+                    "draws": [
+                      {
+                        "materialId": "MAT-ALLOY-B",
+                        "units": 70,
+                        "hours": 35,
+                        "laborCostUsd": 2975,
+                        "materialPremiumUsd": 140,
+                        "cells": [
+                          {
+                            "cellId": "CELL-MILL-1",
+                            "hours": 35,
+                            "costUsd": 2975
+                          }
+                        ]
+                      }
+                    ],
+                    "materialPremiumUsd": 140,
+                    "laborCostUsd": 2975
+                  }
+                },
+                {
+                  "optionId": "split_capacity",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 17.5,
+                  "incrementalCostUsd": 3202.5,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Production hours split across compatible online cells"
+                  ],
+                  "constraints": [
+                    "Held primary material not issued",
+                    "Illustrative incremental cost only"
+                  ],
+                  "evidenceIds": [
+                    "ev-sub-stock"
+                  ],
+                  "detail": {
+                    "materialId": "MAT-ALLOY-B",
+                    "allocations": [
+                      {
+                        "cellId": "CELL-MILL-1",
+                        "hours": 17.5,
+                        "costUsd": 1487.5
+                      },
+                      {
+                        "cellId": "CELL-MILL-2",
+                        "hours": 17.5,
+                        "costUsd": 1575
+                      }
+                    ]
+                  }
+                }
+              ],
+              "feasibleCount": 3,
+              "status": "options_available",
+              "message": "3 feasible recovery option(s) computed from snapshot inputs"
+            }
+          },
+          {
+            "type": "model_turn",
+            "turn": 3,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Wonder",
+            "modelId": "muse-wonder-1.0",
+            "toolCallCount": 0,
+            "textDigest": "4d535bd31719965b5eb175a27ff820d4f5414ee9c3ff40c59479e5e22c25c6b6"
+          }
+        ],
+        "operationalRelease": false
+      },
+      "proposalValid": true,
+      "analysis": {
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "scenarioId": "scenario-cert-hold-v1",
+        "incident": {
+          "incidentId": "inc-cert-alloy-hold",
+          "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+          "heldMaterialId": "MAT-ALLOY-A",
+          "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+        },
+        "impacted": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "heldMaterialId": "MAT-ALLOY-A",
+          "jobs": [
+            {
+              "jobId": "JOB-1001",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 40,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 36,
+              "totalHours": 20
+            },
+            {
+              "jobId": "JOB-1002",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 30,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 48,
+              "totalHours": 15
+            }
+          ],
+          "impactedJobCount": 2,
+          "impactedUnits": 70
+        },
+        "recovery": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "impacted": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "jobs": [
+              {
+                "jobId": "JOB-1001",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 40,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 36,
+                "totalHours": 20
+              },
+              {
+                "jobId": "JOB-1002",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 30,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 48,
+                "totalHours": 15
+              }
+            ],
+            "impactedJobCount": 2,
+            "impactedUnits": 70
+          },
+          "options": [
+            {
+              "optionId": "wait_replenishment",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 83,
+              "incrementalCostUsd": 0,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Documented replenishment lead time 48 hours"
+              ],
+              "constraints": [
+                "Held lot remains unavailable until replenishment posts"
+              ],
+              "evidenceIds": [
+                "ev-cert-qty",
+                "ev-recv-qty"
+              ],
+              "detail": {
+                "replenishmentHours": 48,
+                "productionHours": 35
+              }
+            },
+            {
+              "optionId": "allocate_substitute",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 35,
+              "incrementalCostUsd": 3115,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Substitute allocation uses only verified available stock"
+              ],
+              "constraints": [
+                "Held MAT lot remains on hold",
+                "No supplier messaging"
+              ],
+              "evidenceIds": [
+                "ev-sub-stock",
+                "ev-recv-qty"
+              ],
+              "detail": {
+                "draws": [
+                  {
+                    "materialId": "MAT-ALLOY-B",
+                    "units": 70,
+                    "hours": 35,
+                    "laborCostUsd": 2975,
+                    "materialPremiumUsd": 140,
+                    "cells": [
+                      {
+                        "cellId": "CELL-MILL-1",
+                        "hours": 35,
+                        "costUsd": 2975
+                      }
+                    ]
+                  }
+                ],
+                "materialPremiumUsd": 140,
+                "laborCostUsd": 2975
+              }
+            },
+            {
+              "optionId": "split_capacity",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 17.5,
+              "incrementalCostUsd": 3202.5,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Production hours split across compatible online cells"
+              ],
+              "constraints": [
+                "Held primary material not issued",
+                "Illustrative incremental cost only"
+              ],
+              "evidenceIds": [
+                "ev-sub-stock"
+              ],
+              "detail": {
+                "materialId": "MAT-ALLOY-B",
+                "allocations": [
+                  {
+                    "cellId": "CELL-MILL-1",
+                    "hours": 17.5,
+                    "costUsd": 1487.5
+                  },
+                  {
+                    "cellId": "CELL-MILL-2",
+                    "hours": 17.5,
+                    "costUsd": 1575
+                  }
+                ]
+              }
+            }
+          ],
+          "feasibleCount": 3,
+          "status": "options_available",
+          "message": "3 feasible recovery option(s) computed from snapshot inputs"
+        },
+        "capacity": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "cells": [
+            {
+              "cellId": "CELL-MILL-1",
+              "online": true,
+              "availableHours": 40,
+              "hourlyCostUsd": 85,
+              "compatibleMaterials": [
+                "MAT-ALLOY-A",
+                "MAT-ALLOY-B"
+              ]
+            },
+            {
+              "cellId": "CELL-MILL-2",
+              "online": true,
+              "availableHours": 24,
+              "hourlyCostUsd": 90,
+              "compatibleMaterials": [
+                "MAT-ALLOY-B"
+              ]
+            }
+          ]
+        },
+        "evidenceCount": 3
+      },
+      "claims": {
+        "accepted": [
+          {
+            "evidenceId": "ev-cert-qty",
+            "value": 120,
+            "unit": "each",
+            "documentId": "doc-cert-441",
+            "recordId": "rec-cert-line-3",
+            "field": "quantity",
+            "reason": "EXACT_SOURCE_MATCH"
+          },
+          {
+            "evidenceId": "ev-recv-qty",
+            "value": 80,
+            "unit": "each",
+            "documentId": "doc-recv-882",
+            "recordId": "rec-recv-posted",
+            "field": "quantity",
+            "reason": "EXACT_SOURCE_MATCH"
+          },
+          {
+            "evidenceId": "ev-sub-stock",
+            "value": 100,
+            "unit": "each",
+            "documentId": "doc-inv-snap",
+            "recordId": "rec-inv-alloy-b",
+            "field": "onHand",
+            "reason": "EXACT_SOURCE_MATCH"
+          }
+        ],
+        "rejected": []
+      },
+      "selectedOptionId": "split_capacity",
+      "narrative": "Advisory only, unvalidated: split_capacity finishes in 17.5h for $3202.50, using verified substitute stock against 70 impacted units and due hours of 36 and 48. Counterfactuals: wait_replenishment would cost $0 but finish in 83h, missing both dues, while allocate_substitute would finish in 35h for $3115, saving only $87.50 but taking twice as long. Assumptions: all quantities are synthetic demo values, illustrative cell costs are not OEM quotes, production hours split across compatible online cells, substitute allocation uses only verified available stock, and the held lot remains unavailable/not issued.",
+      "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
+      "calls": [
+        {
+          "type": "model_call",
+          "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "meta-model-api",
+          "requestedModel": "muse-wonder-1.0",
+          "returnedModel": "muse-wonder-1.0",
+          "requestId": "resp_6ae628f2642036fe789945e9",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 2479,
+          "usage": {
+            "input_tokens": 539,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 326,
+            "output_tokens_details": {
+              "reasoning_tokens": 303
+            },
+            "total_tokens": 865
+          },
+          "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "meta-model-api",
+          "requestedModel": "muse-wonder-1.0",
+          "returnedModel": "muse-wonder-1.0",
+          "requestId": "resp_6ae628f41ce410e3e41c4dcc",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 2170,
+          "usage": {
+            "input_tokens": 1011,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 312,
+            "output_tokens_details": {
+              "reasoning_tokens": 288
+            },
+            "total_tokens": 1323
+          },
+          "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "meta-model-api",
+          "requestedModel": "muse-wonder-1.0",
+          "returnedModel": "muse-wonder-1.0",
+          "requestId": "resp_6ae628fb464a737419a34b9a",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 7126,
+          "usage": {
+            "input_tokens": 1725,
+            "input_tokens_details": {
+              "cached_tokens": 0
+            },
+            "output_tokens": 1450,
+            "output_tokens_details": {
+              "reasoning_tokens": 1173
+            },
+            "total_tokens": 3175
+          },
+          "responseDigest": "4d535bd31719965b5eb175a27ff820d4f5414ee9c3ff40c59479e5e22c25c6b6",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        }
+      ],
+      "synthetic": true,
+      "operationalRelease": false
+    },
+    {
+      "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+      "run": {
+        "ok": true,
+        "stopReason": "MODEL_STOP",
+        "turns": 3,
+        "toolCalls": 2,
+        "elapsedMs": 6071,
+        "limits": {
+          "maxTurns": 6,
+          "maxToolCalls": 10,
+          "maxWallClockMs": 60000
+        },
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "mode": "live",
+        "sample": false,
+        "label": "LIVE — Muse Spark Open (baseten)",
+        "text": "Certificate vs receiving mismatch holds MAT-ALLOY-A (70 units, 2 jobs). Counterfactual comparison: wait_replenishment 83h (48h replenishment +35h production) $0 misses 36h/48h dues; allocate_substitute 35h $3115 via CELL-MILL-1 using verified MAT-ALLOY-B stock meets dues; split_capacity 17.5h $3202.5 fastest via CELL-MILL-1 (17.5h $1487.5) + CELL-MILL-2 (17.5h $1575) meets dues with buffer. Advisory recommendation only: split_capacity preferred for schedule risk. Assumptions: All quantities are synthetic demo values; Illustrative cell costs are not OEM quotes; Substitute allocation uses only verified available stock; Documented replenishment lead time 48 hours.",
+        "trace": [
+          {
+            "type": "model_turn",
+            "turn": 1,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Spark Open (baseten)",
+            "modelId": "meta-models/muse-spark-open",
+            "toolCallCount": 1,
+            "textDigest": "5a67a35e252c28433c4ddbc8a779a6468b3a295526f683a120e1dd1b53c4a7e6"
+          },
+          {
+            "type": "tool_result",
+            "turn": 1,
+            "toolCallIndex": 1,
+            "name": "get_incident",
+            "ok": true,
+            "observation": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "incident": {
+                "incidentId": "inc-cert-alloy-hold",
+                "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+                "heldMaterialId": "MAT-ALLOY-A",
+                "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+              },
+              "label": "SYNTHETIC",
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes."
+              ],
+              "evidence": [
+                {
+                  "evidenceId": "ev-cert-qty",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-cert-441",
+                    "recordId": "rec-cert-line-3",
+                    "lineId": "L3",
+                    "field": "quantity"
+                  },
+                  "quantity": {
+                    "value": 120,
+                    "unit": "each"
+                  },
+                  "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+                },
+                {
+                  "evidenceId": "ev-recv-qty",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-recv-882",
+                    "recordId": "rec-recv-posted",
+                    "lineId": "R1",
+                    "field": "quantity"
+                  },
+                  "quantity": {
+                    "value": 80,
+                    "unit": "each"
+                  },
+                  "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+                },
+                {
+                  "evidenceId": "ev-sub-stock",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-inv-snap",
+                    "recordId": "rec-inv-alloy-b",
+                    "lineId": null,
+                    "field": "onHand"
+                  },
+                  "quantity": {
+                    "value": 100,
+                    "unit": "each"
+                  },
+                  "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+                }
+              ]
+            }
+          },
+          {
+            "type": "model_turn",
+            "turn": 2,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Spark Open (baseten)",
+            "modelId": "meta-models/muse-spark-open",
+            "toolCallCount": 1,
+            "textDigest": "56e119f0b6b02bd12c0f19c989798fc9479004827771f810f54bf4fc7a3591dd"
+          },
+          {
+            "type": "tool_result",
+            "turn": 2,
+            "toolCallIndex": 2,
+            "name": "compare_recovery_options",
+            "ok": true,
+            "observation": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "impacted": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "heldMaterialId": "MAT-ALLOY-A",
+                "jobs": [
+                  {
+                    "jobId": "JOB-1001",
+                    "materialId": "MAT-ALLOY-A",
+                    "unitsRequired": 40,
+                    "hoursPerUnit": 0.5,
+                    "preferredCellId": "CELL-MILL-1",
+                    "dueHours": 36,
+                    "totalHours": 20
+                  },
+                  {
+                    "jobId": "JOB-1002",
+                    "materialId": "MAT-ALLOY-A",
+                    "unitsRequired": 30,
+                    "hoursPerUnit": 0.5,
+                    "preferredCellId": "CELL-MILL-1",
+                    "dueHours": 48,
+                    "totalHours": 15
+                  }
+                ],
+                "impactedJobCount": 2,
+                "impactedUnits": 70
+              },
+              "options": [
+                {
+                  "optionId": "wait_replenishment",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 83,
+                  "incrementalCostUsd": 0,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Documented replenishment lead time 48 hours"
+                  ],
+                  "constraints": [
+                    "Held lot remains unavailable until replenishment posts"
+                  ],
+                  "evidenceIds": [
+                    "ev-cert-qty",
+                    "ev-recv-qty"
+                  ],
+                  "detail": {
+                    "replenishmentHours": 48,
+                    "productionHours": 35
+                  }
+                },
+                {
+                  "optionId": "allocate_substitute",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 35,
+                  "incrementalCostUsd": 3115,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Substitute allocation uses only verified available stock"
+                  ],
+                  "constraints": [
+                    "Held MAT lot remains on hold",
+                    "No supplier messaging"
+                  ],
+                  "evidenceIds": [
+                    "ev-sub-stock",
+                    "ev-recv-qty"
+                  ],
+                  "detail": {
+                    "draws": [
+                      {
+                        "materialId": "MAT-ALLOY-B",
+                        "units": 70,
+                        "hours": 35,
+                        "laborCostUsd": 2975,
+                        "materialPremiumUsd": 140,
+                        "cells": [
+                          {
+                            "cellId": "CELL-MILL-1",
+                            "hours": 35,
+                            "costUsd": 2975
+                          }
+                        ]
+                      }
+                    ],
+                    "materialPremiumUsd": 140,
+                    "laborCostUsd": 2975
+                  }
+                },
+                {
+                  "optionId": "split_capacity",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 17.5,
+                  "incrementalCostUsd": 3202.5,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Production hours split across compatible online cells"
+                  ],
+                  "constraints": [
+                    "Held primary material not issued",
+                    "Illustrative incremental cost only"
+                  ],
+                  "evidenceIds": [
+                    "ev-sub-stock"
+                  ],
+                  "detail": {
+                    "materialId": "MAT-ALLOY-B",
+                    "allocations": [
+                      {
+                        "cellId": "CELL-MILL-1",
+                        "hours": 17.5,
+                        "costUsd": 1487.5
+                      },
+                      {
+                        "cellId": "CELL-MILL-2",
+                        "hours": 17.5,
+                        "costUsd": 1575
+                      }
+                    ]
+                  }
+                }
+              ],
+              "feasibleCount": 3,
+              "status": "options_available",
+              "message": "3 feasible recovery option(s) computed from snapshot inputs"
+            }
+          },
+          {
+            "type": "model_turn",
+            "turn": 3,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Spark Open (baseten)",
+            "modelId": "meta-models/muse-spark-open",
+            "toolCallCount": 0,
+            "textDigest": "482780da51927586522306482a1268750187c46403537f15d750c4ba4c614fb4"
+          }
+        ],
+        "operationalRelease": false
+      },
+      "proposalValid": true,
+      "analysis": {
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "scenarioId": "scenario-cert-hold-v1",
+        "incident": {
+          "incidentId": "inc-cert-alloy-hold",
+          "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+          "heldMaterialId": "MAT-ALLOY-A",
+          "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+        },
+        "impacted": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "heldMaterialId": "MAT-ALLOY-A",
+          "jobs": [
+            {
+              "jobId": "JOB-1001",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 40,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 36,
+              "totalHours": 20
+            },
+            {
+              "jobId": "JOB-1002",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 30,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 48,
+              "totalHours": 15
+            }
+          ],
+          "impactedJobCount": 2,
+          "impactedUnits": 70
+        },
+        "recovery": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "impacted": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "jobs": [
+              {
+                "jobId": "JOB-1001",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 40,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 36,
+                "totalHours": 20
+              },
+              {
+                "jobId": "JOB-1002",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 30,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 48,
+                "totalHours": 15
+              }
+            ],
+            "impactedJobCount": 2,
+            "impactedUnits": 70
+          },
+          "options": [
+            {
+              "optionId": "wait_replenishment",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 83,
+              "incrementalCostUsd": 0,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Documented replenishment lead time 48 hours"
+              ],
+              "constraints": [
+                "Held lot remains unavailable until replenishment posts"
+              ],
+              "evidenceIds": [
+                "ev-cert-qty",
+                "ev-recv-qty"
+              ],
+              "detail": {
+                "replenishmentHours": 48,
+                "productionHours": 35
+              }
+            },
+            {
+              "optionId": "allocate_substitute",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 35,
+              "incrementalCostUsd": 3115,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Substitute allocation uses only verified available stock"
+              ],
+              "constraints": [
+                "Held MAT lot remains on hold",
+                "No supplier messaging"
+              ],
+              "evidenceIds": [
+                "ev-sub-stock",
+                "ev-recv-qty"
+              ],
+              "detail": {
+                "draws": [
+                  {
+                    "materialId": "MAT-ALLOY-B",
+                    "units": 70,
+                    "hours": 35,
+                    "laborCostUsd": 2975,
+                    "materialPremiumUsd": 140,
+                    "cells": [
+                      {
+                        "cellId": "CELL-MILL-1",
+                        "hours": 35,
+                        "costUsd": 2975
+                      }
+                    ]
+                  }
+                ],
+                "materialPremiumUsd": 140,
+                "laborCostUsd": 2975
+              }
+            },
+            {
+              "optionId": "split_capacity",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 17.5,
+              "incrementalCostUsd": 3202.5,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Production hours split across compatible online cells"
+              ],
+              "constraints": [
+                "Held primary material not issued",
+                "Illustrative incremental cost only"
+              ],
+              "evidenceIds": [
+                "ev-sub-stock"
+              ],
+              "detail": {
+                "materialId": "MAT-ALLOY-B",
+                "allocations": [
+                  {
+                    "cellId": "CELL-MILL-1",
+                    "hours": 17.5,
+                    "costUsd": 1487.5
+                  },
+                  {
+                    "cellId": "CELL-MILL-2",
+                    "hours": 17.5,
+                    "costUsd": 1575
+                  }
+                ]
+              }
+            }
+          ],
+          "feasibleCount": 3,
+          "status": "options_available",
+          "message": "3 feasible recovery option(s) computed from snapshot inputs"
+        },
+        "capacity": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "cells": [
+            {
+              "cellId": "CELL-MILL-1",
+              "online": true,
+              "availableHours": 40,
+              "hourlyCostUsd": 85,
+              "compatibleMaterials": [
+                "MAT-ALLOY-A",
+                "MAT-ALLOY-B"
+              ]
+            },
+            {
+              "cellId": "CELL-MILL-2",
+              "online": true,
+              "availableHours": 24,
+              "hourlyCostUsd": 90,
+              "compatibleMaterials": [
+                "MAT-ALLOY-B"
+              ]
+            }
+          ]
+        },
+        "evidenceCount": 3
+      },
+      "claims": {
+        "accepted": [
+          {
+            "evidenceId": "ev-cert-qty",
+            "value": 120,
+            "unit": "each",
+            "documentId": "doc-cert-441",
+            "recordId": "rec-cert-line-3",
+            "field": "quantity",
+            "reason": "EXACT_SOURCE_MATCH"
+          },
+          {
+            "evidenceId": "ev-recv-qty",
+            "value": 80,
+            "unit": "each",
+            "documentId": "doc-recv-882",
+            "recordId": "rec-recv-posted",
+            "field": "quantity",
+            "reason": "EXACT_SOURCE_MATCH"
+          },
+          {
+            "evidenceId": "ev-sub-stock",
+            "value": 100,
+            "unit": "each",
+            "documentId": "doc-inv-snap",
+            "recordId": "rec-inv-alloy-b",
+            "field": "onHand",
+            "reason": "EXACT_SOURCE_MATCH"
+          }
+        ],
+        "rejected": []
+      },
+      "selectedOptionId": "split_capacity",
+      "narrative": "Certificate vs receiving mismatch holds MAT-ALLOY-A (70 units, 2 jobs). Counterfactual comparison: wait_replenishment 83h (48h replenishment +35h production) $0 misses 36h/48h dues; allocate_substitute 35h $3115 via CELL-MILL-1 using verified MAT-ALLOY-B stock meets dues; split_capacity 17.5h $3202.5 fastest via CELL-MILL-1 (17.5h $1487.5) + CELL-MILL-2 (17.5h $1575) meets dues with buffer. Advisory recommendation only: split_capacity preferred for schedule risk. Assumptions: All quantities are synthetic demo values; Illustrative cell costs are not OEM quotes; Substitute allocation uses only verified available stock; Documented replenishment lead time 48 hours.",
+      "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
+      "calls": [
+        {
+          "type": "model_call",
+          "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "baseten",
+          "requestedModel": "meta-models/muse-spark-open",
+          "returnedModel": "meta-models/muse-spark-open",
+          "requestId": "chatcmpl-58b1474ee1fe45f4aa58cf9734a6bf25",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 560,
+          "usage": {
+            "prompt_tokens": 676,
+            "completion_tokens": 37,
+            "total_tokens": 713,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 23,
+              "audio_tokens": 0,
+              "reasoning_tokens": 8,
+              "rejected_prediction_tokens": 75
+            }
+          },
+          "responseDigest": "5a67a35e252c28433c4ddbc8a779a6468b3a295526f683a120e1dd1b53c4a7e6",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "baseten",
+          "requestedModel": "meta-models/muse-spark-open",
+          "returnedModel": "meta-models/muse-spark-open",
+          "requestId": "chatcmpl-456b4642d40043c88c25b22765c28cbc",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 733,
+          "usage": {
+            "prompt_tokens": 1158,
+            "completion_tokens": 105,
+            "total_tokens": 1263,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 640
+            },
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 75,
+              "audio_tokens": 0,
+              "reasoning_tokens": 75,
+              "rejected_prediction_tokens": 135
+            }
+          },
+          "responseDigest": "56e119f0b6b02bd12c0f19c989798fc9479004827771f810f54bf4fc7a3591dd",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "baseten",
+          "requestedModel": "meta-models/muse-spark-open",
+          "returnedModel": "meta-models/muse-spark-open",
+          "requestId": "chatcmpl-f13472d4b3514b2b8509bd22dc27150f",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 4759,
+          "usage": {
+            "prompt_tokens": 1883,
+            "completion_tokens": 1626,
+            "total_tokens": 3509,
+            "prompt_tokens_details": {
+              "audio_tokens": 0,
+              "cached_tokens": 1024
+            },
+            "completion_tokens_details": {
+              "accepted_prediction_tokens": 1183,
+              "audio_tokens": 0,
+              "reasoning_tokens": 1313,
+              "rejected_prediction_tokens": 1918
+            }
+          },
+          "responseDigest": "482780da51927586522306482a1268750187c46403537f15d750c4ba4c614fb4",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        }
+      ],
+      "synthetic": true,
+      "operationalRelease": false
+    },
+    {
+      "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+      "run": {
+        "ok": true,
+        "stopReason": "MODEL_STOP",
+        "turns": 3,
+        "toolCalls": 2,
+        "elapsedMs": 30548,
+        "limits": {
+          "maxTurns": 6,
+          "maxToolCalls": 10,
+          "maxWallClockMs": 60000
+        },
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "mode": "live",
+        "sample": false,
+        "label": "LIVE — Muse Spark Open (fireworks)",
+        "text": "Advisory recommendation: split_capacity using MAT-ALLOY-B across CELL-MILL-1 and CELL-MILL-2 finishes in 17.5h vs allocate_substitute 35h ($3115) vs wait_replenishment 83h ($0). Split meets both due dates (36h, 48h) fastest with incremental $3202.5. Counterfactual: waiting for replenishment would miss due dates despite zero cost; single-cell substitute meets dates but slower. Assumptions: All quantities are synthetic demo values, Illustrative cell costs are not OEM quotes, Substitute allocation uses only verified available stock, Production hours split across compatible online cells. Unvalidated narrative.",
+        "trace": [
+          {
+            "type": "model_turn",
+            "turn": 1,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Spark Open (fireworks)",
+            "modelId": "accounts/fireworks/models/muse-spark-open",
+            "toolCallCount": 1,
+            "textDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41"
+          },
+          {
+            "type": "tool_result",
+            "turn": 1,
+            "toolCallIndex": 1,
+            "name": "get_incident",
+            "ok": true,
+            "observation": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "incident": {
+                "incidentId": "inc-cert-alloy-hold",
+                "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+                "heldMaterialId": "MAT-ALLOY-A",
+                "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+              },
+              "label": "SYNTHETIC",
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes."
+              ],
+              "evidence": [
+                {
+                  "evidenceId": "ev-cert-qty",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-cert-441",
+                    "recordId": "rec-cert-line-3",
+                    "lineId": "L3",
+                    "field": "quantity"
+                  },
+                  "quantity": {
+                    "value": 120,
+                    "unit": "each"
+                  },
+                  "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+                },
+                {
+                  "evidenceId": "ev-recv-qty",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-recv-882",
+                    "recordId": "rec-recv-posted",
+                    "lineId": "R1",
+                    "field": "quantity"
+                  },
+                  "quantity": {
+                    "value": 80,
+                    "unit": "each"
+                  },
+                  "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+                },
+                {
+                  "evidenceId": "ev-sub-stock",
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "source": {
+                    "documentId": "doc-inv-snap",
+                    "recordId": "rec-inv-alloy-b",
+                    "lineId": null,
+                    "field": "onHand"
+                  },
+                  "quantity": {
+                    "value": 100,
+                    "unit": "each"
+                  },
+                  "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+                }
+              ]
+            }
+          },
+          {
+            "type": "model_turn",
+            "turn": 2,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Spark Open (fireworks)",
+            "modelId": "accounts/fireworks/models/muse-spark-open",
+            "toolCallCount": 1,
+            "textDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d"
+          },
+          {
+            "type": "tool_result",
+            "turn": 2,
+            "toolCallIndex": 2,
+            "name": "compare_recovery_options",
+            "ok": true,
+            "observation": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "impacted": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "heldMaterialId": "MAT-ALLOY-A",
+                "jobs": [
+                  {
+                    "jobId": "JOB-1001",
+                    "materialId": "MAT-ALLOY-A",
+                    "unitsRequired": 40,
+                    "hoursPerUnit": 0.5,
+                    "preferredCellId": "CELL-MILL-1",
+                    "dueHours": 36,
+                    "totalHours": 20
+                  },
+                  {
+                    "jobId": "JOB-1002",
+                    "materialId": "MAT-ALLOY-A",
+                    "unitsRequired": 30,
+                    "hoursPerUnit": 0.5,
+                    "preferredCellId": "CELL-MILL-1",
+                    "dueHours": 48,
+                    "totalHours": 15
+                  }
+                ],
+                "impactedJobCount": 2,
+                "impactedUnits": 70
+              },
+              "options": [
+                {
+                  "optionId": "wait_replenishment",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 83,
+                  "incrementalCostUsd": 0,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Documented replenishment lead time 48 hours"
+                  ],
+                  "constraints": [
+                    "Held lot remains unavailable until replenishment posts"
+                  ],
+                  "evidenceIds": [
+                    "ev-cert-qty",
+                    "ev-recv-qty"
+                  ],
+                  "detail": {
+                    "replenishmentHours": 48,
+                    "productionHours": 35
+                  }
+                },
+                {
+                  "optionId": "allocate_substitute",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 35,
+                  "incrementalCostUsd": 3115,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Substitute allocation uses only verified available stock"
+                  ],
+                  "constraints": [
+                    "Held MAT lot remains on hold",
+                    "No supplier messaging"
+                  ],
+                  "evidenceIds": [
+                    "ev-sub-stock",
+                    "ev-recv-qty"
+                  ],
+                  "detail": {
+                    "draws": [
+                      {
+                        "materialId": "MAT-ALLOY-B",
+                        "units": 70,
+                        "hours": 35,
+                        "laborCostUsd": 2975,
+                        "materialPremiumUsd": 140,
+                        "cells": [
+                          {
+                            "cellId": "CELL-MILL-1",
+                            "hours": 35,
+                            "costUsd": 2975
+                          }
+                        ]
+                      }
+                    ],
+                    "materialPremiumUsd": 140,
+                    "laborCostUsd": 2975
+                  }
+                },
+                {
+                  "optionId": "split_capacity",
+                  "feasible": true,
+                  "rejectReason": null,
+                  "impactedUnits": 70,
+                  "finishHours": 17.5,
+                  "incrementalCostUsd": 3202.5,
+                  "assumptions": [
+                    "All quantities are synthetic demo values.",
+                    "Illustrative cell costs are not OEM quotes.",
+                    "Production hours split across compatible online cells"
+                  ],
+                  "constraints": [
+                    "Held primary material not issued",
+                    "Illustrative incremental cost only"
+                  ],
+                  "evidenceIds": [
+                    "ev-sub-stock"
+                  ],
+                  "detail": {
+                    "materialId": "MAT-ALLOY-B",
+                    "allocations": [
+                      {
+                        "cellId": "CELL-MILL-1",
+                        "hours": 17.5,
+                        "costUsd": 1487.5
+                      },
+                      {
+                        "cellId": "CELL-MILL-2",
+                        "hours": 17.5,
+                        "costUsd": 1575
+                      }
+                    ]
+                  }
+                }
+              ],
+              "feasibleCount": 3,
+              "status": "options_available",
+              "message": "3 feasible recovery option(s) computed from snapshot inputs"
+            }
+          },
+          {
+            "type": "model_turn",
+            "turn": 3,
+            "mode": "live",
+            "sample": false,
+            "label": "LIVE — Muse Spark Open (fireworks)",
+            "modelId": "accounts/fireworks/models/muse-spark-open",
+            "toolCallCount": 0,
+            "textDigest": "5555cfdbd89bf9310c64b8e4ab42444a03d1f5a6e7f5e72bf43ebe9ec2c64e0a"
+          }
+        ],
+        "operationalRelease": false
+      },
+      "proposalValid": true,
+      "analysis": {
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "scenarioId": "scenario-cert-hold-v1",
+        "incident": {
+          "incidentId": "inc-cert-alloy-hold",
+          "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+          "heldMaterialId": "MAT-ALLOY-A",
+          "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+        },
+        "impacted": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "heldMaterialId": "MAT-ALLOY-A",
+          "jobs": [
+            {
+              "jobId": "JOB-1001",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 40,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 36,
+              "totalHours": 20
+            },
+            {
+              "jobId": "JOB-1002",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 30,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 48,
+              "totalHours": 15
+            }
+          ],
+          "impactedJobCount": 2,
+          "impactedUnits": 70
+        },
+        "recovery": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "impacted": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "jobs": [
+              {
+                "jobId": "JOB-1001",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 40,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 36,
+                "totalHours": 20
+              },
+              {
+                "jobId": "JOB-1002",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 30,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 48,
+                "totalHours": 15
+              }
+            ],
+            "impactedJobCount": 2,
+            "impactedUnits": 70
+          },
+          "options": [
+            {
+              "optionId": "wait_replenishment",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 83,
+              "incrementalCostUsd": 0,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Documented replenishment lead time 48 hours"
+              ],
+              "constraints": [
+                "Held lot remains unavailable until replenishment posts"
+              ],
+              "evidenceIds": [
+                "ev-cert-qty",
+                "ev-recv-qty"
+              ],
+              "detail": {
+                "replenishmentHours": 48,
+                "productionHours": 35
+              }
+            },
+            {
+              "optionId": "allocate_substitute",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 35,
+              "incrementalCostUsd": 3115,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Substitute allocation uses only verified available stock"
+              ],
+              "constraints": [
+                "Held MAT lot remains on hold",
+                "No supplier messaging"
+              ],
+              "evidenceIds": [
+                "ev-sub-stock",
+                "ev-recv-qty"
+              ],
+              "detail": {
+                "draws": [
+                  {
+                    "materialId": "MAT-ALLOY-B",
+                    "units": 70,
+                    "hours": 35,
+                    "laborCostUsd": 2975,
+                    "materialPremiumUsd": 140,
+                    "cells": [
+                      {
+                        "cellId": "CELL-MILL-1",
+                        "hours": 35,
+                        "costUsd": 2975
+                      }
+                    ]
+                  }
+                ],
+                "materialPremiumUsd": 140,
+                "laborCostUsd": 2975
+              }
+            },
+            {
+              "optionId": "split_capacity",
+              "feasible": true,
+              "rejectReason": null,
+              "impactedUnits": 70,
+              "finishHours": 17.5,
+              "incrementalCostUsd": 3202.5,
+              "assumptions": [
+                "All quantities are synthetic demo values.",
+                "Illustrative cell costs are not OEM quotes.",
+                "Production hours split across compatible online cells"
+              ],
+              "constraints": [
+                "Held primary material not issued",
+                "Illustrative incremental cost only"
+              ],
+              "evidenceIds": [
+                "ev-sub-stock"
+              ],
+              "detail": {
+                "materialId": "MAT-ALLOY-B",
+                "allocations": [
+                  {
+                    "cellId": "CELL-MILL-1",
+                    "hours": 17.5,
+                    "costUsd": 1487.5
+                  },
+                  {
+                    "cellId": "CELL-MILL-2",
+                    "hours": 17.5,
+                    "costUsd": 1575
+                  }
+                ]
+              }
+            }
+          ],
+          "feasibleCount": 3,
+          "status": "options_available",
+          "message": "3 feasible recovery option(s) computed from snapshot inputs"
+        },
+        "capacity": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "cells": [
+            {
+              "cellId": "CELL-MILL-1",
+              "online": true,
+              "availableHours": 40,
+              "hourlyCostUsd": 85,
+              "compatibleMaterials": [
+                "MAT-ALLOY-A",
+                "MAT-ALLOY-B"
+              ]
+            },
+            {
+              "cellId": "CELL-MILL-2",
+              "online": true,
+              "availableHours": 24,
+              "hourlyCostUsd": 90,
+              "compatibleMaterials": [
+                "MAT-ALLOY-B"
+              ]
+            }
+          ]
+        },
+        "evidenceCount": 3
+      },
+      "claims": {
+        "accepted": [
+          {
+            "evidenceId": "ev-cert-qty",
+            "value": 120,
+            "unit": "each",
+            "documentId": "doc-cert-441",
+            "recordId": "rec-cert-line-3",
+            "field": "quantity",
+            "reason": "EXACT_SOURCE_MATCH"
+          },
+          {
+            "evidenceId": "ev-recv-qty",
+            "value": 80,
+            "unit": "each",
+            "documentId": "doc-recv-882",
+            "recordId": "rec-recv-posted",
+            "field": "quantity",
+            "reason": "EXACT_SOURCE_MATCH"
+          },
+          {
+            "evidenceId": "ev-sub-stock",
+            "value": 100,
+            "unit": "each",
+            "documentId": "doc-inv-snap",
+            "recordId": "rec-inv-alloy-b",
+            "field": "onHand",
+            "reason": "EXACT_SOURCE_MATCH"
+          }
+        ],
+        "rejected": []
+      },
+      "selectedOptionId": "split_capacity",
+      "narrative": "Advisory recommendation: split_capacity using MAT-ALLOY-B across CELL-MILL-1 and CELL-MILL-2 finishes in 17.5h vs allocate_substitute 35h ($3115) vs wait_replenishment 83h ($0). Split meets both due dates (36h, 48h) fastest with incremental $3202.5. Counterfactual: waiting for replenishment would miss due dates despite zero cost; single-cell substitute meets dates but slower. Assumptions: All quantities are synthetic demo values, Illustrative cell costs are not OEM quotes, Substitute allocation uses only verified available stock, Production hours split across compatible online cells. Unvalidated narrative.",
+      "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
+      "calls": [
+        {
+          "type": "model_call",
+          "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-efe07f9b9d6c4a63bc61e833460eec5d",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 1174,
+          "usage": {
+            "prompt_tokens": 675,
+            "total_tokens": 707,
+            "completion_tokens": 32,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 8
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 8
+            }
+          },
+          "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-21d5a7705dde4b118666c4b4806216e9",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 2759,
+          "usage": {
+            "prompt_tokens": 1152,
+            "total_tokens": 1303,
+            "completion_tokens": 151,
+            "prompt_tokens_details": {
+              "cached_tokens": 640
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 126
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 126
+            }
+          },
+          "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        },
+        {
+          "type": "model_call",
+          "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "provider": "fireworks",
+          "requestedModel": "accounts/fireworks/models/muse-spark-open",
+          "returnedModel": "accounts/fireworks/models/muse-spark-open",
+          "requestId": "chatcmpl-a6990473ed764e8e97e9e0c23bb6f7c9",
+          "mode": "live",
+          "sample": false,
+          "status": "accepted",
+          "failure": null,
+          "latencyMs": 26595,
+          "usage": {
+            "prompt_tokens": 1872,
+            "total_tokens": 3035,
+            "completion_tokens": 1163,
+            "prompt_tokens_details": {
+              "cached_tokens": 1088
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 884
+            },
+            "output_tokens_details": {
+              "reasoning_tokens": 884
+            }
+          },
+          "responseDigest": "5555cfdbd89bf9310c64b8e4ab42444a03d1f5a6e7f5e72bf43ebe9ec2c64e0a",
+          "protocol": "JSON_ENVELOPE",
+          "operationalRelease": false
+        }
+      ],
+      "synthetic": true,
+      "operationalRelease": false
+    }
+  ],
+  "decision": {
+    "status": "none",
+    "operationalRelease": false
+  },
+  "busy": false,
+  "ledger": {
+    "ok": true,
+    "count": 12,
+    "head": "92a2d312c576bae1b387b9476d5746c1721e1c4cae9a14bfc057578405dd1539",
+    "signature": "51cf28f4b005b56e5eecb68a77411195fa82dfaea1a7032a0f0e7c1a32c38258"
+  },
+  "storageProtection": {
+    "protected": true,
+    "mechanism": "WINDOWS_OWNER_SYSTEM_ACL",
+    "encryption": "AES-256-GCM; HKDF-SHA256 domain-separated key"
+  },
+  "synthetic": true,
+  "operationalRelease": false,
+  "format": "FORGEFRONT_ADVISORY_PACKET",
+  "label": "SYNTHETIC; ILLUSTRATIVE COSTS; ADVISORY ONLY",
+  "ledgerDescription": "hash-chained, tamper-evident",
+  "events": [
+    {
+      "sequence": 1,
+      "type": "model_call",
+      "epochMs": 1793468658054,
+      "previousHash": "GENESIS",
+      "data": {
+        "type": "model_call",
+        "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "meta-model-api",
+        "requestedModel": "muse-wonder-1.0",
+        "returnedModel": "muse-wonder-1.0",
+        "requestId": "resp_6ae628f2642036fe789945e9",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 2479,
+        "usage": {
+          "input_tokens": 539,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 326,
+          "output_tokens_details": {
+            "reasoning_tokens": 303
+          },
+          "total_tokens": 865
+        },
+        "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "e5a21e84782bfc6eb84fe86a3f80096229c24ddcf65f04080fdc7eaf605916f8"
+    },
+    {
+      "sequence": 2,
+      "type": "model_call",
+      "epochMs": 1793468660231,
+      "previousHash": "e5a21e84782bfc6eb84fe86a3f80096229c24ddcf65f04080fdc7eaf605916f8",
+      "data": {
+        "type": "model_call",
+        "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "meta-model-api",
+        "requestedModel": "muse-wonder-1.0",
+        "returnedModel": "muse-wonder-1.0",
+        "requestId": "resp_6ae628f41ce410e3e41c4dcc",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 2170,
+        "usage": {
+          "input_tokens": 1011,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 312,
+          "output_tokens_details": {
+            "reasoning_tokens": 288
+          },
+          "total_tokens": 1323
+        },
+        "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "7635f33e4922c00a6cd6fb4ac77567320ae5b40069143acceff13094858a16ea"
+    },
+    {
+      "sequence": 3,
+      "type": "model_call",
+      "epochMs": 1793468667363,
+      "previousHash": "7635f33e4922c00a6cd6fb4ac77567320ae5b40069143acceff13094858a16ea",
+      "data": {
+        "type": "model_call",
+        "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "meta-model-api",
+        "requestedModel": "muse-wonder-1.0",
+        "returnedModel": "muse-wonder-1.0",
+        "requestId": "resp_6ae628fb464a737419a34b9a",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 7126,
+        "usage": {
+          "input_tokens": 1725,
+          "input_tokens_details": {
+            "cached_tokens": 0
+          },
+          "output_tokens": 1450,
+          "output_tokens_details": {
+            "reasoning_tokens": 1173
+          },
+          "total_tokens": 3175
+        },
+        "responseDigest": "4d535bd31719965b5eb175a27ff820d4f5414ee9c3ff40c59479e5e22c25c6b6",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "17598ae77cae16be27f5057bcd13192f873d0a44554e7d4091caa4c501e5a668"
+    },
+    {
+      "sequence": 4,
+      "type": "investigation_completed",
+      "epochMs": 1793468667368,
+      "previousHash": "17598ae77cae16be27f5057bcd13192f873d0a44554e7d4091caa4c501e5a668",
+      "data": {
+        "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+        "run": {
+          "ok": true,
+          "stopReason": "MODEL_STOP",
+          "turns": 3,
+          "toolCalls": 2,
+          "elapsedMs": 11791,
+          "limits": {
+            "maxTurns": 6,
+            "maxToolCalls": 10,
+            "maxWallClockMs": 60000
+          },
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "mode": "live",
+          "sample": false,
+          "label": "LIVE — Muse Wonder",
+          "text": "Advisory only, unvalidated: split_capacity finishes in 17.5h for $3202.50, using verified substitute stock against 70 impacted units and due hours of 36 and 48. Counterfactuals: wait_replenishment would cost $0 but finish in 83h, missing both dues, while allocate_substitute would finish in 35h for $3115, saving only $87.50 but taking twice as long. Assumptions: all quantities are synthetic demo values, illustrative cell costs are not OEM quotes, production hours split across compatible online cells, substitute allocation uses only verified available stock, and the held lot remains unavailable/not issued.",
+          "trace": [
+            {
+              "type": "model_turn",
+              "turn": 1,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Wonder",
+              "modelId": "muse-wonder-1.0",
+              "toolCallCount": 1,
+              "textDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41"
+            },
+            {
+              "type": "tool_result",
+              "turn": 1,
+              "toolCallIndex": 1,
+              "name": "get_incident",
+              "ok": true,
+              "observation": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "incident": {
+                  "incidentId": "inc-cert-alloy-hold",
+                  "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+                  "heldMaterialId": "MAT-ALLOY-A",
+                  "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+                },
+                "label": "SYNTHETIC",
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes."
+                ],
+                "evidence": [
+                  {
+                    "evidenceId": "ev-cert-qty",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-cert-441",
+                      "recordId": "rec-cert-line-3",
+                      "lineId": "L3",
+                      "field": "quantity"
+                    },
+                    "quantity": {
+                      "value": 120,
+                      "unit": "each"
+                    },
+                    "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+                  },
+                  {
+                    "evidenceId": "ev-recv-qty",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-recv-882",
+                      "recordId": "rec-recv-posted",
+                      "lineId": "R1",
+                      "field": "quantity"
+                    },
+                    "quantity": {
+                      "value": 80,
+                      "unit": "each"
+                    },
+                    "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+                  },
+                  {
+                    "evidenceId": "ev-sub-stock",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-inv-snap",
+                      "recordId": "rec-inv-alloy-b",
+                      "lineId": null,
+                      "field": "onHand"
+                    },
+                    "quantity": {
+                      "value": 100,
+                      "unit": "each"
+                    },
+                    "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+                  }
+                ]
+              }
+            },
+            {
+              "type": "model_turn",
+              "turn": 2,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Wonder",
+              "modelId": "muse-wonder-1.0",
+              "toolCallCount": 1,
+              "textDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d"
+            },
+            {
+              "type": "tool_result",
+              "turn": 2,
+              "toolCallIndex": 2,
+              "name": "compare_recovery_options",
+              "ok": true,
+              "observation": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "impacted": {
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "heldMaterialId": "MAT-ALLOY-A",
+                  "jobs": [
+                    {
+                      "jobId": "JOB-1001",
+                      "materialId": "MAT-ALLOY-A",
+                      "unitsRequired": 40,
+                      "hoursPerUnit": 0.5,
+                      "preferredCellId": "CELL-MILL-1",
+                      "dueHours": 36,
+                      "totalHours": 20
+                    },
+                    {
+                      "jobId": "JOB-1002",
+                      "materialId": "MAT-ALLOY-A",
+                      "unitsRequired": 30,
+                      "hoursPerUnit": 0.5,
+                      "preferredCellId": "CELL-MILL-1",
+                      "dueHours": 48,
+                      "totalHours": 15
+                    }
+                  ],
+                  "impactedJobCount": 2,
+                  "impactedUnits": 70
+                },
+                "options": [
+                  {
+                    "optionId": "wait_replenishment",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 83,
+                    "incrementalCostUsd": 0,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Documented replenishment lead time 48 hours"
+                    ],
+                    "constraints": [
+                      "Held lot remains unavailable until replenishment posts"
+                    ],
+                    "evidenceIds": [
+                      "ev-cert-qty",
+                      "ev-recv-qty"
+                    ],
+                    "detail": {
+                      "replenishmentHours": 48,
+                      "productionHours": 35
+                    }
+                  },
+                  {
+                    "optionId": "allocate_substitute",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 35,
+                    "incrementalCostUsd": 3115,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Substitute allocation uses only verified available stock"
+                    ],
+                    "constraints": [
+                      "Held MAT lot remains on hold",
+                      "No supplier messaging"
+                    ],
+                    "evidenceIds": [
+                      "ev-sub-stock",
+                      "ev-recv-qty"
+                    ],
+                    "detail": {
+                      "draws": [
+                        {
+                          "materialId": "MAT-ALLOY-B",
+                          "units": 70,
+                          "hours": 35,
+                          "laborCostUsd": 2975,
+                          "materialPremiumUsd": 140,
+                          "cells": [
+                            {
+                              "cellId": "CELL-MILL-1",
+                              "hours": 35,
+                              "costUsd": 2975
+                            }
+                          ]
+                        }
+                      ],
+                      "materialPremiumUsd": 140,
+                      "laborCostUsd": 2975
+                    }
+                  },
+                  {
+                    "optionId": "split_capacity",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 17.5,
+                    "incrementalCostUsd": 3202.5,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Production hours split across compatible online cells"
+                    ],
+                    "constraints": [
+                      "Held primary material not issued",
+                      "Illustrative incremental cost only"
+                    ],
+                    "evidenceIds": [
+                      "ev-sub-stock"
+                    ],
+                    "detail": {
+                      "materialId": "MAT-ALLOY-B",
+                      "allocations": [
+                        {
+                          "cellId": "CELL-MILL-1",
+                          "hours": 17.5,
+                          "costUsd": 1487.5
+                        },
+                        {
+                          "cellId": "CELL-MILL-2",
+                          "hours": 17.5,
+                          "costUsd": 1575
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "feasibleCount": 3,
+                "status": "options_available",
+                "message": "3 feasible recovery option(s) computed from snapshot inputs"
+              }
+            },
+            {
+              "type": "model_turn",
+              "turn": 3,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Wonder",
+              "modelId": "muse-wonder-1.0",
+              "toolCallCount": 0,
+              "textDigest": "4d535bd31719965b5eb175a27ff820d4f5414ee9c3ff40c59479e5e22c25c6b6"
+            }
+          ],
+          "operationalRelease": false
+        },
+        "proposalValid": true,
+        "analysis": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "scenarioId": "scenario-cert-hold-v1",
+          "incident": {
+            "incidentId": "inc-cert-alloy-hold",
+            "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+          },
+          "impacted": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "jobs": [
+              {
+                "jobId": "JOB-1001",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 40,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 36,
+                "totalHours": 20
+              },
+              {
+                "jobId": "JOB-1002",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 30,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 48,
+                "totalHours": 15
+              }
+            ],
+            "impactedJobCount": 2,
+            "impactedUnits": 70
+          },
+          "recovery": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "impacted": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "heldMaterialId": "MAT-ALLOY-A",
+              "jobs": [
+                {
+                  "jobId": "JOB-1001",
+                  "materialId": "MAT-ALLOY-A",
+                  "unitsRequired": 40,
+                  "hoursPerUnit": 0.5,
+                  "preferredCellId": "CELL-MILL-1",
+                  "dueHours": 36,
+                  "totalHours": 20
+                },
+                {
+                  "jobId": "JOB-1002",
+                  "materialId": "MAT-ALLOY-A",
+                  "unitsRequired": 30,
+                  "hoursPerUnit": 0.5,
+                  "preferredCellId": "CELL-MILL-1",
+                  "dueHours": 48,
+                  "totalHours": 15
+                }
+              ],
+              "impactedJobCount": 2,
+              "impactedUnits": 70
+            },
+            "options": [
+              {
+                "optionId": "wait_replenishment",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 83,
+                "incrementalCostUsd": 0,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Documented replenishment lead time 48 hours"
+                ],
+                "constraints": [
+                  "Held lot remains unavailable until replenishment posts"
+                ],
+                "evidenceIds": [
+                  "ev-cert-qty",
+                  "ev-recv-qty"
+                ],
+                "detail": {
+                  "replenishmentHours": 48,
+                  "productionHours": 35
+                }
+              },
+              {
+                "optionId": "allocate_substitute",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 35,
+                "incrementalCostUsd": 3115,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Substitute allocation uses only verified available stock"
+                ],
+                "constraints": [
+                  "Held MAT lot remains on hold",
+                  "No supplier messaging"
+                ],
+                "evidenceIds": [
+                  "ev-sub-stock",
+                  "ev-recv-qty"
+                ],
+                "detail": {
+                  "draws": [
+                    {
+                      "materialId": "MAT-ALLOY-B",
+                      "units": 70,
+                      "hours": 35,
+                      "laborCostUsd": 2975,
+                      "materialPremiumUsd": 140,
+                      "cells": [
+                        {
+                          "cellId": "CELL-MILL-1",
+                          "hours": 35,
+                          "costUsd": 2975
+                        }
+                      ]
+                    }
+                  ],
+                  "materialPremiumUsd": 140,
+                  "laborCostUsd": 2975
+                }
+              },
+              {
+                "optionId": "split_capacity",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 17.5,
+                "incrementalCostUsd": 3202.5,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Production hours split across compatible online cells"
+                ],
+                "constraints": [
+                  "Held primary material not issued",
+                  "Illustrative incremental cost only"
+                ],
+                "evidenceIds": [
+                  "ev-sub-stock"
+                ],
+                "detail": {
+                  "materialId": "MAT-ALLOY-B",
+                  "allocations": [
+                    {
+                      "cellId": "CELL-MILL-1",
+                      "hours": 17.5,
+                      "costUsd": 1487.5
+                    },
+                    {
+                      "cellId": "CELL-MILL-2",
+                      "hours": 17.5,
+                      "costUsd": 1575
+                    }
+                  ]
+                }
+              }
+            ],
+            "feasibleCount": 3,
+            "status": "options_available",
+            "message": "3 feasible recovery option(s) computed from snapshot inputs"
+          },
+          "capacity": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "cells": [
+              {
+                "cellId": "CELL-MILL-1",
+                "online": true,
+                "availableHours": 40,
+                "hourlyCostUsd": 85,
+                "compatibleMaterials": [
+                  "MAT-ALLOY-A",
+                  "MAT-ALLOY-B"
+                ]
+              },
+              {
+                "cellId": "CELL-MILL-2",
+                "online": true,
+                "availableHours": 24,
+                "hourlyCostUsd": 90,
+                "compatibleMaterials": [
+                  "MAT-ALLOY-B"
+                ]
+              }
+            ]
+          },
+          "evidenceCount": 3
+        },
+        "claims": {
+          "accepted": [
+            {
+              "evidenceId": "ev-cert-qty",
+              "value": 120,
+              "unit": "each",
+              "documentId": "doc-cert-441",
+              "recordId": "rec-cert-line-3",
+              "field": "quantity",
+              "reason": "EXACT_SOURCE_MATCH"
+            },
+            {
+              "evidenceId": "ev-recv-qty",
+              "value": 80,
+              "unit": "each",
+              "documentId": "doc-recv-882",
+              "recordId": "rec-recv-posted",
+              "field": "quantity",
+              "reason": "EXACT_SOURCE_MATCH"
+            },
+            {
+              "evidenceId": "ev-sub-stock",
+              "value": 100,
+              "unit": "each",
+              "documentId": "doc-inv-snap",
+              "recordId": "rec-inv-alloy-b",
+              "field": "onHand",
+              "reason": "EXACT_SOURCE_MATCH"
+            }
+          ],
+          "rejected": []
+        },
+        "selectedOptionId": "split_capacity",
+        "narrative": "Advisory only, unvalidated: split_capacity finishes in 17.5h for $3202.50, using verified substitute stock against 70 impacted units and due hours of 36 and 48. Counterfactuals: wait_replenishment would cost $0 but finish in 83h, missing both dues, while allocate_substitute would finish in 35h for $3115, saving only $87.50 but taking twice as long. Assumptions: all quantities are synthetic demo values, illustrative cell costs are not OEM quotes, production hours split across compatible online cells, substitute allocation uses only verified available stock, and the held lot remains unavailable/not issued.",
+        "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
+        "calls": [
+          {
+            "type": "model_call",
+            "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "meta-model-api",
+            "requestedModel": "muse-wonder-1.0",
+            "returnedModel": "muse-wonder-1.0",
+            "requestId": "resp_6ae628f2642036fe789945e9",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 2479,
+            "usage": {
+              "input_tokens": 539,
+              "input_tokens_details": {
+                "cached_tokens": 0
+              },
+              "output_tokens": 326,
+              "output_tokens_details": {
+                "reasoning_tokens": 303
+              },
+              "total_tokens": 865
+            },
+            "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          },
+          {
+            "type": "model_call",
+            "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "meta-model-api",
+            "requestedModel": "muse-wonder-1.0",
+            "returnedModel": "muse-wonder-1.0",
+            "requestId": "resp_6ae628f41ce410e3e41c4dcc",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 2170,
+            "usage": {
+              "input_tokens": 1011,
+              "input_tokens_details": {
+                "cached_tokens": 0
+              },
+              "output_tokens": 312,
+              "output_tokens_details": {
+                "reasoning_tokens": 288
+              },
+              "total_tokens": 1323
+            },
+            "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          },
+          {
+            "type": "model_call",
+            "runId": "9d6d47fa-e746-47a4-b69d-02bb3d31c071",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "meta-model-api",
+            "requestedModel": "muse-wonder-1.0",
+            "returnedModel": "muse-wonder-1.0",
+            "requestId": "resp_6ae628fb464a737419a34b9a",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 7126,
+            "usage": {
+              "input_tokens": 1725,
+              "input_tokens_details": {
+                "cached_tokens": 0
+              },
+              "output_tokens": 1450,
+              "output_tokens_details": {
+                "reasoning_tokens": 1173
+              },
+              "total_tokens": 3175
+            },
+            "responseDigest": "4d535bd31719965b5eb175a27ff820d4f5414ee9c3ff40c59479e5e22c25c6b6",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          }
+        ],
+        "synthetic": true,
+        "operationalRelease": false
+      },
+      "eventHash": "0463f90e3fe6cbca028aa57aff03f5d35d7afff8b9200b2e1e2e391c1ba5257a"
+    },
+    {
+      "sequence": 5,
+      "type": "model_call",
+      "epochMs": 1793468667936,
+      "previousHash": "0463f90e3fe6cbca028aa57aff03f5d35d7afff8b9200b2e1e2e391c1ba5257a",
+      "data": {
+        "type": "model_call",
+        "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "baseten",
+        "requestedModel": "meta-models/muse-spark-open",
+        "returnedModel": "meta-models/muse-spark-open",
+        "requestId": "chatcmpl-58b1474ee1fe45f4aa58cf9734a6bf25",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 560,
+        "usage": {
+          "prompt_tokens": 676,
+          "completion_tokens": 37,
+          "total_tokens": 713,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 23,
+            "audio_tokens": 0,
+            "reasoning_tokens": 8,
+            "rejected_prediction_tokens": 75
+          }
+        },
+        "responseDigest": "5a67a35e252c28433c4ddbc8a779a6468b3a295526f683a120e1dd1b53c4a7e6",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "802c5e91f3bcdafde6e1baf5e1ff40910101d6b6f2fa0a3b46333f4def6d7276"
+    },
+    {
+      "sequence": 6,
+      "type": "model_call",
+      "epochMs": 1793468668677,
+      "previousHash": "802c5e91f3bcdafde6e1baf5e1ff40910101d6b6f2fa0a3b46333f4def6d7276",
+      "data": {
+        "type": "model_call",
+        "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "baseten",
+        "requestedModel": "meta-models/muse-spark-open",
+        "returnedModel": "meta-models/muse-spark-open",
+        "requestId": "chatcmpl-456b4642d40043c88c25b22765c28cbc",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 733,
+        "usage": {
+          "prompt_tokens": 1158,
+          "completion_tokens": 105,
+          "total_tokens": 1263,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 640
+          },
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 75,
+            "audio_tokens": 0,
+            "reasoning_tokens": 75,
+            "rejected_prediction_tokens": 135
+          }
+        },
+        "responseDigest": "56e119f0b6b02bd12c0f19c989798fc9479004827771f810f54bf4fc7a3591dd",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "22db056ce6251d4af3ca48b55fc2350ddacf6032761ab65d95518707e467938b"
+    },
+    {
+      "sequence": 7,
+      "type": "model_call",
+      "epochMs": 1793468673441,
+      "previousHash": "22db056ce6251d4af3ca48b55fc2350ddacf6032761ab65d95518707e467938b",
+      "data": {
+        "type": "model_call",
+        "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "baseten",
+        "requestedModel": "meta-models/muse-spark-open",
+        "returnedModel": "meta-models/muse-spark-open",
+        "requestId": "chatcmpl-f13472d4b3514b2b8509bd22dc27150f",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 4759,
+        "usage": {
+          "prompt_tokens": 1883,
+          "completion_tokens": 1626,
+          "total_tokens": 3509,
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cached_tokens": 1024
+          },
+          "completion_tokens_details": {
+            "accepted_prediction_tokens": 1183,
+            "audio_tokens": 0,
+            "reasoning_tokens": 1313,
+            "rejected_prediction_tokens": 1918
+          }
+        },
+        "responseDigest": "482780da51927586522306482a1268750187c46403537f15d750c4ba4c614fb4",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "8e7dae1bc8e771ad07a334b80241a9f3fe9380d95545cdbebacb851205d30da5"
+    },
+    {
+      "sequence": 8,
+      "type": "investigation_completed",
+      "epochMs": 1793468673444,
+      "previousHash": "8e7dae1bc8e771ad07a334b80241a9f3fe9380d95545cdbebacb851205d30da5",
+      "data": {
+        "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+        "run": {
+          "ok": true,
+          "stopReason": "MODEL_STOP",
+          "turns": 3,
+          "toolCalls": 2,
+          "elapsedMs": 6071,
+          "limits": {
+            "maxTurns": 6,
+            "maxToolCalls": 10,
+            "maxWallClockMs": 60000
+          },
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "mode": "live",
+          "sample": false,
+          "label": "LIVE — Muse Spark Open (baseten)",
+          "text": "Certificate vs receiving mismatch holds MAT-ALLOY-A (70 units, 2 jobs). Counterfactual comparison: wait_replenishment 83h (48h replenishment +35h production) $0 misses 36h/48h dues; allocate_substitute 35h $3115 via CELL-MILL-1 using verified MAT-ALLOY-B stock meets dues; split_capacity 17.5h $3202.5 fastest via CELL-MILL-1 (17.5h $1487.5) + CELL-MILL-2 (17.5h $1575) meets dues with buffer. Advisory recommendation only: split_capacity preferred for schedule risk. Assumptions: All quantities are synthetic demo values; Illustrative cell costs are not OEM quotes; Substitute allocation uses only verified available stock; Documented replenishment lead time 48 hours.",
+          "trace": [
+            {
+              "type": "model_turn",
+              "turn": 1,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Spark Open (baseten)",
+              "modelId": "meta-models/muse-spark-open",
+              "toolCallCount": 1,
+              "textDigest": "5a67a35e252c28433c4ddbc8a779a6468b3a295526f683a120e1dd1b53c4a7e6"
+            },
+            {
+              "type": "tool_result",
+              "turn": 1,
+              "toolCallIndex": 1,
+              "name": "get_incident",
+              "ok": true,
+              "observation": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "incident": {
+                  "incidentId": "inc-cert-alloy-hold",
+                  "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+                  "heldMaterialId": "MAT-ALLOY-A",
+                  "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+                },
+                "label": "SYNTHETIC",
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes."
+                ],
+                "evidence": [
+                  {
+                    "evidenceId": "ev-cert-qty",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-cert-441",
+                      "recordId": "rec-cert-line-3",
+                      "lineId": "L3",
+                      "field": "quantity"
+                    },
+                    "quantity": {
+                      "value": 120,
+                      "unit": "each"
+                    },
+                    "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+                  },
+                  {
+                    "evidenceId": "ev-recv-qty",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-recv-882",
+                      "recordId": "rec-recv-posted",
+                      "lineId": "R1",
+                      "field": "quantity"
+                    },
+                    "quantity": {
+                      "value": 80,
+                      "unit": "each"
+                    },
+                    "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+                  },
+                  {
+                    "evidenceId": "ev-sub-stock",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-inv-snap",
+                      "recordId": "rec-inv-alloy-b",
+                      "lineId": null,
+                      "field": "onHand"
+                    },
+                    "quantity": {
+                      "value": 100,
+                      "unit": "each"
+                    },
+                    "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+                  }
+                ]
+              }
+            },
+            {
+              "type": "model_turn",
+              "turn": 2,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Spark Open (baseten)",
+              "modelId": "meta-models/muse-spark-open",
+              "toolCallCount": 1,
+              "textDigest": "56e119f0b6b02bd12c0f19c989798fc9479004827771f810f54bf4fc7a3591dd"
+            },
+            {
+              "type": "tool_result",
+              "turn": 2,
+              "toolCallIndex": 2,
+              "name": "compare_recovery_options",
+              "ok": true,
+              "observation": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "impacted": {
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "heldMaterialId": "MAT-ALLOY-A",
+                  "jobs": [
+                    {
+                      "jobId": "JOB-1001",
+                      "materialId": "MAT-ALLOY-A",
+                      "unitsRequired": 40,
+                      "hoursPerUnit": 0.5,
+                      "preferredCellId": "CELL-MILL-1",
+                      "dueHours": 36,
+                      "totalHours": 20
+                    },
+                    {
+                      "jobId": "JOB-1002",
+                      "materialId": "MAT-ALLOY-A",
+                      "unitsRequired": 30,
+                      "hoursPerUnit": 0.5,
+                      "preferredCellId": "CELL-MILL-1",
+                      "dueHours": 48,
+                      "totalHours": 15
+                    }
+                  ],
+                  "impactedJobCount": 2,
+                  "impactedUnits": 70
+                },
+                "options": [
+                  {
+                    "optionId": "wait_replenishment",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 83,
+                    "incrementalCostUsd": 0,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Documented replenishment lead time 48 hours"
+                    ],
+                    "constraints": [
+                      "Held lot remains unavailable until replenishment posts"
+                    ],
+                    "evidenceIds": [
+                      "ev-cert-qty",
+                      "ev-recv-qty"
+                    ],
+                    "detail": {
+                      "replenishmentHours": 48,
+                      "productionHours": 35
+                    }
+                  },
+                  {
+                    "optionId": "allocate_substitute",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 35,
+                    "incrementalCostUsd": 3115,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Substitute allocation uses only verified available stock"
+                    ],
+                    "constraints": [
+                      "Held MAT lot remains on hold",
+                      "No supplier messaging"
+                    ],
+                    "evidenceIds": [
+                      "ev-sub-stock",
+                      "ev-recv-qty"
+                    ],
+                    "detail": {
+                      "draws": [
+                        {
+                          "materialId": "MAT-ALLOY-B",
+                          "units": 70,
+                          "hours": 35,
+                          "laborCostUsd": 2975,
+                          "materialPremiumUsd": 140,
+                          "cells": [
+                            {
+                              "cellId": "CELL-MILL-1",
+                              "hours": 35,
+                              "costUsd": 2975
+                            }
+                          ]
+                        }
+                      ],
+                      "materialPremiumUsd": 140,
+                      "laborCostUsd": 2975
+                    }
+                  },
+                  {
+                    "optionId": "split_capacity",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 17.5,
+                    "incrementalCostUsd": 3202.5,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Production hours split across compatible online cells"
+                    ],
+                    "constraints": [
+                      "Held primary material not issued",
+                      "Illustrative incremental cost only"
+                    ],
+                    "evidenceIds": [
+                      "ev-sub-stock"
+                    ],
+                    "detail": {
+                      "materialId": "MAT-ALLOY-B",
+                      "allocations": [
+                        {
+                          "cellId": "CELL-MILL-1",
+                          "hours": 17.5,
+                          "costUsd": 1487.5
+                        },
+                        {
+                          "cellId": "CELL-MILL-2",
+                          "hours": 17.5,
+                          "costUsd": 1575
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "feasibleCount": 3,
+                "status": "options_available",
+                "message": "3 feasible recovery option(s) computed from snapshot inputs"
+              }
+            },
+            {
+              "type": "model_turn",
+              "turn": 3,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Spark Open (baseten)",
+              "modelId": "meta-models/muse-spark-open",
+              "toolCallCount": 0,
+              "textDigest": "482780da51927586522306482a1268750187c46403537f15d750c4ba4c614fb4"
+            }
+          ],
+          "operationalRelease": false
+        },
+        "proposalValid": true,
+        "analysis": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "scenarioId": "scenario-cert-hold-v1",
+          "incident": {
+            "incidentId": "inc-cert-alloy-hold",
+            "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+          },
+          "impacted": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "jobs": [
+              {
+                "jobId": "JOB-1001",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 40,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 36,
+                "totalHours": 20
+              },
+              {
+                "jobId": "JOB-1002",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 30,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 48,
+                "totalHours": 15
+              }
+            ],
+            "impactedJobCount": 2,
+            "impactedUnits": 70
+          },
+          "recovery": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "impacted": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "heldMaterialId": "MAT-ALLOY-A",
+              "jobs": [
+                {
+                  "jobId": "JOB-1001",
+                  "materialId": "MAT-ALLOY-A",
+                  "unitsRequired": 40,
+                  "hoursPerUnit": 0.5,
+                  "preferredCellId": "CELL-MILL-1",
+                  "dueHours": 36,
+                  "totalHours": 20
+                },
+                {
+                  "jobId": "JOB-1002",
+                  "materialId": "MAT-ALLOY-A",
+                  "unitsRequired": 30,
+                  "hoursPerUnit": 0.5,
+                  "preferredCellId": "CELL-MILL-1",
+                  "dueHours": 48,
+                  "totalHours": 15
+                }
+              ],
+              "impactedJobCount": 2,
+              "impactedUnits": 70
+            },
+            "options": [
+              {
+                "optionId": "wait_replenishment",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 83,
+                "incrementalCostUsd": 0,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Documented replenishment lead time 48 hours"
+                ],
+                "constraints": [
+                  "Held lot remains unavailable until replenishment posts"
+                ],
+                "evidenceIds": [
+                  "ev-cert-qty",
+                  "ev-recv-qty"
+                ],
+                "detail": {
+                  "replenishmentHours": 48,
+                  "productionHours": 35
+                }
+              },
+              {
+                "optionId": "allocate_substitute",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 35,
+                "incrementalCostUsd": 3115,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Substitute allocation uses only verified available stock"
+                ],
+                "constraints": [
+                  "Held MAT lot remains on hold",
+                  "No supplier messaging"
+                ],
+                "evidenceIds": [
+                  "ev-sub-stock",
+                  "ev-recv-qty"
+                ],
+                "detail": {
+                  "draws": [
+                    {
+                      "materialId": "MAT-ALLOY-B",
+                      "units": 70,
+                      "hours": 35,
+                      "laborCostUsd": 2975,
+                      "materialPremiumUsd": 140,
+                      "cells": [
+                        {
+                          "cellId": "CELL-MILL-1",
+                          "hours": 35,
+                          "costUsd": 2975
+                        }
+                      ]
+                    }
+                  ],
+                  "materialPremiumUsd": 140,
+                  "laborCostUsd": 2975
+                }
+              },
+              {
+                "optionId": "split_capacity",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 17.5,
+                "incrementalCostUsd": 3202.5,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Production hours split across compatible online cells"
+                ],
+                "constraints": [
+                  "Held primary material not issued",
+                  "Illustrative incremental cost only"
+                ],
+                "evidenceIds": [
+                  "ev-sub-stock"
+                ],
+                "detail": {
+                  "materialId": "MAT-ALLOY-B",
+                  "allocations": [
+                    {
+                      "cellId": "CELL-MILL-1",
+                      "hours": 17.5,
+                      "costUsd": 1487.5
+                    },
+                    {
+                      "cellId": "CELL-MILL-2",
+                      "hours": 17.5,
+                      "costUsd": 1575
+                    }
+                  ]
+                }
+              }
+            ],
+            "feasibleCount": 3,
+            "status": "options_available",
+            "message": "3 feasible recovery option(s) computed from snapshot inputs"
+          },
+          "capacity": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "cells": [
+              {
+                "cellId": "CELL-MILL-1",
+                "online": true,
+                "availableHours": 40,
+                "hourlyCostUsd": 85,
+                "compatibleMaterials": [
+                  "MAT-ALLOY-A",
+                  "MAT-ALLOY-B"
+                ]
+              },
+              {
+                "cellId": "CELL-MILL-2",
+                "online": true,
+                "availableHours": 24,
+                "hourlyCostUsd": 90,
+                "compatibleMaterials": [
+                  "MAT-ALLOY-B"
+                ]
+              }
+            ]
+          },
+          "evidenceCount": 3
+        },
+        "claims": {
+          "accepted": [
+            {
+              "evidenceId": "ev-cert-qty",
+              "value": 120,
+              "unit": "each",
+              "documentId": "doc-cert-441",
+              "recordId": "rec-cert-line-3",
+              "field": "quantity",
+              "reason": "EXACT_SOURCE_MATCH"
+            },
+            {
+              "evidenceId": "ev-recv-qty",
+              "value": 80,
+              "unit": "each",
+              "documentId": "doc-recv-882",
+              "recordId": "rec-recv-posted",
+              "field": "quantity",
+              "reason": "EXACT_SOURCE_MATCH"
+            },
+            {
+              "evidenceId": "ev-sub-stock",
+              "value": 100,
+              "unit": "each",
+              "documentId": "doc-inv-snap",
+              "recordId": "rec-inv-alloy-b",
+              "field": "onHand",
+              "reason": "EXACT_SOURCE_MATCH"
+            }
+          ],
+          "rejected": []
+        },
+        "selectedOptionId": "split_capacity",
+        "narrative": "Certificate vs receiving mismatch holds MAT-ALLOY-A (70 units, 2 jobs). Counterfactual comparison: wait_replenishment 83h (48h replenishment +35h production) $0 misses 36h/48h dues; allocate_substitute 35h $3115 via CELL-MILL-1 using verified MAT-ALLOY-B stock meets dues; split_capacity 17.5h $3202.5 fastest via CELL-MILL-1 (17.5h $1487.5) + CELL-MILL-2 (17.5h $1575) meets dues with buffer. Advisory recommendation only: split_capacity preferred for schedule risk. Assumptions: All quantities are synthetic demo values; Illustrative cell costs are not OEM quotes; Substitute allocation uses only verified available stock; Documented replenishment lead time 48 hours.",
+        "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
+        "calls": [
+          {
+            "type": "model_call",
+            "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "baseten",
+            "requestedModel": "meta-models/muse-spark-open",
+            "returnedModel": "meta-models/muse-spark-open",
+            "requestId": "chatcmpl-58b1474ee1fe45f4aa58cf9734a6bf25",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 560,
+            "usage": {
+              "prompt_tokens": 676,
+              "completion_tokens": 37,
+              "total_tokens": 713,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 0
+              },
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 23,
+                "audio_tokens": 0,
+                "reasoning_tokens": 8,
+                "rejected_prediction_tokens": 75
+              }
+            },
+            "responseDigest": "5a67a35e252c28433c4ddbc8a779a6468b3a295526f683a120e1dd1b53c4a7e6",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          },
+          {
+            "type": "model_call",
+            "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "baseten",
+            "requestedModel": "meta-models/muse-spark-open",
+            "returnedModel": "meta-models/muse-spark-open",
+            "requestId": "chatcmpl-456b4642d40043c88c25b22765c28cbc",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 733,
+            "usage": {
+              "prompt_tokens": 1158,
+              "completion_tokens": 105,
+              "total_tokens": 1263,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 640
+              },
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 75,
+                "audio_tokens": 0,
+                "reasoning_tokens": 75,
+                "rejected_prediction_tokens": 135
+              }
+            },
+            "responseDigest": "56e119f0b6b02bd12c0f19c989798fc9479004827771f810f54bf4fc7a3591dd",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          },
+          {
+            "type": "model_call",
+            "runId": "f60cf857-8e4b-422d-87c1-2f98759d51a4",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "baseten",
+            "requestedModel": "meta-models/muse-spark-open",
+            "returnedModel": "meta-models/muse-spark-open",
+            "requestId": "chatcmpl-f13472d4b3514b2b8509bd22dc27150f",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 4759,
+            "usage": {
+              "prompt_tokens": 1883,
+              "completion_tokens": 1626,
+              "total_tokens": 3509,
+              "prompt_tokens_details": {
+                "audio_tokens": 0,
+                "cached_tokens": 1024
+              },
+              "completion_tokens_details": {
+                "accepted_prediction_tokens": 1183,
+                "audio_tokens": 0,
+                "reasoning_tokens": 1313,
+                "rejected_prediction_tokens": 1918
+              }
+            },
+            "responseDigest": "482780da51927586522306482a1268750187c46403537f15d750c4ba4c614fb4",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          }
+        ],
+        "synthetic": true,
+        "operationalRelease": false
+      },
+      "eventHash": "45c4b1c0975f9c6cc03cf2134fd433675f99af409b978b850607c3b57189bb9e"
+    },
+    {
+      "sequence": 9,
+      "type": "model_call",
+      "epochMs": 1793468674627,
+      "previousHash": "45c4b1c0975f9c6cc03cf2134fd433675f99af409b978b850607c3b57189bb9e",
+      "data": {
+        "type": "model_call",
+        "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "fireworks",
+        "requestedModel": "accounts/fireworks/models/muse-spark-open",
+        "returnedModel": "accounts/fireworks/models/muse-spark-open",
+        "requestId": "chatcmpl-efe07f9b9d6c4a63bc61e833460eec5d",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 1174,
+        "usage": {
+          "prompt_tokens": 675,
+          "total_tokens": 707,
+          "completion_tokens": 32,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 8
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 8
+          }
+        },
+        "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "7d4120fc0a3caee266987c1052164817c41640f12cf3706dede7243cc2f44f40"
+    },
+    {
+      "sequence": 10,
+      "type": "model_call",
+      "epochMs": 1793468677391,
+      "previousHash": "7d4120fc0a3caee266987c1052164817c41640f12cf3706dede7243cc2f44f40",
+      "data": {
+        "type": "model_call",
+        "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "fireworks",
+        "requestedModel": "accounts/fireworks/models/muse-spark-open",
+        "returnedModel": "accounts/fireworks/models/muse-spark-open",
+        "requestId": "chatcmpl-21d5a7705dde4b118666c4b4806216e9",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 2759,
+        "usage": {
+          "prompt_tokens": 1152,
+          "total_tokens": 1303,
+          "completion_tokens": 151,
+          "prompt_tokens_details": {
+            "cached_tokens": 640
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 126
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 126
+          }
+        },
+        "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "1f2df3fead6040ede55c47af33b0080143b47ea1d5d24eb2050f426578dd4bc7"
+    },
+    {
+      "sequence": 11,
+      "type": "model_call",
+      "epochMs": 1793468703993,
+      "previousHash": "1f2df3fead6040ede55c47af33b0080143b47ea1d5d24eb2050f426578dd4bc7",
+      "data": {
+        "type": "model_call",
+        "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+        "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+        "provider": "fireworks",
+        "requestedModel": "accounts/fireworks/models/muse-spark-open",
+        "returnedModel": "accounts/fireworks/models/muse-spark-open",
+        "requestId": "chatcmpl-a6990473ed764e8e97e9e0c23bb6f7c9",
+        "mode": "live",
+        "sample": false,
+        "status": "accepted",
+        "failure": null,
+        "latencyMs": 26595,
+        "usage": {
+          "prompt_tokens": 1872,
+          "total_tokens": 3035,
+          "completion_tokens": 1163,
+          "prompt_tokens_details": {
+            "cached_tokens": 1088
+          },
+          "completion_tokens_details": {
+            "reasoning_tokens": 884
+          },
+          "output_tokens_details": {
+            "reasoning_tokens": 884
+          }
+        },
+        "responseDigest": "5555cfdbd89bf9310c64b8e4ab42444a03d1f5a6e7f5e72bf43ebe9ec2c64e0a",
+        "protocol": "JSON_ENVELOPE",
+        "operationalRelease": false
+      },
+      "eventHash": "6bc87a008f05c19d55d7005ce1c0d627be7af22d13341a61410eff4ea3475fa2"
+    },
+    {
+      "sequence": 12,
+      "type": "investigation_completed",
+      "epochMs": 1793468703998,
+      "previousHash": "6bc87a008f05c19d55d7005ce1c0d627be7af22d13341a61410eff4ea3475fa2",
+      "data": {
+        "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+        "run": {
+          "ok": true,
+          "stopReason": "MODEL_STOP",
+          "turns": 3,
+          "toolCalls": 2,
+          "elapsedMs": 30548,
+          "limits": {
+            "maxTurns": 6,
+            "maxToolCalls": 10,
+            "maxWallClockMs": 60000
+          },
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "mode": "live",
+          "sample": false,
+          "label": "LIVE — Muse Spark Open (fireworks)",
+          "text": "Advisory recommendation: split_capacity using MAT-ALLOY-B across CELL-MILL-1 and CELL-MILL-2 finishes in 17.5h vs allocate_substitute 35h ($3115) vs wait_replenishment 83h ($0). Split meets both due dates (36h, 48h) fastest with incremental $3202.5. Counterfactual: waiting for replenishment would miss due dates despite zero cost; single-cell substitute meets dates but slower. Assumptions: All quantities are synthetic demo values, Illustrative cell costs are not OEM quotes, Substitute allocation uses only verified available stock, Production hours split across compatible online cells. Unvalidated narrative.",
+          "trace": [
+            {
+              "type": "model_turn",
+              "turn": 1,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Spark Open (fireworks)",
+              "modelId": "accounts/fireworks/models/muse-spark-open",
+              "toolCallCount": 1,
+              "textDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41"
+            },
+            {
+              "type": "tool_result",
+              "turn": 1,
+              "toolCallIndex": 1,
+              "name": "get_incident",
+              "ok": true,
+              "observation": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "incident": {
+                  "incidentId": "inc-cert-alloy-hold",
+                  "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+                  "heldMaterialId": "MAT-ALLOY-A",
+                  "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+                },
+                "label": "SYNTHETIC",
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes."
+                ],
+                "evidence": [
+                  {
+                    "evidenceId": "ev-cert-qty",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-cert-441",
+                      "recordId": "rec-cert-line-3",
+                      "lineId": "L3",
+                      "field": "quantity"
+                    },
+                    "quantity": {
+                      "value": 120,
+                      "unit": "each"
+                    },
+                    "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+                  },
+                  {
+                    "evidenceId": "ev-recv-qty",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-recv-882",
+                      "recordId": "rec-recv-posted",
+                      "lineId": "R1",
+                      "field": "quantity"
+                    },
+                    "quantity": {
+                      "value": 80,
+                      "unit": "each"
+                    },
+                    "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+                  },
+                  {
+                    "evidenceId": "ev-sub-stock",
+                    "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                    "source": {
+                      "documentId": "doc-inv-snap",
+                      "recordId": "rec-inv-alloy-b",
+                      "lineId": null,
+                      "field": "onHand"
+                    },
+                    "quantity": {
+                      "value": 100,
+                      "unit": "each"
+                    },
+                    "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+                  }
+                ]
+              }
+            },
+            {
+              "type": "model_turn",
+              "turn": 2,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Spark Open (fireworks)",
+              "modelId": "accounts/fireworks/models/muse-spark-open",
+              "toolCallCount": 1,
+              "textDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d"
+            },
+            {
+              "type": "tool_result",
+              "turn": 2,
+              "toolCallIndex": 2,
+              "name": "compare_recovery_options",
+              "ok": true,
+              "observation": {
+                "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                "impacted": {
+                  "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+                  "heldMaterialId": "MAT-ALLOY-A",
+                  "jobs": [
+                    {
+                      "jobId": "JOB-1001",
+                      "materialId": "MAT-ALLOY-A",
+                      "unitsRequired": 40,
+                      "hoursPerUnit": 0.5,
+                      "preferredCellId": "CELL-MILL-1",
+                      "dueHours": 36,
+                      "totalHours": 20
+                    },
+                    {
+                      "jobId": "JOB-1002",
+                      "materialId": "MAT-ALLOY-A",
+                      "unitsRequired": 30,
+                      "hoursPerUnit": 0.5,
+                      "preferredCellId": "CELL-MILL-1",
+                      "dueHours": 48,
+                      "totalHours": 15
+                    }
+                  ],
+                  "impactedJobCount": 2,
+                  "impactedUnits": 70
+                },
+                "options": [
+                  {
+                    "optionId": "wait_replenishment",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 83,
+                    "incrementalCostUsd": 0,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Documented replenishment lead time 48 hours"
+                    ],
+                    "constraints": [
+                      "Held lot remains unavailable until replenishment posts"
+                    ],
+                    "evidenceIds": [
+                      "ev-cert-qty",
+                      "ev-recv-qty"
+                    ],
+                    "detail": {
+                      "replenishmentHours": 48,
+                      "productionHours": 35
+                    }
+                  },
+                  {
+                    "optionId": "allocate_substitute",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 35,
+                    "incrementalCostUsd": 3115,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Substitute allocation uses only verified available stock"
+                    ],
+                    "constraints": [
+                      "Held MAT lot remains on hold",
+                      "No supplier messaging"
+                    ],
+                    "evidenceIds": [
+                      "ev-sub-stock",
+                      "ev-recv-qty"
+                    ],
+                    "detail": {
+                      "draws": [
+                        {
+                          "materialId": "MAT-ALLOY-B",
+                          "units": 70,
+                          "hours": 35,
+                          "laborCostUsd": 2975,
+                          "materialPremiumUsd": 140,
+                          "cells": [
+                            {
+                              "cellId": "CELL-MILL-1",
+                              "hours": 35,
+                              "costUsd": 2975
+                            }
+                          ]
+                        }
+                      ],
+                      "materialPremiumUsd": 140,
+                      "laborCostUsd": 2975
+                    }
+                  },
+                  {
+                    "optionId": "split_capacity",
+                    "feasible": true,
+                    "rejectReason": null,
+                    "impactedUnits": 70,
+                    "finishHours": 17.5,
+                    "incrementalCostUsd": 3202.5,
+                    "assumptions": [
+                      "All quantities are synthetic demo values.",
+                      "Illustrative cell costs are not OEM quotes.",
+                      "Production hours split across compatible online cells"
+                    ],
+                    "constraints": [
+                      "Held primary material not issued",
+                      "Illustrative incremental cost only"
+                    ],
+                    "evidenceIds": [
+                      "ev-sub-stock"
+                    ],
+                    "detail": {
+                      "materialId": "MAT-ALLOY-B",
+                      "allocations": [
+                        {
+                          "cellId": "CELL-MILL-1",
+                          "hours": 17.5,
+                          "costUsd": 1487.5
+                        },
+                        {
+                          "cellId": "CELL-MILL-2",
+                          "hours": 17.5,
+                          "costUsd": 1575
+                        }
+                      ]
+                    }
+                  }
+                ],
+                "feasibleCount": 3,
+                "status": "options_available",
+                "message": "3 feasible recovery option(s) computed from snapshot inputs"
+              }
+            },
+            {
+              "type": "model_turn",
+              "turn": 3,
+              "mode": "live",
+              "sample": false,
+              "label": "LIVE — Muse Spark Open (fireworks)",
+              "modelId": "accounts/fireworks/models/muse-spark-open",
+              "toolCallCount": 0,
+              "textDigest": "5555cfdbd89bf9310c64b8e4ab42444a03d1f5a6e7f5e72bf43ebe9ec2c64e0a"
+            }
+          ],
+          "operationalRelease": false
+        },
+        "proposalValid": true,
+        "analysis": {
+          "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+          "scenarioId": "scenario-cert-hold-v1",
+          "incident": {
+            "incidentId": "inc-cert-alloy-hold",
+            "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+          },
+          "impacted": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "jobs": [
+              {
+                "jobId": "JOB-1001",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 40,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 36,
+                "totalHours": 20
+              },
+              {
+                "jobId": "JOB-1002",
+                "materialId": "MAT-ALLOY-A",
+                "unitsRequired": 30,
+                "hoursPerUnit": 0.5,
+                "preferredCellId": "CELL-MILL-1",
+                "dueHours": 48,
+                "totalHours": 15
+              }
+            ],
+            "impactedJobCount": 2,
+            "impactedUnits": 70
+          },
+          "recovery": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "impacted": {
+              "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+              "heldMaterialId": "MAT-ALLOY-A",
+              "jobs": [
+                {
+                  "jobId": "JOB-1001",
+                  "materialId": "MAT-ALLOY-A",
+                  "unitsRequired": 40,
+                  "hoursPerUnit": 0.5,
+                  "preferredCellId": "CELL-MILL-1",
+                  "dueHours": 36,
+                  "totalHours": 20
+                },
+                {
+                  "jobId": "JOB-1002",
+                  "materialId": "MAT-ALLOY-A",
+                  "unitsRequired": 30,
+                  "hoursPerUnit": 0.5,
+                  "preferredCellId": "CELL-MILL-1",
+                  "dueHours": 48,
+                  "totalHours": 15
+                }
+              ],
+              "impactedJobCount": 2,
+              "impactedUnits": 70
+            },
+            "options": [
+              {
+                "optionId": "wait_replenishment",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 83,
+                "incrementalCostUsd": 0,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Documented replenishment lead time 48 hours"
+                ],
+                "constraints": [
+                  "Held lot remains unavailable until replenishment posts"
+                ],
+                "evidenceIds": [
+                  "ev-cert-qty",
+                  "ev-recv-qty"
+                ],
+                "detail": {
+                  "replenishmentHours": 48,
+                  "productionHours": 35
+                }
+              },
+              {
+                "optionId": "allocate_substitute",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 35,
+                "incrementalCostUsd": 3115,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Substitute allocation uses only verified available stock"
+                ],
+                "constraints": [
+                  "Held MAT lot remains on hold",
+                  "No supplier messaging"
+                ],
+                "evidenceIds": [
+                  "ev-sub-stock",
+                  "ev-recv-qty"
+                ],
+                "detail": {
+                  "draws": [
+                    {
+                      "materialId": "MAT-ALLOY-B",
+                      "units": 70,
+                      "hours": 35,
+                      "laborCostUsd": 2975,
+                      "materialPremiumUsd": 140,
+                      "cells": [
+                        {
+                          "cellId": "CELL-MILL-1",
+                          "hours": 35,
+                          "costUsd": 2975
+                        }
+                      ]
+                    }
+                  ],
+                  "materialPremiumUsd": 140,
+                  "laborCostUsd": 2975
+                }
+              },
+              {
+                "optionId": "split_capacity",
+                "feasible": true,
+                "rejectReason": null,
+                "impactedUnits": 70,
+                "finishHours": 17.5,
+                "incrementalCostUsd": 3202.5,
+                "assumptions": [
+                  "All quantities are synthetic demo values.",
+                  "Illustrative cell costs are not OEM quotes.",
+                  "Production hours split across compatible online cells"
+                ],
+                "constraints": [
+                  "Held primary material not issued",
+                  "Illustrative incremental cost only"
+                ],
+                "evidenceIds": [
+                  "ev-sub-stock"
+                ],
+                "detail": {
+                  "materialId": "MAT-ALLOY-B",
+                  "allocations": [
+                    {
+                      "cellId": "CELL-MILL-1",
+                      "hours": 17.5,
+                      "costUsd": 1487.5
+                    },
+                    {
+                      "cellId": "CELL-MILL-2",
+                      "hours": 17.5,
+                      "costUsd": 1575
+                    }
+                  ]
+                }
+              }
+            ],
+            "feasibleCount": 3,
+            "status": "options_available",
+            "message": "3 feasible recovery option(s) computed from snapshot inputs"
+          },
+          "capacity": {
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "cells": [
+              {
+                "cellId": "CELL-MILL-1",
+                "online": true,
+                "availableHours": 40,
+                "hourlyCostUsd": 85,
+                "compatibleMaterials": [
+                  "MAT-ALLOY-A",
+                  "MAT-ALLOY-B"
+                ]
+              },
+              {
+                "cellId": "CELL-MILL-2",
+                "online": true,
+                "availableHours": 24,
+                "hourlyCostUsd": 90,
+                "compatibleMaterials": [
+                  "MAT-ALLOY-B"
+                ]
+              }
+            ]
+          },
+          "evidenceCount": 3
+        },
+        "claims": {
+          "accepted": [
+            {
+              "evidenceId": "ev-cert-qty",
+              "value": 120,
+              "unit": "each",
+              "documentId": "doc-cert-441",
+              "recordId": "rec-cert-line-3",
+              "field": "quantity",
+              "reason": "EXACT_SOURCE_MATCH"
+            },
+            {
+              "evidenceId": "ev-recv-qty",
+              "value": 80,
+              "unit": "each",
+              "documentId": "doc-recv-882",
+              "recordId": "rec-recv-posted",
+              "field": "quantity",
+              "reason": "EXACT_SOURCE_MATCH"
+            },
+            {
+              "evidenceId": "ev-sub-stock",
+              "value": 100,
+              "unit": "each",
+              "documentId": "doc-inv-snap",
+              "recordId": "rec-inv-alloy-b",
+              "field": "onHand",
+              "reason": "EXACT_SOURCE_MATCH"
+            }
+          ],
+          "rejected": []
+        },
+        "selectedOptionId": "split_capacity",
+        "narrative": "Advisory recommendation: split_capacity using MAT-ALLOY-B across CELL-MILL-1 and CELL-MILL-2 finishes in 17.5h vs allocate_substitute 35h ($3115) vs wait_replenishment 83h ($0). Split meets both due dates (36h, 48h) fastest with incremental $3202.5. Counterfactual: waiting for replenishment would miss due dates despite zero cost; single-cell substitute meets dates but slower. Assumptions: All quantities are synthetic demo values, Illustrative cell costs are not OEM quotes, Substitute allocation uses only verified available stock, Production hours split across compatible online cells. Unvalidated narrative.",
+        "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
+        "calls": [
+          {
+            "type": "model_call",
+            "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "fireworks",
+            "requestedModel": "accounts/fireworks/models/muse-spark-open",
+            "returnedModel": "accounts/fireworks/models/muse-spark-open",
+            "requestId": "chatcmpl-efe07f9b9d6c4a63bc61e833460eec5d",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 1174,
+            "usage": {
+              "prompt_tokens": 675,
+              "total_tokens": 707,
+              "completion_tokens": 32,
+              "prompt_tokens_details": {
+                "cached_tokens": 0
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 8
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 8
+              }
+            },
+            "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          },
+          {
+            "type": "model_call",
+            "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "fireworks",
+            "requestedModel": "accounts/fireworks/models/muse-spark-open",
+            "returnedModel": "accounts/fireworks/models/muse-spark-open",
+            "requestId": "chatcmpl-21d5a7705dde4b118666c4b4806216e9",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 2759,
+            "usage": {
+              "prompt_tokens": 1152,
+              "total_tokens": 1303,
+              "completion_tokens": 151,
+              "prompt_tokens_details": {
+                "cached_tokens": 640
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 126
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 126
+              }
+            },
+            "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          },
+          {
+            "type": "model_call",
+            "runId": "2cbac003-c439-48ce-a517-73cf3bfb59b7",
+            "snapshotDigest": "2d248439c28d7248a0548f1c410f8e10ae1da215ce5b3ec83e2f8880361342af",
+            "provider": "fireworks",
+            "requestedModel": "accounts/fireworks/models/muse-spark-open",
+            "returnedModel": "accounts/fireworks/models/muse-spark-open",
+            "requestId": "chatcmpl-a6990473ed764e8e97e9e0c23bb6f7c9",
+            "mode": "live",
+            "sample": false,
+            "status": "accepted",
+            "failure": null,
+            "latencyMs": 26595,
+            "usage": {
+              "prompt_tokens": 1872,
+              "total_tokens": 3035,
+              "completion_tokens": 1163,
+              "prompt_tokens_details": {
+                "cached_tokens": 1088
+              },
+              "completion_tokens_details": {
+                "reasoning_tokens": 884
+              },
+              "output_tokens_details": {
+                "reasoning_tokens": 884
+              }
+            },
+            "responseDigest": "5555cfdbd89bf9310c64b8e4ab42444a03d1f5a6e7f5e72bf43ebe9ec2c64e0a",
+            "protocol": "JSON_ENVELOPE",
+            "operationalRelease": false
+          }
+        ],
+        "synthetic": true,
+        "operationalRelease": false
+      },
+      "eventHash": "92a2d312c576bae1b387b9476d5746c1721e1c4cae9a14bfc057578405dd1539"
+    }
+  ]
+}

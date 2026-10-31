@@ -1,4 +1,5 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import {redactEvidence,writeEvidence} from './public-evidence.mjs';
+import { mkdir } from 'node:fs/promises';
 import { randomBytes } from 'node:crypto';
 import { createWonderClient } from '../src/models/wonder.mjs';
 import { createSparkOpenClient } from '../src/models/spark-open.mjs';
@@ -9,7 +10,7 @@ export function redact(value, env = process.env) {
   for (const name of ['MUSE_API_KEY', 'MODEL_API_KEY', 'BASETEN_API_KEY', 'FIREWORKS_API_KEY']) {
     if (env[name]) text = text.split(env[name]).join('[REDACTED]');
   }
-  return text.replace(/Bearer\s+[^\s"']+/gi, 'Bearer [REDACTED]');
+  return redactEvidence(text,env).replace(/Bearer\s+[^\s"']+/gi, 'Bearer [REDACTED]');
 }
 
 export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch } = {}) {
@@ -52,8 +53,8 @@ if (process.argv[1] && new URL(import.meta.url).pathname.endsWith(process.argv[1
   const directory = new URL('../evidence/api-smoke/', import.meta.url);
   await mkdir(directory, { recursive: true });
   const results = await runSmoke();
-  for (const result of results) await writeFile(new URL(`${result.provider}.json`, directory), JSON.stringify(result, null, 2) + '\n');
-  await writeFile(new URL('summary.json', directory), JSON.stringify({ passed: results.every(r => r.passed), results }, null, 2) + '\n');
+  for (const result of results) writeEvidence(new URL(`${result.provider}.json`, directory), JSON.stringify(result, null, 2) + '\n');
+  writeEvidence(new URL('summary.json', directory), JSON.stringify({ passed: results.every(r => r.passed), results }, null, 2) + '\n');
   console.log(JSON.stringify(results.map(({ provider, status, error }) => ({ provider, status, error })), null, 2));
   process.exitCode = results.every(r => r.passed) ? 0 : 1;
 }

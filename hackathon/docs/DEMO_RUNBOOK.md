@@ -1,3 +1,15 @@
+# Meta Hackathon build: build run nine
+
+This section supersedes historical public-readiness descriptions below. The public set is the non-backup, non-state files under hackathon/, the five assets/showcase/ images, and root README.md, LICENSE, .env.example, .gitignore and .github/workflows/ci.yml. Ignored backups, browser profiles, private state, dependency directories and evidence-backups/ are excluded. Public files are copied verbatim; sanitation happens in the source tree before copying. Internal review records are outside this set.
+
+`npm run check:judge --prefix hackathon` scans file names and decoded text in that exact set, including evidence and tests, for private paths, restricted internal references and calendar dates. UTF-16 evidence is decoded; unreadable text fails closed. Only the pointer-style property in public/style.css is exempted from the corresponding restricted term. The demo import/asset closure and every root README npm command are checked. No internal report exemption list is used. Historical failure logs retain their outcomes with portable stack frames; normalized historical inventories label private entries as internal review artifacts.
+
+`npm run check:public-tree --prefix hackathon` makes a file-only copy under the OS temporary directory, omits the root package and internal build, removes provider/operator secrets from its child environment, runs the full public suite and scan, and removes only its verified temporary copy in finally. CI uses pinned actions, read-only contents, full history, checksum-pinned gitleaks and the public commands. No remote publication or hosted CI result is claimed.
+
+The sign-in screen supplies the isolated rehearsal token on screen, explains private operator provisioning and starts no inference. Route guidance separates configured live Spark Open/Wonder from explicit offline Sample. Empty, pending, elapsed slow-wait, complete and stopped states are visible. The indeterminate activity indicator never invents a completion percentage. A twelve-second status-request deadline and an overall bounded browser wait stop a disconnected view; server inference retains its independent one-minute bound. No automatic provider retry, model switch or replacement narrative is introduced. Controlled slow/timeout evidence is labeled controlled and is separate from genuine live calls.
+
+Fresh verification evidence is in evidence/run9/. Desktop and mobile-width live guided flows include same-snapshot Spark Open and Wonder, typed advisory acceptance, second-shock invalidation, fresh acceptance, ledger verification, encrypted export and checkpoint inspection. Responsive emulation is not a physical-phone result. Model identity remains provider-reported. Human filming, upload, rights/eligibility/account checks, signed-out link checks and signed-in form submission remain owner actions. No external completion or certification is claimed.
+
 # Three-minute demo script, shot list and caption copy
 
 Text-only production plan. No recording, final media, public URL or submission is claimed. Target runtime: 180 seconds. Use only hackathon/ runtime features. Source manifest and actual candidate hashes must accompany any future recording. The separate planning fixtures do not drive the application.
@@ -28,4 +40,11 @@ Provider errors stop the investigation with recorded failure, no substitute narr
 
 Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
 
-Current-run evidence is under evidence/run7. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. Source is published in this repository for hackathon judging.
+Current-run evidence is under evidence/run7/. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. The source repository is public for judging as reported by the owner; filming and submission are not claimed. Independent review must audit the uncommitted diff before an actual freeze.
+
+
+## Run eight filming handoff
+
+Begin at the root judge README and run the hackathon demo command. Use the keyboard skip link if demonstrating access; login places focus on the guide heading, and typed confirmation moves it to the recorded decision. Review buttons have option-specific accessible names. Desktop/mobile browser emulation passes are local evidence, not physical-phone footage or a WCAG audit.
+
+The source repository is already public; do not narrate a future private-source release. Show the contributions and proprietary license honestly. The caption draft remains a target-timed script; retime it to the actual human narration and footage. Provider latency is observed, never guaranteed to fit the target. Retain original takes and label any time cuts. independent audit/freeze, recording, approved video upload, signed-out link checks and the actual form remain owner steps.
