@@ -1,8 +1,8 @@
 # ForgeFront Factory Resilience
 
-Evidence before action. A synthetic manufacturing certificate discrepancy becomes a source-grounded recovery investigation, a deliberate human decision and an inspectable disruption-to-recovery history.
+Evidence before action. A material certificate discrepancy becomes a source-grounded Meta AI investigation, a deliberate human decision and a provable disruption-to-recovery history.
 
-Product AI uses Meta Muse Wonder and Muse Spark Open only. No model releases material, changes inventory or operates equipment: operationalRelease is always false. All factory data is synthetic and costs are illustrative.
+Product AI runs exclusively on Meta Muse Wonder and Muse Spark Open.
 
 ## Run the judge demo
 
