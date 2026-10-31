@@ -1,6 +1,6 @@
 # Meta model usage
 
-All product AI is restricted to Muse Wonder and Muse Spark Open. Codex and Cursor are build tools. No other product inference, embeddings, image, speech or transcription model is permitted.
+All product AI is restricted to Muse Wonder and Muse Spark Open. No other product inference, embeddings, image, speech or transcription model is permitted.
 
 The user-supplied Wonder route is https://api.meta.ai/v1/responses with model muse-wonder-1.0. Server credential variable: MUSE_API_KEY. Wonder supplies a cited recovery narrative and counterfactual explanation; deterministic calculations own quantities, feasibility and comparison values.
 

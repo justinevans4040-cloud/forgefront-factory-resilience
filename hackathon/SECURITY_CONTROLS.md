@@ -47,7 +47,7 @@ Meta model output (`operationalRelease` always false).
 - HttpOnly/SameSite=Strict browser cookie, CSRF and logout; direct TLS adds Secure. CLI header support remains. Named local operator/auditor roles are enforced; no enterprise directory/MFA/proxy deployment claim.
 - Session-bound async jobs retain at most 32 handles and preserve active lock. Restart drops sessions/jobs; pending review and accepted/consumed nonce history persist encrypted. Reauthentication as the original named identity is required.
 
-## Cursor audit two hardening
+## Audit two hardening
 
 - Removed unused prior-anchor `.bak` copies that enabled truncate-and-restore rollback.
 - JSON-escape-aware redaction; weak ledger/admin secrets rejected at create time.
@@ -71,7 +71,7 @@ Only admin resets a scenario; only a named operator revokes advisory acceptance.
 
 Resumed confirmation records its new session digest separately from the original sealed review actor, plus resumedAfterRestart. Readable reports expose both without rewriting historical attribution. Admin resets can invalidate decisions, so separate reset/revoke rights are task permissions, not an anti-admin or two-person-control guarantee.
 
-## Cursor audit three hardening
+## Audit three hardening
 
 - Failed-login ledger events no longer bootstrap `snapshot_initialized`; unauthenticated callers cannot seed scenario state (`workflow.mjs`, `audit3-hardening.test.mjs`, `run5-controls.test.mjs`).
 - Authenticated-route 120/min quota applies only after session validation on `/api/meta/*` and `/api/workflow/*`; legacy `/api/scenario` and peers keep the server 240/min ceiling (`meta-handler.mjs`, `run5-rate.test.mjs`).
@@ -88,12 +88,12 @@ Encrypted evidence packet export is now the primary UI action, available to auth
 
 Use a strong unique export passphrase; minimum length does not prove entropy. Losing it loses access. Securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json` to produce intentional plaintext for inspection/checkpoint verification. The decoder refuses an existing output; wrong password or modified ciphertext fails authentication. Keep passphrase, decrypted packet and independently retained checkpoint secure and separate.
 
-Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. Cursor audit four pinned explicit scrypt options, added clock-rollback / persist-failure / corrupt-quota startup coverage, clarified the advanced plaintext wording, and extended this control map. Current counts, scans, process cleanup and browser evidence are recorded in the reproducible checks listed in the root README. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No SOC 2 certification. No external account, eligibility, filming, publication or submission evidence is invented.
+Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. Audit four pinned explicit scrypt options, added clock-rollback / persist-failure / corrupt-quota startup coverage, clarified the advanced plaintext wording, and extended this control map. Current counts, scans, process cleanup and browser evidence are recorded in the reproducible checks listed in the root README. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No SOC 2 certification. No external account, eligibility, filming, publication or submission evidence is invented.
 
 
-## Build run seven / Cursor audit five controls
+## Build run seven / audit five controls
 
-Run seven (Codex) added shared UI/API export-passphrase strength feedback, removed automatic investigation retries, restored opening decision state on reset while retaining verified history, cold-start rehearsal coverage, and targeted accessibility/browser checks. Cursor audit five verified those claims against code and evidence, then hardened:
+Run seven added shared UI/API export-passphrase strength feedback, removed automatic investigation retries, restored opening decision state on reset while retaining verified history, cold-start rehearsal coverage, and targeted accessibility/browser checks. Audit five verified those claims against code and evidence, then hardened:
 
 - Control-map rows above now cite `passphrase.mjs` / `export-codec.mjs`, investigation no-retry tests, reset/readiness tests, and concrete async job failure labels.
 - Decrypt remains length-only so packets created under the earlier length gate stay recoverable; new encryption rejects weak phrases server-side (`audit5-hardening.test.mjs`).

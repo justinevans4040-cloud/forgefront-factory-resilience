@@ -2,7 +2,7 @@
 
 Evidence before action. A synthetic manufacturing certificate discrepancy becomes a source-grounded recovery investigation, a deliberate human decision and an inspectable disruption-to-recovery history.
 
-Product AI uses Meta Muse Wonder and Muse Spark Open only. Cursor and Codex are development tools. No model releases material, changes inventory or operates equipment: operationalRelease is always false. All factory data is synthetic and costs are illustrative.
+Product AI uses Meta Muse Wonder and Muse Spark Open only. No model releases material, changes inventory or operates equipment: operationalRelease is always false. All factory data is synthetic and costs are illustrative.
 
 ## Run the judge demo
 
@@ -75,4 +75,4 @@ Provider errors stop the investigation with recorded failure, no substitute narr
 
 Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
 
-Current-run evidence is under evidence/run7. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. Source stays private; no publication, filming or submission is claimed. Cursor must audit the uncommitted diff before an actual freeze.
+Current-run evidence is under evidence/run7. Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. Source stays private; no publication, filming or submission is claimed. The uncommitted diff must be audited before an actual freeze.

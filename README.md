@@ -144,7 +144,7 @@ Recorded run evidence (screenshots, packets, provider results) is in [hackathon/
 
 ## Built during the hackathon
 
-Everything in this repository was built for the hackathon: the Meta model clients and allowlist, the bounded tool-using investigation loop, source validation, the deterministic recovery engine, the guided recovery room UI, the encrypted tamper-evident ledger, consent flow, exports and offline verifier, and the test suite. See [hackathon/HACKATHON_CONTRIBUTIONS.md](hackathon/HACKATHON_CONTRIBUTIONS.md). Cursor and Codex were used as development tools only; they are not part of the product.
+Everything in this repository was built for the hackathon: the Meta model clients and allowlist, the bounded tool-using investigation loop, source validation, the deterministic recovery engine, the guided recovery room UI, the encrypted tamper-evident ledger, consent flow, exports and offline verifier, and the test suite. See [hackathon/HACKATHON_CONTRIBUTIONS.md](hackathon/HACKATHON_CONTRIBUTIONS.md).
 
 ## License
 
