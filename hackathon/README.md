@@ -62,7 +62,7 @@ Browser checks require installed Chrome or Edge (or CHROME_PATH); they fail rath
 
 ## Submission and boundaries
 
-[Contributions](HACKATHON_CONTRIBUTIONS.md), [timed shots and captions](docs/DEMO_RUNBOOK.md), [plan coverage](docs/PLAN_COVERAGE.md), [security controls](SECURITY_CONTROLS.md), [release gates](docs/RELEASE_GATES.md) and [submission draft](docs/SUBMISSION_DRAFT.md) are text-only artifacts. Legacy root footage is excluded. No filming, publication, deployment, eligibility certification or submission receipt is claimed. Source stays private pending explicit release authorization and rights review.
+[Contributions](HACKATHON_CONTRIBUTIONS.md), [timed shots and captions](docs/DEMO_RUNBOOK.md), [plan coverage](docs/PLAN_COVERAGE.md), [security controls](SECURITY_CONTROLS.md), [release gates](docs/RELEASE_GATES.md) and [submission draft](docs/SUBMISSION_DRAFT.md) are text-only artifacts. Legacy root footage is excluded. No filming, publication, deployment, eligibility certification or submission receipt is claimed.
 
 [Submission checklist](docs/SUBMISSION_CHECKLIST.md) separates repo evidence from owner filming/upload/form actions. [Timed caption draft](docs/CAPTIONS_DRAFT.srt) must be retimed to actual narration; no film is claimed. Normal encrypted quota counters survive restart with the same private state directory/key; disposable demo launches intentionally start fresh. Failed-login audit growth is capped globally at twelve records per minute, including an omission warning. See [security controls](SECURITY_CONTROLS.md) for trust limits.
 
