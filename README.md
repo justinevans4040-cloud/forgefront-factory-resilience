@@ -1,3 +1,7 @@
+<p align="center">
+<img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="ForgeFront Factory Resilience" />
+</p>
+
 # ForgeFront Factory Resilience
 
 **Evidence before action for factory disruptions, built on Meta Muse models.**
@@ -23,6 +27,31 @@ ForgeFront turns a manufacturing discrepancy into a **source-grounded recovery i
 
 All factory data is synthetic and costs are illustrative.
 
+## Manufacturing contexts
+
+### Aircraft production
+
+![Commercial aircraft production](assets/showcase/commercial-production-resilience.jpg)
+
+Material and supplier issues are connected to production assignments, downstream assemblies and delivery commitments, so teams can identify affected work and evaluate where production can continue.
+
+### Mission-critical programs
+
+![Mission-critical aerospace manufacturing](assets/showcase/mission-critical-resilience.jpg)
+
+Source-linked evidence and documented decisions support investigations where material identity, production dependencies and the reasoning behind a response need to remain traceable.
+
+### Connected assembly operations
+
+![Connected aerospace assembly](assets/showcase/global-assembly-resilience.jpg)
+
+Recovery comparisons account for inventory, production orders, work cells and machine capacity, and are recomputed when a second shock changes factory constraints.
+
+### Independent shops and suppliers
+
+![Independent CNC shops and aerospace suppliers](assets/showcase/small-shop-resilience.jpg)
+
+Material investigation, CNC scheduling and recovery comparison live in the same workflow, so operators can examine affected jobs, compare material and capacity choices, and preserve the evidence behind their response.
 ## Meta models used
 
 The product's AI runs only on Meta models. No other model provider is used at runtime.
