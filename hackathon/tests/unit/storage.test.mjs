@@ -20,7 +20,7 @@ test('encrypted workflow restarts and independent checkpoint detects rollback an
  const altered=structuredClone(later);altered.events[0].data.priorDigest='forged';assert.equal(verifyCheckpoint(altered,checkpoint).ok,false);
  assert.equal(createWorkflow(options).status().ledger.head,later.ledger.head);
  assert.ok(!readFileSync(join(options.directory,'events.jsonl'),'utf8').includes('snapshot_changed'));
- assert.match(readablePacket(later),/SYNTHETIC/);assert.match(readablePacket(later),new RegExp(later.snapshot.snapshotDigest));
+ assert.match(readablePacket(later),/Demo scenario data/);assert.match(readablePacket(later),new RegExp(later.snapshot.snapshotDigest));
  const anchor=join(options.directory,'anchor.json');writeFileSync(anchor,'{}');assert.throws(()=>w.exportCheckpoint(),/LEDGER_TAMPERED/);
 });
 

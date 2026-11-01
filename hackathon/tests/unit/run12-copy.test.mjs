@@ -33,8 +33,10 @@ test('demo and judge pitches open without sign-in and keep manufacturing context
 
 test('visible recovery room brand uses Forgefront spelling',()=>{
  const html=read('../../public/index.html');
- assert.match(html,/<title>Forgefront/);
- assert.match(html,/Forgefront <small>FACTORY RESILIENCE<\/small>/);
+ assert.match(html,/<title>Forgefront Systems - Factory Resilience<\/title>/);
+ assert.match(html,/Forgefront Systems <small>FACTORY RESILIENCE<\/small>/);
+ assert.match(html,/forgefront-systems-logo\.png/);
+ assert.match(html,/rel="icon"[^>]*href="\/favicon\.png"|href="\/favicon\.png"[^>]*rel="icon"/);
  assert.doesNotMatch(html,/synthetic-browser-rehearsal/);
  assert.doesNotMatch(html,/ForgeFront ·/);
 });
@@ -47,6 +49,6 @@ test('provider preflight treats Fireworks as optional backup that never fails th
  const fireworks=primary.providers.find(p=>p.provider==='spark-fireworks');
  assert.equal(fireworks.light,'RED');
  assert.match(primary.policy,/optional backup/i);
- const all=await checkProviders({env:{MODEL_API_KEY:'synthetic-wonder',BASETEN_API_KEY:'synthetic-baseten',FIREWORKS_API_KEY:'synthetic-fireworks'},fetchImpl});
+ const all=await checkProviders({includeBackup:true,env:{MODEL_API_KEY:'synthetic-wonder',BASETEN_API_KEY:'synthetic-baseten',FIREWORKS_API_KEY:'synthetic-fireworks'},fetchImpl});
  assert.equal(all.passed,true);assert.ok(all.providers.every(p=>p.light==='GREEN'));
 });

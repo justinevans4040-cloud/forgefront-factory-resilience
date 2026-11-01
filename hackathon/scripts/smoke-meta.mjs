@@ -13,7 +13,7 @@ export function redact(value, env = process.env) {
   return redactEvidence(text,env).replace(/Bearer\s+[^\s"']+/gi, 'Bearer [REDACTED]');
 }
 
-export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch, timeoutMs = 60000 } = {}) {
+export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch, timeoutMs = 60000, includeBackup = false } = {}) {
   const nonce = `SMOKE_OK_${randomBytes(8).toString('hex')}`;
   const results = [];
   for (const [provider, route, authEnv] of [
@@ -21,11 +21,13 @@ export async function runSmoke({ env = process.env, fetchImpl = globalThis.fetch
     ['spark-baseten', SPARK_BASETEN_ROUTE, 'BASETEN_API_KEY'],
     ['spark-fireworks', SPARK_FIREWORKS_ROUTE, 'FIREWORKS_API_KEY'],
   ]) {
-    const key = provider === 'wonder' ? resolveWonderApiKey(env) : env[authEnv];
+    const skipped = provider === 'spark-fireworks' && !includeBackup;
+    const key = skipped ? '' : provider === 'wonder' ? resolveWonderApiKey(env) : env[authEnv];
     const record = { provider, endpoint: route.endpoint, requestedModel: route.model, authEnv,
       keyPresent: Boolean(key?.trim()), passed: false, status: 'BLOCKED' };
     const started = performance.now();
-    if (!record.keyPresent) record.error = `${authEnv} is unavailable to this process`;
+    if(skipped)record.error='Optional backup not requested; primary routes checked';
+    else if (!record.keyPresent) record.error = `${authEnv} is unavailable to this process`;
     else {
       try {
         const client = provider === 'wonder'
@@ -55,7 +57,7 @@ if (process.argv[1] && new URL(import.meta.url).pathname.endsWith(process.argv[1
   await mkdir(directory, { recursive: true });
   const results = await runSmoke();
   for (const result of results) writeEvidence(new URL(`${result.provider}.json`, directory), JSON.stringify(result, null, 2) + '\n');
-  writeEvidence(new URL('summary.json', directory), JSON.stringify({ passed: results.every(r => r.passed), results }, null, 2) + '\n');
+  writeEvidence(new URL('summary.json', directory), JSON.stringify({ passed: results.filter(r=>r.provider!=='spark-fireworks').every(r => r.passed), results }, null, 2) + '\n');
   console.log(JSON.stringify(results.map(({ provider, status, error }) => ({ provider, status, error })), null, 2));
-  process.exitCode = results.every(r => r.passed) ? 0 : 1;
+  process.exitCode = results.filter(r=>r.provider!=='spark-fireworks').every(r => r.passed) ? 0 : 1;
 }

@@ -16,7 +16,7 @@ export function publicFiles(root){
     if(['.git','node_modules','data','evidence-backups','.playwright-cli'].includes(entry.name))continue;
     if(!prefix&&!['hackathon','assets','.github'].includes(entry.name))continue;
     walk(join(dir,entry.name),file+'/');
-   }else if(!/\.bak$/i.test(file)&&(file.startsWith('hackathon/')||file.startsWith('assets/showcase/')||top.has(file)))out.push(file);
+   }else if(!/\.bak$/i.test(file)&&(file.startsWith('hackathon/')||file.startsWith('assets/showcase/')||file.startsWith('assets/brand/')||top.has(file)))out.push(file);
   }
  }
  walk(root);return out.sort();

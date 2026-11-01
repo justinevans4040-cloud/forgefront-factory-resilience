@@ -3,7 +3,7 @@ import { createClientLimiter } from './src/security/client-limit.mjs';
 /**
  * HTTP assembly skeleton for the Meta Hackathon build.
  * Loopback bind by default; Host/Origin allowlist; public health only.
- * Scenario analysis is deterministic; authenticated Meta responses are advisory only.
+ * Scenario analysis is deterministic; authenticated Meta responses explain evidence and options.
  */
 
 import http from "node:http";
@@ -101,7 +101,7 @@ export function createApp(options = {}) {
         const allowance=apiLimit(req);if(!allowance.allowed){res.setHeader('Retry-After',String(allowance.retryAfter));throw Object.assign(new Error('Client API rate limit exceeded'),{status:429});}
         guards.assertOrigin(req);
       }
-      const assets={'/route-health.mjs':['route-health.mjs','text/javascript'],'/investigation-status.mjs':['investigation-status.mjs','text/javascript'],'/':['index.html','text/html'],'/app.mjs':['app.mjs','text/javascript'],'/guide.mjs':['guide.mjs','text/javascript'],'/passphrase.mjs':['passphrase.mjs','text/javascript'],'/style.css':['style.css','text/css']};
+      const assets={'/command-center.mjs':['command-center.mjs','text/javascript'],'/brand-emblem.png':['brand-emblem.png','image/png'],'/forgefront-systems-logo.png':['forgefront-systems-logo.png','image/png'],'/favicon.png':['favicon.png','image/png'],'/route-health.mjs':['route-health.mjs','text/javascript'],'/investigation-status.mjs':['investigation-status.mjs','text/javascript'],'/':['index.html','text/html'],'/app.mjs':['app.mjs','text/javascript'],'/guide.mjs':['guide.mjs','text/javascript'],'/passphrase.mjs':['passphrase.mjs','text/javascript'],'/style.css':['style.css','text/css']};
       if(req.method==='GET' && assets[path]){
         const [name,type]=assets[path];const content=readFileSync(new URL('./public/'+name,import.meta.url));
         res.writeHead(200,{'Content-Type':type+'; charset=utf-8','Cache-Control':'no-store'});res.end(content);return;

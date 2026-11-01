@@ -2,6 +2,22 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Build run twelve
+
+- Preserved immediate demo entry and persistent-operation authentication.
+- Added the Forgefront Systems header/title and command-center shell; five revisitable stages, layered industrial surfaces, responsive mobile rail and reduced-motion transitions.
+- Added snapshot-computed incident stakes, an eight-step live guide, a separate seven-step explicit Sample guide, focused/highlighted action results, recaps and a computed recovery/proof summary.
+- Added observable live narration: selected model, per-call countdown and counts from returned source/comparison tools, with exact claim validation preserved.
+- Increased the bounded Spark Open final-response allowance after live usage showed reasoning consuming the previous output budget; envelope validation and deliberate retry remain enforced.
+- Prevented standard provider pre-flight from calling the optional backup even with inherited credentials. Wonder and Baseten determine readiness.
+- Refreshed report labels, component rights, fixture contracts, operating guide and camera path. Added failing-first behavior tests and desktop/mobile/keyboard proof under evidence/run12.
+
+## Independent audit ten
+
+- Installed the official Forgefront Systems logo byte-identical at `assets/brand/forgefront-systems-logo.png`, derived web mark and favicon for the recovery room, and placed the logo above the README hero.
+- Retuned the command-center theme to black with emerald and brushed-silver surfaces matching the official logo.
+- Included `assets/brand/` in the judge public file set; added logo wiring and hash tests; retained demo no-sign-in and path scrub covering run12 evidence.
+
 ## Independent audit nine
 
 - Demo and rehearse open straight into the recovery room through server-gated `demo-entry`; persistent `npm start` keeps Bearer authentication.
@@ -15,7 +31,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 - Added explicit selected-route pre-flight in the recovery room: bounded nonce/identity request, GREEN/RED/UNCHECKED states, expiring status, ledgered outcomes and manual choice of a GREEN alternative.
 - Added confident source-grounded narrative instructions and human-readable offline calculations, preserving raw model output, evidence validation and human-only consent.
 - Sharpened guided-start, route-selector, interpretation, acceptance and export copy. Sample remains an explicit offline walkthrough with no live AI call.
-- Reserved status space, clarified visual hierarchy and captured current desktop/mobile guided proof, controlled route failure and keyboard evidence under evidence/run11.
+- Reserved status space, clarified visual hierarchy and captured current desktop/mobile guided proof, controlled route failure and keyboard evidence under evidence/run12.
 - Reconciled the camera shot list, captions, run instructions, claim proof and control map with the actual application. Retained the hero and four showcase image bytes and names.
 - Added route-health HTTP and presentation regressions through failing-first tests. All work stays available for independent diff review.
 

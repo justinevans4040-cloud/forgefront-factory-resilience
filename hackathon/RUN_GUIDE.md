@@ -11,9 +11,17 @@ npm run check:providers --prefix hackathon
 npm run demo --prefix hackathon
 ```
 
-Provision MUSE_API_KEY (or MODEL_API_KEY) and BASETEN_API_KEY through the parent environment. Pre-flight makes one nonce/identity request per route and prints GREEN/RED. Wonder and Baseten gate readiness. An optional Fireworks backup route reports its own light and never fails the overall check. Select a GREEN primary route for the live presentation. Each failed route keeps its result; choose another route deliberately.
+For live investigation, provision MUSE_API_KEY (or MODEL_API_KEY) and BASETEN_API_KEY through the parent environment. Pre-flight makes one nonce/identity request per route and prints GREEN/RED. Wonder and Baseten gate readiness. The optional backup reports RED without a request in the standard check; primary routes determine readiness. Select a GREEN primary route for the live presentation. Each failed route keeps its result; choose another route deliberately.
 
 Open **http://127.0.0.1:8791** — the demo opens straight into the recovery room. Choose **Start guided recovery**. The demo uses a fresh private directory and key on every launch. HACKATHON_DEMO_PORT selects another port. Stop with Ctrl+C.
+
+## The command center
+
+A fixed header identifies Forgefront Systems. The stage rail opens **Incident**, **Investigate**, **Decide**, **Shock** and **Proof**. Each stage keeps its own focused content inside the workspace. **Show next action** opens the required stage, scrolls to the next control and focuses it. A highlighted result and a short recap explain every completed action. Revisit any stage with the rail.
+
+The opening story computes affected parts, production orders and due windows from the snapshot. **Start guided recovery** begins a fresh incident. The live story has eight steps; selecting Sample explicitly changes to a seven-step offline story. Successful Sample results advance only the offline story. Switching back to a primary route restores the live-model requirements.
+
+During inference, the status names the selected model, elapsed time, each bounded request and the remaining timeout. Read-only tool results add the number of source records read and feasible paths calculated. Final source matches, rejected claims and model analysis remain separately inspectable. The Proof stage compares the accepted completion time with replenishment and records the second shock, human acceptance and matching-head verification/export/checkpoint outcomes.
 
 ## Follow the recovery
 

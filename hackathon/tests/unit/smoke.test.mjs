@@ -4,7 +4,7 @@ import { runSmoke, redact } from '../../scripts/smoke-meta.mjs';
 
 it('checks all providers independently and verifies nonce output', async () => {
   const calls=[];
-  const results=await runSmoke({ env: { MUSE_API_KEY:'synthetic-wonder', BASETEN_API_KEY:'synthetic-baseten', FIREWORKS_API_KEY:'synthetic-fireworks' }, fetchImpl:async(url,init)=>{
+  const results=await runSmoke({ includeBackup:true, env: { MUSE_API_KEY:'synthetic-wonder', BASETEN_API_KEY:'synthetic-baseten', FIREWORKS_API_KEY:'synthetic-fireworks' }, fetchImpl:async(url,init)=>{
     calls.push(url); const body=JSON.parse(init.body);
     if (url.includes('baseten')) assert.ok(body.max_tokens >= 1024, 'reasoning model needs room for reasoning and final output');
     const prompt=body.input ?? body.messages[0].content;

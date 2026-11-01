@@ -1,0 +1,34 @@
+✔ incident and final story use current calculations and never turn acceptance into physical release (1.1654ms)
+✔ all guided actions map to focused stages, with invalid targets rejected (0.1806ms)
+✔ result transition reveals stage before focus, highlights result and honors reduced motion (0.3183ms)
+✔ the command center has exact company branding and distinct responsive stages (2.1025ms)
+✔ explicit offline guide advances only on a successful Sample result and still requires changed-snapshot proof (0.4131ms)
+✔ readable report presents professional labels and preserves source and human-validation boundaries (0.4426ms)
+✖ provider preflight excludes the optional backup even when its credential is inherited (35.4321ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 6
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 147.6868
+
+✖ failing tests:
+
+test at hackathon\tests\unit\command-center.test.mjs:53:1
+✖ provider preflight excludes the optional backup even when its credential is inherited (35.4321ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 2
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/command-center.test.mjs:56:200)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -16,7 +16,7 @@ Privately provision `MUSE_API_KEY` (or `MODEL_API_KEY`) and `BASETEN_API_KEY` in
 
 ## 3-minute demo path
 
-Use **Show next action** to focus the current step. The guide advances on actual application state.
+Use the five-stage command center and **Show next action** to open and focus the current step. Each result is highlighted and explained; the Proof stage summarizes the computed recovery. The guide advances on actual application state.
 
 1. Inspect the source certificate discrepancy and receiving records.
 2. Run Spark Open on Baseten, then Wonder on the same snapshot. Inspect source-validated facts, read-only traces and model narrative.
@@ -36,7 +36,7 @@ Before filming, make one real nonce/identity request per primary provider:
 npm run check:providers --prefix hackathon
 ```
 
-Each route reports GREEN or RED without showing keys. Wonder and Baseten gate readiness. An optional Fireworks backup route reports its own light and never fails the overall check. Missing keys, wrong identities, HTTP errors and deadlines remain RED; the command exits nonzero when a primary route fails. It starts no server and performs no automatic retry.
+Each route reports GREEN or RED without showing keys. Wonder and Baseten gate readiness. The standard check sends requests only to the two primary routes. Missing keys, wrong identities, HTTP errors and deadlines remain RED; the command exits nonzero when a primary route fails. It starts no server and performs no automatic retry.
 
 ## Reproduce checks
 

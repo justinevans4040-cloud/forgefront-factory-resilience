@@ -11,7 +11,7 @@ const base = `http://127.0.0.1:${address.port}`;
 const login = await fetch(`${base}/api/meta/session`, { method: 'POST', headers: { Authorization: `Bearer ${admin}` } });
 const { session, csrf } = await login.json();
 const results = [];
-for (const provider of ['wonder', 'baseten', 'fireworks']) {
+for (const provider of ['wonder', 'baseten']) {
   const response = await fetch(`${base}/api/meta/respond`, { method: 'POST', headers: {
     'Content-Type': 'application/json', 'X-Session-Token': session, 'X-CSRF-Token': csrf,
   }, body: JSON.stringify({ provider, prompt: 'Say hello in one brief sentence.' }) });

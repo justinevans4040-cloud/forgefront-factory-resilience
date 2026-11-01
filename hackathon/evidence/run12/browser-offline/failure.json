@@ -1,0 +1,16 @@
+{
+  "ok": false,
+  "live": false,
+  "reason": "one highlighted next action\n\n0 !== 1\n",
+  "checks": [
+    "demo opens straight into the recovery room with no sign-in",
+    "keyboard skip link",
+    "skip link activation into the recovery room",
+    "guide to lock keyboard order",
+    "Chromium accessibility tree landmarks and control names",
+    "default encrypted export without plaintext acknowledgement",
+    "explicit plaintext download gate",
+    "source inspection"
+  ],
+  "consoleErrors": []
+}

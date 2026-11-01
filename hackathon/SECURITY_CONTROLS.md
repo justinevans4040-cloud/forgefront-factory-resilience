@@ -2,6 +2,18 @@
 
 Concrete controls protect the recovery decision from open room through evidence export. This map ties every control theme to implementation and executable verification.
 
+## Command-center control continuity
+
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Human authority | Stage transitions reveal results; the server still requires exact typed single-use consent on the current plan, actor and snapshot | Consent, replay, race and workflow suites; desktop/mobile guides |
+| Observable model activity | Progress reports counts only after read-only tools return; exact source claims remain separately validated | command-center tests; investigation and owner-bound job tests |
+| Deliberate offline use | Explicit Sample selects its own guide; its results never fulfill live-model gates | guide and command-center tests; keyboard walkthrough |
+| Primary-route spending | Standard provider pre-flight omits the backup credential; browser verification excludes the backup route | provider policy regression; primary pre-flight and live packets |
+| Accessible action results | Stage reveal precedes scroll/focus; highlighted results honor reduced motion | command-center tests and real keyboard smoke |
+| Brand asset integrity | Official Forgefront Systems logo at `assets/brand/forgefront-systems-logo.png` (byte-identical source); web-optimized app mark and favicon; five showcase images preserved | official-logo unit test; image hash evidence; public asset routes |
+| Official logo in public set | Canonical brand logo and app-served mark/favicon ship in the judge public file set | `public-set.mjs` includes `assets/brand/`; command-center logo tests |
+
 ## Independent audit nine
 
 | Control theme | Implementation | Verification |
@@ -11,6 +23,14 @@ Concrete controls protect the recovery decision from open room through evidence 
 | Judge pitch stays sharp | Root and hackathon README, RUN_GUIDE and demo runbook open without token/login instructions, hedges or internal field names; manufacturing contexts sit after highlights; Fireworks stays out of the landing pitch | `tests/unit/run12-copy.test.mjs`; `tests/unit/run10-judge.test.mjs` |
 | Fireworks optional backup | Provider pre-flight still reports Fireworks GREEN/RED; overall readiness follows Wonder and Baseten only | `tests/unit/run12-copy.test.mjs`; `scripts/provider-check.mjs` |
 | Branding | Visible product and company spelling is Forgefront / Forgefront Systems | `tests/unit/run12-copy.test.mjs`; `public/index.html` |
+
+## Independent audit ten
+
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Official logo | Canonical `assets/brand/forgefront-systems-logo.png` matches owner source SHA256; header, opening story, favicon and README use it; theme uses black with emerald and silver surfaces | `tests/unit/command-center.test.mjs` official logo test |
+| Demo without sign-in retained | Demo-entry and rehearse path unchanged; persistent mode still authenticates | Demo-entry and browser smoke suites |
+| Path scrub includes newest evidence | Public tracked text under `evidence/run12` has no profile paths or file URLs; report artifacts stay relative | `tests/unit/run10-judge.test.mjs` path scrub |
 
 ## Build run eleven
 

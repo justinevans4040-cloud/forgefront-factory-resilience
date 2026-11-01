@@ -1,19 +1,18 @@
-# The Meta Hackathon build — evidence index
+# The Meta Hackathon build — current evidence
 
-Follow the complete recovery at desktop and mobile widths, then inspect the tests behind each product claim. The public set contains the newest numbered run plus shared route/investigation/build proof.
+Run twelve follows the focused recovery room from incident to verified proof. Public delivery selects this newest numbered run and shared model/tool evidence.
 
-| Question | Current proof |
+| Question | Evidence |
 | --- | --- |
-| Do the suites pass? | [Product tests](run11/hackathon-tests.txt), [root regression tests](run11/root-tests.txt) |
-| Which Meta routes answered? | [Start pre-flight](run11/providers-start.json), [latest pre-flight](run11/providers.json) |
-| Does the live desktop guide work? | [Summary](run11/browser/summary.json), [completed room](run11/browser/desktop.png), [packet](run11/browser/packet.json) |
-| Does the live mobile-width guide work? | [Summary](run11/browser-mobile/summary.json), [completed room](run11/browser-mobile/mobile.png), [acceptance](run11/browser-mobile/accepted.png), [second shock](run11/browser-mobile/second-shock.png), [retained rejected attempt](run11/browser-mobile/failed-packet.json) |
-| What did the optional Fireworks attempts record? | [Earlier successful guide](run11/browser-fireworks/summary.json), [earlier packet](run11/browser-fireworks/packet.json), [latest rejected envelope](run11/browser-fireworks/failed-packet.json), [latest outcome](run11/browser-fireworks/failure.json), [earlier route-check stop](run11/fireworks-preflight-stopped.txt), [earlier investigation stop](run11/fireworks-investigation-stopped.txt) |
-| Does route failure stay visible? | [Controlled HTTP 503 summary](run11/browser-red/summary.json), [RED route view](run11/browser-red/red.png) |
-| Does a slow call stop cleanly? | [Controlled timeout summary](run11/browser-slow/summary.json), [stopped view](run11/browser-slow/stopped.png) |
-| Can the full workflow run with a keyboard offline? | [Keyboard summary](run11/browser-offline/summary.json), [recovery open](run11/browser-offline/recovery-open.png), [accessibility command](run11/accessibility.txt) |
-| Is the public copy self-contained and scrubbed? | [Judge checks](run11/judge-check.txt), [isolated public tree](run11/public-tree.txt) |
-| Are secrets and images protected? | [Secret scan](run11/gitleaks.txt), [showcase integrity](run11/showcase-integrity.json) |
-| Which tests prove the pitch? | [Claim proof map](../docs/CLAIM_PROOF.md), [failing-first tests](run11/tdd-red.txt), [passing regression tests](run11/tdd-green.txt) |
+| Do the suites pass? | [Product suite](run12/hackathon-tests.txt), [root suite](run12/root-tests.txt) |
+| Which primary routes answered? | [Provider pre-flight](run12/providers.json) |
+| Does the offline keyboard workflow work? | [Accessibility command](run12/accessibility.txt), [keyboard summary](run12/browser-offline/summary.json), [mobile keyboard summary](run12/browser-offline-mobile/summary.json), [opening room](run12/browser-offline/recovery-open.png), [desktop](run12/browser-offline/desktop.png), [mobile](run12/browser-offline/mobile.png) |
+| Does the live guide complete? | [Desktop summary](run12/browser/summary.json), [desktop](run12/browser/desktop.png), [mobile-width summary](run12/browser-mobile/summary.json), [mobile](run12/browser-mobile/mobile.png) |
+| Does invalid output fail closed? | [Retained desktop rejection](run12/browser/failed-packet.json), [retained mobile rejection](run12/browser-mobile/failed-packet.json), [reasoning-budget regression](run12/tdd-reasoning-red.txt) |
+| Can the recovery be inspected? | [Live packet](run12/browser/packet.json), [checkpoint](run12/browser/checkpoint.json), [readable report](run12/browser/report.md) |
+| Does the public set stand alone? | [Judge check](run12/judge-check.txt), [isolated public tree](run12/public-tree.txt) |
+| Are assets and secrets protected? | [Secret scan](run12/gitleaks.txt), [working tree scan](run12/gitleaks-working-tree.txt), [showcase integrity](run12/showcase-integrity.json) |
+| Did independent audit ten re-verify? | [Product suite](run12/hackathon-tests-audit10.txt), [judge check](run12/judge-check-audit10.txt), [public tree](run12/public-tree-audit10.txt), [history scan](run12/gitleaks-audit10.txt) |
+| Was behavior tested first? | [Initial red](run12/tdd-red.txt), [guide/report red](run12/tdd-flow-red.txt), [provider policy red](run12/tdd-provider-red.txt), [narration red](run12/tdd-narration-red.txt), [restart red](run12/tdd-restart-red.txt), [smoke defaults red](run12/tdd-smoke-red.txt), [green](run12/tdd-green.txt) |
 
-Each packet retains its actual model calls, source claims, decision history and checkpoint. Controlled tests are labeled separately. [Owner completion checklist](../docs/SUBMISSION_CHECKLIST.md).
+Model-call records preserve requested and returned identities, exact source validation and elapsed inference. Sample runs are explicitly offline. The backup route receives no live request in this verification. [Contribution inventory](../HACKATHON_CONTRIBUTIONS.md) · [Owner checklist](../docs/SUBMISSION_CHECKLIST.md).

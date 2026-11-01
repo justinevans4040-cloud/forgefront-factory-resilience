@@ -4,7 +4,7 @@ The recovery-room proof is collected in [current evidence](../evidence/README.md
 
 - [ ] Review the complete uncommitted diff, source manifest and contributions; resolve findings and repeat affected verification.
 - [ ] Select the intended public candidate branch and authorize integration/publication separately.
-- [ ] Run the guide on a physical phone: open the recovery room, route selection, source inspection, typed acceptance, shock, renewed decision and export.
+- [ ] Run all five command-center stages on a physical phone; verify the mobile rail, next-action focus, recaps and final computed summary: open the recovery room, route selection, source inspection, typed acceptance, shock, renewed decision and export.
 - [ ] Re-run provider pre-flight. Present Wonder and a GREEN Spark Open route; check the selected route in the room. Choose an alternative explicitly when a route is RED.
 - [ ] Verify all human contributors, Representative, rights, proprietary license, new-work eligibility, account credits and actual track/bonus form controls.
 - [ ] Film the [eight-shot path](DEMO_RUNBOOK.md) with human narration. Retain original takes, actual model identities and observed inference durations.

@@ -1,4 +1,8 @@
 <p align="center">
+<img src="assets/brand/forgefront-systems-logo.png" width="420" alt="Forgefront Systems" />
+</p>
+
+<p align="center">
 <img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront Factory Resilience" />
 </p>
 
@@ -46,12 +50,10 @@ Material investigation, CNC scheduling and recovery comparison live in the same 
 Node.js 20+ and a browser. Nothing to install.
 
 ```sh
-# Meta keys in the server environment
-export MUSE_API_KEY=...          # Muse Wonder (Meta Model API)
-export BASETEN_API_KEY=...       # Muse Spark Open (Baseten)
-
 npm run demo --prefix hackathon
 ```
+
+For live investigations, provision `MUSE_API_KEY` (or `MODEL_API_KEY`) and `BASETEN_API_KEY` in the parent server environment. The demo opens without credentials; provider keys are used only when a live investigation is requested.
 
 Open **http://127.0.0.1:8791** — the demo opens straight into the recovery room. Click **Start guided recovery**. No keys handy? Pick **Sample · offline walkthrough; no live AI** in the route selector to walk the full workflow offline. Before filming, run `npm run check:providers --prefix hackathon` for a GREEN/RED live route check, then use **Check selected route** in the room. More options in the [run guide](hackathon/RUN_GUIDE.md).
 
@@ -63,7 +65,7 @@ Open **http://127.0.0.1:8791** — the demo opens straight into the recovery roo
 4. **Challenge** — take a machine offline. Watch the earlier acceptance get invalidated, re-investigate and accept a revised plan.
 5. **Prove** — verify the tamper-evident ledger and export an encrypted evidence packet with its independent checkpoint.
 
-The guide advances on real application state. Shot-by-shot: [demo runbook](hackathon/docs/DEMO_RUNBOOK.md).
+The five-stage command center keeps one focused workspace on screen. **Show next action** reveals and focuses the current control; result highlights and recaps explain each transition. The final summary compares the accepted path with replenishment and checks the retained proof. The guide advances on real application state. Shot-by-shot: [demo runbook](hackathon/docs/DEMO_RUNBOOK.md).
 
 ## How Meta models are used
 

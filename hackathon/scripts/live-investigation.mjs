@@ -9,7 +9,7 @@ import { join } from 'node:path';
 const directory=mkdtempSync(join(tmpdir(),'ffr-live-investigation-'));
 const workflow=createWorkflow({directory,key:randomBytes(32).toString('hex'),secrets:[process.env.MUSE_API_KEY,process.env.MODEL_API_KEY,process.env.BASETEN_API_KEY,process.env.FIREWORKS_API_KEY]});
 const outcomes=[];
-for(const provider of ['wonder','baseten','fireworks']){
+for(const provider of ['wonder','baseten']){
  const apiKey=provider==='wonder'?(process.env.MUSE_API_KEY||process.env.MODEL_API_KEY):process.env[provider==='baseten'?'BASETEN_API_KEY':'FIREWORKS_API_KEY'];
  if(!apiKey){outcomes.push({provider,ok:false,reason:'KEY_UNAVAILABLE'});continue;}
  const client=provider==='wonder'?createModelClient('wonder',{apiKey}):createModelClient('spark-open',{apiKey,route:provider==='baseten'?SPARK_BASETEN_ROUTE:SPARK_FIREWORKS_ROUTE});

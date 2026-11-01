@@ -4,12 +4,13 @@ The recovery room connects each product claim to working code and observable pro
 
 | Goal | Capability | Proof |
 | --- | --- | --- |
+| Guided command center | Fixed shell, five focused stages, computed opening stakes, evidence-gated live/offline guides, focus/scroll results, recaps and final recovery timeline | command-center tests; live desktop/mobile and keyboard proof |
 | Immediate judge entry | Hero, pitch, sixty-second start, three-minute path, Meta roles and four manufacturing contexts | README structure/copy tests and showcase integrity |
 | Source-grounded investigation | Immutable registry, exact structured source checks and read-only tools | Evidence, tools, investigation and adversarial tests |
 | Real recovery math | Stock conservation, compatible capacity and three calculated choices | Runtime oracle and engine tests |
 | Two Meta models | Same-snapshot Spark Open and Wonder guide | Current live desktop/mobile packets |
 | Presenter route choice | Explicit eight-second selected-route check, ledgered GREEN/RED, expiring status and manual choice | run11 route tests and controlled browser failure |
-| Clear live progress | Current call number, elapsed time and remaining bounded timeout | Owner-bound job tests and controlled slow proof |
+| Clear live progress | Selected model, returned-tool source/path counts, call number, elapsed time and remaining bounded timeout | Owner-bound job tests and controlled slow proof |
 | Human control | Typed five-minute single-use consent, sealed identity/run/snapshot/plan | Workflow, role, race, replay and persistence tests |
 | Second-shock recovery | Changed capacity invalidates acceptance; fresh investigation and review | Engine/workflow tests and current guided browser proof |
 | Durable security | Encrypted events, anchored hash chain, forward recovery and persistent quotas | [SOC 2-style control mapping](../SECURITY_CONTROLS.md) |

@@ -1,0 +1,653 @@
+{
+  "snapshot": {
+    "version": 1,
+    "scenarioId": "scenario-cert-hold-v1",
+    "label": "SYNTHETIC",
+    "incident": {
+      "incidentId": "inc-cert-alloy-hold",
+      "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+      "heldMaterialId": "MAT-ALLOY-A",
+      "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+    },
+    "materials": [
+      {
+        "materialId": "MAT-ALLOY-A",
+        "unit": "each",
+        "onHand": 80,
+        "held": 80,
+        "available": 0,
+        "substitutes": [
+          "MAT-ALLOY-B"
+        ],
+        "replenishmentHours": 48,
+        "unitCostUsd": 12
+      },
+      {
+        "materialId": "MAT-ALLOY-B",
+        "unit": "each",
+        "onHand": 100,
+        "held": 0,
+        "available": 100,
+        "substitutes": [],
+        "replenishmentHours": null,
+        "unitCostUsd": 14
+      }
+    ],
+    "cells": [
+      {
+        "cellId": "CELL-MILL-1",
+        "availableHours": 40,
+        "hourlyCostUsd": 85,
+        "compatibleMaterials": [
+          "MAT-ALLOY-A",
+          "MAT-ALLOY-B"
+        ],
+        "online": true
+      },
+      {
+        "cellId": "CELL-MILL-2",
+        "availableHours": 24,
+        "hourlyCostUsd": 90,
+        "compatibleMaterials": [
+          "MAT-ALLOY-B"
+        ],
+        "online": true
+      }
+    ],
+    "jobs": [
+      {
+        "jobId": "JOB-1001",
+        "materialId": "MAT-ALLOY-A",
+        "unitsRequired": 40,
+        "hoursPerUnit": 0.5,
+        "preferredCellId": "CELL-MILL-1",
+        "dueHours": 36
+      },
+      {
+        "jobId": "JOB-1002",
+        "materialId": "MAT-ALLOY-A",
+        "unitsRequired": 30,
+        "hoursPerUnit": 0.5,
+        "preferredCellId": "CELL-MILL-1",
+        "dueHours": 48
+      }
+    ],
+    "evidenceRecords": [
+      {
+        "evidenceId": "ev-cert-qty",
+        "documentId": "doc-cert-441",
+        "recordId": "rec-cert-line-3",
+        "lineId": "L3",
+        "field": "quantity",
+        "quantity": {
+          "value": 120,
+          "unit": "each"
+        },
+        "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+      },
+      {
+        "evidenceId": "ev-recv-qty",
+        "documentId": "doc-recv-882",
+        "recordId": "rec-recv-posted",
+        "lineId": "R1",
+        "field": "quantity",
+        "quantity": {
+          "value": 80,
+          "unit": "each"
+        },
+        "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+      },
+      {
+        "evidenceId": "ev-sub-stock",
+        "documentId": "doc-inv-snap",
+        "recordId": "rec-inv-alloy-b",
+        "lineId": null,
+        "field": "onHand",
+        "quantity": {
+          "value": 100,
+          "unit": "each"
+        },
+        "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+      }
+    ],
+    "assumptions": [
+      "Quantities use the current certificate, receiving and stock records.",
+      "Cell costs use the hourly rates in this snapshot."
+    ],
+    "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2"
+  },
+  "pendingConsents": [],
+  "analysis": {
+    "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+    "scenarioId": "scenario-cert-hold-v1",
+    "incident": {
+      "incidentId": "inc-cert-alloy-hold",
+      "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+      "heldMaterialId": "MAT-ALLOY-A",
+      "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+    },
+    "impacted": {
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+      "heldMaterialId": "MAT-ALLOY-A",
+      "jobs": [
+        {
+          "jobId": "JOB-1001",
+          "materialId": "MAT-ALLOY-A",
+          "unitsRequired": 40,
+          "hoursPerUnit": 0.5,
+          "preferredCellId": "CELL-MILL-1",
+          "dueHours": 36,
+          "totalHours": 20
+        },
+        {
+          "jobId": "JOB-1002",
+          "materialId": "MAT-ALLOY-A",
+          "unitsRequired": 30,
+          "hoursPerUnit": 0.5,
+          "preferredCellId": "CELL-MILL-1",
+          "dueHours": 48,
+          "totalHours": 15
+        }
+      ],
+      "impactedJobCount": 2,
+      "impactedUnits": 70
+    },
+    "recovery": {
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+      "impacted": {
+        "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+        "heldMaterialId": "MAT-ALLOY-A",
+        "jobs": [
+          {
+            "jobId": "JOB-1001",
+            "materialId": "MAT-ALLOY-A",
+            "unitsRequired": 40,
+            "hoursPerUnit": 0.5,
+            "preferredCellId": "CELL-MILL-1",
+            "dueHours": 36,
+            "totalHours": 20
+          },
+          {
+            "jobId": "JOB-1002",
+            "materialId": "MAT-ALLOY-A",
+            "unitsRequired": 30,
+            "hoursPerUnit": 0.5,
+            "preferredCellId": "CELL-MILL-1",
+            "dueHours": 48,
+            "totalHours": 15
+          }
+        ],
+        "impactedJobCount": 2,
+        "impactedUnits": 70
+      },
+      "options": [
+        {
+          "optionId": "wait_replenishment",
+          "feasible": true,
+          "rejectReason": null,
+          "impactedUnits": 70,
+          "finishHours": 83,
+          "incrementalCostUsd": 0,
+          "assumptions": [
+            "Quantities use the current certificate, receiving and stock records.",
+            "Cell costs use the hourly rates in this snapshot.",
+            "Documented replenishment lead time 48 hours"
+          ],
+          "constraints": [
+            "Held lot remains unavailable until replenishment posts"
+          ],
+          "evidenceIds": [
+            "ev-cert-qty",
+            "ev-recv-qty"
+          ],
+          "detail": {
+            "replenishmentHours": 48,
+            "productionHours": 35
+          }
+        },
+        {
+          "optionId": "allocate_substitute",
+          "feasible": true,
+          "rejectReason": null,
+          "impactedUnits": 70,
+          "finishHours": 35,
+          "incrementalCostUsd": 3115,
+          "assumptions": [
+            "Quantities use the current certificate, receiving and stock records.",
+            "Cell costs use the hourly rates in this snapshot.",
+            "Substitute allocation uses only verified available stock"
+          ],
+          "constraints": [
+            "Held MAT lot remains on hold",
+            "No supplier messaging"
+          ],
+          "evidenceIds": [
+            "ev-sub-stock",
+            "ev-recv-qty"
+          ],
+          "detail": {
+            "draws": [
+              {
+                "materialId": "MAT-ALLOY-B",
+                "units": 70,
+                "hours": 35,
+                "laborCostUsd": 2975,
+                "materialPremiumUsd": 140,
+                "cells": [
+                  {
+                    "cellId": "CELL-MILL-1",
+                    "hours": 35,
+                    "costUsd": 2975
+                  }
+                ]
+              }
+            ],
+            "materialPremiumUsd": 140,
+            "laborCostUsd": 2975
+          }
+        },
+        {
+          "optionId": "split_capacity",
+          "feasible": true,
+          "rejectReason": null,
+          "impactedUnits": 70,
+          "finishHours": 17.5,
+          "incrementalCostUsd": 3202.5,
+          "assumptions": [
+            "Quantities use the current certificate, receiving and stock records.",
+            "Cell costs use the hourly rates in this snapshot.",
+            "Production hours split across compatible online cells"
+          ],
+          "constraints": [
+            "Held primary material not issued",
+            "Cost includes labor and material premium"
+          ],
+          "evidenceIds": [
+            "ev-sub-stock"
+          ],
+          "detail": {
+            "materialId": "MAT-ALLOY-B",
+            "allocations": [
+              {
+                "cellId": "CELL-MILL-1",
+                "hours": 17.5,
+                "costUsd": 1487.5
+              },
+              {
+                "cellId": "CELL-MILL-2",
+                "hours": 17.5,
+                "costUsd": 1575
+              }
+            ]
+          }
+        }
+      ],
+      "feasibleCount": 3,
+      "status": "options_available",
+      "message": "3 feasible recovery option(s) computed from snapshot inputs"
+    },
+    "capacity": {
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+      "cells": [
+        {
+          "cellId": "CELL-MILL-1",
+          "online": true,
+          "availableHours": 40,
+          "hourlyCostUsd": 85,
+          "compatibleMaterials": [
+            "MAT-ALLOY-A",
+            "MAT-ALLOY-B"
+          ]
+        },
+        {
+          "cellId": "CELL-MILL-2",
+          "online": true,
+          "availableHours": 24,
+          "hourlyCostUsd": 90,
+          "compatibleMaterials": [
+            "MAT-ALLOY-B"
+          ]
+        }
+      ]
+    },
+    "evidenceCount": 3
+  },
+  "evidence": [
+    {
+      "evidenceId": "ev-cert-qty",
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+      "source": {
+        "documentId": "doc-cert-441",
+        "recordId": "rec-cert-line-3",
+        "lineId": "L3",
+        "field": "quantity"
+      },
+      "quantity": {
+        "value": 120,
+        "unit": "each"
+      },
+      "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+    },
+    {
+      "evidenceId": "ev-recv-qty",
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+      "source": {
+        "documentId": "doc-recv-882",
+        "recordId": "rec-recv-posted",
+        "lineId": "R1",
+        "field": "quantity"
+      },
+      "quantity": {
+        "value": 80,
+        "unit": "each"
+      },
+      "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+    },
+    {
+      "evidenceId": "ev-sub-stock",
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
+      "source": {
+        "documentId": "doc-inv-snap",
+        "recordId": "rec-inv-alloy-b",
+        "lineId": null,
+        "field": "onHand"
+      },
+      "quantity": {
+        "value": 100,
+        "unit": "each"
+      },
+      "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+    }
+  ],
+  "runs": [],
+  "decision": {
+    "status": "none",
+    "operationalRelease": false
+  },
+  "busy": false,
+  "ledger": {
+    "ok": true,
+    "count": 2,
+    "head": "13d4213585a5e11cfc94256f925f96afefd1c4ba7112e80a7129d67f6cee074a",
+    "signature": "4505613eb9f232853b7632fd001893a753bb836843fe4da3f2f92362d70e39a4"
+  },
+  "storageProtection": {
+    "protected": true,
+    "mechanism": "WINDOWS_OWNER_SYSTEM_ACL",
+    "encryption": "AES-256-GCM; HKDF-SHA256 domain-separated key"
+  },
+  "synthetic": true,
+  "operationalRelease": false,
+  "snapshots": [
+    {
+      "version": 1,
+      "scenarioId": "scenario-cert-hold-v1",
+      "label": "SYNTHETIC",
+      "incident": {
+        "incidentId": "inc-cert-alloy-hold",
+        "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+        "heldMaterialId": "MAT-ALLOY-A",
+        "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+      },
+      "materials": [
+        {
+          "materialId": "MAT-ALLOY-A",
+          "unit": "each",
+          "onHand": 80,
+          "held": 80,
+          "available": 0,
+          "substitutes": [
+            "MAT-ALLOY-B"
+          ],
+          "replenishmentHours": 48,
+          "unitCostUsd": 12
+        },
+        {
+          "materialId": "MAT-ALLOY-B",
+          "unit": "each",
+          "onHand": 100,
+          "held": 0,
+          "available": 100,
+          "substitutes": [],
+          "replenishmentHours": null,
+          "unitCostUsd": 14
+        }
+      ],
+      "cells": [
+        {
+          "cellId": "CELL-MILL-1",
+          "availableHours": 40,
+          "hourlyCostUsd": 85,
+          "compatibleMaterials": [
+            "MAT-ALLOY-A",
+            "MAT-ALLOY-B"
+          ],
+          "online": true
+        },
+        {
+          "cellId": "CELL-MILL-2",
+          "availableHours": 24,
+          "hourlyCostUsd": 90,
+          "compatibleMaterials": [
+            "MAT-ALLOY-B"
+          ],
+          "online": true
+        }
+      ],
+      "jobs": [
+        {
+          "jobId": "JOB-1001",
+          "materialId": "MAT-ALLOY-A",
+          "unitsRequired": 40,
+          "hoursPerUnit": 0.5,
+          "preferredCellId": "CELL-MILL-1",
+          "dueHours": 36
+        },
+        {
+          "jobId": "JOB-1002",
+          "materialId": "MAT-ALLOY-A",
+          "unitsRequired": 30,
+          "hoursPerUnit": 0.5,
+          "preferredCellId": "CELL-MILL-1",
+          "dueHours": 48
+        }
+      ],
+      "evidenceRecords": [
+        {
+          "evidenceId": "ev-cert-qty",
+          "documentId": "doc-cert-441",
+          "recordId": "rec-cert-line-3",
+          "lineId": "L3",
+          "field": "quantity",
+          "quantity": {
+            "value": 120,
+            "unit": "each"
+          },
+          "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+        },
+        {
+          "evidenceId": "ev-recv-qty",
+          "documentId": "doc-recv-882",
+          "recordId": "rec-recv-posted",
+          "lineId": "R1",
+          "field": "quantity",
+          "quantity": {
+            "value": 80,
+            "unit": "each"
+          },
+          "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+        },
+        {
+          "evidenceId": "ev-sub-stock",
+          "documentId": "doc-inv-snap",
+          "recordId": "rec-inv-alloy-b",
+          "lineId": null,
+          "field": "onHand",
+          "quantity": {
+            "value": 100,
+            "unit": "each"
+          },
+          "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+        }
+      ],
+      "assumptions": [
+        "Quantities use the current certificate, receiving and stock records.",
+        "Cell costs use the hourly rates in this snapshot."
+      ],
+      "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2"
+    }
+  ],
+  "format": "FORGEFRONT_ADVISORY_PACKET",
+  "label": "PLAINTEXT EXPORT; SYNTHETIC; ILLUSTRATIVE COSTS; ADVISORY ONLY",
+  "ledgerDescription": "hash-chained, tamper-evident",
+  "events": [
+    {
+      "sequence": 1,
+      "type": "snapshot_initialized",
+      "epochMs": 1793495058387,
+      "previousHash": "GENESIS",
+      "data": {
+        "snapshot": {
+          "version": 1,
+          "scenarioId": "scenario-cert-hold-v1",
+          "label": "SYNTHETIC",
+          "incident": {
+            "incidentId": "inc-cert-alloy-hold",
+            "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+            "heldMaterialId": "MAT-ALLOY-A",
+            "discrepancy": "certificate claims 120 each; receiving posted 80 each"
+          },
+          "materials": [
+            {
+              "materialId": "MAT-ALLOY-A",
+              "unit": "each",
+              "onHand": 80,
+              "held": 80,
+              "available": 0,
+              "substitutes": [
+                "MAT-ALLOY-B"
+              ],
+              "replenishmentHours": 48,
+              "unitCostUsd": 12
+            },
+            {
+              "materialId": "MAT-ALLOY-B",
+              "unit": "each",
+              "onHand": 100,
+              "held": 0,
+              "available": 100,
+              "substitutes": [],
+              "replenishmentHours": null,
+              "unitCostUsd": 14
+            }
+          ],
+          "cells": [
+            {
+              "cellId": "CELL-MILL-1",
+              "availableHours": 40,
+              "hourlyCostUsd": 85,
+              "compatibleMaterials": [
+                "MAT-ALLOY-A",
+                "MAT-ALLOY-B"
+              ],
+              "online": true
+            },
+            {
+              "cellId": "CELL-MILL-2",
+              "availableHours": 24,
+              "hourlyCostUsd": 90,
+              "compatibleMaterials": [
+                "MAT-ALLOY-B"
+              ],
+              "online": true
+            }
+          ],
+          "jobs": [
+            {
+              "jobId": "JOB-1001",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 40,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 36
+            },
+            {
+              "jobId": "JOB-1002",
+              "materialId": "MAT-ALLOY-A",
+              "unitsRequired": 30,
+              "hoursPerUnit": 0.5,
+              "preferredCellId": "CELL-MILL-1",
+              "dueHours": 48
+            }
+          ],
+          "evidenceRecords": [
+            {
+              "evidenceId": "ev-cert-qty",
+              "documentId": "doc-cert-441",
+              "recordId": "rec-cert-line-3",
+              "lineId": "L3",
+              "field": "quantity",
+              "quantity": {
+                "value": 120,
+                "unit": "each"
+              },
+              "excerpt": "Certificate line L3 quantity=120 each for lot ALLOY-A."
+            },
+            {
+              "evidenceId": "ev-recv-qty",
+              "documentId": "doc-recv-882",
+              "recordId": "rec-recv-posted",
+              "lineId": "R1",
+              "field": "quantity",
+              "quantity": {
+                "value": 80,
+                "unit": "each"
+              },
+              "excerpt": "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied."
+            },
+            {
+              "evidenceId": "ev-sub-stock",
+              "documentId": "doc-inv-snap",
+              "recordId": "rec-inv-alloy-b",
+              "lineId": null,
+              "field": "onHand",
+              "quantity": {
+                "value": 100,
+                "unit": "each"
+              },
+              "excerpt": "Verified substitute MAT-ALLOY-B on-hand=100 each, not held."
+            }
+          ],
+          "assumptions": [
+            "Quantities use the current certificate, receiving and stock records.",
+            "Cell costs use the hourly rates in this snapshot."
+          ],
+          "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2"
+        }
+      },
+      "eventHash": "7152810affba30f06c487cd2b8d13fe869b48c9a27a3e5ddbc59ffd107e9b5f7"
+    },
+    {
+      "sequence": 2,
+      "type": "model_call",
+      "epochMs": 1793495058404,
+      "previousHash": "7152810affba30f06c487cd2b8d13fe869b48c9a27a3e5ddbc59ffd107e9b5f7",
+      "data": {
+        "type": "model_call",
+        "operatorId": "local-admin",
+        "operatorRole": "admin",
+        "mode": "live",
+        "sample": false,
+        "provider": "fireworks",
+        "requestedModel": null,
+        "returnedModel": null,
+        "latencyMs": 0,
+        "status": "rejected",
+        "failure": "PREFLIGHT_FAILED",
+        "purpose": "provider_preflight",
+        "operationalRelease": false
+      },
+      "eventHash": "13d4213585a5e11cfc94256f925f96afefd1c4ba7112e80a7129d67f6cee074a"
+    }
+  ]
+}
