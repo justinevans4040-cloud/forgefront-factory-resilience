@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 4,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
       "priority": "high",
-      "change": "Preserve PROPOSED UNTRACKED UNTIL APPROVAL on every task card and in the DecisionBar until Approve is activated; do not show a tracked count for proposals."
+      "change": "Preserve PROPOSED - UNTRACKED UNTIL APPROVAL banner; ensure t1-t3 have no tracked status, checkbox or progress until approval."
     },
     {
       "priority": "medium",
-      "change": "Unclip the MAT-ALLOY-B 70 parts route labels where they cross JOB-1001 and JOB-1002; offset labels above the neon path."
+      "change": "Show the 40 via CELL-MILL-1 and 30 via CELL-MILL-1 labels without overlap on the neon recovery route."
     },
     {
-      "priority": "medium",
-      "change": "Make Decline proposal a 40px secondary button with a focus ring instead of a low-contrast text link."
+      "priority": "low",
+      "change": "Make task list internally scrollable with a visible end marker and 36px Decline target."
     }
   ]
 }

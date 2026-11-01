@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 8,
-  "score": 7,
+  "score": 9,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep prior 3 BLOCKED tasks and the approved revised plan visible while replacement t1/t2 remain PROPOSED UNTRACKED UNTIL APPROVAL; label both groups explicitly."
+      "change": "Keep 3 BLOCKED prior tasks expanded beside 3 proposed untracked replacements and the approved revised plan status; do not hide either group."
     },
     {
       "priority": "medium",
-      "change": "Collapse repeated blocked-task prose into one summary line per task with owner and reason, reducing inspector scroll."
+      "change": "Prevent t2 title clipping by allowing the proposed list internal scroll with all three tasks reachable by keyboard."
     },
     {
-      "priority": "medium",
-      "change": "Unclip route labels over JOB-1001 and JOB-1002 and add focus-ring highlighting between task cards and SVG jobs."
+      "priority": "low",
+      "change": "Add hatched Blocked pattern to prior rows so state is not carried by text color alone."
     }
   ]
 }

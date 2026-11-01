@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "live": true,
+  "checks": [
+    "keyboard skip link",
+    "skip link activation and login keyboard order",
+    "explicit authentication with focus on guide heading",
+    "guide to lock keyboard order",
+    "Chromium accessibility tree landmarks and control names",
+    "default encrypted export without plaintext acknowledgement",
+    "explicit plaintext download gate",
+    "source inspection",
+    "visible text contrast measured",
+    "guided live Spark and Wonder on same snapshot",
+    "investigation",
+    "typed acceptance",
+    "second shock and stale proposal rejection",
+    "reinvestigation and fresh acceptance",
+    "ledger verification and encrypted decision export",
+    "mobile overflow check",
+    "independent checkpoint and readable report",
+    "reset clears stale model, consent, guide and export state",
+    "automated visible control names, document language and tab order checks",
+    "HttpOnly session and explicit lock",
+    "named auditor UI and read-only controls"
+  ],
+  "consoleErrors": [],
+  "contrast": {
+    "checked": 131,
+    "minimum": 6.2832601371858585,
+    "failures": []
+  },
+  "accessibility": {
+    "failures": [],
+    "language": "en",
+    "main": 1
+  },
+  "accessibilityTree": {
+    "landmarks": [
+      "banner",
+      "main",
+      "region",
+      "region",
+      "region",
+      "complementary"
+    ],
+    "unnamedControls": 0
+  }
+}

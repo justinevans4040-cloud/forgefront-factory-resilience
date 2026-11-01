@@ -1,3 +1,4 @@
+import {certificateComparison} from '../../public/factory-layout.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
@@ -38,9 +39,12 @@ test('completion primary labels the finished state instead of implying another r
 
 test('factory SVG enlarges cert quantity tracks and labels PREVIEW - not applied', () => {
   assert.match(app, /PREVIEW - not applied/);
-  assert.match(app, /maxQty|quantity\.value\/maxQty/);
-  assert.match(app, /'font-size':18/);
-  assert.match(app, /DOES NOT MATCH/);
+  assert.match(app, /certificateComparison\(qtyTracks,420\)/);
+  assert.deepEqual(certificateComparison([120,80].map(value=>({quantity:{value}})),420).widths,[420,280]);
+  assert.deepEqual(certificateComparison([200,80].map(value=>({quantity:{value}})),420).widths,[420,168]);
+  assert.match(app, /'font-size':30/);
+  assert.match(app, /DOES NOT/);
+  assert.match(app, /MATCH/);
   assert.match(css, /OPENING STORY/);
 });
 

@@ -20,3 +20,5 @@ Run primary provider pre-flight, open the demo and start guided recovery. Use th
 The application sequence budgets 2:51 between the four-second intro and five-second outro. Read actual displayed values and retain observed inference durations. The default engine calculates replenishment at 83 hours, substitute stock at 35 hours and split capacity at 17.5 hours; changed state recomputes these values. Keep original takes and retime captions to the recorded narration.
 
 [Current evidence](../evidence/README.md) · [Submission checklist](SUBMISSION_CHECKLIST.md) · [Video QA](VIDEO_QA.md).
+
+The final screen replaces the primary action with the current sealed-packet status. Back and completed rail items remain read-only navigation. Britt proposals show the untracked state until approval; the task region keeps prior blockers and proposed replacements together with a visible proposal-end marker. The shot budgets above are unchanged.

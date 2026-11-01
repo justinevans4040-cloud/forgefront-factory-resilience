@@ -1,0 +1,26 @@
+{
+  "ok": true,
+  "live": false,
+  "checks": [
+    "keyboard skip link",
+    "explicit authentication",
+    "explicit plaintext download gate",
+    "source inspection",
+    "visible text contrast measured",
+    "investigation",
+    "typed acceptance",
+    "second shock and stale proposal rejection",
+    "reinvestigation and fresh acceptance",
+    "ledger verification and export",
+    "mobile overflow check",
+    "independent checkpoint and readable report",
+    "HttpOnly session and explicit lock",
+    "named auditor UI and read-only controls"
+  ],
+  "consoleErrors": [],
+  "contrast": {
+    "checked": 126,
+    "minimum": 6.2832601371858585,
+    "failures": []
+  }
+}

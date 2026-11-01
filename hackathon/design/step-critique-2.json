@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 2,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
       "priority": "high",
-      "change": "Separate ROUTE HEALTH PRE-FLIGHT, including nonce and identity status, from the investigation task with distinct headings, controls and status regions."
+      "change": "Keep ROUTE HEALTH pre-flight and INVESTIGATION panels as separate labelled groups with independent status lines; do not merge their controls."
     },
     {
       "priority": "medium",
-      "change": "Enlarge the route select to a 44px target with a visible focus ring and label its offline state without relying on color."
+      "change": "Enlarge route select text and add 2px neon focus ring; keep select at 40px height."
     },
     {
       "priority": "low",
-      "change": "Trim the lower inspector copy to one status sentence so Run Sample investigation stays visible without crowding at 1366x768."
+      "change": "Add one-line nonce/identity health row inside pre-flight without implying it runs the investigation."
     }
   ]
 }

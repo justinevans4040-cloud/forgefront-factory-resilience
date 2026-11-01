@@ -1,0 +1,8 @@
+
+> forgefront-factory-resilience-hackathon@0.1.0 check:providers
+> node scripts/provider-check.mjs
+
+GREEN wonder · 1465ms · Live nonce and model identity matched
+GREEN spark-baseten · 2140ms · Live nonce and model identity matched
+GREEN spark-fireworks · 4376ms · Live nonce and model identity matched
+One request per route; no retry, switch or Sample. Identity is provider-reported.

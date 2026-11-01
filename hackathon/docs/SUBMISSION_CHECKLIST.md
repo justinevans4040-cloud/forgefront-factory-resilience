@@ -17,3 +17,5 @@ The recovery-room proof is collected in [current evidence](../evidence/README.md
 Protect operator/provider credentials and export passphrases throughout recording. Export encrypted packets with a separate passphrase; retain independent checkpoints in separate trusted storage. [Run guide](../RUN_GUIDE.md) contains exact local commands.
 
 - [ ] Review each current Muse Wonder step score and resolve remaining visual critique before approving the all-step visual freeze. [Saved critiques](../design/design-direction.json).
+
+- [ ] Compare the current critique with the prior peak and approve visual freeze only after every step scores at least nine. Retain each original model score and its exact input manifest.

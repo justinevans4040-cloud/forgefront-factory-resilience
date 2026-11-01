@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 6,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep stoppedRed exclusive to CELL-MILL-2; refit the certificate mismatch bar to silver and hatch as on Step 1."
+      "change": "Preserve stoppedRed exclusively on CELL-MILL-2 with cross-hatch, X marker and OFFLINE-STOPPED text; no route traces through it."
     },
     {
       "priority": "medium",
-      "change": "Separate pre-flight nonce and identity health from Reinvestigate recovery, with independent status text and controls."
+      "change": "Keep route-health pre-flight separate from the Reinvestigate recovery evidence task in heading, status and tab order."
     },
     {
-      "priority": "medium",
-      "change": "Add OFFLINE-STOPPED text beside the red cross-hatch and ensure no neon route enters CELL-MILL-2."
+      "priority": "low",
+      "change": "Enlarge the constrained-capacity chip text to 11px and mark Split as infeasible with X plus text, not color alone."
     }
   ]
 }

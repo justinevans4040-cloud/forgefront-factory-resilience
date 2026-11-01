@@ -1,3 +1,4 @@
+import {cleanupSmokeScratch} from './smoke-cleanup.mjs';
 import {browserOptions} from './browser-options.mjs';
 import {contrastRatio} from '../public/accessibility.mjs';
 import {redactEvidence,writeEvidence,evidenceRun} from './public-evidence.mjs';
@@ -127,4 +128,4 @@ try{
  }catch(error){
  save('failure.json',JSON.stringify({ok:false,live:liveBrowser,reason:error.message,checks,consoleErrors:errors},null,2));
  try{const session=await fetch(base+'/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+token}}).then(r=>r.json());const response=await fetch(base+'/api/workflow/export',{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':session.session,'X-CSRF-Token':session.csrf},body:JSON.stringify({acknowledgePlaintext:'EXPORT PLAINTEXT'})});if(response.ok)save('failed-packet.json',JSON.stringify(await response.json(),null,2));}catch{}
- console.error(redactEvidence(error.stack));process.exitCode=1;}finally{ws?.close();if(browser.exitCode===null){if(process.platform==='win32'){try{execFileSync('taskkill',['/PID',String(browser.pid),'/T','/F'],{stdio:'ignore',windowsHide:true});}catch{}}else browser.kill();}app.server.closeAllConnections();await app.close();}
+ console.error(redactEvidence(error.stack));process.exitCode=1;}finally{ws?.close();if(browser.exitCode===null){if(process.platform==='win32'){try{execFileSync('taskkill',['/PID',String(browser.pid),'/T','/F'],{stdio:'ignore',windowsHide:true});}catch{}}else browser.kill();}app.server.closeAllConnections();await app.close();await cleanupSmokeScratch(scratch);console.log('Temporary smoke state removed.');}

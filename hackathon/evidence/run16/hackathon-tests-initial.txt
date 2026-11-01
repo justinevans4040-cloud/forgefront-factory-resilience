@@ -1,0 +1,415 @@
+
+> forgefront-factory-resilience-hackathon@0.1.0 test
+> node scripts/test.mjs
+
+✔ single-command demo entry exposes actual loopback URL and readiness without starting AI, then stops (2047.3891ms)
+✔ authenticates Meta requests, enforces CSRF and origin, and returns provider text (1352.9824ms)
+✔ named operators have separate authenticated identities and auditors cannot invoke privileged workflow ([calendar-redacted]ms)
+✔ invalid duplicate or ambiguous operator configuration fails closed at startup (1.4483ms)
+✔ board HTTP routes retain role, CSRF, scoped approval, idempotency and encrypted export controls (2341.0326ms)
+✔ selected route preflight is explicit, ledgered, red on failure and green only on nonce identity match (1750.3925ms)
+✔ route check rejects identity and nonce mismatch, preserves role and CSRF guards and sanitizes failures (1552.6845ms)
+✔ demo entry opens a session without a token only when demo mode is enabled (3126.129ms)
+✔ demo rehearse announces the room without printing a sign-in token (1863.1555ms)
+✔ login failures are ledgered without credentials, role rights differ, and plaintext exports require acknowledgement (1635.32ms)
+✔ failed login attempts are bounded with Retry-After and cannot bypass the limit using forwarded headers (1945.2719ms)
+✔ server restart requires reauthentication and restores consent only to its original named operator (2422.1303ms)
+✔ encrypted export requires session, accepts auditor and never needs plaintext acknowledgement (1614.6568ms)
+✔ normal startup preserves exhausted login quota across server restart with Retry-After (3248.5436ms)
+✔ one-command demo cold starts without persisted configuration and stops cleanly (2288.3033ms)
+✔ HTML grants no seat, every data route is protected, and wrong-port origins fail (159.4454ms)
+✔ API attempts are rate limited with Retry-After (645.9079ms)
+✔ live Meta routes fail closed without keys and never return sample bodies (1568.5917ms)
+▶ server skeleton
+  ✔ serves public health without secrets (20.2053ms)
+  ✔ rejects disallowed Host headers (28.207ms)
+  ✔ returns scenario and analysis from the live snapshot (13.2261ms)
+  ✔ invokes a read-only tool through the HTTP API (24.6304ms)
+  ✔ rejects unknown tool invocations (8.6178ms)
+✔ server skeleton (208.0124ms)
+✔ HttpOnly same-site session supports CSRF, protected logout and replay denial (187.0477ms)
+✔ serves strict-CSP browser entry and denies private paths (185.6358ms)
+✔ workflow request schemas reject null, arrays, unknown fields and wrong field types before transitions (1560.4443ms)
+✔ authenticated workflow completes investigation, acceptance, shock and evidence export (1806.4256ms)
+✔ source injection remains data and model-requested approval cannot dispatch or mutate snapshot (11.4261ms)
+✔ persistent endpoint outage is retained and requires explicit retry without sample substitution (1.7871ms)
+✔ redaction removes JSON-escaped quotes and backslashes from secrets (1.7439ms)
+✔ weak ledger keys and admin tokens are rejected (3.7863ms)
+✔ workflow does not leave a swappable prior-anchor bak that restores after truncate (2527.8929ms)
+✔ checkpoint verifier reports prefix retention honestly and rejects forged prefix events (1014.6247ms)
+✔ unknown meta routes and prototype workflow paths return 404 without provider calls (1080.2724ms)
+✔ migration refuses nested destinations and measures an unchanged source digest (896.9157ms)
+✔ escaped secrets are redacted from persisted model_call notes (886.2909ms)
+✔ guided shell keeps header and opening-story logo placements without narrative clutter (2.4809ms)
+✔ workspace rail is always visible without a Workspaces disclosure (0.9762ms)
+✔ factory stage renders cinematic dock, QA gate, conveyor and shock preview bindings (0.5296ms)
+✖ proof actions are separated into labelled fieldsets (3.0687ms)
+✔ primary guided control invokes real investigation and never stalls on focus-only (0.3761ms)
+✔ Back and completed-rail review stay read-only without mutating ledger state (0.2914ms)
+✔ offline and live board itineraries expose every recovery step through guided progression (2.0393ms)
+✔ Meta product routes keep Fireworks optional and never auto-call it from Britt drafting (113.8676ms)
+✔ typed consent reports exact progress as typed/total rather than remaining-only (2.7741ms)
+✔ Britt proposal banner states untracked-until-approval when zero tasks are tracked (0.4749ms)
+✔ proof actions gate later steps until prerequisites complete on the current ledger head (0.3779ms)
+✔ completion primary labels the finished state instead of implying another required step (0.2887ms)
+✖ factory SVG enlarges cert quantity tracks and labels PREVIEW - not applied (1.9579ms)
+✔ inspector evidence uses fade padding and route health stays visually separate (0.5587ms)
+✔ decision stage keeps comparison heading and consent inside a bounded inspector (2.2106ms)
+✔ guided live Spark requires Baseten so Wonder receives a structured handoff (3.7368ms)
+✔ Britt drafting prefers Wonder so the server can fall back to Baseten (1.9904ms)
+✔ design director sanitizes public review text before fallback (0.4916ms)
+✔ capacity preview and nearest focus contracts stay intact (0.7915ms)
+✔ design director module path remains under hackathon scripts (0.5398ms)
+✔ login_failed does not bootstrap snapshot_initialized; later work still seals a snapshot (1307.115ms)
+✔ readable report labels plaintext export in the opening banner (1004.159ms)
+✔ decrypt retains length-only validation so historically length-gated packets remain recoverable (188.5043ms)
+✔ async job failures retain the concrete stop code instead of a generic opaque label (1476.6231ms)
+✔ Britt uses one bounded Wonder attempt then Baseten fallback without widening provider allowlist (3.5861ms)
+✔ successful Wonder drafting never constructs a fallback client (0.6789ms)
+✔ Britt proposal waits for owner approval, persists encrypted scoped memory and exports board events (2769.076ms)
+✔ Britt decline and snapshot changes prevent proposal execution (1111.8988ms)
+✔ task move idempotency survives restart and rejects reuse for a different operation (2204.5341ms)
+✔ fresh task approval retains completed work across the second shock (1377.7837ms)
+✔ incident and final story use current calculations and never turn acceptance into physical release (2.8544ms)
+✔ all guided actions map to focused stages, with invalid targets rejected (0.4549ms)
+✔ result transition reveals stage before focus, highlights result and honors reduced motion (1.3372ms)
+✔ the command center has exact company branding and distinct responsive stages (22.8816ms)
+✔ official Forgefront Systems logo is byte-identical in brand assets and wired for judges (56.2324ms)
+✔ investigation prompts export only the live system prompt builder (1.99ms)
+✔ explicit offline guide advances only on a successful Sample result and still requires changed-snapshot proof (1.2189ms)
+✔ readable report presents professional labels and preserves source and human-validation boundaries (1.2743ms)
+✔ provider preflight excludes the optional backup even when its credential is inherited (63.8278ms)
+✔ live narration exposes only tool results already returned on that model turn (22.6803ms)
+✔ changing guide mode after a shock offers a real restart instead of an unreachable old-snapshot call (0.5591ms)
+✔ all standard smoke entry points preserve primary-only verification defaults (4.512ms)
+✔ Spark Open final envelope has room for reasoning and structured output without retrying (4.7304ms)
+✔ guided itinerary and rail share complete state order with an unnumbered completion (0.4553ms)
+✔ design director sends real images to Wonder and validates design JSON (91.1479ms)
+✔ design director falls back only to Baseten after Wonder failure (1.4151ms)
+✔ design director sanitizes blocked public tokens without changing Wonder scores (4.6904ms)
+✔ design director accepts MODEL_API_KEY as Wonder primary key (1.3597ms)
+▶ calculation engine
+  ✔ never reuses cell capacity across substitute material draws (8.5133ms)
+  ✔ rejects invalid references, duplicate IDs and inconsistent or nonfinite quantities (1.1604ms)
+  ✔ splits real production work across cells and recomputes after outage (1.3256ms)
+  ✔ computes impacted jobs and units from the held material (0.3923ms)
+  ✔ rejects negative material quantities when building a snapshot (0.4599ms)
+  ✔ produces three recovery options without over-allocating substitute stock (0.6014ms)
+  ✔ marks wait option infeasible when replenishment hours are missing (0.7024ms)
+  ✔ returns insufficient status when no substitute stock exists (0.5912ms)
+  ✔ analyzeSnapshot binds digest across sections (0.9186ms)
+✔ calculation engine (16.6613ms)
+✔ known tool and request codes keep public messages and mapped statuses (3.4927ms)
+✔ unexpected errors strip internal paths and stack details (2.9354ms)
+▶ evidence registry
+  ✔ serves entries for the current digest only (3.4759ms)
+  ✔ rejects cross-snapshot digest requests (1.063ms)
+✔ evidence registry (6.1985ms)
+✔ guided story requires source inspection, both live Meta routes and deliberate decisions across shock (2.332ms)
+✔ investigation dispatches multiple read-only steps and validates exact source quantities (10.4536ms)
+✔ provider errors and timeout stop with recorded failure and require explicit retry (5.5217ms)
+✔ wrong values, units, source entities and fabricated citations are rejected (2.8315ms)
+✔ malformed claims, invented relationships and wrong source lines cannot gain validation (1.3631ms)
+✔ unknown tools, malformed JSON and wrong returned model stop visibly (3.7765ms)
+✔ call evidence redacts credentials and excludes raw prompts and replies (2.2797ms)
+✔ Meta commentary prefixes remain data while one terminal JSON envelope dispatches (2.247ms)
+✔ final proposal schema rejects extra directives and non-text narrative even with exact claims (3.0692ms)
+✔ async investigations return an owner-bound job and expose completion without bypassing active lock (1074.8947ms)
+✔ stops on schema rejection and never accepts a completion beyond its deadline (7.859ms)
+✔ serializes normalized tool calls for the chat protocol and keeps release advisory (5.1525ms)
+✔ explicit migration verifies source and writes encrypted copy without altering source (1956.5097ms)
+✔ Wonder receives validated Spark handoff and Britt receives accepted investigation (1448.4722ms)
+✔ rejects arbitrary Spark endpoints and model overrides before network access (2.2574ms)
+✔ wonder preserves absent provider identity as unknown (1.2341ms)
+✔ spark-open preserves absent provider identity as unknown (0.7712ms)
+▶ Meta model clients
+  ✔ fails closed when Wonder keys are missing instead of substituting sample (3.4577ms)
+  ✔ Wonder live path posts muse-wonder-1.0 with mocked fetch (2.855ms)
+  ✔ Wonder uses MODEL_API_KEY when MUSE_API_KEY is absent (0.5537ms)
+  ✔ Spark Open uses meta-models/muse-spark-open (no -1026) with mocked fetch (0.9925ms)
+  ✔ Spark Open falls back to Fireworks route when Baseten key missing (0.8094ms)
+  ✔ sample client labels offline mode and uses analysis when provided (18.6755ms)
+✔ Meta model clients (29.8102ms)
+✔ private synthetic state restricts filesystem access before persistence (1061.9984ms)
+✔ board validates source-bound tasks and computes dependency due windows (5.7243ms)
+✔ board rejects unknown sources, cycles, extra fields and invalid deadlines (9.0358ms)
+✔ second shock preserves completed work and blocks remaining work with visible reasons (2.221ms)
+✔ Britt cannot execute a stale, declined or unapproved proposal (1.0472ms)
+✔ Britt accepts validated primary Meta drafts and rejects unknown routes, identity and malformed output (1.7513ms)
+✔ second shock repeats Spark then Wonder before revised human acceptance (2.589ms)
+▶ request guards
+  ✔ allows loopback hosts and rejects others (1.8341ms)
+  ✔ rejects disallowed Origin values (0.8734ms)
+✔ request guards (5.7962ms)
+✔ evidence run selects a portable numbered destination and rejects traversal (1.8811ms)
+✔ public evidence keeps newest numbered run and shared evidence, excluding all backups (27.0984ms)
+✖ all public document links remain inside the exact public set (43.5228ms)
+✔ both judge introductions put runnable entry and exact demo before detail (2.0648ms)
+✔ live wait displays remaining bounded budget and stopped status keeps explicit retry (0.7585ms)
+✔ provider preflight uses fallback key, reports all routes and never echoes credentials (66.4239ms)
+✔ provider preflight timeout and HTTP errors stay red with one attempt per route (37.7803ms)
+✔ contrast calculation rejects low contrast and accepts the key text palette (2.7224ms)
+✔ owner-bound running job exposes only call timing and preserves single failure evidence (1052.8893ms)
+✔ per-call countdown distinguishes each bounded request from overall wait (0.9918ms)
+✔ offline keyboard checks cannot inherit live provider access or guided live gates (2.0572ms)
+✔ judge-facing README pitches stay sharp without hedge or internal field names (1.2612ms)
+✔ path scrub covers current numbered evidence including the newest public run (660.3948ms)
+✔ judge UI opens confidently and keeps offline Sample explicit (24.4415ms)
+✔ route health expires and guidance never selects a replacement route (2.3194ms)
+✔ completed investigation presents a reviewable success and keeps wait copy concise (1.698ms)
+✔ calculated option copy and offline narrative describe the recovery in product language (29.9517ms)
+✔ demo and judge pitches open without sign-in and keep manufacturing contexts after highlights (5.3154ms)
+✔ visible recovery room brand uses Forgefront spelling (28.1063ms)
+✔ provider preflight treats Fireworks as optional backup that never fails the overall check (69.5856ms)
+✔ shock preview remains visible during busy handoff and excludes other stages (1.4663ms)
+✔ proof checklist is bound to current ledger head and separate completion outcomes (1.7491ms)
+✔ focus reveals the nearest result without scrolling its inspector heading away (1.5602ms)
+✔ outage preview distinguishes selected online machine from applied offline state (0.7838ms)
+✔ smoke cleanup removes only the explicitly owned temporary directory (552.7898ms)
+✔ certificate comparison scales source quantities and isolates the disputed segment (2.9342ms)
+✔ completion summary uses the actual offline machines and ledger count (0.5621ms)
+✔ design iteration identifiers support continued honest review beyond thirty (0.9098ms)
+✔ restart rolls forward verified crash after intent (4092.9674ms)
+✔ restart rolls forward verified crash after event (2761.3644ms)
+✔ restart rolls forward verified crash after anchor (2211.7167ms)
+✔ completed intent cannot authorize truncation and prior anchor restoration (853.3533ms)
+✔ encrypted pending consent survives restart, requires same named identity, expires and stays single-use (1618.9309ms)
+✔ partial encrypted append recovers only its exact authenticated suffix (1421.4678ms)
+✔ corrupt intent fails closed rather than resetting or repairing history (766.8048ms)
+✔ one client cannot consume another client allowance; forwarded headers cannot rotate identity; windows expire (7.2895ms)
+✔ legacy API routes keep the 240 ceiling while authenticated workflow routes enforce a separate 120 ceiling (3604.6566ms)
+✔ global failed-login audit budget survives restart and rotating clients without scenario bootstrap (2620.8018ms)
+✔ encrypted quotas retain independent client windows across restart and reject corruption (33.3292ms)
+✔ clock rollback extends active quota windows instead of resetting them (7.3186ms)
+✔ quota persist failure after increment does not grant the request (2.7183ms)
+✔ createApp fails closed when an encrypted quota snapshot is corrupt (858.8154ms)
+✔ portable encrypted export round trips independently and rejects wrong password or altered ciphertext (346.0667ms)
+✔ offline decoder creates plaintext only at a new destination and never echoes a passphrase (785.3654ms)
+✔ export strength rejects repeated and predictable secrets and accepts varied long phrases (160.435ms)
+✔ reset returns to opening decision state while retaining verified history across restart (1949.325ms)
+✔ evidence redacts Windows, JSON escaped, POSIX and environment profile paths without changing provider URLs (15.1411ms)
+✔ evidence writers redact text and preserve binary screenshots and existing backups (24.6425ms)
+✔ tracked public text contains no profile paths or real contact coordinates (792.6316ms)
+✔ public path scrub rejects Windows profile paths, file URL drives and mirror folder names (741.2552ms)
+✔ README npm quickstarts resolve scripts and fail for a nonexistent script (2.8826ms)
+✔ public docs point verification outcomes at in-tree evidence folders (1.2414ms)
+✔ tracked demo dependency closure needs no ignored or untracked files and detects omissions (43.1897ms)
+✔ CI is pinned, read-only, credential-free and runs public suites and gitleaks (1.4786ms)
+✔ environment templates have empty assignments only and backups are ignored (1.8414ms)
+✔ public evidence preserves command failure and redacts the actual child output (352.1934ms)
+✔ investigation choreography distinguishes empty, pending, slow, complete and stopped without invented progress (3.2729ms)
+✔ public scan rejects restricted pattern 0 (18.8752ms)
+✔ public scan rejects restricted pattern 1 (8.2415ms)
+✔ public scan rejects restricted pattern 2 (8.8267ms)
+✔ public scan rejects restricted pattern 3 (9.5751ms)
+✔ public scan rejects restricted pattern 4 (7.8308ms)
+✔ public scan rejects restricted pattern 5 (7.8253ms)
+✔ public scan rejects restricted pattern 6 (5.4025ms)
+✔ public scan rejects restricted pattern 7 (4.679ms)
+✔ public scan decodes wide-character evidence and checks dated folders (10.5184ms)
+✔ public scan allows CSS pointer property only in its stylesheet (7.3969ms)
+✔ wide-character evidence writer emits portable UTF-8 and retains relative stack frames (20.4766ms)
+✔ scanner covers dates in text, BOM-free wide text and cannot skip damaged text (20.4528ms)
+✔ capture decodes wide-character child diagnostics before redaction (344.5272ms)
+✔ public scope excludes private review files and README links stay inside the public set (12.8585ms)
+✔ dates are rejected in public contents and UTF-16 big endian is inspected (7.8981ms)
+✔ restricted CSS wording in comments cannot masquerade as a property (3.6206ms)
+✔ calendar rules cover day-first, dotted and month-only dates (20.2202ms)
+✔ independent arithmetic oracle matches runtime jobs, stock, shared work and shock (5.7399ms)
+✔ checks all providers independently and verifies nonce output (12.7123ms)
+✔ records missing credentials as blocked without invoking fetch (5.5486ms)
+✔ redacts exact credentials even when echoed without a recognizable prefix (0.6744ms)
+✔ does not treat HTTP success with incorrect output as passing (1.4794ms)
+✔ AES GCM state uses unique nonces, authenticates purpose and fails on wrong key or modification (5.8947ms)
+✔ encrypted workflow restarts and independent checkpoint detects rollback and chain corruption (1944.1232ms)
+✔ removing both authoritative files during a running workflow cannot silently return genesis (898.955ms)
+✔ readable report binds actor, plan, accepted run and source records and escapes model HTML (817.9034ms)
+✔ packet retains full immutable initial and changed snapshots for independent replay (1311.5393ms)
+▶ read-only agent tools
+  ✔ exposes only the five allowlisted tool names (3.5059ms)
+  ✔ returns incident and evidence bound to the snapshot digest (3.203ms)
+  ✔ rejects unknown tools and write-style names (4.2169ms)
+  ✔ rejects bad schemas and unknown evidence ids (1.2228ms)
+  ✔ compare_recovery_options returns computed feasible options (3.0594ms)
+✔ read-only agent tools (17.5989ms)
+✔ review binds actor, session and digest; confirmation is typed and single use (1019.7574ms)
+✔ shock invalidates old proposals and consent; restart preserves authoritative state (1936.5477ms)
+✔ ledger tampering blocks reads and exports without clearing evidence (1330.0246ms)
+✔ expired review and pending consent after restart are denied (1202.613ms)
+✔ confirmation races succeed at most once and cannot resurrect after restart (1247.1153ms)
+✔ shock during inference records calls but rejects the stale completed proposal (513.2726ms)
+✔ reset never revives a previously successful investigation (496.1685ms)
+ℹ tests 225
+ℹ suites 6
+ℹ pass 222
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19771.4892
+
+✖ failing tests:
+
+test at tests\unit\audit11-visual.test.mjs:34:1
+✖ proof actions are separated into labelled fieldsets (3.0687ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /<legend>Verify ledger<\/legend>/. Input:
+  
+  '<!doctype html>\r\n' +
+    '<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forgefront Systems - Factory Resilience</title><link rel="stylesheet" href="/style.css"><link rel="icon" type="image/png" href="/favicon.png"></head>\r\n' +
+    '<body><a class="skip" href="#main">Skip to recovery room</a><header><a class="brand" href="/" aria-label="Forgefront Systems home"><img class="brand-mark" src="/forgefront-systems-logo.png" alt="Forgefront Systems" width="168" height="84"> <span class="brand-text">Forgefront Systems <small>FACTORY RESILIENCE</small></span></a><div class="header-right"><span class="dot"></span> RECOVERY ROOM <span class="badge">HUMAN DECISION</span></div></header>\r\n' +
+    '<main id="main" tabindex="-1"><form id="login" class="login panel" hidden><label for="admin">Operator access <small>Enter your named operator token or the local admin token to open the recovery room.</small></label><p id="sign-in-help" class="muted">Persistent mode uses your privately provisioned operator or admin token. Opening the room never starts a model.</p><input aria-describedby="sign-in-help" id="admin" type="password" autocomplete="off" placeholder="Operator token" required><button type="submit">Open recovery room ↗</button></form>\r\n' +
+    '<p id="operator-identity" class="muted"></p><p id="notice" role="status" aria-live="polite">Opening the recovery room.</p>\r\n' +
+    '<div id="room" hidden><aside id="stage-rail" aria-label="Recovery stages"><nav id="guided-steps" aria-label="Completed guided steps"></nav><div class="rail-caption">RECOVERY COMMAND</div><nav id="workspace-switcher" class="workspace-nav" aria-label="Workspace views"><button data-view="incident" aria-current="step"><span>01</span> Incident</button><button data-view="investigation"><span>02</span> Investigate</button><button data-view="decision"><span>03</span> Decide</button><button data-view="shock"><span>04</span> Shock</button><button data-view="board"><span>06</span> Project board</button><button data-view="proof"><span>05</span> Proof</button></nav><div class="rail-signal"><span class="dot"></span> META INVESTIGATION<p>Sources → Calculations → Human decision</p></div></aside><div class="workspace"><section class="panel guide" aria-label="Guided judge demo"><div><div class="eyebrow">THREE-MINUTE JUDGE WALKTHROUGH</div><h2 id="guide-title" tabindex="-1">Evidence before action.</h2><p id="guide-detail">Trace the evidence. Compare Meta investigations. Accept a recovery and prove the decision.</p><progress id="guide-progress" max="8" value="0" aria-label="Story progress"></progress><p id="guide-time" class="muted"></p></div><div><button id="guide-start">Start guided recovery</button><button id="guide-back" class="secondary" hidden>Back</button><button id="guide-next" class="secondary" hidden>Show next action</button><button id="logout" class="quiet">Lock recovery room</button></div></section><div id="step-recap" class="recap" role="status" aria-live="polite"><strong id="recap-title">The incident is ready.</strong><p id="recap-detail">Start the guided recovery to trace every decision.</p></div><div class="stage-area"><section id="factory-stage" aria-label="Factory recovery visualization"><div class="eyebrow">LIVE RECOVERY MAP</div><h2 id="factory-status"></h2><p id="factory-delta" class="factory-delta" role="status" hidden></p><svg id="factory-svg" viewBox="0 0 850 620" role="img" aria-label="Factory line, affected jobs, evidence sources and sealed ledger"></svg><div id="britt-activity" class="agent-activity" role="log" aria-live="polite"></div><p class="factory-legend">● RUNNING &nbsp; ▧ HELD &nbsp; ┄ BLOCKED &nbsp; × OFFLINE/STOPPED &nbsp; ✓ ACCEPTED &nbsp; ⛓ SEALED</p></section><div id="stage-deck"><p id="factory-selection" class="factory-selection" role="status" hidden></p><section class="stage" data-stage="board" aria-label="Recovery project board" hidden><div class="eyebrow">HUMAN-CONTROLLED EXECUTION</div><h2>Recovery project board</h2><p id="board-outcomes"></p><aside id="britt-panel" class="panel britt-panel"><h2>Britt 4.0</h2><p>Forgefront’s sovereign agent</p><div id="britt-feed" role="log" aria-live="polite"></div><details id="prior-work" hidden><summary>Prior tracked work · blocked pending review</summary><div id="prior-work-list"></div></details><div id="britt-proposal"></div><button id="britt-draft">Draft recovery tasks</button><button id="britt-approve" hidden>Approve Britt’s proposal</button><button id="britt-decline" class="secondary" hidden>Decline proposal</button></aside><div id="recovery-board"></div></section><section class="stage" data-stage="incident" aria-label="Incident"><section class="story-hero"><img class="story-logo" src="/forgefront-systems-logo.png" alt="Forgefront Systems" width="280" height="140"><div class="eyebrow">MATERIAL HOLD / RECOVERY MISSION</div><h1>One bad cert.<br><em>A line on hold.</em></h1><p id="story-opening"></p><p id="story-schedule"></p><div class="story-promise">Trace the discrepancy. Find a path. Make the call.</div></section>\r\n' +
+    '<section class="overview"><article class="panel incident"><div class="eyebrow">ACTIVE DISRUPTION <span id="snapshot-label"></span></div><h2>Certificate discrepancy</h2><p id="incident"></p><div id="metrics" class="metrics"></div><details><summary>Inspect source evidence</summary><div id="evidence"></div></details></article></section></section><section class="stage" data-stage="shock" aria-label="Second shock" hidden><div class="stage-heading"><div class="eyebrow">STRESS-TEST THE DECISION</div><h2>Recovery meets the second shock.</h2><p>Take a cell offline. Watch the accepted plan invalidate, then investigate the new constraints.</p></div><aside class="panel" aria-label="Cell availability and outage simulation"><div class="eyebrow">CELL AVAILABILITY</div><div id="capacity"></div><label for="shock-cell">Machine to take offline</label><p id="shock-preview" class="shock-preview" role="status">Selecting a machine previews the offline state on the factory line.</p><select id="shock-cell"></select><p id="shock-consequence"></p><button id="shock" class="secondary">Simulate a machine outage ↗</button><p class="muted">Changes the snapshot and invalidates prior acceptance.</p><div class="scenario-management"><span>SCENARIO MANAGEMENT</span><button id="reset" class="quiet">Start a fresh scenario (admin)</button></div></aside></section><section class="stage" data-stage="investigation" aria-label="Meta investigation" hidden>\r\n' +
+    '<p id="constraint-change" class="constraint-change" hidden></p><section class="panel investigate"><div><div class="eyebrow">META MODEL INVESTIGATION</div><h2>Britt investigates.</h2><p>Meta investigates the evidence. You make the decision.</p><details><summary>Why two Meta models?</summary><p>Muse Spark Open investigates through read-only tools on Baseten. Muse Wonder adds a concise recovery story and counterfactual tradeoff. Run both on the same snapshot to compare their source-validated facts, latency and explicit failures. The deterministic engine computes feasibility, hours and costs. Inspect source-validated facts alongside each model’s interpretation.</p></details></div><div class="model-controls"><div class="route-preflight" role="group" aria-labelledby="route-health-label"><div class="eyebrow" id="route-health-label">ROUTE HEALTH · PRE-FLIGHT</div><p id="route-checklist" role="status"></p><small id="provider-status" role="status"></small><label for="provider">Investigation route</label><select id="provider" aria-describedby="route-help investigation-empty"><option value="wonder">Muse Wonder · Meta</option><option value="baseten">Muse Spark Open · Baseten</option><option value="fireworks">Muse Spark Open · Fireworks (optional backup)</option><option value="sample">Sample · offline walkthrough; no live AI</option></select><p id="route-help" class="muted">Sample stays offline. Live: Spark Open on Baseten → Wonder.</p><button id="provider-check" class="secondary">Check selected route</button></div><div class="eyebrow investigation-task-label">INVESTIGATION · SOURCE EVIDENCE</div><p id="investigation-empty" class="investigation-empty">○ Investigation not run · source evidence awaits analysis</p><button id="investigate">Investigate recovery ↗</button></div></section>\r\n' +
+    '<section class="panel" aria-label="Investigation status"><p id="investigation-status" role="status" aria-live="polite">Choose a route, then Investigate. No model has run yet.</p><progress id="investigation-pending" aria-label="Investigation pending" hidden></progress></section><section id="model-output" class="panel" hidden><div class="eyebrow" id="model-label"></div><h2>Investigation notebook</h2><p id="run-summary"></p><details open><summary>Recovery analysis · source validation below</summary><p id="narrative" class="narrative"></p></details><div id="claims"></div><details><summary>Observed runs on this snapshot</summary><div id="comparison"></div></details><details><summary>Read-only tool trace & call evidence</summary><div id="trace"></div></details></section>\r\n' +
+    '</section><section class="stage" data-stage="decision" aria-label="Human decision" hidden><div class="section-heading"><div><div class="eyebrow">DETERMINISTIC COMPARISON</div><h2 id="options-heading">Three paths. Visible tradeoffs.</h2></div><span class="muted">Computed from the current snapshot · hours from now</span></div><section id="options" role="radiogroup" class="options" aria-labelledby="options-heading"></section>\r\n' +
+    '<section class="panel decision"><div><div class="eyebrow">HUMAN DECISION</div><h2 id="decision-state" tabindex="-1">No acceptance recorded</h2><p id="decision-actor" class="muted"></p><p>Review a feasible option after a successful investigation. Your typed acceptance binds the option, source snapshot and deciding identity.</p></div><div id="consent" hidden><p id="review-detail"></p><label for="typed">Type the exact phrase below to confirm</label><code id="confirm-phrase"></code><input id="typed'... 2612 more characters
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/audit11-visual.test.mjs:36:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<!doctype html>\r\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forgefront Systems - Factory Resilience</title><link rel="stylesheet" href="/style.css"><link rel="icon" type="image/png" href="/favicon.png"></head>\r\n<body><a class="skip" href="#main">Skip to recovery room</a><header><a class="brand" href="/" aria-label="Forgefront Systems home"><img class="brand-mark" src="/forgefront-systems-logo.png" alt="Forgefront Systems" width="168" height="84"> <span class="brand-text">Forgefront Systems <small>FACTORY RESILIENCE</small></span></a><div class="header-right"><span class="dot"></span> RECOVERY ROOM <span class="badge">HUMAN DECISION</span></div></header>\r\n<main id="main" tabindex="-1"><form id="login" class="login panel" hidden><label for="admin">Operator access <small>Enter your named operator token or the local admin token to open the recovery room.</small></label><p id="sign-in-help" class="muted">Persistent mode uses your privately provisioned operator or admin token. Opening the room never starts a model.</p><input aria-describedby="sign-in-help" id="admin" type="password" autocomplete="off" placeholder="Operator token" required><button type="submit">Open recovery room ↗</button></form>\r\n<p id="operator-identity" class="muted"></p><p id="notice" role="status" aria-live="polite">Opening the recovery room.</p>\r\n<div id="room" hidden><aside id="stage-rail" aria-label="Recovery stages"><nav id="guided-steps" aria-label="Completed guided steps"></nav><div class="rail-caption">RECOVERY COMMAND</div><nav id="workspace-switcher" class="workspace-nav" aria-label="Workspace views"><button data-view="incident" aria-current="step"><span>01</span> Incident</button><button data-view="investigation"><span>02</span> Investigate</button><button data-view="decision"><span>03</span> Decide</button><button data-view="shock"><span>04</span> Shock</button><button data-view="board"><span>06</span> Project board</button><button data-view="proof"><span>05</span> Proof</button></nav><div class="rail-signal"><span class="dot"></span> META INVESTIGATION<p>Sources → Calculations → Human decision</p></div></aside><div class="workspace"><section class="panel guide" aria-label="Guided judge demo"><div><div class="eyebrow">THREE-MINUTE JUDGE WALKTHROUGH</div><h2 id="guide-title" tabindex="-1">Evidence before action.</h2><p id="guide-detail">Trace the evidence. Compare Meta investigations. Accept a recovery and prove the decision.</p><progress id="guide-progress" max="8" value="0" aria-label="Story progress"></progress><p id="guide-time" class="muted"></p></div><div><button id="guide-start">Start guided recovery</button><button id="guide-back" class="secondary" hidden>Back</button><button id="guide-next" class="secondary" hidden>Show next action</button><button id="logout" class="quiet">Lock recovery room</button></div></section><div id="step-recap" class="recap" role="status" aria-live="polite"><strong id="recap-title">The incident is ready.</strong><p id="recap-detail">Start the guided recovery to trace every decision.</p></div><div class="stage-area"><section id="factory-stage" aria-label="Factory recovery visualization"><div class="eyebrow">LIVE RECOVERY MAP</div><h2 id="factory-status"></h2><p id="factory-delta" class="factory-delta" role="status" hidden></p><svg id="factory-svg" viewBox="0 0 850 620" role="img" aria-label="Factory line, affected jobs, evidence sources and sealed ledger"></svg><div id="britt-activity" class="agent-activity" role="log" aria-live="polite"></div><p class="factory-legend">● RUNNING &nbsp; ▧ HELD &nbsp; ┄ BLOCKED &nbsp; × OFFLINE/STOPPED &nbsp; ✓ ACCEPTED &nbsp; ⛓ SEALED</p></section><div id="stage-deck"><p id="factory-selection" class="factory-selection" role="status" hidden></p><section class="stage" data-stage="board" aria-label="Recovery project board" hidden><div class="eyebrow">HUMAN-CONTROLLED EXECUTION</div><h2>Recovery project board</h2><p id="board-outcomes"></p><aside id="britt-panel" class="panel britt-panel"><h2>Britt 4.0</h2><p>Forgefront’s sovereign agent</p><div id="britt-feed" role="log" aria-live="polite"></div><details id="prior-work" hidden><summary>Prior tracked work · blocked pending review</summary><div id="prior-work-list"></div></details><div id="britt-proposal"></div><button id="britt-draft">Draft recovery tasks</button><button id="britt-approve" hidden>Approve Britt’s proposal</button><button id="britt-decline" class="secondary" hidden>Decline proposal</button></aside><div id="recovery-board"></div></section><section class="stage" data-stage="incident" aria-label="Incident"><section class="story-hero"><img class="story-logo" src="/forgefront-systems-logo.png" alt="Forgefront Systems" width="280" height="140"><div class="eyebrow">MATERIAL HOLD / RECOVERY MISSION</div><h1>One bad cert.<br><em>A line on hold.</em></h1><p id="story-opening"></p><p id="story-schedule"></p><div class="story-promise">Trace the discrepancy. Find a path. Make the call.</div></section>\r\n<section class="overview"><article class="panel incident"><div class="eyebrow">ACTIVE DISRUPTION <span id="snapshot-label"></span></div><h2>Certificate discrepancy</h2><p id="incident"></p><div id="metrics" class="metrics"></div><details><summary>Inspect source evidence</summary><div id="evidence"></div></details></article></section></section><section class="stage" data-stage="shock" aria-label="Second shock" hidden><div class="stage-heading"><div class="eyebrow">STRESS-TEST THE DECISION</div><h2>Recovery meets the second shock.</h2><p>Take a cell offline. Watch the accepted plan invalidate, then investigate the new constraints.</p></div><aside class="panel" aria-label="Cell availability and outage simulation"><div class="eyebrow">CELL AVAILABILITY</div><div id="capacity"></div><label for="shock-cell">Machine to take offline</label><p id="shock-preview" class="shock-preview" role="status">Selecting a machine previews the offline state on the factory line.</p><select id="shock-cell"></select><p id="shock-consequence"></p><button id="shock" class="secondary">Simulate a machine outage ↗</button><p class="muted">Changes the snapshot and invalidates prior acceptance.</p><div class="scenario-management"><span>SCENARIO MANAGEMENT</span><button id="reset" class="quiet">Start a fresh scenario (admin)</button></div></aside></section><section class="stage" data-stage="investigation" aria-label="Meta investigation" hidden>\r\n<p id="constraint-change" class="constraint-change" hidden></p><section class="panel investigate"><div><div class="eyebrow">META MODEL INVESTIGATION</div><h2>Britt investigates.</h2><p>Meta investigates the evidence. You make the decision.</p><details><summary>Why two Meta models?</summary><p>Muse Spark Open investigates through read-only tools on Baseten. Muse Wonder adds a concise recovery story and counterfactual tradeoff. Run both on the same snapshot to compare their source-validated facts, latency and explicit failures. The deterministic engine computes feasibility, hours and costs. Inspect source-validated facts alongside each model’s interpretation.</p></details></div><div class="model-controls"><div class="route-preflight" role="group" aria-labelledby="route-health-label"><div class="eyebrow" id="route-health-label">ROUTE HEALTH · PRE-FLIGHT</div><p id="route-checklist" role="status"></p><small id="provider-status" role="status"></small><label for="provider">Investigation route</label><select id="provider" aria-describedby="route-help investigation-empty"><option value="wonder">Muse Wonder · Meta</option><option value="baseten">Muse Spark Open · Baseten</option><option value="fireworks">Muse Spark Open · Fireworks (optional backup)</option><option value="sample">Sample · offline walkthrough; no live AI</option></select><p id="route-help" class="muted">Sample stays offline. Live: Spark Open on Baseten → Wonder.</p><button id="provider-check" class="secondary">Check selected route</button></div><div class="eyebrow investigation-task-label">INVESTIGATION · SOURCE EVIDENCE</div><p id="investigation-empty" class="investigation-empty">○ Investigation not run · source evidence awaits analysis</p><button id="investigate">Investigate recovery ↗</button></div></section>\r\n<section class="panel" aria-label="Investigation status"><p id="investigation-status" role="status" aria-live="polite">Choose a route, then Investigate. No model has run yet.</p><progress id="investigation-pending" aria-label="Investigation pending" hidden></progress></section><section id="model-output" class="panel" hidden><div class="eyebrow" id="model-label"></div><h2>Investigation notebook</h2><p id="run-summary"></p><details open><summary>Recovery analysis · source validation below</summary><p id="narrative" class="narrative"></p></details><div id="claims"></div><details><summary>Observed runs on this snapshot</summary><div id="comparison"></div></details><details><summary>Read-only tool trace & call evidence</summary><div id="trace"></div></details></section>\r\n</section><section class="stage" data-stage="decision" aria-label="Human decision" hidden><div class="section-heading"><div><div class="eyebrow">DETERMINISTIC COMPARISON</div><h2 id="options-heading">Three paths. Visible tradeoffs.</h2></div><span class="muted">Computed from the current snapshot · hours from now</span></div><section id="options" role="radiogroup" class="options" aria-labelledby="options-heading"></section>\r\n<section class="panel decision"><div><div class="eyebrow">HUMAN DECISION</div><h2 id="decision-state" tabindex="-1">No acceptance recorded</h2><p id="decision-actor" class="muted"></p><p>Review a feasible option after a successful investigation. Your typed acceptance binds the option, source snapshot and deciding identity.</p></div><div id="consent" hidden><p id="review-detail"></p><label for="typed">Type the exact phrase below to confirm</label><code id="confirm-phrase"></code><input id="typed'... 2612 more characters,
+    expected: /<legend>Verify ledger<\/legend>/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\unit\audit12-visual.test.mjs:39:1
+✖ factory SVG enlarges cert quantity tracks and labels PREVIEW - not applied (1.9579ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /maxQty|quantity\.value\/maxQty/. Input:
+  
+  "import {capacityStatus,stageFor,focusResult,storyView,shockPreview,proofChecklist,consentProgress,proposalBanner,proofActionGate} from './command-center.mjs';\r\n" +
+    "import {certificateComparison,completionStatus} from './factory-layout.mjs';\n" +
+    "import {routeHealthView} from './route-health.mjs';\r\n" +
+    "import {investigationStatus} from './investigation-status.mjs';\r\n" +
+    "import {passphraseFeedback} from './passphrase.mjs';\r\n" +
+    "import { guideStep,guidedSteps } from './guide.mjs';\r\n" +
+    'const $=id=>document.getElementById(id);\r\n' +
+    "document.querySelector('header').append($('logout'));\r\n" +
+    "const decisionBar=$('guide-next').parentElement;decisionBar.id='decision-bar';decisionBar.setAttribute('aria-label','Recovery actions');const decisionStatus=document.createElement('span');decisionStatus.id='decision-status';decisionBar.insertBefore(decisionStatus,$('guide-next'));document.querySelector('.workspace').append(decisionBar);\r\n" +
+    'let auth={},state=null,run=null,envelope=null,guide=null;\r\n' +
+    'let requestBusy=false;\r\n' +
+    'let guideHistory=[],reviewIndex=null,reviewContext=null;\r\n' +
+    'function showStage(stage){\r\n' +
+    ' document.body.dataset.activeStage=stage;\r\n' +
+    ` if(!document.querySelector('[data-stage="'+stage+'"]'))return;\r\n` +
+    " for(const panel of document.querySelectorAll('[data-stage]'))panel.hidden=panel.dataset.stage!==stage;\r\n" +
+    " for(const button of document.querySelectorAll('[data-view]')){if(button.dataset.view===stage)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');}\r\n" +
+    ' if(state){renderFactory();renderCapacity();}\r\n' +
+    '}\r\n' +
+    "function renderCapacity(){const preview=shockPreview(state,document.body.dataset.activeStage,$('shock-cell').value);$('capacity').replaceChildren(...state.analysis.capacity.cells.map(c=>{const div=text('div','','cell');const name=text('strong',c.cellId);name.append(text('small',c.availableHours+' h capacity · $'+c.hourlyCostUsd+'/h'));div.append(name,text('span',capacityStatus(c,preview),c.online?'online':'offline'));return div;}));}\r\n" +
+    "function focusPanel(id){const stage=stageFor(id);if(stage)showStage(stage);let target=id;if(guide&&$(id)&&getComputedStyle($(id)).display==='none')target=id==='encrypted-export'&&!passphraseFeedback($('export-passphrase').value).ok?'export-passphrase':'guide-next';focusResult(target,{showStage});}\r\n" +
+    "function recap(title,detail,target){$('recap-title').textContent=title;$('recap-detail').textContent=detail;if(target)focusPanel(target);}\r\n" +
+    `for(const button of document.querySelectorAll('[data-view]'))button.addEventListener('click',()=>{showStage(button.dataset.view);const panel=document.querySelector('[data-stage="'+button.dataset.view+'"]');panel.tabIndex=-1;panel.focus({preventScroll:true});});\r\n` +
+    'function renderStory(){\r\n' +
+    " const view=storyView(state,guide);$('story-opening').textContent=view.opening;$('story-schedule').textContent=view.schedule;\r\n" +
+    " $('result-metrics').replaceChildren(...[[state.analysis.impacted.impactedUnits,'PARTS AT STAKE'],[view.finishHours==null?'Pending':view.finishHours+'h','ACCEPTED PLAN'],[view.savedHours==null?'Pending':view.savedHours+'h','VS REPLENISHMENT']].map(([value,label])=>{const item=text('div','','metric');item.append(text('strong',value),text('span',label));return item;}));\r\n" +
+    " $('recovery-timeline').replaceChildren(...[String(state.board?.tasks?.length??0)+' tracked tasks · '+String(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done · '+String(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked',view.opening,view.accepted?'Human decision accepted · '+titles[state.decision.optionId]:'Human decision awaiting acceptance',view.secondShock?(view.accepted?'Second shock handled · revised plan accepted':'Second shock applied · fresh investigation and acceptance required'):'Second shock awaits your challenge',view.proofComplete?`Evidence verified and exported · ${state.ledger.count} events`:'Verify the ledger, export the encrypted packet and retain its checkpoint'].map(value=>text('li',value)));\r\n" +
+    '}\r\n' +
+    "const titles={wait_replenishment:'Wait for replenishment',allocate_substitute:'Use verified substitute',split_capacity:'Split available capacity'};\r\n" +
+    "function text(tag,value,className){const e=document.createElement(tag);e.textContent=String(value??'');if(className)e.className=className;return e;}\r\n" +
+    "function notice(message,error=false){document.body.dataset.actionError=String(error);$('notice').textContent=message;$('notice').classList.toggle('error',error);}\r\n" +
+    "async function api(action,body={}){const response=await fetch('/api/workflow/'+action,{method:'POST',headers:{'Content-Type':'application/json',...auth},body:JSON.stringify(body),signal:AbortSignal.timeout(action==='britt-draft'?55000:12000)});const result=await response.json();if(response.status===401){auth={};envelope=null;$('plaintext-ack').checked=false;$('export-passphrase').value='';$('passphrase-feedback').textContent=passphraseFeedback('').message;$('room').hidden=true;$('login').hidden=false;$('admin').focus();}\r\n" +
+    "if(!response.ok)throw new Error(result.error?.message??'Request failed');return result;}\r\n" +
+    "async function busy(button,task){if(requestBusy)return;requestBusy=true;const controls=[...document.querySelectorAll('button,select')];const prior=controls.map(e=>e.disabled);controls.forEach(e=>e.disabled=true);button.setAttribute('aria-busy','true');try{await task();}catch(error){notice(error.message,true);if(state){const target=stageFor(button.id)?button.id:button.dataset.option?'options':null;if(target)focusPanel(target);}}finally{requestBusy=false;controls.forEach((e,i)=>{if(e.isConnected)e.disabled=prior[i];});button.removeAttribute('aria-busy');if(state&&Object.keys(auth).length){render();if(guide&&reviewIndex===null){const stage=stageFor(guideStep(state,guide).target);if(stage)showStage(stage);}}}}\r\n" +
+    "async function refresh(){state=await api('status');if(!envelope&&state.pendingConsents?.length){envelope=state.pendingConsents.at(-1);$('consent').hidden=false;$('confirm-phrase').textContent=`APPROVE ${envelope.optionId}`;$('review-detail').textContent=`Restored encrypted review · plan ${envelope.planDigest.slice(0,12)} · expires in ${Math.max(0,Math.ceil((envelope.expires-Date.now())/1000))} seconds. Review the current option before confirming.`;$('typed').value='';}render();}\r\n" +
+    'function render(){\r\n' +
+    ' renderGuide();\r\n' +
+    ' renderStory();\r\n' +
+    ' renderFactory();\r\n' +
+    " $('operator-identity').textContent='Authenticated operator: '+(state.operator?.id??'local operator')+' · '+(state.operator?.role??'operator');\r\n" +
+    " $('room').hidden=false;$('login').hidden=true;$('incident').textContent=state.snapshot.incident.summary;$('snapshot-label').textContent=' / '+state.snapshot.snapshotDigest.slice(0,10);\r\n" +
+    ' renderRouteHealth();\r\n' +
+    " $('shock-consequence').textContent=state.decision.status==='accepted'?'Will invalidate acceptance for '+titles[state.decision.optionId]:state.decision.status==='invalidated'?'Prior acceptance invalidated · fresh investigation required':'';\r\n" +
+    " const previous=guideHistory[0]?.state;const changed=previous&&previous.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$('constraint-change').hidden=!changed;$('constraint-change').textContent=changed?state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+': '+(previous.snapshot.cells.find(p=>p.cellId===c.cellId)?.availableHours??c.availableHours)+'h available → OFFLINE').join(' · ')+' · '+previous.analysis.recovery.feasibleCount+' → '+state.analysis.recovery.feasibleCount+' feasible paths':'';\r\n" +
+    " const impact=state.analysis.impacted;$('metrics').replaceChildren(...[[impact.impactedJobCount,'IMPACTED JOBS'],[impact.impactedUnits,'HELD-DEMAND UNITS'],[state.analysis.recovery.feasibleCount,'FEASIBLE PATHS']].map(([n,label])=>{const div=text('div','','metric');div.append(text('strong',n),text('span',label));return div;}));\r\n" +
+    " $('evidence').replaceChildren(...state.evidence.map(e=>{const div=text('div','','source');div.id=e.evidenceId;div.tabIndex=-1;div.append(text('code',e.evidenceId+' · '+e.source.documentId+' / '+(e.source.lineId??e.source.recordId)),text('p',e.excerpt),text('small','Source field: '+e.source.field+' · Snapshot '+e.snapshotDigest.slice(0,10)));return div;}));\r\n" +
+    ' renderCapacity();\r\n' +
+    " const online=state.snapshot.cells.filter(c=>c.online);$('shock-cell').replaceChildren(...online.map(c=>{const o=text('option',c.cellId);o.value=c.cellId;return o;}));if(online.length)$('shock-cell').value=online.at(-1).cellId;\r\n" +
+    ' const current=[...state.runs].reverse().find(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest);run=current??null;\r\n' +
+    " $('evidence').parentElement.open=document.body.dataset.activeStage==='incident'||$('evidence').parentElement.open;\r\n" +
+    " $('options').replaceChildren(...state.analysis.recovery.options.map((o,i)=>{\r\n" +
+    " const card=text('article','','option'+(o.feasible?'':' unavailable'));card.append(text('div',`0${i+1} / ${o.feasible?'FEASIBLE':'CONSTRAINED'}`,'option-status'),text('h3',(o.feasible?'':'× CONSTRAINED · ')+titles[o.optionId]));\r\n" +
+    " const numbers=text('div','','numbers');for(const [value,label]of [[o.finishHours==null?'—':o.finishHours+'h','FINISH'],[o.incrementalCostUsd==null?'—':'$'+o.incrementalCostUsd.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}),'INCREMENTAL']]){const d=text('div');d.append(text('strong',value),text('small',label));numbers.append(d);}card.append(numbers);\r\n" +
+    ' if(o.feasible){\r\n' +
+    " const track=document.createElementNS('http://www.w3.org/2000/svg','svg');track.setAttribute('viewBox','0 0 300 18');track.setAttribute('class','timeline');track.setAttribute('role','img');track.setAttribute('aria-label',`${titles[o.optionId]} finishes in ${o.finishHours} hours`);\r\n" +
+    ' const allocations=o.detail?.allocations??o.detail?.draws?.flatMap(d=>d.cells)??[];const horizon=Math.max(...state.analysis.recovery.options.filter(p=>p.feasible).map(p=>p.finishHours),1);const lanes=allocations.length?allocations:[{hours:o.finishHours}];\r\n' +
+    " lanes.forEach((a,i)=>{const rect=document.createElementNS(track.namespaceURI,'rect');rect.setAttribute('x','0');rect.setAttribute('y',String(i*18/lanes.le"... 42719 more characters
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/audit12-visual.test.mjs:41:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'import {capacityStatus,stageFor,focusResult,storyView,shockPreview,proofChecklist,consentProgress,proposalBanner,proofActionGate} from \'./command-center.mjs\';\r\nimport {certificateComparison,completionStatus} from \'./factory-layout.mjs\';\nimport {routeHealthView} from \'./route-health.mjs\';\r\nimport {investigationStatus} from \'./investigation-status.mjs\';\r\nimport {passphraseFeedback} from \'./passphrase.mjs\';\r\nimport { guideStep,guidedSteps } from \'./guide.mjs\';\r\nconst $=id=>document.getElementById(id);\r\ndocument.querySelector(\'header\').append($(\'logout\'));\r\nconst decisionBar=$(\'guide-next\').parentElement;decisionBar.id=\'decision-bar\';decisionBar.setAttribute(\'aria-label\',\'Recovery actions\');const decisionStatus=document.createElement(\'span\');decisionStatus.id=\'decision-status\';decisionBar.insertBefore(decisionStatus,$(\'guide-next\'));document.querySelector(\'.workspace\').append(decisionBar);\r\nlet auth={},state=null,run=null,envelope=null,guide=null;\r\nlet requestBusy=false;\r\nlet guideHistory=[],reviewIndex=null,reviewContext=null;\r\nfunction showStage(stage){\r\n document.body.dataset.activeStage=stage;\r\n if(!document.querySelector(\'[data-stage="\'+stage+\'"]\'))return;\r\n for(const panel of document.querySelectorAll(\'[data-stage]\'))panel.hidden=panel.dataset.stage!==stage;\r\n for(const button of document.querySelectorAll(\'[data-view]\')){if(button.dataset.view===stage)button.setAttribute(\'aria-current\',\'step\');else button.removeAttribute(\'aria-current\');}\r\n if(state){renderFactory();renderCapacity();}\r\n}\r\nfunction renderCapacity(){const preview=shockPreview(state,document.body.dataset.activeStage,$(\'shock-cell\').value);$(\'capacity\').replaceChildren(...state.analysis.capacity.cells.map(c=>{const div=text(\'div\',\'\',\'cell\');const name=text(\'strong\',c.cellId);name.append(text(\'small\',c.availableHours+\' h capacity · $\'+c.hourlyCostUsd+\'/h\'));div.append(name,text(\'span\',capacityStatus(c,preview),c.online?\'online\':\'offline\'));return div;}));}\r\nfunction focusPanel(id){const stage=stageFor(id);if(stage)showStage(stage);let target=id;if(guide&&$(id)&&getComputedStyle($(id)).display===\'none\')target=id===\'encrypted-export\'&&!passphraseFeedback($(\'export-passphrase\').value).ok?\'export-passphrase\':\'guide-next\';focusResult(target,{showStage});}\r\nfunction recap(title,detail,target){$(\'recap-title\').textContent=title;$(\'recap-detail\').textContent=detail;if(target)focusPanel(target);}\r\nfor(const button of document.querySelectorAll(\'[data-view]\'))button.addEventListener(\'click\',()=>{showStage(button.dataset.view);const panel=document.querySelector(\'[data-stage="\'+button.dataset.view+\'"]\');panel.tabIndex=-1;panel.focus({preventScroll:true});});\r\nfunction renderStory(){\r\n const view=storyView(state,guide);$(\'story-opening\').textContent=view.opening;$(\'story-schedule\').textContent=view.schedule;\r\n $(\'result-metrics\').replaceChildren(...[[state.analysis.impacted.impactedUnits,\'PARTS AT STAKE\'],[view.finishHours==null?\'Pending\':view.finishHours+\'h\',\'ACCEPTED PLAN\'],[view.savedHours==null?\'Pending\':view.savedHours+\'h\',\'VS REPLENISHMENT\']].map(([value,label])=>{const item=text(\'div\',\'\',\'metric\');item.append(text(\'strong\',value),text(\'span\',label));return item;}));\r\n $(\'recovery-timeline\').replaceChildren(...[String(state.board?.tasks?.length??0)+\' tracked tasks · \'+String(state.board?.tasks?.filter(t=>t.status===\'Done\').length??0)+\' done · \'+String(state.board?.tasks?.filter(t=>t.status===\'Blocked\').length??0)+\' blocked\',view.opening,view.accepted?\'Human decision accepted · \'+titles[state.decision.optionId]:\'Human decision awaiting acceptance\',view.secondShock?(view.accepted?\'Second shock handled · revised plan accepted\':\'Second shock applied · fresh investigation and acceptance required\'):\'Second shock awaits your challenge\',view.proofComplete?`Evidence verified and exported · ${state.ledger.count} events`:\'Verify the ledger, export the encrypted packet and retain its checkpoint\'].map(value=>text(\'li\',value)));\r\n}\r\nconst titles={wait_replenishment:\'Wait for replenishment\',allocate_substitute:\'Use verified substitute\',split_capacity:\'Split available capacity\'};\r\nfunction text(tag,value,className){const e=document.createElement(tag);e.textContent=String(value??\'\');if(className)e.className=className;return e;}\r\nfunction notice(message,error=false){document.body.dataset.actionError=String(error);$(\'notice\').textContent=message;$(\'notice\').classList.toggle(\'error\',error);}\r\nasync function api(action,body={}){const response=await fetch(\'/api/workflow/\'+action,{method:\'POST\',headers:{\'Content-Type\':\'application/json\',...auth},body:JSON.stringify(body),signal:AbortSignal.timeout(action===\'britt-draft\'?55000:12000)});const result=await response.json();if(response.status===401){auth={};envelope=null;$(\'plaintext-ack\').checked=false;$(\'export-passphrase\').value=\'\';$(\'passphrase-feedback\').textContent=passphraseFeedback(\'\').message;$(\'room\').hidden=true;$(\'login\').hidden=false;$(\'admin\').focus();}\r\nif(!response.ok)throw new Error(result.error?.message??\'Request failed\');return result;}\r\nasync function busy(button,task){if(requestBusy)return;requestBusy=true;const controls=[...document.querySelectorAll(\'button,select\')];const prior=controls.map(e=>e.disabled);controls.forEach(e=>e.disabled=true);button.setAttribute(\'aria-busy\',\'true\');try{await task();}catch(error){notice(error.message,true);if(state){const target=stageFor(button.id)?button.id:button.dataset.option?\'options\':null;if(target)focusPanel(target);}}finally{requestBusy=false;controls.forEach((e,i)=>{if(e.isConnected)e.disabled=prior[i];});button.removeAttribute(\'aria-busy\');if(state&&Object.keys(auth).length){render();if(guide&&reviewIndex===null){const stage=stageFor(guideStep(state,guide).target);if(stage)showStage(stage);}}}}\r\nasync function refresh(){state=await api(\'status\');if(!envelope&&state.pendingConsents?.length){envelope=state.pendingConsents.at(-1);$(\'consent\').hidden=false;$(\'confirm-phrase\').textContent=`APPROVE ${envelope.optionId}`;$(\'review-detail\').textContent=`Restored encrypted review · plan ${envelope.planDigest.slice(0,12)} · expires in ${Math.max(0,Math.ceil((envelope.expires-Date.now())/1000))} seconds. Review the current option before confirming.`;$(\'typed\').value=\'\';}render();}\r\nfunction render(){\r\n renderGuide();\r\n renderStory();\r\n renderFactory();\r\n $(\'operator-identity\').textContent=\'Authenticated operator: \'+(state.operator?.id??\'local operator\')+\' · \'+(state.operator?.role??\'operator\');\r\n $(\'room\').hidden=false;$(\'login\').hidden=true;$(\'incident\').textContent=state.snapshot.incident.summary;$(\'snapshot-label\').textContent=\' / \'+state.snapshot.snapshotDigest.slice(0,10);\r\n renderRouteHealth();\r\n $(\'shock-consequence\').textContent=state.decision.status===\'accepted\'?\'Will invalidate acceptance for \'+titles[state.decision.optionId]:state.decision.status===\'invalidated\'?\'Prior acceptance invalidated · fresh investigation required\':\'\';\r\n const previous=guideHistory[0]?.state;const changed=previous&&previous.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$(\'constraint-change\').hidden=!changed;$(\'constraint-change\').textContent=changed?state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+\': \'+(previous.snapshot.cells.find(p=>p.cellId===c.cellId)?.availableHours??c.availableHours)+\'h available → OFFLINE\').join(\' · \')+\' · \'+previous.analysis.recovery.feasibleCount+\' → \'+state.analysis.recovery.feasibleCount+\' feasible paths\':\'\';\r\n const impact=state.analysis.impacted;$(\'metrics\').replaceChildren(...[[impact.impactedJobCount,\'IMPACTED JOBS\'],[impact.impactedUnits,\'HELD-DEMAND UNITS\'],[state.analysis.recovery.feasibleCount,\'FEASIBLE PATHS\']].map(([n,label])=>{const div=text(\'div\',\'\',\'metric\');div.append(text(\'strong\',n),text(\'span\',label));return div;}));\r\n $(\'evidence\').replaceChildren(...state.evidence.map(e=>{const div=text(\'div\',\'\',\'source\');div.id=e.evidenceId;div.tabIndex=-1;div.append(text(\'code\',e.evidenceId+\' · \'+e.source.documentId+\' / \'+(e.source.lineId??e.source.recordId)),text(\'p\',e.excerpt),text(\'small\',\'Source field: \'+e.source.field+\' · Snapshot \'+e.snapshotDigest.slice(0,10)));return div;}));\r\n renderCapacity();\r\n const online=state.snapshot.cells.filter(c=>c.online);$(\'shock-cell\').replaceChildren(...online.map(c=>{const o=text(\'option\',c.cellId);o.value=c.cellId;return o;}));if(online.length)$(\'shock-cell\').value=online.at(-1).cellId;\r\n const current=[...state.runs].reverse().find(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest);run=current??null;\r\n $(\'evidence\').parentElement.open=document.body.dataset.activeStage===\'incident\'||$(\'evidence\').parentElement.open;\r\n $(\'options\').replaceChildren(...state.analysis.recovery.options.map((o,i)=>{\r\n const card=text(\'article\',\'\',\'option\'+(o.feasible?\'\':\' unavailable\'));card.append(text(\'div\',`0${i+1} / ${o.feasible?\'FEASIBLE\':\'CONSTRAINED\'}`,\'option-status\'),text(\'h3\',(o.feasible?\'\':\'× CONSTRAINED · \')+titles[o.optionId]));\r\n const numbers=text(\'div\',\'\',\'numbers\');for(const [value,label]of [[o.finishHours==null?\'—\':o.finishHours+\'h\',\'FINISH\'],[o.incrementalCostUsd==null?\'—\':\'$\'+o.incrementalCostUsd.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}),\'INCREMENTAL\']]){const d=text(\'div\');d.append(text(\'strong\',value),text(\'small\',label));numbers.append(d);}card.append(numbers);\r\n if(o.feasible){\r\n const track=document.createElementNS(\'http://www.w3.org/2000/svg\',\'svg\');track.setAttribute(\'viewBox\',\'0 0 300 18\');track.setAttribute(\'class\',\'timeline\');track.setAttribute(\'role\',\'img\');track.setAttribute(\'aria-label\',`${titles[o.optionId]} finishes in ${o.finishHours} hours`);\r\n const allocations=o.detail?.allocations??o.detail?.draws?.flatMap(d=>d.cells)??[];const horizon=Math.max(...state.analysis.recovery.options.filter(p=>p.feasible).map(p=>p.finishHours),1);const lanes=allocations.length?allocations:[{hours:o.finishHours}];\r\n lanes.forEach((a,i)=>{const rect=document.createElementNS(track.namespaceURI,\'rect\');rect.setAttribute(\'x\',\'0\');rect.setAttribute(\'y\',String(i*18/lanes.le'... 42719 more characters,
+    expected: /maxQty|quantity\.value\/maxQty/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests\unit\run10-judge.test.mjs:14:1
+✖ all public document links remain inside the exact public set (43.5228ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/providers.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/primary-browser-offline/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/primary-browser/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/primary-browser/packet.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/primary-browser/checkpoint.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/primary-browser-offline/screens.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/primary-browser/screens.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/hackathon-tests.txt'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run15/root-tests.txt'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/run10-judge.test.mjs:15:80)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'hackathon/evidence/README.md', target: 'run15/providers.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/primary-browser-offline/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/primary-browser/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/primary-browser/packet.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/primary-browser/checkpoint.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/primary-browser-offline/screens.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/primary-browser/screens.json' }, { file: 'hackathon/evidence/README.md', target: 'run15/hackathon-tests.txt' }, { file: 'hackathon/evidence/README.md', target: 'run15/root-tests.txt' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

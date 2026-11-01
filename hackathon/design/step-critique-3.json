@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 3,
   "score": 8,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep the typed consent form visibly bound to the selected option; move focus into the phrase field after selection and return focus to that option on Esc."
+      "change": "Keep typed consent visible only after path selection in the same inspector panel; preserve exact-phrase counter and disabled Accept state."
     },
     {
       "priority": "medium",
-      "change": "Add tabular alignment and a selected marker plus text label to each option so time and cost scan without color alone."
+      "change": "Raise option-card finish/incremental labels to 11px and align 35h/$3,115.00 tabular metrics on one baseline."
     },
     {
       "priority": "low",
-      "change": "Reduce the repeated option cards inside the stage to a compact accepted-route trace, freeing stage height for the machines."
+      "change": "Announce Selected path via aria-live polite and mirror the selection on the SVG option chip."
     }
   ]
 }

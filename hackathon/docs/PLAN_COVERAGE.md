@@ -29,3 +29,7 @@ Review and freeze the audited source inventory; test a physical phone; film the 
 ## Current orchestration coverage
 
 `model-handoff.test.mjs` verifies validated same-snapshot Spark → Wonder data and accepted-investigation → Britt data. `reinvestigation-order.test.mjs` verifies the repeated two-model sequence after shock. `britt-fallback.test.mjs` verifies one Wonder attempt followed by at most one Baseten attempt under the shared task-draft deadline. `run14-visual.test.mjs` covers stage-bound outage preview and current-ledger proof outcomes. The current evidence index links browser and screenshot results.
+
+## Source and viewport coverage
+
+The current primary-guide browser check asserts wide and compact page bounds, a bounded Britt inspector, exact-source activation from the keyboard, linked evidence highlighting, consent geometry and unchanged ledger heads during Back and rail review. Every visited state is captured at wide desktop, compact desktop and mobile sizes. Pure tests cover measured quantity-track geometry, current-machine terminal summaries and passphrase feedback. Temporary-profile cleanup rejects paths outside the owned temporary prefix.

@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px Header / 52px GuideStrip / minmax(0,1fr) / 56px DecisionBar; cols 184px StepRail / minmax(0,1fr) FactoryStage / 360px EvidenceInspector at 1366x768; stage at least 55vw and 60vh, no page scroll, only inspector and task lists scroll internally",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, silver #C5CCD4 headings and machine bodies, silverDim rgba(197,204,212,.68), border rgba(197,204,212,.22); primary #A8F04A on #050705, one per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text as the required exception; official logo immutable in black, emerald/neon green and brushed silver at native aspect, exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated",
+    "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; tabular alignment for quantities, time and cost",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on a real state change, then static; no loops, pulses or glows; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; visible focus ring on every interactive element",
+    "components": "Header 48px with official logo at left and Lock recovery room at right; opening story carries the second and final logo placement; StepRail from one steps array with aria-current, arrow-key movement and 36-40px targets; GuideStrip 52px with no duplicate primary; focusable cinematic FactoryStage SVG; EvidenceInspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, never conflating controls or status; DecisionBar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and DecisionBar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
+    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Remove the extra logo-like mark above the inspector; keep only the header logo here and the opening-story placement, at native aspect."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the 120 versus 80 tracks and move DOES NOT MATCH into the gap with clear aligned endpoints for both quantities."
+        },
+        {
+          "priority": "medium",
+          "change": "Give SVG nodes a 2px focus ring and bidirectional highlight so selecting ev-cert-qty or ev-recv-qty lights the matching machine and source line."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit the inspector into two labelled groups: Pre-flight route health showing nonce and identity status separately, then the distinct Investigation task with its own route select and action."
+        },
+        {
+          "priority": "medium",
+          "change": "Add explicit statuses beside route health, for example Offline sample and No request made, so pre-flight is never read as an investigation result."
+        },
+        {
+          "priority": "low",
+          "change": "Keep one primary Run Sample investigation in the DecisionBar and demote any repeated action inside the panel to plain text."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve that selecting a recovery option opens the typed consent form; keep the exact phrase, character count and disabled Accept state visible without internal scrolling at 1366x768."
+        },
+        {
+          "priority": "medium",
+          "change": "Align 83h/$0.00, 35h/$3,115.00 and 17.5h/$3,202.50 in tabular columns and mark the selected path with text plus border, not colour alone."
+        },
+        {
+          "priority": "low",
+          "change": "Add a visible focus ring to each Select this path control and announce the selected option through aria-live polite."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep PROPOSED tasks labelled untracked until approval in both the stage banner and each task card; show 0 tracked beside the primary Approve action."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the neon recovery flow labels so 40 and 30 via CELL-MILL-1 and MAT-ALLOY-B 70 parts remain legible over the stage grid."
+        },
+        {
+          "priority": "low",
+          "change": "Move Decline proposal to a clear secondary button with a focus ring instead of a low-contrast text link."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Label CELL-MILL-2 as PREVIEW WILL GO OFFLINE with dashed silver outline before applying; reserve stoppedRed for after the shock is applied."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep the invalidation warning adjacent to the machine select and repeat it in the DecisionBar centre status."
+        },
+        {
+          "priority": "low",
+          "change": "Disable or visually separate Start a fresh scenario so it cannot be mistaken for the primary Apply second shock action."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Apply stoppedRed only to CELL-MILL-2 with cross-hatch and OFFLINE-STOPPED text; keep all other machines silver, neon only for feasible routes, and no route through that cell."
+        },
+        {
+          "priority": "high",
+          "change": "Repeat the separated inspector pattern: pre-flight nonce and identity health as its own group, distinct from the Reinvestigate recovery evidence task and its primary."
+        },
+        {
+          "priority": "medium",
+          "change": "Show 3 to 2 feasible paths and the constrained Split option as text chips on the stage so the capacity change reads without opening the inspector."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep the revised typed consent form tied to the newly selected feasible option, with Scenario changed review required and Accept disabled until the exact phrase matches."
+        },
+        {
+          "priority": "medium",
+          "change": "Give the constrained Split card hatch pattern, X marker and Split requires at least two online compatible cells text; blank its finish and cost with dashes as shown."
+        },
+        {
+          "priority": "low",
+          "change": "Reduce inspector height pressure by tightening comparison card padding so the consent input and status stay fully visible in the viewport."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Separate three zones in the inspector: Prior tracked work 3 BLOCKED, Approved revised plan, and Replacement proposals PROPOSED untracked until approval, each with its own heading and count."
+        },
+        {
+          "priority": "medium",
+          "change": "Shorten the repeating blocked explanation per task to one line with an expandable detail, so t1 and t2 proposals are visible without scrolling at 1366x768."
+        },
+        {
+          "priority": "low",
+          "change": "Add pattern plus text to blocked task rows so status does not rely on colour or the stage legend alone."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Sequence the inspector as three distinct actions: passphrase field, Seal encrypted packet, Verify ledger, then Export independent checkpoint, with only one primary enabled at a time."
+        },
+        {
+          "priority": "medium",
+          "change": "Replace duplicate Verify ledger in both inspector and DecisionBar with one primary location and a centre status in the bar to avoid conflicting actions."
+        },
+        {
+          "priority": "medium",
+          "change": "Show passphrase rules as 16-160 chars with live count and unmet requirements as text, keeping the field and next action visible without scrolling."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep Recovery complete as a terminal state with Back only as navigation; remove any implication of a further primary step and state Packet sealed in the DecisionBar centre."
+        },
+        {
+          "priority": "medium",
+          "change": "Add a compact completion summary in the inspector: 18 events, revised plan accepted, CELL-MILL-2 offline retained, with Seal and Verify each marked Complete current ledger."
+        },
+        {
+          "priority": "low",
+          "change": "Ensure the red stopped treatment remains only on CELL-MILL-2 in the final SVG and that the sealed ledger chain uses pattern and SEALED text, not glow."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

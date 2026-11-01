@@ -1,0 +1,10 @@
+{
+  "ok": false,
+  "live": false,
+  "reason": "Expected values to be strictly equal:\n+ actual - expected\n\n+ 'guide-start'\n- 'guide-title'\n         ^\n",
+  "checks": [
+    "demo opens straight into the recovery room with no sign-in",
+    "keyboard skip link"
+  ],
+  "consoleErrors": []
+}

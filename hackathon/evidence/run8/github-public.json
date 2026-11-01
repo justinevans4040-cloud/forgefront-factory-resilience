@@ -1,0 +1,21 @@
+{
+  "repository": {
+    "full_name": "justinevans4040-cloud/forgefront-factory-resilience",
+    "private": false,
+    "default_branch": "submission"
+  },
+  "branches": [
+    {
+      "name": "meta-hackathon-build",
+      "sha": "815a0d95976bf3b02452b67c8faa70953e4cd9d1"
+    },
+    {
+      "name": "submission",
+      "sha": "8d0bda510094a5d13f6f4596b1c81368fc411bbb"
+    }
+  ],
+  "judgeBranch": {
+    "httpStatus": 404
+  },
+  "method": "Unauthenticated GitHub API reads. No settings changed; no push."
+}

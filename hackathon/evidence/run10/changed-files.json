@@ -1,0 +1,401 @@
+{
+  "scope": "Changed public files; excludes this inventory to avoid a self hash",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "d07c20ad9ca8faaf8feb0fe7c6d7e0ab39dc922dea6fde87bd679a23d857cd3d"
+    },
+    {
+      "path": "hackathon/HACKATHON_CONTRIBUTIONS.md",
+      "sha256": "f2bc00e9e8a960c3c7dc6eab86e16714ee63d3b0b5a90bdd08e0db8b98b360b0"
+    },
+    {
+      "path": "hackathon/README.md",
+      "sha256": "78d90e19b4b5982a13834e26c384282b579243580067208380baf069006dff81"
+    },
+    {
+      "path": "hackathon/RUN_GUIDE.md",
+      "sha256": "a4d6ba65fdfdfa7761f83265bd3780660599a5582ef36dac2cf3aab23ca179d7"
+    },
+    {
+      "path": "hackathon/SECURITY_CONTROLS.md",
+      "sha256": "a235b712bf0f67425b2d975a56c1b4aa9015c245bb11c4610815055f2b494a16"
+    },
+    {
+      "path": "hackathon/docs/API_CONTRACT.md",
+      "sha256": "0a148c79a152fbd8fc55020180feb0a202b0876ee14d88d7c21811dde7e295a8"
+    },
+    {
+      "path": "hackathon/docs/ARCHITECTURE.md",
+      "sha256": "eee0c0eb9dc46796eaefffa3c38cd6ff1136452cb89d8d36188ecc4e33eab652"
+    },
+    {
+      "path": "hackathon/docs/DEMO_RUNBOOK.md",
+      "sha256": "0e05a75399b0348edebb48f5364bff3262ae067eb5007ee0f6fe845f7b8843df"
+    },
+    {
+      "path": "hackathon/docs/META_MODEL_USAGE.md",
+      "sha256": "d9fffb30b70111aac713c987c8ccdd5723408e6ec399064953b94626ebb6fda1"
+    },
+    {
+      "path": "hackathon/docs/MODEL_COMPARISON.md",
+      "sha256": "d7a1e5fc63001d8395bab36e5a21c5b7a53891aae7904315b65b22612f92577b"
+    },
+    {
+      "path": "hackathon/docs/PLAN_COVERAGE.md",
+      "sha256": "c3fe3be88e3305d6b27727379c13754540dd3a2a566ea768435b9d20632f4553"
+    },
+    {
+      "path": "hackathon/docs/RELEASE_GATES.md",
+      "sha256": "f61721439bd833189afc97bae1861923fadd18426258f71f958ae2ec4e6e789e"
+    },
+    {
+      "path": "hackathon/docs/SOURCE_MANIFEST.json",
+      "sha256": "e65ac0dfdd0f480ba77e2536aa5671092f87f808c66cae24376f1b03cd8c6efd"
+    },
+    {
+      "path": "hackathon/docs/SUBMISSION_CHECKLIST.md",
+      "sha256": "a4cdbb42b1f6b16d905fd5557440ecfac4fc4c20e5812c6050ff43b59cfb40d4"
+    },
+    {
+      "path": "hackathon/evidence/README.md",
+      "sha256": "9a3e46ae42610a7f6b4ffa2801c7467e063e90ce93e524c9237498a0617c22c6"
+    },
+    {
+      "path": "hackathon/evidence/api-smoke/spark-baseten.json",
+      "sha256": "dfd15a91e6e8596b6274e4699a7574e4421a81601fe89511fb9c430b0fd433a7"
+    },
+    {
+      "path": "hackathon/evidence/api-smoke/spark-fireworks.json",
+      "sha256": "d3e063a6e9658681cac96815dc1d11bed05c07b3a0c200ea5e2824eaee3a65b5"
+    },
+    {
+      "path": "hackathon/evidence/api-smoke/summary.json",
+      "sha256": "f0c2826e47906cc8fb3f95e3c6839f6a0beaf4dffcda5714582060c00bb3f20f"
+    },
+    {
+      "path": "hackathon/evidence/api-smoke/wonder.json",
+      "sha256": "69d2c0e7336bb87a76f46a54013ce4caf3faa4ca7bd55766f8fc9ce2ec810e9d"
+    },
+    {
+      "path": "hackathon/evidence/investigation/packet.json",
+      "sha256": "58730f67f6d84e7afc4265a941c2a3630a8ff809b9ad874cd576b4aa0347bf7e"
+    },
+    {
+      "path": "hackathon/evidence/investigation/summary.json",
+      "sha256": "cc23862cc5fbb97263ff02dcecea6509c21a4313b6fa62fec6cf6f3f84318779"
+    },
+    {
+      "path": "hackathon/evidence/run10/a11y-red.txt",
+      "sha256": "011ffccffdde87a00718de35cc8d7f4588884915315ad05ca3d1aabfa94135e5"
+    },
+    {
+      "path": "hackathon/evidence/run10/accessibility.txt",
+      "sha256": "c0b8ab006ba708d73b1c96522f39731c0643269a737c3b832987254bd008aeb6"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-desktop.txt",
+      "sha256": "497d41c6cedecd2f0b62f25ac2e519a798b2feae2a727a87438d32a42e90ce2f"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-keyboard.txt",
+      "sha256": "c0b8ab006ba708d73b1c96522f39731c0643269a737c3b832987254bd008aeb6"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile.txt",
+      "sha256": "497d41c6cedecd2f0b62f25ac2e519a798b2feae2a727a87438d32a42e90ce2f"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/checkpoint.json",
+      "sha256": "0ba312117cbf54a0a41233c6bbb2df1ba59a9dab7389f23835ba3c5c7f364ea1"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/desktop.png",
+      "sha256": "1f8f15d982d7fa36c08896f43fa967ea3598d396776c911d3758910a1af40e10"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/mobile.png",
+      "sha256": "ac0abe66092e9ac4bd88b8efbf274ad2240e6a2f008c6d2cff4f698ffb821afd"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/packet.json",
+      "sha256": "d24007b5c5f04ccbced5f1729bb2f55ead73133250bc10c6cd0d6e2fb0ba5d2b"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/pending-baseten.png",
+      "sha256": "6cc70d9543e615e341245cbaf07a6fdab484419f49aa79714c26b344c172ce56"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/pending-wonder.png",
+      "sha256": "08a1cdb78b4675a1bc9ef6cf968d07d02a4b35f6d42957b4deba023fdee93245"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/report.md",
+      "sha256": "46ee5fa1ef92d0bc28175f8be17fbb44a789eddadb6a95d6427ed212ae9d2dd7"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/sign-in.png",
+      "sha256": "a3c0024da8cc9e3e016c27e0353184c2e237f8513032345e23afb615fd6db35a"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-mobile/summary.json",
+      "sha256": "0ee67f7b1b9dc18dc04b5de2a5fb6cd1c955071f1d97b9fdd53b888907e02549"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/checkpoint.json",
+      "sha256": "886cdf68419159583a6398dca7619b37ca2e5229042cba3bb13f4822264194b1"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/desktop.png",
+      "sha256": "74b96dfdc6f366bb8e84ac61e45c6e68a60075e4053101cc93841629643a6cdb"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/mobile.png",
+      "sha256": "c52b44ed8ed18d9f8f1f8e546738a7437318fbe7686b2828841c156e05ab4b1d"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/packet.json",
+      "sha256": "76c31f5b8dbf1e5aadbf880c334437db515fc3e3c869620c73d2cfee153df774"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/pending-sample.png",
+      "sha256": "c119329c5cf96a6f7035902b09355d4ce4f8b13410bd6464094ba29780527571"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/report.md",
+      "sha256": "2b7ffb810cf8a51201db939e76604fad8e5d5012e575b9fcd5ce0d8dd3d11bae"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/sign-in.png",
+      "sha256": "76256911e57b98fed5bbbe4004cb73bcfa4c3c4f87a7af8b8ad6ccf50e9fdc03"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-offline/summary.json",
+      "sha256": "912854448bc65ba591cf0944012832c031e51dd3d8ea4d155b2b82161a877d56"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow.txt",
+      "sha256": "94e81ad72fe4539ddcdf2c110d28b1f598879402ec9629368aa447bc47dc6b4c"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/checkpoint.json",
+      "sha256": "a9cdf793e8bf6e30b8b48e1addd50c49bbe3f5ce14b9b0c82dad5704183b86ae"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/desktop.png",
+      "sha256": "ab531f54a869f59f59bac26db1960ebfd23079cc2ee35944a6f4aa89a381c9ef"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/mobile.png",
+      "sha256": "75d7cd8b62c452df510854bfe5546e64673ec7237aaff4495d8af27b783a3a63"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/packet.json",
+      "sha256": "e7e567dc2e03dec1f1f1f76b5ff8ef605dad6cf21dc76fbdc54eb36e82947453"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/pending-sample.png",
+      "sha256": "5f23246d950e00a0cf075f4e8b3059db8aa6b01ba74d0d087d240fb899cb791b"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/report.md",
+      "sha256": "250c7b269b1b4dfeb4343e0fc6c2aa15d3fcb7ca3f02615953676ff86db8ea2d"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/sign-in.png",
+      "sha256": "76256911e57b98fed5bbbe4004cb73bcfa4c3c4f87a7af8b8ad6ccf50e9fdc03"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/slow.png",
+      "sha256": "c36fb9d623172f25d5ee11a8ca163dcf2860727bf95438b352f3ca34eea70d5f"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/stopped.png",
+      "sha256": "1ca47fb924d3fe4868274fc0ea1fd7e72f6b0190416b31df012ffa8ab4365879"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser-slow/summary.json",
+      "sha256": "c72d98d2ed1cd8804d87bfc2f5b98d6589fa18f19c2dfee801d11eb11cf953d2"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/checkpoint.json",
+      "sha256": "766513ef6f32bc78f73fa49d0cf62233b030b43ffc2bdab4aaeccc898915659a"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/desktop.png",
+      "sha256": "2ca7185377963e98c6e32b6ac724997443c09ff2dd34b18c3b0fd4b44b58233f"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/mobile.png",
+      "sha256": "0b91b59444115126f23dccf84d719295ac8c79c4ad725503b0ae8ef3545dd5fb"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/packet.json",
+      "sha256": "326b22b5028ef28aae4f64efc7db219bee99cbc2b0157e179d36773af290d10a"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/pending-baseten.png",
+      "sha256": "6284ff127d2f7e5491d8ec5c25aa571690ebc68194aeb5c8a15427c3964d5fce"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/pending-wonder.png",
+      "sha256": "902c322cbfd4b56ec0a8b370d87dad6b20ef468d590741ff0c1a570e2fce4f1d"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/report.md",
+      "sha256": "32cea0517a504cb6e817d195f6d2129aff3c2c6fdb701c8eea9f6f189aae870b"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/sign-in.png",
+      "sha256": "76256911e57b98fed5bbbe4004cb73bcfa4c3c4f87a7af8b8ad6ccf50e9fdc03"
+    },
+    {
+      "path": "hackathon/evidence/run10/browser/summary.json",
+      "sha256": "f8d57f28e5ec80a0e91853b4146898c820e1bf20734a799be34f97957961eb9e"
+    },
+    {
+      "path": "hackathon/evidence/run10/cleanup.json",
+      "sha256": "0b56aaea8de1548ec617dc8ba56f79d8aeceb4a513b36a72dd9fe28d97ee742b"
+    },
+    {
+      "path": "hackathon/evidence/run10/gitleaks-public-working-tree.txt",
+      "sha256": "8db4a6fa3282724e5c37e83fa3f283f8b7a26bbed44484a4b00e9e1bd1a2fb94"
+    },
+    {
+      "path": "hackathon/evidence/run10/gitleaks.txt",
+      "sha256": "5bad15bb6d23529ea566bb0c19fc8ba96d84922fc93ee4b27b75e8c042be3e8a"
+    },
+    {
+      "path": "hackathon/evidence/run10/hackathon-tests.txt",
+      "sha256": "ab24877bf91d46c66208353a6547d558b1e80870c0e7e6634cf1fcf12bdf7ada"
+    },
+    {
+      "path": "hackathon/evidence/run10/investigation.txt",
+      "sha256": "87c0f62915a0e8942c28a969925d51118892a002e28e933983bc1bdf2a7df24f"
+    },
+    {
+      "path": "hackathon/evidence/run10/judge-check.txt",
+      "sha256": "d27e0a96302b664183c20596afca87015bba59e68a3455d05f4320a5661aaa6a"
+    },
+    {
+      "path": "hackathon/evidence/run10/nonce-smoke.txt",
+      "sha256": "89beaae76fa21af13c77e902d408ee0458fe538b2481ba08fda6eb4d1708b88c"
+    },
+    {
+      "path": "hackathon/evidence/run10/offline-red.txt",
+      "sha256": "c8ab0f34106be71810d87c4cf2ba0a7c44a6a7ccc0708779ebbd51ea9ea67e97"
+    },
+    {
+      "path": "hackathon/evidence/run10/progress-green.txt",
+      "sha256": "6e30bc2f84f849edda10051e2677c6cb3669e455ff6cb92cff3c12bf169ac426"
+    },
+    {
+      "path": "hackathon/evidence/run10/progress-red.txt",
+      "sha256": "9c21cce0b0ec56607d13762e80519f16cc9ca20d72754ca728211e6c084aa86e"
+    },
+    {
+      "path": "hackathon/evidence/run10/providers.json",
+      "sha256": "282dc93a8c0270ee67cbbcac5723d0c1a7c72aa721d2c2c94dc275c57e7119e2"
+    },
+    {
+      "path": "hackathon/evidence/run10/providers.txt",
+      "sha256": "38fcd2ce4c204ac62c7aab94a63aa20d492bc9779e36715dd7b2faeeecc3443e"
+    },
+    {
+      "path": "hackathon/evidence/run10/public-selection.json",
+      "sha256": "c6e5d620ab38a7697d729abe1abe1d58f213d16a5347dfdcf8608e18620dde9a"
+    },
+    {
+      "path": "hackathon/evidence/run10/public-tree.txt",
+      "sha256": "0d30bd1a080be66ed9595676150d1b4f905f8c4b65688f50cca2499103a77017"
+    },
+    {
+      "path": "hackathon/evidence/run10/report-mirrors.json",
+      "sha256": "ab0e547af29229c63bb81c97252e0d7e2a48e975867fc306aef729e9e616063a"
+    },
+    {
+      "path": "hackathon/evidence/run10/root-browser.txt",
+      "sha256": "ce0ebd59579682818671cae56de266ba9a821105b9b48beecf87d7721e07de43"
+    },
+    {
+      "path": "hackathon/evidence/run10/root-tests.txt",
+      "sha256": "9135c724188721b4dafbc6948fa16ac5a15532b6b03a1abb802528fcbc105fc8"
+    },
+    {
+      "path": "hackathon/evidence/run10/showcase-integrity.json",
+      "sha256": "a2789c4361b168d6fe4ffa201c7184bebddfbd3d1793f942bf23f40f706f61e4"
+    },
+    {
+      "path": "hackathon/evidence/run10/tdd-green.txt",
+      "sha256": "1248a0995e4d1a9857efa30bdd7308b77a3482027983f5408aa0717ff47e0a52"
+    },
+    {
+      "path": "hackathon/evidence/run10/tdd-red.txt",
+      "sha256": "611cbfb0cd2c3804151920f55d3d2a8e264cbc6e6fe290cd82767ab25f7ac687"
+    },
+    {
+      "path": "hackathon/package.json",
+      "sha256": "b1471dd2417b5bb85839cd3ca0a5c9ad8e19ae0da7213c4abd43be6d094f29ac"
+    },
+    {
+      "path": "hackathon/public/accessibility.mjs",
+      "sha256": "c2bfe6d79b4e1e6ad66f8621805d00b83db0b70b9107659c715ba22411cda628"
+    },
+    {
+      "path": "hackathon/public/app.mjs",
+      "sha256": "68ad942a90e439a8643b715cc54d43b3139040d73b1825da418a726aa0a98902"
+    },
+    {
+      "path": "hackathon/public/investigation-status.mjs",
+      "sha256": "a6a21c4c0b9e9d68a5d41f3fff1b8c928dbc8e45107df013da3ea56759f73be9"
+    },
+    {
+      "path": "hackathon/scripts/browser-options.mjs",
+      "sha256": "58f9f6c6b61f72f9175eb3cc75e1737031a8a52082014a83261dbfb5547886f9"
+    },
+    {
+      "path": "hackathon/scripts/browser-smoke.mjs",
+      "sha256": "0a0d3eb7fd76cc61bc332e425280768705af855ac0abd7f32d1c1d6f92c3507d"
+    },
+    {
+      "path": "hackathon/scripts/judge-check.mjs",
+      "sha256": "7e61ac811728c6ce2d37b5d55bbb5c8fdbb5899284bc14f754d65a0229599c74"
+    },
+    {
+      "path": "hackathon/scripts/live-investigation.mjs",
+      "sha256": "ab84552ec2474ca84f524390a0ba2206f2b06e34924e023219e9be738dfa2294"
+    },
+    {
+      "path": "hackathon/scripts/provider-check.mjs",
+      "sha256": "f04ef855c190bfc4df0283e6fa5801d80da39262713ac3d52b40dd0912fd31d7"
+    },
+    {
+      "path": "hackathon/scripts/public-set.mjs",
+      "sha256": "d48cdc956abc82cf75f0a7b1646de10b9a982c8e06524818d4e29b433dad3996"
+    },
+    {
+      "path": "hackathon/scripts/public-tree-check.mjs",
+      "sha256": "8f7fd26f649515a3249a7075ca20398f3c1cae60a67c902c36f2014520492277"
+    },
+    {
+      "path": "hackathon/scripts/smoke-meta.mjs",
+      "sha256": "17189470823f71a1ba265ba0faccad509edda499f2b2f61944c322138c7f1c6b"
+    },
+    {
+      "path": "hackathon/src/agent/investigation.mjs",
+      "sha256": "d037d1ff4ee584763012a4426669c5fdc5a78406f0c969ce6b07ad957648a2cd"
+    },
+    {
+      "path": "hackathon/src/workflow.mjs",
+      "sha256": "39e8a1ebf906ef3e58ce147ae7445403e578eba064ed3e80314cff777b52f4c9"
+    },
+    {
+      "path": "hackathon/tests/unit/run10-judge.test.mjs",
+      "sha256": "b93d2d52d127422cc0ae67bacd313fbb0929620a86f9eef1de793842bbb26786"
+    },
+    {
+      "path": "hackathon/tests/unit/run8-public-readiness.test.mjs",
+      "sha256": "d9b4bc2c30d2cef4e11494adc2baf4eeea3a2c2790e8cd6efc98712f5ec0ab2e"
+    }
+  ]
+}

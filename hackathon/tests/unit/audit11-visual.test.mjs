@@ -9,9 +9,9 @@ const app = readFileSync(new URL('../../public/app.mjs', import.meta.url), 'utf8
 
 test('guided shell keeps header and opening-story logo placements without narrative clutter', () => {
   assert.match(html, /class="brand-mark"/);
-  assert.match(html, /class="story-logo"/);
-  assert.match(css, /body\[data-guided=true\] \.story-hero>\.story-logo\{display:block/);
-  assert.match(css, /body\[data-guided=true\] \.story-hero>\*:not\(\.story-logo\)\{display:none\}/);
+  assert.match(html, /id="opening-story"[\s\S]*?class="story-logo"/);
+  assert.match(css, /body\[data-guided=true\]\[data-active-stage=incident\] #opening-story\{/);
+  assert.match(css, /body\[data-guided=true\]\[data-active-stage=incident\] \.story-hero>\.eyebrow/);
   assert.match(app, /dataset\.activeStage==='shock'/);
 });
 
@@ -33,9 +33,7 @@ test('factory stage renders cinematic dock, QA gate, conveyor and shock preview 
 
 test('proof actions are separated into labelled fieldsets', () => {
   assert.equal((html.match(/class="proof-action"/g) || []).length, 3);
-  assert.match(html, /<legend>Verify ledger<\/legend>/);
-  assert.match(html, /<legend>Seal encrypted packet<\/legend>/);
-  assert.match(html, /<legend>Retain independent checkpoint<\/legend>/);
+  assert.deepEqual([...html.matchAll(/<legend>([^<]+)<\/legend>/g)].map(m=>m[1]), ['1 · Verify ledger','2 · Seal encrypted packet','3 · Retain independent checkpoint']);
 });
 
 test('primary guided control invokes real investigation and never stalls on focus-only', () => {

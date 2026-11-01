@@ -1,0 +1,12 @@
+Checking accessibility tree
+Accessibility enabled
+Accessibility tree received
+Accessibility roles checked
+Starting encrypted export
+Export requested
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert.ok(await evaluate(`document.querySelector('#run-summary').textContent.includes('Investigation complete')`))
+
+    at runInvestigation (hackathon/scripts/browser-smoke.mjs:86:1384)
+    at async hackathon/scripts/browser-smoke.mjs:87:2

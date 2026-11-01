@@ -1,0 +1,21 @@
+{
+  "sourceSha256": "ce0112943a6ec38ea87cb408d7c6e04ae28e7511b9ce930af56f12c89102ab3e",
+  "copies": [
+    {
+      "role": "build",
+      "sha256": "ce0112943a6ec38ea87cb408d7c6e04ae28e7511b9ce930af56f12c89102ab3e",
+      "matches": true
+    },
+    {
+      "role": "brain",
+      "sha256": "ce0112943a6ec38ea87cb408d7c6e04ae28e7511b9ce930af56f12c89102ab3e",
+      "matches": true
+    },
+    {
+      "role": "session-memory",
+      "sha256": "ce0112943a6ec38ea87cb408d7c6e04ae28e7511b9ce930af56f12c89102ab3e",
+      "matches": true
+    }
+  ],
+  "passed": true
+}

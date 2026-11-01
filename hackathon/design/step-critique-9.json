@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 9,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
       "priority": "high",
-      "change": "Sequence Seal, Verify and Retain as numbered steps with disabled states until each prerequisite completes; never present them as simultaneous awaiting actions."
+      "change": "Sequence Verify ledger, passphrase, Seal packet and Export checkpoint as numbered disabled-until-ready controls with aria-live result text."
     },
     {
       "priority": "medium",
-      "change": "Add character-count and requirement feedback for the 16-160 character passphrase with a visible focus ring and aria-live result only."
+      "change": "Clarify 70 parts, 35h accepted and 48h saved metrics with tabular numerals and 11px captions that fit without wrapping."
     },
     {
       "priority": "low",
-      "change": "Enlarge BEFORE-AFTER metrics and align 70, 35h and 48h on one tabular baseline."
+      "change": "Keep stoppedRed CELL-MILL-2 visible in the retained-evidence stage exactly as in the live state."
     }
   ]
 }

@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 10,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
       "priority": "high",
-      "change": "Replace the active Recovery complete primary with a completion status and a single Lock recovery room action, preventing a duplicate completion signal."
+      "change": "Replace the active primary-free completion bar with a sealed summary and one secondary action only; Back remains non-primary."
     },
     {
       "priority": "medium",
-      "change": "Mask the passphrase permanently and add a text Complete marker to Seal, Verify and Retain so state does not rely on check glyphs alone."
+      "change": "Add Complete check plus text to all three retention rows, already partly present, and ensure each is keyboard reachable."
     },
     {
       "priority": "low",
-      "change": "Mark the final rail item aria-current and add a concise sealed-packet summary with 18 events and the retained offline state."
+      "change": "Mark Recovery story complete with aria-current in the rail and move initial focus to the completion heading."
     }
   ]
 }

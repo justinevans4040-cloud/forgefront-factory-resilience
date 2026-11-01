@@ -2,6 +2,20 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit fourteen
+
+- Verified run-sixteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub.
+- Relocated the opening-story logo onto the factory stage (header plus opening story only), enlarged source-computed discrepancy quantities with tabular end-aligned values, demoted completed proof Verify styling, strengthened sealed status contrast, and hardened the mobile guided rail to one non-overlapping row.
+- Continued the genuine Muse Wonder screenshot design loop through iterations 35–37. Recorded the prompt/orchestration map and live Wonder/Baseten guide results in the audit report.
+
+## Build run sixteen
+
+- Designed with Muse Wonder: fresh full-screen review loops retain actual scores and prioritized critiques. Input manifests are frozen beside the current evidence. Baseten remains the structured-layout fallback; the optional backup is not requested.
+- Refit source-quantity tracks with a measured silver mismatch segment, keyboard source activation and bidirectional highlighting. Factory allocation labels use clear lanes and dark text plates; the applied outage retains its red hatch and explicit stopped state.
+- Bound Britt's task workspace inside the viewport, with one scroll region for prior tracked work and untracked proposals, keyboard task navigation, proposal counts and a visible end marker. Human approval controls the board.
+- Sequence proof controls in both document and visual order; keep verification keyboard reachable, show passphrase character and requirement feedback, and use actual offline machine identities in the terminal summary.
+- Added failing-first source, geometry, passphrase, serving and viewport regressions. Browser checks remove their owned temporary profiles after closing. Preserved reset, read-only history, consent and Meta handoff hardening.
+
 ## Build run fifteen
 
 - Closed the decision-inspector clipping path: nearest-result focus, bounded decision stage, capacity preview that distinguishes selected outage from applied offline state, and stronger operator legibility.

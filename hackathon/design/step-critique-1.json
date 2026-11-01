@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 1,
   "score": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Refit the salmon certificate bar to silver with a hatched mismatch segment so red stays reserved for the stopped station."
+      "change": "Refit inspector top so MATERIAL HOLD heading is not clipped at 1366x768; reduce opening-story height before shrinking type."
     },
     {
       "priority": "medium",
-      "change": "Enlarge SVG route and job labels to 11px minimum and lift the 40/30 labels clear of machine outlines."
+      "change": "Enlarge SVG micro-labels doc-cert-441, doc-recv-882 and option costs to 11px minimum."
     },
     {
       "priority": "medium",
-      "change": "Add a 2px neon focus ring to Inspect source evidence and each focusable SVG node; announce selection in the inspector."
+      "change": "Link ev-cert-qty and ev-recv-qty inspector rows bidirectionally to the 120 and 80 SVG tracks with focus ring and pattern highlight."
     }
   ]
 }

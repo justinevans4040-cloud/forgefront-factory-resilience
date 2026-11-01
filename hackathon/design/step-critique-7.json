@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 28,
+  "iteration": 37,
   "step": 7,
   "score": 8,
   "fixes": [
     {
       "priority": "high",
-      "change": "Show CONSTRAINED Split available capacity as disabled with pattern, marker and reason text; exclude it from keyboard focus as a selectable option."
+      "change": "Retain CONSTRAINED Split card as non-selectable with reason text; selecting a feasible option opens the typed consent form below."
     },
     {
       "priority": "medium",
-      "change": "Move focus to the typed consent field when a feasible option is selected; keep Accept disabled until the exact phrase matches and say so beside the field."
+      "change": "Keep prior-acceptance-invalidated status in DecisionBar centre at 11px minimum and readable within 56px."
     },
     {
       "priority": "low",
-      "change": "Compress option card padding so the full consent form and DecisionBar status fit without internal crowding at 768px height."
+      "change": "Align revised 35h/$3,115.00 metrics with step 3 so the unchanged feasible path is easy to compare."
     }
   ]
 }

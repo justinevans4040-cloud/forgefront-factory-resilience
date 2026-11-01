@@ -1,0 +1,16 @@
+✔ evidence redacts Windows, JSON escaped, POSIX and environment profile paths without changing provider URLs (2.6508ms)
+✔ evidence writers redact text and preserve binary screenshots and existing backups (6.1045ms)
+✔ tracked public text contains no profile paths or real contact coordinates (157.4239ms)
+✔ README npm quickstarts resolve scripts and fail for a nonexistent script (1.1701ms)
+✔ tracked demo dependency closure needs no ignored or untracked files and detects omissions (44.0291ms)
+✔ CI is pinned, read-only, credential-free and runs both suites and gitleaks (0.4538ms)
+✔ environment templates have empty assignments only and backups are ignored (0.5706ms)
+✔ public evidence preserves command failure and redacts the actual child output (105.4363ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 390.7884
