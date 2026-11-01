@@ -47,12 +47,21 @@ test('official Forgefront Systems logo is byte-identical in brand assets and wir
  assert.ok(files.includes('assets/brand/forgefront-systems-logo.png'));
  assert.ok(files.includes('hackathon/public/forgefront-systems-logo.png'));
  assert.ok(files.includes('hackathon/public/favicon.png'));
+ const served=read(new URL('../../public/forgefront-systems-logo.png',import.meta.url));
+ assert.equal(createHash('sha256').update(served).digest('hex'),'5d3333eb8a5d97e97d5b868ed81008c6994c19f3f756101208add0e7e526f707');
+ assert.deepEqual(served,canonical);
  const readme=read(new URL('../../../README.md',import.meta.url),'utf8');
  assert.match(readme,/assets\/brand\/forgefront-systems-logo\.png/);
  assert.ok(readme.indexOf('assets/brand/forgefront-systems-logo.png')<readme.indexOf('assets/showcase/factory-resilience-hero.jpg'));
  const css=read(new URL('../../public/style.css',import.meta.url),'utf8');
  assert.match(css,/--accent:#c6ed8d/);
  assert.match(css,/background:#050705/);
+});
+test('investigation prompts export only the live system prompt builder',async()=>{
+ const prompts=await import('../../src/agent/prompts.mjs');
+ assert.equal(typeof prompts.buildInvestigationSystemPrompt,'function');
+ assert.equal(prompts.buildWonderNarrativePrompt,undefined);
+ assert.match(prompts.buildInvestigationSystemPrompt({snapshotDigest:'abc',label:'demo'}),/abc/);
 });
 
 import {guideStep} from '../../public/guide.mjs';
