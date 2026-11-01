@@ -1,10 +1,12 @@
-import { test } from 'node:test';
+import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, appendFileSync } from 'node:fs';
+import { mkdtempSync, appendFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createWorkflow } from '../../src/workflow.mjs';
-const setup=()=>{const directory=mkdtempSync(join(tmpdir(),'ffr-workflow-'));return {directory,key:'synthetic-ledger-key'};};
+const owned=[];
+const setup=()=>{const directory=mkdtempSync(join(tmpdir(),'ffr-workflow-'));owned.push(directory);return {directory,key:'synthetic-ledger-key'};};
+after(()=>{for(const directory of owned)rmSync(directory,{recursive:true,force:true});});
 const model={mode:'sample',sample:true,label:'SAMPLE - OFFLINE; NO LIVE AI',async complete(){return {sample:true,text:'Offline deterministic advisory',toolCalls:[]};}};
 test('review binds actor, session and digest; confirmation is typed and single use',async()=>{
   const w=createWorkflow(setup()); const r=await w.investigate(model);

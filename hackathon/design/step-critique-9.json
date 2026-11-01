@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 9,
-  "score": 9,
+  "score": 8,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep blocked prior tasks and proposed replacements in visually separate reserved groups with distinct silver hatching for blocked and dashed emerald outline for proposed untracked tasks, as the header counts already state."
+      "change": "Keep blocked prior tasks and proposed replacements visually distinct while stating the approved revised plan and awaiting-approval replacements together."
     },
     {
       "priority": "medium",
-      "change": "Sync keyboard focus between the three scene task cards and both side-zone pagers so t1, t2 and t3 never highlight different tasks in different zones."
+      "change": "Add cross-hatching to the OFFLINE CELL-MILL-2 station to match its legend and the earlier stopped state."
     },
     {
-      "priority": "low",
-      "change": "Reduce repetition between the scene footer status and the side awaiting-approval line to one status sentence, freeing height for larger task titles."
+      "priority": "medium",
+      "change": "Compress the blocked-prior strip so all three proposed tasks and approval control fit without crowding at 1366x768."
     }
   ]
 }

@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 8,
   "score": 8,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Give the two available Select this path controls equal width, at least 44px height and 16px labels; keep the constrained Split row non-interactive with silver hatching, x marker and reason text."
+      "change": "Keep the constrained split row hatched and non-selectable, with its reason at 16px so the two remaining paths dominate."
     },
     {
       "priority": "medium",
-      "change": "Fill the empty lower right zone by enlarging the Human decision panel and adding the invalidated prior acceptance summary inside that reserved zone."
+      "change": "Match the scene footer state to PRIOR ACCEPTANCE INVALIDATED and highlight the next feasible station route."
     },
     {
-      "priority": "medium",
-      "change": "Make Review revised option open the typed consent form only after a path is selected, and announce the selection through aria-live polite."
+      "priority": "low",
+      "change": "Give Review revised option the sole emerald primary and ensure selecting a valid path next opens the typed consent form."
     }
   ]
 }

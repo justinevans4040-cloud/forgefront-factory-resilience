@@ -7,4 +7,5 @@ test('Wonder applies the caller output budget and disables remote storage',async
  await client.complete({prompt:'Source-bound board',maxTokens:8192});
  assert.deepEqual(payloads.map(p=>p.max_output_tokens),[2048,8192]);
  assert.ok(payloads.every(p=>p.store===false));
+ assert.ok(payloads.every(p=>p.reasoning?.effort==='minimal'));
 });

@@ -2,6 +2,24 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Build run twenty-four
+
+- Added the shared plant graph engine, quantity grouping, iterative dependency validation, capacity-aware alternate scheduling and generated plant fixtures. Independent tests cover 2, 40, 1,000 and 5,000 machines and a 5,000-task board.
+- Moved the opening scenario source into fixtures; removed numeric evidence and task-count ceilings and scoped-memory truncation. Added an entity-cap regression scan.
+- Added a 45-machine sample job shop, failure cascades, calculated time/cost counters, grouped floor navigation, individual machine inspection and recording view. A new high-resolution scene is saved in assets/showcase.
+- Source details open without displacing evidence cards. Reduced-motion rules preserve static SVG geometry. Proposal pages derive from available scene dimensions.
+- Prepared environment-controlled judge access while retaining open demo defaults. Added a bounded Wonder retry and Baseten-only investigation fallback, preserving actual returned model identity.
+- Refocused both READMEs on the judge pitch. Setup stays in the run guide. Designed with Muse Wonder: original reviews 88 onward retain actual scores, including explicit visual-delight scores.
+- Large plant/evidence/recovery collections for Meta tools now page or summarize with explicit coverage (totals, idDigest, truncated:false). Investigation serializes tool history through the same projector. Unit proof walks every entity across pages for generated 1,000-machine plants.
+
+## Independent audit twenty-two
+
+- Render crash closed: persistent disk mounts at `/var/data` with state under `/var/data/forgefront`; `protectDirectory` continues when chmod returns EPERM; public launcher and private-directory tests cover the non-chmod path. Judge codes prepared as MetaAI-Judge / Baseten-Judge / Fireworks-Judge.
+- Full-shop Accept calculated recovery now seals real plant consent, ledger events and The Britt sample/Meta draft (no browser-only fake). Cascade consent overlays keep the floor geometry intact.
+- Agent prompt coverage pages/summarizes large collections without silent truncation. Product suite 353, root suite 254, geometry 102 + live-proposals 114 + cascade 74 with zero intersections/clipping at both owner sizes (min fill ≥0.728, body 16px, header span ≥0.766).
+- Named the sovereign agent exactly The Britt across UI, docs and prompts; Meet The Britt pitch sections added. Designed with Muse Wonder reviews 91–95 recorded honestly; retained direction remains iteration 82. Cascade/README nine-point targets remain open.
+- Live Wonder and Baseten investigation both completed MODEL_STOP with validated claims; Fireworks never called.
+
 ## Independent audit twenty-one
 
 - Closed remaining owner-blocking layout gaps on the factory stage: three live status lines on every station/job card (no empty chrome, no floating HOLD marker), shock capacity preview panel and leader confined to the bay band above stations, routes never drawn through a preview-offline cell, and nested parent-npm copies exclude bulky evidence trees so the root suite stays above the disk floor.
@@ -118,7 +136,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 - Designed with Muse Wonder: real screenshot inputs, concrete component direction and scored critiques retained in [design evidence](design/). The bounded design director uses Wonder first and Baseten only on failure, with mocked API tests.
 - Reproduced the primary-button stall in a browser regression, then connected guide actions to real workflow controls. Added visible Back and completed-step review with preserved state and no repeated inference.
 - Built the full-screen factory SVG from current source quantities, jobs, cell availability, accepted allocations and ledger events. Added compact evidence and decision inspectors and responsive keyboard paths.
-- Built the recovery project board and Britt 4.0 inside the Meta Hackathon build: validated Meta task drafts, explicit approve/decline, dependency-aware idempotent moves, second-shock blockers, encrypted scoped memory and exportable ledger events.
+- Built the recovery project board and The Britt inside the Meta Hackathon build: validated Meta task drafts, explicit approve/decline, dependency-aware idempotent moves, second-shock blockers, encrypted scoped memory and exportable ledger events.
 - Preserved the immutable official logo and five showcase images. Execution proof is retained in its original run archive.
 
 ## Build run twelve

@@ -26,5 +26,18 @@ test('Render service configuration names secrets without embedding values',()=>{
  const yaml=readFileSync(new URL('../../../render.yaml',import.meta.url),'utf8');
  for(const key of ['MUSE_API_KEY','BASETEN_API_KEY','HACKATHON_LEDGER_KEY','HACKATHON_ADMIN_TOKEN'])assert.match(yaml,new RegExp('key: '+key+'\\s+sync: false'));
  assert.match(yaml,/rootDir: hackathon/);assert.match(yaml,/branch: submission/);assert.match(yaml,/startCommand: npm run serve:public/);assert.match(yaml,/healthCheckPath: \/healthz/);
- assert.match(yaml,/mountPath: \/var\/data\/forgefront/);
+ assert.match(yaml,/name: forgefront-state/);
+ assert.match(yaml,/mountPath: \/var\/data\b/);
+ assert.match(yaml,/HACKATHON_STATE_DIR[\s\S]*value: \/var\/data\/forgefront/);
+});
+test('public launcher starts when state directory cannot be chmod locked',async()=>{
+ const directory=mkdtempSync(join(tmpdir(),'ffr-public-nochmod-'));
+ const {protectDirectory}=await import('../../src/security/private-directory.mjs');
+ const blocked=protectDirectory(directory,{chmodSync:()=>{const error=new Error('operation not permitted');error.code='EPERM';throw error;}});
+ assert.equal(blocked.mechanism,process.platform==='win32'?'WINDOWS_OWNER_SYSTEM_ACL':'POSIX_CREATED_NO_CHMOD');
+ let launched;
+ try{
+  launched=await startPublicServer({env:{PORT:'0',HACKATHON_STATE_DIR:directory,HACKATHON_LEDGER_KEY:'synthetic-public-key',HACKATHON_ADMIN_TOKEN:'synthetic-public-admin',FIREWORKS_API_KEY:'never-call'},fetchImpl:async()=>{throw Error('Unexpected provider call');}});
+  assert.equal((await fetch(`http://127.0.0.1:${launched.address.port}/healthz`)).status,200);
+ }finally{await launched?.app.close();rmSync(directory,{recursive:true,force:true});}
 });

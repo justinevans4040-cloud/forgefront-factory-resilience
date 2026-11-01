@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 10,
   "score": 9,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Add a visible Complete state to the compact horizontal rail item 10 matching the header Proof tab, with aria-current on the final step."
+      "change": "Add cinematic depth and a restrained emerald glow to the three SEALED panels, turning static checks into a closing state driven by sealed status."
     },
     {
       "priority": "medium",
-      "change": "Make Verify ledger, Export independent checkpoint and the advanced downloads disclosure at least 44px tall with 16px labels and emerald focus rings."
+      "change": "Raise retained-evidence secondary copy to 16px and keep 70 parts, 35h and 48h metrics as the judge-facing summary."
     },
     {
-      "priority": "medium",
-      "change": "Link the three SEALED scene cards bidirectionally to the retained evidence rows so focus on a card highlights Verify ledger, Seal packet or Retain checkpoint respectively."
+      "priority": "low",
+      "change": "Confirm the header Proof tab and Complete rail state share aria-current styling and a visible focus ring."
     }
   ]
 }

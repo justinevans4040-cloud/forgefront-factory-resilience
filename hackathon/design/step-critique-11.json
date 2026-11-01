@@ -1,0 +1,21 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 95,
+  "step": 11,
+  "score": 7,
+  "wowScore": 7,
+  "fixes": [
+    {
+      "priority": "high",
+      "change": "Every department and machine is represented; refit the lower empty grid area by enlarging department zones and machine depth so the plant fills the viewport."
+    },
+    {
+      "priority": "high",
+      "change": "Replace the repeated OFFLINE cross-only labels with silver cross-hatching, a cross marker and plain OFFLINE text on stopped machines, reserving HOLD as separate text."
+    },
+    {
+      "priority": "medium",
+      "change": "Add a feasible emerald recovery route with living flow once a path is chosen, and keep two top primaries reduced to one primary per viewport."
+    }
+  ]
+}

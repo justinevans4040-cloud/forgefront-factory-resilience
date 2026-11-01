@@ -10,7 +10,7 @@ services:
     plan: starter
     disk:
       name: forgefront-state
-      mountPath: /var/data/forgefront
+      mountPath: /var/data
       sizeGB: 1
     envVars:
       - key: NODE_VERSION

@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 2,
   "score": 7,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Separate connection readiness and investigation more strongly with two titled reserved panels, distinct status lines and controls, so provider identity checking is never read as the evidence task."
-    },
-    {
-      "priority": "high",
-      "change": "Refit the right zone so the bottom explanatory panel fits fully at 1366x768 without crowding the action bar, condensing narration to one instruction and one status sentence."
+      "change": "Visually separate connection readiness for provider identity from the investigation evidence task with distinct headings, status lines and controls in the side zone."
     },
     {
       "priority": "medium",
-      "change": "Enlarge the scene zone and make the primary Run action reachable after the route check control in tab order, with aria-live polite announcing the check result."
+      "change": "Make Check selected route a secondary control and reserve the single emerald primary for starting the investigation."
+    },
+    {
+      "priority": "medium",
+      "change": "Link SVG station focus to side-zone highlighting both ways, with a 2px emerald focus ring and aria-live result text."
     }
   ]
 }

@@ -10,11 +10,31 @@ import { createStateCodec } from './security/state-codec.mjs';
 import { redactSecrets } from './security/redact.mjs';
 import { readablePacket } from './packet.mjs';
 import { protectDirectory } from './security/private-directory.mjs';
+import { analyzePlant } from '../public/plant-engine.mjs';
+import { jobShopPlant } from '../fixtures/job-shop.mjs';
 
 const hash=value=>createHash('sha256').update(JSON.stringify(value)).digest('hex');
 const fail=message=>{throw Object.assign(new Error(message),{status:409});};
 const safeEqual=(a,b)=>{const left=Buffer.from(String(a||''));const right=Buffer.from(String(b||''));return left.length===right.length&&timingSafeEqual(left,right);};
-export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
+const plantOptionFrom=(plant,{lotId,failure,strategy})=>{
+  const analysis=analyzePlant(plant,{lotId,failure,strategy});
+  if(!analysis.recovery.feasible)fail('INFEASIBLE_OPTION');
+  return Object.freeze({
+    optionId:strategy,
+    feasible:true,
+    finishHours:analysis.recovery.finishHours,
+    incrementalCostUsd:analysis.recovery.costUsd,
+    evidenceIds:plant.evidence.map(record=>record.id),
+    kind:'plant',
+    failure,
+    lotId,
+    assignments:analysis.recovery.assignments,
+    unscheduled:analysis.recovery.unscheduled,
+    metrics:analysis.metrics
+  });
+};
+export function createWorkflow({directory,key,now=Date.now,secrets=[],plant=null}) {
+  const plantGraph=plant??jobShopPlant();
   if(!directory || typeof key!=='string' || key.length<12 || key.length>4096)throw new Error('Workflow requires private state directory and HMAC key');
   const storageProtection=protectDirectory(directory);
   const codec=createStateCodec(key);
@@ -104,11 +124,16 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
   function currentRun(id){verify();const r=runs.find(r=>r.runId===id);if(!r||r.run.snapshotDigest!==snapshot.snapshotDigest||!r.proposalValid)fail('STALE_OR_FAILED_INVESTIGATION');return r;}
   return {
     verify,
-    brittFor(session,operator){verify();const scope=scopeFor(session,operator);return {name:'Britt 4.0',proposal:structuredClone([...proposals].reverse().find(p=>p.scope===scope&&p.status==='pending')??null),memory:structuredClone(memory.filter(m=>m.scope===scope).slice(-12))};},
+    brittFor(session,operator){verify();const scope=scopeFor(session,operator);return {name:'The Britt',proposal:structuredClone([...proposals].reverse().find(p=>p.scope===scope&&p.status==='pending')??null),memory:structuredClone(memory.filter(m=>m.scope===scope))};},
     async draftTasks(client,session,operator,makeFallback=null){
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');if(decision.status!=='accepted')fail('ACCEPT_RECOVERY_FIRST');active=true;const bound=snapshot.snapshotDigest;const decisionNonce=decision.nonce;
-      const scope=scopeFor(session,operator);const option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===decision.optionId&&o.feasible);
-      const context={snapshotDigest:bound,option,owner:operator.id,shockHours:0,evidence:buildEvidenceRegistry(snapshot).list().filter(e=>option.evidenceIds.includes(e.evidenceId)),memory:memory.filter(m=>m.scope===scope).slice(-6),priorBoard:board,humanDecision:{optionId:decision.optionId,runId:decision.runId,operatorId:decision.operatorId},acceptedInvestigation:investigationHandoff(runs.find(r=>r.runId===decision.runId))};
+      const scope=scopeFor(session,operator);
+      const option=decision.kind==='plant'
+        ?plantOptionFrom(plantGraph,{lotId:decision.lotId,failure:decision.failure,strategy:decision.optionId})
+        :analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===decision.optionId&&o.feasible);
+      if(!option)fail('INFEASIBLE_OPTION');
+      const plantEvidence=decision.kind==='plant'?plantGraph.evidence.map(record=>({evidenceId:record.id,label:record.label,excerpt:record.label,quantity:record.quantity})):[];
+      const context={snapshotDigest:bound,option,owner:operator.id,shockHours:0,evidence:decision.kind==='plant'?plantEvidence:buildEvidenceRegistry(snapshot).list().filter(e=>option.evidenceIds.includes(e.evidenceId)),memory:memory.filter(m=>m.scope===scope),priorBoard:board,humanDecision:{optionId:decision.optionId,runId:decision.runId,operatorId:decision.operatorId,kind:decision.kind??'guided'},acceptedInvestigation:decision.kind==='plant'?null:investigationHandoff(runs.find(r=>r.runId===decision.runId))};
       try{const drafted=await draftBoardWithFallback(client,makeFallback,context);const done=board.tasks.filter(t=>t.status==='Done');const doneId=id=>id.startsWith('done-')?id:'done-'+id;drafted.board.tasks.push(...done.map(t=>({...structuredClone(t),id:doneId(t.id),dependsOn:t.dependsOn.map(doneId),completedSnapshot:t.completedSnapshot??board.snapshotDigest})));verify();if(snapshot.snapshotDigest!==bound||decision.status!=='accepted'||decision.nonce!==decisionNonce)fail('STALE_PROPOSAL');
         const p=redact({id:randomUUID(),scope,snapshotDigest:bound,decisionNonce,status:'pending',...drafted,expires:now()+300000,operatorId:operator.id});append('britt_proposed',p);proposals.push(p);memory.push({scope,summary:p.board.summary,snapshotDigest:bound});return structuredClone(p);
       }catch(error){append('britt_draft_rejected',{snapshotDigest:bound,operatorId:operator.id,reason:'DRAFT_FAILED_VALIDATION_OR_PROVIDER'});throw error;}finally{active=false;}
@@ -148,10 +173,24 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
       const envelope=Object.freeze({...body,signature:hmac(hash(body))});
       append('consent_reviewed',envelope);pending.set(envelope.nonce,envelope);return envelope;
     },
+    reviewPlant({lotId,failure,strategy},session,operator={id:'local-operator',role:'operator'}){
+      verify();if(active)fail('INVESTIGATION_IN_PROGRESS');
+      const option=plantOptionFrom(plantGraph,{lotId,failure,strategy});
+      const runId='plant:'+hash({plantId:plantGraph.id,lotId,failure,strategy,snapshotDigest:snapshot.snapshotDigest});
+      const body={nonce:randomUUID(),runId,optionId:option.optionId,planDigest:hash(option),snapshotDigest:snapshot.snapshotDigest,actor:hash(session),operatorId:operator.id,operatorRole:operator.role,expires:now()+300000,operationalRelease:false,kind:'plant',lotId,failure};
+      const envelope=Object.freeze({...body,signature:hmac(hash(body))});
+      append('consent_reviewed',envelope);pending.set(envelope.nonce,envelope);return envelope;
+    },
     confirm(nonce,typed,session,operator){
       verify();const e=pending.get(nonce);if(!e||e.expires<=now()||(e.actor!==hash(session)&&!(operator&&e.operatorId===operator.id&&e.operatorRole===operator.role&&recoveredNonces.has(nonce)))||e.snapshotDigest!==snapshot.snapshotDigest||typed!==`APPROVE ${e.optionId}`)fail('INVALID_EXPIRED_OR_STALE_CONSENT');
       const {signature,...body}=e;if(!safeEqual(signature,hmac(hash(body))))fail('CONSENT_SIGNATURE_INVALID');
-      currentRun(e.runId);const option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===e.optionId&&o.feasible);if(!option||hash(option)!==e.planDigest)fail('PLAN_CHANGED');
+      let option;
+      if(e.kind==='plant'){
+        option=plantOptionFrom(plantGraph,{lotId:e.lotId,failure:e.failure,strategy:e.optionId});
+      }else{
+        currentRun(e.runId);option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===e.optionId&&o.feasible);
+      }
+      if(!option||hash(option)!==e.planDigest)fail('PLAN_CHANGED');
       const next={...e,status:'accepted',confirmationActor:hash(session),resumedAfterRestart:e.actor!==hash(session)&&recoveredNonces.has(nonce),operationalRelease:false};append('decision_accepted',next);pending.clear();decision=next;return decision;
     },
     revoke(operator={id:'local-operator'}){verify();pending.clear();const next={status:'revoked',operatorId:operator.id,operationalRelease:false};append('decision_revoked',next);decision=next;return next;},

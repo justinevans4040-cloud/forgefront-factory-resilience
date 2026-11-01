@@ -18,14 +18,11 @@ test('demo and judge pitches open without sign-in and keep manufacturing context
   assert.doesNotMatch(s,new RegExp(['\\bCod','ex\\b'].join('')));
   assert.doesNotMatch(s,new RegExp(['\\brebu','ild\\b'].join(''),'i'));
  }
- assert.match(readme,/opens straight into the recovery room|Start guided recovery/i);
+ assert.match(readme,/Live demo/i);
  assert.match(guide,/opens straight into the recovery room/i);
- const highlightsEnd=readme.indexOf('## Manufacturing contexts');
- const sixty=readme.indexOf('## Run locally');
- const architecture=readme.indexOf('flowchart TD');
- assert.ok(highlightsEnd>0);assert.ok(sixty>highlightsEnd);assert.ok(architecture>sixty);
- assert.doesNotMatch(readme,/FIREWORKS_API_KEY|Muse Spark Open.*Fireworks|accounts\/fireworks/);
- assert.match(readme,/BASETEN_API_KEY/);
+ assert.ok(readme.indexOf("## What you'll see")<readme.indexOf('## Why it matters'));
+ assert.doesNotMatch(readme,/MUSE_API_KEY|MODEL_API_KEY|BASETEN_API_KEY|FIREWORKS_API_KEY|npm run|Run locally/);
+ assert.match(readme,/Run it yourself/);
  assert.match(readme,/Forgefront Factory Resilience/);
  assert.match(readme,/Forgefront Systems/);
  assert.doesNotMatch(readme,/ForgeFront Systems/);

@@ -5,7 +5,7 @@ The recovery room connects each product claim to working code and observable pro
 | Goal | Capability | Proof |
 | --- | --- | --- |
 | Guided command center | Full-screen factory shell, Back/history review, primary-button actions, computed opening stakes, evidence-gated live/offline guides, focus/scroll results, recaps and final recovery timeline | command-center tests; live desktop/mobile and keyboard proof |
-| Immediate judge entry | Hero, pitch, sixty-second start, three-minute path, Meta roles and four manufacturing contexts | README structure/copy tests and showcase integrity |
+| Immediate judge entry | Official logo, pitch, public entry, partner roles, factory visuals and five plain-English steps | README structure/copy tests and showcase integrity |
 | Source-grounded investigation | Immutable registry, exact structured source checks and read-only tools | Evidence, tools, investigation and adversarial tests |
 | Real recovery math | Stock conservation, compatible capacity and three calculated choices | Runtime oracle and engine tests |
 | Two Meta models | Same-snapshot Spark Open and Wonder guide | Current live desktop/mobile packets |
@@ -19,7 +19,7 @@ The recovery room connects each product claim to working code and observable pro
 | Public delivery | Render launcher, persistent disk, health probe, isolated visitor workspaces, encrypted spending limits and offline daily fallback; exact public file copy, newest run only, portable links | Public hosting/budget/launcher tests; judge/public-tree gates |
 
 | Recovery project board | Source-bound task drafts, owners, due windows, dependencies, human approval and shock blockers | Board/Britt tests and primary-guide evidence |
-| Britt 4.0 | Meta-only sovereign agent, read-only tools, encrypted scoped context and human-gated tasks | Workflow, memory, provider and export tests |
+| The Britt | Meta-only sovereign agent, read-only tools, encrypted scoped context and human-gated tasks | Workflow, memory, provider and export tests |
 | Meta design direction | Real screenshot reviews and component specification | Saved design iterations and mocked director tests |
 
 ## Owner completion path
@@ -53,3 +53,19 @@ Regression coverage includes band-spanning factory positions, detached live mach
 ## Run twenty-two owner contracts
 
 Large workspace tabs share the header width and identify the selected stage. Factory stations expose actual status without decorative empty chips. The inspector uses plain-English connection readiness. Proposed tasks occupy a dynamic grid with capacity above and complete task details beside it. Geometry covers text inside each scene card, all visible HTML text, empty content controls, header width and tab-label size. Verification links are in the current evidence index.
+
+## Build run twenty-four coverage
+
+| Capability | Executable coverage |
+| --- | --- |
+| Plant graph calculations | Generated 2, 40, 1,000 and 5,000-machine fixtures; independent serial arithmetic, shared capacity, capability compatibility, missing reference and cycle tests |
+| Large boards | 5,000-task validation with iterative graph checks and complete task retention |
+| Full-shop cascade | 45-machine fixture; five failure policies; reroute, expedite and rework calculations; screenshot geometry for failure, preview and accepted display states |
+| Grouped floor | Viewport-derived tiles, department drill-in and every generated entity retained across navigation |
+| Judge pitch | Presentation order and setup/jargon rejection in judge and exact-public-tree checks |
+| Prepared judge access | Three environment-supplied test sponsor pools and rejection of a wrong code; open demo default |
+| Wonder failure path | One retry, shared deadline, Baseten-only fallback, actual provider identity and explicit handoff copy |
+| Large-plant model coverage | Page/summary helpers and plant/snapshot tools cover every machine, operation, evidence and recovery assignment across offsets; investigation projects tool history with truncated:false and idDigest; 1,000-entity unit proof |
+
+The full-shop calculation/view path and the secured guided Meta/decision workflow have separate execution evidence. Integration gates for full-plant Meta orchestration, persisted cascade decisions and plant-derived Britt work remain in the submission checklist.
+

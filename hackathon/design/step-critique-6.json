@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 6,
-  "score": 9,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Strengthen the CELL-MILL-2 preview with denser silver cross-hatching plus a clear x marker and plain OFFLINE preview text inside the station, while retaining no route through it after application."
+      "change": "Strengthen the preview of CELL-MILL-2 stopping with silver cross-hatching, a cross marker and plain OFFLINE text inside the station, plus no route through it."
     },
     {
       "priority": "medium",
-      "change": "Raise the side-zone selector label and consequence copy to 16px/24 and give the machine selector a visible emerald focus ring."
+      "change": "Animate the 24h to 0h capacity change and route flow withdrawal over 240ms, fully static under reduced motion."
     },
     {
       "priority": "low",
-      "change": "Make the 24h to 0h preview metric larger and tabular, aligned with the affected station in the scene."
+      "change": "Enlarge the machine selector to at least 44px and pair it with a plain invalidation status beside the primary."
     }
   ]
 }

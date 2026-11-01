@@ -31,8 +31,8 @@ export function completionStatus(state){
 
 export function openingStakes(state){
  const due=state.snapshot.jobs.filter(j=>j.materialId===state.snapshot.incident.heldMaterialId&&Number.isFinite(j.dueHours)).map(j=>j.dueHours);
- const quantities=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').slice(0,2).map(e=>e.quantity.value);
- return {parts:state.analysis.impacted.impactedUnits,orders:state.analysis.impacted.impactedJobCount,dueHours:due.length?Math.min(...due):null,quantityGap:quantities.length===2?Math.abs(quantities[0]-quantities[1]):0};
+ const quantities=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').map(e=>e.quantity.value);
+ return {parts:state.analysis.impacted.impactedUnits,orders:state.analysis.impacted.impactedJobCount,dueHours:due.length?Math.min(...due):null,quantityGap:quantities.length?quantities.reduce((a,b)=>Math.max(a,b))-quantities.reduce((a,b)=>Math.min(a,b)):0};
 }
 export function adjacentPath(options,current,direction){
  const feasible=options.filter(o=>o.feasible);if(!feasible.length)return null;
@@ -65,7 +65,15 @@ export function claimPresentation(record,claim){
 export function investigationHighlights(run,analysis){return [{value:run.claims.accepted.length,label:'Verified facts'},{value:run.claims.rejected.length,label:'Rejected claims'},{value:analysis.recovery.feasibleCount,label:'Feasible paths'}];}
 
 export function investigationHandoff(run,selectedRoute){
+ if(run.calls.some(c=>c.fallbackUsed))return 'Muse Wonder was unavailable. Spark Open completed the tradeoff. Next: compare the calculated paths before a human decision.';
  const model=run.calls.at(-1)?.returnedModel??'';
  const completed=run.run.sample?'Sample':model==='muse-wonder-1.0'?'Muse Wonder':'Spark Open';
  return completed+' findings ready. '+(selectedRoute==='wonder'&&model!=='muse-wonder-1.0'&&!run.run.sample?'Next: ask Muse Wonder to compare recovery tradeoffs.':'Next: compare the calculated paths before a human decision.');
+}
+
+// Explicit range summary; every source remains in the evidence registry.
+export function comparisonRange(records){
+ if(records.length<=2)return records;
+ let low=records[0],high=records[0];for(const record of records){if(record.quantity.value<low.quantity.value)low=record;if(record.quantity.value>high.quantity.value)high=record;}
+ return [high,low];
 }

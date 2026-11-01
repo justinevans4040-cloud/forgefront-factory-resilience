@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 1,
-  "score": 8,
+  "score": 7,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Enlarge the left factory scene toward 70% of main by narrowing the right evidence zone about 8% and increasing station and job card height within the reserved scene zone."
+      "change": "Enlarge the factory scene to at least 70% of main and give callouts, stations and jobs separate reserved zones so the mismatch tracks stop feeling like stacked cards."
     },
     {
       "priority": "medium",
-      "change": "Raise right-zone body copy and Source detail labels to a clear 16px/24, keeping the 120, 80 and 100 metrics tabular and aligned to the scene tracks."
+      "change": "Add living emerald flow, depth and state glow to feasible routes while RECEIVING stays held with silver pattern, cross marker and HOLD text."
     },
     {
       "priority": "medium",
-      "change": "Add a visible 2px emerald focus ring with offset to the Inspect source evidence primary and to focusable RECEIVING, CELL-MILL-1 and CELL-MILL-2 nodes."
+      "change": "Raise dim side-zone body copy to a full 16px/24 and keep only Certificate 120 versus Receiving 80 as the dominant comparison."
     }
   ]
 }

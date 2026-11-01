@@ -1,10 +1,10 @@
-import {copyFileSync,mkdirSync,mkdtempSync,rmSync,existsSync} from 'node:fs';
+import {copyFileSync,mkdirSync,mkdtempSync,rmSync,existsSync,readFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {resolve,dirname,join,relative,isAbsolute} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {publicFiles} from './public-set.mjs';
-import {auditPublicFiles,checkPublicLinks} from './judge-check.mjs';
+import {auditPublicFiles,checkPublicLinks,checkJudgePitch} from './judge-check.mjs';
 import {redactEvidence} from './public-evidence.mjs';
 const source=fileURLToPath(new URL('../../',import.meta.url));
 export function checkPublicTree(){
@@ -18,6 +18,7 @@ export function checkPublicTree(){
   const tests=spawnSync(process.execPath,[npm,'test','--prefix','hackathon'],{cwd:temporary,env,encoding:'utf8',windowsHide:true,maxBuffer:32*1024*1024});
   process.stdout.write(redactEvidence((tests.stdout??'')+(tests.stderr??'')));
   const scan=auditPublicFiles({root:temporary});const links=checkPublicLinks({root:temporary});
+  for(const file of ['README.md','hackathon/README.md'])if(checkJudgePitch(readFileSync(join(temporary,file),'utf8')).length)throw Error('Judge pitch contract failed: '+file);
   if(tests.error||tests.status!==0||(scan.findings.length||links.length))throw Error('Public tree verification failed: '+JSON.stringify({testStatus:tests.status,findings:scan.findings,links}));
   return {files:files.length,tests:'pass',scan:'pass',links:'pass',keys:'absent',rootPackage:'absent',cleanup:'removed'};
  }finally{

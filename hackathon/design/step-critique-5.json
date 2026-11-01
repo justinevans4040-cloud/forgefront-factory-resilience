@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 5,
   "score": 8,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make the three proposed task cards keyboard-focusable in sequence with 2px emerald focus rings, and sync focus with the numbered 1, 2, 3 proposal pager in the side zone."
+      "change": "Preserve the clear UNTRACKED UNTIL APPROVAL state, but add depth and glow only to the ready task so proposal order reads at a glance."
     },
     {
       "priority": "medium",
-      "change": "Clarify progress bars on proposed cards by labelling them as schedule spans rather than completion, since the proposal remains untracked until approval."
+      "change": "Reduce duplicated proposal wording between scene and side zone, keeping one status sentence in the action bar centre."
     },
     {
       "priority": "medium",
-      "change": "Enlarge station cards at the top of the scene so CELL-MILL-1 40h and CELL-MILL-2 24h capacity read as the dominant accepted-plan evidence."
+      "change": "Make task cards focusable in sequence with visible focus ring and bidirectional highlighting against stations."
     }
   ]
 }

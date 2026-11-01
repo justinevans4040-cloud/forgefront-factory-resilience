@@ -21,7 +21,7 @@ Open `http://127.0.0.1:8791` — the demo opens straight into the recovery room.
 
 ## Public recovery room on Render
 
-The repository-root `render.yaml` selects the `submission` branch, uses `hackathon` as its root directory and starts `npm run serve:public` on Node 20. The service binds `0.0.0.0` using Render’s `PORT`. `GET /healthz` checks service health. A persistent disk at `/var/data/forgefront` supplies `HACKATHON_STATE_DIR`.
+The repository-root `render.yaml` selects the `submission` branch, uses `hackathon` as its root directory and starts `npm run serve:public` on Node 20. The service binds `0.0.0.0` using Render’s `PORT`. `GET /healthz` checks service health. A persistent disk mounted at `/var/data` supplies `HACKATHON_STATE_DIR=/var/data/forgefront`.
 
 Provision `MUSE_API_KEY`, `BASETEN_API_KEY`, `HACKATHON_LEDGER_KEY` and `HACKATHON_ADMIN_TOKEN` through Render’s secret settings. The blueprint declares each with `sync: false`. Keep a stable ledger key with persistent state. Public launch opens the recovery room directly and removes the standby provider credential before app creation.
 
@@ -101,3 +101,29 @@ Use `HACKATHON_EVIDENCE_RUN=run21` in the shell environment for fresh checks. Ru
 ## Current recovery controls
 
 Use the large header tabs for Incident, Investigate, Decide, Shock, Project board and Proof. The compact guided row reviews completed steps without changing decisions. Check model connection verifies the selected provider; the highlighted stage action performs the investigation. Inspect proposed work using its scene cards or numbered task controls, then approve deliberately. Machine capacity remains above the proposed work.
+
+## Full-shop floor and recording view
+
+In the recovery room, choose **Explore the full shop** beside the factory legend. Choose a failure, then **Trigger failure**. Department cards show affected operation counts and every machine. Select a department to inspect machines; activate a machine to highlight its downstream dependency chain. Choose a recovery path to recompute time and cost. **Recording view** hides the controls for a clean capture; **Show controls** restores them. Escape returns to the recovery room.
+
+The source fixture is `fixtures/job-shop.mjs`; calculations are in `public/plant-engine.mjs`. Generated plant fixtures and geometry tests exercise the larger navigation path. The guided recovery remains the camera path for authenticated Meta investigation, persisted human decisions and approved Britt work.
+
+## Prepare judge access for the final hosting switch
+
+During building and recording keep `HACKATHON_DEMO_MODE=1`. For the final owner-controlled switch, set `HACKATHON_DEMO_MODE=0` and provision `HACKATHON_OPERATORS_JSON` in the hosting environment as an array of objects with `id`, `role: "operator"` and a private `token`. Provision one entry for each sponsor pool. Tokens use 12–256 characters; do not place their values in source. The screen says **Judge access code**. Demo-entry closes in this mode. The access tests use test-only values and reject an incorrect code. Publish the final codes only when the owner activates that switch.
+
+## Current verification commands
+
+```sh
+npm test --prefix hackathon
+npm test
+npm run check:judge --prefix hackathon
+npm run check:public-tree --prefix hackathon
+npm run check:a11y --prefix hackathon
+node hackathon/scripts/plant-cap-audit.mjs
+node hackathon/scripts/primary-guide-smoke.mjs --geometry --mock-live --jpeg-evidence --lean-evidence
+node hackathon/scripts/primary-guide-smoke.mjs --geometry --mock-live --live-proposals --jpeg-evidence --lean-evidence
+```
+
+Set `HACKATHON_EVIDENCE_RUN=run24` before captures. Browser tools choose an ephemeral port and close owned processes. Wonder can retry once before Baseten serves the same Meta family; actual identity and fallback use remain visible in the evidence. A model identity mismatch fails closed.
+

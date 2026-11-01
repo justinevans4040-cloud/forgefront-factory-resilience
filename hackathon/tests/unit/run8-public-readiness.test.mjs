@@ -45,8 +45,8 @@ test('public docs point verification outcomes at in-tree evidence folders',()=>{
  assert.doesNotMatch(rootReadme,/handoff report|root build report/i);
  assert.doesNotMatch(hackReadme,/\bin the build report\b/i);
  assert.doesNotMatch(gates,/root build report/i);
- assert.match(rootReadme,/hackathon\/evidence\/README\.md/);
- assert.match(hackReadme,/evidence\/README\.md/);
+ assert.match(rootReadme,/hackathon\/RUN_GUIDE\.md/);
+ assert.match(hackReadme,/RUN_GUIDE\.md/);
  assert.match(gates,/evidence\/README\.md/);
 });
 test('tracked demo dependency closure needs no ignored or untracked files and detects omissions',async()=>{

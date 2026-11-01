@@ -37,6 +37,15 @@ export function checkReadmeCommands(text=read('README.md')){
   }
   return errors;
 }
+export function checkJudgePitch(text){
+ const errors=[];
+ const forbidden=/\b(?:npm\s|Run locally|MUSE_API_KEY|MODEL_API_KEY|BASETEN_API_KEY|provider checks?|GREEN\/RED|Sample offline walkthrough|consent phrase|tamper-evident ledger|encrypted evidence packet|independent checkpoint)\b/i;
+ if(forbidden.test(text))errors.push({kind:'pitch-setup-or-jargon'});
+ const order=['forgefront-systems-logo.png','**A factory disruption','**Live demo:**','## Powered by','factory-resilience-hero.jpg',"## What you'll see",'## Why it matters','## How Meta models are used'];
+ let last=-1;for(const item of order){const position=text.indexOf(item);if(position<0||position<=last)errors.push({kind:'pitch-order',item});last=position;}
+ if((text.match(/\[Run it yourself\]/g)??[]).length!==1)errors.push({kind:'pitch-run-guide'});
+ return errors;
+}
 // Follow local imports from the real entry. Include statically served assets and fixtures,
 // which are loaded by fs/URL rather than imports. No copy, clone, install or staging needed.
 export function checkTrackedDemo({tracked=new Set(trackedFiles())}={}){
@@ -52,6 +61,6 @@ export function checkTrackedDemo({tracked=new Set(trackedFiles())}={}){
   return {required:[...required].sort(),missing:[...required].filter(p=>!tracked.has(p)||!existsSync(resolve(root,p))).sort()};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
-  const result={public:auditPublicFiles(),readme:[...checkReadmeCommands(),...checkReadmeCommands(read('hackathon/README.md'))],links:checkPublicLinks(),demo:checkTrackedDemo()};
+  const result={public:auditPublicFiles(),readme:[...checkJudgePitch(read('README.md')),...checkJudgePitch(read('hackathon/README.md')),...checkReadmeCommands(),...checkReadmeCommands(read('hackathon/README.md'))],links:checkPublicLinks(),demo:checkTrackedDemo()};
   console.log(JSON.stringify(result,null,2));process.exitCode=result.public.findings.length||result.readme.length||result.links.length||result.demo.missing.length?1:0;
 }

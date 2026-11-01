@@ -33,7 +33,7 @@ POST /api/workflow/provider-check accepts exactly provider: wonder, baseten or f
 
 Workflow status includes routeHealth for the three live routes. Missing keys are RED, configured untested routes are UNCHECKED. Observed health is process-local; the UI expires checks after fifteen minutes and names recently GREEN alternatives without changing the selected route. A new process starts with fresh health observations.
 
-## Recovery project board and Britt 4.0
+## Recovery project board and The Britt
 
 Workflow status includes the recovery board and only the requesting session’s pending Britt proposal and scoped memory. POST /api/workflow/britt-draft accepts provider wonder, baseten or explicit sample. It requires a current human-accepted recovery decision. The selected Meta route receives the accepted engine option, exact source evidence, prior board and scoped context. Drafts have strict task fields, bounded deadlines, acyclic dependencies and exact evidence/owner validation. Inference is bounded to 45 seconds; failure is retained and a new draft requires deliberate operator action.
 

@@ -1,3 +1,4 @@
+import {resilientWonder} from '../models/resilient-wonder.mjs';
 import { encryptPacket } from './export-codec.mjs';
 import { createClientLimiter } from './client-limit.mjs';
 import { randomBytes, timingSafeEqual, createHash } from 'node:crypto';
@@ -65,7 +66,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
     if(!body||typeof body!=='object'||Array.isArray(body))throw fail(400,'JSON object required');
     if(path.startsWith('/api/workflow/')) {
       const fieldsByRoute=Object.create(null);
-      Object.assign(fieldsByRoute,{status:[],'britt-draft':['provider'],'britt-decide':['proposalId','action'],'task-move':['taskId','status','idempotencyKey'],review:['runId','optionId'],confirm:['nonce','typed'],revoke:[],shock:['cellId'],reset:[],verify:[],export:['acknowledgePlaintext'],'encrypted-export':['passphrase'],checkpoint:[],report:['acknowledgePlaintext'],investigate:['provider'],'investigation-start':['provider'],'investigation-status':['jobId'],'provider-check':['provider']});
+      Object.assign(fieldsByRoute,{status:[],'britt-draft':['provider'],'britt-decide':['proposalId','action'],'task-move':['taskId','status','idempotencyKey'],review:['runId','optionId'],'plant-review':['lotId','failure','strategy'],confirm:['nonce','typed'],revoke:[],shock:['cellId'],reset:[],verify:[],export:['acknowledgePlaintext'],'encrypted-export':['passphrase'],checkpoint:[],report:['acknowledgePlaintext'],investigate:['provider'],'investigation-start':['provider'],'investigation-status':['jobId'],'provider-check':['provider']});
       const route=path.slice('/api/workflow/'.length);
       if(!Object.prototype.hasOwnProperty.call(fieldsByRoute,route))throw fail(404,'Unknown workflow route');
       const fields=fieldsByRoute[route];
@@ -79,6 +80,10 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       if(path==='/api/workflow/task-move')return workflow.moveTask(body.taskId,body.status,session.operator,body.idempotencyKey);
       if(path==='/api/workflow/britt-draft'&&!['sample','wonder','baseten'].includes(body.provider))throw fail(400,'Choose a primary Meta route');
       if(path==='/api/workflow/review')return workflow.review(body.runId,body.optionId,actor,session.operator);
+      if(path==='/api/workflow/plant-review'){
+        if(!['reroute','expedite','rework'].includes(body.strategy))throw fail(400,'Choose a calculated plant recovery path');
+        return workflow.reviewPlant({lotId:body.lotId,failure:body.failure,strategy:body.strategy},actor,session.operator);
+      }
       if(path==='/api/workflow/confirm')return workflow.confirm(body.nonce,body.typed,actor,session.operator);
       if(path==='/api/workflow/revoke')return workflow.revoke(session.operator);
       if(path==='/api/workflow/shock')return workflow.shock(body.cellId,session.operator);
@@ -122,8 +127,9 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
         ? createModelClient('wonder', { apiKey, fetchImpl })
         : createModelClient('spark-open', { apiKey, route: body.provider === 'baseten' ? SPARK_BASETEN_ROUTE : SPARK_FIREWORKS_ROUTE, fetchImpl });
       if(path==='/api/workflow/britt-draft')return workflow.draftTasks(client,actor,session.operator,body.provider==='wonder'&&env.BASETEN_API_KEY?.trim()?()=>createModelClient('spark-open',{apiKey:env.BASETEN_API_KEY.trim(),route:SPARK_BASETEN_ROUTE,fetchImpl}):null);
-      if(path==='/api/workflow/investigation-start')return {...workflow.startInvestigation(client,sessionToken,session.operator),...(publicBudget?{pollAfterMs:5000}:{})};
-      return workflow.investigate(client,session.operator);
+      const investigationClient=body.provider==='wonder'&&env.BASETEN_API_KEY?.trim()?resilientWonder(client,()=>createModelClient('spark-open',{apiKey:env.BASETEN_API_KEY.trim(),route:SPARK_BASETEN_ROUTE,fetchImpl}),{record:async entry=>workflow.recordModelCall({...entry,operatorId:session.operator.id,operatorRole:session.operator.role})}):client;
+      if(path==='/api/workflow/investigation-start')return {...workflow.startInvestigation(investigationClient,sessionToken,session.operator),...(publicBudget?{pollAfterMs:5000}:{})};
+      return workflow.investigate(investigationClient,session.operator);
     }
     if(path!=='/api/meta/respond')throw fail(404,'Unknown meta route');
     if (!['wonder', 'baseten', 'fireworks'].includes(body.provider)) throw fail(400, 'Select wonder, baseten or fireworks');

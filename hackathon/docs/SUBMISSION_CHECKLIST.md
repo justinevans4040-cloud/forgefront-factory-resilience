@@ -29,3 +29,13 @@ Current visual reviews and retained reference are recorded in the current eviden
 - [ ] Review current run-nineteen screenshot inputs, original Wonder scores, request-budget proof and complete task-card regression before accepting the visual freeze.
 
 - [ ] Review fresh run-twenty-two opening, task and Shock screenshots at both desktop sizes, the complete geometry index and genuine Wonder iterations starting at 79. The latest review does not meet every-step nine; visual freeze remains open.
+
+## Build run twenty-four gates
+
+- [ ] Integrate plant graph scenarios with the complete authenticated investigation, human-decision, encrypted history and Britt task workflow at every generated plant size.
+- [x] Summarize or chunk complete large-plant model context with explicit coverage and source lookup; verify live grounded handoffs on that path.
+- [ ] Complete the whole-product audit of scenario assumptions, count ceilings, route calculation and viewport grouping beyond the entity-slice regression scan.
+- [ ] Review the new full-shop scene, every source-detail open state and every generated-plant viewport capture against the owner requirements.
+- [ ] Reach nine on every required design and visual-delight dimension with fresh real Muse Wonder reviews, including the cascade and README.
+- [ ] Confirm the public HTTPS demo and health endpoint. Keep the open demo during building and recording; activate judge access only at the owner’s final switch.
+

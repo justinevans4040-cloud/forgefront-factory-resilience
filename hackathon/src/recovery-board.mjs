@@ -1,14 +1,18 @@
+import { coverPlantDraftContext } from './agent/prompt-coverage.mjs';
+
 const fail=message=>{throw Object.assign(Error(message),{status:409});};
 export const COLUMNS=Object.freeze(['To do','In progress','Blocked','Done']);
 export function sampleDraft(c){return {summary:'Verify material, coordinate capacity and confirm the accepted recovery.',tasks:[{id:'t1',title:'Verify accepted source records',owner:c.owner,dueHours:c.shockHours+c.option.finishHours/4,dependsOn:[],evidenceIds:c.option.evidenceIds},{id:'t2',title:'Coordinate the accepted capacity plan',owner:c.owner,dueHours:c.shockHours+c.option.finishHours/2,dependsOn:['t1'],evidenceIds:c.option.evidenceIds},{id:'t3',title:'Confirm recovery completion with the operator',owner:c.owner,dueHours:c.shockHours+c.option.finishHours,dependsOn:['t2'],evidenceIds:c.option.evidenceIds}]};}
 export function validateDraft(d,c){
- if(!d||Object.keys(d).sort().join(',')!=='summary,tasks'||typeof d.summary!=='string'||!d.summary.trim()||d.summary.length>800||!Array.isArray(d.tasks)||d.tasks.length<1||d.tasks.length>12)fail('INVALID_TASK_DRAFT');
+ if(!d||Object.keys(d).sort().join(',')!=='summary,tasks'||typeof d.summary!=='string'||!d.summary.trim()||d.summary.length>800||!Array.isArray(d.tasks)||d.tasks.length<1)fail('INVALID_TASK_DRAFT');
  const ids=new Set();
  for(const t of d.tasks){
-  if(!t||Object.keys(t).sort().join(',')!=='dependsOn,dueHours,evidenceIds,id,owner,title'||typeof t.id!=='string'||!/^t[1-9][0-9]?$/.test(t.id)||ids.has(t.id)||typeof t.title!=='string'||!t.title.trim()||t.title.length>160||t.owner!==c.owner||!Number.isFinite(t.dueHours)||t.dueHours<c.shockHours||t.dueHours>c.shockHours+c.option.finishHours||!Array.isArray(t.dependsOn)||new Set(t.dependsOn).size!==t.dependsOn.length||!Array.isArray(t.evidenceIds)||!t.evidenceIds.length||t.evidenceIds.some(id=>!c.option.evidenceIds.includes(id)))fail('INVALID_TASK_FIELDS');ids.add(t.id);
+  if(!t||Object.keys(t).sort().join(',')!=='dependsOn,dueHours,evidenceIds,id,owner,title'||typeof t.id!=='string'||!/^t[1-9][0-9]*$/.test(t.id)||ids.has(t.id)||typeof t.title!=='string'||!t.title.trim()||t.title.length>160||t.owner!==c.owner||!Number.isFinite(t.dueHours)||t.dueHours<c.shockHours||t.dueHours>c.shockHours+c.option.finishHours||!Array.isArray(t.dependsOn)||new Set(t.dependsOn).size!==t.dependsOn.length||!Array.isArray(t.evidenceIds)||!t.evidenceIds.length||t.evidenceIds.some(id=>!c.option.evidenceIds.includes(id)))fail('INVALID_TASK_FIELDS');ids.add(t.id);
  }
- const visit=(id,path=[])=>{if(path.includes(id))fail('DEPENDENCY_CYCLE');const t=d.tasks.find(t=>t.id===id);if(!t)fail('UNKNOWN_DEPENDENCY');for(const dep of t.dependsOn){visit(dep,[...path,id]);if(d.tasks.find(t=>t.id===dep).dueHours>t.dueHours)fail('DEPENDENCY_DEADLINE');}};
- d.tasks.forEach(t=>visit(t.id));return {snapshotDigest:c.snapshotDigest,optionId:c.option.optionId,summary:d.summary,tasks:d.tasks.map(t=>({...structuredClone(t),status:'To do'}))};
+ const byId=new Map(d.tasks.map(t=>[t.id,t])),degree=new Map(),children=new Map();
+ for(const t of d.tasks){degree.set(t.id,t.dependsOn.length);for(const dep of t.dependsOn){const prior=byId.get(dep);if(!prior)fail('UNKNOWN_DEPENDENCY');if(prior.dueHours>t.dueHours)fail('DEPENDENCY_DEADLINE');if(!children.has(dep))children.set(dep,[]);children.get(dep).push(t.id);}}
+ const ready=d.tasks.filter(t=>!t.dependsOn.length).map(t=>t.id);for(let i=0;i<ready.length;i++)for(const id of children.get(ready[i])??[]){degree.set(id,degree.get(id)-1);if(!degree.get(id))ready.push(id);}if(ready.length!==d.tasks.length)fail('DEPENDENCY_CYCLE');
+ return {snapshotDigest:c.snapshotDigest,optionId:c.option.optionId,summary:d.summary,tasks:d.tasks.map(t=>({...structuredClone(t),status:'To do'}))};
 }
 export function moveTask(board,id,status){
  if(!COLUMNS.includes(status))fail('INVALID_TASK_STATUS');const b=structuredClone(board),t=b.tasks.find(t=>t.id===id);if(!t)fail('UNKNOWN_TASK');
@@ -21,7 +25,8 @@ export function approveProposal(p,action,scope,snapshotDigest){if(p?.status!=='p
 export async function draftBoard(client,context,timeoutMs=45000){
  if(!client.sample&&!['meta-model-api','baseten'].includes(client.route?.provider))fail('PRIMARY_META_ROUTE_REQUIRED');
  if(client.sample)return {board:validateDraft(sampleDraft(context),context),sample:true,model:'Sample',provider:'sample'};
- const result=await client.complete({prompt:'You are Britt 4.0, Forgefront Systems sovereign agent. Draft recovery tasks for human approval. Return ONLY strict JSON with summary and tasks. Each task has ONLY id (t1 etc), title, owner (exactly context.owner), dueHours (hours relative to shock, between context.shockHours and context.shockHours + context.option.finishHours), dependsOn (task IDs, acyclic), evidenceIds (nonempty subset of context.option.evidenceIds). Use 3 to 6 tasks. Explain blockers and evidence in summary. Context: '+JSON.stringify(context),maxTokens:8192,timeoutMs});
+ const modelContext=coverPlantDraftContext(context);
+ const result=await client.complete({prompt:'You are The Britt, Forgefront Systems sovereign agent. Draft recovery tasks for human approval. Return ONLY strict JSON with summary and tasks. Each task has ONLY id (t1 etc), title, owner (exactly context.owner), dueHours (hours relative to shock, between context.shockHours and context.shockHours + context.option.finishHours), dependsOn (task IDs, acyclic), evidenceIds (nonempty subset of context.option.evidenceIds). Cover every required recovery operation and dependency; do not truncate the plant task graph. Large evidence collections are summarized or paged with truncated:false, totals and idDigest. Explain blockers and evidence in summary. Context: '+JSON.stringify(modelContext),maxTokens:8192,timeoutMs});
  if(result.sample||result.modelId!==client.route.model)fail('MODEL_IDENTITY_MISMATCH');let draft;try{draft=JSON.parse(result.text);}catch{fail('INVALID_TASK_JSON');}return {board:validateDraft(draft,context),sample:false,model:result.modelId,provider:client.route.provider};
 }
 

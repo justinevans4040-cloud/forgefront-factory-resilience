@@ -25,9 +25,10 @@ export function tileTitle(value,width=23,maxLines=3){
 
 // Task cards reserve distinct bands for identity, title, due window and human status.
 export function proposalLayout(count,height){
- if(!Number.isSafeInteger(count)||count<1||count>12)throw Error('Invalid proposal count');
+ if(!Number.isSafeInteger(count)||count<1)throw Error('Invalid proposal count');
+ const gap=14,top=220,maxColumns=Math.max(1,Math.floor((800+gap)/(240+gap))),maxRows=Math.max(1,Math.floor((height-24-top+gap)/(148+gap))),pageSize=maxColumns*maxRows;
  return Array.from({length:count},(_,i)=>{
-  const page=Math.floor(i/6),local=i%6,pageCount=Math.min(6,count-page*6),columns=Math.min(3,pageCount),rows=Math.ceil(pageCount/columns),gap=14,top=220;
+  const page=Math.floor(i/pageSize),local=i%pageSize,pageCount=Math.min(pageSize,count-page*pageSize),columns=Math.min(maxColumns,pageCount),rows=Math.ceil(pageCount/columns);
   const width=(800-gap*(columns-1))/columns,cardHeight=(height-24-top-gap*(rows-1))/rows,titleLines=Math.max(1,Math.min(3,Math.floor((cardHeight-120)/32)));
   return {page,x:24+(local%columns)*(width+gap),y:top+Math.floor(local/columns)*(cardHeight+gap),width,height:cardHeight,titleLines,titleBottom:62+(titleLines-1)*32+8,dueY:cardHeight-52,statusY:cardHeight-20};
  });

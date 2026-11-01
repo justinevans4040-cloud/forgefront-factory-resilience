@@ -44,7 +44,7 @@ Concrete controls protect the recovery decision from open room through evidence 
 | --- | --- | --- |
 | Demo opens without sign-in | `HACKATHON_DEMO_MODE=1` enables `POST /api/meta/demo-entry`; rehearse sets the flag and never prints a token; the browser auto-enters the recovery room | `tests/integration/run12-demo-entry.test.mjs`; browser smoke recovery-open check |
 | Persistent mode keeps authentication | `npm start` leaves demo mode unset; `POST /api/meta/session` still requires Bearer admin or named operator tokens | Session/security suites; demo-entry returns 404 without the flag |
-| Judge pitch stays sharp | Root and hackathon README, RUN_GUIDE and demo runbook open without token/login instructions, hedges or internal field names; manufacturing contexts sit after highlights; Fireworks stays out of the landing pitch | `tests/unit/run12-copy.test.mjs`; `tests/unit/run10-judge.test.mjs` |
+| Judge pitch stays sharp | Root and hackathon README, RUN_GUIDE and demo runbook open without token/login instructions, hedges or internal field names; README setup stays in the run guide; partner credits follow the model and serving order | `tests/unit/run12-copy.test.mjs`; `tests/unit/run10-judge.test.mjs` |
 | Fireworks optional backup | Provider pre-flight still reports Fireworks GREEN/RED; overall readiness follows Wonder and Baseten only | `tests/unit/run12-copy.test.mjs`; `scripts/provider-check.mjs` |
 | Branding | Visible product and company spelling is Forgefront / Forgefront Systems | `tests/unit/run12-copy.test.mjs`; `public/index.html` |
 
@@ -150,3 +150,15 @@ Design review refuses an existing iteration before any provider request or evide
 ## Run twenty-two verification scope
 
 The layout changes preserve session, CSRF, identity, consent, provider allowlists, encrypted memory and ledger enforcement. Visible connection wording describes the same nonce and model-identity checks in plain English. Header and task navigation change the inspected workspace; human acceptance and task approval retain their existing server gates. The geometry harness checks every rendered text fragment for clipping and validates header coverage without changing security controls.
+
+## Build run twenty-four controls
+
+| Control | Implementation | Verification |
+| --- | --- | --- |
+| Judge-mode switch | Hosting environment controls open entry versus named judge access; default remains open; credentials stay in environment settings | run24-judges integration test |
+| Full-shop source access | Factory fixture requires authenticated session, CSRF and Origin/Host checks; API request budget still applies | run24-plant integration test |
+| Model resilience | One primary retry followed only by the allowlisted Baseten Meta route within the remaining request deadline; exact model identity required; rejected attempts recorded | run24-model-resilience tests |
+| Large task validation | Iterative dependency cycle/deadline validation without task count or two-digit identifier ceilings; schema, owner and source constraints retained | run24-uncapped-board test |
+| Source detail isolation | Modal detail preserves underlying card layout; native modal focus handling and Escape close | Every source-detail open state in current geometry evidence |
+| Reduced motion | Animation stops while static SVG transforms retain machine identity and placement | run24-reduced-motion and machine glyph geometry |
+

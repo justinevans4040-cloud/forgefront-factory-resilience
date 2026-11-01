@@ -1,68 +1,56 @@
+<p align="center"><img src="../assets/brand/forgefront-systems-logo.png" width="360" alt="Forgefront Systems" /></p>
+
+# Forgefront Factory Resilience
+
+**A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call.**
+
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
-# Forgefront Factory Resilience — the Meta Hackathon build
+## Powered by
 
-**Turn a disputed material certificate into an evidence-backed recovery decision.** Production planners, quality teams and shop operators inspect source records, compare feasible recovery paths and record a deliberate human decision. Muse Spark Open investigates with read-only tools; Muse Wonder explains recovery tradeoffs. A second machine outage tests whether the decision still holds.
+| Partner | Their role |
+| --- | --- |
+| ![Meta](public/partner-meta.svg) | **The models.** Muse Spark Open investigates; Muse Wonder weighs recovery choices and plans the work. |
+| ![Baseten](public/partner-baseten.svg) | **Serves Spark Open.** Connects the investigator to the factory evidence. |
+| ![Fireworks AI](public/partner-fireworks.svg) | **Standby inference route.** Hosts Meta’s Spark Open. |
 
-## Run locally
+<p align="center"><img src="../assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront factory recovery command center in black, emerald and silver" /></p>
 
-Use Node 20 or later, npm and a current browser. No install, dependencies or build step. From the repository root:
+<p align="center"><img src="../assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade with all 45 machines grouped across seven departments" /></p>
 
-```sh
-npm run demo --prefix hackathon
-```
+## Meet The Britt
 
-The launch command prints the recovery-room link. Open it to enter the recovery room. Choose **Start guided recovery**. The command binds to loopback and starts fresh disposable private state. Stop with **Ctrl+C**.
+**The Britt** is Forgefront’s sovereign recovery agent. After you accept a calculated path, The Britt turns that decision into a live project board the floor can run.
 
-Privately provision `MUSE_API_KEY` (or `MODEL_API_KEY`) and `BASETEN_API_KEY` in the parent environment for live calls. No key is entered in the browser. Without keys, deliberately choose **Sample · offline walkthrough; no live AI** to walk the full local workflow.
+1. Reads the sealed human decision and the source evidence behind it.
+2. Drafts owners, deadlines and dependencies for every recovery move.
+3. Waits for your approve or decline—never acts alone.
+4. Replans the board when a second disruption invalidates the old plan.
 
-## 3-minute demo path
+You stay in command. The Britt keeps the work moving.
 
-Use the full-screen command center and **highlighted primary action** to open and focus the current step. Each result is highlighted and explained; the Proof stage summarizes the computed recovery. The guide advances on actual application state.
+## What you'll see
 
-1. Inspect the source certificate discrepancy and receiving records.
-2. Run Spark Open on Baseten, then Wonder on the same snapshot. Inspect source-validated facts, read-only traces and model narrative.
-3. Compare **Wait for replenishment**, **Use verified substitute** and **Split available capacity**. Review a feasible option and type its exact acceptance phrase.
-4. Take **CELL-MILL-2** offline. Observe invalidation, investigate the changed snapshot and accept a revised feasible plan.
-5. Verify the hash-chained, tamper-evident ledger. Export an encrypted packet using a separate passphrase; retain its checkpoint independently.
+1. **Seal the recovery.** Accept a calculated path, then watch The Britt put owners, deadlines and dependencies on a live board.
+2. **Prove it.** Verify the sealed record and keep the decision with the evidence that justified it.
+3. **Find the fault.** Certificate says 120. Receiving counted 80. Follow every machine the hold touches.
+4. **Investigate with Meta AI.** Spark Open reads the sources. Wonder weighs the choices on the same factory state.
+5. **Survive the next shock.** Take a machine offline. The old plan falls; you recover again.
 
-[Shot-by-shot demo](docs/DEMO_RUNBOOK.md) · [Latest evidence](evidence/README.md) · [Run guide](RUN_GUIDE.md).
+## Why it matters
 
-## Designed with Muse Wonder
-
-Muse Wonder directs the visual design of the Meta Hackathon build: real full-screen captures go to Meta for a component specification and scored step critiques. The [saved design reviews](design/design-direction.json) guide the black, emerald and brushed-silver command center. The factory map connects source quantities, affected orders, accepted allocations and sealed events to the live recovery state. Validated Spark findings pass into Wonder’s tradeoff analysis, and the accepted investigation passes into Britt’s task plan. The second shock repeats that evidence-to-decision sequence.
-
-**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Provider keys stay on the server; encrypted recovery state stays in private storage. Inference uses the selected Meta route.
+When a material hold hits, every hour of delay costs the floor. Forgefront turns that scramble into one recovery room: shared evidence, calculated choices and a human decision that becomes tracked work. Scales to full plants—not a two-machine demo.
 
 ## How Meta models are used
 
-Muse Spark Open on Baseten investigates through bounded read-only source and calculation tools. Muse Wonder on the Meta Model API explains recovery choices and counterfactuals through the tested JSON-envelope protocol. Deterministic code owns quantities, feasibility and hours; exact structured source claims are validated against the server-built registry. Details: [Meta model usage](docs/META_MODEL_USAGE.md).
+**Muse Spark Open**, served by Baseten, investigates the source records and checks recovery choices through read-only tools. **Muse Wonder** turns those findings into clear tradeoffs, then helps **The Britt**, Forgefront’s sovereign agent, draft the work for human approval. Factory calculations determine stock, hours and cost. The models explain; the human decides. A second disruption repeats the process with fresh evidence.
 
-Before filming, make one real nonce/identity request per primary provider:
+## Designed with Muse Wonder
 
-```sh
-npm run check:providers --prefix hackathon
-```
+Real screenshots drive Muse Wonder’s design critiques of the Meta Hackathon build. The [saved review](design/iteration-82.json) guides the black, emerald and brushed-silver recovery room.
 
-Each route reports GREEN or RED without showing keys. Wonder and Baseten gate readiness. The standard check sends requests only to the two primary routes. Missing keys, wrong identities, HTTP errors and deadlines remain RED; the command exits nonzero when a primary route fails. It starts no server and performs no automatic retry.
+Built by **Forgefront Systems**.
 
-## Reproduce checks
-
-```sh
-npm test --prefix hackathon
-npm run check:judge --prefix hackathon
-npm run check:public-tree --prefix hackathon
-npm run check:a11y --prefix hackathon
-npm run smoke:browser --prefix hackathon -- --live --guided
-npm run smoke:browser --prefix hackathon -- --live --guided --mobile
-```
-
-Browser checks need installed Chrome/Edge or `CHROME_PATH`. On Node 20 enable WebSocket with `NODE_OPTIONS=--experimental-websocket`. The offline accessibility command uses explicit Sample and real keyboard events without provider access. Smoke tools close their own server and browser. Public-tree verification copies the exact public set without credentials or the root package and runs tests plus link checks.
-
-## Security
-
-Session/CSRF and Host/Origin guards, durable encrypted quotas and consent, separated roles, single-use acceptance, encrypted verified forward ledger recovery and passphrase-encrypted export remain enforced. [Security controls](SECURITY_CONTROLS.md) maps each control to code and tests.
-
-Built by **Forgefront Systems**. [Contributions](HACKATHON_CONTRIBUTIONS.md) · [Plan coverage](docs/PLAN_COVERAGE.md) · [Release gates](docs/RELEASE_GATES.md) · [Submission checklist](docs/SUBMISSION_CHECKLIST.md) · [License](../LICENSE)
+[Run it yourself](RUN_GUIDE.md)

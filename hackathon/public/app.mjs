@@ -1,6 +1,7 @@
+import {mountCascade} from './cascade.mjs';
 import {stageScene,wrapSceneTitle,tileTitle,proposalLayout} from './stage-scene.mjs';
 import {capacityStatus,stageFor,focusResult,storyView,shockPreview,proofChecklist,consentProgress,proposalBanner,proofActionGate} from './command-center.mjs';
-import {factoryPositions,certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel,claimPresentation,investigationHighlights,investigationHandoff} from './factory-layout.mjs';
+import {factoryPositions,comparisonRange,certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel,claimPresentation,investigationHighlights,investigationHandoff} from './factory-layout.mjs';
 import {routeHealthView} from './route-health.mjs';
 import {investigationStatus} from './investigation-status.mjs';
 import {passphraseFeedback,passphraseInputStatus} from './passphrase.mjs';
@@ -53,7 +54,7 @@ function render(){
  $('shock-consequence').textContent=state.decision.status==='accepted'?'Will invalidate acceptance for '+titles[state.decision.optionId]:state.decision.status==='invalidated'?'Prior acceptance invalidated · fresh investigation required':'';
  const previous=guideHistory[0]?.state;const changed=previous&&previous.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$('constraint-change').hidden=!changed;$('constraint-change').textContent=changed?state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+': '+(previous.snapshot.cells.find(p=>p.cellId===c.cellId)?.availableHours??c.availableHours)+'h available → OFFLINE').join(' · ')+' · '+previous.analysis.recovery.feasibleCount+' → '+state.analysis.recovery.feasibleCount+' feasible paths':'';
  const impact=state.analysis.impacted;$('metrics').replaceChildren(...[[impact.impactedJobCount,'IMPACTED JOBS'],[impact.impactedUnits,'HELD-DEMAND UNITS'],[state.analysis.recovery.feasibleCount,'FEASIBLE PATHS']].map(([n,label])=>{const div=text('div','','metric');div.append(text('strong',n),text('span',label));return div;}));
- $('evidence').replaceChildren(...state.evidence.map(e=>{const div=text('div','','source evidence-card');div.id=e.evidenceId;div.dataset.evidence=e.evidenceId;div.tabIndex=0;div.addEventListener('focus',()=>highlightEvidence(e.evidenceId));div.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));const plain=evidencePlainEnglish(e);const headline=text('p','','evidence-headline');if(e.quantity)headline.append(document.createTextNode(plain.replace(String(e.quantity.value),'').trim()+' '),text('strong',String(e.quantity.value),'evidence-figure'));else headline.textContent=plain;const detail=text('details','','evidence-raw');detail.append(text('summary','Source detail'),text('code',evidenceDetailLabel(e)),text('small',e.excerpt+' · Snapshot '+e.snapshotDigest.slice(0,10)));div.append(headline,detail);return div;}));
+ $('evidence').replaceChildren(...state.evidence.map(e=>{const div=text('div','','source evidence-card');div.id=e.evidenceId;div.dataset.evidence=e.evidenceId;div.tabIndex=0;div.addEventListener('focus',()=>highlightEvidence(e.evidenceId));div.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));const plain=evidencePlainEnglish(e);const headline=text('p','','evidence-headline');if(e.quantity)headline.append(document.createTextNode(plain.replace(String(e.quantity.value),'').trim()+' '),text('strong',String(e.quantity.value),'evidence-figure'));else headline.textContent=plain;const detail=text('details','','evidence-raw');const sourceSummary=text('summary','Source detail');sourceSummary.addEventListener('click',event=>{event.preventDefault();openSourceDetail(e);});detail.append(sourceSummary,text('code',evidenceDetailLabel(e)),text('small',e.excerpt+' · Snapshot '+e.snapshotDigest.slice(0,10)));div.append(headline,detail);return div;}));
  renderCapacity();
  const online=state.snapshot.cells.filter(c=>c.online);$('shock-cell').replaceChildren(...online.map(c=>{const o=text('option',c.cellId);o.value=c.cellId;return o;}));if(online.length)$('shock-cell').value=online.at(-1).cellId;
  const current=[...state.runs].reverse().find(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest);run=current??null;
@@ -102,7 +103,7 @@ $('investigate').addEventListener('click',()=>busy($('investigate'),async()=>{
  try{
   notice('Selected route: '+route+'. Investigating with read-only tools. Live runs are bounded to six turns and one minute.');
   const job=await api('investigation-start',{provider:$('provider').value});let result;
-  do{if(Date.now()-start>65000)throw Error('Status wait exceeded. The server job remains bounded; refresh status before a deliberate new attempt.');await new Promise(r=>setTimeout(r,publicPollDelay(job)));result=await api('investigation-status',{jobId:job.jobId});observedCall=result.call??null;observedAt=Date.now();update();$('britt-activity').textContent='BRITT 4.0 · '+(observedCall?'Call '+observedCall.number+' · '+observedCall.status+' · '+observedCall.sourcesRead+' source records read':'Planning evidence investigation');}while(result.status==='running');
+  do{if(Date.now()-start>65000)throw Error('Status wait exceeded. The server job remains bounded; refresh status before a deliberate new attempt.');await new Promise(r=>setTimeout(r,publicPollDelay(job)));result=await api('investigation-status',{jobId:job.jobId});observedCall=result.call??null;observedAt=Date.now();update();$('britt-activity').textContent='THE BRITT · '+(observedCall?'Call '+observedCall.number+' · '+observedCall.status+' · '+observedCall.sourcesRead+' source records read':'Planning evidence investigation');}while(result.status==='running');
   if(result.status==='failed'){await refresh();throw Error((result.failure||'INVESTIGATION_FAILED_OR_STALE')+'. No replacement answer was generated. Select the route and press Investigate to retry explicitly.');}
   await refresh();
   $('investigation-status').textContent=investigationStatus({phase:run?.proposalValid?'complete':'failed',route});
@@ -135,7 +136,7 @@ function renderGuide(){
  if(['accept','reaccept'].includes(step.id)&&envelope){const progress=consentProgress($('confirm-phrase').textContent,$('typed').value);$('guide-next').disabled=!progress.enabled;$('confirm').disabled=!progress.enabled;$('consent-feedback').textContent=progress.label+(progress.enabled?'':' · Accept stays disabled until the exact phrase matches.');}
  if(step.id==='export'&&guide.verified===state.ledger.head&&guide.exported!==state.ledger.head)$('guide-next').disabled=!passphraseFeedback($('export-passphrase').value).ok;
  $('decision-status').textContent=step.id==='complete'?completionStatus(state):step.id==='shock'?'INVALIDATING ACTION · will invalidate '+(titles[state.decision.optionId]??'accepted plan'):step.id==='board-revised'?'Approved revised plan · replacement tasks await approval':step.id==='board'?(state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':'Draft recovery tasks'):step.id==='export'?((state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked'):step.id==='reaccept'?'PRIOR ACCEPTANCE INVALIDATED · fresh review required':'';
- $('britt-activity').replaceChildren(text('strong','BRITT 4.0'),text('span',state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':state.decision.status==='invalidated'?'Second shock · evidence and plan review required':state.decision.status==='accepted'?('Human recovery accepted · '+(state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done'):'Evidence → calculations → human decision'));
+ $('britt-activity').replaceChildren(text('strong','THE BRITT'),text('span',state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':state.decision.status==='invalidated'?'Second shock · evidence and plan review required':state.decision.status==='accepted'?('Human recovery accepted · '+(state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done'):'Evidence → calculations → human decision'));
  $('export-passphrase').disabled=guide.verified!==state.ledger.head;
  $('guide-time').textContent=`${Math.floor((Date.now()-guide.started)/1000)}s elapsed · guided recovery`;
 }
@@ -213,7 +214,7 @@ function renderFactory(){
  const stakes=openingStakes(state);$('opening-stakes').replaceChildren(...[[stakes.parts,'PARTS AT RISK'],[stakes.orders,'ORDERS AFFECTED'],[stakes.dueHours===null?'—':stakes.dueHours+'h','FIRST DUE WINDOW']].map(([value,label])=>{const metric=text('div','','opening-stat');metric.append(text('strong',String(value)),text('span',label));return metric;}));
  const selected=state.analysis.recovery.options.find(o=>o.optionId===(envelope?.optionId??state.decision.optionId));const allocations=selected?.detail?.allocations??selected?.detail?.draws?.flatMap(d=>d.cells)??[];const activeCells=new Set(allocations.map(a=>a.cellId));
  const previewOffline=document.body.dataset.activeStage==='shock'?shockPreview(state,document.body.dataset.activeStage,$('shock-cell')?.value):'';
- if(!guide)$('britt-activity').replaceChildren(text('strong','BRITT 4.0'),text('span',state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':state.decision.status==='invalidated'?'Second shock · evidence and plan review required':accepted?('Human recovery accepted · '+(state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done'):'Evidence → calculations → human decision'));
+ if(!guide)$('britt-activity').replaceChildren(text('strong','THE BRITT'),text('span',state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':state.decision.status==='invalidated'?'Second shock · evidence and plan review required':accepted?('Human recovery accepted · '+(state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done'):'Evidence → calculations → human decision'));
  $('factory-status').textContent=accepted?'RECOVERY ACCEPTED · '+titles[state.decision.optionId]:'MATERIAL HOLD · '+(state.decision.status==='invalidated'?'SECOND SHOCK':'CERTIFICATE DISCREPANCY');
  const previousSnapshot=guideHistory[0]?.state;const changedSnapshot=previousSnapshot&&previousSnapshot.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$('factory-delta').hidden=!changedSnapshot;if(changedSnapshot){const delta=state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+' OFFLINE').join(' · ');$('factory-delta').textContent=delta+' · '+previousSnapshot.analysis.recovery.feasibleCount+' → '+state.analysis.recovery.feasibleCount+' feasible paths';}if($('constraint-change'))$('constraint-change').hidden=changedSnapshot||!$('constraint-change').textContent;
 
@@ -268,7 +269,7 @@ function renderFactory(){
    });
    const taskSlots=proposalLayout(scene.tasks.length,height);
    scene.tasks.forEach((task,i)=>{
-    const slot=taskSlots[i];if(slot.page!==Math.floor(inspectedTask/6))return;const {x,y}=slot,tileW=slot.width,tileH=slot.height;
+    const slot=taskSlots[i];if(slot.page!==taskSlots[inspectedTask]?.page)return;const {x,y}=slot,tileW=slot.width,tileH=slot.height;
     const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'},null,hero);
     const select=()=>document.querySelector('[data-proposal-index="'+i+'"]')?.click();tile.addEventListener('click',select);tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
     box(x,y,tileW,tileH,tile,i===inspectedTask?'#A8F04A':'#71877a',i===inspectedTask?'#1b3525':'#101b14');
@@ -317,10 +318,10 @@ function renderFactory(){
    // Leader ends in the bay band above stations — never through machine faces.
    if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 104 V ${bayY+16}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
   }else{
-   const qty=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').slice(0,2),comparison=certificateComparison(qty,420);
+   const allQuantities=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity'),qty=comparisonRange(allQuantities),comparison=certificateComparison(qty,420);
    qty.forEach((e,i)=>{const g=add('g',{'data-evidence':e.evidenceId,'data-scene-band':'compare','aria-label':evidencePlainEnglish(e)},null,callouts),y=8+i*48;
     activate(g,()=>{$('evidence').parentElement.open=true;focusPanel('evidence');$(e.evidenceId)?.focus();});g.addEventListener('focus',()=>highlightEvidence(e.evidenceId));g.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));
-    label(24,y+30,i?'Receiving':'Certificate',24,g);label(210,y+30,String(e.quantity.value),34,g,{'text-anchor':'end'});
+    label(24,y+30,allQuantities.length>2?(i?'Lowest source':'Highest source'):(i?'Receiving':'Certificate'),24,g);label(210,y+30,String(e.quantity.value),34,g,{'text-anchor':'end'});
     box(230,y,420,38,g);add('rect',{x:230,y,width:comparison.widths[i],height:38,rx:5,fill:i?'#A8F04A':'#c5ccd4'},null,g);
    });
    label(680,36,'DOES NOT',26,callouts,{class:'mismatch-label'});label(680,72,'MATCH',26,callouts,{class:'mismatch-label'});
@@ -422,3 +423,9 @@ $('options').addEventListener('keydown',event=>{
 
 document.querySelector('.route-preflight').addEventListener('toggle',()=>{if(document.querySelector('.route-preflight').open)$('model-output').open=false;});
 $('model-output').addEventListener('toggle',()=>{if($('model-output').open)document.querySelector('.route-preflight').open=false;});
+
+const plantLauncher=text('a','Explore the full shop ↗');plantLauncher.href='#full-shop';plantLauncher.id='plant-launcher';document.querySelector('.factory-legend').append(document.createTextNode(' · '),plantLauncher);
+mountCascade({launcher:plantLauncher,loadPlant:async()=>{const response=await fetch('/api/plant',{headers:auth});if(!response.ok)throw Error('Session required');return response.json();},workflow:{api,afterAccept:async()=>{await refresh();showStage('board');await draftBritt();}}});
+
+const sourceDialog=text('dialog','','source-dialog');sourceDialog.id='source-dialog';sourceDialog.setAttribute('aria-label','Source detail');document.body.append(sourceDialog);
+function openSourceDetail(record){const close=text('button','Close source detail','secondary');close.addEventListener('click',()=>sourceDialog.close());sourceDialog.replaceChildren(text('h2',evidencePlainEnglish(record)),text('p',record.excerpt),text('code',evidenceDetailLabel(record)),close);sourceDialog.showModal();}

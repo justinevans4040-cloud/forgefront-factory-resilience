@@ -11,7 +11,7 @@ Open the Live demo link in the README and start guided recovery. Check the prima
 | Investigate | 0:19–0:49 | Run Spark Open on Baseten | Meta reads the source records through bounded tools. The engine computes recovery paths. |
 | Compare | 0:49–1:09 | Run Wonder on the same snapshot | Wonder explains the tradeoff. Exact source claims and returned tools remain inspectable. |
 | Decide | 1:09–1:29 | Review recovery option prepares a feasible review; type displayed APPROVE phrase; Accept recovery decision | The engine calculates. I make the decision. |
-| Britt and board | 1:29–1:49 | Review Britt’s task cards; Approve Britt’s proposal; Project board | Britt 4.0 turns my accepted path into source-linked work, with owners, deadlines and dependencies. |
+| Britt and board | 1:29–1:49 | Review Britt’s task cards; Approve Britt’s proposal; Project board | The Britt turns my accepted path into source-linked work, with owners, deadlines and dependencies. |
 | Second shock | 1:49–2:19 | Apply second shock; Spark investigates changed capacity; Wonder compares revised tradeoffs; review and type revised acceptance | Capacity changes. The old acceptance invalidates and unfinished tasks block. Fresh evidence earns a fresh decision. |
 | Revised work | 2:19–2:34 | Approve Britt’s revised proposal | Britt replans the work. My approval controls the board. |
 | Proof | 2:34–2:55 | Verify ledger; enter separate passphrase; Export encrypted evidence packet; Export independent checkpoint | The hash-chained, tamper-evident ledger seals the recovery. The final summary uses the accepted plan and tracked work. |
@@ -34,3 +34,8 @@ Current stage task tiles select the same complete task as the inspector pager. S
 The current opening spreads machine and job nodes across the reserved stage width. Britt proposal shots also show current machine availability below the compact proposal overview. The complete selected task remains in the inspector. The camera sequence and 2:51 application budget above remain unchanged.
 
 The current header presents six large workspace tabs. During Britt shots, show the task grid with its live capacity band, then inspect a task and approve. Proof cards show event markers from the current ledger and seal as each real gate completes. The shot sequence remains 2:51 between the four-second intro and five-second outro.
+
+## Full-shop insert within the existing camera budget
+
+For the 0:04–0:19 incident shot, **Explore the full shop** opens the floor. Choose **Wrong certificate**, then **Trigger failure**; show the department cascade and computed counters. Use **Recording view** for the clean take. Return to the recovery room before the investigation shot. Keep the remaining guided sequence and its real human decisions unchanged. The insert replaces part of the incident shot; the application still occupies 2:51 between the four-second intro and five-second outro. Read displayed quantities and model identities from the recorded take.
+

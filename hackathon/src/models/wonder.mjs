@@ -48,6 +48,7 @@ export function createWonderClient(options = {}) {
           body: JSON.stringify({
             model: WONDER_ROUTE.model,
             store: false,
+            reasoning: {effort:'minimal'},
             max_output_tokens: Number.isSafeInteger(request.maxTokens) ? Math.max(1, Math.min(8192, request.maxTokens)) : 2048,
             input,
           }),

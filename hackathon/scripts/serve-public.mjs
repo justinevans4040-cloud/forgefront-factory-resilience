@@ -6,7 +6,7 @@ import {randomBytes} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 
 export function publicEnvironment(source=process.env){
- const env={...source,HACKATHON_DEMO_MODE:'1',HACKATHON_OPERATORS_JSON:'',HACKATHON_ADMIN_TOKEN:source.HACKATHON_ADMIN_TOKEN?.trim()||randomBytes(24).toString('hex'),HACKATHON_LEDGER_KEY:source.HACKATHON_LEDGER_KEY?.trim()||randomBytes(32).toString('hex'),HACKATHON_STATE_DIR:source.HACKATHON_STATE_DIR?.trim()||mkdtempSync(join(tmpdir(),'ffr-public-'))};
+ const env={...source,HACKATHON_DEMO_MODE:source.HACKATHON_DEMO_MODE==='0'?'0':'1',HACKATHON_OPERATORS_JSON:source.HACKATHON_DEMO_MODE==='0'?(source.HACKATHON_OPERATORS_JSON??''):'',HACKATHON_ADMIN_TOKEN:source.HACKATHON_ADMIN_TOKEN?.trim()||randomBytes(24).toString('hex'),HACKATHON_LEDGER_KEY:source.HACKATHON_LEDGER_KEY?.trim()||randomBytes(32).toString('hex'),HACKATHON_STATE_DIR:source.HACKATHON_STATE_DIR?.trim()||mkdtempSync(join(tmpdir(),'ffr-public-'))};
  delete env.FIREWORKS_API_KEY;
  return env;
 }

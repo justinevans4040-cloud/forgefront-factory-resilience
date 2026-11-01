@@ -15,13 +15,12 @@ test('all public document links remain inside the exact public set',async()=>{
  const {checkPublicLinks}=await import('../../scripts/judge-check.mjs');assert.deepEqual(checkPublicLinks(),[]);
  const root=mkdtempSync(join(tmpdir(),'ffr-links-'));mkdirSync(join(root,'hackathon'));writeFileSync(join(root,'README.md'),'[absent](hackathon/absent.md)');assert.equal(checkPublicLinks({root}).length,1);
 });
-test('both judge introductions put runnable entry and exact demo before detail',()=>{
- const root=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
- assert.ok(root.indexOf('## Manufacturing contexts')>0);
- assert.ok(root.indexOf('## Manufacturing contexts')<root.indexOf('## Run locally'));
- assert.ok(root.indexOf('## Run locally')<root.indexOf('flowchart TD'));
- for(const file of ['../../../README.md','../../README.md']){const s=readFileSync(new URL(file,import.meta.url),'utf8');assert.ok(s.indexOf('Run locally')>0);assert.ok(s.indexOf('Live demo')<s.indexOf('Run locally'));assert.ok(s.indexOf('3-minute demo path')>0);assert.match(s,/How Meta models are used/);assert.match(s,/META_MODEL_USAGE\.md/);assert.match(s,/evidence\/README\.md/);}
+test('both judge introductions follow the owner pitch order and keep setup in the guide',async()=>{
+ const {checkJudgePitch}=await import('../../scripts/judge-check.mjs');
+ for(const file of ['../../../README.md','../../README.md'])assert.deepEqual(checkJudgePitch(readFileSync(new URL(file,import.meta.url),'utf8')),[]);
+ const guide=readFileSync(new URL('../../RUN_GUIDE.md',import.meta.url),'utf8');assert.match(guide,/Run locally/);assert.match(guide,/npm run demo/);
 });
+
 test('live wait displays remaining bounded budget and stopped status keeps explicit retry',()=>{
  assert.match(investigationStatus({phase:'running',elapsedMs:15000,route:'Muse Wonder'}),/45s remaining/);
  assert.match(investigationStatus({phase:'running',elapsedMs:70000}),/0s remaining/);
@@ -61,7 +60,7 @@ test('owner-bound running job exposes only call timing and preserves single fail
 });
 test('per-call countdown distinguishes each bounded request from overall wait',()=>{
  const text=investigationStatus({phase:'running',elapsedMs:15000,call:{number:2,status:'waiting',remainingMs:32000,timeoutMs:47000}});
- assert.match(text,/Call 2.*32s remaining.*47s timeout/);assert.match(text,/No automatic retry|No automatic/);
+ assert.match(text,/Call 2.*32s remaining.*47s timeout/);assert.match(text,/Wonder can retry once/);
 });
 
 test('offline keyboard checks cannot inherit live provider access or guided live gates',async()=>{
@@ -85,8 +84,8 @@ test('judge-facing README pitches stay sharp without hedge or internal field nam
   assert.doesNotMatch(s,/decisions advisory/i);
   assert.doesNotMatch(s,/every decision advisory/i);
   assert.doesNotMatch(s,/advisory only/i);
-  assert.match(s,/Run locally/);
-  assert.match(s,/3-minute demo path/);
+  assert.doesNotMatch(s,/Run locally/);assert.match(s,/Run it yourself/);
+  assert.match(s,/What you'll see/);
   assert.match(s,/How Meta models are used/);
  }
 });

@@ -1,20 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 82,
+  "iteration": 95,
   "step": 7,
   "score": 8,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Separate the connection readiness panel from the Investigation not run evidence panel with stronger headings, spacing and independent status so the two tasks remain unmistakably distinct."
+      "change": "The stopped CELL-MILL-2 treatment is clear; add the explicit cross marker beside OFFLINE so meaning does not rely on hatching alone."
     },
     {
       "priority": "medium",
-      "change": "Add plain OFFLINE text directly inside the cross-hatched CELL-MILL-2 station at readable size, paired with the x marker already spanning the card."
+      "change": "Separate provider-identity readiness from the evidence task as in step 2, keeping statuses independently updatable."
     },
     {
       "priority": "medium",
-      "change": "Show the constrained Split option in the scene footer with silver hatching and x CONSTRAINED text matching the side state, keeping only two feasible paths in emerald when selected."
+      "change": "Show only two feasible paths in emerald flow and leave the constrained split path silver and inactive in the scene."
     }
   ]
 }

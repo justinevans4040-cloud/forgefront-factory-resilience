@@ -76,9 +76,7 @@ function optionBase(optionId, feasible, extra = {}) {
 
 function computeWait(snapshot, impact) {
   const held = materialById(snapshot, snapshot.incident.heldMaterialId);
-  const evidenceIds = ["ev-cert-qty", "ev-recv-qty"].filter((id) =>
-    (snapshot.evidenceRecords || []).some((e) => e.evidenceId === id),
-  );
+  const evidenceIds = (snapshot.evidenceRecords||[]).filter(e=>e.field==='quantity').map(e=>e.evidenceId);
 
   if (!held || held.replenishmentHours == null) {
     return optionBase(RECOVERY_OPTION_IDS.WAIT_REPLENISHMENT, false, {
@@ -119,9 +117,7 @@ function computeWait(snapshot, impact) {
 
 function computeSubstitute(snapshot, impact) {
   const held = materialById(snapshot, snapshot.incident.heldMaterialId);
-  const evidenceIds = ["ev-sub-stock", "ev-recv-qty"].filter((id) =>
-    (snapshot.evidenceRecords || []).some((e) => e.evidenceId === id),
-  );
+  const evidenceIds = (snapshot.evidenceRecords||[]).filter(e=>e.field==='onHand'||e.field==='quantity').map(e=>e.evidenceId);
 
   if (!held || !held.substitutes.length) {
     return optionBase(RECOVERY_OPTION_IDS.ALLOCATE_SUBSTITUTE, false, {
@@ -199,9 +195,7 @@ function computeSubstitute(snapshot, impact) {
 
 function computeSplit(snapshot, impact) {
   const held = materialById(snapshot, snapshot.incident.heldMaterialId);
-  const evidenceIds = ["ev-sub-stock"].filter((id) =>
-    (snapshot.evidenceRecords || []).some((e) => e.evidenceId === id),
-  );
+  const evidenceIds = (snapshot.evidenceRecords||[]).filter(e=>e.field==='onHand').map(e=>e.evidenceId);
 
   // Split path: cover demand using substitute material across all compatible online cells.
   if (!held?.substitutes?.length) {
