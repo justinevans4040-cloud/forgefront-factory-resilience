@@ -1,9 +1,13 @@
-# Rules and targeted evidence register
+# The Meta Hackathon build — entry evidence register
 
-Sources are supplied saved Meta Hackathon build_PLAN and WIN_PLAN, not fresh external verification. Plan's later reconciliation supersedes older foundation/bonus/timing assumptions. Current user instructions govern local execution.
+The entry demonstrates manufacturing recovery through Meta investigation, deterministic planning and human decision. The owner verifies current official Indie and bonus controls in the actual signed-in form before selecting them.
 
-Targets: core Indie manufacturing-recovery entry; partner-hosted Spark Open substantive runs for Open Weight; bounded useful read-only investigation for Agentic; Wonder counterfactual for Creative. These are evidence proposals, not qualification/prize/opt-in/stacking guarantees. No unverified amount, credit balance, official hashtag or promotional cutoff is asserted.
+| Entry evidence | Review location |
+| --- | --- |
+| Partner-hosted Spark Open investigation | [Meta usage](META_MODEL_USAGE.md), current live packet |
+| Bounded read-only agent workflow | [Architecture](ARCHITECTURE.md), investigation/tool tests |
+| Wonder recovery tradeoff | Same-snapshot guide and model comparison |
+| Original scoped implementation | [Contributions](../HACKATHON_CONTRIBUTIONS.md), [source inventory](SOURCE_MANIFEST.json) |
+| Actual presentation | [Camera path](DEMO_RUNBOOK.md), owner film and full playback QA |
 
-Remaining execution checks: current signed-in form/track/bonus controls, contributors/representative, rights, real source/video access and receipt. Optional viral/community mechanics require official verification before separately authorized promotion. No posts/messages/votes/uploads/submission occur here.
-
-The source repository is public for judging; local secrets and state remain private. No fabricated history, legacy footage or inferred eligibility exemption. Actual git timestamps remain untouched; no date-bearing hackathon content is introduced.
+Verify contributors, rights/license, new-work eligibility, account credits, exact form controls and approved signed-out source/video links. Retain the actual receipt and reopened entry. [Submission checklist](SUBMISSION_CHECKLIST.md) tracks completion.

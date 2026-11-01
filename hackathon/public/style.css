@@ -13,3 +13,14 @@ svg.timeline{width:100%;height:18px;display:block}
 .login>label,.login>#sign-in-help{grid-column:1/-1}.login>#sign-in-help{margin:0 0 8px;max-width:85ch}
 .login>input{width:100%}.login>button{white-space:nowrap}#investigation-pending{width:100%;accent-color:#c6ed8d}
 @media(max-width:800px){.login{grid-template-columns:minmax(0,1fr)}.login>label,.login>#sign-in-help{grid-column:1}.login>button{width:100%}.model-controls{min-width:0;max-width:100%}}
+
+/* Stable status space and clear state hierarchy throughout the recovery. */
+#provider-status{display:block;min-height:5em;overflow-wrap:anywhere}
+#provider-status[data-light="RED"]{color:#ffb799}#provider-status[data-light="GREEN"]{color:#c6ed8d}
+#investigation-status{min-height:3.2em}#notice{min-height:3.2em;overflow-wrap:anywhere}
+.model-controls{flex:0 0 340px}.investigate>div:first-child{min-width:0}
+#decision-state{color:#dafb9a}.guide progress{width:100%;accent-color:#c6ed8d}
+@media(max-width:800px){.model-controls{flex-basis:auto}header .header-right{letter-spacing:.6px}.panel{padding:22px}.hero-note{min-width:0}}
+
+#provider-status{min-height:7em}#investigation-status{min-height:7em}
+@media(max-width:800px){#provider-status{min-height:8em}#investigation-status{min-height:12em}}

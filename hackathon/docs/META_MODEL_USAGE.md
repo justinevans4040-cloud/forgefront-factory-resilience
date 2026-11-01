@@ -1,31 +1,17 @@
-# Meta model usage
+# The Meta Hackathon build — Meta models on the evidence
 
-All product AI is restricted to Muse Wonder and Muse Spark Open. No other product inference, embeddings, image, speech or transcription model is permitted.
+**Spark Open investigates. Wonder explains. The engine calculates. The human decides.**
 
-The user-supplied Wonder route is https://api.meta.ai/v1/responses with model muse-wonder-1.0. Server credential variable: MUSE_API_KEY. Wonder supplies a cited recovery narrative and counterfactual explanation; deterministic calculations own quantities, feasibility and comparison values.
+| Model | Exact route | Server credential | Product role |
+| --- | --- | --- | --- |
+| Muse Wonder | https://api.meta.ai/v1/responses · muse-wonder-1.0 | MUSE_API_KEY, fallback MODEL_API_KEY | Recovery narrative and counterfactual tradeoff |
+| Muse Spark Open | Baseten · meta-models/muse-spark-open | BASETEN_API_KEY | Read-only evidence investigation |
+| Muse Spark Open | Fireworks · accounts/fireworks/models/muse-spark-open | FIREWORKS_API_KEY | Optional backup investigator host; reports GREEN/RED and never gates the demo |
 
-The user-supplied Baseten model identifier is meta-models/muse-spark-open. Server credential variable: BASETEN_API_KEY. The Fireworks identifier is accounts/fireworks/models/muse-spark-open with FIREWORKS_API_KEY. These are separate deliberate provider selections. Do not invent a Baseten endpoint, assume protocol parity, automatically switch providers/models, or accept arbitrary URL/model overrides. Spark Open investigates via bounded read-only tools.
+[src/models/routes.mjs](../src/models/routes.mjs) locks the documented endpoints and model IDs. Requests, returned identity, read-only tool trace, latency, supplied usage and source-validation outcomes are recorded. Exact structured facts are checked against the server registry; the model interpretation appears alongside them. Deterministic code computes feasibility, hours and cost.
 
-These route identifiers are configuration requirements supplied for this task, not newly verified live calls. Establish actual endpoint/auth/request-response protocol, provider/deployment mapping and returned identity with sanitized evidence. A requested/echoed alias or UI badge alone does not prove model identity. Do not preserve an older suffixed model identifier as the configured route.
+The shared JSON-envelope investigation is bounded to six turns, ten read-only tools and one minute. Missing keys, HTTP errors, incorrect identity, malformed replies and deadline failures stop visibly. Every new attempt and route choice is explicit. Sample is the offline walkthrough and makes no live AI call.
 
-Sample mode is a manually selected, labeled offline fallback only: SAMPLE - OFFLINE; NO LIVE AI. Persist that label on every result and export. It performs deterministic templating and never counts as a live Meta run, cached live proof or bonus evidence. Provider failure remains visible; no silent fallback.
+Run `npm run check:providers --prefix hackathon` for one nonce/identity request per route. In the room, **Check selected route** makes one eight-second request on the selected route and records its result. GREEN requires exact nonce and returned-model agreement. RED names failure; UNCHECKED requests a new check. Health expires after fifteen minutes. Provider-reported identity is the identity field tested by these checks.
 
-Retain sanitized request ID if available, verified provider/model mapping, snapshot/run digest, duration, tool trace and validation outcome. No keys, auth headers, raw secret-bearing requests or untrusted model dumps. Missing usage/cost is unknown, never zero. Compare both live models on the same frozen contract and snapshot; count rejected claims and failed attempts honestly. No live access, credit balance, performance ranking or eligibility is certified here.
-
-## Provider smoke and authenticated response route
-
-Run `npm test` and `npm run smoke:meta` from hackathon. The smoke checks Wonder, Baseten and Fireworks independently, requires a fresh nonce response and returned model identity, redacts exact credential values, and exits nonzero for blocked or failed providers. Evidence is saved under evidence/api-smoke with stable filenames. It never treats missing credentials or HTTP success alone as live proof. Returned model metadata is provider-reported identity, not independent attestation of provider internals.
-
-Start with `npm start`. POST /api/meta/session authenticates the server-side HACKATHON_ADMIN_TOKEN using a Bearer header and returns an expiring session plus CSRF token. POST /api/meta/respond requires X-Session-Token and X-CSRF-Token, an allowed Origin when supplied, and a JSON body containing provider (wonder, baseten or fireworks) and prompt. The route applies a shared rate limit and uses only the three configured Meta endpoints. Missing credentials return 503; provider failures return 502. No sample fallback or cross-provider switch occurs on this route. Model text is explicitly UNVALIDATED_MODEL_OUTPUT, synthetic and advisory; operationalRelease remains false. This diagnostic route does not certify the complete investigation, citation-validation, consent or UI flow.
-
-## Verification boundary
-
-The independent fixture additions and scoped documentation were retained. The reviewed agent loop now serializes normalized tool calls into the Chat Completions function schema, covered by a regression test. Provider clients preserve missing returned model identity as null rather than substituting the requested ID. Provider smoke now attempts all three configured routes independently and rejects incorrect nonce output. The authenticated diagnostic response route is not a claim-validated recovery proposal.
-
-## Verified provider execution
-
-All three configured Meta routes passed live nonce-and-returned-model checks in evidence/api-smoke. Baseten needs a completion budget that includes reasoning tokens; the smoke reserves 1024 tokens and still requires an exact final nonce. Authenticated, session-bound and CSRF-protected diagnostic requests returned live text from all three providers. Provider-reported identity is not independent attestation. See server.json for sanitized route results.
-
-## The Meta Hackathon build — presenter pre-flight
-
-From the repository root run `npm run check:providers --prefix hackathon`. It sends one actual nonce/identity request to each configured allowlisted route and reports GREEN/RED without keys, with a one-minute per-request deadline. Missing credentials and failed requests remain RED; the exit code is nonzero if any route is RED. It performs no automatic retry or route switch. Wonder resolves MUSE_API_KEY then MODEL_API_KEY; the Spark Open hosts use their own keys. This is a point-in-time access check, not a provider uptime or account-credit claim. Retained results are linked from the [evidence index](../evidence/README.md).
+[Provider proof](../evidence/run11/providers.json) · [Live guided packet](../evidence/run11/browser/packet.json) · [Same-snapshot comparison](MODEL_COMPARISON.md) · [API contract](API_CONTRACT.md).

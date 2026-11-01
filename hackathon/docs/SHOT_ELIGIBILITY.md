@@ -1,14 +1,16 @@
-# Shot-to-contribution map
+# The Meta Hackathon build — shot-to-contribution map
 
-Text-only proposal, no filmed evidence or eligibility ruling. Actual git history supplies timing/authorship; no timestamps are altered. SOURCE_MANIFEST.json identifies active source hashes; this run stays uncommitted for independent review.
+The camera path shows the implementation under hackathon/. Repository history supplies authorship and timestamps; [source inventory](SOURCE_MANIFEST.json) supplies active hashes. The owner reviews rights, contributor declarations and eligibility against that inventory.
 
-- S1: public/index.html, app.mjs, guide.mjs, scripts/rehearse.mjs: new room/guided launch; browser proof.
-- S2: src/domain/scenario.mjs, evidence.mjs, engine.mjs: source inspection; independent runtime-oracle test. Planning fixtures remain separate.
-- S3: src/agent/investigation.mjs, loop.mjs, tools.mjs and models/spark-open.mjs: actual multi-tool live call packet. Provider identity is self-reported.
-- S4: models/wonder.mjs, shared investigation and current-snapshot comparison/timeline: same-snapshot Wonder output. Keep unvalidated narrative label visible.
-- S5: workflow.mjs and security/meta-handler.mjs: typed human consent, session/replay/race tests and browser acceptance.
-- S6: workflow and engine: changed digest, invalidated old proposal and live reinvestigation.
-- S7: state-codec, packet and checkpoint CLI: encryption/tamper/rollback tests, readable/JSON/checkpoint exports. Controlled rejection tests must say controlled.
-- S8: contribution inventory, README and packet. Show a source destination only after authorized publication and signed-out verification.
+| Shot | Source | Proof |
+| --- | --- | --- |
+| S1 | public/index.html, app.mjs, guide.mjs, scripts/rehearse.mjs | Guided browser launch |
+| S2 | src/domain/scenario.mjs, evidence.mjs, engine.mjs | Runtime oracle and source inspection |
+| S3 | src/agent/investigation.mjs, tools.mjs, src/models/spark-open.mjs | Live Spark Open tool trace |
+| S4 | src/models/wonder.mjs and same-snapshot comparison | Live Wonder packet |
+| S5 | src/workflow.mjs, src/security/meta-handler.mjs | Typed consent, replay/race tests |
+| S6 | Workflow and engine shock transition | Changed digest, invalidation and renewed acceptance |
+| S7 | State codec, ledger, packet and checkpoint verifier | Encryption/recovery tests and retained checkpoint |
+| S8 | Contribution inventory and evidence packet | Guide completion and public source inventory |
 
-Legacy root UI/PM/Kanban/Prove-it and old recordings are excluded from the hackathon film. Root smoke is regression evidence only. No old-code exemption, empty-root ancestry, license or legal rights certification is invented.
+The film uses this recovery room. Root UI, PM/Kanban and earlier recordings remain outside the shot list. [Current proof](../evidence/README.md) · [Contributions](../HACKATHON_CONTRIBUTIONS.md).

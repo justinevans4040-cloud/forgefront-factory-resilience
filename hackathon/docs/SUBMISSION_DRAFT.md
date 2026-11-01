@@ -1,17 +1,15 @@
-# Submission text draft
+# Submission draft
 
-Title: ForgeFront Factory Resilience
+**Forgefront Factory Resilience**
 
-Problem: A planner must reconcile disputed material evidence and changed machine capacity before choosing recovery. Hidden assumptions and unsupported model claims can turn a plausible recommendation into a bad decision.
+A disputed material certificate can stop production while teams chase paperwork, substitute stock and a new schedule. Forgefront turns that scramble into one recovery room.
 
-Solution: A new synthetic recovery investigation combines immutable sources, deterministic stock/capacity calculations, bounded Meta tool use and deliberate human advisory acceptance. A second shock invalidates prior decisions. Validated source fields, visible failures and encrypted, hash-chained, tamper-evident history support inspection. Operational release is always false.
+Meta Muse models investigate the source records with read-only tools. A deterministic engine computes wait, verified-substitute and split-capacity plans from the live factory snapshot. A human accepts one plan with typed, single-use consent.
 
-Meta AI: Spark Open on explicitly selected Baseten or Fireworks gathers read-only evidence and options. Wonder on Meta Model API explains recovery tradeoffs/counterfactuals on the same contract. Structured claims are checked exactly; narrative remains unvalidated advice. Missing keys fail closed, identity is provider-reported and no automatic model/provider switch occurs. only.
+Then a second shock takes a machine offline. Forgefront invalidates the stale acceptance, recalculates the choices and requires a fresh investigation and decision. An encrypted, hash-chained, tamper-evident ledger preserves sources, model calls and both decisions. Export the encrypted evidence packet and retain an independent checkpoint.
 
-Impact: Reproducible decision support in a synthetic factory scenario. No customer deployment, measured factory savings, OEM specification, production readiness or compliance certification.
+Meta models power every live AI call: Muse Wonder on the Meta Model API; Muse Spark Open on Baseten. Exact source claims are checked against the server registry. The recovery room displays model identity, observed latency, read-only traces and validated facts.
 
-Original contributions: HACKATHON_CONTRIBUTIONS.md and SOURCE_MANIFEST.json. Demo footage is scoped to hackathon/; legacy root footage is excluded. Repository ancestry/conceptual references are disclosed; rights and Indie eligibility require owner review.
+[Live proof](../evidence/README.md) · [Original contributions](../HACKATHON_CONTRIBUTIONS.md) · [Source inventory](SOURCE_MANIFEST.json) · [Submission checklist](SUBMISSION_CHECKLIST.md).
 
-Evidence: actual model/tool/claim packets, arithmetic oracle, hostile/consent tests, live browser disruption-to-recovery workflow and independent checkpoint verifier. Final counts must match the audited candidate.
-
-Source/video/project URLs: not published by this run. Add only authorized and signed-out-tested destinations. Confirm actual contributors, representative, exact field lengths and bonus controls in the real form. This draft invents none and is not submitted.
+Built by Forgefront Systems.

@@ -1,0 +1,52 @@
+{
+  "ok": true,
+  "live": false,
+  "keyboardOnly": true,
+  "keyboardActions": 26,
+  "checks": [
+    "demo opens straight into the recovery room with no sign-in",
+    "keyboard skip link",
+    "skip link activation into the recovery room",
+    "guide to lock keyboard order",
+    "Chromium accessibility tree landmarks and control names",
+    "default encrypted export without plaintext acknowledgement",
+    "explicit plaintext download gate",
+    "source inspection",
+    "visible text contrast measured",
+    "investigation",
+    "typed acceptance",
+    "second shock and stale proposal rejection",
+    "reinvestigation and fresh acceptance",
+    "ledger verification and encrypted decision export",
+    "independent checkpoint and readable report",
+    "mobile overflow check",
+    "reset clears stale model, consent, guide and export state",
+    "automated visible control names, document language and tab order checks",
+    "HttpOnly session and explicit lock",
+    "named auditor UI and read-only controls",
+    "keyboard-only decision path: demo open, explicit Sample, typed acceptance, shock, fresh acceptance, verify, encrypted export, checkpoint and lock; visible focus at each control"
+  ],
+  "consoleErrors": [],
+  "contrast": {
+    "checked": 134,
+    "minimum": 6.2832601371858585,
+    "failures": []
+  },
+  "accessibility": {
+    "failures": [],
+    "language": "en",
+    "main": 1
+  },
+  "accessibilityTree": {
+    "landmarks": [
+      "banner",
+      "main",
+      "region",
+      "region",
+      "region",
+      "region",
+      "complementary"
+    ],
+    "unnamedControls": 0
+  }
+}

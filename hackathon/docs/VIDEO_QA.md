@@ -1,7 +1,12 @@
-# Future video QA
+# The Meta Hackathon build — video QA
 
-Status: text-only preparation. No microphone test, recording, MP4/SRT, thumbnail, measured duration or uploaded link is claimed.
+Record the [eight-shot path](DEMO_RUNBOOK.md) with clear human narration. Capture the actual returned model badges, source facts, decisions and export success. Hide private windows, keys and notifications. Preserve uninterrupted takes and label inference cuts with observed elapsed time.
 
-Use DEMO_RUNBOOK for eight timed shots and manual narration/caption copy. Verify actual capture/editor access and short microphone rehearsal before filming. Show only tested hackathon features, synthetic state and actual returned model badges. Hide private windows/keys/notifications. Retain uninterrupted takes; disclose cuts with actual inference duration. Sample cannot substitute for live evidence.
+- Verify microphone and capture setup with a short rehearsal.
+- Film only the scoped [shot contributions](SHOT_ELIGIBILITY.md).
+- Edit exactly 180 seconds and retime captions to the actual voice.
+- Inspect complete playback: intelligible audio, readable labels, safe margins, spelling, contrast and matching snapshots.
+- Record final media hashes and candidate/source inventory.
+- Upload approved media, open it signed out and verify full playback and source access.
 
-After capture: retime captions to actual human voice; verify exactly 180 seconds and full playback; readable source labels, intelligible audio, spelling/contrast/safe margins; exact shot/run/snapshot/candidate map; final media hashes; no secret exposure. Authorized publication and signed-out source/video access are separate gates. This document is not final media QA evidence.
+Track owner completion in [the submission checklist](SUBMISSION_CHECKLIST.md). [Current browser proof](../evidence/README.md) supplies the desktop/mobile rehearsal reference.

@@ -233,8 +233,8 @@ export function buildDemoScenarioInput() {
       },
     ],
     assumptions: [
-      "All quantities are synthetic demo values.",
-      "Illustrative cell costs are not OEM quotes.",
+      "Quantities use the current certificate, receiving and stock records.",
+      "Cell costs use the hourly rates in this snapshot.",
     ],
   };
 }

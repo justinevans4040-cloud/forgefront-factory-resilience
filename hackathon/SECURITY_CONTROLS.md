@@ -1,182 +1,58 @@
-# Meta Hackathon build: build run nine
+# The Meta Hackathon build — SOC 2-style control mapping
 
-This section supersedes historical public-readiness descriptions below. The public set is the non-backup, non-state files under hackathon/, the five assets/showcase/ images, and root README.md, LICENSE, .env.example, .gitignore and .github/workflows/ci.yml. Ignored backups, browser profiles, private state, dependency directories and evidence-backups/ are excluded. Public files are copied verbatim; sanitation happens in the source tree before copying. Internal review records are outside this set.
+Concrete controls protect the recovery decision from open room through evidence export. This map ties every control theme to implementation and executable verification.
 
-`npm run check:judge --prefix hackathon` scans file names and decoded text in that exact set, including evidence and tests, for private paths, restricted internal references and calendar dates. UTF-16 evidence is decoded; unreadable text fails closed. Only the pointer-style property in public/style.css is exempted from the corresponding restricted term. The demo import/asset closure and every root README npm command are checked. No internal report exemption list is used. Historical failure logs retain their outcomes with portable stack frames; normalized historical inventories label private entries as internal review artifacts.
+## Independent audit nine
 
-`npm run check:public-tree --prefix hackathon` makes a file-only copy under the OS temporary directory, omits the root package and internal build, removes provider/operator secrets from its child environment, runs the full public suite and scan, and removes only its verified temporary copy in finally. CI uses pinned actions, read-only contents, full history, checksum-pinned gitleaks and the public commands. No remote publication or hosted CI result is claimed.
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Demo opens without sign-in | `HACKATHON_DEMO_MODE=1` enables `POST /api/meta/demo-entry`; rehearse sets the flag and never prints a token; the browser auto-enters the recovery room | `tests/integration/run12-demo-entry.test.mjs`; browser smoke recovery-open check |
+| Persistent mode keeps authentication | `npm start` leaves demo mode unset; `POST /api/meta/session` still requires Bearer admin or named operator tokens | Session/security suites; demo-entry returns 404 without the flag |
+| Judge pitch stays sharp | Root and hackathon README, RUN_GUIDE and demo runbook open without token/login instructions, hedges or internal field names; manufacturing contexts sit after highlights; Fireworks stays out of the landing pitch | `tests/unit/run12-copy.test.mjs`; `tests/unit/run10-judge.test.mjs` |
+| Fireworks optional backup | Provider pre-flight still reports Fireworks GREEN/RED; overall readiness follows Wonder and Baseten only | `tests/unit/run12-copy.test.mjs`; `scripts/provider-check.mjs` |
+| Branding | Visible product and company spelling is Forgefront / Forgefront Systems | `tests/unit/run12-copy.test.mjs`; `public/index.html` |
 
-The sign-in screen supplies the isolated rehearsal token on screen, explains private operator provisioning and starts no inference. Route guidance separates configured live Spark Open/Wonder from explicit offline Sample. Empty, pending, elapsed slow-wait, complete and stopped states are visible. The indeterminate activity indicator never invents a completion percentage. A twelve-second status-request deadline and an overall bounded browser wait stop a disconnected view; server inference retains its independent one-minute bound. No automatic provider retry, model switch or replacement narrative is introduced. Controlled slow/timeout evidence is labeled controlled and is separate from genuine live calls.
+## Build run eleven
 
-Fresh verification evidence is in evidence/README.md Desktop and mobile-width live guided flows include same-snapshot Spark Open and Wonder, typed advisory acceptance, second-shock invalidation, fresh acceptance, ledger verification, encrypted export and checkpoint inspection. Responsive emulation is not a physical-phone result. Model identity remains provider-reported. Human filming, upload, rights/eligibility/account checks, signed-out link checks and signed-in form submission remain owner actions. No external completion or certification is claimed.
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Explicit live pre-flight | Session/CSRF/role/schema/quota guards protect provider-check; one selected allowlisted Meta route; eight-second timeout; nonce and returned identity required | tests/integration/run11-routes.test.mjs |
+| Recorded health outcomes | Every check records a model-call event with actor, model, latency and accepted/rejected status; raw nonce responses and credentials stay out of the result | Route-check HTTP tests; current browser packet |
+| Honest presenter status | GREEN/RED/UNCHECKED, fifteen-minute expiry, failure reason, recently GREEN alternatives; user selects the next route | tests/unit/run11-presentation.test.mjs; controlled route-failure browser proof |
+| Clear human decision | Confident acceptance UI retains exact typed consent, replay/stale/expiry enforcement and second-shock invalidation | Workflow/consent suites; live desktop/mobile guide |
+| Public proof integrity | Newest numbered run, relative evidence paths, preserved showcase bytes, public text and link checks | Judge/public-tree checks and showcase integrity |
 
-# Security controls map (Meta Hackathon build)
+## Enforced controls
 
-This document maps SOC 2-style control themes to concrete code and tests in `hackathon/`.
-It does **not** claim SOC 2 certification, Type I/II attestation, production hardening, or
-compliance for real manufacturing systems. Scope is a synthetic local demo with advisory-only
-Meta model output (`operationalRelease` always false).
-
-| Control theme | Implementation | Test / evidence | Honest gap |
+| Control theme | Implementation | Test / evidence | Operating requirement |
 |---|---|---|---|
-| Secrets from environment only | Keys read from `process.env` / injected `env` in `server.mjs`, `meta-handler.mjs`, model clients, smoke scripts. `.env.example` lists names only; no dotenv auto-load (`RUN_GUIDE.md`). Minimum length 12 for ledger key and admin token. | `tests/unit/smoke.test.mjs`; `tests/unit/audit-hardening.test.mjs`; gitleaks before commits | Process env and memory remain readable to a privileged local attacker; length floor is not entropy proof |
-| No secret logging / export | `src/security/redact.mjs` removes raw and JSON-escaped secret forms from packets, investigation records and diagnostic responses | `audit-hardening.test.mjs`; investigation/unit redaction tests; browser/investigation evidence packets | Digests are correlators, not confidentiality controls; operator screenshots can still leak tokens if pasted |
-| Authentication | `POST /api/meta/session` requires Bearer matching env-provisioned admin or named operator/auditor tokens (timing-safe). HTML grants no seat | `security.test.mjs`, `meta.test.mjs`, `operators.test.mjs`, `server.test.mjs` | Compatible local admin token; no enterprise SSO/MFA |
-| Session + CSRF | Random session and CSRF; HttpOnly/SameSite=Strict cookie; logout clears cookie and revokes seat; CLI headers remain | `session-lifecycle.test.mjs`; browser smoke lock check | Sessions are in-memory only; restart drops seats (intentional) |
-| Access control / least privilege | Static allowlist; private state ACL; read-only tools; auditor role denied privileged workflow and diagnostic inference; admin-only reset; named-operator-only revoke (`meta-handler.mjs`) | `operators.test.mjs`, `run5-controls.test.mjs`, `ui.test.mjs`, `private-directory.test.mjs`, `tools.test.mjs` | Admin alone resets scenarios; named operators alone revoke acceptance. Both may investigate/review/confirm; no two-person approval claim |
+| Secrets from environment only | Keys read from `process.env` / injected `env` in `server.mjs`, `meta-handler.mjs`, model clients, smoke scripts. `.env.example` lists names only; no dotenv auto-load (`RUN_GUIDE.md`). Minimum length 12 for ledger key and admin token. | `tests/unit/smoke.test.mjs`; `tests/unit/audit-hardening.test.mjs`; gitleaks before commits | Process env and memory remain readable to a privileged local attacker; length floor is a minimum, not an entropy proof |
+| No secret logging / export | `src/security/redact.mjs` removes raw and JSON-escaped secret forms from packets, investigation records and diagnostic responses | `audit-hardening.test.mjs`; investigation/unit redaction tests; browser/investigation evidence packets | Digests are correlators; operator screenshots can still leak tokens if pasted |
+| Authentication | `POST /api/meta/session` requires Bearer matching env-provisioned admin or named operator/auditor tokens (timing-safe). Demo mode uses server-gated `demo-entry`. HTML grants no seat | `security.test.mjs`, `meta.test.mjs`, `operators.test.mjs`, `server.test.mjs`, `run12-demo-entry.test.mjs` | Compatible local admin token; no enterprise SSO/MFA |
+| Session + CSRF | Random session and CSRF; HttpOnly/SameSite=Strict cookie; logout clears cookie and revokes seat; CLI headers remain | `session-lifecycle.test.mjs`; browser smoke lock check | Sessions are in-memory only; restart drops seats |
+| Access control / least privilege | Static allowlist; private state ACL; read-only tools; auditor role denied privileged workflow and diagnostic inference; admin-only reset; named-operator-only revoke (`meta-handler.mjs`) | `operators.test.mjs`, `run5-controls.test.mjs`, `ui.test.mjs`, `private-directory.test.mjs`, `tools.test.mjs` | Admin alone resets scenarios; named operators alone revoke acceptance. Both may investigate/review/confirm |
 | Host / Origin allowlist | `request.mjs` Host allowlist; Origin must match request Host including port | `request-guards.test.mjs`, `security.test.mjs`, `server.test.mjs` | Default allowlist is loopback only; misconfigured `allowedHosts` widens exposure |
-| Input validation | JSON content-type, body size cap, null-prototype workflow route map, unknown `/api/meta/*` returns 404 (no provider call), provider allowlist, prompt length on diagnostic route, export acknowledgement field | `audit-hardening.test.mjs`, `workflow-schema.test.mjs`, `run5-controls.test.mjs`, security/server/tools/models tests | Not a full schema validator for every workflow field |
-| Rate limiting | Per-socket-client API window (240/min in `server.mjs`), authenticated meta/workflow window (120/min after session in `meta-handler.mjs`) and login-attempt window (12/min) with `429` + `Retry-After`. Forwarded headers ignored. | `security.test.mjs`, `run5-rate.test.mjs`, `run5-controls.test.mjs`, `run6-controls.test.mjs`, `run6-quota.test.mjs` | Encrypted quota files retain counters on normal restart; direct socket clients behind NAT share a budget. Global login_failed ledger budget is twelve/minute, including a suppression marker; privileged quota-file rollback/deletion is outside this single-process guarantee |
-| Error handling without internal leak | `sendError` maps known `ERROR_CODES` / intentional `status`; unexpected errors return generic `INTERNAL` / `request failed` | `tests/unit/errors.test.mjs` | Intentional public messages may still name missing env var *names* (never values) |
-| Audit trail integrity | Hash-chained events + HMAC head anchor; AES-256-GCM event/anchor/intent files; no swappable prior-anchor `.bak`; verified forward-only crash recovery; verify on read/mutate, periodically, and on demand; fail closed; never reset | `workflow.test.mjs`, `storage.test.mjs`, `audit-hardening.test.mjs`, `run5-persistence.test.mjs` | Privileged attacker with key + all anchors can forge; historical plaintext copies remain plaintext; storage hardware/OS power-loss guarantees are external |
-| Consent / advisory gate | HMAC-sealed five-minute envelope; typed `APPROVE <optionId>`; actor/session/snapshot/plan binding; single-use nonce; shock invalidation; cross-session confirm denied during a process lifetime; recovered reviews require original named identity | `run5-persistence.test.mjs`, `run5-controls.test.mjs`, workflow unit/integration tests; `operators.test.mjs` | Encrypted ledger replay restores unexpired pending envelopes to the same named identity after reauthentication; no HSM |
-| Encryption at rest (pending consent + ledger) | AES-256-GCM purpose-bound codec for events, anchors and write-ahead intent; pending consents are ledger events, not a separate plaintext store | `run5-persistence.test.mjs`, `storage.test.mjs` | Key is process env HMAC/ledger key material; no KMS/HSM. Disposable demo launches fresh state each time |
-| Encryption at rest (quotas) | Independent encrypted quota snapshots (`quota-api|login|meta.json`) via the same state codec purpose `client-quota`; flush + atomic rename before grant; hashed socket identities only | `run6-controls.test.mjs`, `run6-quota.test.mjs` | Single-process local files; privileged delete/replace or multi-process share is outside the guarantee; clock rollback extends windows |
+| Input validation | JSON content-type, body size cap, null-prototype workflow route map, unknown `/api/meta/*` returns 404 (no provider call), provider allowlist, prompt length on diagnostic route, export acknowledgement field | `audit-hardening.test.mjs`, `workflow-schema.test.mjs`, `run5-controls.test.mjs`, security/server/tools/models tests | Focused route maps, not a universal schema language |
+| Rate limiting | Per-socket-client API window (240/min in `server.mjs`), authenticated meta/workflow window (120/min after session in `meta-handler.mjs`) and login-attempt window (12/min) with `429` + `Retry-After`. Forwarded headers ignored. | `security.test.mjs`, `run5-rate.test.mjs`, `run5-controls.test.mjs`, `run6-controls.test.mjs`, `run6-quota.test.mjs` | Encrypted quota files retain counters on normal restart; direct socket clients behind NAT share a budget. Global login_failed ledger budget is twelve/minute, including a suppression marker |
+| Error handling without internal leak | `sendError` maps known `ERROR_CODES` / intentional `status`; unexpected errors return generic `INTERNAL` / `request failed` | `tests/unit/errors.test.mjs` | Intentional public messages may name missing env var *names* (never values) |
+| Audit trail integrity | Hash-chained events + HMAC head anchor; AES-256-GCM event/anchor/intent files; no swappable prior-anchor `.bak`; verified forward-only crash recovery; verify on read/mutate, periodically, and on demand; fail closed; never reset | `workflow.test.mjs`, `storage.test.mjs`, `audit-hardening.test.mjs`, `run5-persistence.test.mjs` | Privileged attacker with key + all anchors can forge; historical plaintext copies remain plaintext |
+| Consent gate | HMAC-sealed five-minute envelope; typed `APPROVE <optionId>`; actor/session/snapshot/plan binding; single-use nonce; shock invalidation; cross-session confirm denied during a process lifetime; recovered reviews require original named identity | `run5-persistence.test.mjs`, `run5-controls.test.mjs`, workflow unit/integration tests; `operators.test.mjs` | Encrypted ledger replay restores unexpired pending envelopes to the same named identity after reauthentication |
+| Encryption at rest (pending consent + ledger) | AES-256-GCM purpose-bound codec for events, anchors and write-ahead intent; pending consents are ledger events, not a separate plaintext store | `run5-persistence.test.mjs`, `storage.test.mjs` | Key is process env HMAC/ledger key material. Disposable demo launches fresh state each time |
+| Encryption at rest (quotas) | Independent encrypted quota snapshots (`quota-api|login|meta.json`) via the same state codec purpose `client-quota`; flush + atomic rename before grant; hashed socket identities only | `run6-controls.test.mjs`, `run6-quota.test.mjs` | Single-process local files; privileged delete/replace or multi-process share changes the trust boundary; clock rollback extends windows |
 | Encrypted packet export | Primary UI/API path `encrypted-export`; scrypt N=16384/r=8/p=1 (explicit options) + AES-256-GCM with fresh salt/IV/AAD; offline decoder refuses existing destinations and never echoes passphrases | `export-codec.mjs`, `decrypt-export.mjs`, `run6-export.test.mjs` (unit+integration), browser smoke | Passphrase entropy/custody is operator-owned; HTTP is loopback-only; decoder intentionally emits plaintext; lost passphrase loses access |
-| Export passphrase strength (UI+API) | Shared `public/passphrase.mjs` heuristic enforced by UI feedback and `encryptPacket` before scrypt; 16–160 chars, >=8 distinct case-folded chars, three words or three character classes; predictable prefixes rejected | `run7-readiness.test.mjs`, `run6-export` integration weak-phrase 400s, browser smoke live feedback | Heuristic only — not entropy certification or zxcvbn; decryption stays length-only for existing packets (`audit5-hardening.test.mjs`) |
+| Export passphrase strength (UI+API) | Shared `public/passphrase.mjs` heuristic enforced by UI feedback and `encryptPacket` before scrypt; 16–160 chars, >=8 distinct case-folded chars, three words or three character classes; predictable prefixes rejected | `run7-readiness.test.mjs`, `run6-export` integration weak-phrase 400s, browser smoke live feedback | Use a unique high-entropy passphrase; decryption stays length-only for existing packets (`audit5-hardening.test.mjs`) |
 | Explicit provider retry only | Investigation wrapper records each failed call once; no automatic HTTP retry/Sample substitution; AbortError labeled `MODEL_TIMEOUT`; UI requires a new Investigate | `investigation.mjs`, `investigation.test.mjs`, `adversarial-acceptance.test.mjs`, controlled browser `--timeout-check` | Provider identity remains self-reported; operator must choose the next route deliberately |
-| Demo reset opening state | `reset:true` on `snapshot_changed` restores `decision.status='none'` (shock still invalidates); UI clears consent/guide/export/ack fields; history retained | `workflow.mjs`, `run7-readiness.test.mjs`, browser smoke reset check | Admin-only reset remains a task permission, not two-person control; disposable demo still starts fresh each launch |
+| Demo reset opening state | `reset:true` on `snapshot_changed` restores `decision.status='none'` (shock still invalidates); UI clears consent/guide/export/ack fields; history retained | `workflow.mjs`, `run7-readiness.test.mjs`, browser smoke reset check | Admin-only reset remains a task permission; disposable demo still starts fresh each launch |
 | Job failure labeling | Async investigation rejection retains concrete `error.message` (for example `STALE_INVESTIGATION`) rather than a generic opaque label; UI appends explicit retry copy | `workflow.mjs`, `audit5-hardening.test.mjs`, `public/app.mjs` | Unexpected throws without a message still fall back to `INVESTIGATION_FAILED_OR_STALE` |
 | Independent checkpoint | Secret-free prefix verifier returns `PREFIX_INCLUDES_RETAINED_CHECKPOINT_HEAD`; optional HMAC signature exported but not checked without the key | `packet.mjs`, `verify-checkpoint.mjs`, `storage.test.mjs`, `audit-hardening.test.mjs` | Same-host download is not independent retention; substituting packet and checkpoint defeats trust; post-prefix tails are not independently witnessed |
 | Plaintext export gate | Advanced/collapsed UI acknowledgement; API requires `acknowledgePlaintext: EXPORT PLAINTEXT` for packet/report; packet label and readable report open with `PLAINTEXT EXPORT` | `run5-controls.test.mjs`, `audit3-hardening.test.mjs`, `run6-export.test.mjs`, browser smoke | Checkpoints are integrity metadata only; trusted in-process script helpers still export plaintext by design; historical copies remain plaintext |
-| Meta-only product AI | Allowlisted Wonder + Spark Open Baseten/Fireworks routes; explicit Sample client only; missing live keys fail closed (no Sample substitute) | `models.test.mjs`, `model-identity.test.mjs`, `security.test.mjs`, `routes.mjs`, `audit-hardening.test.mjs` | Provider identity is self-reported metadata, not independent attestation |
+| Meta-only product AI | Allowlisted Wonder + Spark Open Baseten routes; Fireworks retained as optional backup; explicit Sample client only; missing live keys fail closed (no Sample substitute) | `models.test.mjs`, `model-identity.test.mjs`, `security.test.mjs`, `routes.mjs`, `audit-hardening.test.mjs`, `run12-copy.test.mjs` | Provider identity is self-reported metadata |
 | Dependency risk | Zero npm runtime dependencies in the Meta Hackathon build | `package.json` inspection; no dependency installation required | Transitive OS/toolchain risk remains; browser binary used only by smoke tooling |
 | CSP / XSS posture | Strict CSP `script-src 'self'`; UI uses `textContent` for untrusted model/source text | `ui.test.mjs`, public app code | CSP does not stop malicious same-origin JS if static assets were replaced |
 
-## Residual non-claims
 
-- No SOC 2, ISO, FedRAMP, or manufacturing-safety certification.
-- No production multi-tenant isolation, external secrets manager, enterprise SSO/MFA or SIEM integration.
-- Synthetic scenarios and illustrative costs only.
-- Rollback detection still requires independently retained exported anchors.
+## Operator custody
 
+Keep stable ledger keys and retained checkpoints under separate trusted custody. Independently retained checkpoints supply rollback evidence. Private process/key/all-anchor control defines the local trust boundary. Persistent quotas use one process and direct socket identity; shared NAT clients share a budget. Use high-entropy env secrets and a unique separate export passphrase. Historical plaintext copies and explicitly decoded exports require private storage.
 
-## Build run four controls
-
-- AES-256-GCM event/anchor codec: random per-record nonce, purpose-bound AAD and HKDF-SHA256 domain separation from HMAC. Wrong keys, altered tags and purpose swaps fail; restart preserves state. Requires high-entropy stable env key; no KMS or password-hardening claim.
-- Explicit migration validates legacy sequence/hash/HMAC before writing a new private sibling destination (nested paths refused). Source digest is measured after write. No source overwrite/deletion, automatic reset or retroactive encryption of old backups.
-- Separate checkpoint and secret-free prefix-chain verifier check sequence/hash/head/count against independently retained evidence. Trust string is prefix-honest. Replacing both files defeats trust. Exports are plaintext; local download alone is not independent retention.
-- HttpOnly/SameSite=Strict browser cookie, CSRF and logout; direct TLS adds Secure. CLI header support remains. Named local operator/auditor roles are enforced; no enterprise directory/MFA/proxy deployment claim.
-- Session-bound async jobs retain at most 32 handles and preserve active lock. Restart drops sessions/jobs; pending review and accepted/consumed nonce history persist encrypted. Reauthentication as the original named identity is required.
-
-## independent audit two hardening
-
-- Removed unused prior-anchor `.bak` copies that enabled truncate-and-restore rollback.
-- JSON-escape-aware redaction; weak ledger/admin secrets rejected at create time.
-- Unknown meta routes no longer invoke providers; prototype workflow paths return 404.
-- Tests: `tests/unit/audit-hardening.test.mjs` plus expanded `operators.test.mjs`.
-
-Secret-scan adjudication: the legacy empty root env template causes two multiline variable-name false positives in the extra working-tree scan. gitleaks.toml extends default rules with an exact path AND literal-variable-name match; synthetic nonempty credentials remain detected in three regression cases. Required history scan and product scan use default rules. See evidence/README.md No broad detector or file exclusion is used.
-
-Named identity tests: integration/operators.test.mjs proves separate seats, named decision attribution, auditor-denied mutations and diagnostic inference, auditor-allowed checkpoint/report/verify, cross-session confirm denial, usable read/export permissions and fail-closed invalid/duplicate config. Browser smoke verifies visible named auditor identity and read-only controls. Operator secrets are included in centralized redaction and remain env-only. No self-asserted identity or privilege is accepted from workflow request bodies.
-
-
-## Build run five controls
-
-Encrypted write-ahead intent is flushed before event append, followed by flushed event and atomic anchor replacement, then a committed intent head. Startup validates prior prefix, exact ciphertext tail, event sequence/hash and HMAC before forward completion. It never rolls back an anchor, accepts an unknown suffix or repairs a truncated committed log. Completed intent also rejects restoring an older log/anchor pair. No old-anchor .bak is written. Tests terminate real child processes at intent/event/anchor boundaries and cover partial append, corruption and rollback.
-
-Unexpired consent envelopes replay from AES-GCM events. After restart, sessions must reauthenticate and only the original named identity/role may resume; original plan/snapshot/run/signature and five-minute expiry still apply. Same-process cross-session access and consumed-nonce replay remain denied. Status filters pending envelopes to authorized owners. Job handles remain ephemeral.
-
-Direct socket identity quotas isolate clients; forwarded headers cannot rotate identity. Per-client windows are API 240/min (all `/api/*` in `server.mjs`), authenticated meta/workflow 120/min (after session validation), and login attempts 12/min, all returning 429 plus Retry-After. Bounded maps expire idle entries. Failed credentials append `login_failed` with client digest and fixed reason only. Requests rejected by a quota or Host/Origin guard do not append attacker-supplied credentials/events.
-
-Only admin resets a scenario; only a named operator revokes advisory acceptance. Auditors remain read-only. Shared investigation/review/confirmation permissions are intentional; no two-person approval claim. Plaintext packet/report downloads require an unchecked-by-default acknowledgement box and exact API acknowledgePlaintext value EXPORT PLAINTEXT. Checkpoints contain integrity metadata rather than the decision history. Trusted in-process export helpers used by local evidence scripts remain explicit plaintext exports.
-
-Resumed confirmation records its new session digest separately from the original sealed review actor, plus resumedAfterRestart. Readable reports expose both without rewriting historical attribution. Admin resets can invalidate decisions, so separate reset/revoke rights are task permissions, not an anti-admin or two-person-control guarantee.
-
-## independent audit three hardening
-
-- Failed-login ledger events no longer bootstrap `snapshot_initialized`; unauthenticated callers cannot seed scenario state (`workflow.mjs`, `audit3-hardening.test.mjs`, `run5-controls.test.mjs`).
-- Authenticated-route 120/min quota applies only after session validation on `/api/meta/*` and `/api/workflow/*`; legacy `/api/scenario` and peers keep the server 240/min ceiling (`meta-handler.mjs`, `run5-rate.test.mjs`).
-- Readable reports open with an explicit `PLAINTEXT EXPORT` banner matching the packet label (`packet.mjs`, `audit3-hardening.test.mjs`).
-- Control-map evidence rows now cite the run-five and audit-three tests that prove each control.
-
-# Build run six: current controls and evidence
-
-This run adds a global rolling failed-login audit budget: at most twelve login_failed records in any minute across all socket identities, recovered from verified ledger history across restart. The first eleven retain hashed client identity and INVALID_CREDENTIAL; the twelfth marks GLOBAL_AUDIT_CAP_REACHED and furtherAttemptsOmitted. The marker warns that subsequent attempts may be omitted; it does not claim an exact attack count. No login failure initializes a snapshot. Continued attacks can produce capped growth over time; this is not a finite lifetime retention policy.
-
-Normal startup persists independent API 240/min, login 12/min and authenticated Meta/workflow 120/min counters in encrypted quota files before granting requests. Counters retain hashed direct socket identities, bounded map size and original window starts. Corruption/wrong key/configuration mismatch blocks startup; clock rollback conservatively extends active windows. Files use flush plus atomic replacement, with no backup rollback. An interrupted pre-rename request is not granted. Quota files are separate from the audit chain; privileged file deletion/replacement or multiple simultaneous processes sharing a directory is outside this single-process local guarantee. Sessions remain ephemeral; the isolated demo deliberately uses fresh state/key each launch. NAT clients share a socket-identity budget.
-
-Encrypted evidence packet export is now the primary UI action, available to authenticated readers including auditors. A separate 16–160 character passphrase derives a key with scrypt N=16384, r=8, p=1; fresh salt and IV protect each AES-256-GCM packet. No export passphrase is stored in the ledger or quota files. The browser clears the field on export/lock/expiry. This HTTP interface is loopback-only; no remote transport-security claim is made. Advanced plaintext JSON/Markdown downloads retain the exact API acknowledgement and PLAINTEXT EXPORT banners. Integrity checkpoints remain plaintext metadata. Historical exports/backups remain outside encryption claims.
-
-Use a strong unique export passphrase; minimum length does not prove entropy. Losing it loses access. Securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json` to produce intentional plaintext for inspection/checkpoint verification. The decoder refuses an existing output; wrong password or modified ciphertext fails authentication. Keep passphrase, decrypted packet and independently retained checkpoint secure and separate.
-
-Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. independent audit four pinned explicit scrypt options, added clock-rollback / persist-failure / corrupt-quota startup coverage, clarified the advanced plaintext wording, and extended this control map. Current counts, scans, process cleanup and browser evidence are recorded in evidence/README.md and this control map. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No SOC 2 certification. No external account, eligibility, filming, publication or submission evidence is invented.
-
-
-## Build run seven / independent audit five controls
-
-Run seven (build run) added shared UI/API export-passphrase strength feedback, removed automatic investigation retries, restored opening decision state on reset while retaining verified history, cold-start rehearsal coverage, and targeted accessibility/browser checks. independent audit five verified those claims against code and evidence, then hardened:
-
-- Control-map rows above now cite `passphrase.mjs` / `export-codec.mjs`, investigation no-retry tests, reset/readiness tests, and concrete async job failure labels.
-- Decrypt remains length-only so packets created under the earlier length gate stay recoverable; new encryption rejects weak phrases server-side (`audit5-hardening.test.mjs`).
-- Failed async jobs expose `STALE_INVESTIGATION` (and similar) instead of only `INVESTIGATION_FAILED_OR_STALE`; the UI always appends explicit retry copy.
-- `API_CONTRACT.md` and `EVAL_SPEC.md` no longer describe length-only export rejection or automatic transient retry as current behavior.
-- Historical run-four “single transient retry” wording in `HACKATHON_CONTRIBUTIONS.md` is marked superseded by run seven.
-
-Evidence: `tests/unit/run7-readiness.test.mjs`, `tests/integration/run7-cold-start.test.mjs`, `tests/unit/audit5-hardening.test.mjs`, `evidence/README.md`, `SECURITY_CONTROLS.md (independent audit 5)`. Targeted accessibility coverage is not a WCAG certification. No SOC 2 certification. Physical-phone filming, eligibility, form submission and public release remain owner actions.
-
-
-## Build run eight public evidence and review controls
-
-| Control theme | Implementation | Tests / evidence | Limit |
-|---|---|---|---|
-| Public artifact minimization | scripts/public-evidence.mjs shared by retained diagnostic writers; scripts/capture-evidence.mjs retains child exit code; test runner redacts output | tests/unit/run8-public-readiness.test.mjs; evidence/README.md | Active text filtering, not history removal or proof that arbitrary sensitive prose is safe |
-| Reproducible judge entry | scripts/judge-check.mjs checks README scripts and tracked demo import/asset closure; cold-start test launches the real entry | run8-public-readiness; run7-cold-start | No clone/pristine-checkout claim; new review files need inclusion by independent review |
-| Least-privilege CI | Root .github/workflows/ci.yml, contents: read, commit-pinned actions, checksum-pinned gitleaks CLI; no provider secrets | run8-public-readiness CI assertions; local suites/scans | Hosted run for uncommitted diff cannot be claimed |
-| Accessible decision transitions | public/app.mjs and index.html focus/name/description changes; visible focus in style.css | scripts/browser-smoke.mjs real keyboard and CDP tree checks; evidence/README.md and browser-mobile | Targeted automated coverage, no WCAG conformance or physical-phone certification |
-| Public path scrub (profile / file URL / mirror names) | `scripts/judge-check.mjs` `auditPublicFiles` rejects Windows user-profile absolute paths, local file-URL drive roots, and named Desktop mirror-folder labels in tracked public text; evidence writers emit redacted/`Desktop/<role-mirror>/` relative destinations only | `tests/unit/run8-public-readiness.test.mjs` path-scrub assertions; mirror JSON under `evidence/README.md`–`run8` | Historical scope note: the current check scopes by the public set above; internal files and ignored backups are not published. Git history is not rewritten |
-| Approval-expiry regression under load | Root consent TTL uses returned `expiresAt` wait plus poll; `APPROVAL_TTL_SEC=3` leaves headroom for parallel suite load | `tests/round8.test.mjs` H1 | Wall-clock expiry remains process-local; not a distributed clock claim |
-
-## Independent audit six controls
-
-- Restored the five `assets/showcase` images on the judge-facing root README without renaming image files or adding dates.
-- Removed build-tool vendor names from README, product docs and contribution/security copy intended for judges; internal handoff/audit report filenames may retain historical names.
-- Replaced mirror destinations with relative `Desktop/<role-mirror>/…` paths (no profile path, no mirror-folder product names in evidence).
-- Stabilized the root one-second approval race under parallel `npm test` by waiting on server-returned `expiresAt`.
-- Extended public path scrub coverage and mapped the new rows above. This document is still **not** SOC 2 certification.
-
-Audit-two-through-five protections remain mandatory and unchanged: fail-closed providers and encrypted quotas, explicit-only Sample, allowlisted endpoints, verified encrypted ledger recovery/durable consent, capped failed-login events, separated roles, pinned scrypt export with strength on encrypt and compatible length-only decrypt, acknowledged plaintext and no automatic retry. This map is not SOC 2 certification.
-
-## Build run nine: SOC 2-style mapping only
-
-| Theme | Control and evidence | Boundary |
-|---|---|---|
-| Confidentiality / artifact minimization | Exact public-set scanner, UTF-16 decoding and fail-closed unreadable text; scripts/public-set.mjs, scripts/judge-check.mjs, tests/unit/run9-public-tree.test.mjs | No history rewrite or arbitrary-prose confidentiality certification |
-| Change assurance / reproducibility | Public file-copy verification without provider keys or internal packages; scripts/public-tree-check.mjs and evidence/README.md | Local copy proof; hosted CI and publication remain separate |
-| Availability / honest failure | Elapsed wait status, bounded status requests, stopped-state guidance; public/investigation-status.mjs, tests/unit/run9-demo.test.mjs, live and controlled browser evidence | No provider uptime guarantee, automatic retry or operational release |
-
-This maps SOC 2-style themes only. It is not SOC 2 certification, attestation or a production safety claim.
-
-## Independent audit seven controls
-
-| Control theme | Implementation | Test / evidence | Honest gap |
-|---|---|---|---|
-| Public-set publishability | Exact enumerator + forbidden-term/date/encoding scan across the public file set; UTF-16 historical evidence re-encoded and path-sanitized; evidence writers emit relative paths only | `check:judge`, `run9-public-tree.test.mjs`, `run8-public-readiness.test.mjs`; 425 public files, 0 findings this audit | Ignored backups and git history are not rewritten; future prose still needs review before copy |
-| Public-tree self-sufficiency | `check:public-tree` copies only the public set, strips provider keys, runs hackathon tests + scan, removes the temp copy; CI runs public commands and optionally root `npm test` only when root `package.json` exists | `public-tree-check.mjs`; evidence/README.md; CI workflow assertions | Hosted CI for the published candidate remains an external verification step |
-| Mock live-brief isolation | Root mock live meta-brief tests require health-label identity, mock hit counts, and reject fixture `COMPLETE` masquerading as a bypass result; nested suite strips inherited provider keys | `tests/round11-13-stepladder-fixes.test.mjs`, `tests/round17-stepladder-fixes.test.mjs` nested env scrub | Parallel port reuse remains an OS-level risk; identity checks reduce but do not certify zero races |
-| Judge README integrity | Five `assets/showcase` images remain byte-for-byte unchanged; broken forbidden-term substitution in landing prose corrected without reintroducing restricted wording | Showcase SHA256 vs HEAD; `auditPublicFiles` clean | Captions/dates on images remain forbidden; no visual redesign claimed |
-
-Audit-two-through-six protections remain mandatory. This map is **not** SOC 2 certification.
-
-## The Meta Hackathon build — current control mapping
-
-| SOC 2-style theme | Control and proof | Limit |
-| --- | --- | --- |
-| Confidentiality and change assurance | Newest-run public evidence selection; case-insensitive backup-file/directory exclusion; all public Markdown/image links checked by both judge and isolated-copy checks; run10-judge.test.mjs | Older data is retained locally. No history rewrite, certification or remote publication is implied |
-| Availability and failure transparency | Real provider pre-flight GREEN/RED with no retries; owner-bound per-call timeout metadata from the exact provider request; stopped call keeps a single failure; progress and provider timeout/429 tests | Point-in-time response and provider-reported identity only; network latency is not completion progress |
-| Usability verification | Offline real keyboard decision path, visible focus, landmarks/control names, ARIA targets and tested sRGB contrast calculation | Targeted checks only; no WCAG certification, screen-reader audit or physical-phone result |
-
-See [current evidence](evidence/README.md). All audit-two-through-seven runtime guards remain required. The new progress field contains timing/status only, not prompts, credentials or raw responses; it is returned only through existing session-owned job polling. No endpoint or role permission is added.
-
-## Independent audit eight controls
-
-| Control theme | Implementation | Test / evidence | Boundary |
-|---|---|---|---|
-| Judge-facing copy integrity | Root and hackathon README pitches lead with product capability; hedge phrases and internal field names stay out of the landing pitch | `tests/unit/run10-judge.test.mjs` copy-standard assertions; root README vs approved landing style | Operational docs retain precise control language; landing pitch invents no features |
-| Public evidence path scrub | Public set includes the newest numbered run; profile paths, local file-URL drives and mirror-folder labels remain rejected across that set including run10 | `run8-public-readiness.test.mjs`, `run10-judge.test.mjs` path-scrub coverage; `check:judge` | Ignored backups and git history are not rewritten |
-| Provider pre-flight confidentiality | `scripts/provider-check.mjs` reports GREEN/RED from one nonce/identity call per route; env key values never appear in results or evidence | `run10-judge.test.mjs` credential-echo denial; `evidence/run10/providers.json` | Point-in-time route health only |
-| Per-call timeout honesty | Owner-bound investigation status exposes call number, remaining ms and configured timeout; UI countdowns use that metadata | `investigation-status.mjs`, `workflow.mjs`, `run10-judge.test.mjs` | Remaining time is budget remaining, not completion percent |
-| Offline accessibility path | Keyboard-only Sample flow with landmarks, names, focus, contrast and mobile overflow; inherited live flags cannot activate providers | `accessibility.mjs`, `browser-options.mjs`, `check:a11y`, run10 browser-offline evidence | Targeted checks; not WCAG or physical-phone certification |
-| Lean public set | Newest-run selection plus shared evidence; backup files/directories excluded; public links must resolve inside the set | `public-set.mjs`, `public-tree-check.mjs`, `run10-judge.test.mjs` | Older runs retained locally outside publication |
-
-Audit-two-through-seven protections remain mandatory. This map is SOC 2-style control mapping only and is not SOC 2 certification.
+The cryptographic controls use AES-256-GCM, HKDF-SHA256, HMAC and pinned scrypt parameters. New encrypted state does not transform older plaintext artifacts. Account permissions, external provider internals and media/submission actions are verified by the owner. [Current proof](evidence/README.md) · [Security model](docs/SECURITY_MODEL.md) · [API contract](docs/API_CONTRACT.md).

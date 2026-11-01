@@ -1,105 +1,37 @@
-# The Meta Hackathon build — current judge path
+# The Meta Hackathon build — contribution inventory
 
-Start at the root README or hackathon/README.md: both put the pitch, **Run it in 60 seconds**, the **3-minute demo path** and Meta model explanation before reference detail. The five showcase images retain their original bytes and names. Latest verification is collected in [the evidence index](evidence/README.md).
+The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
-# Build run ten: judge entry, live reliability and accessibility
+## Independent audit nine
 
-Build run ten reworked the judge landing pages around the product pitch, a sixty-second startup and an exact three-minute demo path; added the current evidence index; reduced the public set to the newest numbered evidence run plus shared api-smoke/browser/investigation/build evidence while retaining older runs and backups locally; added `check:providers` GREEN/RED pre-flight without key disclosure; exposed owner-bound per-call timeout countdowns; extended offline keyboard accessibility checks (landmarks, names, focus, contrast); and captured fresh desktop, mobile-width, controlled-timeout and offline keyboard evidence under evidence/run10. Sample remains explicit-only. Missing keys fail closed. No automatic provider retry or Sample substitution.
+- Demo and rehearse open straight into the recovery room through server-gated `demo-entry`; persistent `npm start` keeps Bearer authentication.
+- Judge-facing README, RUN_GUIDE and demo docs drop token/login instructions and hedges; manufacturing contexts sit after highlights; Fireworks stays an optional backup outside the landing pitch.
+- Visible product and company spelling is Forgefront / Forgefront Systems.
+- Provider pre-flight readiness follows Wonder and Baseten; Fireworks still reports GREEN/RED without failing the overall check.
+- Control mapping and failing-first tests cover demo entry, copy standard, optional Fireworks and branding.
 
-# Build run eight: public judge entry and review handoff
+## Build run eleven
 
-Build run eight authored the judge-facing root README, contribution/security reporting guidance and GitHub issue/PR templates; hardened credential-free CI; added public-evidence redaction, capture and judge checks under scripts/ with regression tests. Tracked profile paths and stale private-source wording were sanitized across rules, reports and retained evidence; the historical result outcomes remain historical. Vendored synthetic contact coordinates became explicit placeholders. LICENSE remains proprietary; no rights grant is fabricated.
+- Added explicit selected-route pre-flight in the recovery room: bounded nonce/identity request, GREEN/RED/UNCHECKED states, expiring status, ledgered outcomes and manual choice of a GREEN alternative.
+- Added confident source-grounded narrative instructions and human-readable offline calculations, preserving raw model output, evidence validation and human-only consent.
+- Sharpened guided-start, route-selector, interpretation, acceptance and export copy. Sample remains an explicit offline walkthrough with no live AI call.
+- Reserved status space, clarified visual hierarchy and captured current desktop/mobile guided proof, controlled route failure and keyboard evidence under evidence/run11.
+- Reconciled the camera shot list, captions, run instructions, claim proof and control map with the actual application. Retained the hero and four showcase image bytes and names.
+- Added route-health HTTP and presentation regressions through failing-first tests. All work stays available for independent diff review.
 
-The recovery-room UI now focuses the guide heading after login and the decision heading after typed acceptance, names review buttons by option, labels comparison/export regions and the capacity aside, describes the typed phrase, and visibly outlines programmatic focus. Browser checks exercise skip activation, real Tab/Enter order, Chromium accessibility-tree names/landmarks, ARIA targets and duplicate IDs alongside existing contrast/responsive checks. These are targeted checks, not WCAG conformance or a physical-phone audit.
+## Runtime contributions
 
-The full live guided story passed at desktop and mobile widths with zero console errors. Source-backed model behavior, encrypted recovery/consent/quotas, export compatibility, explicit-only Sample, no automatic provider retry, reset and separated roles remain covered by the suites. Exact counts, scans, changes, failures and cleanup are in evidence/README.md and evidence/README.md Independent audit six restores the five showcase images in the judge README, removes tool-vendor names from product docs, rewrites mirror records to relative Desktop/<role-mirror>/ paths, hardens the public path scrub for profile paths, local file-URL drives and mirror-folder names, and stabilizes the root approval-expiry regression under parallel load.
+| Component | Implementation | Verification |
+| --- | --- | --- |
+| Deterministic recovery | Immutable source snapshots; stock/capacity validation; wait, substitute and concurrent split scheduling | [Runtime oracle](tests/unit/runtime-oracle.test.mjs), domain tests |
+| Meta investigation | Muse Wonder and Spark Open allowlisted clients; bounded read-only JSON-envelope loop; exact structured source validation | Model, loop, tool and investigation tests; current live packets |
+| Human decision | Typed five-minute, actor/run/snapshot/plan-bound consent; single-use nonce; second-shock invalidation | Workflow, persistence, role and consent tests |
+| Durable proof | AES-GCM event/anchor/intent files; HMAC-anchored chain; verified forward recovery; encrypted quotas and exports | Storage, recovery, quota and export tests |
+| Presenter workflow | State-gated guide, same-snapshot comparison, source links, per-call countdown, explicit route checks, responsive room | Guided browser and keyboard evidence |
+| Judge delivery | Exact public-set selection, newest numbered proof, redaction, portable links and isolated-copy verification | Judge/public-tree tests and scans |
 
-# Build run six: current controls and evidence
+## Foundation and scope
 
-This run adds a global rolling failed-login audit budget: at most twelve login_failed records in any minute across all socket identities, recovered from verified ledger history across restart. The first eleven retain hashed client identity and INVALID_CREDENTIAL; the twelfth marks GLOBAL_AUDIT_CAP_REACHED and furtherAttemptsOmitted. The marker warns that subsequent attempts may be omitted; it does not claim an exact attack count. No login failure initializes a snapshot. Continued attacks can produce capped growth over time; this is not a finite lifetime retention policy.
+The film uses the implementation under hackathon/. The root application provides regression context; root UI, PM/Kanban and earlier recordings are outside the film inventory. The five showcase images are retained visual assets. Independent planning fixtures have their own schema and arithmetic; [fixture alignment](docs/FIXTURE_RUNTIME_ALIGNMENT.md) maps those differences to the runtime oracle. Athere Mesh is a conceptual reference.
 
-Normal startup persists independent API 240/min, login 12/min and authenticated Meta/workflow 120/min counters in encrypted quota files before granting requests. Counters retain hashed direct socket identities, bounded map size and original window starts. Corruption/wrong key/configuration mismatch blocks startup; clock rollback conservatively extends active windows. Files use flush plus atomic replacement, with no backup rollback. An interrupted pre-rename request is not granted. Quota files are separate from the audit chain; privileged file deletion/replacement or multiple simultaneous processes sharing a directory is outside this single-process local guarantee. Sessions remain ephemeral; the isolated demo deliberately uses fresh state/key each launch. NAT clients share a socket-identity budget.
-
-Encrypted evidence packet export is now the primary UI action, available to authenticated readers including auditors. A separate 16–160 character passphrase derives a key with scrypt N=16384, r=8, p=1; fresh salt and IV protect each AES-256-GCM packet. No export passphrase is stored in the ledger or quota files. The browser clears the field on export/lock/expiry. This HTTP interface is loopback-only; no remote transport-security claim is made. Advanced plaintext JSON/Markdown downloads retain the exact API acknowledgement and PLAINTEXT EXPORT banners. Integrity checkpoints remain plaintext metadata. Historical exports/backups remain outside encryption claims.
-
-Use a strong unique export passphrase; minimum length does not prove entropy. Losing it loses access. Securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json` to produce intentional plaintext for inspection/checkpoint verification. The decoder refuses an existing output; wrong password or modified ciphertext fails authentication. Keep passphrase, decrypted packet and independently retained checkpoint secure and separate.
-
-Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. independent audit four verified the build-run handoff, pinned explicit export scrypt parameters, added quota clock-rollback / persist-failure / corrupt-startup tests, clarified advanced plaintext wording, and recorded findings in SECURITY_CONTROLS.md (independent audit 4). Current counts, scans, process cleanup and browser evidence are recorded in evidence/README.md and this control map. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No external account, eligibility, filming, publication or submission evidence is invented.
-
-# Build run five contribution index
-
-New in this run (build run, independent audit three commits): encrypted forward-only write-ahead ledger recovery with crash/partial-append/rollback tests; durable encrypted pending consent with same-identity reauthentication and original expiry; per-client socket-based quotas and ledgered credential failures; separate admin reset and named-operator revoke rights; acknowledged plaintext exports in API and keyboard-accessible UI; explicit fixture/runtime semantics register. independent audit three closed residual findings: login_failed no longer bootstraps scenario state, authenticated 120/min quotas apply only after session on meta/workflow routes, and readable reports open with an explicit PLAINTEXT EXPORT banner. New tests and browser evidence are under tests/*/run5-*, tests/unit/audit3-hardening.test.mjs and evidence/README.md. Root evidence/README.md and SECURITY_CONTROLS.md (independent audit 3) record outcomes and remaining external gates. No publication, footage or submission is claimed.
-
-The current run supersedes earlier restart-policy and global-rate-limit descriptions below. Meta-only allowlists, missing-key failure, explicit-only Sample, server evidence validation and operationalRelease false remain mandatory. Rights separation is not two-person approval. Local process/key/all-anchor control remains outside the authenticity guarantee.
-
-# Current contribution index
-
-Current runtime evidence supersedes the historical fixture-pass “not verified” bullets retained below. Build run four extends this Meta Hackathon implementation in the reviewed local tree; it creates no commits. docs/SOURCE_MANIFEST.json identifies active hashes. Actual repository history/root reports supply timing/authorship; no date-bearing hackathon content, empty-root ancestry or rights certification is invented.
-
-New this run: encrypted AES-GCM event/anchor persistence; verified legacy-to-new-directory migration; independent checkpoint export/verifier and readable report; named env-provisioned operators/auditors with server-enforced permissions and event attribution; HttpOnly/SameSite sessions/logout; session-bound async jobs; state-gated judge guide and same-snapshot observed model comparison; keyboard/source focus, provider configuration, assumptions/loading improvements; independent runtime arithmetic oracle; judge README, runtime-grounded three-minute script/manual caption draft, plan coverage and text-only release/submission artifacts. New behaviors have tests; final evidence/README.md records exact outcomes/scans/browser proof and corrected failures.
-
-Sample is explicit-only and cannot satisfy live guide stages. Missing live keys fail closed. The script now uses actual default runtime quantities rather than separate planning-fixture numbers. Encryption excludes old plaintext copies and intentional plaintext exports. No filming/publication/submission, independent provider attestation, license grant or production/compliance claim. Athere remains conceptual reference only.
-
----
-
-# Hackathon contributions and reference disclosure
-
-This inventory distinguishes authored build-run deliverables, inspected audit components and planned components. It does not certify repository ancestry, empty-root provenance, license, runtime readiness or eligibility. No prior product code/assets were imported by this documentation pass. Conceptual references are manufacturing recovery, deterministic evidence, advisory consent and tamper-evident history described in the supplied plan. Athere is conceptual reference only if mentioned; no Athere code is claimed here.
-
-An earlier planning pass authored synthetic scenario/shock/adversarial data in fixtures/scenario-v1.json, shock-v2.json and adversarial.json; independently calculated fixtures/expected-outputs.json and CALCULATION_NOTES.md; evaluation and architecture/security/model docs in docs/EVAL_SPEC.md, ARCHITECTURE.md, SECURITY_MODEL.md and META_MODEL_USAGE.md; timed shots in docs/DEMO_RUNBOOK.md; and this manifest. Arithmetic and scope/date scans are documented in the external pass-two report. Application, live provider and browser acceptance were not run by that pass. Newly authored synthetic text/data; no license is assigned here.
-
-The current task authorizes the build lane to review and modify the hackathon runtime. At inspection src/contracts.mjs, src/domain/scenario.mjs, engine.mjs, evidence.mjs, src/agent/tools.mjs, src/security/request.mjs, server.mjs and unit/integration test files existed. These establish an implementation inventory, not proof that every intended feature passes. Source manifests and independent candidate-matched evidence must establish final contribution ownership and rights.
-
-The full new-component inventory requiring final candidate evidence is:
-
-- Meta model clients: Wonder Responses and Spark Open Baseten/Fireworks routes. Intended role: S3/S4. Client implementation and substantive live identity evidence not verified by this pass.
-- Bounded agent loop: six turns, ten calls, 60 seconds, read-only tool dispatcher and explicit stops. Dispatcher inspected; complete loop not verified. Shot S3.
-- Citation validation: exact source/entity/value/unit/snapshot and unsupported/uncited claim rejection. Registry inspected; complete claim validator not verified. Shots S2/S4/S7.
-- Admin session: explicit authentication, protected reads, CSRF and no automatic HTML seat. Full session implementation not verified. Shot S5.
-- Consent envelope: recomputed digests, actor/session, five-minute expiry, persisted single-use nonce, typed confirmation and replay/race denial. Implementation not verified. Shots S5/S6.
-- Audit ledger: typed hash chain, HMAC anchor, disk verification and fail-closed persistence. Implementation not verified. Shots S5/S7.
-- Second-shock invalidation: changed immutable snapshot, stale proposal/envelope/acceptance rejection and fresh review. Fixture and oracle authored; runtime transition not verified. Shot S6.
-- Evidence export: sanitized run/snapshot/plan-bound packet with citations, mode, actor/status and verified anchor. Implementation not verified. Shots S7/S8.
-- Operator UI: synthetic/mode/model badges, cited source inspection, options/timeline, review/confirm, shock and export. UI not verified. Shots S1-S8.
-- Security tests: existing request-guard/tool/evidence/server test file inventory inspected; new adversarial fixtures cover uncited claims, replay, tampering and Host/Origin. Full security suite results not verified. Shot S7 uses genuine isolated evidence only.
-
-Independent fixture semantics differ materially from the inspected runtime engine; see docs/ARCHITECTURE.md. Do not report those expected values as observed application results. Expected data must never power production answers.
-
-All product AI is Meta Muse Wonder or Muse Spark Open only. Sample mode is an explicitly selected offline client with SAMPLE - OFFLINE; NO LIVE AI on UI/export and no live-evidence credit. Wonder and Spark Open clients fail closed when keys are missing; they never auto-substitute Sample. Every scenario is synthetic; costs illustrative; operationalRelease always false. No fabricated commits, contribution times, live traces, filmed shots, public links or rights grants appear here. Publication remains separately authorized work.
-
-## independent audit one
-
-independent audit of uncommitted planning artifacts plus commits 7f16262..4301036 removed silent Sample substitution from Wonder/Spark factories, sanitized unexpected HTTP error bodies, timing-safe-compared consent/ledger HMAC signatures, corrected Athere spelling notes that incorrectly listed Athere Mesh as a misspelling, and added SECURITY_CONTROLS.md. The early inventory bullets above remain the fixture-pass wording; later sections and evidence/run3/ record the verified runtime milestones. Independent fixtures still do not drive product answers.
-
-## Provider validation contribution
-
-The provider smoke validates Wonder, Baseten and Fireworks independently with exact nonce output and returned model checks. The protected diagnostic Meta route uses authenticated sessions and CSRF and marks responses as unvalidated advisory output. Baseten smoke reserves reasoning and final-answer tokens. Live provider and protected-route evidence is in evidence/api-smoke. Root demo repairs are legacy acceptance work and are excluded from the hackathon demo contribution claim.
-
-## Bounded recovery investigation
-
-The new src/agent/investigation.mjs connects the existing read-only dispatcher and calculation engine to a shared JSON envelope protocol for Muse Wonder and Muse Spark Open. Each call records route, returned identity, latency, usage when supplied, response digest and explicit failure without raw prompts or responses. Structured source claims require exact evidence ID, source document/record/field, value and unit. Free text remains visibly unvalidated. Models cannot approve or release. Unit tests cover multi-step dispatch, fabricated quantities/units, unknown tools, identity rejection and redacted records. This is newly authored runtime work; legacy product code is not imported.
-
-## Consent, second shock and packet workflow
-
-The new src/workflow.mjs persists typed events in a hash-chained, tamper-evident ledger with an HMAC head anchor. Reviews bind a feasible recomputed plan, snapshot, run, session actor and five-minute expiry. Typed confirmation consumes a nonce once, persists its accepted event and rejects replay. Pending consent now survives restart through encrypted event replay; sessions expire and the same named identity must reauthenticate within the original deadline. Shock invalidates decisions and old runs. Protected workflow endpoints provide investigation, review, confirmation, revoke, shock, integrity checks and JSON packet export. Every investigation model call is recorded, including rejected responses. Unit and HTTP integration tests cover acceptance, stale/replayed/cross-session/expired consent, restart and ledger alteration. Build run four encrypts new event/anchor files with AES-256-GCM; historical plaintext copies and intentional plaintext exports remain outside that claim. Local privileged attackers controlling the key and all anchors remain outside this guarantee.
-
-## Browser recovery room and real split scheduling
-
-New public/index.html, app.mjs and style.css provide the authenticated single-screen demo, explicit live/ offline route selection, source inspection, server-computed options, model notebook, rejected/validated claims, review and typed confirmation, selectable outage target, fresh investigation, integrity verification and downloadable packet. Static assets are allowlisted under a strict self-script CSP; untrusted text uses textContent. Reset creates a fresh scenario identity. Split scheduling now distributes real work concurrently across compatible cells using capped water filling, rather than assigning all work to the cheapest cell. Tests independently assert the resulting makespan and outage behavior. The new dependency-free browser smoke exercises desktop/mobile full workflow with no console errors. scripts/live-investigation.mjs retains identity-bound substantive model traces and explicit failures; scripts/rehearse.mjs uses disposable state and a public synthetic rehearsal credential only on loopback. No production default credential was added.
-
-## Hostile-audit hardening and candidate verification
-
-All API reads now require an authenticated session; HTML grants no seat. Host/Origin checks include the request port, JSON bodies require the right content type, and API requests have rate limits with Retry-After. The runtime restricts Windows state-directory ACLs to the owner and SYSTEM and verifies the resulting SIDs. Periodic integrity verification complements approval/export checks. Consent envelopes have an HMAC seal; restart, replay and concurrent-confirm tests prove at-most-once acceptance. Shock during inference rejects stale completion. Live proposals require multiple read-only calls and valid exact source claims; source rejection blocks consent. Historical note: run four logged one automatic transient retry inside the deadline; run seven removes automatic retry so each failed call is retained once and a new Investigate is deliberate. Wrong model routes/identities, schema errors and late completion stop visibly. Raw response envelopes are replaced by digests in packets. Diagnostic inference also requires and records ledger evidence.
-
-Additional calculation regressions reject invalid quantities/references/duplicate identities and prove capacity is shared across substitute draws. RUN_GUIDE.md describes actual setup and demo semantics; earlier independent planning-fixture documentation is preserved separately and does not supply production answers. Newly authored unit and integration behavior is covered by the current hackathon suite. Same-snapshot live route evidence and the complete live browser packet are retained under evidence/README.md. Exact final test counts and commits for run four are reported in evidence/README.md and SECURITY_CONTROLS.md (independent audit 2) in-tree; run three remains in evidence/run3/.
-
-
-## Build run seven candidate controls
-
-Run seven adds shared local export-passphrase feedback and API enforcement: 16–160 characters, at least eight distinct case-folded characters, and three distinct whitespace-separated words or three character types. Repeated/predictable prefixes are rejected. This heuristic does not prove entropy; use unique randomly selected words and keep the passphrase separately. Decryption retains the earlier length-only check so existing packets remain recoverable. Pinned scrypt and authenticated encryption remain unchanged.
-
-Provider errors stop the investigation with recorded failure, no substitute narrative and no automatic retry. Select the route and press Investigate to start a deliberate new attempt. The UI labels the stopped live Meta investigation and preserves its trace. No provider switch or automatic Sample occurs. A fresh scenario clears consent, export acknowledgement/passphrase and guide state; reset records a new snapshot and opening decision state, preserved on verified restart. Earlier events remain retained.
-
-Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
-
-Current-run evidence is under evidence/README.md Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. The source repository is public for judging as reported by the owner; filming and submission are not claimed. Independent review must audit the uncommitted diff before an actual freeze.
+Repository history supplies authorship and original timestamps. The owner reviews contributors, foundation eligibility, rights and license against the source inventory before submission. [LICENSE](../LICENSE) governs the repository. [Shot eligibility](docs/SHOT_ELIGIBILITY.md) maps the presentation to the implementation.

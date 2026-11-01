@@ -19,7 +19,7 @@ export function verifyCheckpoint(packet,checkpoint){
  }catch{return {ok:false,reason:'CHECKPOINT_OR_CHAIN_MISMATCH'};}
 }
 export function readablePacket(packet){
- const lines=['# ForgeFront recovery evidence','PLAINTEXT EXPORT; SYNTHETIC DATA; ILLUSTRATIVE COSTS; ADVISORY ONLY','Operational release: false',
+ const lines=['# Forgefront recovery evidence','PLAINTEXT EXPORT; SYNTHETIC DATA; ILLUSTRATIVE COSTS; ADVISORY ONLY','Operational release: false',
   'Snapshot: '+packet.snapshot.snapshotDigest,'Decision: '+packet.decision.status,'Named operator: '+(packet.decision.operatorId??'not recorded'),'Review actor digest: '+(packet.decision.actor??'none'),'Confirmation actor digest: '+(packet.decision.confirmationActor??'not recorded in this history'),'Resumed after restart: '+(packet.decision.resumedAfterRestart??'not recorded in this history'),'Plan digest: '+(packet.decision.planDigest??'none'),'Accepted run: '+(packet.decision.runId??'none'),'Ledger: hash-chained, tamper-evident',
   'Verified head: '+packet.ledger.head,'Events: '+packet.ledger.count,'','## Deterministic options'];
  for(const o of packet.analysis.recovery.options)lines.push(`${o.optionId}: ${o.feasible?'feasible':'infeasible'}; finish ${o.finishHours??'unavailable'} hours; incremental USD ${o.incrementalCostUsd??'unavailable'}`,`Assumptions: ${(o.assumptions??[]).join('; ')}`,`Constraints: ${o.constraints.join('; ')}`,`Sources: ${o.evidenceIds.join(', ')}`);

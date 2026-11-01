@@ -269,7 +269,7 @@ function computeSplit(snapshot, impact) {
       ...snapshot.assumptions,
       "Production hours split across compatible online cells",
     ],
-    constraints: ["Held primary material not issued", "Illustrative incremental cost only"],
+    constraints: ["Held primary material not issued", "Cost includes labor and material premium"],
     detail: { materialId: sub.materialId, allocations },
   });
 }

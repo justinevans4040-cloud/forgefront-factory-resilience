@@ -19,11 +19,11 @@ export function createSampleClient(options = {}) {
       const preferred = feasible[0] || null;
       const text = [
         label,
-        "Deterministic offline template (no Meta model call).",
+        "Offline recovery walkthrough · no Meta model call.",
         preferred
-          ? `Preferred feasible option: ${preferred.optionId} (finishHours=${preferred.finishHours}, incrementalCostUsd=${preferred.incrementalCostUsd}).`
+          ? `Calculated recovery: ${{wait_replenishment:'Wait for replenishment',allocate_substitute:'Use verified substitute',split_capacity:'Split available capacity'}[preferred.optionId]??preferred.optionId}. Finish in ${preferred.finishHours} hours with USD ${preferred.incrementalCostUsd} incremental cost.`
           : "No feasible recovery option in the bound analysis; request additional evidence.",
-        "Citations must come from the evidence registry; this template does not invent quantities.",
+        "Inspect source evidence and compare calculated options before accepting a recovery.",
       ].join(" ");
 
       return Object.freeze({

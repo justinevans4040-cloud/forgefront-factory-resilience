@@ -1,120 +1,57 @@
-# The Meta Hackathon build — current judge path
+# The Meta Hackathon build — run the recovery room
 
-Start at the root README or hackathon/README.md: both put the pitch, **Run it in 60 seconds**, the **3-minute demo path** and Meta model explanation before reference detail. The five showcase images retain their original bytes and names. Latest verification is collected in [the evidence index](evidence/README.md).
+Turn one disputed certificate into a recovery decision backed by sources, Meta investigation and calculated options.
 
-The public set keeps the highest numbered evidence run plus shared api-smoke, browser, investigation and build evidence. Earlier numbered evidence and every backup remain locally retained but are not published. Case-insensitive backup files and backup directories are excluded. `check:judge` and `check:public-tree` share the exact enumerator and verify local Markdown/image links as well as text, dates, imports and commands; publication copies source bytes verbatim.
+## Start in 60 seconds
 
-Before filming, run `npm run check:providers --prefix hackathon`. This performs one actual nonce/identity call per configured Meta route, reports GREEN/RED, exits nonzero for any unavailable or failed route and writes sanitized evidence. Wonder accepts MUSE_API_KEY or MODEL_API_KEY; Spark Open uses the explicitly configured Baseten/Fireworks key. A green response is a point-in-time check, not an uptime promise. Keys stay in environment variables, never the UI or footage.
+Use Node 20+ and npm. From the repository root:
 
-During investigation, the selected route, elapsed wait and current call number/remaining timeout are visible. Call timing comes from the owner-bound server job and the timeout actually passed to the provider client; it is not a completion percentage. The total model budget remains one minute, status requests have twelve-second deadlines and the disconnected browser wait is bounded. A stopped call retains failure evidence and requires an explicit new attempt. There is no automatic retry, provider switch, Sample substitution or replacement narrative.
+```sh
+npm run check:providers --prefix hackathon
+npm run demo --prefix hackathon
+```
 
-`npm run check:a11y --prefix hackathon` runs offline with explicit Sample, installed Chrome/Edge and real keyboard events through sign-in, source inspection, investigation, typed acceptance, outage, fresh acceptance, verification, encrypted export, checkpoint and lock. It asserts semantic landmarks and accessible names, ARIA references, no positive tabindex, visible focus on each keyboard target, contrast for visible text and mobile overflow. The shared sRGB contrast calculation has independent unit cases. These targeted checks are not WCAG certification or assistive-technology/physical-phone evidence.
+Provision MUSE_API_KEY (or MODEL_API_KEY) and BASETEN_API_KEY through the parent environment. Pre-flight makes one nonce/identity request per route and prints GREEN/RED. Wonder and Baseten gate readiness. An optional Fireworks backup route reports its own light and never fails the overall check. Select a GREEN primary route for the live presentation. Each failed route keeps its result; choose another route deliberately.
 
-The live desktop/mobile-width guide and controlled slow/timeout checks are separate evidence. Private-key/role/CSRF/origin/quota/consent/ledger/export guards remain enforced; root mock health-label and hit-count isolation is unchanged. This is SOC 2-style control mapping only, never certification. Independent review still precedes a freeze. Physical phone, filming, upload, signed-out link checks, eligibility/rights/accounts and the actual form/receipt remain owner actions.
+Open **http://127.0.0.1:8791** — the demo opens straight into the recovery room. Choose **Start guided recovery**. The demo uses a fresh private directory and key on every launch. HACKATHON_DEMO_PORT selects another port. Stop with Ctrl+C.
 
-# Run eight judge entry and public evidence
+## Follow the recovery
 
-The root README is the judge landing page. From the root run `npm run demo --prefix hackathon`, open the printed loopback URL, authenticate with the printed public synthetic rehearsal token, and explicitly select a configured Meta route. Without keys, explicitly choose SAMPLE - OFFLINE; NO LIVE AI; it does not pass the live guided gates. Ctrl+C stops the demo. No installation, build or live inference occurs automatically.
+1. **Understand:** use **Show next action** to open source evidence. Compare the certificate's 120 pieces with receiving's 80 and inspect the two jobs demanding 70 units.
+2. **Investigate:** select Spark Open on Baseten, press **Check selected route**, then **Investigate recovery**. Run Wonder on the unchanged snapshot. Inspect validated facts, model interpretation, read-only tools and observed latency.
+3. **Decide:** compare wait, verified substitute and split-capacity plans. Review a feasible option. Type the exact displayed APPROVE phrase and choose **Accept recovery decision**. **Recovery decision accepted** confirms the recorded decision.
+4. **Challenge:** take CELL-MILL-2 offline. The earlier acceptance becomes invalid and split capacity becomes constrained. Investigate the changed snapshot and accept a remaining feasible option.
+5. **Prove:** choose **Verify ledger**, export the encrypted packet with a separate passphrase and export the independent checkpoint. Retain the checkpoint in separate trusted storage. The guide reaches **Recovery story complete** after all three actions match the ledger head.
 
-Run `npm run check:judge --prefix hackathon` to check tracked public text, README command/script consistency and all required demo imports/assets against git ls-files. This is a reproducible dependency-closure check of the real tree, not a clone/pristine-checkout trial. It detects required untracked or missing demo files. New review tooling itself remains uncommitted until review includes it.
+The route check is explicit: one request on the selected route, bounded to eight seconds, with nonce and returned-model matching. Status shows GREEN, RED or UNCHECKED; checks expire after fifteen minutes. A RED route names the reason and any recently checked GREEN alternatives. Selection remains yours. Every check records a model-call event. Auditors inspect/export; operator or admin permissions are required to call a model.
 
-Capture public diagnostics with `node hackathon/scripts/capture-evidence.mjs output.txt node --test path/to/test.mjs`. It preserves the exit code, backs up existing output, removes environment secrets and profile paths, and keeps binary screenshot bytes intact. scripts/test.mjs redacts its child output; retained smoke writers share the same redactor. This is defensive filtering, not permission to log credentials. Inspect every artifact before publication; old git history and ignored backups are not erased or sanitized by active-file edits.
+**Sample · offline walkthrough; no live AI** runs the complete decision workflow without a provider request. Select it deliberately for offline review. The live guide advances from successful Spark Open and Wonder results.
 
-Accessibility verification uses the installed browser's CDP Accessibility tree and real Tab/Enter events, with no new npm dependency. Login focuses the guide heading; acceptance focuses the decision heading. Source targets and programmatic headings have visible focus. Automated checks also cover visible names, ARIA references, duplicate IDs, contrast and overflow. No WCAG conformance, assistive-technology certification or physical-phone result is claimed.
+## Persistent operation
 
-# ForgeFront recovery room
+Provision HACKATHON_ADMIN_TOKEN, a stable high-entropy HACKATHON_LEDGER_KEY and HACKATHON_STATE_DIR pointing to a dedicated private directory. Start with `npm start --prefix hackathon` and open http://127.0.0.1:8787. Authenticate with the provisioned admin or named operator token. The environment template lists variable names; supply values through the process environment. The app uses zero runtime dependencies and needs no build step.
 
-This app runs synthetic manufacturing recovery investigations with Muse Wonder on the Meta Model API and Muse Spark Open on explicitly selected Baseten or Fireworks routes. Models gather evidence using a tested JSON envelope protocol and a read-only dispatcher. The deterministic engine computes feasible options. Human acceptance records an advisory decision; operationalRelease is always false.
+HACKATHON_OPERATORS_JSON accepts up to 32 named seats: id, role (operator or auditor) and distinct opaque token. Tokens are 12–256 characters. Admin alone resets; a named operator alone revokes; admin/operators investigate, review and confirm. Auditors read, verify and export. Restart invalidates sessions. Unexpired encrypted reviews resume for the original named identity within the original five-minute deadline.
 
-## Start the isolated demo
+Windows private state grants access to the current identity and SYSTEM; POSIX uses mode 0700. Keep the stable ledger key with the same state. Integrity or key failure blocks startup. Preserve failed state for inspection. The migration command verifies a legacy chain before copying to a new private destination specified by HACKATHON_MIGRATION_DESTINATION.
 
-From the repository root, run `npm run demo --prefix hackathon` and open `http://127.0.0.1:8791`. Startup prints route configuration presence only. Authenticate, then choose **Start guided synthetic scenario** and **Show next action**. Actual state gates the story: live Spark and Wonder on one snapshot, human acceptance, second shock, reinvestigation and revised decision. Target narration is about three minutes; latency may extend a rehearsal. HACKATHON_DEMO_PORT overrides the port; Ctrl+C stops the server. The rehearsal entry uses disposable private state and the public synthetic token `synthetic-browser-rehearsal`. It binds only to loopback. This token is a test credential, never the production default. Existing provider keys are inherited from the environment. Rehearsal deliberately starts a fresh ledger each launch; normal startup retains its configured ledger.
+## Retain the proof
 
-For normal local operation, configure HACKATHON_ADMIN_TOKEN and a stable HACKATHON_LEDGER_KEY securely in the process environment. Set HACKATHON_STATE_DIR to a dedicated private directory outside the static assets; the default is data/hackathon. Set MUSE_API_KEY (or MODEL_API_KEY) for Wonder, BASETEN_API_KEY for Baseten, and FIREWORKS_API_KEY for Fireworks. Never put values in source, command history, screenshots or reports. Run `npm start --prefix hackathon`, then open `http://127.0.0.1:8787`. No runtime dependencies or build step are required. The environment template lists names only; the app does not load a dotenv file automatically.
+The primary export uses scrypt and AES-256-GCM. Use a unique 16–160 character passphrase with three distinct words or three character types and at least eight distinct characters. Store it separately. Advanced plaintext packet/report downloads require acknowledgement. Checkpoints contain integrity metadata.
 
-Private state is restricted to the current Windows identity and SYSTEM, with inheritance removed and SID-based ACL verification. POSIX uses directory mode 0700. Startup fails if protection or existing ledger integrity cannot be established. Keep the same HMAC key for an existing state directory; rotating the key requires a separate deliberate migration. Never clear a failed ledger.
+To inspect a packet, securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json`. The destination must be new. Verify a retained plaintext packet/checkpoint with `node hackathon/scripts/verify-checkpoint.mjs packet.json checkpoint.json`. The verifier checks the chain prefix against the independently retained head.
 
-## Walk the demo
+## Verify the presentation
 
-1. Authenticate explicitly. Expand source evidence to inspect certificate quantity, receiving quantity and verified substitute stock. The current engine demo computes two impacted jobs and seventy units; independent planning fixtures have different semantics and are not runtime inputs.
-2. Choose Wonder, Baseten Spark or Fireworks Spark and start the investigation. Watch the mode/model badge, turn and tool counts, validated source facts and read-only trace. Output comes from live Meta inference. The free-text narrative is unvalidated advisory text; exact source facts and deterministic calculations are displayed separately. A failed identity, malformed response, schema violation, deadline or outage remains visible. There is no automatic route or Sample switch.
-3. Compare calculated wait, substitute and split paths. Inspect assumptions and constraints before choosing. The split option schedules work concurrently across compatible cells. The substitute path shares remaining capacity across material draws. Costs are illustrative.
-4. Review a feasible option from a successful, source-validated investigation. Type the exact APPROVE phrase to confirm. The HMAC-sealed five-minute envelope binds the plan, snapshot, run and session actor. A nonce can succeed once. The ledger records acceptance without releasing stock or operating equipment.
-5. Select a machine outage. Taking CELL-MILL-2 offline removes the split path and invalidates prior acceptance. Taking CELL-MILL-1 offline can eliminate every feasible option; that is a legitimate insufficient-capacity outcome. Reinvestigate the changed snapshot and deliberately review a remaining feasible option. Reset starts a fresh scenario identity and cannot revive earlier consent.
-6. Verify the hash-chained, tamper-evident ledger and export the synthetic advisory JSON packet. The packet includes snapshots, runs, validated/rejected source claims, sanitized call evidence, decision transitions and HMAC head evidence. Raw provider response envelopes are replaced by digests; credentials and raw prompts are excluded.
+```sh
+npm test --prefix hackathon
+npm run check:judge --prefix hackathon
+npm run check:public-tree --prefix hackathon
+npm run check:a11y --prefix hackathon
+npm run smoke:browser --prefix hackathon -- --live --guided
+npm run smoke:browser --prefix hackathon -- --live --guided --mobile
+```
 
-Sample is a manually selected deterministic offline template and always carries SAMPLE - OFFLINE; NO LIVE AI. Sample results and exports are not live-model evidence. Switching the dropdown alone does not relabel an earlier result; the displayed badge describes the actual run.
+Browser checks use installed Chrome/Edge or CHROME_PATH. On Node 20 set NODE_OPTIONS=--experimental-websocket. The browser harness closes its server and browser in finally. The keyboard check uses explicit Sample and real keyboard events. The public-tree check runs the exact public files without provider credentials or the root package.
 
-## Verification commands
-
-- `npm test --prefix hackathon`: domain, tool, model, consent, persistence, HTTP and security regressions.
-- `npm run smoke:investigation --prefix hackathon`: substantive same-snapshot runs on all three configured Meta routes; requires real provider keys and records actual usage when supplied. A run must use multiple tools and validated source facts to count as success.
-- `npm run smoke:browser --prefix hackathon`: isolated offline full browser flow, screenshots, packet and console checks.
-- `npm run smoke:browser:live --prefix hackathon`: the same full flow with live Wonder before and after the outage.
-
-The dependency-free browser harness locates Chrome or Edge on Windows; CHROME_PATH can name an installed browser. It fails rather than skipping when no browser is available. Tests use disposable state and keys, not the running product's ledger. Browser smoke saves desktop/mobile evidence and checks for horizontal mobile overflow and console errors.
-
-## Evidence and boundaries
-
-evidence/investigation contains substantive route results; evidence/browser contains the full live browser packet and screenshots. Model identity is provider-reported metadata, not independent attestation. Missing usage remains null; no unreported cost is invented. Rejected live attempts remain separately labeled. Request/response digests support correlation without retaining secret-bearing raw exchanges.
-
-All data is synthetic. New persisted events/anchors are AES-256-GCM encrypted; Advanced JSON/Markdown exports and integrity checkpoints remain plaintext; primary packet exports are passphrase-encrypted, and no production manufacturing or compliance certification is claimed. An attacker controlling the local process, HMAC key and all retained anchors can defeat local authenticity and rollback checks. Independently retained exported anchors matter. Sessions expire on restart. Unexpired pending reviews, accepted history and consumed nonces remain encrypted in the ledger. Reauthenticate as the original named identity to resume a pending review; its original five-minute deadline does not extend. No public deployment, filming, posting, source publication or submission is performed by these commands.
-
-
-## Encrypted persistence and explicit migration
-
-New workflow files use AES-256-GCM, random 96-bit nonces, purpose-bound AAD and a 256-bit HKDF-SHA256 key derived in a distinct domain from stable HACKATHON_LEDGER_KEY. Provision a high-entropy random key; a weak password permits offline guessing. No key is written by the app. Private ACL protection remains. Losing the key loses access; do not casually rotate it on an existing directory. Plaintext, wrong-key or damaged state fails closed. No automatic migration/reset.
-
-For legacy migration, stop the original server, securely configure existing HACKATHON_STATE_DIR and matching HACKATHON_LEDGER_KEY, and set HACKATHON_MIGRATION_DESTINATION to a new nonexistent private directory. Run `npm run migrate:state --prefix hackathon`. It verifies every sequence/hash and HMAC before writing an encrypted copy only to the new private destination. Source is unchanged; an existing destination is refused. Then deliberately point HACKATHON_STATE_DIR to the new directory. Original plaintext files/backups remain plaintext and privately held; no encryption claim covers them retroactively. Partial failure leaves source intact; inspect rather than clear evidence.
-
-## Independent checkpoint and readable export
-
-Use Verify ledger, Export encrypted evidence packet with a separate passphrase, and Export independent checkpoint. Advanced plaintext JSON packet and Markdown report downloads require acknowledgement and remain PLAINTEXT. Retain the checkpoint in a separate trusted location before suspected rollback. A same-machine download alone does not prove independence. Check the explicit acknowledgement box before either advanced plaintext download; API callers must send acknowledgePlaintext equal to EXPORT PLAINTEXT. Checkpoints contain only integrity metadata. Protect all retained files. Markdown includes current assumptions/calculations, exact snapshot/sources, decision and model evidence.
-
-Run `node hackathon/scripts/verify-checkpoint.mjs path/to/packet.json path/to/independent-checkpoint.json`. Exit zero means the event chain includes the pinned head as a valid prefix and passes sequence/hash/head/count checks (`PREFIX_INCLUDES_RETAINED_CHECKPOINT_HEAD`); nonzero means invalid/mismatched/truncated input. No HMAC secret is passed, so checkpoint.signature is not checked here. Authenticity depends on a previously independently retained checkpoint; substituting both files defeats that trust. The verifier does not attest arbitrary packet summary fields, recalculations, post-prefix tails as independently witnessed, or provider identity.
-
-## Sessions and loading
-
-Browser uses a ten-minute HttpOnly/SameSite=Strict cookie and in-memory CSRF token. CLI headers remain supported. Lock recovery room revokes the seat; expiry returns to login. Secure is added on direct TLS; this HTTP loopback demo has no trusted-proxy/remote deployment configuration. Asynchronous jobs are session-bound, retained in a bounded map and lost at restart. The UI polls within the same one-minute inference budget, displays configured route presence and actual returned identity, and does not auto-switch providers. Every option exposes assumptions. Guided progress and comparisons use real outcomes.
-
-
-## Named operators and read-only judges
-
-For persistent local operation, securely provision HACKATHON_OPERATORS_JSON as an env-only JSON array (maximum 32 objects). Each object has exactly id, role and token. IDs use letters/numbers/dot/underscore/hyphen (maximum 64); roles are operator or auditor; each token is a distinct opaque high-entropy value (minimum 12 characters, maximum 256; use randomly generated values). Do not paste this JSON or tokens into shell history, source, screenshots or reports. Duplicate IDs/tokens, unknown roles/fields or ambiguous identities fail startup. IDs cannot contain credential tokens.
-
-Operators can investigate, review, confirm, revoke and apply synthetic shocks. Only admin can reset scenarios or start the guide, which resets the scenario. Only a named operator can revoke; admin cannot revoke. Shared investigate/review/confirm permissions do not constitute two-person approval. Auditors can inspect status/evidence, verify and export; privileged workflow, diagnostic inference and scenario reset are denied by the server with 403, independently of disabled UI controls. The authenticated identity/role is visible, and new consent/decision/model/shock events record the named operator. Session actor binding still prevents cross-session consent or job access, even between seats sharing a role.
-
-HACKATHON_ADMIN_TOKEN remains a compatible local-admin seat. Named configuration does not create a public management endpoint; change/revoke credentials through secure env provisioning and restart (which invalidates sessions; encrypted reviews retain their original identity and expiry). The isolated demo ignores named production accounts and uses a new disposable directory and uses only its public synthetic admin credential. This is functional local identity/role separation, not enterprise SSO/MFA, a remote directory or production IAM certification.
-
-
-## Interrupted append recovery
-
-Keep the stable ledger key and all current event/anchor/intent files together. Startup may finish an encrypted pending intent forward after verifying the exact prior chain, intended event, ciphertext suffix and HMAC. It does not restore old anchors, use .bak files or clear damaged history. Completed-intent/current-anchor truncation, unknown tails, corrupted intent and wrong keys fail closed. Legacy files without an intent remain valid only when their original chain and anchor already match; an old pre-intent interrupted write cannot be automatically authenticated. Filesystem/hardware power-loss behavior is not independently certified.
-
-Pending review resumption applies to persistent normal startup with the same private directory and stable key. Reauthenticate as the original named identity; the UI restores the unexpired envelope and requires the exact typed phrase. The disposable demo deliberately uses new state/key each launch and does not promise cross-launch history. Admin resets also invalidate decisions, so separated reset/revoke rights are task permissions rather than a claim that admin cannot override operator work. No two-person approval or enterprise IAM certification is claimed.
-
-# Build run six: current controls and evidence
-
-This run adds a global rolling failed-login audit budget: at most twelve login_failed records in any minute across all socket identities, recovered from verified ledger history across restart. The first eleven retain hashed client identity and INVALID_CREDENTIAL; the twelfth marks GLOBAL_AUDIT_CAP_REACHED and furtherAttemptsOmitted. The marker warns that subsequent attempts may be omitted; it does not claim an exact attack count. No login failure initializes a snapshot. Continued attacks can produce capped growth over time; this is not a finite lifetime retention policy.
-
-Normal startup persists independent API 240/min, login 12/min and authenticated Meta/workflow 120/min counters in encrypted quota files before granting requests. Counters retain hashed direct socket identities, bounded map size and original window starts. Corruption/wrong key/configuration mismatch blocks startup; clock rollback conservatively extends active windows. Files use flush plus atomic replacement, with no backup rollback. An interrupted pre-rename request is not granted. Quota files are separate from the audit chain; privileged file deletion/replacement or multiple simultaneous processes sharing a directory is outside this single-process local guarantee. Sessions remain ephemeral; the isolated demo deliberately uses fresh state/key each launch. NAT clients share a socket-identity budget.
-
-Encrypted evidence packet export is now the primary UI action, available to authenticated readers including auditors. A separate 16–160 character passphrase derives a key with scrypt N=16384, r=8, p=1; fresh salt and IV protect each AES-256-GCM packet. No export passphrase is stored in the ledger or quota files. The browser clears the field on export/lock/expiry. This HTTP interface is loopback-only; no remote transport-security claim is made. Advanced plaintext JSON/Markdown downloads retain the exact API acknowledgement and PLAINTEXT EXPORT banners. Integrity checkpoints remain plaintext metadata. Historical exports/backups remain outside encryption claims.
-
-Use a strong unique export passphrase; minimum length does not prove entropy. Losing it loses access. Securely provision FFR_EXPORT_PASSPHRASE and run `node hackathon/scripts/decrypt-export.mjs input.encrypted.json new-private-output.json` to produce intentional plaintext for inspection/checkpoint verification. The decoder refuses an existing output; wrong password or modified ciphertext fails authentication. Keep passphrase, decrypted packet and independently retained checkpoint secure and separate.
-
-Tests: tests/unit/run6-controls.test.mjs, tests/unit/run6-export.test.mjs, tests/integration/run6-export.test.mjs and tests/integration/run6-quota.test.mjs. Current counts, scans, process cleanup and browser evidence are recorded in the evidence/README.md and evidence/README.md. Prior run evidence remains historical. Meta-only providers, fail-closed keys, explicit Sample, verified ledger recovery, durable consent and separated rights remain unchanged. No external account, eligibility, filming, publication or submission evidence is invented.
-
-
-## Build run seven candidate controls
-
-Run seven adds shared local export-passphrase feedback and API enforcement: 16–160 characters, at least eight distinct case-folded characters, and three distinct whitespace-separated words or three character types. Repeated/predictable prefixes are rejected. This heuristic does not prove entropy; use unique randomly selected words and keep the passphrase separately. Decryption retains the earlier length-only check so existing packets remain recoverable. Pinned scrypt and authenticated encryption remain unchanged.
-
-Provider errors stop the investigation with recorded failure, no substitute narrative and no automatic retry. Select the route and press Investigate to start a deliberate new attempt. The UI labels the stopped live Meta investigation and preserves its trace. No provider switch or automatic Sample occurs. A fresh scenario clears consent, export acknowledgement/passphrase and guide state; reset records a new snapshot and opening decision state, preserved on verified restart. Earlier events remain retained.
-
-Reproduce locally from the repository root with `npm run demo --prefix hackathon`; authenticate using the public synthetic rehearsal token printed by that command. Configure Meta keys only through environment variables. Start the guided scenario, inspect sources, run Spark Open and Wonder, review/type acceptance, simulate the second shock, investigate/accept again, verify and export. No model starts automatically. Stop with Ctrl+C. The clean-start integration test launches this entry with a fresh temporary directory and no stored configuration; it does not claim a separate clean-checkout trial.
-
-Current-run evidence is under evidence/README.md Automated accessibility coverage is targeted: measured visible text contrast, visible form-control names, document language, no positive tabindex, keyboard skip link and responsive overflow. It is not a complete WCAG audit or physical-phone test. The source repository is public for judging as reported by the owner; filming and submission are not claimed. Independent review must audit the uncommitted diff before an actual freeze.
-
-
-Remote handoff note: the latest unauthenticated API and git ls-remote checks expose the baseline commit as public branch meta-hackathon-build, with submission as the default branch. The local working tree is reviewed separately from any published candidate. See evidence/README.md and evidence/README.md Confirm the intended public candidate branch when integrating the reviewed diff; no branch rename, commit or push is performed by this run.
+[Current evidence](evidence/README.md) · [Shot list](docs/DEMO_RUNBOOK.md) · [Control mapping](SECURITY_CONTROLS.md) · [Claim proof](docs/CLAIM_PROOF.md)

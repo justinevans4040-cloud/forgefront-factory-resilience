@@ -26,5 +26,5 @@ test('readable report labels plaintext export in the opening banner', () => {
   const w = createWorkflow({ directory: mkdtempSync(join(tmpdir(), 'ffr-audit3-report-')), key: 'synthetic-ledger' });
   w.recordLoginFailure('client');
   const text = readablePacket(w.exportPacket());
-  assert.match(text, /^# ForgeFront recovery evidence\nPLAINTEXT EXPORT;/);
+  assert.match(text, /^# Forgefront recovery evidence\nPLAINTEXT EXPORT;/);
 });
