@@ -1,3 +1,7 @@
+<!-- live-demo:start -->
+**Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
+<!-- live-demo:end -->
+
 <p align="center">
 <img src="assets/brand/forgefront-systems-logo.png" width="420" alt="Forgefront Systems" />
 </p>
@@ -5,6 +9,14 @@
 <p align="center">
 <img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront Factory Resilience" />
 </p>
+
+## Powered by
+
+| Partner | Role in the recovery room |
+| --- | --- |
+| ![Meta](hackathon/public/partner-meta.svg) | **The models.** Muse Spark Open investigates the evidence; Muse Wonder explains recovery tradeoffs and plans the next work. |
+| ![Baseten](hackathon/public/partner-baseten.svg) | **Serves Muse Spark Open.** Source-grounded investigation through bounded read-only tools. |
+| ![Fireworks AI](hackathon/public/partner-fireworks.svg) | **Standby inference route.** Additional hosting for Meta’s Muse Spark Open. |
 
 # Forgefront Factory Resilience
 
@@ -45,7 +57,7 @@ Recovery comparisons account for inventory, production orders, work cells and ma
 
 Material investigation, CNC scheduling and recovery comparison live in the same workflow, so operators can examine affected jobs, compare material and capacity choices, and preserve the evidence behind their response.
 
-## Run it in 60 seconds
+## Run locally
 
 Node.js 20+ and a browser. Nothing to install.
 
@@ -55,7 +67,7 @@ npm run demo --prefix hackathon
 
 For live investigations, provision `MUSE_API_KEY` (or `MODEL_API_KEY`) and `BASETEN_API_KEY` in the parent server environment. The demo opens without credentials; provider keys are used only when a live investigation is requested.
 
-Open **http://127.0.0.1:8791** — the demo opens straight into the recovery room. Click **Start guided recovery**. No keys handy? Pick **Sample · offline walkthrough; no live AI** in the route selector to walk the full workflow offline. Before filming, run `npm run check:providers --prefix hackathon` for a GREEN/RED live route check, then use **Check selected route** in the room. More options in the [run guide](hackathon/RUN_GUIDE.md).
+The launch command prints the recovery-room link. Open it to enter the recovery room. Click **Start guided recovery**. No keys handy? Pick **Sample · offline walkthrough; no live AI** in the route selector to walk the full workflow offline. Before filming, run `npm run check:providers --prefix hackathon` for a GREEN/RED live route check, then use **Check selected route** in the room. More options in the [run guide](hackathon/RUN_GUIDE.md).
 
 ## 3-minute demo path
 
@@ -71,7 +83,7 @@ The full-screen command center keeps one focused workspace on screen. **highligh
 
 Muse Wonder directs the visual design of the Meta Hackathon build: real full-screen captures go to Meta for a component specification and scored step critiques. The [saved design reviews](hackathon/design/design-direction.json) guide the black, emerald and brushed-silver command center. The factory map connects source quantities, affected orders, accepted allocations and sealed events to the live recovery state. Validated Spark findings pass into Wonder’s tradeoff analysis, and the accepted investigation passes into Britt’s task plan. The second shock repeats that evidence-to-decision sequence.
 
-**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Keys and encrypted state stay on the operator’s machine; inference uses the selected Meta route.
+**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Provider keys stay on the server; encrypted recovery state stays in private storage. Inference uses the selected Meta route.
 
 ## How Meta models are used
 
@@ -84,7 +96,7 @@ Meta models are the only AI in the product, locked to an allowlist of these exac
 
 ```mermaid
 flowchart TD
-  UI[Browser recovery room] --> API[Loopback Node server: session, CSRF, quotas]
+  UI[Browser recovery room] --> API[Node server: session, CSRF, quotas]
   API --> Engine[Deterministic snapshot and recovery engine]
   API --> Agent[Bounded read-only investigation]
   Agent --> Wonder[Muse Wonder / Meta Model API]

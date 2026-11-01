@@ -2,6 +2,19 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty-one
+
+- Closed remaining owner-blocking layout gaps on the factory stage: three live status lines on every station/job card (no empty chrome, no floating HOLD marker), shock capacity preview panel and leader confined to the bay band above stations, routes never drawn through a preview-offline cell, and nested parent-npm copies exclude bulky evidence trees so the root suite stays above the disk floor.
+- Public hosting stack completed and verified: `serve:public`, Render blueprint, `/healthz`, visitor/global live budgets with offline continuation, Fireworks credential stripped before launch, README Live demo constant plus Powered by Meta → Baseten → Fireworks AI badges. Public URL deploy remains an ops step (health returned 404 at audit time).
+- Designed with Muse Wonder: genuine screenshot reviews 84–87 after the layout work (84 Spark Open fallback after Wonder timeout; 85–87 Wonder). Retained direction remains iteration 82 scores 8,7,7,8,8,9,8,8,9,9 when later rounds scored lower. Product suite 315, root suite 254, geometry 86 + live-proposals 86 with zero intersections, judge/public-tree/a11y and gitleaks clean.
+
+## Build run twenty-three
+
+- Public Render entry: environment port on all interfaces, persistent-disk blueprint, health probe, trusted-edge identity, 30-request visitor window, 10 hourly live operations and 300 daily global operations with offline continuation.
+- Separate encrypted visitor recoveries retain human consent, source validation, task approval and sealed proof. Public launch excludes the standby credential.
+- Public entry links share one managed URL constant. Emerald text badges credit Meta, Baseten and the standby inference host directly under the README hero.
+- Current image inspection preserves the official logo and already-green showcase assets byte-for-byte. Fresh screenshots and Designed with Muse Wonder reviews are indexed in current evidence.
+
 ## Independent audit twenty
 
 - Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures after run twenty-two: Shock capacity preview moved into a reserved top callout band above stations (full-width line), geometry measures callout panel rects against factory nodes, header workspace tabs remain large and equal-width, Britt guided gates stay off the fold, skip-link stays keyboard-reachable without false clip failures, and complementary inspector landmark remains present when the rail is visually collapsed.

@@ -1,0 +1,199 @@
+{
+  "model": "meta-models/muse-spark-open",
+  "primaryFailures": [
+    "muse-wonder-1.0: The operation was aborted due to timeout"
+  ],
+  "inputMode": "structured-layout",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh, overflow hidden at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; compact horizontal rail only with equal-width non-wrapping targets, aria-current and arrow-key movement; main uses independent reserved zones for rendered scene, callouts, stations and jobs with zero overlap; enlarge rendered scene to at least 70% of main; condense side content inside its reserved zone to maintain viewport fit, never introduce vertical rail",
+    "colorTokens": "Entirely black, emerald green and brushed silver only: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); brushed silver #C5CCD4 headings, dim silver rgba(197,204,212,.68) secondary; emerald/neon #A8F04A sole accent and primary fill with #050705 text, one primary per viewport; stopped states use silver cross-hatching, cross marker and plain OFFLINE text, never red; official logo immutable in black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story",
+    "typography": "System sans; 16px/24 body minimum, no label under 12px; header tabs span most of header width with labels at least 16px; 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; tabular numerals",
+    "motion": "160-220ms ease-out for selection and panels; single 240ms route trace on real state change then static; no loops or pulses; prefers-reduced-motion removes transitions while silver pattern, cross marker and OFFLINE text carry meaning; 2px emerald focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left at native aspect and Lock recovery room right; opening story retains second required logo placement; compact horizontal rail built from single steps array with equal-width targets, aria-current and arrow-key roving; focusable cinematic factory SVG as dominant scene in its reserved zone; side zone keeps connection readiness checks for provider identity separate from investigation evidence task under distinct headings, status and controls, never conflated; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form, do not infer missing functionality from pre-selection screenshots; pending task proposal deliberately untracked until human approval, blocked prior tasks and approved recovery plan coexist while replacements await approval; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite",
+    "visualizations": "State-driven 960x540 cinematic factory SVG enlarged to fill at least 70% of main using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in emerald, silver idle machines, stopped CELL-MILL-2 in silver cross-hatching with cross marker and plain OFFLINE text and no route through it; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend with pattern, marker and text"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge cinematic factory SVG to occupy at least 70% of main; verify Certificate 120 vs Receiving 80 tracks with DOES NOT MATCH remains inside stage bounds at 1366x768 with hidden overflow."
+        },
+        {
+          "priority": "medium",
+          "change": "Confirm header tabs span most of header width at 16px+ and body stays 16px/24; trim narration to one verb-led instruction plus one status sentence."
+        },
+        {
+          "priority": "low",
+          "change": "Verify keyboard order skip-to-stage, header, rail, SVG nodes, side zone, action bar with 2px emerald focus ring and pointer style only on enabled controls; reduced motion retains silver hatching meaning."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep connection readiness for provider identity and investigation evidence task in separate headings, status and controls; do not merge buttons or conflate flows."
+        },
+        {
+          "priority": "high",
+          "change": "Render stopped CELL-MILL-2 with silver cross-hatching, cross marker and plain OFFLINE text with no emerald route through it; keep feasible routes emerald only."
+        },
+        {
+          "priority": "medium",
+          "change": "Enforce viewport fit with independent reserved zones and no overlap; keep action bar 56px with single primary."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Maintain compact horizontal rail only with equal-width non-wrapping targets and arrow-key movement; preserve official logo placements in header and opening story at native aspect."
+        },
+        {
+          "priority": "medium",
+          "change": "Selecting a recovery option opens typed consent form; do not assume missing functionality from pre-selection screenshot."
+        },
+        {
+          "priority": "medium",
+          "change": "Enforce entirely black/emerald/brushed silver palette; stopped states use silver pattern and OFFLINE text, never red."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Show blocked prior tasks coexisting with approved recovery plan while pending replacement proposal stays deliberately untracked until human approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Condense side zone content inside its reserved zone to keep full frame visible at 1366x768; enlarge scene to at least 70% of main."
+        },
+        {
+          "priority": "low",
+          "change": "Apply 26px tabular metrics and 12/16 uppercase micro-labels; ensure one primary per viewport with correct contrast #050705 text on emerald."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "In shock capacity preview keep state-driven SVG at 70%+ using real state; feasible routes emerald, idle silver, stopped CELL-MILL-2 with silver hatching, marker and OFFLINE text."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep Certificate vs Receiving tracks aligned inside bounds with persistent legend showing pattern, marker and text."
+        },
+        {
+          "priority": "low",
+          "change": "Minimize narration to one instruction and one status sentence; ensure focus ring and reduced-motion fallback preserve meaning."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Reaffirm separation of connection readiness versus reinvestigation controls after capacity change with distinct headings and status."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure independent reserved zones for scene, callouts, stations, jobs have zero overlap and hidden overflow at 1366x768."
+        },
+        {
+          "priority": "low",
+          "change": "Keep single 240ms route trace then static; no loops or pulses; pointer style only on enabled elements."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Ensure selecting recovery option triggers typed consent form; keep blocked and approved states visible while replacements await approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Retain header 48px with logo left and Lock recovery room right; preserve second logo placement in opening story."
+        },
+        {
+          "priority": "medium",
+          "change": "Verify typography hierarchy 24/30 stage title, 18/24 panel title, 16px body; header tabs span most of header at 16px+."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Condense side zone content without scrolling to keep all zones visible; enlarge factory SVG to maintain at least 70% main fill."
+        },
+        {
+          "priority": "medium",
+          "change": "Maintain black/emerald/silver tokens only with emerald fill using #050705 text for contrast; stopped uses silver hatching and OFFLINE."
+        },
+        {
+          "priority": "low",
+          "change": "Support Enter/Space to activate, Esc to close, arrow-key rail movement and aria-live polite for results."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Present verify and retain evidence controls with clear status sentence; keep SVG static after single trace driven by real state."
+        },
+        {
+          "priority": "medium",
+          "change": "Confirm 2px emerald focus ring with 2px offset on all interactive elements and visible pointer style on enabled controls."
+        },
+        {
+          "priority": "low",
+          "change": "Keep narration minimal and metrics tabular; ensure legend remains persistent."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep compact horizontal rail navigation; do not introduce vertical rail; use equal-width targets with aria-current."
+        },
+        {
+          "priority": "high",
+          "change": "Display pending task proposals as deliberately untracked until human approval while blocked and accepted states coexist correctly with silver hatching and OFFLINE text."
+        },
+        {
+          "priority": "medium",
+          "change": "Lock grid to 48px header / 40px rail / main / 56px action bar with hidden overflow to guarantee fit at 1366x768."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

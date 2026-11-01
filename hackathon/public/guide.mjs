@@ -22,3 +22,13 @@ export function guideStep(state,guide){
  if(guide.exported!==state.ledger?.head||guide.verified!==state.ledger?.head||guide.checkpoint!==state.ledger?.head)return step('export',7,'Verify and retain evidence','Verify the ledger, export with a separate passphrase and retain the independent checkpoint separately.','encrypted-export');
  return step('complete',8,'Recovery story complete','The packet preserves investigation routes, source claims, the invalidated decision and revised acceptance.','ledger');
 }
+
+export function publicPollDelay(job){return Number.isFinite(job?.pollAfterMs)&&job.pollAfterMs>=700&&job.pollAfterMs<=10000?job.pollAfterMs:700;}
+export function publicRecoveryMode(state,mode,provider){return state?.publicOffline?{provider:'sample',mode:'offline',message:'Daily live allowance reached. Continue the complete recovery with Sample offline.'}:{provider,mode,message:null};}
+
+export async function requestWithRateLimit(request,{onWait=()=>{},sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms))}={}){
+ const response=await request();
+ const seconds=Number(response.headers.get('Retry-After'));
+ if(response.status!==429||!Number.isFinite(seconds)||seconds<1||seconds>60)return response;
+ onWait(Math.ceil(seconds));await sleep(Math.ceil(seconds)*1000);return request();
+}

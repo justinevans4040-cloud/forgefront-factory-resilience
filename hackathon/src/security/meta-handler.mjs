@@ -13,12 +13,12 @@ function equal(a, b) {
   return left.length === right.length && timingSafeEqual(left, right);
 }
 
-export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fetch, workflow, quotaPersistence } = {}) {
+export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fetch, workflow:defaultWorkflow, quotaPersistence, publicBudget, identityFor, workflowForSession, secureFor=req=>Boolean(req.socket?.encrypted) } = {}) {
   const accounts=loadOperators(env);
   const sessions = new Map();
   const routeHealth={};
-  const limit=createClientLimiter({maximum:120,persistence:quotaPersistence?.('meta')});
-  const loginLimit=createClientLimiter({maximum:12,persistence:quotaPersistence?.('login')});
+  const limit=createClientLimiter({maximum:120,persistence:quotaPersistence?.('meta'),identityFor});
+  const loginLimit=createClientLimiter({maximum:12,persistence:quotaPersistence?.('login'),identityFor});
   return async function handle(req, res, path, guards, snapshot) {
     if (!path.startsWith('/api/')) return null;
     guards.assertOrigin(req);
@@ -32,20 +32,22 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       const account=path==='/api/meta/demo-entry'
         ?(accounts.find(a=>a.role==='admin')||accounts[0])
         :accounts.find(a=>equal(req.headers.authorization,`Bearer ${a.token}`));
-      if(!account){workflow?.recordLoginFailure(req.socket?.remoteAddress??'unknown');throw fail(401,'Authentication required');}
+      if(!account){defaultWorkflow?.recordLoginFailure(req.socket?.remoteAddress??'unknown');throw fail(401,'Authentication required');}
       const operator={id:account.id,role:account.role};
       const session = randomBytes(32).toString('hex');
       const csrf = randomBytes(32).toString('hex');
       for (const [key, value] of sessions) if (value.expires <= Date.now()) sessions.delete(key);
       if (sessions.size >= 100) {res.setHeader('Retry-After','600');throw fail(429, 'Session capacity reached');}
-      sessions.set(session, { csrf, operator, expires: Date.now() + 10 * 60_000 });
-      res.setHeader('Set-Cookie',`ffr_session=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=600${req.socket.encrypted?'; Secure':''}`);
+      sessions.set(session, { csrf, operator, workflow:workflowForSession?.(session), expires: Date.now() + 10 * 60_000 });
+      res.setHeader('Set-Cookie',`ffr_session=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=600${secureFor(req)?'; Secure':''}`);
       return path==='/api/meta/demo-entry'?{session,csrf,operator,demo:true}:{session,csrf,operator};
     }
     const cookieSession=String(req.headers.cookie??'').split(';').map(s=>s.trim()).find(s=>s.startsWith('ffr_session='))?.slice('ffr_session='.length);
     const sessionToken=req.headers['x-session-token']??cookieSession;
     const session = sessions.get(sessionToken);
     if (!session || session.expires <= Date.now()) throw fail(401, 'Valid session required');
+    const workflow=session.workflow??defaultWorkflow;
+    if(workflowForSession)snapshot=workflow.status().snapshot;
     if (!equal(req.headers['x-csrf-token'], session.csrf)) throw fail(403, 'Valid CSRF token required');
     // Authenticated meta/workflow routes get a tighter per-client ceiling; legacy /api/* keep the server 240 window only.
     if(path.startsWith('/api/meta/')||path.startsWith('/api/workflow/')){
@@ -56,7 +58,8 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
     if(session.operator.role==='auditor'&&!readOnlyPaths.has(path))throw fail(403,'Auditor role is read-only');
     if(path==='/api/workflow/reset'||path==='/api/scenario/reset-demo'){if(session.operator.role!=='admin')throw fail(403,'Scenario reset requires admin rights');}
     if(path==='/api/workflow/revoke'&&session.operator.role!=='operator')throw fail(403,'Revocation requires a named operator');
-    if(!path.startsWith('/api/meta/')&&!path.startsWith('/api/workflow/'))return {legacyAuthorized:true,operator:session.operator};
+    if(workflowForSession&&path==='/api/scenario/reset-demo'&&req.method==='POST')return workflow.reset(session.operator);
+    if(!path.startsWith('/api/meta/')&&!path.startsWith('/api/workflow/'))return {legacyAuthorized:true,operator:session.operator,...(workflowForSession?{snapshot:workflow.status().snapshot}:{})};
     if(path==='/api/meta/logout'){sessions.delete(sessionToken);res.setHeader('Set-Cookie','ffr_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0');return {ok:true};}
     const body = await guards.readJson(req);
     if(!body||typeof body!=='object'||Array.isArray(body))throw fail(400,'JSON object required');
@@ -71,7 +74,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       if(['export','report'].includes(route)&&body.acknowledgePlaintext!=='EXPORT PLAINTEXT')throw fail(400,'Explicit plaintext export acknowledgement required');
       const actor=sessionToken;
       if(path==='/api/workflow/investigation-status')return workflow.investigationStatus(body.jobId,actor);
-      if(path==='/api/workflow/status')return {...workflow.status(),britt:workflow.brittFor(sessionToken,session.operator),routeHealth:Object.fromEntries(['wonder','baseten','fireworks'].map(provider=>[provider,routeHealth[provider]??{light: (provider==='wonder'?(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()):env[provider==='baseten'?'BASETEN_API_KEY':'FIREWORKS_API_KEY']?.trim())?'UNCHECKED':'RED',reason:'Key unavailable',checkedAt:null}])),pendingConsents:workflow.pendingFor(sessionToken,session.operator),operator:session.operator,providers:{wonder:Boolean(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()),baseten:Boolean(env.BASETEN_API_KEY?.trim()),fireworks:Boolean(env.FIREWORKS_API_KEY?.trim())}};
+      if(path==='/api/workflow/status')return {...workflow.status(),...(publicBudget?{publicHosting:true,publicOffline:Boolean(session.publicOffline)}:{}),britt:workflow.brittFor(sessionToken,session.operator),routeHealth:Object.fromEntries(['wonder','baseten','fireworks'].map(provider=>[provider,routeHealth[provider]??{light: (provider==='wonder'?(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()):env[provider==='baseten'?'BASETEN_API_KEY':'FIREWORKS_API_KEY']?.trim())?'UNCHECKED':'RED',reason:'Key unavailable',checkedAt:null}])),pendingConsents:workflow.pendingFor(sessionToken,session.operator),operator:session.operator,providers:{wonder:Boolean(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()),baseten:Boolean(env.BASETEN_API_KEY?.trim()),fireworks:Boolean(env.FIREWORKS_API_KEY?.trim())}};
       if(path==='/api/workflow/britt-decide')return workflow.decideTasks(body.proposalId,body.action,actor,session.operator);
       if(path==='/api/workflow/task-move')return workflow.moveTask(body.taskId,body.status,session.operator,body.idempotencyKey);
       if(path==='/api/workflow/britt-draft'&&!['sample','wonder','baseten'].includes(body.provider))throw fail(400,'Choose a primary Meta route');
@@ -85,6 +88,17 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       if(path==='/api/workflow/export')return workflow.exportPacket();
       if(path==='/api/workflow/checkpoint')return workflow.exportCheckpoint();
       if(path==='/api/workflow/report')return workflow.exportReport();
+      let dailyFallback=false;
+      if(publicBudget&&body.provider&&body.provider!=='sample'){
+        if(!['wonder','baseten'].includes(body.provider))throw fail(400,'Choose a primary Meta route');
+        const allowance=publicBudget.reserve(identityFor(req));
+        if(allowance.mode==='limited'){res.setHeader('Retry-After',String(allowance.retryAfter));throw fail(429,'Hourly live-run limit reached. Choose Sample to continue offline.');}
+        if(allowance.mode==='sample'){
+          session.publicOffline=true;
+          if(path==='/api/workflow/provider-check')return {light:'RED',reason:allowance.reason,checkedAt:Date.now(),publicFallback:'daily-live-cap'};
+          body.provider='sample';dailyFallback=true;session.publicOffline=true;
+        }
+      }
       if(path==='/api/workflow/provider-check'){
         if(!['wonder','baseten','fireworks'].includes(body.provider))throw fail(400,'Select a live Meta route');
         const provider=body.provider,authEnv={wonder:'MUSE_API_KEY',baseten:'BASETEN_API_KEY',fireworks:'FIREWORKS_API_KEY'}[provider];
@@ -98,8 +112,8 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
         workflow.recordModelCall({type:'model_call',operatorId:session.operator.id,operatorRole:session.operator.role,mode:'live',sample:false,provider,requestedModel:client?.route.model??null,returnedModel:result?.modelId??null,latencyMs:Date.now()-started,status:passed?'accepted':'rejected',failure:passed?null:'PREFLIGHT_FAILED',purpose:'provider_preflight',operationalRelease:false});
         return routeHealth[provider]={light:passed?'GREEN':'RED',reason,checkedAt:Date.now()};
       }
-      if(path==='/api/workflow/britt-draft'&&body.provider==='sample')return workflow.draftTasks(createModelClient('sample'),actor,session.operator);
-      if(body.provider==='sample')return path.endsWith('investigation-start')?workflow.startInvestigation(createModelClient('sample'),actor,session.operator):workflow.investigate(createModelClient('sample'),session.operator);
+      if(path==='/api/workflow/britt-draft'&&body.provider==='sample')return {...await workflow.draftTasks(createModelClient('sample'),actor,session.operator),...(dailyFallback?{publicFallback:'daily-live-cap'}:{})};
+      if(body.provider==='sample')return {...await (path.endsWith('investigation-start')?workflow.startInvestigation(createModelClient('sample'),actor,session.operator):workflow.investigate(createModelClient('sample'),session.operator)),...(dailyFallback?{publicFallback:'daily-live-cap'}:{}),...(publicBudget&&path.endsWith('investigation-start')?{pollAfterMs:5000}:{})};
       if (!['wonder', 'baseten', 'fireworks'].includes(body.provider)) throw fail(400, 'Select wonder, baseten or fireworks');
       const authEnv = { wonder: 'MUSE_API_KEY', baseten: 'BASETEN_API_KEY', fireworks: 'FIREWORKS_API_KEY' }[body.provider];
       const apiKey=env[authEnv]?.trim() || (body.provider==='wonder'?env.MODEL_API_KEY?.trim():null);
@@ -108,12 +122,18 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
         ? createModelClient('wonder', { apiKey, fetchImpl })
         : createModelClient('spark-open', { apiKey, route: body.provider === 'baseten' ? SPARK_BASETEN_ROUTE : SPARK_FIREWORKS_ROUTE, fetchImpl });
       if(path==='/api/workflow/britt-draft')return workflow.draftTasks(client,actor,session.operator,body.provider==='wonder'&&env.BASETEN_API_KEY?.trim()?()=>createModelClient('spark-open',{apiKey:env.BASETEN_API_KEY.trim(),route:SPARK_BASETEN_ROUTE,fetchImpl}):null);
-      if(path==='/api/workflow/investigation-start')return workflow.startInvestigation(client,sessionToken,session.operator);
+      if(path==='/api/workflow/investigation-start')return {...workflow.startInvestigation(client,sessionToken,session.operator),...(publicBudget?{pollAfterMs:5000}:{})};
       return workflow.investigate(client,session.operator);
     }
     if(path!=='/api/meta/respond')throw fail(404,'Unknown meta route');
     if (!['wonder', 'baseten', 'fireworks'].includes(body.provider)) throw fail(400, 'Select wonder, baseten or fireworks');
     if (typeof body.prompt !== 'string' || !body.prompt.trim() || body.prompt.length > 4000) throw fail(400, 'Prompt must contain 1 to 4000 characters');
+    if(publicBudget){
+      if(body.provider==='fireworks')throw fail(400,'Choose a primary Meta route');
+      const allowance=publicBudget.reserve(identityFor(req));
+      if(allowance.mode==='limited'){res.setHeader('Retry-After',String(allowance.retryAfter));throw fail(429,'Hourly live-run limit reached. Choose Sample to continue offline.');}
+      if(allowance.mode==='sample')return {mode:'sample',sample:true,publicFallback:'daily-live-cap',text:allowance.reason,operationalRelease:false};
+    }
     const authEnv = { wonder: 'MUSE_API_KEY', baseten: 'BASETEN_API_KEY', fireworks: 'FIREWORKS_API_KEY' }[body.provider];
     const apiKey=env[authEnv]?.trim() || (body.provider==='wonder'?env.MODEL_API_KEY?.trim():null);
     if (!apiKey) throw fail(503, `${authEnv} is unavailable`);

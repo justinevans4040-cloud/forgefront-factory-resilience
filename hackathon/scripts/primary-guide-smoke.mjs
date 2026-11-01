@@ -1,6 +1,7 @@
+import {screenshotCaptureOptions,screenshotExtension} from './capture-format.mjs';
 import {measureLayout} from './layout-geometry.mjs';
 import {cleanupSmokeScratch} from './smoke-cleanup.mjs';
-import {browserOptions} from './browser-options.mjs';
+import {browserOptions,publicSmokeConfig} from './browser-options.mjs';
 import {contrastRatio} from '../public/accessibility.mjs';
 import {redactEvidence,writeEvidence,evidenceRun} from './public-evidence.mjs';
 import { spawn, execFileSync } from 'node:child_process';
@@ -15,8 +16,9 @@ const delay=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn,label,timeout=75000){const end=Date.now()+timeout;while(Date.now()<end){if(await fn())return;await delay(100);}throw new Error('Timed out: '+label);}
 const layoutDir=process.argv.includes('--live-proposals')?'layout-live-proposals':process.argv.includes('--recorded-drafts')?'layout-recorded':process.argv.includes('--live')?'layout-live':'layout';
 const geometry=process.argv.includes('--geometry'),geometryResults=[],geometryStates=new Set();
+const publicHosting=publicSmokeConfig(process.argv),publicFallback=process.argv.includes('--public-fallback');
 const mockLive=process.argv.includes('--mock-live'),baseline=process.argv.includes('--baseline');
-const {keyboardOnly,liveBrowser,guided,mobileFlow}=browserOptions([...process.argv,...(mockLive?['--live','--guided']:[])],process.env);
+const {keyboardOnly,liveBrowser,guided,mobileFlow}=browserOptions([...process.argv,...(mockLive||publicFallback?['--live','--guided']:[])],process.env);
 const binaries=[process.env.CHROME_PATH,...[process.env.PROGRAMFILES,process.env['PROGRAMFILES(X86)'],process.env.LOCALAPPDATA].filter(Boolean).flatMap(p=>[join(p,'Google','Chrome','Application','chrome.exe'),join(p,'Microsoft','Edge','Application','msedge.exe')])];
 const binary=binaries.find(p=>p&&existsSync(p));if(!binary)throw new Error('Browser unavailable; smoke cannot pass');
 const scratch=mkdtempSync(join(tmpdir(),'ffr-ui-smoke-'));const token=randomBytes(24).toString('hex');
@@ -24,14 +26,14 @@ const auditorToken=randomBytes(24).toString('hex');
 const routeRedCheck=process.argv.includes('--route-red-check');const slowCheck=process.argv.includes('--slow-check');const timeoutCheck=slowCheck||process.argv.includes('--timeout-check');let controlledCalls=0;
 let recordedDraftIndex=0;const liveProposalPacket=process.argv.includes('--live-proposals')?'../evidence/run21/primary-browser/packet.json':process.argv.includes('--recorded-drafts')?'../evidence/run20/primary-browser/failed-packet.json':null;const recordedDrafts=liveProposalPacket?JSON.parse(readFileSync(new URL(liveProposalPacket,import.meta.url),'utf8')).brittProposals.map(p=>({summary:p.board.summary,tasks:p.board.tasks.map(({id,title,owner,dueHours,dependsOn,evidenceIds})=>({id,title,owner,dueHours,dependsOn,evidenceIds}))})):null;
 const mockFetch=async(url,options)=>{if(geometry)await delay(700);const body=JSON.parse(options.body),prompt=typeof body.input==='string'?body.input:body.messages.map(m=>m.content).join('\n');let reply;if(prompt.includes('Draft recovery tasks for human approval.')){const c=JSON.parse(prompt.split('Context: ')[1]);const {sampleDraft}=await import('../src/recovery-board.mjs');reply=recordedDrafts?recordedDrafts[Math.min(recordedDraftIndex++,recordedDrafts.length-1)]:sampleDraft(c);}else if(prompt.includes('Next call get_incident with empty arguments.'))reply={action:'tool',name:'get_incident',arguments:{}};else if(prompt.includes('Next call compare_recovery_options with empty arguments.'))reply={action:'tool',name:'compare_recovery_options',arguments:{}};else reply={action:'final',optionId:'allocate_substitute',narrative:'Use the calculated substitute path after human review.',claims:[{evidenceId:'ev-cert-qty',value:120,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}]};return new Response(JSON.stringify(body.input?{model:body.model,output_text:JSON.stringify(reply)}:{model:body.model,choices:[{message:{content:JSON.stringify(reply)}}]}));};
-const app=createApp({models:{fetchImpl:mockLive?mockFetch:routeRedCheck?async()=>{controlledCalls++;return new Response('{}',{status:503});}:timeoutCheck?async()=>{controlledCalls++;if(slowCheck)await delay(13500);throw Object.assign(Error('controlled timeout'),{name:'AbortError'});}:globalThis.fetch,env:{...process.env,...(mockLive?{MUSE_API_KEY:'test-only-wonder',BASETEN_API_KEY:'test-only-baseten'}:{}),FIREWORKS_API_KEY:'',HACKATHON_DEMO_MODE:'1',HACKATHON_OPERATORS_JSON:JSON.stringify([{id:'judge-auditor',role:'auditor',token:auditorToken}]),HACKATHON_ADMIN_TOKEN:token,HACKATHON_LEDGER_KEY:randomBytes(32).toString('hex'),HACKATHON_STATE_DIR:join(scratch,'state')}}});
+const app=createApp({publicHosting,models:{fetchImpl:publicFallback?async()=>{throw Error('Public fallback must never contact a provider');}:mockLive?mockFetch:routeRedCheck?async()=>{controlledCalls++;return new Response('{}',{status:503});}:timeoutCheck?async()=>{controlledCalls++;if(slowCheck)await delay(13500);throw Object.assign(Error('controlled timeout'),{name:'AbortError'});}:globalThis.fetch,env:{...process.env,...(mockLive?{MUSE_API_KEY:'test-only-wonder',BASETEN_API_KEY:'test-only-baseten'}:{}),FIREWORKS_API_KEY:'',HACKATHON_DEMO_MODE:'1',HACKATHON_OPERATORS_JSON:JSON.stringify([{id:'judge-auditor',role:'auditor',token:auditorToken}]),HACKATHON_ADMIN_TOKEN:token,HACKATHON_LEDGER_KEY:randomBytes(32).toString('hex'),HACKATHON_STATE_DIR:join(scratch,'state')}}});
 if(baseline){const handler=app.server.listeners('request')[0];app.server.removeAllListeners('request');app.server.on('request',(req,res)=>{if(req.url==='/app.mjs'){res.writeHead(200,{'Content-Type':'text/javascript'});res.end(readFileSync(new URL('../public/app.mjs.run13.bak',import.meta.url)));}else handler(req,res);});}
 const address=await app.listen(0);const base=`http://127.0.0.1:${address.port}`;
 const browser=spawn(binary,['--headless=new','--disable-gpu','--no-first-run','--no-default-browser-check','--remote-debugging-port=0','--user-data-dir='+join(scratch,'browser'),'about:blank'],{stdio:'ignore',windowsHide:true});
 let ws;const errors=[];const checks=[];
 
 let keyboardActions=0;
-const group='primary-'+(baseline?(mockLive?'baseline-mocked':'baseline-offline'):mockLive?'browser-mocked':liveBrowser?'browser':'browser-offline');
+const group='primary-'+(publicHosting?(publicFallback?'browser-public-fallback':'browser-public'):baseline?(mockLive?'baseline-mocked':'baseline-offline'):mockLive?'browser-mocked':liveBrowser?'browser':'browser-offline');
 const output=new URL('../evidence/'+evidenceRun()+'/'+group+'/',import.meta.url);mkdirSync(output,{recursive:true});
 function save(name,contents){if(process.argv.includes('--lean-evidence')&&name.endsWith('.png'))return;if(process.argv.includes('--lean-evidence')&&name==='screens.json')contents='[]';writeEvidence(new URL(name,output),contents);}
 try{
@@ -45,9 +47,9 @@ try{
   for(const [width,height,size] of [[1920,1080,'wide'],[1366,768,'desktop']]){
    await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});await delay(180);
    const metrics=await evaluate('('+measureLayout.toString()+')()');
-   const name=String(geometryResults.length+1).padStart(3,'0')+'-'+label+'-'+size;
-   writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+layoutDir+'/'+name+'.png',import.meta.url),Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));
-   geometryResults.push({state:label,viewport:width+'x'+height,screenshot:layoutDir+'/'+name+'.png',...metrics});
+   const name=String(geometryResults.length+1).padStart(3,'0')+'-'+label+'-'+size;const extension=screenshotExtension(process.argv);
+   writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+layoutDir+'/'+name+'.'+extension,import.meta.url),Buffer.from((await send('Page.captureScreenshot',screenshotCaptureOptions(process.argv))).data,'base64'));
+   geometryResults.push({state:label,viewport:width+'x'+height,screenshot:layoutDir+'/'+name+'.'+extension,...metrics});
    writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+layoutDir+'/results.json',import.meta.url),JSON.stringify(geometryResults,null,2));
   }
   await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});
@@ -126,6 +128,7 @@ try{
    assert.ok(await evaluate(`[...document.querySelectorAll('.proposal-task')].at(-1).hidden===false`),'stage task selection reveals the actual complete inspector task');
    await evaluate(`document.querySelector('[data-proposal-index="0"]').click()`);
   }
+  if(publicHosting)await delay(5500);
   await click('#guide-next');
   if(geometry&&await evaluate(`!document.querySelector('#investigation-pending').hidden`))await captureGeometry('investigation-running-'+visited.length);
   await until(()=>evaluate(`!document.querySelector('#guide-next').disabled||(!document.querySelector('#consent').hidden&&!document.querySelector('#typed').disabled)||(!document.querySelector('[data-stage="proof"]').hidden&&!document.querySelector('#export-passphrase').disabled)`),'primary action');
@@ -143,7 +146,7 @@ try{
  }
  assert.ok(await evaluate(`document.querySelector('#guide-title').textContent.includes('Recovery story complete')`),'all guided steps finish');
  if(geometry){writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+layoutDir+'/results.json',import.meta.url),JSON.stringify(geometryResults,null,2));const failures=geometryResults.filter(r=>r.hits.length||r.clipped.length||r.pageScroll||r.fill<.70||r.bodyPx<16||r.textClipping.length||r.emptyElements.length||!r.headerNavigation.valid);assert.equal(failures.length,0,'geometry failures: '+JSON.stringify(failures.map(r=>({state:r.state,viewport:r.viewport,hits:r.hits.map(h=>[h.a,h.b]),clipped:r.clipped,fill:r.fill}))));}
- const session=await fetch(base+'/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+token}}).then(r=>r.json());const post=async action=>fetch(base+'/api/workflow/'+action,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':session.session,'X-CSRF-Token':session.csrf},body:JSON.stringify(action==='export'?{acknowledgePlaintext:'EXPORT PLAINTEXT'}:{})}).then(r=>r.json());const packet=await post('export'),checkpoint=await post('checkpoint');assert.equal(verifyCheckpoint(packet,checkpoint).ok,true);save('packet.json',JSON.stringify(packet,null,2));save('checkpoint.json',JSON.stringify(checkpoint,null,2));
+ const session=publicHosting?await evaluate(`({session:auth['X-Session-Token'],csrf:auth['X-CSRF-Token']})`):await fetch(base+'/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+token}}).then(r=>r.json());const post=async action=>fetch(base+'/api/workflow/'+action,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':session.session,'X-CSRF-Token':session.csrf},body:JSON.stringify(action==='export'?{acknowledgePlaintext:'EXPORT PLAINTEXT'}:{})}).then(r=>r.json());const packet=await post('export'),checkpoint=await post('checkpoint');assert.equal(verifyCheckpoint(packet,checkpoint).ok,true);save('packet.json',JSON.stringify(packet,null,2));save('checkpoint.json',JSON.stringify(checkpoint,null,2));
  await click('[data-view="board"]');
  await evaluate(`document.querySelector('#factory-svg [data-scene-task]')?.dispatchEvent(new Event('click'))`);
  await captureGeometry('shell-board');
@@ -151,7 +154,7 @@ try{
  await click('[data-view="proof"]');
  const before=await evaluate(`document.querySelector('#ledger').textContent`);await click('#guide-back');await delay(1200);assert.ok(await evaluate(`document.querySelector('#guide-title').textContent.startsWith('Review')`));assert.ok(await evaluate(`[...document.querySelectorAll('#stage-deck button,#stage-deck input,#stage-deck select')].every(e=>e.disabled)`));await click('[data-view="decision"]');await evaluate(`document.querySelector('#options .option:not(.unavailable)').click()`);await delay(300);assert.equal((await post('export')).ledger.head,packet.ledger.head,'history recovery cards cannot create a consent review');await click('#guide-next');assert.equal(await evaluate(`document.querySelector('#ledger').textContent`),before);assert.equal((await post('export')).ledger.head,packet.ledger.head);await click('#guided-steps button');assert.ok(await evaluate(`document.querySelector('#guide-title').textContent.startsWith('Review')`));assert.equal((await post('export')).ledger.head,packet.ledger.head);
  if(geometry)assert.equal(geometryResults.filter(r=>r.hits.length||r.clipped.length||r.pageScroll||r.fill<.70||r.bodyPx<16||r.textClipping.length||r.emptyElements.length||!r.headerNavigation.valid).length,0,'all geometry states including shell');
- save('screens.json',JSON.stringify(captures,null,2));assert.deepEqual(errors,[]);save('summary.json',JSON.stringify({ok:true,live:liveBrowser&&!mockLive,mocked:mockLive,visited,consoleErrors:errors},null,2));console.log(JSON.stringify({ok:true,visited}));
+ save('screens.json',JSON.stringify(captures,null,2));assert.deepEqual(errors,[]);save('summary.json',JSON.stringify({ok:true,live:liveBrowser&&!mockLive&&!publicFallback,mocked:mockLive,publicHosting:Boolean(publicHosting),dailyFallback:publicFallback,visited,consoleErrors:errors},null,2));console.log(JSON.stringify({ok:true,visited}));
  }catch(error){
  save('failure.json',JSON.stringify({ok:false,live:liveBrowser,reason:error.message,checks,consoleErrors:errors},null,2));
  try{const session=await fetch(base+'/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+token}}).then(r=>r.json());const response=await fetch(base+'/api/workflow/export',{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':session.session,'X-CSRF-Token':session.csrf},body:JSON.stringify({acknowledgePlaintext:'EXPORT PLAINTEXT'})});if(response.ok)save('failed-packet.json',JSON.stringify(await response.json(),null,2));}catch{}

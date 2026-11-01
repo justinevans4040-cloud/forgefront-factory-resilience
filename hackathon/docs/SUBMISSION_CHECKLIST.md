@@ -3,6 +3,8 @@
 The recovery-room proof is collected in [current evidence](../evidence/README.md). Complete these owner gates against the independently audited candidate.
 
 - [ ] Review the complete uncommitted diff, source manifest and contributions; resolve findings and repeat affected verification.
+- [ ] Deploy the Render blueprint from the authorized submission branch with stable host secrets and persistent disk; confirm the README Live demo opens signed out and /healthz returns 200 over public HTTPS.
+- [ ] Review the current run-twenty-three screenshots, all-state geometry, public spending limits and original Muse Wonder iterations before approving the candidate.
 - [ ] Select the intended public candidate branch and authorize integration/publication separately.
 - [ ] Run the factory, evidence, decision, board, Britt and proof views on a physical phone; verify the mobile rail, next-action focus, recaps and final computed summary: open the recovery room, route selection, source inspection, typed acceptance, shock, renewed decision and export.
 - [ ] Re-run provider pre-flight. Present Wonder and a GREEN Spark Open route; check the selected route in the room. Choose an alternative explicitly when a route is RED.

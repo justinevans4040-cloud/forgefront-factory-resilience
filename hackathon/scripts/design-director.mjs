@@ -1,3 +1,4 @@
+import {screenshotMime} from './capture-format.mjs';
 import {readFileSync,writeFileSync,mkdirSync,existsSync,copyFileSync} from 'node:fs';
 import {resolve,relative,isAbsolute} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -30,7 +31,7 @@ export async function reviewDesign({screens,previous=null,env=process.env,fetchI
  for(const route of routes){if(!route.key)continue;try{
   const content=[{type:'input_text',text:prompt},...images];
   const body=route.wonder?{model:route.model,store:false,reasoning:{effort:'minimal'},max_output_tokens:12000,input:[{role:'user',content}]}:{model:route.model,max_tokens:8192,messages:[{role:'user',content:prompt}]};
-  const response=await fetchImpl(route.url,{method:'POST',headers:{Authorization:'Bearer '+route.key,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(55000)});
+  const response=await fetchImpl(route.url,{method:'POST',headers:{Authorization:'Bearer '+route.key,'Content-Type':'application/json'},body:JSON.stringify(body),signal:AbortSignal.timeout(120000)});
   if(!response.ok)throw Error('HTTP '+response.status);const raw=await response.json();if(raw.model!==route.model)throw Error('Model identity mismatch');
   const output=raw.output_text??raw.output?.flatMap(o=>o.content??[]).filter(c=>c.type==='output_text').map(c=>c.text).join('')??raw.choices?.[0]?.message?.content;
   const value=JSON.parse(output.replace(/^```(?:json)?\s*|\s*```$/g,''));
@@ -41,7 +42,7 @@ export async function reviewDesign({screens,previous=null,env=process.env,fetchI
  throw Error('Design review unavailable: '+failures.join('; '));
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- try{assertNewIteration(resolve(root,'design'),designIteration(process.argv[3]??1));const manifest=resolve(process.argv[2]??resolve(root,'design/screens.json'));const screens=JSON.parse(readFileSync(manifest,'utf8')).map(s=>{const path=resolve(root,s.path);const rel=relative(root,path);if(isAbsolute(rel)||rel.startsWith('..'))throw Error('Screenshot outside build');return {...s,image:'data:image/png;base64,'+readFileSync(path).toString('base64')};});
+ try{assertNewIteration(resolve(root,'design'),designIteration(process.argv[3]??1));const manifest=resolve(process.argv[2]??resolve(root,'design/screens.json'));const screens=JSON.parse(readFileSync(manifest,'utf8')).map(s=>{const path=resolve(root,s.path);const rel=relative(root,path);if(isAbsolute(rel)||rel.startsWith('..'))throw Error('Screenshot outside build');return {...s,image:'data:'+screenshotMime(path)+';base64,'+readFileSync(path).toString('base64')};});
  const iteration=designIteration(process.argv[3]??1);const dir=resolve(root,'design');mkdirSync(dir,{recursive:true});const last=resolve(dir,'design-direction.json');const previous=existsSync(last)?JSON.parse(readFileSync(last,'utf8')):null;
  const result=await reviewDesign({screens,previous});for(const [name,value]of[['design-direction.json',result],['iteration-'+iteration+'.json',result],...result.steps.map(s=>['step-critique-'+s.step+'.json',{model:result.model,iteration,...s}])]){const path=resolve(dir,name);backupReviewFile(path,iteration);writeFileSync(path,JSON.stringify(value,null,2)+'\n');}console.log(JSON.stringify({model:result.model,iteration,scores:result.steps.map(s=>({step:s.step,score:s.score})),sanitized:Boolean(result.sanitized)}));
  }catch(error){console.error(error.message);process.exitCode=1;}

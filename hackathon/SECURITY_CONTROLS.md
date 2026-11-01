@@ -2,6 +2,18 @@
 
 Concrete controls protect the recovery decision from open room through evidence export. This map ties every control theme to implementation and executable verification.
 
+## Public hosting controls
+
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Public entry and health | `serve-public.mjs` binds the host-assigned port on all interfaces; explicit no-sign-in mode; healthz exposes service status | run23-public hosting and launcher tests |
+| Visitor separation | Each public session owns a separate encrypted recovery workflow and consent state | run23-public independent snapshot and reset regression |
+| Public request budget | 30 API requests per minute per trusted visitor identity with 429 and Retry-After; 64 KiB body bound | run23-public HTTP rate/body tests |
+| Public inference budget | `public-budget.mjs` reserves 10 bounded operations per visitor per hour and 300 globally per UTC day before calls; encrypted counters survive restart; daily exhaustion uses offline Sample | run23-public-budget persistence, rollover and fallback tests |
+| Hosting edge trust | Forwarded identity and HTTPS scheme accepted only from trusted Render proxy sockets; direct forwarding headers cannot change identity or origin | run23-public-budget proxy/origin tests |
+| Primary route isolation | Public launch strips the standby credential; public model routes reject standby calls even if a credential is injected | run23-public HTTP and launcher tests |
+| Persistent storage | Render disk mounts at HACKATHON_STATE_DIR; stable secrets supplied through host settings with sync disabled | render.yaml and launcher tests |
+
 ## Recovery work and sovereign-agent controls
 
 | Control theme | Implementation | Verification |

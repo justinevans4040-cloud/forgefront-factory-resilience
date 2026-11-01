@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh, overflow hidden at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; compact horizontal rail only with equal-width non-wrapping targets, aria-current and arrow-key movement; main uses independent reserved zones for rendered scene, callouts, stations and jobs with zero overlap; enlarge rendered scene to at least 70% of main; condense side content inside its reserved zone to maintain viewport fit",
+    "colorTokens": "Entirely black, emerald green and brushed silver only: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); brushed silver #C5CCD4 headings, dim silver rgba(197,204,212,.68) secondary; emerald/neon #A8F04A sole accent and primary fill with #050705 text, one primary per viewport; stopped states use silver cross-hatching, cross marker and plain OFFLINE text; official logo immutable in black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story",
+    "typography": "System sans; 16px/24 body minimum, no label under 12px; header tabs span most of header width with labels at least 16px; 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; tabular numerals",
+    "motion": "160-220ms ease-out for selection and panels; single 240ms route trace on real state change then static; no loops or pulses; prefers-reduced-motion removes transitions while silver pattern, cross marker and OFFLINE text carry meaning; 2px emerald focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left at native aspect and Lock recovery room right; opening story retains second required logo placement; compact horizontal rail built from single steps array with equal-width targets, aria-current and arrow-key roving; focusable cinematic factory SVG as dominant scene in its reserved zone; side zone keeps connection readiness checks for provider identity separate from investigation evidence task under distinct headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; pending task proposal deliberately untracked until human approval, blocked prior tasks and approved recovery plan coexist while replacements await approval; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite",
+    "visualizations": "State-driven 960x540 cinematic factory SVG enlarged to fill at least 70% of main using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in emerald, silver idle machines, stopped CELL-MILL-2 in silver cross-hatching with cross marker and plain OFFLINE text and no route through it; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend with pattern, marker and text"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge the left factory scene to at least 70% of main width and reduce the right evidence zone; convert station and job boxes into one cinematic SVG with DOCK, QA, Receiving, CELL-MILL-1 and CELL-MILL-2 in reserved zones."
+        },
+        {
+          "priority": "high",
+          "change": "Raise side-zone body and Source detail labels to 16px/24 and header tab labels to at least 16px while keeping all content inside 1366x768 without overlap."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep the header logo and opening-story logo at native aspect, then make Certificate 120 and Receiving 80 tracks share one scale with DOES NOT MATCH visibly spanning the gap."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Separate Model connection readiness for provider identity from Investigate source evidence with distinct headings, status lines and controls so the two tasks are never read as one action."
+        },
+        {
+          "priority": "high",
+          "change": "Enlarge the factory SVG beyond its current boxed diagram scale to at least 70% of main and add focusable station and job nodes with bidirectional highlighting into the side zone."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise the route selector, explanatory text and Run Sample investigation supporting copy to 16px minimum body size and add a visible 2px emerald focus ring to the selector."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make each Select this path control at least 44px high with 16px label, clear selected state, and state that selecting it opens the typed consent form before any acceptance is recorded."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the factory scene to at least 70% of main and link each feasible route in emerald to the matching comparison row on hover, focus and selection."
+        },
+        {
+          "priority": "medium",
+          "change": "Increase small finish and incremental labels from micro text to readable 12px minimum and keep 83h, 35h, 17.5h and costs as 26px tabular metrics where space allows."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve PROPOSED and UNTRACKED UNTIL APPROVAL on all three tasks, but raise task titles and due text to 16px and remove misleading progress fills from untracked t2 and t3 or label them as dependency order only."
+        },
+        {
+          "priority": "medium",
+          "change": "Refit the scene so stations and jobs occupy at least 70% of main as a connected factory SVG rather than equal cards, with CELL-MILL-1 and CELL-MILL-2 shown in the accepted plan."
+        },
+        {
+          "priority": "medium",
+          "change": "Make task selectors 1, 2 and 3 keyboard reachable with aria-current, arrow-key movement and a focus ring, and mirror the selected task in both reserved zones."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Change the CELL-MILL-2 preview from vertical striping to silver cross-hatching with a cross marker and plain PREVIEW OFFLINE text, and ensure no emerald route passes through it."
+        },
+        {
+          "priority": "high",
+          "change": "Enlarge the preview scene to at least 70% of main and place the 24h to 0h capacity callout inside the scene callout zone without shrinking station or job zones."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise side-zone availability, selector and invalidation text to 16px and give Apply second shock one clear warning status in the action bar centre."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Retain CELL-MILL-2 silver cross-hatching, cross marker and plain OFFLINE text, but remove any remaining dashed route into it and show only the 2 feasible paths in emerald."
+        },
+        {
+          "priority": "high",
+          "change": "Again separate connection readiness from the evidence investigation task with independent headings and status, and enlarge both section bodies to 16px."
+        },
+        {
+          "priority": "medium",
+          "change": "Scale the factory SVG to at least 70% of main so the offline station, jobs and constrained Split option remain legible at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep Split available capacity visibly constrained with cross-hatching and the reason Split requires at least two online compatible cells, while keeping its non-selectable state keyboard and screen-reader clear."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise comparison row labels and Human decision status to 16px and link the two selectable paths to emerald routes in an enlarged scene filling at least 70% of main."
+        },
+        {
+          "priority": "medium",
+          "change": "Add centre action-bar wording that prior acceptance is invalidated and fresh review is required, matching the side-zone Scenario changed status."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep 3 BLOCKED prior tasks visually and semantically separate from the 3 PROPOSED replacements awaiting approval, with blocked tasks using silver hatching and text rather than colour alone."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise proposed task titles, due lines and board selector labels to 16px, and remove progress fills or explain them as sequence only while tasks remain untracked until approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the station and task scene to at least 70% of main and show CELL-MILL-2 as OFFLINE with cross-hatching, cross marker and replan required inside its station zone."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Reduce the three oversized empty proof cards and refit the main zone as a verified-chain visualization linked to Verify ledger, Seal packet and Retain checkpoint states, keeping all steps inside the viewport."
+        },
+        {
+          "priority": "high",
+          "change": "Raise right-zone checklist, passphrase guidance and waiting status to 16px/24; keep Verify ledger as the sole primary until its state changes."
+        },
+        {
+          "priority": "medium",
+          "change": "Show 70 parts at stake, 35h accepted plan and 48h comparison as aligned tabular metrics and add keyboard focus order from scene cards to side-zone controls to action bar."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit the board so To do, In progress, Blocked and Done columns do not leave most of the scene empty; enlarge the rendered board zone to at least 70% of main and populate height with the single tracked t1 card and clear empty-state text."
+        },
+        {
+          "priority": "high",
+          "change": "Correct the header and rail context mismatch shown for this board view by keeping aria-current on Project board in the compact horizontal rail and the matching step state consistent across header, rail and title."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise column headings, card title, owner, due and dependency text to 16px, make the status selector fully keyboard accessible, and remove the thin non-palette tint on the Blocked column in favour of silver border, hatching and text."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

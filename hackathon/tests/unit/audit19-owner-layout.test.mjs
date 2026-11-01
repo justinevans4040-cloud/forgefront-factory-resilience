@@ -19,10 +19,11 @@ test('factory nodes draw at the reserved factoryPositions width, not a fixed 186
 test('shock capacity preview stays in a reserved top callout band with a leader to the selected cell',()=>{
  assert.match(app,/const shockStage=stage==='shock'/);
  assert.match(app,/const lineRight=876/);
- assert.match(app,/box\(24,8,852,88/);
+ assert.match(app,/box\(24,8,852,96/);
  assert.match(app,/CAPACITY PREVIEW/);
  assert.match(app,/Apply → invalidate acceptance/);
- assert.match(app,/V \$\{machineY\}/);
+ assert.match(app,/V \$\{bayY\+16\}/);
+ assert.doesNotMatch(app,/V \$\{machineY\}/);
 });
 
 test('geometry harness fails independent text and node intersections without same-band siblings skipping',()=>{

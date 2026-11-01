@@ -39,7 +39,8 @@ export function createRequestGuards(options = {}) {
         err.status = 403;
         throw err;
       }
-      if (!allowedHosts.has(url.hostname.toLowerCase()) || (req.headers.host && url.origin!==`http://${req.headers.host}`)) {
+      const scheme=options.schemeFor?.(req)??(req.socket?.encrypted?'https':'http');
+      if (!allowedHosts.has(url.hostname.toLowerCase()) || (req.headers.host && url.origin!==`${scheme}://${req.headers.host}`)) {
         const err = new Error("Origin not allowed");
         err.code = ERROR_CODES.FORBIDDEN;
         err.status = 403;
@@ -47,6 +48,7 @@ export function createRequestGuards(options = {}) {
       }
     },
     async readJson(req) {
+      if(Number(req.headers['content-length'])>maxBodyBytes){req.resume();throw Object.assign(new Error('Request body too large'),{code:ERROR_CODES.BAD_REQUEST,status:413});}
       const chunks = [];
       let total = 0;
       for await (const chunk of req) {

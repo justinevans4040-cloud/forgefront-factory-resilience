@@ -2,7 +2,7 @@
 
 One disputed certificate. Meta investigates. Britt plans. The human decides.
 
-Run primary provider pre-flight, open the demo and start guided recovery. Use the highlighted primary action for the highlighted operation, Back for read-only review, and explicit approval for human decisions. The live guide has ten steps plus completion; Sample has nine plus completion. Reinvestigate recovery runs Spark then Wonder within the same guided step. Read the updated status between those calls.
+Open the Live demo link in the README and start guided recovery. Check the primary model connection before filming. Use the highlighted primary action for the highlighted operation, Back for read-only review, and explicit approval for human decisions. The live guide has ten steps plus completion; Sample has nine plus completion. Reinvestigate recovery runs Spark then Wonder within the same guided step. Read the updated status between those calls.
 
 | Clip | Budget | Exact application action | Narration |
 | --- | --- | --- | --- |

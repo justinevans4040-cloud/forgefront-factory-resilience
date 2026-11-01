@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh, overflow hidden at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; compact horizontal rail only with equal-width non-wrapping targets, aria-current and arrow-key movement; main uses independent reserved zones for rendered scene, callouts, stations and jobs with zero overlap; enlarge rendered scene to at least 70% of main; condense side content inside its reserved zone to maintain viewport fit, never introduce vertical rail",
+    "colorTokens": "Entirely black, emerald green and brushed silver only: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); brushed silver #C5CCD4 headings, dim silver rgba(197,204,212,.68) secondary; emerald/neon #A8F04A sole accent and primary fill with #050705 text, one primary per viewport; stopped states use silver cross-hatching, cross marker and plain OFFLINE text, never red; official logo immutable in black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story",
+    "typography": "System sans; 16px/24 body minimum, no label under 12px; header tabs span most of header width with labels at least 16px; 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; tabular numerals",
+    "motion": "160-220ms ease-out for selection and panels; single 240ms route trace on real state change then static; no loops or pulses; prefers-reduced-motion removes transitions while silver pattern, cross marker and OFFLINE text carry meaning; 2px emerald focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left at native aspect and Lock recovery room right; opening story retains second required logo placement; compact horizontal rail built from single steps array with equal-width targets, aria-current and arrow-key roving; focusable cinematic factory SVG as dominant scene in its reserved zone; side zone keeps connection readiness checks for provider identity separate from investigation evidence task under distinct headings, status and controls, never conflated; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form, do not infer missing functionality from pre-selection screenshots; pending task proposal deliberately untracked until human approval, blocked prior tasks and approved recovery plan coexist while replacements await approval; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite",
+    "visualizations": "State-driven 960x540 cinematic factory SVG enlarged to fill at least 70% of main using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in emerald, silver idle machines, stopped CELL-MILL-2 in silver cross-hatching with cross marker and plain OFFLINE text and no route through it; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend with pattern, marker and text"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge the factory scene to at least 70% of main; current boxed grid leaves opening-story metrics and option cards competing inside the scene zone."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep the second official logo placement in the opening story at native aspect and raise scene callout labels to 16px where they sit below that size."
+        },
+        {
+          "priority": "medium",
+          "change": "Add bidirectional highlighting between Certificate 120 / Receiving 80 tracks and the three source-evidence cards in the reserved callout zone."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Separate provider identity readiness under its own heading from the distinct Investigate source evidence task, each with its own status and control."
+        },
+        {
+          "priority": "high",
+          "change": "Enlarge the scene to at least 70% of main and refit the side zone without overlap; narration in the connection panel is dense at 1366x768."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise small route-note text to 16px body or 12px micro-label minimum and add a visible emerald focus ring to the route selector."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make each Select this path control open the typed consent form on selection and show that state change in the Human decision zone."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the scene toward 70% and link hovering or focusing a side path to its matching station and job nodes in the SVG."
+        },
+        {
+          "priority": "low",
+          "change": "Increase secondary finish and incremental labels that fall below clear legibility while keeping one primary action in the action bar."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve PROPOSED and UNTRACKED UNTIL APPROVAL on all three tasks until approval; keep progress bars from implying tracked progress before consent."
+        },
+        {
+          "priority": "medium",
+          "change": "Refit station and job cards as one cinematic SVG scene filling at least 70% of main, with t1-t3 in their reserved jobs zone."
+        },
+        {
+          "priority": "medium",
+          "change": "Add arrow-key movement and aria-current clarity between the 1-2-3 task selectors and the detailed proposal card."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Use silver cross-hatching plus cross marker and plain OFFLINE text for the applied stopped state; keep the current dashed treatment only as clearly labelled preview."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the preview scene to at least 70% of main so the 24h to 0h change and feasible route read before the side panel."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise preview micro-text to at least 12px and pair the machine selector with a stronger emerald focus ring."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Strengthen CELL-MILL-2 stopped treatment with dense silver cross-hatching, a clear cross marker and plain OFFLINE text, with no route drawn through it."
+        },
+        {
+          "priority": "high",
+          "change": "Keep provider identity readiness separate from the evidence investigation task in the side zone; do not merge their status sentences."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the SVG to at least 70% of main and announce the 3 to 2 feasible paths change through aria-live polite."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep the constrained Split path visibly unavailable with pattern and text, and ensure only the two feasible paths can open the typed consent form."
+        },
+        {
+          "priority": "medium",
+          "change": "Link side-zone path focus to the corresponding scene nodes and retain PRIOR ACCEPTANCE INVALIDATED status in the action bar centre."
+        },
+        {
+          "priority": "low",
+          "change": "Raise dim finish and incremental placeholders to readable silver contrast without adding another primary action."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep 3 BLOCKED prior tasks visually and semantically separate from the 3 PROPOSED replacements awaiting approval, as currently shown."
+        },
+        {
+          "priority": "medium",
+          "change": "Show CELL-MILL-2 with silver cross-hatching, cross marker and OFFLINE text in the station zone rather than plain text alone."
+        },
+        {
+          "priority": "medium",
+          "change": "Refit the left scene as a state-driven SVG at at least 70% of main while preserving the strong blocked-versus-proposed side hierarchy."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge the 01-02-03 proof sequence into the dominant scene zone at at least 70% of main; the side evidence panel currently carries most meaning."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep Verify, Seal and Retain as sequential locked states with 16px instructions and a clear focus ring on the enabled Verify ledger control."
+        },
+        {
+          "priority": "low",
+          "change": "Condense passphrase narration to one instruction and one status sentence while retaining the 16 to 160 character requirement."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Align the board header state with the displayed columns: To do 3, In progress 0, Blocked 0, Done 0 should not be paired with a conflicting step title or invalidating action bar from another stage."
+        },
+        {
+          "priority": "high",
+          "change": "Refit columns into independent reserved zones at 1366x768 with full card titles visible; the single tall card wastes the Blocked and Done zones."
+        },
+        {
+          "priority": "medium",
+          "change": "Add arrow-key movement between task selectors 1-3, a 2px emerald focus ring, and 16px card body text for owner, due and dependency details."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

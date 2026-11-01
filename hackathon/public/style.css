@@ -990,3 +990,48 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
  body[data-active-stage=board] #prior-work{order:4!important;flex:0 1 auto!important;min-height:0!important;max-height:120px!important;overflow:auto!important}
  body[data-active-stage=board] #recovery-board{flex:0 1 auto;min-height:0;overflow:auto!important}
 }
+
+/* investigation-workspace: a connection gate, evidence task and verified notebook occupy distinct regions. */
+.investigation-workspace .model-controls{width:100%}
+[data-investigation-region=connection]{border-color:#728779!important;background:#101813!important}
+[data-investigation-region=evidence]{border-color:#91da78!important;background:linear-gradient(120deg,#1b2c1d,#101b14)!important}
+.verified-finding{border:1px solid #648265;border-left:3px solid #A8F04A;padding:7px 10px;margin:6px 0;background:#17271b}
+.verified-finding>summary{color:#e2f4d8;font-size:16px;line-height:1.35;min-height:24px}
+.verified-finding>small{display:block;font-size:16px;line-height:1.4;overflow-wrap:anywhere;margin-top:6px;color:#c5ccd4}
+@media(min-width:901px){
+ body[data-active-stage=investigation] .stage[data-stage=investigation]{gap:8px!important}
+ body[data-active-stage=investigation] .stage[data-stage=investigation] .investigate{flex:0 0 auto!important;padding:10px!important;gap:8px!important}
+ body[data-active-stage=investigation] .stage[data-stage=investigation] .model-controls{gap:8px!important}
+ body[data-active-stage=investigation] #route-checklist{margin:2px 0 6px!important;font-size:16px;line-height:1.35}
+ body[data-active-stage=investigation] #provider-status{display:block;margin:2px 0 6px!important}
+ body[data-active-stage=investigation] #route-help{margin:4px 0!important;font-size:16px;line-height:1.3}
+ body[data-active-stage=investigation] .investigation-task{margin:0!important;padding:10px!important;min-height:0}
+ body[data-active-stage=investigation] .investigation-task-label{font-size:12px!important;line-height:1.3;margin:0 0 6px!important;color:#c7f5b0}
+ body[data-active-stage=investigation] .investigation-progress{padding:0!important;margin:0!important;border:0;background:none}
+ body[data-active-stage=investigation] #investigation-status{margin:4px 0!important;padding:0!important;font-size:16px!important;line-height:1.35!important}
+ body[data-active-stage=investigation] #investigation-empty{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-task{display:none!important}
+ body[data-active-stage=investigation] #model-output{padding:10px 12px!important;flex:1 1 auto!important;border-top:3px solid #A8F04A!important}
+ body[data-active-stage=investigation] #model-output>summary{font-size:19px!important;font-weight:650;line-height:1.3}
+ body[data-active-stage=investigation] #model-output .verified-finding{margin:6px 0!important}
+}
+
+#investigation-highlights{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.investigation-metric{padding:8px;border:1px solid #506c56;background:linear-gradient(130deg,#1d3122,#101b13);border-radius:5px}
+.investigation-metric strong{display:block;font-size:32px;line-height:1.1;color:#b8f57b;font-variant-numeric:tabular-nums}
+.investigation-metric span{display:block;font-size:16px;line-height:1.3;margin-top:4px;color:#d7e2d7}
+
+.investigation-metric strong{font-size:26px}
+#model-output #investigation-handoff{padding:7px 0;color:#e5f4db;font-size:16px!important;line-height:1.35!important;border-bottom:1px solid #536c57}
+#model-output #claims{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:6px}
+#model-output #claims .verified-finding{margin:0!important}
+
+#factory-svg .scene-size-16{font-size:16px!important}
+#factory-svg .scene-size-26{font-size:26px!important}
+#factory-svg .scene-size-28{font-size:28px!important}
+#factory-svg .scene-size-34{font-size:34px!important}
+
+
+@keyframes preview-pulse{0%,100%{filter:drop-shadow(0 0 6px #C5CCD466)}50%{filter:drop-shadow(0 0 14px #A8F04A88)}}
+#factory-svg .factory-node.preview-offline{animation:preview-pulse 1.6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){#factory-svg .factory-node.preview-offline{animation:none}}

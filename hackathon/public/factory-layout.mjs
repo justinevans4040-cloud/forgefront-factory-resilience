@@ -55,3 +55,17 @@ export function factoryPositions(left,right,count,nodeWidth=186){
  const pitch=count>1?(right-left-width)/(count-1):0;
  return Array.from({length:count},(_,i)=>({x:left+i*pitch,width}));
 }
+
+// A verified claim names its source in the main card; raw identity is progressive detail.
+export function claimPresentation(record,claim){
+ return {headline:record?evidencePlainEnglish(record):`Verified source: ${claim.value} ${claim.unit}`,
+  detail:record?evidenceDetailLabel(record):String(claim.evidenceId),evidenceId:claim.evidenceId};
+}
+
+export function investigationHighlights(run,analysis){return [{value:run.claims.accepted.length,label:'Verified facts'},{value:run.claims.rejected.length,label:'Rejected claims'},{value:analysis.recovery.feasibleCount,label:'Feasible paths'}];}
+
+export function investigationHandoff(run,selectedRoute){
+ const model=run.calls.at(-1)?.returnedModel??'';
+ const completed=run.run.sample?'Sample':model==='muse-wonder-1.0'?'Muse Wonder':'Spark Open';
+ return completed+' findings ready. '+(selectedRoute==='wonder'&&model!=='muse-wonder-1.0'&&!run.run.sample?'Next: ask Muse Wonder to compare recovery tradeoffs.':'Next: compare the calculated paths before a human decision.');
+}

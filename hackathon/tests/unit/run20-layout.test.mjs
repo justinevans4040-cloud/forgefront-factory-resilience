@@ -14,12 +14,12 @@ test('factory scenes reserve independent callout, machine, job and option bands'
  assert.match(app,/data-scene-band':'options'/);
  assert.match(app,/ResizeObserver/);
  assert.match(app,/CAPACITY PREVIEW/);
- assert.match(app,/shockStage\?104:Math\.max\(108/);
+ assert.match(app,/shockStage\?120:Math\.max\(108/);
  assert.doesNotMatch(app,/const machineY=incidentStage\?190:150/);
 });
 
 test('shock capacity preview lives in the top callout band above stations, never beside them',()=>{
- assert.match(app,/box\(24,8,852,88/);
+ assert.match(app,/box\(24,8,852,96/);
  assert.match(app,/Apply → invalidate acceptance/);
  assert.match(app,/Captions stay inside the node box/);
  assert.match(app,/const lineRight=876/);

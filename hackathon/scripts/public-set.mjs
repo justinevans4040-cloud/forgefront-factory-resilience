@@ -1,6 +1,6 @@
 import {readdirSync,readFileSync} from 'node:fs';
 import {join} from 'node:path';
-const top=new Set(['README.md','LICENSE','.env.example','.gitignore','.github/workflows/ci.yml']);
+const top=new Set(['README.md','render.yaml','LICENSE','.env.example','.gitignore','.github/workflows/ci.yml']);
 export function publicFiles(root){
  const out=[];
  const evidence=join(root,'hackathon','evidence');

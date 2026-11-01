@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 import { createClientLimiter } from './src/security/client-limit.mjs';
+import {createPublicBudget,publicRequestIdentity,isTrustedRenderProxy} from './src/security/public-budget.mjs';
+import {createHash} from 'node:crypto';
 /**
  * HTTP assembly skeleton for the Meta Hackathon build.
  * Loopback bind by default; Host/Origin allowlist; public health only.
@@ -68,16 +70,21 @@ export function sendError(res, err) {
 }
 
 export function createApp(options = {}) {
-  const guards = createRequestGuards(options.guards);
   const env=options.models?.env??process.env;
+  const publicHosting=options.publicHosting;
+  const trustProxy=publicHosting?.trustProxy??(ip=>isTrustedRenderProxy(ip,env));
+  const identityFor=req=>publicHosting?publicRequestIdentity(req,trustProxy):req.socket?.remoteAddress??'unknown';
+  const guards = createRequestGuards({...options.guards,...(publicHosting?{schemeFor:req=>trustProxy(req.socket?.remoteAddress)&&req.headers['x-forwarded-proto']==='https'?'https':req.socket?.encrypted?'https':'http'}:{})});
   const operatorSecrets=loadOperators(env).map(o=>o.token);
   const workflow=options.workflow??(env.HACKATHON_LEDGER_KEY?createWorkflow({directory:env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),key:env.HACKATHON_LEDGER_KEY,secrets:[...operatorSecrets,env.HACKATHON_OPERATORS_JSON,env.MUSE_API_KEY,env.MODEL_API_KEY,env.BASETEN_API_KEY,env.FIREWORKS_API_KEY,env.HACKATHON_ADMIN_TOKEN,env.HACKATHON_LEDGER_KEY]}):null);
   // A configured persistent workflow has already verified its private directory and encryption key.
   const quotaPersistence=env.HACKATHON_LEDGER_KEY?name=>({path:join(env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),'quota-'+name+'.json'),key:env.HACKATHON_LEDGER_KEY}):undefined;
-  const handleMeta = createMetaHandler({...options.models,workflow,quotaPersistence});
+  const publicBudget=publicHosting?createPublicBudget({...publicHosting,persistence:quotaPersistence?.('public-live')}):null;
+  const workflowForSession=publicHosting&&env.HACKATHON_LEDGER_KEY?session=>createWorkflow({directory:join(env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),'visitors',createHash('sha256').update(session).digest('hex')),key:env.HACKATHON_LEDGER_KEY,secrets:[...operatorSecrets,env.MUSE_API_KEY,env.MODEL_API_KEY,env.BASETEN_API_KEY,env.FIREWORKS_API_KEY,env.HACKATHON_ADMIN_TOKEN,env.HACKATHON_LEDGER_KEY]}):null;
+  const handleMeta = createMetaHandler({...options.models,workflow,quotaPersistence,publicBudget,identityFor,workflowForSession,secureFor:req=>Boolean(req.socket?.encrypted||(publicHosting&&trustProxy(req.socket?.remoteAddress)&&req.headers['x-forwarded-proto']==='https'))});
   let snapshot = options.snapshot || createSnapshot(buildDemoScenarioInput());
   let tools = createToolDispatcher(snapshot);
-  const apiLimit=createClientLimiter({persistence:quotaPersistence?.('api')});
+  const apiLimit=createClientLimiter({maximum:publicHosting?30:240,persistence:quotaPersistence?.(publicHosting?'public-api':'api'),identityFor});
   let ledgerFailure=false;
   const verificationTimer=workflow?setInterval(()=>{try{workflow.verify();}catch{ledgerFailure=true;}},30000):null;
   verificationTimer?.unref();
@@ -97,6 +104,7 @@ export function createApp(options = {}) {
       const url = new URL(req.url || "/", `http://${req.headers.host || "127.0.0.1"}`);
       const path = url.pathname;
       if(path.startsWith('/api/')){
+        if(Number(req.headers['content-length'])>guards.maxBodyBytes){req.resume();throw Object.assign(new Error('Request body too large'),{status:413});}
         if(ledgerFailure)throw Object.assign(new Error('LEDGER_TAMPERED'),{status:409});
         const allowance=apiLimit(req);if(!allowance.allowed){res.setHeader('Retry-After',String(allowance.retryAfter));throw Object.assign(new Error('Client API rate limit exceeded'),{status:429});}
         guards.assertOrigin(req);
@@ -108,32 +116,33 @@ export function createApp(options = {}) {
       }
       const meta = await handleMeta(req, res, path, guards, snapshot);
       if (meta && !meta.legacyAuthorized) { sendJson(res, 200, meta); return; }
-      if(meta?.legacyAuthorized && workflow)replaceSnapshot(workflow.status().snapshot);
+      if(meta?.legacyAuthorized && workflow&&!publicHosting)replaceSnapshot(workflow.status().snapshot);
+      const requestSnapshot=meta?.snapshot??snapshot;
 
-      if (req.method === "GET" && path === "/health") {
+      if (req.method === "GET" && (path === "/health"||path==='/healthz')) {
         sendJson(res, 200, { ok: true, service: "forgefront-hackathon" });
         return;
       }
 
       if (req.method === "GET" && path === "/api/scenario") {
         sendJson(res, 200, {
-          scenarioId: snapshot.scenarioId,
-          snapshotDigest: snapshot.snapshotDigest,
-          version: snapshot.version,
-          label: snapshot.label,
-          incident: snapshot.incident,
+          scenarioId: requestSnapshot.scenarioId,
+          snapshotDigest: requestSnapshot.snapshotDigest,
+          version: requestSnapshot.version,
+          label: requestSnapshot.label,
+          incident: requestSnapshot.incident,
         });
         return;
       }
 
       if (req.method === "GET" && path === "/api/analysis") {
-        sendJson(res, 200, analyzeSnapshot(snapshot));
+        sendJson(res, 200, analyzeSnapshot(requestSnapshot));
         return;
       }
 
       if (req.method === "GET" && path === "/api/tools") {
         sendJson(res, 200, {
-          snapshotDigest: snapshot.snapshotDigest,
+          snapshotDigest: requestSnapshot.snapshotDigest,
           tools: listToolDefinitions(),
         });
         return;
@@ -143,7 +152,7 @@ export function createApp(options = {}) {
         const body = await guards.readJson(req);
         const name = body?.name;
         const args = body?.arguments ?? {};
-        const result = await tools.invoke(name, args);
+        const result = await (publicHosting?createToolDispatcher(requestSnapshot):tools).invoke(name, args);
         sendJson(res, 200, { ok: true, name, result });
         return;
       }

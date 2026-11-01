@@ -2,7 +2,7 @@ import {createHash} from 'node:crypto';
 import {existsSync,readFileSync,openSync,writeFileSync,fsyncSync,closeSync,renameSync} from 'node:fs';
 import {createStateCodec} from './state-codec.mjs';
 // Direct socket identity only; encrypted fixed-window counters are committed before granting requests.
-export function createClientLimiter({maximum=240,windowMs=60000,now=Date.now,capacity=4096,persistence}={}){
+export function createClientLimiter({maximum=240,windowMs=60000,now=Date.now,capacity=4096,persistence,identityFor=req=>req.socket?.remoteAddress??'unknown'}={}){
  const codec=persistence?createStateCodec(persistence.key):null;
  let clients=new Map();
  if(persistence&&existsSync(persistence.path)){
@@ -20,7 +20,7 @@ export function createClientLimiter({maximum=240,windowMs=60000,now=Date.now,cap
   renameSync(persistence.path+'.next',persistence.path);
  }
  return req=>{
-  const time=now(),identity=createHash('sha256').update(req.socket?.remoteAddress??'unknown').digest('hex');
+  const time=now(),identity=createHash('sha256').update(identityFor(req)).digest('hex');
   for(const [id,entry]of clients)if(time-entry.start>=windowMs)clients.delete(id);
   let entry=clients.get(identity);
   if(!entry){if(clients.size>=capacity)return {allowed:false,retryAfter:Math.ceil(windowMs/1000)};entry={start:time,count:0};clients.set(identity,entry);}

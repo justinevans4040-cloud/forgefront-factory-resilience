@@ -26,6 +26,7 @@
     "check:a11y": "node scripts/browser-smoke.mjs --keyboard",
     "design:review": "node scripts/design-director.mjs",
     "smoke:guide": "node scripts/primary-guide-smoke.mjs",
-    "smoke:guide:mock": "node scripts/primary-guide-smoke.mjs --mock-live"
+    "smoke:guide:mock": "node scripts/primary-guide-smoke.mjs --mock-live",
+    "serve:public": "node scripts/serve-public.mjs"
   }
 }

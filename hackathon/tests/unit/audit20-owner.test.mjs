@@ -13,7 +13,7 @@ const read=(rel)=>readFileSync(join(hackathon,rel),'utf8');
 test('shock capacity preview reserves the top callout band above stations',()=>{
  const app=read('public/app.mjs');
  assert.match(app,/data-scene-callout':'capacity-preview'/);
- assert.match(app,/box\(24,8,852,88/);
+ assert.match(app,/box\(24,8,852,96/);
  assert.match(app,/const lineRight=876/);
  assert.doesNotMatch(app,/shockStage\?640/);
  assert.doesNotMatch(app,/box\(658,machineY/);
@@ -52,4 +52,6 @@ test('nested parent-npm cleanup contract stays in the root suite',()=>{
  const source=readFileSync(path,'utf8');
  assert.match(source,/rmSync\(parent,\s*\{\s*recursive:\s*true,\s*force:\s*true\s*\}\)/);
  assert.match(source,/nested parent-npm working-tree copies are deleted/);
+ assert.match(source,/hackathon\/evidence/);
+ assert.match(source,/Owner disk floor/);
 });

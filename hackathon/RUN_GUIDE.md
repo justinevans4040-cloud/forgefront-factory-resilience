@@ -1,8 +1,12 @@
+<!-- live-demo:start -->
+**Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
+<!-- live-demo:end -->
+
 # The Meta Hackathon build — run the recovery room
 
 Turn one disputed certificate into a recovery decision backed by sources, Meta investigation and calculated options.
 
-## Start in 60 seconds
+## Run locally
 
 Use Node 20+ and npm. From the repository root:
 
@@ -13,7 +17,19 @@ npm run demo --prefix hackathon
 
 For live investigation, provision MUSE_API_KEY (or MODEL_API_KEY) and BASETEN_API_KEY through the parent environment. Pre-flight makes one nonce/identity request per route and prints GREEN/RED. Wonder and Baseten gate readiness. The optional backup reports RED without a request in the standard check; primary routes determine readiness. Select a GREEN primary route for the live presentation. Each failed route keeps its result; choose another route deliberately.
 
-Open **http://127.0.0.1:8791** — the demo opens straight into the recovery room. Choose **Start guided recovery**. The demo uses a fresh private directory and key on every launch. HACKATHON_DEMO_PORT selects another port. Stop with Ctrl+C.
+Open `http://127.0.0.1:8791` — the demo opens straight into the recovery room. Choose **Start guided recovery**. The demo uses a fresh private directory and key on every launch. HACKATHON_DEMO_PORT selects another port. Stop with Ctrl+C.
+
+## Public recovery room on Render
+
+The repository-root `render.yaml` selects the `submission` branch, uses `hackathon` as its root directory and starts `npm run serve:public` on Node 20. The service binds `0.0.0.0` using Render’s `PORT`. `GET /healthz` checks service health. A persistent disk at `/var/data/forgefront` supplies `HACKATHON_STATE_DIR`.
+
+Provision `MUSE_API_KEY`, `BASETEN_API_KEY`, `HACKATHON_LEDGER_KEY` and `HACKATHON_ADMIN_TOKEN` through Render’s secret settings. The blueprint declares each with `sync: false`. Keep a stable ledger key with persistent state. Public launch opens the recovery room directly and removes the standby provider credential before app creation.
+
+Render is the designed public host because the recovery room needs a long-lived Node process plus a persistent encrypted state disk. A Vercel serverless deploy is not a drop-in substitute for that shape.
+
+Each visitor has a separate recovery workspace. Public API traffic allows 30 requests per minute per visitor; live investigation, connection checks and task drafts share 10 bounded operations per visitor per hour. Limit responses return 429 with Retry-After. The global allowance is 300 bounded live operations per UTC day, persisted in encrypted storage. At daily capacity the recovery continues using the offline Sample route. Public investigation polling waits five seconds between checks. Request bodies are limited to 64 KiB. Forwarded identity and HTTPS metadata are trusted only from the hosting proxy.
+
+The live link is managed by `scripts/live-demo.mjs`. Change its `LIVE_DEMO_URL`, then run `node hackathon/scripts/live-demo.mjs --write` from the repository root to synchronize all three entry documents. `node hackathon/scripts/live-demo.mjs` checks alignment.
 
 ## The command center
 
@@ -37,7 +53,7 @@ The route check is explicit: one request on the selected route, bounded to eight
 
 ## Persistent operation
 
-Provision HACKATHON_ADMIN_TOKEN, a stable high-entropy HACKATHON_LEDGER_KEY and HACKATHON_STATE_DIR pointing to a dedicated private directory. Start with `npm start --prefix hackathon` and open http://127.0.0.1:8787. Authenticate with the provisioned admin or named operator token. The environment template lists variable names; supply values through the process environment. The app uses zero runtime dependencies and needs no build step.
+Provision HACKATHON_ADMIN_TOKEN, a stable high-entropy HACKATHON_LEDGER_KEY and HACKATHON_STATE_DIR pointing to a dedicated private directory. Start with `npm start --prefix hackathon` and open `http://127.0.0.1:8787`. Authenticate with the provisioned admin or named operator token. The environment template lists variable names; supply values through the process environment. The app uses zero runtime dependencies and needs no build step.
 
 HACKATHON_OPERATORS_JSON accepts up to 32 named seats: id, role (operator or auditor) and distinct opaque token. Tokens are 12–256 characters. Admin alone resets; a named operator alone revokes; admin/operators investigate, review and confirm. Auditors read, verify and export. Restart invalidates sessions. Unexpired encrypted reviews resume for the original named identity within the original five-minute deadline.
 

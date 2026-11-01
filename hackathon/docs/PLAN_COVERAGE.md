@@ -16,7 +16,7 @@ The recovery room connects each product claim to working code and observable pro
 | Durable security | Encrypted events, anchored hash chain, forward recovery and persistent quotas | [SOC 2-style control mapping](../SECURITY_CONTROLS.md) |
 | Exportable proof | Passphrase-encrypted packet and independent prefix checkpoint | Export/checkpoint tests and browser packets |
 | Keyboard and responsive presentation | Real keyboard path, semantic controls, focus, measured contrast and width checks | Offline accessibility and mobile browser evidence |
-| Public delivery | Exact public file copy, newest run only, scrubbed text, portable links | Judge/public-tree gates |
+| Public delivery | Render launcher, persistent disk, health probe, isolated visitor workspaces, encrypted spending limits and offline daily fallback; exact public file copy, newest run only, portable links | Public hosting/budget/launcher tests; judge/public-tree gates |
 
 | Recovery project board | Source-bound task drafts, owners, due windows, dependencies, human approval and shock blockers | Board/Britt tests and primary-guide evidence |
 | Britt 4.0 | Meta-only sovereign agent, read-only tools, encrypted scoped context and human-gated tasks | Workflow, memory, provider and export tests |

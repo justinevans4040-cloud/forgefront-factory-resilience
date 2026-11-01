@@ -1,8 +1,12 @@
+<!-- live-demo:start -->
+**Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
+<!-- live-demo:end -->
+
 # Forgefront Factory Resilience — the Meta Hackathon build
 
 **Turn a disputed material certificate into an evidence-backed recovery decision.** Production planners, quality teams and shop operators inspect source records, compare feasible recovery paths and record a deliberate human decision. Muse Spark Open investigates with read-only tools; Muse Wonder explains recovery tradeoffs. A second machine outage tests whether the decision still holds.
 
-## Run it in 60 seconds
+## Run locally
 
 Use Node 20 or later, npm and a current browser. No install, dependencies or build step. From the repository root:
 
@@ -30,7 +34,7 @@ Use the full-screen command center and **highlighted primary action** to open an
 
 Muse Wonder directs the visual design of the Meta Hackathon build: real full-screen captures go to Meta for a component specification and scored step critiques. The [saved design reviews](design/design-direction.json) guide the black, emerald and brushed-silver command center. The factory map connects source quantities, affected orders, accepted allocations and sealed events to the live recovery state. Validated Spark findings pass into Wonder’s tradeoff analysis, and the accepted investigation passes into Britt’s task plan. The second shock repeats that evidence-to-decision sequence.
 
-**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Keys and encrypted state stay on the operator’s machine; inference uses the selected Meta route.
+**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Provider keys stay on the server; encrypted recovery state stays in private storage. Inference uses the selected Meta route.
 
 ## How Meta models are used
 

@@ -17,9 +17,10 @@ test('investigation route helper stays visible with silver contrast', () => {
 
 test('route health and investigation evidence remain separately headed groups', () => {
   assert.match(html, /id="route-health-label">MODEL CONNECTION/);
-  assert.match(html, /id="investigation-task-label">INVESTIGATION · SOURCE EVIDENCE/);
+  assert.match(html, /id="investigation-task-label">2 · INVESTIGATE SOURCE EVIDENCE/);
   assert.match(css, /\.route-preflight\{/);
   assert.match(css, /\.investigation-task\{/);
+  for(const region of ['connection','evidence','results'])assert.ok(html.includes('data-investigation-region="'+region+'"'));
 });
 
 test('proposal inspection uses 40px pager targets and secondary inspector approve', () => {

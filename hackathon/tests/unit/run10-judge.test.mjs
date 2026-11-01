@@ -18,9 +18,9 @@ test('all public document links remain inside the exact public set',async()=>{
 test('both judge introductions put runnable entry and exact demo before detail',()=>{
  const root=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
  assert.ok(root.indexOf('## Manufacturing contexts')>0);
- assert.ok(root.indexOf('## Manufacturing contexts')<root.indexOf('## Run it in 60 seconds'));
- assert.ok(root.indexOf('## Run it in 60 seconds')<root.indexOf('flowchart TD'));
- for(const file of ['../../../README.md','../../README.md']){const s=readFileSync(new URL(file,import.meta.url),'utf8');assert.ok(s.indexOf('Run it in 60 seconds')>0);assert.ok(s.indexOf('3-minute demo path')>0);assert.match(s,/How Meta models are used/);assert.match(s,/META_MODEL_USAGE\.md/);assert.match(s,/evidence\/README\.md/);}
+ assert.ok(root.indexOf('## Manufacturing contexts')<root.indexOf('## Run locally'));
+ assert.ok(root.indexOf('## Run locally')<root.indexOf('flowchart TD'));
+ for(const file of ['../../../README.md','../../README.md']){const s=readFileSync(new URL(file,import.meta.url),'utf8');assert.ok(s.indexOf('Run locally')>0);assert.ok(s.indexOf('Live demo')<s.indexOf('Run locally'));assert.ok(s.indexOf('3-minute demo path')>0);assert.match(s,/How Meta models are used/);assert.match(s,/META_MODEL_USAGE\.md/);assert.match(s,/evidence\/README\.md/);}
 });
 test('live wait displays remaining bounded budget and stopped status keeps explicit retry',()=>{
  assert.match(investigationStatus({phase:'running',elapsedMs:15000,route:'Muse Wonder'}),/45s remaining/);
@@ -85,7 +85,7 @@ test('judge-facing README pitches stay sharp without hedge or internal field nam
   assert.doesNotMatch(s,/decisions advisory/i);
   assert.doesNotMatch(s,/every decision advisory/i);
   assert.doesNotMatch(s,/advisory only/i);
-  assert.match(s,/Run it in 60 seconds/);
+  assert.match(s,/Run locally/);
   assert.match(s,/3-minute demo path/);
   assert.match(s,/How Meta models are used/);
  }

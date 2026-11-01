@@ -1,10 +1,10 @@
 import {stageScene,wrapSceneTitle,tileTitle,proposalLayout} from './stage-scene.mjs';
 import {capacityStatus,stageFor,focusResult,storyView,shockPreview,proofChecklist,consentProgress,proposalBanner,proofActionGate} from './command-center.mjs';
-import {factoryPositions,certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel} from './factory-layout.mjs';
+import {factoryPositions,certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel,claimPresentation,investigationHighlights,investigationHandoff} from './factory-layout.mjs';
 import {routeHealthView} from './route-health.mjs';
 import {investigationStatus} from './investigation-status.mjs';
 import {passphraseFeedback,passphraseInputStatus} from './passphrase.mjs';
-import { guideStep,guidedSteps } from './guide.mjs';
+import { guideStep,guidedSteps,publicPollDelay,publicRecoveryMode,requestWithRateLimit } from './guide.mjs';
 const $=id=>document.getElementById(id);
 document.querySelector('header').append($('logout'));
 const decisionBar=$('guide-next').parentElement;decisionBar.id='decision-bar';decisionBar.setAttribute('aria-label','Recovery actions');const decisionStatus=document.createElement('span');decisionStatus.id='decision-status';decisionBar.insertBefore(decisionStatus,$('guide-next'));$('factory-stage').append(decisionBar);
@@ -39,10 +39,10 @@ function renderStory(){
 const titles={wait_replenishment:'Wait for replenishment',allocate_substitute:'Use verified substitute',split_capacity:'Split available capacity'};
 function text(tag,value,className){const e=document.createElement(tag);e.textContent=String(value??'');if(className)e.className=className;return e;}
 function notice(message,error=false){document.body.dataset.actionError=String(error);$('notice').textContent=message;$('notice').classList.toggle('error',error);}
-async function api(action,body={}){const response=await fetch('/api/workflow/'+action,{method:'POST',headers:{'Content-Type':'application/json',...auth},body:JSON.stringify(body),signal:AbortSignal.timeout(action==='britt-draft'?55000:12000)});const result=await response.json();if(response.status===401){auth={};envelope=null;$('plaintext-ack').checked=false;$('export-passphrase').value='';$('passphrase-feedback').textContent=passphraseInputStatus('').message;$('room').hidden=true;$('login').hidden=false;$('admin').focus();}
+async function api(action,body={}){const response=await requestWithRateLimit(()=>fetch('/api/workflow/'+action,{method:'POST',headers:{'Content-Type':'application/json',...auth},body:JSON.stringify(body),signal:AbortSignal.timeout(action==='britt-draft'?55000:12000)}),{onWait:seconds=>{const message='Public room busy. Your action resumes in '+seconds+' seconds.';notice(message);$('decision-status').textContent=message;$('guide-next').textContent='Waiting for room · '+seconds+'s';}});const result=await response.json();if(response.status===401){auth={};envelope=null;$('plaintext-ack').checked=false;$('export-passphrase').value='';$('passphrase-feedback').textContent=passphraseInputStatus('').message;$('room').hidden=true;$('login').hidden=false;$('admin').focus();}
 if(!response.ok)throw new Error(result.error?.message??'Request failed');return result;}
 async function busy(button,task){if(requestBusy)return;requestBusy=true;const controls=[...document.querySelectorAll('button,select')];const prior=controls.map(e=>e.disabled);controls.forEach(e=>e.disabled=true);button.setAttribute('aria-busy','true');try{await task();}catch(error){notice(error.message,true);if(state){const target=stageFor(button.id)?button.id:button.dataset.option?'options':null;if(target)focusPanel(target);}}finally{requestBusy=false;controls.forEach((e,i)=>{if(e.isConnected)e.disabled=prior[i];});button.removeAttribute('aria-busy');if(state&&Object.keys(auth).length){render();if(guide&&reviewIndex===null){const stage=stageFor(guideStep(state,guide).target);if(stage)showStage(stage);}}}}
-async function refresh(){state=await api('status');if(!envelope&&state.pendingConsents?.length){envelope=state.pendingConsents.at(-1);$('consent').hidden=false;$('confirm-phrase').textContent=`APPROVE ${envelope.optionId}`;$('review-detail').textContent=`Restored encrypted review · plan ${envelope.planDigest.slice(0,12)} · expires in ${Math.max(0,Math.ceil((envelope.expires-Date.now())/1000))} seconds. Review the current option before confirming.`;$('typed').value='';}render();}
+async function refresh(){state=await api('status');const publicMode=publicRecoveryMode(state,guide?.mode,$('provider').value);if(publicMode.message){$('provider').value=publicMode.provider;if(guide)guide.mode=publicMode.mode;notice(publicMode.message);}if(!envelope&&state.pendingConsents?.length){envelope=state.pendingConsents.at(-1);$('consent').hidden=false;$('confirm-phrase').textContent=`APPROVE ${envelope.optionId}`;$('review-detail').textContent=`Restored encrypted review · plan ${envelope.planDigest.slice(0,12)} · expires in ${Math.max(0,Math.ceil((envelope.expires-Date.now())/1000))} seconds. Review the current option before confirming.`;$('typed').value='';}render();}
 function render(){
  renderGuide();
  renderStory();
@@ -80,11 +80,11 @@ function render(){
  $('export').disabled=$('report').disabled=!$('plaintext-ack').checked;
  $('shock').disabled=!state.snapshot.cells.some(c=>c.online);
  if(state.operator?.role==='auditor')for(const id of ['investigate','confirm','shock','reset','revoke','guide-start'])$(id).disabled=true;
- $('model-output').hidden=!run;if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;document.querySelector('.route-preflight').open=false;$('model-output').open=true;}if(!run)document.querySelector('.route-preflight').open=true;
+ $('model-output').hidden=!run;$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;document.querySelector('.route-preflight').open=false;$('model-output').open=true;}if(!run)document.querySelector('.route-preflight').open=true;
  if(!run&&$('investigation-pending').hidden)$('investigation-status').textContent=investigationStatus();
  $('comparison').replaceChildren(...state.runs.filter(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest).map(r=>text('p',`${r.run.sample?'Sample · offline walkthrough; no live AI':r.calls.at(-1)?.returnedModel??'identity unavailable'} · ${(r.run.elapsedMs/1000).toFixed(1)}s · ${r.claims.accepted.length} validated / ${r.claims.rejected.length} rejected · ${r.proposalValid?'proposal valid':r.run.stopReason}`)));
- if(run){$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s · ${run.claims.accepted.length} validated source claims · ${run.claims.rejected.length} rejected`;$('narrative').textContent=run.narrative;
- $('claims').replaceChildren(...run.claims.accepted.map(c=>text('p',`✓ ${c.value} ${c.unit} [evidence:${c.evidenceId}] · exact source match`,'claim')),...run.claims.rejected.map(c=>text('p',`Rejected [evidence:${c.evidenceId}]: ${c.reason}`,'claim')));
+ if(run){$('investigation-handoff').textContent=investigationHandoff(run,$('provider').value);$('investigation-highlights').replaceChildren(...investigationHighlights(run,state.analysis).map(({value,label})=>{const item=text('div','','investigation-metric');item.append(text('strong',value),text('span',label));return item;}));$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s`;$('narrative').textContent=run.narrative;
+ $('claims').replaceChildren(...run.claims.accepted.map(c=>{const view=claimPresentation(state.evidence.find(e=>e.evidenceId===c.evidenceId),c);const card=text('details','','claim verified-finding');card.dataset.evidenceId=c.evidenceId;card.append(text('summary','✓ '+view.headline),text('small',view.detail));card.tabIndex=0;card.addEventListener('focus',()=>highlightEvidence(c.evidenceId));card.addEventListener('pointerenter',()=>highlightEvidence(c.evidenceId));card.addEventListener('pointerleave',()=>highlightEvidence(null));return card;}),...run.claims.rejected.map(c=>text('p',`Rejected [evidence:${c.evidenceId}]: ${c.reason}`,'claim')));
  $('trace').replaceChildren(...run.run.trace.filter(t=>t.type==='tool_result').map(t=>text('div',`${t.ok?'✓':'×'} ${t.name} · snapshot ${run.run.snapshotDigest.slice(0,12)}`,'trace-row')),...run.calls.map(c=>text('div',`${c.status} · ${c.returnedModel??'no identity'} · ${c.latencyMs}ms · ${c.failure??c.protocol}`,'trace-row')));
  }
  renderBoard();
@@ -102,7 +102,7 @@ $('investigate').addEventListener('click',()=>busy($('investigate'),async()=>{
  try{
   notice('Selected route: '+route+'. Investigating with read-only tools. Live runs are bounded to six turns and one minute.');
   const job=await api('investigation-start',{provider:$('provider').value});let result;
-  do{if(Date.now()-start>65000)throw Error('Status wait exceeded. The server job remains bounded; refresh status before a deliberate new attempt.');await new Promise(r=>setTimeout(r,700));result=await api('investigation-status',{jobId:job.jobId});observedCall=result.call??null;observedAt=Date.now();update();$('britt-activity').textContent='BRITT 4.0 · '+(observedCall?'Call '+observedCall.number+' · '+observedCall.status+' · '+observedCall.sourcesRead+' source records read':'Planning evidence investigation');}while(result.status==='running');
+  do{if(Date.now()-start>65000)throw Error('Status wait exceeded. The server job remains bounded; refresh status before a deliberate new attempt.');await new Promise(r=>setTimeout(r,publicPollDelay(job)));result=await api('investigation-status',{jobId:job.jobId});observedCall=result.call??null;observedAt=Date.now();update();$('britt-activity').textContent='BRITT 4.0 · '+(observedCall?'Call '+observedCall.number+' · '+observedCall.status+' · '+observedCall.sourcesRead+' source records read':'Planning evidence investigation');}while(result.status==='running');
   if(result.status==='failed'){await refresh();throw Error((result.failure||'INVESTIGATION_FAILED_OR_STALE')+'. No replacement answer was generated. Select the route and press Investigate to retry explicitly.');}
   await refresh();
   $('investigation-status').textContent=investigationStatus({phase:run?.proposalValid?'complete':'failed',route});
@@ -297,9 +297,9 @@ function renderFactory(){
   // Reserved vertical bands: compare/callout | bay | machines | jobs | options.
   // Shock capacity preview sits in the top callout band ABOVE stations — never beside or over them.
   const shockStage=stage==='shock';
-  const topBand=shockStage?104:Math.max(108,Math.round(height*0.15));
-  const bayY=topBand+4;
-  const machineY=bayY+28;
+  const topBand=shockStage?120:Math.max(108,Math.round(height*0.15));
+  const bayY=topBand+8;
+  const machineY=bayY+32;
   const optionY=height-88;
   const nodeH=Math.min(148,Math.max(108,Math.round((optionY-machineY-40)/2)));
   const jobY=machineY+nodeH+Math.max(28,Math.round((optionY-machineY-nodeH*2-12)/2));
@@ -309,12 +309,13 @@ function renderFactory(){
   if(shockStage){
    const cell=cells.find(c=>c.cellId===$('shock-cell').value);
    const panel=add('g',{'data-layout-zone':'callouts','data-scene-band':'callout','data-scene-callout':'capacity-preview'},null,callouts);
-   box(24,8,852,88,panel,'#9caea0','#152019');
-   label(40,40,cell?cell.cellId:'CAPACITY',24,panel,{'font-weight':700});
-   label(40,72,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
-   label(320,58,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700});
-   label(560,58,cell?'Apply → invalidate acceptance':'Fresh decision',20,panel,{fill:'#c5ccd4'});
-   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 96 V ${machineY}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
+   box(24,8,852,96,panel,'#9caea0','#152019');
+   label(40,42,cell?cell.cellId:'CAPACITY',24,panel,{'font-weight':700});
+   label(40,74,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
+   label(320,60,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700});
+   label(560,60,cell?'Apply → invalidate acceptance':'Fresh decision',20,panel,{fill:'#c5ccd4'});
+   // Leader ends in the bay band above stations — never through machine faces.
+   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 104 V ${bayY+16}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
   }else{
    const qty=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').slice(0,2),comparison=certificateComparison(qty,420);
    qty.forEach((e,i)=>{const g=add('g',{'data-evidence':e.evidenceId,'data-scene-band':'compare','aria-label':evidencePlainEnglish(e)},null,callouts),y=8+i*48;
@@ -328,28 +329,29 @@ function renderFactory(){
   label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
   add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':8},null,routes);
   for(let i=0;i<5;i++)add('rect',{x:210+i*90,y:bayY+8,width:28,height:12,rx:2,fill:accepted?'#A8F04A':'#71877a',class:accepted?'material-flow':'lot-held'},null,routes);
-  const node=(x,y,title,sub,kind,parent,width=186)=>{
-   const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)},null,parent);
+  const node=(x,y,title,sub,kind,parent,width=186,detail='')=>{
+   const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)+(detail?' · '+detail:'')},null,parent);
    const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#C5CCD4':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';
-   // Captions stay inside the node box so they cannot intersect the next reserved band.
+   // Three live status lines fill the card — no empty chrome. Captions stay inside the node box so they cannot intersect the next reserved band.
    box(x,y,width,nodeH,g,stroke,stopped?'#13231b':'#19271f');
    if(stopped){g.querySelector('rect').setAttribute('fill','url(#preview-hatch)');}
    if(stopped)add('path',{d:`M ${x+10} ${y+8} l ${width-20} ${Math.max(36,nodeH*0.35)} m 0 -${Math.max(36,nodeH*0.35)} l -${width-20} ${Math.max(36,nodeH*0.35)}`,stroke:'#C5CCD4','stroke-width':3},null,g);
    if(preview){g.classList.add('preview-offline');g.querySelector('rect').setAttribute('stroke-dasharray','8 5');}
-   label(x+12,y+Math.max(54,Math.round(nodeH*0.48)),title,22,g,{'font-weight':700});
-   label(x+12,y+Math.max(84,Math.round(nodeH*0.74)),(stopped?'OFFLINE':preview?'PREVIEW · 0h':sub).slice(0,Math.max(18,Math.floor(width/9))),18,g,{fill:'#c5ccd4'});
-   if(title==='RECEIVING'&&!accepted)label(x+14,y+32,'× HOLD',18,g,{fill:'#C5CCD4',class:'hold-marker'});
-   activate(g,()=>{for(const old of svg.querySelectorAll('.selected-node'))old.classList.remove('selected-node');g.classList.add('selected-node');$('factory-selection').hidden=false;$('factory-selection').textContent=title+' · '+sub;});
+   const clip=Math.max(18,Math.floor(width/9));
+   label(x+12,y+Math.round(nodeH*0.24),title,22,g,{'font-weight':700});
+   label(x+12,y+Math.round(nodeH*0.52),(stopped?'OFFLINE':preview?'PREVIEW · 0h':sub).slice(0,clip),18,g,{fill:'#c5ccd4',class:'node-caption scene-size-18'});
+   if(detail)label(x+12,y+Math.round(nodeH*0.78),detail.slice(0,clip),18,g,{fill:'#88eba8',class:'node-caption scene-size-18'});
+   activate(g,()=>{for(const old of svg.querySelectorAll('.selected-node'))old.classList.remove('selected-node');g.classList.add('selected-node');$('factory-selection').hidden=false;$('factory-selection').textContent=title+' · '+sub+(detail?' · '+detail:'');});
    return g;
   };
-  node(16,machineY,'RECEIVING',accepted?'VERIFIED RECOVERY':state.snapshot.incident.heldMaterialId,'idle',machines,receivingWidth).classList.toggle('material-stopped',!accepted&&cells.every(c=>c.online));
-  cells.forEach((c,i)=>node(machineSlots[i].x,machineY,c.cellId,c.online?(activeCells.has(c.cellId)&&accepted?'RECOVERY FLOW':'AVAILABLE'):'OFFLINE',!c.online?'held':accepted&&activeCells.has(c.cellId)?'running':'idle',machines,machineSlots[i].width));
+  node(16,machineY,'RECEIVING',accepted?'VERIFIED RECOVERY':'× HOLD','idle',machines,receivingWidth,state.snapshot.incident.heldMaterialId).classList.toggle('material-stopped',!accepted&&cells.every(c=>c.online));
+  cells.forEach((c,i)=>node(machineSlots[i].x,machineY,c.cellId,c.online?(activeCells.has(c.cellId)&&accepted?'RECOVERY FLOW':'AVAILABLE'):'OFFLINE',!c.online?'held':accepted&&activeCells.has(c.cellId)?'running':'idle',machines,machineSlots[i].width,c.cellId===previewOffline?'0h · will go offline':c.online?c.availableHours+'h capacity':'0h · replan'));
   const jobSlots=factoryPositions(24,lineRight,Math.max(jobs.length,1),Math.max(210,Math.floor((lineRight-24-13*(Math.max(jobs.length,1)-1))/Math.max(jobs.length,1))));
   jobs.forEach((j,i)=>{
    const slot=jobSlots[i];
-   node(slot.x,jobY,j.jobId,j.unitsRequired+' parts · +'+j.dueHours+'h',accepted?'running':'idle',orders,slot.width);
-   const cell=allocations.find(a=>a.jobId===j.jobId)?.cellId??allocations[0]?.cellId??cells.find(c=>c.online)?.cellId;
-   const index=cells.findIndex(c=>c.cellId===cell&&c.online);
+   node(slot.x,jobY,j.jobId,j.unitsRequired+' parts · +'+j.dueHours+'h',accepted?'running':'idle',orders,slot.width,accepted?'ON ACCEPTED PATH':'AT RISK');
+   const cell=allocations.find(a=>a.jobId===j.jobId)?.cellId??allocations[0]?.cellId??cells.find(c=>c.online&&c.cellId!==previewOffline)?.cellId;
+   const index=cells.findIndex(c=>c.cellId===cell&&c.online&&c.cellId!==previewOffline);
    if(index>=0){const routeY=machineY+nodeH+14+i*14;const machine=machineSlots[index];
     add('path',{d:`M ${machine.x+machine.width} ${machineY+nodeH/2} h 14 V ${routeY} H ${slot.x+slot.width/2} V ${jobY} `,class:accepted?'route-running selected-route':'route-held',fill:'none','stroke-width':3},null,routes);
    }

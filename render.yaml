@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: forgefront-factory-resilience
+    runtime: node
+    branch: submission
+    rootDir: hackathon
+    buildCommand: node --version
+    startCommand: npm run serve:public
+    healthCheckPath: /healthz
+    plan: starter
+    disk:
+      name: forgefront-state
+      mountPath: /var/data/forgefront
+      sizeGB: 1
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: HACKATHON_STATE_DIR
+        value: /var/data/forgefront
+      - key: MUSE_API_KEY
+        sync: false
+      - key: BASETEN_API_KEY
+        sync: false
+      - key: HACKATHON_LEDGER_KEY
+        sync: false
+      - key: HACKATHON_ADMIN_TOKEN
+        sync: false

@@ -21,7 +21,7 @@ test('demo and judge pitches open without sign-in and keep manufacturing context
  assert.match(readme,/opens straight into the recovery room|Start guided recovery/i);
  assert.match(guide,/opens straight into the recovery room/i);
  const highlightsEnd=readme.indexOf('## Manufacturing contexts');
- const sixty=readme.indexOf('## Run it in 60 seconds');
+ const sixty=readme.indexOf('## Run locally');
  const architecture=readme.indexOf('flowchart TD');
  assert.ok(highlightsEnd>0);assert.ok(sixty>highlightsEnd);assert.ok(architecture>sixty);
  assert.doesNotMatch(readme,/FIREWORKS_API_KEY|Muse Spark Open.*Fireworks|accounts\/fireworks/);
