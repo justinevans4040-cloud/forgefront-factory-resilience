@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  2,
-    "score":  8,
+    "score":  6,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Strengthen separation in the inspector: keep ROUTE HEALTH - PRE-FLIGHT with nonce and identity status as its own grouped control, and INVESTIGATION - SOURCE EVIDENCE as a distinct task with its own heading, status and action."
+                      "priority":  "high",
+                      "change":  "Separate ROUTE HEALTH PRE-FLIGHT nonce/identity status from INVESTIGATION SOURCE EVIDENCE with distinct headings, borders and controls; never merge their status text."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Make the route selector at least 40px high with a visible 2px focus ring and label the offline sample state in text, not colour alone."
+                      "priority":  "high",
+                      "change":  "Fix overlapping DOCK, MAT-ALLOY-A, QA and Receiving labels on SVG by refitting node geometry and moving labels into clear gutters."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Reduce empty lower stage space by enlarging the factory SVG about 8% within its panel while preserving the legend and event chain."
+                      "priority":  "medium",
+                      "change":  "Remove third logo instance from stage header; retain only header and opening story placements."
                   }
               ],
     "model":  "muse-wonder-1.0"

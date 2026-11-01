@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  9,
     "score":  8,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Sequence the three proof controls explicitly: Verify ledger enabled, Seal encrypted packet disabled until verified, Export independent checkpoint disabled until sealed, each with text status."
+                      "priority":  "high",
+                      "change":  "Keep Verify ledger as the sole primary until enabled sequence advances; locked Seal and Retain cards need lock text plus pattern, not colour alone."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Add passphrase requirement feedback as text checklist items that update without colour alone, and keep the field at least 40px high."
+                      "priority":  "medium",
+                      "change":  "Make inspector steps 1-3 collapsible sections keyboard operable with aria-expanded and 36px targets."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Compress the Before-After metrics row slightly so all three proof steps remain visible at 768px height without inspector scrolling."
+                      "priority":  "medium",
+                      "change":  "Align BEFORE-AFTER metrics 70, 35h and 48h on one baseline with 11px uppercase labels."
                   }
               ],
     "model":  "muse-wonder-1.0"

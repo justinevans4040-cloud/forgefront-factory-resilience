@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px header / 52px guide / minmax(0,1fr) main / 56px action bar; columns 184px rail / minmax(0,1fr) stage / 360px inspector at 1366x768; stage at least 55vw x 60vh; no page scroll, internal scroll only in inspector and task lists; targets at least 36px; refit tight panels before reducing type",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68), border rgba(197,204,212,.22); primary neon #A8F04A with #050705 text, one primary per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated elsewhere",
+    "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; enlarge any stage label under 11px to 11px minimum",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on real state change, then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; 2px neon focus ring with 2px offset on every interactive element; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; step rail from one steps array with aria-current, arrow-key movement and 36-40px targets; guide strip 52px with no duplicate primary; focusable cinematic factory stage SVG; inspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, with separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and action bar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
+    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge overlapping AWAITING DECISION labels under CELL-MILL-1 and CELL-MILL-2 to 11px and add 8px clearance so they do not collide with job cards."
+        },
+        {
+          "priority": "medium",
+          "change": "Add a visible 2px focus ring to the selected ev-cert-qty evidence card and link its focus state bidirectionally to doc-cert-441 in the SVG."
+        },
+        {
+          "priority": "medium",
+          "change": "Refit the inspector evidence list so the third card is fully readable without relying on a thin scrollbar at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep ROUTE HEALTH - PRE-FLIGHT and INVESTIGATION - SOURCE EVIDENCE as separate labelled regions, each with its own status line and control, so nonce/identity health is never read as the investigation result."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge ev-cert-qty, ev-recv-qty and ev-sub-stock labels below the option cards to 11px minimum."
+        },
+        {
+          "priority": "medium",
+          "change": "Show the disabled reason beside Run Sample investigation until a route choice is made, using text rather than colour alone."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve the selected feasible path state shown here: on selection, keep the typed consent form open in the inspector with the exact phrase, typed count and disabled Accept until it matches."
+        },
+        {
+          "priority": "medium",
+          "change": "Add aria-live polite text announcing Selected path: Use verified substitute, 35h, $3,115.00 when the option changes."
+        },
+        {
+          "priority": "low",
+          "change": "Enlarge the small FINISH and INCREMENTAL micro-labels under 35h and $3,115.00 to 11px."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make the t1, t2 and t3 stage tabs at least 36px high with a clear focus ring and selected marker beyond fill colour."
+        },
+        {
+          "priority": "medium",
+          "change": "Label the right board explicitly 3 PROPOSED - UNTRACKED UNTIL APPROVAL beside 0 BLOCKED prior so untracked status reads at a glance."
+        },
+        {
+          "priority": "medium",
+          "change": "Reduce empty space inside the t1 proposal card by aligning due +8.8h and after Ready on one baseline row."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "In the preview state keep CELL-MILL-2 in silver with a PREVIEW - WILL GO OFFLINE hatch and label; reserve stoppedRed for after Apply second shock is confirmed."
+        },
+        {
+          "priority": "medium",
+          "change": "Make the 24h to 0h capacity change tabular 26px and pair it with text stating this invalidates the accepted Use verified substitute plan."
+        },
+        {
+          "priority": "medium",
+          "change": "Give the machine selector a 40px target, visible focus ring and an associated label that remains visible when the dropdown opens."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve stoppedRed only on CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text, and verify no feasible route line passes through that cell in the SVG."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep the pre-flight nonce/identity block visually separate from the INVESTIGATION - SOURCE EVIDENCE dashed region, with independent status icons and headings."
+        },
+        {
+          "priority": "medium",
+          "change": "Mark Split available capacity as constrained with hatch plus the text reason at 11px minimum, not colour alone."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve the fresh typed acceptance flow here: revised feasible path selected, exact phrase shown, Accept revised decision disabled until the 27 characters match exactly."
+        },
+        {
+          "priority": "medium",
+          "change": "Add PRIOR ACCEPTANCE INVALIDATED as a text badge on the stage title area as well as the action bar so the state is visible without reading the footer."
+        },
+        {
+          "priority": "low",
+          "change": "Align the constrained Split card height with the two feasible cards and keep its reason text inside the card bounds."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep 3 BLOCKED prior tasks and 3 PROPOSED replacements in two separately headed, separately scrollable lists so both remain visible while approval is pending."
+        },
+        {
+          "priority": "medium",
+          "change": "Add a text marker to each proposed task reading UNTRACKED UNTIL APPROVAL and remove reliance on the dashed border alone."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the small scroll indicators in the Britt 4.0 panel and give the task list a keyboard-focusable region with a visible focus ring."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Sequence Verify ledger, Seal packet and Retain checkpoint as numbered locked steps with text reasons, keeping Export independent checkpoint disabled until the packet is sealed."
+        },
+        {
+          "priority": "medium",
+          "change": "Show the passphrase rule as 16-160 characters with a live character count and error text that does not rely on border colour."
+        },
+        {
+          "priority": "low",
+          "change": "Make the 70, 35h and 48h Before-After metrics tabular and add one status sentence tying 35h to the accepted plan."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Add one primary-sized completion action in the action bar area or state explicitly that no further action is required, since Back alone leaves the end state ambiguous."
+        },
+        {
+          "priority": "medium",
+          "change": "Confirm the official logo appears only in the header on this completion screen; do not add a third placement here."
+        },
+        {
+          "priority": "low",
+          "change": "Enlarge the SEALED labels under the three proof cards to 11px and pair each check mark with Complete - current ledger text in the inspector."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

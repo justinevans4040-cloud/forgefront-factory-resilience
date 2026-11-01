@@ -1,6 +1,6 @@
-# The Meta Hackathon build — shot-to-contribution map
+﻿# The Meta Hackathon build â€” shot-to-contribution map
 
-The camera path shows the implementation under hackathon/. Repository history supplies authorship and timestamps; [source inventory](SOURCE_MANIFEST.json) supplies active hashes. The owner reviews rights, contributor declarations and eligibility against that inventory.
+The camera path shows this Meta Hackathon build. Repository history supplies authorship and timestamps; [source inventory](SOURCE_MANIFEST.json) supplies active hashes. The owner reviews rights, contributor declarations and eligibility against that inventory.
 
 | Shot | Source | Proof |
 | --- | --- | --- |
@@ -13,4 +13,4 @@ The camera path shows the implementation under hackathon/. Repository history su
 | S7 | State codec, ledger, packet and checkpoint verifier | Encryption/recovery tests and retained checkpoint |
 | S8 | Contribution inventory and evidence packet | Guide completion and public source inventory |
 
-The film uses this recovery room. Root UI, PM/Kanban and earlier recordings remain outside the shot list. [Current proof](../evidence/README.md) · [Contributions](../HACKATHON_CONTRIBUTIONS.md).
+The film uses this recovery room. Root UI, PM/Kanban and earlier recordings remain outside the shot list. [Current proof](../evidence/README.md) Â· [Contributions](../HACKATHON_CONTRIBUTIONS.md).

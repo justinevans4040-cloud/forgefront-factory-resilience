@@ -6,6 +6,24 @@ export function certificateComparison(evidence,trackWidth){
  return {widths,mismatchStart,mismatchWidth:widths.length>1?Math.max(...widths)-mismatchStart:0};
 }
 
+// Plain-English evidence cards for the inspector; raw IDs stay in expandable detail.
+export function evidencePlainEnglish(record){
+ const id=String(record?.evidenceId??'');
+ const doc=String(record?.source?.documentId??'');
+ const qty=record?.quantity;
+ if(qty&&(/cert/i.test(id)||/cert/i.test(doc)))return `Certificate says ${qty.value}`;
+ if(qty&&(/recv/i.test(id)||/recv/i.test(doc)))return `Receiving counted ${qty.value}`;
+ if(qty&&(/sub/i.test(id)||/sub/i.test(doc)))return `Substitute available: ${qty.value}`;
+ if(qty)return `${record.source?.field??'Quantity'}: ${qty.value} ${qty.unit??''}`.trim();
+ const excerpt=String(record?.excerpt??'').trim();
+ return excerpt?excerpt.split(/[.;]/)[0].trim():id||'Source evidence';
+}
+
+export function evidenceDetailLabel(record){
+ const line=record?.source?.lineId??record?.source?.recordId??'';
+ return `${record?.evidenceId??'evidence'} · ${record?.source?.documentId??'document'} / ${line}`;
+}
+
 export function completionStatus(state){
  const offline=state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId);
  return `PACKET SEALED · ${state.ledger.count} events · revised plan accepted · ${offline.length?offline.join(', ')+' offline retained':'all cells online'}`;

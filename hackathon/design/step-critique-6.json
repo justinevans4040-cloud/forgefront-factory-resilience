@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  6,
-    "score":  9,
+    "score":  7,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Preserve red exclusively on stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; verify no route or highlight draws through that cell toward JOB-1002."
+                      "priority":  "high",
+                      "change":  "Preserve stoppedRed exclusively on CELL-MILL-2 outline, hatch and OFFLINE-STOPPED text; ensure no route line passes through that cell."
                   },
                   {
-                      "priority":  "P1",
-                      "change":  "Again keep pre-flight route health for nonce and identity separate from the investigation evidence task when this screen repeats, with independent status lines."
+                      "priority":  "high",
+                      "change":  "Keep pre-flight nonce/identity checks separate above the distinct investigation evidence task, each with its own run status."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Mark Split available capacity as constrained with hatch plus text in both the SVG chip and legend so meaning survives reduced motion and grayscale."
+                      "priority":  "medium",
+                      "change":  "Fix overlapping Certificate says / Receiving counted / Substitute captions and dashed connector collisions around JOB-1001."
                   }
               ],
     "model":  "muse-wonder-1.0"

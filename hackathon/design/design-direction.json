@@ -4,12 +4,12 @@
   "inputMode": "screenshots",
   "documentation": "https://dev.meta.ai/docs/models",
   "direction": {
-    "grid": "100vw x 100dvh overflow:hidden; rows 48px header / 52px guide / minmax(0,1fr) main / 56px action bar; columns 184px rail / minmax(0,1fr) stage / 360px inspector at 1366x768; stage minimum 55vw x 60vh; no page scroll, internal scroll only in inspector and task lists; interactive targets at least 36px; refit tight panels before reducing type",
-    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68), border rgba(197,204,212,.22); primary neon #A8F04A with #050705 text, one primary per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated elsewhere",
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px header / 44px guide / minmax(0,1fr) main / 56px action bar; at 1366x768 use 184px step rail / minmax(0,1fr) stage / 360px inspector; stage minimum 55vw x 60vh; no page scroll, internal scroll only in inspector and task lists; refit tight panels before reducing type; all targets at least 36px",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68); primary neon #A8F04A with #050705 text, one primary per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated elsewhere",
     "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; enlarge any stage label under 11px to 11px minimum",
     "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on real state change, then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; 2px neon focus ring with 2px offset on every interactive element; pointer style only on enabled controls",
-    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; step rail from one steps array with aria-current, arrow-key movement and 36-40px targets; guide strip 52px with no duplicate primary; focusable cinematic factory stage SVG; inspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, with separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and action bar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
-    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; vertical step rail from one steps array with aria-current, arrow-key movement and 36-40px targets, replacing the clipped horizontal scroller; guide strip with no duplicate primary; focusable cinematic factory stage SVG; inspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, with separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and action bar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
+    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside the stage bounds; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
   },
   "steps": [
     {
@@ -17,142 +17,142 @@
       "score": 8,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Reduce the oversized opening-story hero inside the stage so the Certificate 120 and Receiving 80 tracks, machines and jobs fit without competing focal points at 1366x768; keep the second official logo placement at native aspect."
+          "priority": "high",
+          "change": "Replace clipped horizontal step scroller with 184px vertical rail showing all steps, aria-current on Inspect, and arrow-key movement."
         },
         {
-          "priority": "P1",
-          "change": "Enlarge SVG micro-labels such as event ids and hash-chain text to 11px minimum and raise silverDim contrast on the dark green panels."
+          "priority": "medium",
+          "change": "Remove duplicate logo treatment from stage opening story area unless this is the designated opening placement; keep header plus this one only, at native aspect."
         },
         {
-          "priority": "P2",
-          "change": "Tighten the right evidence list to three visible cards with internal scroll and a clearer selected-card focus ring linked bidirectionally to the SVG."
+          "priority": "medium",
+          "change": "Enlarge RECEIVING, CELL-MILL and JOB labels to 11px minimum and align Certificate/Receiving track ends so DOES NOT MATCH stays inside stage bounds."
         }
       ]
     },
     {
       "step": 2,
-      "score": 8,
+      "score": 6,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Strengthen separation in the inspector: keep ROUTE HEALTH - PRE-FLIGHT with nonce and identity status as its own grouped control, and INVESTIGATION - SOURCE EVIDENCE as a distinct task with its own heading, status and action."
+          "priority": "high",
+          "change": "Separate ROUTE HEALTH PRE-FLIGHT nonce/identity status from INVESTIGATION SOURCE EVIDENCE with distinct headings, borders and controls; never merge their status text."
         },
         {
-          "priority": "P2",
-          "change": "Make the route selector at least 40px high with a visible 2px focus ring and label the offline sample state in text, not colour alone."
+          "priority": "high",
+          "change": "Fix overlapping DOCK, MAT-ALLOY-A, QA and Receiving labels on SVG by refitting node geometry and moving labels into clear gutters."
         },
         {
-          "priority": "P2",
-          "change": "Reduce empty lower stage space by enlarging the factory SVG about 8% within its panel while preserving the legend and event chain."
+          "priority": "medium",
+          "change": "Remove third logo instance from stage header; retain only header and opening story placements."
         }
       ]
     },
     {
       "step": 3,
-      "score": 9,
+      "score": 7,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Keep selecting a recovery option opening the typed consent form; preserve the exact-phrase field, character count and disabled Accept until match, and add aria-live polite feedback only when the phrase becomes valid."
+          "priority": "high",
+          "change": "Keep selected option opening the typed consent form in inspector, with exact-phrase field labelled, character count announced, and Accept disabled until matched."
         },
         {
-          "priority": "P2",
-          "change": "Align the three option rows on one price/finish baseline and enlarge the Select this path targets to 40px."
+          "priority": "medium",
+          "change": "Give the three path cards equal height, right-aligned 26px finish/cost metrics, and a visible 2px focus ring on Select controls."
         },
         {
-          "priority": "P2",
-          "change": "Prevent the inspector header from clipping at the top by adding 8px top padding inside its internal scroll region."
+          "priority": "medium",
+          "change": "Fix overlapping evidence captions beneath the SVG and enlarge route option text to 11px minimum."
         }
       ]
     },
     {
       "step": 4,
-      "score": 8,
+      "score": 6,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Make the pending proposal state unmistakable: keep PROPOSED - UNTRACKED UNTIL APPROVAL beside tasks 1-3 and retain the single Approve primary in the action bar, removing visual emphasis duplication in the inspector."
+          "priority": "high",
+          "change": "Reduce duplicated proposal detail between stage and inspector; stage shows t1-t3 summary chips, inspector shows full untracked-until-approval proposal."
         },
         {
-          "priority": "P2",
-          "change": "Enlarge task selector tiles 1, 2 and 3 to 40px and show owner, due offset and predecessor on the selected task without extra narration."
+          "priority": "high",
+          "change": "Move Review proposed tasks and Decline proposal out of the inspector footer duplication and keep one primary Approve in the 56px action bar."
         },
         {
-          "priority": "P2",
-          "change": "Add a visible focus ring to the inspector Approve and Decline buttons matching the action-bar primary."
+          "priority": "medium",
+          "change": "Add a visible focus ring and 36px height to task chips 1, 2, 3 and to t1/t2/t3 stage selectors."
         }
       ]
     },
     {
       "step": 5,
-      "score": 8,
+      "score": 7,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Preview CELL-MILL-2 going offline with dashed silver outline and PREVIEW text only; reserve full red stopped treatment until the shock is applied, so preview and stopped states are not conflated."
+          "priority": "high",
+          "change": "Refit the capacity preview callout so Apply arrow, 24h to 0h and MAT-ALLOY-B route label do not overlap machine nodes or flow lines."
         },
         {
-          "priority": "P2",
-          "change": "Clarify the consequence line Will invalidate acceptance directly beside the machine selector and keep Apply second shock as the sole primary."
+          "priority": "medium",
+          "change": "Make preview state for CELL-MILL-2 use silver dashed preview styling, reserving stoppedRed for the actually stopped state in later steps."
         },
         {
-          "priority": "P2",
-          "change": "De-emphasise Scenario Management as a quiet text action separated from the shock controls to avoid accidental activation."
+          "priority": "medium",
+          "change": "Shorten inspector scenario copy to one instruction plus one consequence sentence, keeping the primary Apply second shock in the action bar only."
         }
       ]
     },
     {
       "step": 6,
-      "score": 9,
+      "score": 7,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Preserve red exclusively on stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; verify no route or highlight draws through that cell toward JOB-1002."
+          "priority": "high",
+          "change": "Preserve stoppedRed exclusively on CELL-MILL-2 outline, hatch and OFFLINE-STOPPED text; ensure no route line passes through that cell."
         },
         {
-          "priority": "P1",
-          "change": "Again keep pre-flight route health for nonce and identity separate from the investigation evidence task when this screen repeats, with independent status lines."
+          "priority": "high",
+          "change": "Keep pre-flight nonce/identity checks separate above the distinct investigation evidence task, each with its own run status."
         },
         {
-          "priority": "P2",
-          "change": "Mark Split available capacity as constrained with hatch plus text in both the SVG chip and legend so meaning survives reduced motion and grayscale."
+          "priority": "medium",
+          "change": "Fix overlapping Certificate says / Receiving counted / Substitute captions and dashed connector collisions around JOB-1001."
         }
       ]
     },
     {
       "step": 7,
-      "score": 9,
+      "score": 7,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Keep the constrained Split option non-selectable with hatch, text reason and no pointer style, while the feasible selected path retains the neon outline."
+          "priority": "high",
+          "change": "Keep constrained Split path hatched with text reason and no finish/cost values, while feasible paths retain aligned metrics."
         },
         {
-          "priority": "P2",
-          "change": "Make PRIOR ACCEPTANCE INVALIDATED status persistent in the action-bar centre and pair it with the typed consent form so the fresh approval requirement is explicit."
+          "priority": "medium",
+          "change": "Enlarge consent helper text to 11px minimum and associate exact-phrase label, input and 0/27 count programmatically."
         },
         {
-          "priority": "P2",
-          "change": "Raise the muted finish/incremental labels on the constrained row to silverDim minimum contrast while keeping it visually inactive."
+          "priority": "medium",
+          "change": "Keep PRIOR ACCEPTANCE INVALIDATED status centred in action bar and disabled Accept visually distinct without relying on colour alone."
         }
       ]
     },
     {
       "step": 8,
-      "score": 8,
+      "score": 7,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Keep 3 BLOCKED prior tasks in a separate collapsed group above proposed replacements; label the lower group PROPOSED - UNTRACKED UNTIL APPROVAL so blocked and untracked states coexist beside the approved revised plan."
+          "priority": "high",
+          "change": "Keep 3 BLOCKED prior tasks visibly separate from 3 PROPOSED replacements, stating blocked prior tasks and approved recovery plan coexist while replacements await approval."
         },
         {
-          "priority": "P2",
-          "change": "Reduce nested scroll confusion by giving blocked and proposed lists one shared inspector scroll with sticky group headings."
+          "priority": "medium",
+          "change": "Refit blocked list inside inspector without internal scrollbar at 1366x768 by tightening row padding before reducing type."
         },
         {
-          "priority": "P2",
-          "change": "Ensure Approve revised tasks is the one primary in the action bar and the in-panel Approve button uses secondary styling with the same focus ring."
+          "priority": "medium",
+          "change": "Truncate action-bar status with full text available via title and aria-label, keeping Approve revised tasks fully visible."
         }
       ]
     },
@@ -161,34 +161,34 @@
       "score": 8,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Sequence the three proof controls explicitly: Verify ledger enabled, Seal encrypted packet disabled until verified, Export independent checkpoint disabled until sealed, each with text status."
+          "priority": "high",
+          "change": "Keep Verify ledger as the sole primary until enabled sequence advances; locked Seal and Retain cards need lock text plus pattern, not colour alone."
         },
         {
-          "priority": "P2",
-          "change": "Add passphrase requirement feedback as text checklist items that update without colour alone, and keep the field at least 40px high."
+          "priority": "medium",
+          "change": "Make inspector steps 1-3 collapsible sections keyboard operable with aria-expanded and 36px targets."
         },
         {
-          "priority": "P2",
-          "change": "Compress the Before-After metrics row slightly so all three proof steps remain visible at 768px height without inspector scrolling."
+          "priority": "medium",
+          "change": "Align BEFORE-AFTER metrics 70, 35h and 48h on one baseline with 11px uppercase labels."
         }
       ]
     },
     {
       "step": 10,
-      "score": 9,
+      "score": 8,
       "fixes": [
         {
-          "priority": "P1",
-          "change": "Keep the completion screen free of any additional logo placement; only the header logo remains here, preserving exactly two placements overall."
+          "priority": "high",
+          "change": "Add a final status summary in action bar already present, and ensure Back does not imply further primary action; add a clearly labelled Close or Return control if exit is available in real state."
         },
         {
-          "priority": "P2",
-          "change": "Add a single quiet secondary action for reviewing the sealed packet summary while leaving Back as the only other control, with no new primary competing with the completion status."
+          "priority": "medium",
+          "change": "Keep all three SEALED cards equal size with check, title and state text, and retain red only on the retained offline CELL-MILL-2 reference."
         },
         {
-          "priority": "P2",
-          "change": "Make the bottom PACKET SEALED summary wrap within the 56px action bar at narrower widths rather than truncating event count or offline state."
+          "priority": "medium",
+          "change": "Remove horizontal step scroller clipping in favour of the vertical rail so completion state for all steps is visible without scrolling."
         }
       ]
     }

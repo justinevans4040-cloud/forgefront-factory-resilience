@@ -119,3 +119,14 @@ Guided passphrase entry stays disabled until verification matches the current le
 | Proposal inspection | Numbered 40px pager targets inspect one complete untracked card; inspector Approve is secondary Review proposed tasks during guided recovery; action-bar Approve remains the primary | `tests/unit/audit16-visual.test.mjs`; primary-guide Britt card checks |
 | Route separation | Route health pre-flight and investigation source evidence keep separate headings, status and controls; route helper stays visible at silver contrast | audit16 visual unit coverage; investigation HTML structure |
 | Allocation honesty | Accepted-flow annotations take part demand from impact analysis and keep machine hours separate | `tests/unit/accepted-flow.test.mjs` |
+
+## Current scene and request controls
+
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Bounded Wonder output | Responses requests send the caller output budget, capped at 8192 tokens, and store false; existing per-request and shared deadlines remain | wonder-output-budget unit test and current real primary guide |
+| State-derived scene | Opening, task, outage and sealing scenes project the current workflow; visual task selection changes inspection only | stage-scene unit tests and primary-guide stage/inspector checks |
+| Separated preview | Silver preview hatch has its own SVG pattern; the applied outage uses stopped red and explicit STOPPED text | stage-scene regression and current screenshots |
+| Complete task inspection | Browser checks contain badge, title, owner and deadline inside the selected card and inspect tracked work after approval | primary-guide browser regressions |
+
+These checks extend the SOC 2-style control mapping.

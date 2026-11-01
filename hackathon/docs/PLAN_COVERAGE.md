@@ -41,3 +41,7 @@ Read-only review coverage includes waiting through the route-health refresh inte
 ## Current proposal and proof coverage
 
 The primary-guide test selects the final proposed task and returns to the first, asserting that the complete card fits inside the proposal region. The proposal selector has named buttons and arrow-key navigation. Separate assertions require readable proof-metric captions and a locked passphrase field before verification. The varied-state accepted-flow unit test checks multiple materials and machine-hour aggregation independently from part demand.
+
+## Current scene coverage
+
+The opening focuses on source comparison and affected jobs. The outage scene derives lost capacity from the selected machine. Task scenes and inspector selection share actual proposal or tracked-board records; the source-state helper is tested with different counts, states and titles. Proof blocks derive each sealing outcome from the current ledger head. The browser guide verifies stage-to-inspector selection, full card content bounds, tracked-shell inspection, all three viewport sizes and retained-state review. Wonder request-budget tests verify the actual outbound JSON; current live evidence repeats the full recovery sequence.

@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  5,
-    "score":  8,
+    "score":  7,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Preview CELL-MILL-2 going offline with dashed silver outline and PREVIEW text only; reserve full red stopped treatment until the shock is applied, so preview and stopped states are not conflated."
+                      "priority":  "high",
+                      "change":  "Refit the capacity preview callout so Apply arrow, 24h to 0h and MAT-ALLOY-B route label do not overlap machine nodes or flow lines."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Clarify the consequence line Will invalidate acceptance directly beside the machine selector and keep Apply second shock as the sole primary."
+                      "priority":  "medium",
+                      "change":  "Make preview state for CELL-MILL-2 use silver dashed preview styling, reserving stoppedRed for the actually stopped state in later steps."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "De-emphasise Scenario Management as a quiet text action separated from the shock controls to avoid accidental activation."
+                      "priority":  "medium",
+                      "change":  "Shorten inspector scenario copy to one instruction plus one consequence sentence, keeping the primary Apply second shock in the action bar only."
                   }
               ],
     "model":  "muse-wonder-1.0"

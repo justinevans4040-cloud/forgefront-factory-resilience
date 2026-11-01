@@ -20,6 +20,8 @@ Protect operator/provider credentials and export passphrases throughout recordin
 
 - [ ] Compare the current critique with the prior peak and approve visual freeze only after every step scores at least nine. Retain each original model score and its exact input manifest.
 
-Latest visual review is iteration fifty-three; the retained reference is iteration fifty-two. The saved scores remain below the all-step freeze target; resolve the open critique and repeat real screenshot review before checking the visual-freeze gate.
+Current visual reviews and retained reference are recorded in the current evidence index. The saved scores remain below the all-step freeze target; resolve the open critique and repeat real screenshot review before checking the visual-freeze gate.
 
-- [ ] Review the run-eighteen proposal selector, source-correct factory quantities, current-head proof-input gate and all saved Wonder review scores against the current evidence.
+- [ ] Review the current proposal selector, source-correct factory quantities, current-head proof-input gate and all saved Wonder review scores against the current evidence.
+
+- [ ] Review current run-nineteen screenshot inputs, original Wonder scores, request-budget proof and complete task-card regression before accepting the visual freeze.

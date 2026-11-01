@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  7,
-    "score":  9,
+    "score":  7,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Keep the constrained Split option non-selectable with hatch, text reason and no pointer style, while the feasible selected path retains the neon outline."
+                      "priority":  "high",
+                      "change":  "Keep constrained Split path hatched with text reason and no finish/cost values, while feasible paths retain aligned metrics."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Make PRIOR ACCEPTANCE INVALIDATED status persistent in the action-bar centre and pair it with the typed consent form so the fresh approval requirement is explicit."
+                      "priority":  "medium",
+                      "change":  "Enlarge consent helper text to 11px minimum and associate exact-phrase label, input and 0/27 count programmatically."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Raise the muted finish/incremental labels on the constrained row to silverDim minimum contrast while keeping it visually inactive."
+                      "priority":  "medium",
+                      "change":  "Keep PRIOR ACCEPTANCE INVALIDATED status centred in action bar and disabled Accept visually distinct without relying on colour alone."
                   }
               ],
     "model":  "muse-wonder-1.0"

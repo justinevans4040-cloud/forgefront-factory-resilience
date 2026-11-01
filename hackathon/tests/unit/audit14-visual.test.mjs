@@ -18,9 +18,9 @@ test('opening story logo lives on the factory stage, not as a third inspector ma
 });
 
 test('certificate discrepancy tracks render enlarged source-computed bars', () => {
-  assert.match(app, /certificateComparison\(qtyTracks,420\)/);
-  assert.match(app, /height:38/);
-  assert.match(app, /'font-size':30/);
+  assert.match(app, /certificateComparison\(qtyTracks,barWidth\)/);
+  assert.match(app, /height:44/);
+  assert.match(app, /'font-size':36/);
   assert.match(app, /'text-anchor':'end'/);
   assert.deepEqual(certificateComparison([120, 80].map((value) => ({quantity: {value}, source: {field: 'quantity'}})), 420).widths, [420, 280]);
 });

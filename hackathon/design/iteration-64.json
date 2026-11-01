@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px header / 44px guide / minmax(0,1fr) main / 56px action bar; at 1366x768 use 184px step rail / minmax(0,1fr) stage / 360px inspector; stage minimum 55vw x 60vh; no page scroll, internal scroll only in inspector and task lists; refit tight panels before reducing type; all targets at least 36px",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68); primary neon #A8F04A with #050705 text, one primary per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated elsewhere",
+    "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; enlarge any stage label under 11px to 11px minimum",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on real state change, then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; 2px neon focus ring with 2px offset on every interactive element; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; vertical step rail from one steps array with aria-current, arrow-key movement and 36-40px targets, replacing the clipped horizontal scroller; guide strip with no duplicate primary; focusable cinematic factory stage SVG; inspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, with separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and action bar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
+    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside the stage bounds; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Replace clipped horizontal step scroller with 184px vertical rail so all steps, aria-current and focus ring stay visible at 1366x768"
+        },
+        {
+          "priority": "high",
+          "change": "Refit stage width so DOES NOT MATCH and the 120 versus 80 tracks end inside the SVG; keep the gap label fully legible"
+        },
+        {
+          "priority": "medium",
+          "change": "Remove repeated logo from stage interior and keep only header plus opening-story placements at native aspect"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Clear the overlap between Receiving DOCK label, 80 metric and discrepancy bar; move metric row above the factory SVG"
+        },
+        {
+          "priority": "high",
+          "change": "Keep ROUTE HEALTH PRE-FLIGHT with nonce and identity status separate from INVESTIGATION SOURCE EVIDENCE, each with its own heading, status line and control"
+        },
+        {
+          "priority": "medium",
+          "change": "Raise bottom option cards and evidence line fully above the legend and action bar; enlarge clipped micro-type to 11px minimum"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit left stage so MATCH label, Receiving DOCK and QA fragments are not cut off or overlapped by machine nodes"
+        },
+        {
+          "priority": "medium",
+          "change": "Keep selected-path styling, typed consent form and disabled Accept state linked: exact phrase, 0/27 count and disabled reason remain adjacent"
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge option-card focus ring visibility and keep Select this path targets at least 36px high"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Shorten the status banner to fit one line inside the stage: 0 BLOCKED prior, 3 PROPOSED, human approval required, without covering machine labels"
+        },
+        {
+          "priority": "high",
+          "change": "Reduce duplicated proposal detail between stage and inspector; stage shows t1-t3 summary, inspector owns full untracked-until-approval proposal"
+        },
+        {
+          "priority": "medium",
+          "change": "Align t1 t2 t3 chips and Approve control in the 56px action bar so no text touches panel edges"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Remove stray oversized 24h to 0h overlay and vertical caret artifact from the stage title area"
+        },
+        {
+          "priority": "medium",
+          "change": "Keep CELL-MILL-2 preview distinct with dashed silver outline and PREVIEW WILL GO OFFLINE text; reserve red until stopped state is applied"
+        },
+        {
+          "priority": "medium",
+          "change": "Move MAT-ALLOY-B 70 parts accepted recovery route label so it does not overlap JOB-1001 or the flow line"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit stage header so MATCH remnant disappears and only MATERIAL HOLD SECOND SHOCK with CELL-MILL-2 OFFLINE status remains"
+        },
+        {
+          "priority": "high",
+          "change": "Preserve red exclusively on stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; keep other machines silver or neon"
+        },
+        {
+          "priority": "medium",
+          "change": "Keep pre-flight nonce and identity checks visually separate from the investigation evidence panel and its Reinvestigate recovery primary"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Clear clipped MATCH text and Receiving DOCK overlap at the top left of the stage"
+        },
+        {
+          "priority": "medium",
+          "change": "For constrained Split available capacity, keep hatch plus text and the reason Split requires at least two online compatible cells visible without hover"
+        },
+        {
+          "priority": "medium",
+          "change": "Keep prior acceptance invalidated status in the action bar beside disabled Accept revised decision until the exact typed phrase matches"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Fit 3 BLOCKED prior and 3 PROPOSED HUMAN APPROVAL REQUIRED as a wrapped two-line stage status, clear of machine nodes"
+        },
+        {
+          "priority": "medium",
+          "change": "In the inspector, keep blocked prior tasks in their own hatched list above and separate from proposed replacements awaiting approval under the approved revised plan"
+        },
+        {
+          "priority": "medium",
+          "change": "Shorten action-bar centre status so Approved revised plan replacement tasks await approval is not truncated"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Move 18 events One verified chain headline below machine labels so VERIFIED RECOVERY and OFFLINE-STOPPED text remain readable"
+        },
+        {
+          "priority": "medium",
+          "change": "Keep Verify ledger, Seal packet and Retain checkpoint as sequential 01 02 03 cards with READY and LOCKED states paired with text, not color alone"
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge export passphrase helper text to 11px minimum and keep its focus ring inside the inspector scroll area"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Apply the same machine-label clearance as step 9 so the sealed-chain headline never covers recovery state labels"
+        },
+        {
+          "priority": "medium",
+          "change": "Add one clear completion status in the action bar centre while keeping Back as the only action, with no duplicate primary"
+        },
+        {
+          "priority": "low",
+          "change": "Keep all three SEALED cards aligned to one baseline and retain the red stopped CELL-MILL-2 treatment unchanged"
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

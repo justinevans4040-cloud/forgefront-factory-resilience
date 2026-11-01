@@ -659,3 +659,114 @@ body[data-guided=true] #britt-controls{opacity:.9}
 .stage[data-stage=shock] #shock-preview{font-size:12px;color:#c5ccd4}
 .stage[data-stage=shock] #shock-consequence{font-size:12px;margin-top:6px}
 .stage[data-stage=board] #board-outcomes{font-size:12px;color:#dafb9a;border-left:3px solid #A8F04A;padding-left:8px}
+
+/* The Meta Hackathon build: silver preview remains distinct from applied stop. */
+.factory-node.preview-offline rect{fill:url(#preview-hatch)}
+
+/* The Meta Hackathon build: source-first opening and keyboard task navigation. */
+body[data-active-stage=incident] #factory-svg .node-caption{font-size:20px!important}
+body[data-active-stage=incident] #factory-svg .factory-node text{font-size:21px}
+body[data-active-stage=incident] #evidence:focus,body[data-active-stage=incident] #evidence:focus-within{outline:none;box-shadow:none}
+.scene-task-tile{cursor:pointer}
+.scene-task-tile:focus-visible{outline:2px solid #A8F04A;outline-offset:3px}
+body[data-active-stage=incident] .factory-legend{font-size:11px!important}
+/* The Meta Hackathon build: intrinsic proposal rows keep all card content contained. */
+.stage[data-stage=board] #britt-proposal{display:block}
+.stage[data-stage=board] .proposal-task{height:auto;min-height:min-content;grid-auto-rows:min-content}
+.stage[data-stage=board] .proposal-task strong,.stage[data-stage=board] .proposal-task small{min-width:0;overflow-wrap:anywhere}
+.stage[data-stage=board] #britt-proposal:focus-within{outline:none}
+.stage[data-stage=board] #britt-work:focus-within{outline:none}
+
+/* Audit 17 owner layout: fill the stage, readable type, compact rail, plain evidence, CTA on the visual. */
+@media(min-width:901px){
+ body{font-size:16px!important;line-height:1.45}
+ header{height:44px!important;padding:0 12px!important}
+ .brand-mark{width:84px!important;height:42px!important}
+ .brand-text{font-size:14px}
+ main{height:calc(100dvh - 44px)!important}
+ #operator-identity,#notice{display:none!important}
+ #room{display:flex!important;flex-direction:column!important;grid-template-columns:none!important;min-height:0;flex:1}
+ #stage-rail{display:flex!important;flex-direction:row!important;align-items:center;gap:6px;flex:0 0 40px!important;height:40px!important;max-height:40px!important;width:100%!important;padding:3px 8px!important;border-right:0!important;border-bottom:1px solid #2f3f34;background:linear-gradient(180deg,#0e140f,#080b08);overflow:hidden!important;box-shadow:none!important}
+ #stage-rail #guided-steps,#stage-rail #workspace-switcher{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;gap:4px;margin:0!important;padding:0!important;border:0!important;overflow-x:auto;overflow-y:hidden;height:34px!important;max-height:34px!important;grid-template-columns:none!important;scrollbar-width:none}
+ #stage-rail #guided-steps::-webkit-scrollbar,#stage-rail #workspace-switcher::-webkit-scrollbar{display:none;height:0}
+ body[data-guided=true] #stage-rail #workspace-switcher{display:none!important}
+ body[data-guided=true][data-active-stage=incident] #opening-story .story-logo{display:none!important}
+ #stage-rail #guided-steps button,#stage-rail #workspace-switcher button{width:auto!important;flex:0 0 auto;white-space:nowrap;padding:6px 9px!important;font-size:12px!important;min-height:32px;line-height:1.2}
+ #stage-rail .rail-caption,#stage-rail .rail-signal{display:none!important}
+ .workspace{padding:4px 10px 4px!important;gap:4px!important;flex:1;min-height:0;padding-bottom:4px!important;position:relative}
+ .guide{height:0!important;min-height:0!important;max-height:0!important;margin:0!important;padding:0!important;border:0!important;overflow:hidden!important;opacity:0;pointer-events:none}
+ body[data-guided=true] .guide{height:32px!important;min-height:32px!important;max-height:32px!important;opacity:1;pointer-events:auto;overflow:hidden!important;padding:2px 8px!important;border:1px solid #415b49!important;display:flex!important;align-items:center}
+ body[data-guided=true] .guide>div:first-child{display:flex!important;align-items:center;gap:8px;width:100%!important}
+ body[data-guided=true] .guide h2{font-size:14px!important;margin:0!important;white-space:nowrap}
+ body[data-guided=true] .guide p{display:none!important}
+ body[data-guided=true] .guide progress{height:3px;margin:0;flex:1}
+ .stage-area{display:grid!important;grid-template-columns:minmax(0,1.7fr) minmax(300px,.9fr)!important;gap:8px!important;flex:1;min-height:0;align-items:stretch;height:100%}
+ body[data-active-stage=board] .stage-area{grid-template-columns:minmax(0,1fr) minmax(360px,1.1fr)!important}
+ #factory-stage{position:relative;display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;max-height:none!important;padding:6px 8px 56px!important;gap:2px!important}
+ #opening-story{display:flex!important;flex:0 0 auto;min-height:0;max-height:48px!important;padding:0 0 2px!important;margin:0!important;gap:8px!important;align-items:center}
+ #opening-story .story-logo{width:64px!important;height:32px!important}
+ #opening-story .opening-message .eyebrow{display:none}
+ #opening-story .opening-lead{font-size:16px!important;margin:0!important;line-height:1.05}
+ body[data-guided=true][data-active-stage=incident] #opening-story .opening-message{display:none}
+ #opening-stakes{gap:14px!important;padding:0!important;margin-left:auto}
+ .opening-stat strong{font-size:26px!important}
+ .opening-stat span{font-size:10px!important}
+ #factory-status{font-size:20px!important;margin:0 0 2px!important;flex:0 0 auto}
+ #factory-delta{margin:0 0 2px!important;padding:2px 6px!important;font-size:12px}
+ #factory-svg{flex:1 1 auto!important;width:100%!important;height:100%!important;min-height:280px!important;max-height:none!important}
+ #factory-stage .factory-legend{flex:0 0 auto;font-size:12px!important;margin:0!important}
+ #britt-activity{display:none!important}
+ #decision-bar{position:absolute!important;left:8px;right:8px;bottom:6px;height:44px!important;margin:0!important;display:flex!important;align-items:center;gap:8px;padding:4px 10px!important;border:1px solid #4d6a52;border-radius:8px;background:linear-gradient(90deg,#142018,#0a100c);z-index:6;box-shadow:0 10px 24px #0008}
+ #decision-bar #guide-start,#decision-bar #guide-next{min-height:36px;font-size:15px!important;padding:8px 16px!important;font-weight:700}
+ #decision-bar #guide-back{min-height:34px;font-size:13px}
+ #decision-status{font-size:12px}
+ #stage-deck{min-height:0;height:100%!important;overflow:hidden!important;padding:0!important;display:flex;flex-direction:column;scrollbar-gutter:auto}
+ #stage-deck .stage{flex:1;min-height:0;overflow:hidden!important;display:flex;flex-direction:column}
+ .stage[data-stage=incident] .story-hero{display:none!important;height:0!important;margin:0!important}
+ .stage[data-stage=incident] .overview,.stage[data-stage=incident] .incident{display:flex;flex-direction:column;min-height:0;height:100%;overflow:hidden!important;padding:12px!important}
+ .stage[data-stage=incident] .incident .eyebrow{font-size:11px!important}
+ .stage[data-stage=incident] .incident h2{font-size:22px!important;margin:0 0 6px!important}
+ .stage[data-stage=incident] .incident>p,#incident{font-size:16px!important;line-height:1.4;color:#e6f0e4;margin:0 0 8px!important}
+ .stage[data-stage=incident] .metrics{display:none!important}
+ #stage-deck{scrollbar-width:none}
+ #stage-deck::-webkit-scrollbar{display:none}
+ #factory-svg{overflow:hidden}
+ .evidence-panel{border:0;margin:0;padding:0;flex:1;min-height:0;display:flex;flex-direction:column;overflow:hidden}
+ .evidence-panel>summary{font-size:13px;letter-spacing:.8px;color:#c6ed8d;margin:0 0 8px;list-style:none}
+ .evidence-panel>summary::-webkit-details-marker{display:none}
+ #evidence,.evidence-cards{display:flex!important;flex-direction:column;gap:8px;max-height:none!important;overflow:visible!important;mask-image:none!important;-webkit-mask-image:none!important;padding:0;position:static}
+ #evidence:after{display:none!important}
+ .evidence-card,.source.evidence-card{border:1px solid #4d6a52;border-left:4px solid #A8F04A;border-radius:8px;padding:10px 12px!important;margin:0!important;background:linear-gradient(120deg,#152019,#0d140f);box-shadow:inset 0 1px #c5ccd418}
+ .evidence-headline{margin:0!important;font-size:17px!important;line-height:1.3;color:#eef5ea;font-weight:600}
+ .evidence-figure{font-size:28px!important;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;margin-left:4px}
+ .evidence-raw{margin-top:4px;border:0;padding:0}
+ .evidence-raw>summary{font-size:12px;color:#a8b5a7;cursor:pointer}
+ .evidence-raw code,.evidence-raw small{display:block;font-size:12px;color:#b9cbbf;margin-top:4px;overflow-wrap:anywhere}
+ #factory-svg .mismatch-label{font-size:24px!important;font-weight:750}
+ #factory-svg .node-caption{font-size:16px!important}
+ body[data-active-stage=incident] #factory-svg .node-caption{font-size:17px!important}
+ body[data-active-stage=incident] #factory-svg .factory-node text{font-size:19px}
+ .source.evidence-linked,.evidence-card.evidence-linked{outline:2px solid #A8F04A;outline-offset:2px;box-shadow:0 0 0 1px #A8F04A66,inset 0 0 0 1px #A8F04A33}
+ #factory-svg [data-evidence].evidence-linked rect,#factory-svg g.evidence-linked rect{stroke:#A8F04A;stroke-width:3}
+ .boundary{display:none!important}
+}
+@media(min-width:901px) and (max-width:1400px){
+ .stage-area{grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr)!important}
+ #opening-story{max-height:52px!important}
+ #opening-story .opening-lead{font-size:16px!important}
+ .opening-stat strong{font-size:22px!important}
+}
+@media(min-width:1600px){
+ .stage-area{grid-template-columns:minmax(0,1.9fr) minmax(340px,.85fr)!important}
+ #factory-status{font-size:24px!important}
+ .evidence-headline{font-size:18px!important}
+ .evidence-figure{font-size:32px!important}
+}
+@media(max-width:900px){
+ body{font-size:15px}
+ #stage-rail{flex:0 0 auto;max-height:78px;height:auto;overflow:hidden}
+ #decision-bar{position:sticky;bottom:0}
+ #evidence,.evidence-cards{max-height:none!important;overflow:visible!important}
+ .evidence-headline{font-size:16px}
+ .evidence-figure{font-size:24px}
+}

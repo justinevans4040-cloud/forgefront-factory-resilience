@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  3,
-    "score":  9,
+    "score":  7,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Keep selecting a recovery option opening the typed consent form; preserve the exact-phrase field, character count and disabled Accept until match, and add aria-live polite feedback only when the phrase becomes valid."
+                      "priority":  "high",
+                      "change":  "Keep selected option opening the typed consent form in inspector, with exact-phrase field labelled, character count announced, and Accept disabled until matched."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Align the three option rows on one price/finish baseline and enlarge the Select this path targets to 40px."
+                      "priority":  "medium",
+                      "change":  "Give the three path cards equal height, right-aligned 26px finish/cost metrics, and a visible 2px focus ring on Select controls."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Prevent the inspector header from clipping at the top by adding 8px top padding inside its internal scroll region."
+                      "priority":  "medium",
+                      "change":  "Fix overlapping evidence captions beneath the SVG and enlarge route option text to 11px minimum."
                   }
               ],
     "model":  "muse-wonder-1.0"

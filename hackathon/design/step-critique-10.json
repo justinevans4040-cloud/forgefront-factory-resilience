@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  55,
+    "iteration":  65,
     "step":  10,
-    "score":  9,
+    "score":  8,
     "fixes":  [
                   {
-                      "priority":  "P1",
-                      "change":  "Keep the completion screen free of any additional logo placement; only the header logo remains here, preserving exactly two placements overall."
+                      "priority":  "high",
+                      "change":  "Add a final status summary in action bar already present, and ensure Back does not imply further primary action; add a clearly labelled Close or Return control if exit is available in real state."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Add a single quiet secondary action for reviewing the sealed packet summary while leaving Back as the only other control, with no new primary competing with the completion status."
+                      "priority":  "medium",
+                      "change":  "Keep all three SEALED cards equal size with check, title and state text, and retain red only on the retained offline CELL-MILL-2 reference."
                   },
                   {
-                      "priority":  "P2",
-                      "change":  "Make the bottom PACKET SEALED summary wrap within the 56px action bar at narrower widths rather than truncating event count or offline state."
+                      "priority":  "medium",
+                      "change":  "Remove horizontal step scroller clipping in favour of the vertical rail so completion state for all steps is visible without scrolling."
                   }
               ],
     "model":  "muse-wonder-1.0"

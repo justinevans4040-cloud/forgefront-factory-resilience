@@ -1,0 +1,358 @@
+
+> forgefront-factory-resilience-hackathon@0.1.0 test
+> node scripts/test.mjs
+
+✔ single-command demo entry exposes actual loopback URL and readiness without starting AI, then stops (1234.3308ms)
+✔ authenticates Meta requests, enforces CSRF and origin, and returns provider text (1104.7713ms)
+✔ named operators have separate authenticated identities and auditors cannot invoke privileged workflow (1448.7741ms)
+✔ invalid duplicate or ambiguous operator configuration fails closed at startup (1.2252ms)
+✔ board HTTP routes retain role, CSRF, scoped approval, idempotency and encrypted export controls (1722.4484ms)
+✔ selected route preflight is explicit, ledgered, red on failure and green only on nonce identity match (1198.3295ms)
+✔ route check rejects identity and nonce mismatch, preserves role and CSRF guards and sanitizes failures (1204.3021ms)
+✔ demo entry opens a session without a token only when demo mode is enabled (2110.136ms)
+✔ demo rehearse announces the room without printing a sign-in token (1281.4613ms)
+✔ login failures are ledgered without credentials, role rights differ, and plaintext exports require acknowledgement (1394.221ms)
+✔ failed login attempts are bounded with Retry-After and cannot bypass the limit using forwarded headers (1302.061ms)
+✔ server restart requires reauthentication and restores consent only to its original named operator (1982.4772ms)
+✔ encrypted export requires session, accepts auditor and never needs plaintext acknowledgement (1332.3781ms)
+✔ normal startup preserves exhausted login quota across server restart with Retry-After (2519.8884ms)
+✔ one-command demo cold starts without persisted configuration and stops cleanly (1391.0103ms)
+✔ HTML grants no seat, every data route is protected, and wrong-port origins fail (125.1181ms)
+✔ API attempts are rate limited with Retry-After (507.2828ms)
+✔ live Meta routes fail closed without keys and never return sample bodies (1115.9975ms)
+▶ server skeleton
+  ✔ serves public health without secrets (11.0955ms)
+  ✔ rejects disallowed Host headers (18.5176ms)
+  ✔ returns scenario and analysis from the live snapshot (14.1197ms)
+  ✔ invokes a read-only tool through the HTTP API (25.5309ms)
+  ✔ rejects unknown tool invocations (6.4103ms)
+✔ server skeleton (157.0043ms)
+✔ HttpOnly same-site session supports CSRF, protected logout and replay denial (154.1366ms)
+✔ serves strict-CSP browser entry and denies private paths (218.4288ms)
+✔ workflow request schemas reject null, arrays, unknown fields and wrong field types before transitions (1116.2576ms)
+✔ authenticated workflow completes investigation, acceptance, shock and evidence export (1334.9604ms)
+✔ accepted flow keeps machine hours separate from part demand and uses actual cells (2.7303ms)
+✔ source injection remains data and model-requested approval cannot dispatch or mutate snapshot (17.5766ms)
+✔ persistent endpoint outage is retained and requires explicit retry without sample substitution (1.8521ms)
+✔ redaction removes JSON-escaped quotes and backslashes from secrets (1.8022ms)
+✔ weak ledger keys and admin tokens are rejected (2.4087ms)
+✔ workflow does not leave a swappable prior-anchor bak that restores after truncate (1903.5176ms)
+✔ checkpoint verifier reports prefix retention honestly and rejects forged prefix events (951.1455ms)
+✔ unknown meta routes and prototype workflow paths return 404 without provider calls (1105.9912ms)
+✔ migration refuses nested destinations and measures an unchanged source digest (834.7705ms)
+✔ escaped secrets are redacted from persisted model_call notes (845.9807ms)
+✔ guided shell keeps header and opening-story logo placements without narrative clutter (1.9285ms)
+✔ workspace rail is always visible without a Workspaces disclosure (5.4587ms)
+✔ factory stage renders cinematic dock, QA gate, conveyor and shock preview bindings (0.6338ms)
+✔ proof actions are separated into labelled fieldsets (1.3908ms)
+✔ primary guided control invokes real investigation and never stalls on focus-only (0.7267ms)
+✔ Back and completed-rail review stay read-only without mutating ledger state (0.3464ms)
+✔ offline and live board itineraries expose every recovery step through guided progression (6.5727ms)
+✔ Meta product routes keep Fireworks optional and never auto-call it from Britt drafting (124.0668ms)
+✔ typed consent reports exact progress as typed/total rather than remaining-only (5.1394ms)
+✔ Britt proposal banner states untracked-until-approval when zero tasks are tracked (0.8592ms)
+✔ proof actions gate later steps until prerequisites complete on the current ledger head (0.4328ms)
+✔ completion primary labels the finished state instead of implying another required step (0.257ms)
+✔ factory SVG enlarges cert quantity tracks and labels PREVIEW - not applied (0.6782ms)
+✔ inspector evidence uses fade padding and route health stays visually separate (0.6965ms)
+✔ decision stage keeps comparison heading and consent inside a bounded inspector (1.7689ms)
+✔ guided live Spark requires Baseten so Wonder receives a structured handoff (1.0038ms)
+✔ Britt drafting prefers Wonder so the server can fall back to Baseten (0.5021ms)
+✔ design director sanitizes public review text before fallback (0.263ms)
+✔ capacity preview and nearest focus contracts stay intact (5.0185ms)
+✔ design director module path remains under hackathon scripts (0.471ms)
+✔ opening story logo lives on the factory stage, not as a third inspector mark on complete (1.8508ms)
+✔ certificate discrepancy tracks render enlarged source-computed bars (1.9586ms)
+✔ completion demotes proof Verify styling and strengthens sealed status contrast (0.6026ms)
+✔ incident inspector labels MATERIAL HOLD without duplicating the stage opening logo (0.3458ms)
+✔ proposed Britt tasks keep visible UNTRACKED UNTIL APPROVAL badges (2.6389ms)
+✔ history review keeps route-health refresh disabled and blocks recovery-card consent (0.7534ms)
+✔ route health stays a separate pre-flight group from investigation task (0.66ms)
+✔ shock preview stays silver dashed until applied, and stopped red stays exclusive (0.4418ms)
+✔ proof actions keep ordered text status gates and passphrase feedback (0.5043ms)
+✔ prior blocked work and untracked proposals remain visually distinct (0.5279ms)
+✔ investigation route helper stays visible with silver contrast (1.9616ms)
+✔ route health and investigation evidence remain separately headed groups (0.4843ms)
+✔ proposal inspection uses 40px pager targets and secondary inspector approve (0.6218ms)
+✔ export passphrase stays locked until current ledger verification (0.4131ms)
+✔ accepted flow keeps machine hours separate from part demand (1.9483ms)
+✔ shock preview and blocked prior work keep distinct treatments (0.6672ms)
+✔ login_failed does not bootstrap snapshot_initialized; later work still seals a snapshot (1008.1773ms)
+✔ readable report labels plaintext export in the opening banner (824.3517ms)
+✔ decrypt retains length-only validation so historically length-gated packets remain recoverable (128.3233ms)
+✔ async job failures retain the concrete stop code instead of a generic opaque label (993.4731ms)
+✔ Britt uses one bounded Wonder attempt then Baseten fallback without widening provider allowlist (3.6437ms)
+✔ successful Wonder drafting never constructs a fallback client (1.2435ms)
+✔ Britt proposal waits for owner approval, persists encrypted scoped memory and exports board events (2093.9968ms)
+✔ Britt decline and snapshot changes prevent proposal execution (1071.2444ms)
+✔ task move idempotency survives restart and rejects reuse for a different operation (1964.7573ms)
+✔ fresh task approval retains completed work across the second shock (1206.7655ms)
+✔ incident and final story use current calculations and never turn acceptance into physical release (2.6103ms)
+✔ all guided actions map to focused stages, with invalid targets rejected (0.3547ms)
+✔ result transition reveals stage before focus, highlights result and honors reduced motion (0.5874ms)
+✔ the command center has exact company branding and distinct responsive stages (2.6524ms)
+✔ official Forgefront Systems logo is byte-identical in brand assets and wired for judges (33.8042ms)
+✔ investigation prompts export only the live system prompt builder (4.8692ms)
+✔ explicit offline guide advances only on a successful Sample result and still requires changed-snapshot proof (1.2161ms)
+✔ readable report presents professional labels and preserves source and human-validation boundaries (2.6185ms)
+✔ provider preflight excludes the optional backup even when its credential is inherited (79.2006ms)
+✔ live narration exposes only tool results already returned on that model turn (18.7171ms)
+✔ changing guide mode after a shock offers a real restart instead of an unreachable old-snapshot call (2.1287ms)
+✔ all standard smoke entry points preserve primary-only verification defaults (3.1557ms)
+✔ Spark Open final envelope has room for reasoning and structured output without retrying (3.3757ms)
+✔ guided itinerary and rail share complete state order with an unnumbered completion (0.607ms)
+✔ design director sends real images to Wonder and validates design JSON (68.3085ms)
+✔ design director falls back only to Baseten after Wonder failure (1.7823ms)
+✔ design director sanitizes blocked public tokens without changing Wonder scores (3.9272ms)
+✔ design director accepts MODEL_API_KEY as Wonder primary key (1.7215ms)
+▶ calculation engine
+  ✔ never reuses cell capacity across substitute material draws (7.9865ms)
+  ✔ rejects invalid references, duplicate IDs and inconsistent or nonfinite quantities (1.2505ms)
+  ✔ splits real production work across cells and recomputes after outage (1.7603ms)
+  ✔ computes impacted jobs and units from the held material (0.6384ms)
+  ✔ rejects negative material quantities when building a snapshot (0.7303ms)
+  ✔ produces three recovery options without over-allocating substitute stock (0.9088ms)
+  ✔ marks wait option infeasible when replenishment hours are missing (1.2795ms)
+  ✔ returns insufficient status when no substitute stock exists (0.9174ms)
+  ✔ analyzeSnapshot binds digest across sections (1.2925ms)
+✔ calculation engine (19.2763ms)
+✔ known tool and request codes keep public messages and mapped statuses (1.6917ms)
+✔ unexpected errors strip internal paths and stack details (2.5858ms)
+▶ evidence registry
+  ✔ serves entries for the current digest only (5.4446ms)
+  ✔ rejects cross-snapshot digest requests (1.9492ms)
+✔ evidence registry (9.1572ms)
+✔ guided story requires source inspection, both live Meta routes and deliberate decisions across shock (3.0647ms)
+✔ investigation dispatches multiple read-only steps and validates exact source quantities (8.8198ms)
+✔ provider errors and timeout stop with recorded failure and require explicit retry (6.7662ms)
+✔ wrong values, units, source entities and fabricated citations are rejected (1.0188ms)
+✔ malformed claims, invented relationships and wrong source lines cannot gain validation (1.0603ms)
+✔ unknown tools, malformed JSON and wrong returned model stop visibly (1.6911ms)
+✔ call evidence redacts credentials and excludes raw prompts and replies (1.1127ms)
+✔ Meta commentary prefixes remain data while one terminal JSON envelope dispatches (1.2607ms)
+✔ final proposal schema rejects extra directives and non-text narrative even with exact claims (5.2977ms)
+✔ async investigations return an owner-bound job and expose completion without bypassing active lock (992.8072ms)
+✔ stops on schema rejection and never accepts a completion beyond its deadline (8.5338ms)
+✔ serializes normalized tool calls for the chat protocol and keeps release advisory (2.5434ms)
+✔ explicit migration verifies source and writes encrypted copy without altering source (1728.8101ms)
+✔ Wonder receives validated Spark handoff and Britt receives accepted investigation (1341.8894ms)
+✔ rejects arbitrary Spark endpoints and model overrides before network access (1.9351ms)
+✔ wonder preserves absent provider identity as unknown (1.9584ms)
+✔ spark-open preserves absent provider identity as unknown (0.8001ms)
+▶ Meta model clients
+  ✔ fails closed when Wonder keys are missing instead of substituting sample (2.8775ms)
+  ✔ Wonder live path posts muse-wonder-1.0 with mocked fetch (4.4342ms)
+  ✔ Wonder uses MODEL_API_KEY when MUSE_API_KEY is absent (0.5222ms)
+  ✔ Spark Open uses meta-models/muse-spark-open (no -1026) with mocked fetch (0.837ms)
+  ✔ Spark Open falls back to Fireworks route when Baseten key missing (0.4399ms)
+  ✔ sample client labels offline mode and uses analysis when provided (4.3388ms)
+✔ Meta model clients (15.7537ms)
+✔ opening stakes follow affected demand, due windows and source discrepancy (2.4227ms)
+✔ path keyboard navigation wraps feasible options and skips constrained ones (1.2407ms)
+✔ private synthetic state restricts filesystem access before persistence (904.1006ms)
+✔ board validates source-bound tasks and computes dependency due windows (4.3624ms)
+✔ board rejects unknown sources, cycles, extra fields and invalid deadlines (2.963ms)
+✔ second shock preserves completed work and blocks remaining work with visible reasons (1.2619ms)
+✔ Britt cannot execute a stale, declined or unapproved proposal (0.9038ms)
+✔ Britt accepts validated primary Meta drafts and rejects unknown routes, identity and malformed output (1.5186ms)
+✔ second shock repeats Spark then Wonder before revised human acceptance (2.1501ms)
+▶ request guards
+  ✔ allows loopback hosts and rejects others (1.708ms)
+  ✔ rejects disallowed Origin values (0.5729ms)
+✔ request guards (4.8932ms)
+✔ evidence run selects a portable numbered destination and rejects traversal (1.7786ms)
+✔ public evidence keeps newest numbered run and shared evidence, excluding all backups (14.7062ms)
+✔ all public document links remain inside the exact public set (40.3844ms)
+✔ both judge introductions put runnable entry and exact demo before detail (1.9943ms)
+✔ live wait displays remaining bounded budget and stopped status keeps explicit retry (0.8778ms)
+✔ provider preflight uses fallback key, reports all routes and never echoes credentials (97.9016ms)
+✔ provider preflight timeout and HTTP errors stay red with one attempt per route (46.6142ms)
+✔ contrast calculation rejects low contrast and accepts the key text palette (2.4458ms)
+✔ owner-bound running job exposes only call timing and preserves single failure evidence (997.7152ms)
+✔ per-call countdown distinguishes each bounded request from overall wait (1.2302ms)
+✔ offline keyboard checks cannot inherit live provider access or guided live gates (4.8768ms)
+✔ judge-facing README pitches stay sharp without hedge or internal field names (1.6747ms)
+✖ path scrub covers current numbered evidence including the newest public run (802.0834ms)
+✔ judge UI opens confidently and keeps offline Sample explicit (44.9243ms)
+✔ route health expires and guidance never selects a replacement route (1.9964ms)
+✔ completed investigation presents a reviewable success and keeps wait copy concise (1.525ms)
+✔ calculated option copy and offline narrative describe the recovery in product language (43.7057ms)
+✔ demo and judge pitches open without sign-in and keep manufacturing contexts after highlights (5.9434ms)
+✔ visible recovery room brand uses Forgefront spelling (0.7293ms)
+✔ provider preflight treats Fireworks as optional backup that never fails the overall check (81.6276ms)
+✔ shock preview remains visible during busy handoff and excludes other stages (1.4318ms)
+✔ proof checklist is bound to current ledger head and separate completion outcomes (1.3925ms)
+✔ focus reveals the nearest result without scrolling its inspector heading away (2.644ms)
+✔ outage preview distinguishes selected online machine from applied offline state (0.7745ms)
+✔ smoke cleanup removes only the explicitly owned temporary directory (524.4174ms)
+✔ passphrase feedback reports length and unmet rules without reflecting the secret (2.5059ms)
+✔ certificate comparison scales source quantities and isolates the disputed segment (2.9614ms)
+✔ completion summary uses the actual offline machines and ledger count (0.6772ms)
+✔ design iteration identifiers support continued honest review beyond thirty (0.8197ms)
+✔ restart rolls forward verified crash after intent (3599.4228ms)
+✔ restart rolls forward verified crash after event (2404.6343ms)
+✔ restart rolls forward verified crash after anchor (1977.9602ms)
+✔ completed intent cannot authorize truncation and prior anchor restoration (852.1974ms)
+✔ encrypted pending consent survives restart, requires same named identity, expires and stays single-use (1604.4895ms)
+✔ partial encrypted append recovers only its exact authenticated suffix (1284.543ms)
+✔ corrupt intent fails closed rather than resetting or repairing history (787.1911ms)
+✔ one client cannot consume another client allowance; forwarded headers cannot rotate identity; windows expire (2.2031ms)
+✔ legacy API routes keep the 240 ceiling while authenticated workflow routes enforce a separate 120 ceiling (3382.6829ms)
+✔ global failed-login audit budget survives restart and rotating clients without scenario bootstrap (2196.6409ms)
+✔ encrypted quotas retain independent client windows across restart and reject corruption (30.4538ms)
+✔ clock rollback extends active quota windows instead of resetting them (5.1834ms)
+✔ quota persist failure after increment does not grant the request (2.0691ms)
+✔ createApp fails closed when an encrypted quota snapshot is corrupt (777.2071ms)
+✔ portable encrypted export round trips independently and rejects wrong password or altered ciphertext (327.9543ms)
+✔ offline decoder creates plaintext only at a new destination and never echoes a passphrase (789.8628ms)
+✔ export strength rejects repeated and predictable secrets and accepts varied long phrases (139.2097ms)
+✔ reset returns to opening decision state while retaining verified history across restart (1885.4086ms)
+✔ evidence redacts Windows, JSON escaped, POSIX and environment profile paths without changing provider URLs (9.0981ms)
+✔ evidence writers redact text and preserve binary screenshots and existing backups (22.6394ms)
+✖ tracked public text contains no profile paths or real contact coordinates (989.403ms)
+✖ public path scrub rejects Windows profile paths, file URL drives and mirror folder names (993.7417ms)
+✔ README npm quickstarts resolve scripts and fail for a nonexistent script (8.7176ms)
+✔ public docs point verification outcomes at in-tree evidence folders (1.4922ms)
+✔ tracked demo dependency closure needs no ignored or untracked files and detects omissions (48.6271ms)
+✔ CI is pinned, read-only, credential-free and runs public suites and gitleaks (1.1594ms)
+✔ environment templates have empty assignments only and backups are ignored (1.8855ms)
+✔ public evidence preserves command failure and redacts the actual child output (342.2287ms)
+✔ investigation choreography distinguishes empty, pending, slow, complete and stopped without invented progress (3.8858ms)
+✔ public scan rejects restricted pattern 0 (21.5965ms)
+✔ public scan rejects restricted pattern 1 (7.2738ms)
+✔ public scan rejects restricted pattern 2 (5.719ms)
+✔ public scan rejects restricted pattern 3 (6.1299ms)
+✔ public scan rejects restricted pattern 4 (10.2097ms)
+✔ public scan rejects restricted pattern 5 (10.3169ms)
+✔ public scan rejects restricted pattern 6 (14.675ms)
+✔ public scan rejects restricted pattern 7 (7.669ms)
+✔ public scan decodes wide-character evidence and checks dated folders (8.5594ms)
+✔ public scan allows CSS pointer property only in its stylesheet (15.5924ms)
+✔ wide-character evidence writer emits portable UTF-8 and retains relative stack frames (8.1575ms)
+✔ scanner covers dates in text, BOM-free wide text and cannot skip damaged text (16.0279ms)
+✔ capture decodes wide-character child diagnostics before redaction (344.0114ms)
+✔ public scope excludes private review files and README links stay inside the public set (18.7476ms)
+✔ dates are rejected in public contents and UTF-16 big endian is inspected (33.4428ms)
+✔ restricted CSS wording in comments cannot masquerade as a property (13.6297ms)
+✔ calendar rules cover day-first, dotted and month-only dates (32.2751ms)
+✔ independent arithmetic oracle matches runtime jobs, stock, shared work and shock (6.0849ms)
+✔ checks all providers independently and verifies nonce output (8.7624ms)
+✔ records missing credentials as blocked without invoking fetch (0.9713ms)
+✔ redacts exact credentials even when echoed without a recognizable prefix (0.4547ms)
+✔ does not treat HTTP success with incorrect output as passing (1.1659ms)
+✔ task scene separates pending human work from tracked work using actual counts (3.2283ms)
+✔ proof scene gates sealing against the current head, never stale verification (2.8147ms)
+✔ factory scene selects a compact source comparison without changing decision scenes (0.3681ms)
+✔ scene titles wrap without losing any words or hiding task identity (0.6936ms)
+✔ outage preview uses a separate silver hatch from applied stopped red (13.6103ms)
+✔ AES GCM state uses unique nonces, authenticates purpose and fails on wrong key or modification (8.7902ms)
+✔ encrypted workflow restarts and independent checkpoint detects rollback and chain corruption (1794.4585ms)
+✔ removing both authoritative files during a running workflow cannot silently return genesis (704.8288ms)
+✔ readable report binds actor, plan, accepted run and source records and escapes model HTML (697.4371ms)
+✔ packet retains full immutable initial and changed snapshots for independent replay (1093.5843ms)
+▶ read-only agent tools
+  ✔ exposes only the five allowlisted tool names (2.1297ms)
+  ✔ returns incident and evidence bound to the snapshot digest (2.9165ms)
+  ✔ rejects unknown tools and write-style names (3.278ms)
+  ✔ rejects bad schemas and unknown evidence ids (0.8224ms)
+  ✔ compare_recovery_options returns computed feasible options (2.8881ms)
+✔ read-only agent tools (13.9708ms)
+✔ Wonder applies the caller output budget and disables remote storage (3.2414ms)
+✔ review binds actor, session and digest; confirmation is typed and single use (1039.4188ms)
+✔ shock invalidates old proposals and consent; restart preserves authoritative state (1529.9934ms)
+✔ ledger tampering blocks reads and exports without clearing evidence (1156.4855ms)
+✔ expired review and pending consent after restart are denied (999.96ms)
+✔ confirmation races succeed at most once and cannot resurrect after restart (1006.1545ms)
+✔ shock during inference records calls but rejects the stale completed proposal (501.0047ms)
+✔ reset never revives a previously successful investigation (488.0235ms)
+ℹ tests 251
+ℹ suites 6
+ℹ pass 248
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17430.2539
+
+✖ failing tests:
+
+test at tests\unit\run10-judge.test.mjs:94:1
+✖ path scrub covers current numbered evidence including the newest public run (802.0834ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'hackathon/evidence/run19/scene-red.txt',
+  +     kind: 'profile'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/run19/scene-red.txt',
+  +     kind: 'fileUrl'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/run10-judge.test.mjs:103:9)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'hackathon/evidence/run19/scene-red.txt', kind: 'profile' }, { file: 'hackathon/evidence/run19/scene-red.txt', kind: 'fileUrl' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\unit\run8-public-readiness.test.mjs:23:1
+✖ tracked public text contains no profile paths or real contact coordinates (989.403ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'hackathon/evidence/run19/scene-red.txt',
+  +     kind: 'profile'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/run19/scene-red.txt',
+  +     kind: 'fileUrl'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/run19/scene-red.txt',
+  +     kind: 'publish'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/run19/scene-red.txt',
+  +     kind: 'date'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/run8-public-readiness.test.mjs:24:80)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'hackathon/evidence/run19/scene-red.txt', kind: 'profile' }, { file: 'hackathon/evidence/run19/scene-red.txt', kind: 'fileUrl' }, { file: 'hackathon/evidence/run19/scene-red.txt', kind: 'publish' }, { file: 'hackathon/evidence/run19/scene-red.txt', kind: 'date' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests\unit\run8-public-readiness.test.mjs:26:1
+✖ public path scrub rejects Windows profile paths, file URL drives and mirror folder names (993.7417ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  2 !== 0
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/run8-public-readiness.test.mjs:29:9)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
