@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 8,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Keep Prior tracked work - 3 BLOCKED collapsed by default and visually separate from the 3 untracked revised tasks awaiting approval."
+      "change": "Keep Prior tracked: 3 BLOCKED expanded or one-click expandable beside the approved revised plan, while replacement t1–t3 remain PROPOSED · UNTRACKED UNTIL APPROVAL."
     },
     {
       "priority": "P2",
-      "change": "Add a summary line Approved revised plan + replacement tasks await approval in the inspector header so coexistence is understood before scrolling."
+      "change": "Add BLOCKED pattern/marker to the prior-work summary in the legend language so state is not colour-only."
     },
     {
       "priority": "P2",
-      "change": "Ensure CELL-MILL-2 remains red-hatched OFFLINE and the accepted flow routes only through CELL-MILL-1 despite the stage title returning to RECOVERY ACCEPTED."
+      "change": "Confirm DecisionBar status Approved revised plan · replacement tasks await approval stays visible until Approve revised tasks is activated."
     }
   ]
 }

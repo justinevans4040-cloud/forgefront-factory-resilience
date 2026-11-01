@@ -1,11 +1,11 @@
-import {draftBoard,moveTask as transitionTask,replanBoard,approveProposal} from './recovery-board.mjs';
+import {draftBoardWithFallback,moveTask as transitionTask,replanBoard,approveProposal} from './recovery-board.mjs';
 import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync, appendFileSync, openSync, fsyncSync, closeSync, renameSync } from 'node:fs';
 import { join } from 'node:path';
 import { createSnapshot, buildDemoScenarioInput } from './domain/scenario.mjs';
 import { analyzeSnapshot } from './domain/engine.mjs';
 import { buildEvidenceRegistry } from './domain/evidence.mjs';
-import { investigate } from './agent/investigation.mjs';
+import { investigate, investigationHandoff } from './agent/investigation.mjs';
 import { createStateCodec } from './security/state-codec.mjs';
 import { redactSecrets } from './security/redact.mjs';
 import { readablePacket } from './packet.mjs';
@@ -105,11 +105,11 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
   return {
     verify,
     brittFor(session,operator){verify();const scope=scopeFor(session,operator);return {name:'Britt 4.0',proposal:structuredClone([...proposals].reverse().find(p=>p.scope===scope&&p.status==='pending')??null),memory:structuredClone(memory.filter(m=>m.scope===scope).slice(-12))};},
-    async draftTasks(client,session,operator){
+    async draftTasks(client,session,operator,makeFallback=null){
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');if(decision.status!=='accepted')fail('ACCEPT_RECOVERY_FIRST');active=true;const bound=snapshot.snapshotDigest;const decisionNonce=decision.nonce;
       const scope=scopeFor(session,operator);const option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===decision.optionId&&o.feasible);
-      const context={snapshotDigest:bound,option,owner:operator.id,shockHours:0,evidence:buildEvidenceRegistry(snapshot).list().filter(e=>option.evidenceIds.includes(e.evidenceId)),memory:memory.filter(m=>m.scope===scope).slice(-6),priorBoard:board};
-      try{const drafted=await draftBoard(client,context);const done=board.tasks.filter(t=>t.status==='Done');const doneId=id=>id.startsWith('done-')?id:'done-'+id;drafted.board.tasks.push(...done.map(t=>({...structuredClone(t),id:doneId(t.id),dependsOn:t.dependsOn.map(doneId),completedSnapshot:t.completedSnapshot??board.snapshotDigest})));verify();if(snapshot.snapshotDigest!==bound||decision.status!=='accepted'||decision.nonce!==decisionNonce)fail('STALE_PROPOSAL');
+      const context={snapshotDigest:bound,option,owner:operator.id,shockHours:0,evidence:buildEvidenceRegistry(snapshot).list().filter(e=>option.evidenceIds.includes(e.evidenceId)),memory:memory.filter(m=>m.scope===scope).slice(-6),priorBoard:board,humanDecision:{optionId:decision.optionId,runId:decision.runId,operatorId:decision.operatorId},acceptedInvestigation:investigationHandoff(runs.find(r=>r.runId===decision.runId))};
+      try{const drafted=await draftBoardWithFallback(client,makeFallback,context);const done=board.tasks.filter(t=>t.status==='Done');const doneId=id=>id.startsWith('done-')?id:'done-'+id;drafted.board.tasks.push(...done.map(t=>({...structuredClone(t),id:doneId(t.id),dependsOn:t.dependsOn.map(doneId),completedSnapshot:t.completedSnapshot??board.snapshotDigest})));verify();if(snapshot.snapshotDigest!==bound||decision.status!=='accepted'||decision.nonce!==decisionNonce)fail('STALE_PROPOSAL');
         const p=redact({id:randomUUID(),scope,snapshotDigest:bound,decisionNonce,status:'pending',...drafted,expires:now()+300000,operatorId:operator.id});append('britt_proposed',p);proposals.push(p);memory.push({scope,summary:p.board.summary,snapshotDigest:bound});return structuredClone(p);
       }catch(error){append('britt_draft_rejected',{snapshotDigest:bound,operatorId:operator.id,reason:'DRAFT_FAILED_VALIDATION_OR_PROVIDER'});throw error;}finally{active=false;}
     },
@@ -137,7 +137,7 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
     investigationStatus(jobId,actor){verify();const job=jobs.get(jobId);if(!job||job.actor!==hash(actor))fail('UNKNOWN_INVESTIGATION_JOB');const {actor:owner,...result}=job;return {...result,...(job.call?{call:{...job.call,remainingMs:job.call.status==='waiting'?Math.max(0,job.call.timeoutMs-(Date.now()-job.call.startedAt)):0}}:{})};},
     async investigate(client,operator={id:'local-operator',role:'operator'},progress=()=>{}){
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');active=true;const bound=snapshot;
-      try{const result=await investigate({snapshot:bound,client,secrets,progress,record:async entry=>append('model_call',{...entry,operatorId:operator.id,operatorRole:operator.role})});const r={...result,operatorId:operator.id,operatorRole:operator.role};
+      try{const result=await investigate({snapshot:bound,client,secrets,progress,handoff:client.route?.provider==='meta-model-api'?investigationHandoff([...runs].reverse().find(r=>r.proposalValid&&r.run.snapshotDigest===bound.snapshotDigest&&r.calls.some(c=>c.provider==='baseten'))):null,record:async entry=>append('model_call',{...entry,operatorId:operator.id,operatorRole:operator.role})});const r={...result,operatorId:operator.id,operatorRole:operator.role};
         if(snapshot.snapshotDigest!==bound.snapshotDigest)fail('STALE_INVESTIGATION');
         append('investigation_completed',r);runs.push(r);return r;
       }finally{active=false;}

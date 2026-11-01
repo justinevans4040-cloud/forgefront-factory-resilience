@@ -10,6 +10,6 @@ test('guided story requires source inspection, both live Meta routes and deliber
  state.runs=[run('baseten')];assert.equal(guideStep(state,g).id,'wonder');state.runs.push(run('meta-model-api'));assert.equal(guideStep(state,g).id,'accept');
  state.decision={status:'accepted'};g.acceptedInitial=true;assert.equal(guideStep(state,g).id,'shock');
  state.snapshot.snapshotDigest='changed';state.decision={status:'invalidated'};assert.equal(guideStep(state,g).id,'recover');
- state.runs.push(run('baseten','changed'));assert.equal(guideStep(state,g).id,'reaccept');state.decision.status='accepted';assert.equal(guideStep(state,g).id,'export');
+ state.runs.push(run('baseten','changed'));assert.equal(guideStep(state,g).id,'recover');assert.equal(guideStep(state,g).provider,'wonder');state.runs.push(run('meta-model-api','changed'));assert.equal(guideStep(state,g).id,'reaccept');state.decision.status='accepted';assert.equal(guideStep(state,g).id,'export');
  g.exported='head';assert.equal(guideStep(state,g).id,'export');g.verified='head';g.checkpoint='head';assert.equal(guideStep(state,g).id,'complete');
 });

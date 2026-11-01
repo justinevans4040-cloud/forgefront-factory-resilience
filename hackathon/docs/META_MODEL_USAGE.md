@@ -15,3 +15,9 @@ The shared JSON-envelope investigation is bounded to six turns, ten read-only to
 Run `npm run check:providers --prefix hackathon` for one nonce/identity request per primary route. The optional backup reports a RED light without a request in this standard check. In the room, **Check selected route** makes one eight-second request on the selected route and records its result. GREEN requires exact nonce and returned-model agreement. RED names failure; UNCHECKED requests a new check. Health expires after fifteen minutes. Provider-reported identity is the identity field tested by these checks.
 
 [Provider proof](../evidence/README.md) · [Live guided packet](../evidence/README.md) · [Same-snapshot comparison](MODEL_COMPARISON.md) · [API contract](API_CONTRACT.md).
+
+## Structured handoff map
+
+Spark Open on Baseten reads incident evidence and computed recovery options first. Wonder receives the validated Spark run identifier, snapshot digest, accepted claims and selected option, then independently invokes read-only tools for tradeoffs. Typed human consent binds the chosen option to its investigation. Britt receives that accepted investigation, source evidence, approved option, prior board and scoped encrypted memory before proposing tasks. The second-shock guide repeats Spark then Wonder. Task proposals remain untracked until human approval; the ledger retains both model and human transitions.
+
+Task drafting uses Wonder first with one bounded Baseten fallback when configured; both share a 45-second deadline and strict source/owner/deadline/dependency validation. Investigation failures remain explicit and require deliberate retry. Design review uses Wonder with screenshot inputs and Baseten structured fallback only.

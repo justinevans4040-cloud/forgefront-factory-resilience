@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 1,
   "score": 8,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Remove the small logo block above the inspector unless it is the designated opening-story placement; enforce exactly header + opening-story placements and never add a third instance."
+      "change": "Remove the floating duplicate logo card at the inspector top; retain only header logo plus the designated opening-story placement, neither cropped nor recolored."
+    },
+    {
+      "priority": "P1",
+      "change": "Make RECEIVING, CELL-MILL-1/2 and JOB-1001/1002 focusable SVG nodes with bidirectional inspector highlighting and visible focus rings."
     },
     {
       "priority": "P2",
-      "change": "Make RECEIVING, quantity tracks, CELL-MILL-1/2 and JOB-1001/1002 focusable SVG nodes with visible focus and bidirectional inspector highlighting."
-    },
-    {
-      "priority": "P2",
-      "change": "Increase the dim 40/30-part and evidence labels to at least 11px with silverDim contrast at 1366x768."
+      "change": "Align Certificate 120 and Receiving 80 bars to one scale with labels inside the tracks so DOES NOT MATCH reads without scanning."
     }
   ]
 }

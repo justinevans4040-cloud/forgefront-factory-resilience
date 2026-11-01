@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 9,
   "score": 7,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Separate proof actions into three labelled fieldsets - Seal encrypted packet, Verify ledger, Retain independent checkpoint - each with its own button and status; remove the duplicate Verify ledger primary from the DecisionBar or make it the single primary only."
+      "change": "Remove inspector vertical scrollbar overflow at 1366x768 by grouping Seal/Verify/Retain as three equal action cards inside the internal scroll area with sticky completion status."
     },
     {
       "priority": "P1",
-      "change": "Fix the Before-After panel clipped list and bottom scrollbar by using internal scroll with a visible end state inside the 360px inspector."
+      "change": "Separate Verify ledger (DecisionBar primary) from Export independent checkpoint actions and label each Awaiting/Complete state with marker plus text."
     },
     {
       "priority": "P2",
-      "change": "Show passphrase requirements as a checklist tied to input validation, without inventing strength results before entry."
+      "change": "Enlarge passphrase helper text to 12px and show 16–160 character rule before typing, without implying custody guarantees."
     }
   ]
 }

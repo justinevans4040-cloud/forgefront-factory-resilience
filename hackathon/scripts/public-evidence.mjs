@@ -31,3 +31,5 @@ export function writeEvidence(target, contents) {
   const binary=Buffer.isBuffer(contents)&&decodeText(contents)===null;
   writeFileSync(file,binary?contents:redactEvidence(contents));
 }
+
+export function evidenceRun(env=process.env){const run=env.HACKATHON_EVIDENCE_RUN??'run13';if(!/^run[1-9][0-9]*$/.test(run))throw Error('Invalid evidence run');return run;}

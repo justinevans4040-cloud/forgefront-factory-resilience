@@ -25,3 +25,7 @@ The recovery room connects each product claim to working code and observable pro
 ## Owner completion path
 
 Review and freeze the audited source inventory; test a physical phone; film the recovery path; retime captions; inspect the complete media; upload and verify links signed out; verify account/eligibility/rights/form fields; submit as Representative and retain the reopened entry and receipt. Track these actions in [the checklist](SUBMISSION_CHECKLIST.md).
+
+## Current orchestration coverage
+
+`model-handoff.test.mjs` verifies validated same-snapshot Spark → Wonder data and accepted-investigation → Britt data. `reinvestigation-order.test.mjs` verifies the repeated two-model sequence after shock. `britt-fallback.test.mjs` verifies one Wonder attempt followed by at most one Baseten attempt under the shared task-draft deadline. `run14-visual.test.mjs` covers stage-bound outage preview and current-ledger proof outcomes. The current evidence index links browser and screenshot results.

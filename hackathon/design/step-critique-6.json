@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 6,
   "score": 8,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Preserve the red-only CELL-MILL-2 hatch and ensure no feasible route line passes through it; show 3-to-2 feasible-path change in the banner and SVG."
+      "change": "Preserve the red exception strictly on CELL-MILL-2: cross-hatch, OFFLINE text and outline; remove red tint from the full-width shock banner."
     },
     {
       "priority": "P1",
-      "change": "Separate pre-flight nonce/identity health from the reinvestigation task, as in Step 2, with independent pass/pending states."
+      "change": "Keep pre-flight nonce/identity route-health separate from the Reinvestigate recovery evidence task, with separate headings and status lines."
     },
     {
       "priority": "P2",
-      "change": "Make CONSTRAINED on Split available capacity pattern-plus-text in both SVG chip and inspector, not text inside the stage alone."
+      "change": "Annotate the two remaining feasible paths directly on the SVG and dim the constrained Split option with its reason."
     }
   ]
 }

@@ -1,6 +1,6 @@
 import {browserOptions} from './browser-options.mjs';
 import {contrastRatio} from '../public/accessibility.mjs';
-import {redactEvidence,writeEvidence} from './public-evidence.mjs';
+import {redactEvidence,writeEvidence,evidenceRun} from './public-evidence.mjs';
 import { spawn, execFileSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -23,7 +23,7 @@ const browser=spawn(binary,['--headless=new','--disable-gpu','--no-first-run','-
 let ws;const errors=[];const checks=[];
 
 let keyboardActions=0;
-const output=new URL('../evidence/run13/'+(keyboardOnly&&mobileFlow?'browser-offline-mobile/':process.argv.includes('--fireworks')?'browser-fireworks/':routeRedCheck?'browser-red/':slowCheck?'browser-slow/':mobileFlow?'browser-mobile/':liveBrowser?'browser/':'browser-offline/'),import.meta.url);mkdirSync(output,{recursive:true});
+const output=new URL('../evidence/'+evidenceRun()+'/'+(keyboardOnly&&mobileFlow?'browser-offline-mobile/':process.argv.includes('--fireworks')?'browser-fireworks/':routeRedCheck?'browser-red/':slowCheck?'browser-slow/':mobileFlow?'browser-mobile/':liveBrowser?'browser/':'browser-offline/'),import.meta.url);mkdirSync(output,{recursive:true});
 function save(name,contents){writeEvidence(new URL(name,output),contents);}
 try{
  const portFile=join(scratch,'browser','DevToolsActivePort');await until(()=>existsSync(portFile),'browser launch',15000);const port=Number(readFileSync(portFile,'utf8').split('\n')[0]);

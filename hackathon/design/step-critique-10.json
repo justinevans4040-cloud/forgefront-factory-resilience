@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 10,
   "score": 8,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Make Review recovery proof in the DecisionBar lead to a read-only completed state distinct from Step 9, with Packet sealed and 18 events retained as the sole status."
+      "change": "Replace the rail checkmark-only completion item with Recovery story complete text plus aria-current, matching the 9-step rail pattern."
+    },
+    {
+      "priority": "P1",
+      "change": "Keep PACKET SEALED · 18 events · revised plan accepted in the DecisionBar and make Review recovery proof open a proof summary, not restart verification."
     },
     {
       "priority": "P2",
-      "change": "Add a completion marker plus Recovery story complete to the rail while preserving all 9 prior steps as completed and keyboard-reachable."
-    },
-    {
-      "priority": "P2",
-      "change": "Mask the entered passphrase permanently and label Seal/Verify/Checkpoint outcomes separately so the sealed screenshot cannot be mistaken for an editable proof form."
+      "change": "Ensure the sealed state on the SVG uses SEALED pattern/marker in the legend and does not recolor the immutable header logo or add any third logo placement."
     }
   ]
 }

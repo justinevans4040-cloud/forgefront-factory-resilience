@@ -107,7 +107,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       const client = body.provider === 'wonder'
         ? createModelClient('wonder', { apiKey, fetchImpl })
         : createModelClient('spark-open', { apiKey, route: body.provider === 'baseten' ? SPARK_BASETEN_ROUTE : SPARK_FIREWORKS_ROUTE, fetchImpl });
-      if(path==='/api/workflow/britt-draft')return workflow.draftTasks(client,actor,session.operator);
+      if(path==='/api/workflow/britt-draft')return workflow.draftTasks(client,actor,session.operator,body.provider==='wonder'&&env.BASETEN_API_KEY?.trim()?()=>createModelClient('spark-open',{apiKey:env.BASETEN_API_KEY.trim(),route:SPARK_BASETEN_ROUTE,fetchImpl}):null);
       if(path==='/api/workflow/investigation-start')return workflow.startInvestigation(client,sessionToken,session.operator);
       return workflow.investigate(client,session.operator);
     }

@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 5,
-  "score": 6,
+  "score": 7,
   "fixes": [
     {
       "priority": "P1",
-      "change": "On selecting CELL-MILL-2, immediately preview its red cross-hatch, OFFLINE/STOPPED label and broken route in the SVG before Apply second shock; current pre-apply view still shows it available."
+      "change": "Resolve contradiction: inspector lists CELL-MILL-2 as ONLINE while the SVG previews it stopped; label inspector row PREVIEW: WILL GO OFFLINE and keep red only on the stopped station preview."
     },
     {
       "priority": "P1",
-      "change": "Keep Apply second shock visually distinct as the sole primary and retain the centre DecisionBar warning that prior acceptance will be invalidated."
+      "change": "State in the DecisionBar centre exactly what Apply second shock invalidates before activation, and move Scenario Management/admin reset out of the main flow."
     },
     {
       "priority": "P2",
-      "change": "Move Start a fresh scenario (admin) into a separated, text-labelled danger zone away from the shock controls."
+      "change": "Make the machine selector a labelled 40px control with keyboard focus ring and preview summary tied to the selected cell."
     }
   ]
 }

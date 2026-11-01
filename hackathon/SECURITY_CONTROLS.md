@@ -88,3 +88,9 @@ Concrete controls protect the recovery decision from open room through evidence 
 Keep stable ledger keys and retained checkpoints under separate trusted custody. Independently retained checkpoints supply rollback evidence. Private process/key/all-anchor control defines the local trust boundary. Persistent quotas use one process and direct socket identity; shared NAT clients share a budget. Use high-entropy env secrets and a unique separate export passphrase. Historical plaintext copies and explicitly decoded exports require private storage.
 
 The cryptographic controls use AES-256-GCM, HKDF-SHA256, HMAC and pinned scrypt parameters. New encrypted state does not transform older plaintext artifacts. Account permissions, external provider internals and media/submission actions are verified by the owner. [Current proof](evidence/README.md) · [Security model](docs/SECURITY_MODEL.md) · [API contract](docs/API_CONTRACT.md).
+
+## Source-bound model handoffs
+
+The server selects validated Spark results from the current snapshot only. Wonder receives accepted source claims and a selected option as data and independently re-reads evidence with tools. Britt receives the investigation identified by the accepted consent and scoped encrypted memory. Regression coverage: `tests/unit/model-handoff.test.mjs` and `tests/unit/reinvestigation-order.test.mjs`.
+
+Wonder task drafting has one primary attempt and at most one Baseten fallback, sharing a 45-second budget. Both attempts pass identical strict task validation. Fallback metadata is retained in the proposal event. Sample remains explicit; the optional backup is excluded. `tests/unit/britt-fallback.test.mjs` covers the provider boundary and successful-primary short circuit. This extends the SOC 2-style evidence mapping.

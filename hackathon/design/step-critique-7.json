@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 7,
   "score": 7,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Fix inspector clipping: the constrained option explanation and Human Decision heading are cut by internal scroll; pin the consent form and give the comparison its own bounded scroll region."
+      "change": "Fix inspector top clipping again and keep the constrained Split row fully readable: reason, unavailable finish/cost shown as — with text explanation."
     },
     {
       "priority": "P1",
-      "change": "Disable selection for the constrained Split option with reason text and a non-colour marker, while keeping the two feasible options selectable into the typed consent form."
+      "change": "In the typed consent form, pair the fresh APPROVE phrase with Scenario changed · review required and prior-acceptance-invalidated status adjacent to the input."
     },
     {
       "priority": "P2",
-      "change": "Truncate the GuideStrip instruction cleanly without ellipsis cutting meaning at 1366px."
+      "change": "Use radio semantics for the three paths matching Step 3, with the selected revised path announced via aria-live only on change."
     }
   ]
 }

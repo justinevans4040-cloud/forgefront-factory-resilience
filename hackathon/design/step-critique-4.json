@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 4,
   "score": 8,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Mark every Britt task consistently as PROPOSED - UNTRACKED UNTIL APPROVAL and keep Approve/Decline as the only tracking-changing controls."
+      "change": "Keep all three proposals explicitly PROPOSED · UNTRACKED UNTIL APPROVAL and ensure Approve is the only primary; Decline stays secondary in the inspector."
     },
     {
       "priority": "P2",
-      "change": "Add dependency order t1>t2>t3 arrows and due/after-Ready metadata in tabular type so the proposal can be scanned without reading prose."
+      "change": "Show the accepted 40+30=70 route split on the SVG connectors to JOB-1001 and JOB-1002, not only MAT-ALLOY-B · 70 parts."
     },
     {
       "priority": "P2",
-      "change": "Link MAT-ALLOY-B 70 parts in the SVG to the selected substitute card in the inspector with shared hover/focus highlight."
+      "change": "Add due/dependency text at 12px minimum so t1→t2→t3 order is legible at 1366x768 without zoom."
     }
   ]
 }

@@ -21,7 +21,7 @@ export async function reviewDesign({screens,previous=null,env=process.env,fetchI
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  try{const manifest=resolve(process.argv[2]??resolve(root,'design/screens.json'));const screens=JSON.parse(readFileSync(manifest,'utf8')).map(s=>{const path=resolve(root,s.path);const rel=relative(root,path);if(isAbsolute(rel)||rel.startsWith('..'))throw Error('Screenshot outside build');return {...s,image:'data:image/png;base64,'+readFileSync(path).toString('base64')};});
- const iteration=Number(process.argv[3]??1);if(!Number.isInteger(iteration)||iteration<1||iteration>20)throw Error('Invalid iteration');const dir=resolve(root,'design');mkdirSync(dir,{recursive:true});const last=resolve(dir,'design-direction.json');const previous=existsSync(last)?JSON.parse(readFileSync(last,'utf8')):null;
+ const iteration=Number(process.argv[3]??1);if(!Number.isInteger(iteration)||iteration<1||iteration>30)throw Error('Invalid iteration');const dir=resolve(root,'design');mkdirSync(dir,{recursive:true});const last=resolve(dir,'design-direction.json');const previous=existsSync(last)?JSON.parse(readFileSync(last,'utf8')):null;
  const result=await reviewDesign({screens,previous});for(const [name,value]of [['design-direction.json',result],['iteration-'+iteration+'.json',result],...result.steps.map(s=>['step-critique-'+s.step+'.json',{model:result.model,iteration,...s}])]){const path=resolve(dir,name);if(existsSync(path))copyFileSync(path,path+'.bak');writeFileSync(path,JSON.stringify(value,null,2)+'\n');}console.log(JSON.stringify({model:result.model,iteration,scores:result.steps.map(s=>({step:s.step,score:s.score}))}));
  }catch(error){console.error(error.message);process.exitCode=1;}
 }

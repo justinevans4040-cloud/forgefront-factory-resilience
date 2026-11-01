@@ -18,9 +18,19 @@ export function moveTask(board,id,status){
 }
 export function replanBoard(board,snapshotDigest,cellId){return {...structuredClone(board),snapshotDigest,tasks:board.tasks.map(t=>t.status==='Done'?structuredClone(t):({...structuredClone(t),status:'Blocked',change:{previousStatus:t.status,previousDueHours:t.dueHours,reason:cellId+' unavailable; fresh recovery acceptance and task review required',requiresReview:true}}))};}
 export function approveProposal(p,action,scope,snapshotDigest){if(p?.status!=='pending'||action!=='approve')fail('APPROVAL_REQUIRED');if(p.scope!==scope)fail('PROPOSAL_SCOPE_MISMATCH');if(p.snapshotDigest!==snapshotDigest)fail('STALE_PROPOSAL');return structuredClone(p.board);}
-export async function draftBoard(client,context){
+export async function draftBoard(client,context,timeoutMs=45000){
  if(!client.sample&&!['meta-model-api','baseten'].includes(client.route?.provider))fail('PRIMARY_META_ROUTE_REQUIRED');
  if(client.sample)return {board:validateDraft(sampleDraft(context),context),sample:true,model:'Sample',provider:'sample'};
- const result=await client.complete({prompt:'You are Britt 4.0, Forgefront Systems sovereign agent. Draft recovery tasks for human approval. Return ONLY strict JSON with summary and tasks. Each task has ONLY id (t1 etc), title, owner (exactly context.owner), dueHours (hours relative to shock, between context.shockHours and context.shockHours + context.option.finishHours), dependsOn (task IDs, acyclic), evidenceIds (nonempty subset of context.option.evidenceIds). Use 3 to 6 tasks. Explain blockers and evidence in summary. Context: '+JSON.stringify(context),maxTokens:8192,timeoutMs:45000});
+ const result=await client.complete({prompt:'You are Britt 4.0, Forgefront Systems sovereign agent. Draft recovery tasks for human approval. Return ONLY strict JSON with summary and tasks. Each task has ONLY id (t1 etc), title, owner (exactly context.owner), dueHours (hours relative to shock, between context.shockHours and context.shockHours + context.option.finishHours), dependsOn (task IDs, acyclic), evidenceIds (nonempty subset of context.option.evidenceIds). Use 3 to 6 tasks. Explain blockers and evidence in summary. Context: '+JSON.stringify(context),maxTokens:8192,timeoutMs});
  if(result.sample||result.modelId!==client.route.model)fail('MODEL_IDENTITY_MISMATCH');let draft;try{draft=JSON.parse(result.text);}catch{fail('INVALID_TASK_JSON');}return {board:validateDraft(draft,context),sample:false,model:result.modelId,provider:client.route.provider};
+}
+
+export async function draftBoardWithFallback(primary,makeFallback,context){
+ const started=Date.now();
+ try{return {...await draftBoard(primary,context,makeFallback?25000:45000),fallbackUsed:false};}
+ catch(error){if(!makeFallback||primary.sample||primary.route?.provider!=='meta-model-api')throw error;
+  const remaining=45000-(Date.now()-started);if(remaining<=0)throw error;
+  const fallback=makeFallback();if(fallback?.route?.provider!=='baseten')fail('PRIMARY_META_ROUTE_REQUIRED');
+  return {...await draftBoard(fallback,context,remaining),fallbackUsed:true,primaryFailure:'PRIMARY_DRAFT_FAILED_VALIDATION_OR_PROVIDER'};
+ }
 }

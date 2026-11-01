@@ -1,6 +1,6 @@
 import {browserOptions} from './browser-options.mjs';
 import {contrastRatio} from '../public/accessibility.mjs';
-import {redactEvidence,writeEvidence} from './public-evidence.mjs';
+import {redactEvidence,writeEvidence,evidenceRun} from './public-evidence.mjs';
 import { spawn, execFileSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, mkdirSync } from 'node:fs';
 import { join } from 'node:path';
@@ -27,7 +27,7 @@ let ws;const errors=[];const checks=[];
 
 let keyboardActions=0;
 const group='primary-'+(baseline?(mockLive?'baseline-mocked':'baseline-offline'):mockLive?'browser-mocked':liveBrowser?'browser':'browser-offline');
-const output=new URL('../evidence/run13/'+group+'/',import.meta.url);mkdirSync(output,{recursive:true});
+const output=new URL('../evidence/'+evidenceRun()+'/'+group+'/',import.meta.url);mkdirSync(output,{recursive:true});
 function save(name,contents){writeEvidence(new URL(name,output),contents);}
 try{
  const portFile=join(scratch,'browser','DevToolsActivePort');await until(()=>existsSync(portFile),'browser launch',15000);const port=Number(readFileSync(portFile,'utf8').split('\n')[0]);
@@ -71,14 +71,14 @@ try{
  assert.ok(await evaluate(`(()=>{const title=document.querySelector('#guide-title').getBoundingClientRect(),strip=document.querySelector('.guide').getBoundingClientRect();return title.top>=strip.top&&title.bottom<=strip.bottom&&title.width>0;})()`),'guide title remains inside the visible instruction strip');
  const visited=[];const captures=[];
  for(let n=0;n<40;n++){
-  const title=await evaluate(`document.querySelector('#guide-title').textContent`);if(!visited.includes(title)){visited.push(title);for(const [width,height,label] of [[1920,1080,'wide'],[1366,768,'desktop'],[390,844,'mobile']]){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:label==='mobile'});const name='step-'+visited.length+'-'+label+'.png';save(name,Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));captures.push({step:visited.length,path:'evidence/run13/'+group+'/'+name,layout:{title,viewport:width+'x'+height}});}await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});}
+  const title=await evaluate(`document.querySelector('#guide-title').textContent`);if(!visited.includes(title)){visited.push(title);for(const [width,height,label] of [[1920,1080,'wide'],[1366,768,'desktop'],[390,844,'mobile']]){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:label==='mobile'});if(label==='mobile')assert.ok(await evaluate(`(()=>{const nav=document.querySelector('#guided-steps');return nav.scrollHeight<=nav.clientHeight+2;})()`),'mobile guided rail occupies one non-overlapping row');const name='step-'+visited.length+'-'+label+'.png';save(name,Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));captures.push({step:visited.length,path:'evidence/'+evidenceRun()+'/'+group+'/'+name,layout:{title,viewport:width+'x'+height}});}await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});}
   if(title.includes('Recovery story complete'))break;
   await click('#guide-next');
   await until(()=>evaluate(`!document.querySelector('#guide-next').disabled||(!document.querySelector('#consent').hidden&&!document.querySelector('#typed').disabled)||(!document.querySelector('[data-stage="proof"]').hidden&&!document.querySelector('#export-passphrase').disabled)`),'primary action');
   if(await evaluate(`!document.querySelector('#consent').hidden`)){
    if(title.includes('revised')){const phrase=await evaluate(`document.querySelector('#confirm-phrase').textContent`);await click('#guided-steps button');for(let n=0;n<20&&await evaluate(`document.querySelector('#guide-title').textContent.startsWith('Review')`);n++)await click('#guide-next');assert.ok(await evaluate(`!document.querySelector('#consent').hidden`),'Back review preserves the pending revised consent');assert.equal(await evaluate(`document.querySelector('#confirm-phrase').textContent`),phrase);}
 
-   for(const [width,height,label] of [[1920,1080,'wide'],[1366,768,'desktop'],[390,844,'mobile']]){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:label==='mobile'});if(label==='desktop')assert.ok(await evaluate(`(()=>{const d=document.querySelector('#stage-deck').getBoundingClientRect();return ['typed','consent-feedback'].every(id=>{const r=document.getElementById(id).getBoundingClientRect();return r.top>=d.top&&r.bottom<=d.bottom;});})()`),'typed consent and feedback fit the desktop inspector');save('consent-'+(title.includes('revised')?'revised':'initial')+'-'+label+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));}await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});
+   for(const [width,height,label] of [[1920,1080,'wide'],[1366,768,'desktop'],[390,844,'mobile']]){await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:label==='mobile'});if(label==='desktop')assert.ok(await evaluate(`(()=>{const d=document.querySelector('#stage-deck').getBoundingClientRect();return ['typed','consent-feedback'].every(id=>{const r=document.getElementById(id).getBoundingClientRect();return r.top>=d.top&&r.bottom<=d.bottom;});})()`),'typed consent and feedback fit the desktop inspector');if(label==='desktop')assert.ok(await evaluate(`(()=>{const list=document.querySelector('#options');return list.scrollHeight<=list.clientHeight+2;})()`),'all recovery cards fit above pinned consent without clipping');save('consent-'+(title.includes('revised')?'revised':'initial')+'-'+label+'.png',Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));}await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});
    await value('#typed',await evaluate(`document.querySelector('#confirm-phrase').textContent`));await click('#confirm');await until(()=>evaluate(`!document.querySelector('#confirm').disabled`),'accept');
   }
   if(title.includes('Britt')&&await evaluate(`!document.querySelector('#britt-approve').hidden`)){await click('#britt-approve');await until(()=>evaluate(`!document.querySelector('#britt-approve').disabled`),'Britt approval');}

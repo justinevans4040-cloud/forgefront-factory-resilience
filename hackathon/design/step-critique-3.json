@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 14,
+  "iteration": 22,
   "step": 3,
-  "score": 8,
+  "score": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Keep the exact-phrase input, character count and disabled Accept action pinned while only the three-option comparison scrolls internally."
+      "change": "Fix inspector clipping: DETERMINISTIC COMPARISON header is cut at the viewport top; give the inspector its own scroll region starting below the GuideStrip."
+    },
+    {
+      "priority": "P1",
+      "change": "Keep typed consent form tied to the selected path and show phrase, character count and expiry together; enable Accept only when the exact phrase matches, with aria-live result."
     },
     {
       "priority": "P2",
-      "change": "Replace radio-dot-only selection with a bordered selected card, Selected path text and matching neon route trace in the SVG."
-    },
-    {
-      "priority": "P2",
-      "change": "Show phrase mismatch/remaining characters adjacent to the input and announce match state via aria-describedby, not colour alone."
+      "change": "Replace tiny Select this path pills with full-row radio targets of at least 40px and a checked marker plus text."
     }
   ]
 }
