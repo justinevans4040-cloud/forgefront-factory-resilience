@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 4,
   "score": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Preserve PROPOSED - UNTRACKED UNTIL APPROVAL banner; ensure t1-t3 have no tracked status, checkbox or progress until approval."
+      "priority": "P1",
+      "change": "Inspector task list clips t3 at the fold; refit panel spacing and allow internal scroll with a visible end marker so all 3 proposed tasks are reachable without page scroll."
     },
     {
-      "priority": "medium",
-      "change": "Show the 40 via CELL-MILL-1 and 30 via CELL-MILL-1 labels without overlap on the neon recovery route."
+      "priority": "P1",
+      "change": "Retain PROPOSED - UNTRACKED UNTIL APPROVAL on every proposal and in the action-bar centre; do not show tracking state before human approval."
     },
     {
-      "priority": "low",
-      "change": "Make task list internally scrollable with a visible end marker and 36px Decline target."
+      "priority": "P2",
+      "change": "Remove the duplicate primary emphasis between the in-panel Approve control and the action-bar Approve Britt's proposal; keep one neon primary per viewport."
     }
   ]
 }

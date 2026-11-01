@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 10,
   "score": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Replace the active primary-free completion bar with a sealed summary and one secondary action only; Back remains non-primary."
+      "priority": "P1",
+      "change": "Retain PACKET SEALED summary with 18 events, revised plan accepted and CELL-MILL-2 offline retained in the action bar; keep red only on the stopped station."
     },
     {
-      "priority": "medium",
-      "change": "Add Complete check plus text to all three retention rows, already partly present, and ensure each is keyboard reachable."
+      "priority": "P2",
+      "change": "Mark the rail item Recovery story complete with aria-current and a check plus text, not color alone; keep all prior steps reachable by arrow keys for review."
     },
     {
-      "priority": "low",
-      "change": "Mark Recovery story complete with aria-current in the rail and move initial focus to the completion heading."
+      "priority": "P2",
+      "change": "Add a compact retained-evidence summary beside Verify, Seal and Checkpoint completion so the sealed outcome is inspectable without reopening prior steps."
     }
   ]
 }

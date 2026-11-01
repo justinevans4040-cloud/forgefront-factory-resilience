@@ -22,3 +22,5 @@ The application sequence budgets 2:51 between the four-second intro and five-sec
 [Current evidence](../evidence/README.md) · [Submission checklist](SUBMISSION_CHECKLIST.md) · [Video QA](VIDEO_QA.md).
 
 The final screen replaces the primary action with the current sealed-packet status. Back and completed rail items remain read-only navigation. Britt proposals show the untracked state until approval; the task region keeps prior blockers and proposed replacements together with a visible proposal-end marker. The shot budgets above are unchanged.
+
+The opening shot shows the official stage logo, material hold, affected parts and orders, and earliest due window in one composition. Read these values from the current state. The receiving HOLD marker precedes investigation; accepted recovery changes the flowing-lot state. The shot budgets remain unchanged.

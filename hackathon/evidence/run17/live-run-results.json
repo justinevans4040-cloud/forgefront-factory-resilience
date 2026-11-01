@@ -1,0 +1,70 @@
+{
+  "ok": true,
+  "orchestration": [
+    {
+      "provider": "baseten",
+      "model": "meta-models/muse-spark-open",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 10384,
+      "validatedSparkHandoff": false
+    },
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 17750,
+      "validatedSparkHandoff": true
+    },
+    {
+      "provider": "baseten",
+      "model": "meta-models/muse-spark-open",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 7124,
+      "validatedSparkHandoff": false
+    },
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 13999,
+      "validatedSparkHandoff": true
+    }
+  ],
+  "britt": [
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "status": "approved",
+      "tasks": 5,
+      "fallbackUsed": false
+    },
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "status": "approved",
+      "tasks": 5,
+      "fallbackUsed": false
+    }
+  ],
+  "events": 30,
+  "acceptedDecisions": 2,
+  "shockReplans": 1,
+  "operationalRelease": false,
+  "fireworksCalls": 0
+}

@@ -2,6 +2,20 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Build run seventeen
+
+- Designed with Muse Wonder: six genuine screenshot reviews, iterations 38–43, retain unedited scores and frozen input manifests. Reviewed the recurring opening critiques, replaced the tall story band with a compact official-logo composition, and computed the large affected-parts, order and first-due-window metrics from current state.
+- Added an explicit material-hold marker to receiving, preserved applied-machine outage and preview distinctions, enlarged source labels, separated allocation labels, and clarified proposal groups and constrained options.
+- Added failing-first state, feasible-path arrow navigation and compact-opening browser regressions. Closed the route-health timer and recovery-card history mutation paths with delayed read-only browser checks. Kept typed consent, human task approval, read-only history, source links and export sequencing intact.
+- Retained fresh three-viewport Sample and real Wonder/Baseten recovery evidence under evidence/run17. The bounded live pass repeats Spark investigation, Wonder tradeoff, human decision and Britt task planning after the second shock.
+
+## Independent audit fifteen
+
+- Verified run-seventeen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub. Confirmed route-health refresh and recovery-card history guards with tests.
+- Restored visible UNTRACKED UNTIL APPROVAL proposal badges, separated blocked prior work from proposed replacements, sequenced proof gates with text-enabled status, clarified passphrase checklist copy, and linked inspector evidence rows to SVG tracks.
+- Continued the genuine Muse Wonder screenshot design loop through iterations 44–48. Peak accepted scores are iteration 47 (8, 9, 9, 8, 8, 9, 9, 8, 8, 9); iteration 48 regressed and is retained unedited. Visual freeze remains open.
+- Deleted verified TEMP harness scratch directories left from prior runs; Node 20 was not available on this machine (verified Node 24 only).
+
 ## Independent audit fourteen
 
 - Verified run-sixteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub.

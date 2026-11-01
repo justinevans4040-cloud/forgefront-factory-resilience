@@ -66,8 +66,8 @@ Browser checks use installed Chrome/Edge or CHROME_PATH. On Node 20 set NODE_OPT
 
 ## Meta design director
 
-Run `npm run design:review --prefix hackathon -- design/screens.json 34` from the repository root with primary keys provisioned privately. The screenshot manifest contains paths relative to hackathon/. Wonder receives actual PNG inputs; Baseten is the bounded structured-layout fallback. Reviews are saved under design/.
+Run `npm run design:review --prefix hackathon -- design/screens.json 44` from the repository root with primary keys provisioned privately. The screenshot manifest contains paths relative to hackathon/. Wonder receives actual PNG inputs; Baseten is the bounded structured-layout fallback. Reviews are saved under design/.
 
 ## Current verification evidence
 
-Set `HACKATHON_EVIDENCE_RUN=run16` in the shell before provider, primary-guide or browser smoke commands to retain this run’s sanitized proof. Evidence destinations accept numbered run names only. Run `npm run smoke:guide` for Sample and `npm run smoke:guide:mock` for controlled live-route regression. The live guide repeats Spark Open on Baseten then Muse Wonder after the machine shock, before revised typed acceptance. Britt task drafting uses Wonder with a bounded Baseten fallback; fallback never grants approval.
+Set `HACKATHON_EVIDENCE_RUN=run17` in the shell before provider, primary-guide or browser smoke commands to retain this run’s sanitized proof. Evidence destinations accept numbered run names only. Run `npm run smoke:guide` for Sample and `npm run smoke:guide:mock` for controlled live-route regression. The live guide repeats Spark Open on Baseten then Muse Wonder after the machine shock, before revised typed acceptance. Britt task drafting uses Wonder with a bounded Baseten fallback; fallback never grants approval.

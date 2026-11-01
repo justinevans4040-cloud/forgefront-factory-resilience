@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 5,
   "score": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep CELL-MILL-2 preview dashed silver until applied; only after Apply use stoppedRed cross-hatch and OFFLINE-STOPPED."
+      "priority": "P1",
+      "change": "The preview state for CELL-MILL-2 must not yet use stoppedRed; reserve red for the applied offline state in step 6 and use silver dashed PREVIEW - WILL GO OFFLINE here."
     },
     {
-      "priority": "medium",
-      "change": "Enlarge PREVIEW - WILL GO OFFLINE label to 11px and pair it with a preview marker in the legend."
+      "priority": "P2",
+      "change": "Enlarge the consequence line Will invalidate acceptance for Use verified substitute to 13px and place it directly under the machine select with a 36px select target."
     },
     {
-      "priority": "low",
-      "change": "Keep DecisionBar status stating invalidation consequence before the primary Apply second shock action."
+      "priority": "P2",
+      "change": "Add Esc to clear the preview back to the accepted plan and announce the preview change once via aria-live polite."
     }
   ]
 }

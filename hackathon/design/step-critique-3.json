@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 3,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep typed consent visible only after path selection in the same inspector panel; preserve exact-phrase counter and disabled Accept state."
+      "priority": "P1",
+      "change": "Preserve the typed consent form opening on option selection; keep Accept disabled until the exact APPROVE allocate_substitute phrase matches, with 0/27 typed retained as text, not color alone."
     },
     {
-      "priority": "medium",
-      "change": "Raise option-card finish/incremental labels to 11px and align 35h/$3,115.00 tabular metrics on one baseline."
+      "priority": "P2",
+      "change": "Align the three option cards to a shared metric baseline so 83h, 35h and 17.5h compare instantly; enlarge finish and incremental micro-labels to 11px."
     },
     {
-      "priority": "low",
-      "change": "Announce Selected path via aria-live polite and mirror the selection on the SVG option chip."
+      "priority": "P2",
+      "change": "Give each Select this path control a radio role, arrow-key movement and a clear selected marker plus text."
     }
   ]
 }

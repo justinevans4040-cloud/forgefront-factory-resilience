@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 2,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep ROUTE HEALTH pre-flight and INVESTIGATION panels as separate labelled groups with independent status lines; do not merge their controls."
+      "priority": "P1",
+      "change": "Keep Route health pre-flight for nonce and identity as its own headed section and Investigation source evidence as a distinct task; do not merge their status text or controls."
     },
     {
-      "priority": "medium",
-      "change": "Enlarge route select text and add 2px neon focus ring; keep select at 40px height."
+      "priority": "P2",
+      "change": "Enlarge the offline route-health status to 13px and pair the Sample select with a 36px target and visible focus ring; state that no network request occurred beside the control."
     },
     {
-      "priority": "low",
-      "change": "Add one-line nonce/identity health row inside pre-flight without implying it runs the investigation."
+      "priority": "P2",
+      "change": "On SVG focus, highlight only feasible option chips and keep HOLD on MAT-ALLOY-A; add keyboard order from route select to Run Sample investigation."
     }
   ]
 }

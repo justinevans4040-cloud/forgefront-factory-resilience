@@ -214,6 +214,9 @@ body[data-guided=true][data-active-stage=incident] .story-hero>.story-logo{displ
 #factory-svg .factory-node.held:not(.preview-offline) rect{stroke:#9caf9f!important;filter:none}
 #factory-svg .factory-node.held.order-bay rect{stroke:#a5b9ac!important;filter:none}
 .factory-node.preview-offline rect{stroke:#C5CCD4!important;stroke-dasharray:6 4!important;stroke-width:2.5!important;filter:none!important}
+.factory-node.preview-offline{filter:none!important}
+.factory-node.preview-offline text[fill="#E5484D"],.factory-node.preview-offline text[fill="#ff8c91"]{fill:#C5CCD4!important}
+#factory-svg .factory-node.preview-offline rect{stroke:#C5CCD4!important;filter:none!important}
 .stage[data-stage=decision] .option[data-selected=true]::before{left:8px!important;right:auto!important;top:4px!important}
 .stage[data-stage=decision] .option[data-selected=true] .numbers{padding-top:0;margin-left:auto}
 body[data-guided=true][data-guide-complete=true] .story-hero,
@@ -246,7 +249,7 @@ body[data-guided=true] #verify,body[data-guided=true] #checkpoint{background:#10
 .route-preflight{display:grid;gap:6px;padding:10px 12px;margin:0 0 10px;border:1px solid #59695e;border-left:3px solid #c5ccd4;background:#0a100c;border-radius:5px}
 .route-preflight #provider{width:100%;min-height:44px;font-size:12px;padding:8px}
 .route-preflight #provider-check{min-height:40px;justify-self:start;padding:7px 12px}
-.route-preflight #route-help{font-size:11px;margin:0}
+.route-preflight #route-help{font-size:12px;margin:0;color:#c5ccd4;line-height:1.4}
 .investigation-task-label{padding-top:6px;color:#c6ed8d;border-top:1px solid #38513d}
 #shock-cell{min-height:44px}
 #britt-decline.quiet{min-height:40px;border:1px solid #81977f;padding:8px 12px;color:#d7e5d0;text-decoration:none;margin-top:8px}
@@ -412,3 +415,142 @@ body[data-guided=true][data-active-stage=incident] .story-hero>.eyebrow{font-siz
  #stage-rail #guided-steps button{flex:0 0 auto;min-height:0;max-height:34px;padding:6px 8px;line-height:1.2}
 }
 body[data-guide-complete=true] #guided-steps button[aria-current=step]{min-height:0;outline-offset:1px}
+/* The Meta Hackathon build: current-state opening composition. */
+#opening-story{flex-wrap:wrap;border:0;border-bottom:1px solid #486351;border-radius:0;background:radial-gradient(ellipse at 15% 20%,#275b3644,transparent 70%);padding:8px 0 14px;gap:14px;box-shadow:none}
+#opening-story .story-logo{width:112px;height:56px;object-fit:contain}
+#opening-story .opening-lead{font-size:clamp(24px,2.5vw,42px);line-height:1.04;letter-spacing:-1px;color:#f1f5ef}
+#opening-story .opening-lead em{color:#c6ed8d;font-style:normal}
+#opening-story .eyebrow{font-size:10px;margin-bottom:5px}
+#opening-stakes{display:flex;gap:28px;margin-left:auto;padding:6px 10px}
+.opening-stat{display:flex;flex-direction:column;gap:4px}
+.opening-stat strong{font-size:38px;line-height:1;font-weight:650;color:#fff;font-variant-numeric:tabular-nums}
+.opening-stat span{font-size:10px;letter-spacing:1px;color:#c5ccd4}
+#factory-svg .material-stopped rect{stroke:#ff6b70!important;filter:drop-shadow(0 0 8px #e5484d66)}
+#factory-svg .hold-marker{font-size:22px!important;font-weight:750;fill:#ff9da1;paint-order:stroke;stroke:#180c0c;stroke-width:4px}
+#factory-svg .node-caption{font-size:19px!important}
+#factory-svg [data-evidence].evidence-linked{filter:drop-shadow(0 0 5px #c6ed8d55)}
+.stage[data-stage=incident] .incident>h2,.stage[data-stage=incident] .incident>.eyebrow{position:static}
+.stage[data-stage=investigation] .model-controls select{min-height:40px;font-size:14px}
+.stage[data-stage=decision] .option .numbers small{font-size:11px}
+#britt-decline{min-height:36px}
+#decision-status{font-size:11px}
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=incident] .story-hero{margin:0 0 8px!important;padding:8px 0!important;min-height:34px!important}
+ body[data-guided=true][data-active-stage=incident] .story-hero>.eyebrow{line-height:18px}
+ body[data-guided=true][data-active-stage=incident] #stage-deck{padding-top:6px;scroll-padding-top:8px}
+ body[data-active-stage=incident] #factory-status{font-size:15px;letter-spacing:1px;margin:8px 0}
+ body[data-active-stage=incident] #factory-stage>.eyebrow{display:none}
+ body[data-active-stage=incident] #britt-activity{display:none}
+ .stage[data-stage=proof] .metrics span{font-size:11px}
+}
+@media(min-width:901px) and (max-width:1500px){#opening-stakes{width:100%;margin:0;justify-content:space-between;padding:0}.opening-stat strong{font-size:34px}#opening-story{gap:8px;padding-bottom:10px}#opening-story .opening-lead{font-size:30px}}
+@media(max-width:900px){#opening-story{gap:8px;padding:4px 0 8px}#opening-story .story-logo{width:72px;height:36px}#opening-story .opening-lead{font-size:22px}#opening-stakes{width:100%;margin:0;justify-content:space-between;padding:0;gap:8px}.opening-stat strong{font-size:24px}.opening-stat span{font-size:8px}.stage-area #factory-stage{min-height:400px;flex-basis:400px}}
+/* The Meta Hackathon build: compact first frame and legible scene lanes. */
+@media(min-width:901px){
+ #opening-story{flex-wrap:nowrap;gap:12px;min-height:90px}
+ #opening-story .story-logo{width:96px;height:48px}
+ #opening-story .opening-lead{font-size:26px}
+ #opening-stakes{width:auto;margin-left:auto;gap:20px;justify-content:initial;flex-shrink:0;padding:0}
+ .opening-stat strong{font-size:32px}.opening-stat span{font-size:8px;letter-spacing:.6px}
+ .stage[data-stage=decision] .option button{min-height:36px;font-size:10px}
+ .stage[data-stage=decision] .option .numbers{gap:12px;min-width:120px;justify-content:space-between}
+ #britt-work{scrollbar-width:auto;border-bottom:2px solid #617b6a}
+ .stage[data-stage=board] .proposal-task{border:1px dashed #A8F04A88;background:#101810}
+ .stage[data-stage=board] .proposal-task .proposal-badge{display:inline-block;font-size:9px!important;letter-spacing:.5px;color:#c6ed8d!important;border:1px solid #A8F04A66;padding:2px 5px;margin:0 0 3px}
+ .stage[data-stage=board] .proposal-task:has(.proposal-badge:first-child) strong{padding-top:2px}
+}
+#opening-story{position:relative}
+#factory-svg .factory-node.material-stopped rect{stroke:#ff6b70!important}
+body[data-active-stage=investigation] #factory-svg .material-stopped rect{stroke:#9caf9f!important;filter:none}
+body[data-active-stage=investigation] #factory-svg .hold-marker{fill:#c5ccd4}
+.stage[data-stage=investigation] .route-preflight{border:1px solid #7d8e83;border-left:4px solid #c5ccd4;background:#101913}
+.stage[data-stage=investigation] .investigation-task{border:1px solid #7eb650;border-left:4px solid #c6ed8d;background:#182714;margin-top:14px}
+#evidence{scrollbar-width:auto;scrollbar-color:#b5d19a #142019;border-bottom:2px solid #76935e}
+#evidence:after{content:'End of source records';display:block;padding:8px;color:#c5ccd4;font-size:11px}
+#shock-cell{min-height:40px}
+#guide-next:focus-visible,#stage-rail button:focus-visible{outline:2px solid #dafb9a;outline-offset:2px}
+.stage[data-stage=decision] .option.unavailable{background:repeating-linear-gradient(135deg,#171b17 0px,#171b17 10px,#283127 10px,#283127 12px)}
+@media(min-width:901px){.stage[data-stage=decision] .option button{min-height:36px!important}.stage[data-stage=decision] .option .numbers{display:grid!important;grid-template-columns:46px 72px;gap:10px!important}.stage[data-stage=decision] .option .numbers strong{font-size:18px}.stage[data-stage=decision] .option .numbers small{font-size:10px}}
+#factory-svg .factory-node text{font-size:19px}
+#factory-svg .factory-node .hold-marker{font-size:22px!important}
+#evidence:after{position:static;height:auto;background:none;clear:both}
+@media(min-width:901px){
+ .stage[data-stage=board] #britt-panel{padding:10px}
+ .stage[data-stage=board] #britt-feed{max-height:28px;margin:2px 0}
+ .stage[data-stage=board] #britt-feed p{font-size:10px;margin:1px 0}
+ .stage[data-stage=board] #britt-work{padding-bottom:0}
+ .stage[data-stage=board] #prior-work{padding:2px;margin:2px 0}
+ .stage[data-stage=board] #prior-work-list p{font-size:10px;line-height:1.2;margin:2px 0}
+ .stage[data-stage=board] .proposal-task{padding:4px!important;margin:3px 0!important;min-height:36px}
+ .stage[data-stage=board] .proposal-task strong{font-size:11px;line-height:1.2}
+ .stage[data-stage=board] .proposal-end{padding:4px}
+ .stage[data-stage=decision] #consent label,.stage[data-stage=decision] #consent code,.stage[data-stage=decision] #review-detail,.stage[data-stage=decision] #consent-feedback{font-size:11px}
+ .stage[data-stage=decision] .option.unavailable .numbers{visibility:visible;opacity:.72}
+}
+.stage[data-stage=board] .proposal-task:focus-visible{outline:2px solid #dafb9a;outline-offset:1px}
+.stage[data-stage=board] #prior-work-list p{border-left:2px solid #a4b8a7;padding-left:5px;background:repeating-linear-gradient(135deg,transparent,transparent 6px,#1d292033 6px,#1d292033 8px)}
+#factory-svg .allocation-label{stroke-width:6px}
+
+/* Audit 15 Wonder P1: raise steps under 9 — badges, labels, proof hierarchy, mute admin. */
+#factory-svg .node-caption,#factory-svg .factory-node text,#factory-svg .allocation-label{font-size:11px}
+#factory-svg .node-caption{font-size:18px!important}
+#factory-svg .allocation-label{font-size:14px!important;paint-order:stroke;stroke:#0b140d;stroke-width:5px}
+#factory-svg .hold-marker{font-size:20px!important}
+#evidence{max-height:260px;mask-image:none;-webkit-mask-image:none}
+#evidence:after{content:'Source records · scroll for full set';display:block;padding:8px 0 2px;color:#c5ccd4;font-size:11px;border-top:1px solid #516958;margin-top:6px}
+.stage[data-stage=shock] .cell{font-size:13px}
+.stage[data-stage=shock] .cell strong,.stage[data-stage=shock] #capacity .cell{font-size:13px}
+body[data-guided=true][data-active-stage=shock] .scenario-management{opacity:.42;order:99;filter:grayscale(.25)}
+body[data-guided=true][data-active-stage=shock] .scenario-management>span{font-size:8px;letter-spacing:1.2px}
+.stage[data-stage=board] #prior-work summary{font-size:11px;color:#e2a98b;letter-spacing:.4px}
+.stage[data-stage=board] .proposal-explain{font-size:12px;border:1px dashed #A8F04A88;background:#132019}
+.stage[data-stage=proof] .proof-action{border-left:3px solid #516958}
+.stage[data-stage=proof] .proof-action[data-complete=true]{border-left-color:#A8F04A}
+.stage[data-stage=proof] .proof-status{font-size:11px;color:#c5ccd4}
+.stage[data-stage=proof] .footer-actions>label{font-size:12px;line-height:1.35;color:#d7e2d6}
+.stage[data-stage=proof] .footer-actions>label small{display:inline;font-size:11px;color:#c5ccd4}
+.stage[data-stage=proof] #passphrase-feedback{font-size:12px;color:#c6ed8d;min-height:20px}
+.stage[data-stage=decision] .option button:focus-visible{outline:2px solid #A8F04A;outline-offset:2px}
+.stage[data-stage=decision] #consent code{font-size:12px}
+.stage[data-stage=decision] #review-detail{font-size:11px;line-height:1.35;max-height:2.7em;overflow:hidden}
+#factory-svg .constrained-chip{fill:#1a1f1a;stroke:#8a7464;stroke-dasharray:3 2}
+@media(min-width:901px){
+ #opening-story .opening-lead{font-size:28px;line-height:1.05}
+ .opening-stat strong{font-size:34px}
+ #factory-svg .allocation-label{transform:translateY(-6px)}
+ .stage[data-stage=board] #britt-work{max-height:none;min-height:120px}
+ .stage[data-stage=board] #britt-decline{position:sticky;bottom:0;background:#101a12;z-index:2}
+}
+/* Audit 15 round 2 (corrected): keep opening unclipped; raise proof/board clarity. */
+#evidence .source{padding:8px 10px;margin:6px 0;border:1px solid #496353;border-radius:4px}
+#evidence .source.evidence-linked{outline:2px solid #dafb9a;outline-offset:2px;border-color:#dafb9a;background:#1e3021}
+.stage[data-stage=proof] .results{max-height:78px;padding:4px 8px;margin:0}
+.stage[data-stage=proof] .results h2{font-size:14px;margin:0 0 4px}
+.stage[data-stage=proof] #result-metrics .metric strong{font-size:20px}
+.stage[data-stage=proof] #result-metrics .metric span{font-size:8px}
+.stage[data-stage=proof] .proof-action{border-left:4px solid #c5ccd4;padding:5px 8px;margin:2px 0;background:#0e1611}
+.stage[data-stage=proof] .proof-action legend{font-size:12px;font-weight:650;color:#e8ede6}
+.stage[data-stage=proof] .proof-action button{min-height:36px;font-size:11px}
+.stage[data-stage=proof] .proof-status{font-size:10px;margin:2px 0 0}
+.stage[data-stage=proof] .proof-action[data-complete=true]{border-left-color:#A8F04A;background:#132019}
+.stage[data-stage=proof] #passphrase-rules{display:block;margin-top:2px;font-size:11px;color:#c6ed8d;line-height:1.3}
+.stage[data-stage=proof] .footer-actions>label{font-size:11px;margin:2px 0}
+.stage[data-stage=proof] .footer-actions>label small:not(#passphrase-rules){display:none}
+.stage[data-stage=proof] #export-passphrase{min-height:36px;margin:2px 0}
+.stage[data-stage=proof] #passphrase-feedback{font-size:10px;min-height:14px;margin:0}
+body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:22px;overflow:hidden;opacity:.55;font-size:9px}
+@media(min-width:901px){.stage[data-stage=proof]>.panel:not(.results){overflow:visible!important;max-height:none}}
+.stage[data-stage=board] .proposal-badge{display:inline-block!important;font-size:11px!important;letter-spacing:.4px;padding:4px 7px!important;border:1px solid #A8F04A;background:#0b140d;color:#dafb9a!important;margin-bottom:5px;text-transform:uppercase}
+.stage[data-stage=board] #prior-work summary{font-size:12px!important;color:#e2a98b!important;font-weight:650}
+.stage[data-stage=board] #britt-work{border:1px solid #617b6a;border-radius:4px;padding:6px;scrollbar-gutter:stable;max-height:42vh}
+.stage[data-stage=board] #britt-approve,.stage[data-stage=board] #britt-decline{display:inline-flex!important;min-height:40px;margin:4px 8px 4px 0}
+.stage[data-stage=board] #britt-approve{order:20}.stage[data-stage=board] #britt-decline{order:21}
+body[data-guided=true][data-active-stage=shock] .scenario-management{opacity:.35!important}
+body[data-guided=true][data-active-stage=shock] #reset{font-size:9px!important;min-height:28px;padding:4px 8px}
+#shock-preview{font-size:12px;color:#c5ccd4;border-left:2px solid #c5ccd4;padding-left:8px}
+#route-checklist,#provider-status{font-size:12px;line-height:1.45}
+.route-preflight label[for=provider]{font-size:12px;color:#c5ccd4}
+#factory-svg .hold-marker{fill:#c5ccd4!important;stroke:#0b140d}
+body[data-active-stage=incident] #factory-svg .hold-marker{fill:#ff9da1!important}
+body[data-active-stage=shock] #factory-svg .factory-node.preview-offline .node-caption,
+body[data-active-stage=decision] #factory-svg .factory-node.preview-offline .node-caption{font-size:12px!important;fill:#C5CCD4!important}

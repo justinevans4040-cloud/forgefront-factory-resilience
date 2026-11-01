@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 6,
   "score": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Preserve stoppedRed exclusively on CELL-MILL-2 with cross-hatch, X marker and OFFLINE-STOPPED text; no route traces through it."
+      "priority": "P1",
+      "change": "Preserve stoppedRed exclusively on CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; verify no feasible route traces through that cell and the Split option reads CONSTRAINED with hatch plus text."
     },
     {
-      "priority": "medium",
-      "change": "Keep route-health pre-flight separate from the Reinvestigate recovery evidence task in heading, status and tab order."
+      "priority": "P1",
+      "change": "Keep pre-flight nonce and identity route health separate from the reinvestigation evidence task, with the new 3 to 2 feasible paths banner linked to both sections."
     },
     {
-      "priority": "low",
-      "change": "Enlarge the constrained-capacity chip text to 11px and mark Split as infeasible with X plus text, not color alone."
+      "priority": "P2",
+      "change": "Enlarge the constrained chip and event-chain labels to 11px minimum; keep the single 240ms route trace on state change, then static."
     }
   ]
 }

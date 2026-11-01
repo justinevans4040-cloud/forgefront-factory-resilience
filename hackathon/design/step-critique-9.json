@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 9,
   "score": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Sequence Verify ledger, passphrase, Seal packet and Export checkpoint as numbered disabled-until-ready controls with aria-live result text."
+      "priority": "P1",
+      "change": "Order the proof flow as three numbered, gated controls: Verify ledger, then separate export passphrase of 16-160 characters, then Export independent checkpoint; show waiting reasons as text at each gate."
     },
     {
-      "priority": "medium",
-      "change": "Clarify 70 parts, 35h accepted and 48h saved metrics with tabular numerals and 11px captions that fit without wrapping."
+      "priority": "P2",
+      "change": "Label the Before to After metrics 70, 35h and 48h with units and captions at 11px minimum so the proven gain reads without narration."
     },
     {
-      "priority": "low",
-      "change": "Keep stoppedRed CELL-MILL-2 visible in the retained-evidence stage exactly as in the live state."
+      "priority": "P2",
+      "change": "Ensure the action-bar Verify ledger is the sole primary until verification completes, then move neon emphasis to the next gated control and announce it politely."
     }
   ]
 }

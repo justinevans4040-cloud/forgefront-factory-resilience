@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 1,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Refit inspector top so MATERIAL HOLD heading is not clipped at 1366x768; reduce opening-story height before shrinking type."
+      "priority": "P1",
+      "change": "Inspector evidence list has a nested double focus ring and clipped scroll edge; refit to one 2px neon focus ring and 8px scroll padding so both source records stay fully visible at 1366x768."
     },
     {
-      "priority": "medium",
-      "change": "Enlarge SVG micro-labels doc-cert-441, doc-recv-882 and option costs to 11px minimum."
+      "priority": "P1",
+      "change": "Enlarge SVG job and option labels below 11px to 11px minimum; tighten the opening-story hero height so the 120 versus 80 tracks and DOES NOT MATCH marker keep clear separation."
     },
     {
-      "priority": "medium",
-      "change": "Link ev-cert-qty and ev-recv-qty inspector rows bidirectionally to the 120 and 80 SVG tracks with focus ring and pattern highlight."
+      "priority": "P2",
+      "change": "Add bidirectional highlighting between MAT-ALLOY-A, the quantity tracks, and ev-cert-qty / ev-recv-qty rows, announced via aria-live polite."
     }
   ]
 }

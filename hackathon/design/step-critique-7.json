@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 7,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Retain CONSTRAINED Split card as non-selectable with reason text; selecting a feasible option opens the typed consent form below."
+      "priority": "P1",
+      "change": "Keep prior acceptance invalidated status in the action bar until the typed revised phrase matches exactly; retain the disabled Accept revised decision with its reason as text."
     },
     {
-      "priority": "medium",
-      "change": "Keep prior-acceptance-invalidated status in DecisionBar centre at 11px minimum and readable within 56px."
+      "priority": "P2",
+      "change": "Make the constrained Split card non-selectable with hatch, x marker and reason text, while the two feasible cards keep radio behaviour and 36px targets."
     },
     {
-      "priority": "low",
-      "change": "Align revised 35h/$3,115.00 metrics with step 3 so the unchanged feasible path is easy to compare."
+      "priority": "P2",
+      "change": "Align revised tradeoff metrics and plan identifier on one baseline to reduce scanning between inspector and SVG chips."
     }
   ]
 }

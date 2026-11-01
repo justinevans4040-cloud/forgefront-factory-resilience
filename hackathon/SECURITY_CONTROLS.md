@@ -98,3 +98,9 @@ Wonder task drafting has one primary attempt and at most one Baseten fallback, s
 ## Current interface verification
 
 The source-track keyboard path opens the exact registry record and highlights its matching visual. Proof controls retain native keyboard access in the guide and full shell. Passphrase feedback reports only character count and unmet requirements, never the secret. Terminal summaries derive offline machine identities from the current snapshot. The new static rendering module is explicitly allowlisted and tested over HTTP. Browser cleanup validates the resolved temporary directory before removing owned profiles and state. Coverage: run16 visual, passphrase, cleanup and serving regressions; current keyboard and primary-guide evidence. These checks extend the SOC 2-style control mapping.
+
+## Opening and visual-state continuity
+
+Current disruption stakes derive from affected demand and matching-material job due windows. Browser checks require the compact opening and an unclipped inspector heading while retaining the source activation, read-only history and typed-consent checks. The source-only test varies quantities and due windows independently of the supplied fixture. These checks extend the SOC 2-style mapping.
+
+History review keeps the route-health refresh disabled and rejects recovery-card click actions. Delayed browser checks cover the timer boundary and assert no consent event changes the exported ledger head. Feasible-path arrow navigation skips constrained options. Audit-fifteen unit coverage locks those history guards, visible UNTRACKED proposal badges, separated route-health versus investigation groups, ordered proof status text and passphrase checklist labeling.

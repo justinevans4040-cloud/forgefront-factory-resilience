@@ -33,3 +33,7 @@ Review and freeze the audited source inventory; test a physical phone; film the 
 ## Source and viewport coverage
 
 The current primary-guide browser check asserts wide and compact page bounds, a bounded Britt inspector, exact-source activation from the keyboard, linked evidence highlighting, consent geometry and unchanged ledger heads during Back and rail review. Every visited state is captured at wide desktop, compact desktop and mobile sizes. Pure tests cover measured quantity-track geometry, current-machine terminal summaries and passphrase feedback. Temporary-profile cleanup rejects paths outside the owned temporary prefix.
+
+Opening-state regression coverage varies affected demand, source quantities and due windows. The primary-guide regression checks the compact first frame and inspector heading at compact desktop size, then captures every step at all three viewport sizes.
+
+Read-only review coverage includes waiting through the route-health refresh interval and clicking a recovery card, with an unchanged exported ledger head. Arrow navigation wraps feasible recovery paths and excludes constrained paths.

@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 37,
+  "iteration": 47,
   "step": 8,
-  "score": 9,
+  "score": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep 3 BLOCKED prior tasks expanded beside 3 proposed untracked replacements and the approved revised plan status; do not hide either group."
+      "priority": "P1",
+      "change": "Show 3 BLOCKED prior tasks and 3 PROPOSED replacements as two labelled groups that coexist with the approved revised plan; replacements stay untracked until approval and never replace the blocked group visually."
     },
     {
-      "priority": "medium",
-      "change": "Prevent t2 title clipping by allowing the proposed list internal scroll with all three tasks reachable by keyboard."
+      "priority": "P1",
+      "change": "Refit the inspector scroll region so the first proposed task is not cut mid-line; add top and bottom fade plus a scroll end indicator within 360px width."
     },
     {
-      "priority": "low",
-      "change": "Add hatched Blocked pattern to prior rows so state is not carried by text color alone."
+      "priority": "P2",
+      "change": "Keep one neon primary, Approve revised tasks, in the action bar; demote the in-panel Approve control to secondary outline."
     }
   ]
 }
