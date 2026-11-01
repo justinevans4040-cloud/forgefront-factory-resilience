@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 3,
-  "score": 9,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Preserve the typed consent form opening on option selection; keep Accept disabled until the exact APPROVE allocate_substitute phrase matches, with 0/27 typed retained as text, not color alone."
-    },
-    {
-      "priority": "P2",
-      "change": "Align the three option cards to a shared metric baseline so 83h, 35h and 17.5h compare instantly; enlarge finish and incremental micro-labels to 11px."
-    },
-    {
-      "priority": "P2",
-      "change": "Give each Select this path control a radio role, arrow-key movement and a clear selected marker plus text."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  3,
+    "score":  9,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Keep selecting a recovery option opening the typed consent form; preserve the exact-phrase field, character count and disabled Accept until match, and add aria-live polite feedback only when the phrase becomes valid."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Align the three option rows on one price/finish baseline and enlarge the Select this path targets to 40px."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Prevent the inspector header from clipping at the top by adding 8px top padding inside its internal scroll region."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

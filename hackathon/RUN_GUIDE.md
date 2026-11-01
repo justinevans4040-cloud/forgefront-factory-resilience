@@ -71,3 +71,5 @@ Run `npm run design:review --prefix hackathon -- design/screens.json 44` from th
 ## Current verification evidence
 
 Set `HACKATHON_EVIDENCE_RUN=run17` in the shell before provider, primary-guide or browser smoke commands to retain this run’s sanitized proof. Evidence destinations accept numbered run names only. Run `npm run smoke:guide` for Sample and `npm run smoke:guide:mock` for controlled live-route regression. The live guide repeats Spark Open on Baseten then Muse Wonder after the machine shock, before revised typed acceptance. Britt task drafting uses Wonder with a bounded Baseten fallback; fallback never grants approval.
+
+Inspect every proposed task with the numbered task selector before approval; arrow keys move between its named controls. Prior blocked tasks remain separately inspectable during re-planning. The separate export passphrase field unlocks after Verify ledger completes on the current head. Back and completed rail items retain read-only review.

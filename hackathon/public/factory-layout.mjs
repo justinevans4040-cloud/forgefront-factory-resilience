@@ -21,3 +21,11 @@ export function adjacentPath(options,current,direction){
  const index=feasible.findIndex(o=>o.optionId===current);
  return feasible[index<0?0:(index+(direction<0?-1:1)+feasible.length)%feasible.length].optionId;
 }
+
+// Engine allocations are machine hours; demand is a distinct part quantity.
+export function acceptedFlow(option,parts){
+ const detail=option?.detail??{},totals=new Map();
+ const allocations=detail.allocations??detail.draws?.flatMap(d=>d.cells)??[];
+ for(const a of allocations)totals.set(a.cellId,(totals.get(a.cellId)??0)+a.hours);
+ return {parts,materials:[...new Set(detail.materialId?[detail.materialId]:(detail.draws??[]).map(d=>d.materialId))],assignments:[...totals].map(([cellId,hours])=>({cellId,hours:Math.round(hours*100)/100}))};
+}

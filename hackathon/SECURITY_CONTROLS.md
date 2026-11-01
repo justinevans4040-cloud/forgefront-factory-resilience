@@ -104,3 +104,18 @@ The source-track keyboard path opens the exact registry record and highlights it
 Current disruption stakes derive from affected demand and matching-material job due windows. Browser checks require the compact opening and an unclipped inspector heading while retaining the source activation, read-only history and typed-consent checks. The source-only test varies quantities and due windows independently of the supplied fixture. These checks extend the SOC 2-style mapping.
 
 History review keeps the route-health refresh disabled and rejects recovery-card click actions. Delayed browser checks cover the timer boundary and assert no consent event changes the exported ledger head. Feasible-path arrow navigation skips constrained options. Audit-fifteen unit coverage locks those history guards, visible UNTRACKED proposal badges, separated route-health versus investigation groups, ordered proof status text and passphrase checklist labeling.
+
+## Proposal inspection and proof-input gates
+
+The task selector changes only the inspected proposal card; it cannot approve or move a task. Every proposal still requires human approval bound to the accepted snapshot. Prior tracked blockers remain separately visible. Browser regressions select every task without changing the ledger, and the final Back/rail checks retain the same exported head.
+
+Guided passphrase entry stays disabled until verification matches the current ledger head and stays disabled during retained-state review. Export encryption, strength validation, consent binding and independent-checkpoint gates remain enforced. A varied-state allocation test keeps part quantities separate from machine hours in the factory annotation. These checks extend the SOC 2-style mapping.
+
+## Independent audit sixteen
+
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Passphrase gate | Export passphrase stays disabled until `guide.verified` matches the current ledger head and during history review | `tests/unit/audit16-visual.test.mjs`; primary-guide browser gate |
+| Proposal inspection | Numbered 40px pager targets inspect one complete untracked card; inspector Approve is secondary Review proposed tasks during guided recovery; action-bar Approve remains the primary | `tests/unit/audit16-visual.test.mjs`; primary-guide Britt card checks |
+| Route separation | Route health pre-flight and investigation source evidence keep separate headings, status and controls; route helper stays visible at silver contrast | audit16 visual unit coverage; investigation HTML structure |
+| Allocation honesty | Accepted-flow annotations take part demand from impact analysis and keep machine hours separate | `tests/unit/accepted-flow.test.mjs` |

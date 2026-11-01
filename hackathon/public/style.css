@@ -554,3 +554,108 @@ body[data-guided=true][data-active-stage=shock] #reset{font-size:9px!important;m
 body[data-active-stage=incident] #factory-svg .hold-marker{fill:#ff9da1!important}
 body[data-active-stage=shock] #factory-svg .factory-node.preview-offline .node-caption,
 body[data-active-stage=decision] #factory-svg .factory-node.preview-offline .node-caption{font-size:12px!important;fill:#C5CCD4!important}
+
+/* The Meta Hackathon build: independent evidence, work and proof regions. */
+@media(min-width:901px){
+ .stage[data-stage=board] #britt-panel{padding:10px;gap:4px}
+ .stage[data-stage=board] #britt-work{display:flex;flex-direction:column;gap:8px;overflow:hidden;max-height:none;padding:0;border:0;min-height:190px;flex:1 1 0}
+ .stage[data-stage=board] #prior-work{flex:0 1 38%;overflow:auto;min-height:70px;margin:0;padding:6px;border:1px solid #8a7464;scrollbar-gutter:stable}
+ .stage[data-stage=board] #prior-work summary{position:static;font-size:12px;line-height:1.4;padding:0 0 6px;background:#101a12}
+ .stage[data-stage=board] #prior-work-list p{font-size:12px;line-height:1.4;text-decoration:none;margin:6px 0;padding:4px}
+ .stage[data-stage=board] #britt-proposal{flex:1 1 0;min-height:126px;overflow:auto;padding:0 6px 8px;border:1px dashed #9bca6e;scrollbar-gutter:stable;scrollbar-width:auto}
+ .stage[data-stage=board] .proposal-explain{position:sticky;top:0;margin:0 0 6px;padding:6px;font-size:12px;line-height:1.3;z-index:1}
+ .stage[data-stage=board] .proposal-task{min-height:70px;padding:8px!important;margin:6px 0!important;scroll-margin:42px}
+ .stage[data-stage=board] .proposal-task strong,.stage[data-stage=board] .proposal-task small{font-size:12px;line-height:1.35}
+ .stage[data-stage=board] .proposal-task .proposal-badge{font-size:10px!important;padding:3px 4px!important;line-height:1.25;white-space:normal}
+ .stage[data-stage=board] #britt-feed{max-height:26px;font-size:11px;margin:0}
+ .stage[data-stage=board] #britt-approve,.stage[data-stage=board] #britt-decline{min-height:36px;margin:0;position:static}
+ .stage[data-stage=board] #britt-approve{background:transparent;color:#d5e4c7;border-color:#6e805d;box-shadow:none}
+ .stage[data-stage=incident] .incident{display:flex;flex-direction:column;padding:12px;overflow:hidden;min-height:0;height:100%}
+ .stage[data-stage=incident] .incident>p{font-size:12px;line-height:1.5;margin:8px 0}
+ .stage[data-stage=incident] .incident>.metrics{display:none}
+ .stage[data-stage=incident] .incident>details{flex:1 1 0;min-height:0;display:flex;flex-direction:column;margin-top:8px}
+ .stage[data-stage=incident] #evidence{max-height:calc(100% - 30px);overflow:auto;padding:4px;scrollbar-gutter:stable}
+ .stage[data-stage=incident] #evidence .source{font-size:12px;line-height:1.4;padding:10px;margin:4px 0 8px}
+ .stage[data-stage=incident] .overview{flex:1 1 0;min-height:0}
+ .stage[data-stage=incident]{display:flex;flex-direction:column;height:100%;min-height:0}
+ .stage[data-stage=shock] #shock-consequence{font-size:13px;line-height:1.5}
+ .stage[data-stage=proof] .results{flex:0 0 100px;height:100px;max-height:100px;padding:8px}
+ .stage[data-stage=proof] #result-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0}
+ .stage[data-stage=proof] #result-metrics .metric strong{display:block;font-size:25px;line-height:1.2}
+ .stage[data-stage=proof] #result-metrics .metric span{display:block;font-size:11px;line-height:1.3;letter-spacing:0;color:#d1ddce;white-space:normal}
+ .stage[data-stage=proof] .footer-actions{gap:4px}
+ .stage[data-stage=proof] .footer-actions>label::after{content:none}
+ .stage[data-stage=proof] #passphrase-rules{font-size:12px;line-height:1.35}
+ .stage[data-stage=proof] .proof-status{font-size:11px;line-height:1.35}
+ .stage[data-stage=proof] #passphrase-feedback{font-size:12px;line-height:1.3;min-height:16px}
+ .stage[data-stage=proof] #recovery-timeline{display:none}
+}
+#factory-svg .factory-node text{font-size:17px}
+#factory-svg .allocation-label{font-size:17px!important;transform:none;stroke-width:4px}
+#factory-svg .factory-node.preview-offline .node-caption{font-size:17px!important}
+body[data-guided=true][data-active-stage=shock] .scenario-management{opacity:1!important}
+body[data-guided=true][data-active-stage=shock] #reset{font-size:11px!important;min-height:36px;color:#c5ccd4}
+
+/* The Meta Hackathon build: inspect complete proposals one task at a time. */
+#britt-controls{display:flex;align-items:center;gap:8px;flex:0 0 40px;min-height:40px;max-height:40px}
+#britt-controls button{flex:1;font-size:11px}
+.proposal-pages{display:flex;flex-wrap:wrap;gap:6px;padding:3px 0 7px}
+.proposal-pages button{min-width:40px;min-height:40px;padding:6px 10px;font-size:12px}
+.proposal-pages button[aria-pressed=true]{border-color:#c6ed8d;color:#dafb9a;background:#24371e}
+@media(min-width:901px){
+ .stage[data-stage=board] #britt-work{padding:4px;gap:8px;display:flex;flex-direction:column;min-height:0;overflow:hidden}
+ .stage[data-stage=board] #britt-proposal{min-height:160px;flex:1 1 auto;overflow:auto;scrollbar-gutter:stable}
+ .stage[data-stage=board] #prior-work{min-height:72px;max-height:120px;flex:0 1 28%;overflow:auto}
+ .stage[data-stage=board] .proposal-explain{position:static;padding:5px;margin:0 0 3px;font-size:11px;line-height:1.35}
+ .stage[data-stage=board] .proposal-task{padding:8px!important;margin:0!important;min-height:78px}
+ .stage[data-stage=board] .proposal-end{display:block;margin:4px 0;padding:0;font-size:11px}
+ .stage[data-stage=board] #britt-panel>h2{font-size:18px;margin:0;line-height:24px}
+ .stage[data-stage=board] #britt-panel>p{font-size:11px;margin:0}
+ .stage[data-stage=board] #britt-approve,.stage[data-stage=board] #britt-decline{margin:0;position:static;min-height:36px}
+ .stage[data-stage=board] #britt-approve{outline:none}
+ .stage[data-stage=board] #britt-approve:focus-visible{outline:2px solid #dafb9a;outline-offset:1px}
+}
+
+/* The Meta Hackathon build: retain result captions in the stacked workspace. */
+@media(max-width:900px){
+ .stage[data-stage=proof] #story-results{height:auto;max-height:none;min-height:112px;padding:10px}
+ .stage[data-stage=proof] #result-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:6px 0}
+ .stage[data-stage=proof] #result-metrics .metric strong{display:block;font-size:25px;line-height:1.2}
+ .stage[data-stage=proof] #result-metrics .metric span{display:block;font-size:11px;line-height:1.4;white-space:normal;letter-spacing:0}
+}
+
+/* Audit 16 Wonder: restore route helper, enlarge task pager, clarify board/proof hierarchy. */
+#route-help{display:block;font-size:12px;color:#c5ccd4;line-height:1.4;margin:4px 0 0}
+.stage[data-stage=investigation] .route-preflight{border-left:4px solid #c5ccd4;margin-bottom:14px}
+.stage[data-stage=investigation] .investigation-task{border-left:4px solid #A8F04A;margin-top:12px}
+#provider,#shock-cell{min-height:40px}
+#provider:focus,#provider:focus-visible{outline:2px solid #A8F04A;outline-offset:2px}
+#provider:disabled{cursor:default;opacity:.72}
+#provider:not(:disabled){cursor:pointer}
+.proposal-pages button{min-width:40px;min-height:40px;padding:6px 10px;font-size:12px}
+.proposal-pages button:focus-visible{outline:2px solid #A8F04A;outline-offset:2px}
+.stage[data-stage=board] .proposal-task{border:1px dashed #A8F04A88;background:#101810;min-height:40px}
+#prior-work{border:1px solid #e2a98b66;background:repeating-linear-gradient(135deg,#101a12 0,#101a12 8px,#1d2920 8px,#1d2920 10px)}
+#prior-work summary{min-height:36px;display:flex;align-items:center;font-size:11px;color:#e2a98b}
+#britt-approve.secondary{background:#101a13;color:#c6ed8d;border-color:#6e805d;box-shadow:none}
+body[data-guided=true] #britt-approve{background:#101a13;color:#c6ed8d;border-color:#6e805d;font-size:11px;opacity:.92}
+body[data-guided=true] #britt-controls{opacity:.9}
+.stage[data-stage=proof] .proof-action[data-complete=false] button:disabled,
+.stage[data-stage=proof] #export-passphrase:disabled{opacity:.55;cursor:not-allowed}
+.stage[data-stage=proof] .proof-status{font-size:11px;color:#c5ccd4}
+.stage[data-stage=proof] #passphrase-rules,.stage[data-stage=proof] #passphrase-feedback,.stage[data-stage=proof] label[for=export-passphrase]{font-size:13px;line-height:1.4;color:#d7e2d4}
+.stage[data-stage=proof] #export-passphrase{font-size:13px;min-height:40px}
+.stage[data-stage=proof] #result-metrics .metric strong{font-variant-numeric:tabular-nums}
+.factory-node.preview-offline text{fill:#C5CCD4}
+.factory-node.preview-offline rect{stroke:#C5CCD4;stroke-dasharray:6 4;fill:url(#offline-hatch);opacity:.92}
+#shock-cell:focus,#shock-cell:focus-visible{outline:2px solid #A8F04A;outline-offset:2px}
+#shock-cell:not(:disabled){cursor:pointer}
+#shock-cell:disabled{cursor:default}
+#opening-story .opening-lead{font-size:18px;line-height:1.15;margin:2px 0 4px}
+#factory-svg .node-caption{font-size:14px!important;fill:#d7e2d4}
+#factory-svg .allocation-label{font-size:16px!important}
+.source:focus,.source:focus-visible,#evidence .source.evidence-linked{outline:2px solid #A8F04A;outline-offset:2px}
+#route-checklist{font-size:12px;color:#d7e2d4;line-height:1.45;min-height:2.4em}
+.stage[data-stage=shock] #shock-preview{font-size:12px;color:#c5ccd4}
+.stage[data-stage=shock] #shock-consequence{font-size:12px;margin-top:6px}
+.stage[data-stage=board] #board-outcomes{font-size:12px;color:#dafb9a;border-left:3px solid #A8F04A;padding-left:8px}

@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 7,
-  "score": 9,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Keep prior acceptance invalidated status in the action bar until the typed revised phrase matches exactly; retain the disabled Accept revised decision with its reason as text."
-    },
-    {
-      "priority": "P2",
-      "change": "Make the constrained Split card non-selectable with hatch, x marker and reason text, while the two feasible cards keep radio behaviour and 36px targets."
-    },
-    {
-      "priority": "P2",
-      "change": "Align revised tradeoff metrics and plan identifier on one baseline to reduce scanning between inspector and SVG chips."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  7,
+    "score":  9,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Keep the constrained Split option non-selectable with hatch, text reason and no pointer style, while the feasible selected path retains the neon outline."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Make PRIOR ACCEPTANCE INVALIDATED status persistent in the action-bar centre and pair it with the typed consent form so the fresh approval requirement is explicit."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Raise the muted finish/incremental labels on the constrained row to silverDim minimum contrast while keeping it visually inactive."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

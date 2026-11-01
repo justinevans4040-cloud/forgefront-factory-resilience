@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 4,
-  "score": 8,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Inspector task list clips t3 at the fold; refit panel spacing and allow internal scroll with a visible end marker so all 3 proposed tasks are reachable without page scroll."
-    },
-    {
-      "priority": "P1",
-      "change": "Retain PROPOSED - UNTRACKED UNTIL APPROVAL on every proposal and in the action-bar centre; do not show tracking state before human approval."
-    },
-    {
-      "priority": "P2",
-      "change": "Remove the duplicate primary emphasis between the in-panel Approve control and the action-bar Approve Britt's proposal; keep one neon primary per viewport."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  4,
+    "score":  8,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Make the pending proposal state unmistakable: keep PROPOSED - UNTRACKED UNTIL APPROVAL beside tasks 1-3 and retain the single Approve primary in the action bar, removing visual emphasis duplication in the inspector."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Enlarge task selector tiles 1, 2 and 3 to 40px and show owner, due offset and predecessor on the selected task without extra narration."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Add a visible focus ring to the inspector Approve and Decline buttons matching the action-bar primary."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

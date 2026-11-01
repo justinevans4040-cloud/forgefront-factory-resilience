@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 1,
-  "score": 8,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Inspector evidence list has a nested double focus ring and clipped scroll edge; refit to one 2px neon focus ring and 8px scroll padding so both source records stay fully visible at 1366x768."
-    },
-    {
-      "priority": "P1",
-      "change": "Enlarge SVG job and option labels below 11px to 11px minimum; tighten the opening-story hero height so the 120 versus 80 tracks and DOES NOT MATCH marker keep clear separation."
-    },
-    {
-      "priority": "P2",
-      "change": "Add bidirectional highlighting between MAT-ALLOY-A, the quantity tracks, and ev-cert-qty / ev-recv-qty rows, announced via aria-live polite."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  1,
+    "score":  8,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Reduce the oversized opening-story hero inside the stage so the Certificate 120 and Receiving 80 tracks, machines and jobs fit without competing focal points at 1366x768; keep the second official logo placement at native aspect."
+                  },
+                  {
+                      "priority":  "P1",
+                      "change":  "Enlarge SVG micro-labels such as event ids and hash-chain text to 11px minimum and raise silverDim contrast on the dark green panels."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Tighten the right evidence list to three visible cards with internal scroll and a clearer selected-card focus ring linked bidirectionally to the SVG."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

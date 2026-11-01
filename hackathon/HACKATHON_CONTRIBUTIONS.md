@@ -119,3 +119,18 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 The film uses the implementation under hackathon/. The root application provides regression context; root UI, PM/Kanban and earlier recordings are outside the film inventory. The five showcase images are retained visual assets. Independent planning fixtures have their own schema and arithmetic; [fixture alignment](docs/FIXTURE_RUNTIME_ALIGNMENT.md) maps those differences to the runtime oracle. Athere Mesh is a conceptual reference.
 
 Repository history supplies authorship and original timestamps. The owner reviews contributors, foundation eligibility, rights and license against the source inventory before submission. [LICENSE](../LICENSE) governs the repository. [Shot eligibility](docs/SHOT_ELIGIBILITY.md) maps the presentation to the implementation.
+
+## Build run eighteen
+
+Designed with Muse Wonder: continued real screenshot reviews after reviewing all recurring critiques for the opening, task approval, shock preview and proof states. Each iteration retains its full model response and frozen compact-desktop inputs. Regression experiments remain recorded; the report distinguishes retained changes from rejected layouts.
+
+Replaced clipped proposal stacks with a keyboard-operable task selector. Each complete proposal card retains its UNTRACKED UNTIL APPROVAL badge, owner, due window and dependencies. Prior blocked work remains a separate visible region. Enlarged source and factory labels, freed source-inspector space, and restored captions to proof metrics.
+
+Corrected the accepted-flow annotation to keep part demand separate from engine machine-hour allocations, using a varied-state failing-first test. Guided proof keeps the separate export passphrase locked until the current ledger is verified. Browser regressions exercise complete proposal selection, proof labels, viewport fit and read-only history. Current proof is retained under evidence/run18.
+
+## Independent audit sixteen
+
+- Verified run-eighteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, logo byte match, and path scrub. Confirmed export-passphrase current-head gating and keyboard proposal-card inspection with tests.
+- Restored the investigation route helper to visible silver contrast, enlarged proposal pager targets to 40px, demoted inspector Approve to a secondary Review proposed tasks control during guided recovery, clarified nonce/identity status text, and kept blocked-prior versus untracked proposals in separate scroll regions.
+- Continued the genuine Muse Wonder screenshot design loop through iterations 54–57. Accepted non-regressed direction is iteration 55 (8, 8, 9, 8, 8, 9, 9, 8, 8, 9). Iterations 56 and 57 regressed and remain retained unedited. Run-eighteen reference iteration 52 (9, 8, 9, 8, 8, 9, 9, 8, 8, 9) still holds the peak step-one score. Visual freeze remains open.
+- Deleted 494 verified TEMP harness scratch directories left from run eighteen, then cleaned further harness leftovers after audit suites. Node 20 is not installed on this machine; runtime verified on Node v24.

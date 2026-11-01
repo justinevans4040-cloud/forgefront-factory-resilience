@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 5,
-  "score": 8,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "The preview state for CELL-MILL-2 must not yet use stoppedRed; reserve red for the applied offline state in step 6 and use silver dashed PREVIEW - WILL GO OFFLINE here."
-    },
-    {
-      "priority": "P2",
-      "change": "Enlarge the consequence line Will invalidate acceptance for Use verified substitute to 13px and place it directly under the machine select with a 36px select target."
-    },
-    {
-      "priority": "P2",
-      "change": "Add Esc to clear the preview back to the accepted plan and announce the preview change once via aria-live polite."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  5,
+    "score":  8,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Preview CELL-MILL-2 going offline with dashed silver outline and PREVIEW text only; reserve full red stopped treatment until the shock is applied, so preview and stopped states are not conflated."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Clarify the consequence line Will invalidate acceptance directly beside the machine selector and keep Apply second shock as the sole primary."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "De-emphasise Scenario Management as a quiet text action separated from the shock controls to avoid accidental activation."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

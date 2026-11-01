@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 8,
-  "score": 8,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Show 3 BLOCKED prior tasks and 3 PROPOSED replacements as two labelled groups that coexist with the approved revised plan; replacements stay untracked until approval and never replace the blocked group visually."
-    },
-    {
-      "priority": "P1",
-      "change": "Refit the inspector scroll region so the first proposed task is not cut mid-line; add top and bottom fade plus a scroll end indicator within 360px width."
-    },
-    {
-      "priority": "P2",
-      "change": "Keep one neon primary, Approve revised tasks, in the action bar; demote the in-panel Approve control to secondary outline."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  8,
+    "score":  8,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Keep 3 BLOCKED prior tasks in a separate collapsed group above proposed replacements; label the lower group PROPOSED - UNTRACKED UNTIL APPROVAL so blocked and untracked states coexist beside the approved revised plan."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Reduce nested scroll confusion by giving blocked and proposed lists one shared inspector scroll with sticky group headings."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Ensure Approve revised tasks is the one primary in the action bar and the in-panel Approve button uses secondary styling with the same focus ring."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

@@ -1,0 +1,8 @@
+import {readFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+import {writeEvidence} from './public-evidence.mjs';
+const p=JSON.parse(readFileSync(new URL('../evidence/run18/primary-browser/packet.json',import.meta.url)));
+const runs=p.runs;assert.deepEqual(runs.map(r=>r.calls[0]?.provider),['baseten','meta-model-api','baseten','meta-model-api']);assert.ok(runs.every(r=>r.proposalValid&&!r.run.sample&&r.claims.rejected.length===0));
+for(const index of [1,3]){assert.equal(runs[index].handoff.runId,runs[index-1].runId);assert.equal(runs[index].handoff.snapshotDigest,runs[index].run.snapshotDigest);}
+assert.equal(p.operationalRelease,false);assert.ok(p.brittProposals.length===2&&p.brittProposals.every(b=>b.status==='approved'&&b.provider==='meta-model-api'));assert.ok(!JSON.stringify(p).toLowerCase().includes('fireworks'));
+const result={ok:true,orchestration:runs.map(r=>({provider:r.calls[0].provider,model:r.calls[0].requestedModel,proposalValid:r.proposalValid,modelCalls:r.calls.length,acceptedClaims:r.claims.accepted.length,rejectedClaims:r.claims.rejected.length,toolCalls:r.run.toolCalls,elapsedMs:r.run.elapsedMs,validatedSparkHandoff:Boolean(r.handoff)})),britt:p.brittProposals.map(b=>({provider:b.provider,model:b.model,status:b.status,tasks:b.board.tasks.length,fallbackUsed:b.fallbackUsed})),events:p.events.length,acceptedDecisions:p.events.filter(e=>e.type==='decision_accepted').length,shockReplans:p.events.filter(e=>e.type==='tasks_replanned').length,operationalRelease:p.operationalRelease,fireworksCalls:0};writeEvidence(new URL('../evidence/run18/live-run-results.json',import.meta.url),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

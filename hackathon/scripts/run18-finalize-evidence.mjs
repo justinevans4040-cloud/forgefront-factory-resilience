@@ -1,0 +1,11 @@
+import {readFileSync,existsSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {createHash} from 'node:crypto';
+import {publicFiles} from './public-set.mjs';
+import {writeEvidence} from './public-evidence.mjs';
+const root=new URL('../../',import.meta.url),base=new URL('../',import.meta.url);
+const iterations=[49,50,51,52,53].map(iteration=>{const r=JSON.parse(readFileSync(new URL('design/iteration-'+iteration+'.json',base)));return {iteration,model:r.model,inputMode:r.inputMode,primaryFailures:r.primaryFailures,scores:r.steps.map(({step,score})=>({step,score})),manifest:'evidence/run18/design-iteration-'+iteration+'/screens.json'};});
+writeEvidence(new URL('evidence/run18/design-results.json',base),JSON.stringify({iterations,scorePolicy:'Unedited model returns',referenceIteration:52,visualFreeze:false,rejectedCosmeticExperiments:[50,51,53]},null,2));
+const files=publicFiles(fileURLToPath(root)).filter(f=>f.startsWith('hackathon/')&&!f.startsWith('hackathon/evidence/')&&!f.includes('/_audit')&&f!=='hackathon/docs/SOURCE_MANIFEST.json');
+writeEvidence(new URL('docs/SOURCE_MANIFEST.json',base),JSON.stringify({scope:'active Meta Hackathon build source, tests, design and documentation; excludes evidence, backups and private state; uncommitted candidate',files:files.map(f=>{const b=readFileSync(new URL(f,root));return {path:f.slice('hackathon/'.length),bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')};})},null,2));
+console.log(JSON.stringify({iterations:iterations.length,sourceFiles:files.length}));

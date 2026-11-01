@@ -1,23 +1,22 @@
-﻿# The Meta Hackathon build — current evidence
+# The Meta Hackathon build — current evidence
 
-Run seventeen retains the redesigned opening, current-state stakes, source and route label refits, and real Meta recovery proof. Designed with Muse Wonder: every saved score is an unedited model return.
+Run eighteen retains fresh Sample, controlled-route and real Meta recovery proof. Designed with Muse Wonder: every saved score is an unedited model return.
 
 | Question | Evidence |
 | --- | --- |
-| Primary provider identity | [Wonder and Baseten](run17/providers.json) |
-| Sample recovery and read-only history | [Summary](run17/primary-browser-offline/summary.json) |
-| Live repeated recovery | [Summary](run17/primary-browser/summary.json), [packet](run17/primary-browser/packet.json), [checkpoint](run17/primary-browser/checkpoint.json) |
-| Three viewport sizes | [Sample captures](run17/primary-browser-offline/screens.json), [live captures](run17/primary-browser/screens.json) |
-| Design direction | [Current review](../design/design-direction.json), [review results](run17/design-results.json) |
-| Model direction | [Validated live orchestration](run17/live-run-results.json) |
-| Product verification | [238 tests](run17/product-check.txt) |
-| Public checks | [Judge](run17/judge-check.txt), [exact public tree](run17/public-check.txt) |
-| Accessibility | [Desktop](run17/a11y-check.txt), [mobile](run17/mobile-check.txt) |
-| Secret scanning | [Gitleaks](run17/gitleaks-check.txt) |
-| Root verification | [Suite](run17/root-check.txt), [mission chain and Prove-it](run17/rootbrowser-check.txt) |
+| Primary provider identity | [Wonder and Baseten](run18/providers.json) |
+| Sample recovery and read-only history | [Summary](run18/primary-browser-offline/summary.json) |
+| Real repeated recovery | [Summary](run18/primary-browser/summary.json), [packet](run18/primary-browser/packet.json), [checkpoint](run18/primary-browser/checkpoint.json) |
+| Three viewport sizes | [Sample captures](run18/primary-browser-offline/screens.json), [live captures](run18/primary-browser/screens.json) |
+| Model direction | [Validated live orchestration](run18/live-run-results.json) |
+| Design direction | [Reference review](../design/design-direction.json), [all five review results](run18/design-results.json), [earlier critique inventory](run18/critique-inventory.json) |
+| Root verification | [Suite](run18/root-check.txt), [mission chain and Prove-it](run18/rootbrowser-check.txt) |
+| Keyboard accessibility | [Desktop](run18/a11y-check.txt), [mobile](run18/mobile-check.txt) |
+| Product verification | [239 tests](run18/product-check.txt) |
+| Public checks | [Judge](run18/judge-check.txt), [public tree](run18/public-check.txt) |
+| Secret scanning | [Gitleaks](run18/gitleaks-check.txt) |
+| Cleanup | [Status](run18/cleanup.json) |
 
-The opening regression failure retained in the Sample folder is the expected failing-first test before the compact opening correction. The latest summary records the completed recovery after that correction. Visual freeze requires every current step to score at least nine.
+Visual freeze requires every current step to score at least nine. [Contributions](../HACKATHON_CONTRIBUTIONS.md) · [Controls](../SECURITY_CONTROLS.md).
 
-[Contributions](../HACKATHON_CONTRIBUTIONS.md) · [Controls](../SECURITY_CONTROLS.md).
-
-The final Sample, controlled live-route and real live-route guides pass delayed history refresh and card-click checks. Earlier failure artifacts record the failing-first history regressions; the latest summaries are the passing outcomes. Current Wonder scores (iteration 47) are 8, 9, 9, 8, 8, 9, 9, 8, 8, 9.
+The final summaries record passing recovery flows. Failure artifacts retain the expected failing-first task, proof-input and mobile-caption regressions, plus the initial evidence-index link failure; they are not the final outcomes. Reference review fifty-two scores 9, 8, 9, 8, 8, 9, 9, 8, 8, 9. Accepted audit-sixteen direction is iteration fifty-five (8, 8, 9, 8, 8, 9, 9, 8, 8, 9); iterations fifty-six and fifty-seven remain retained regressions. The all-step visual freeze remains open.

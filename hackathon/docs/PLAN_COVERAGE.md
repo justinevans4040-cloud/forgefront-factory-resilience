@@ -37,3 +37,7 @@ The current primary-guide browser check asserts wide and compact page bounds, a 
 Opening-state regression coverage varies affected demand, source quantities and due windows. The primary-guide regression checks the compact first frame and inspector heading at compact desktop size, then captures every step at all three viewport sizes.
 
 Read-only review coverage includes waiting through the route-health refresh interval and clicking a recovery card, with an unchanged exported ledger head. Arrow navigation wraps feasible recovery paths and excludes constrained paths.
+
+## Current proposal and proof coverage
+
+The primary-guide test selects the final proposed task and returns to the first, asserting that the complete card fits inside the proposal region. The proposal selector has named buttons and arrow-key navigation. Separate assertions require readable proof-metric captions and a locked passphrase field before verification. The varied-state accepted-flow unit test checks multiple materials and machine-hour aggregation independently from part demand.

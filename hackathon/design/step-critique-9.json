@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 9,
-  "score": 8,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Order the proof flow as three numbered, gated controls: Verify ledger, then separate export passphrase of 16-160 characters, then Export independent checkpoint; show waiting reasons as text at each gate."
-    },
-    {
-      "priority": "P2",
-      "change": "Label the Before to After metrics 70, 35h and 48h with units and captions at 11px minimum so the proven gain reads without narration."
-    },
-    {
-      "priority": "P2",
-      "change": "Ensure the action-bar Verify ledger is the sole primary until verification completes, then move neon emphasis to the next gated control and announce it politely."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  9,
+    "score":  8,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Sequence the three proof controls explicitly: Verify ledger enabled, Seal encrypted packet disabled until verified, Export independent checkpoint disabled until sealed, each with text status."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Add passphrase requirement feedback as text checklist items that update without colour alone, and keep the field at least 40px high."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Compress the Before-After metrics row slightly so all three proof steps remain visible at 768px height without inspector scrolling."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

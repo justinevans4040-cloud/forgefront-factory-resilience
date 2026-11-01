@@ -21,6 +21,10 @@ The application sequence budgets 2:51 between the four-second intro and five-sec
 
 [Current evidence](../evidence/README.md) · [Submission checklist](SUBMISSION_CHECKLIST.md) · [Video QA](VIDEO_QA.md).
 
-The final screen replaces the primary action with the current sealed-packet status. Back and completed rail items remain read-only navigation. Britt proposals show the untracked state until approval; the task region keeps prior blockers and proposed replacements together with a visible proposal-end marker. The shot budgets above are unchanged.
+The final screen replaces the primary action with the current sealed-packet status. Back and completed rail items remain read-only navigation. Britt proposals show the untracked state until approval; the task region keeps prior blockers separate from proposed replacements, with a visible task selector and proposal-end marker. The shot budgets above are unchanged.
 
 The opening shot shows the official stage logo, material hold, affected parts and orders, and earliest due window in one composition. Read these values from the current state. The receiving HOLD marker precedes investigation; accepted recovery changes the flowing-lot state. The shot budgets remain unchanged.
+
+In each Britt shot, use the numbered selector to inspect complete task cards, then approve with the highlighted action. Prior blocked work remains in its own region during revised-task review. In the proof shot, Verify ledger unlocks the separate passphrase input; seal the packet, then retain the checkpoint. The application shot budget remains 2:51.
+
+The current task selector keeps one complete proposal card visible at a time, with the task count and individually named controls. Inspect the cards before approval; the four-second intro, 2:51 application sequence and five-second outro remain unchanged.

@@ -1,8 +1,0 @@
-
-> forgefront-factory-resilience-hackathon@0.1.0 check:providers
-> node scripts/provider-check.mjs
-
-GREEN wonder · 1671ms · Live nonce and model identity matched
-GREEN spark-baseten · 613ms · Live nonce and model identity matched
-RED spark-fireworks · 0ms · Optional backup not requested; primary routes checked
-One request per route; no retry, switch or Sample. Wonder and Baseten gate readiness. Fireworks is an optional backup that reports GREEN/RED and never fails the overall check. Identity is provider-reported.

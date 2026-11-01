@@ -1,20 +1,20 @@
-{
-  "model": "muse-wonder-1.0",
-  "iteration": 47,
-  "step": 2,
-  "score": 9,
-  "fixes": [
-    {
-      "priority": "P1",
-      "change": "Keep Route health pre-flight for nonce and identity as its own headed section and Investigation source evidence as a distinct task; do not merge their status text or controls."
-    },
-    {
-      "priority": "P2",
-      "change": "Enlarge the offline route-health status to 13px and pair the Sample select with a 36px target and visible focus ring; state that no network request occurred beside the control."
-    },
-    {
-      "priority": "P2",
-      "change": "On SVG focus, highlight only feasible option chips and keep HOLD on MAT-ALLOY-A; add keyboard order from route select to Run Sample investigation."
-    }
-  ]
+﻿{
+    "iteration":  55,
+    "step":  2,
+    "score":  8,
+    "fixes":  [
+                  {
+                      "priority":  "P1",
+                      "change":  "Strengthen separation in the inspector: keep ROUTE HEALTH - PRE-FLIGHT with nonce and identity status as its own grouped control, and INVESTIGATION - SOURCE EVIDENCE as a distinct task with its own heading, status and action."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Make the route selector at least 40px high with a visible 2px focus ring and label the offline sample state in text, not colour alone."
+                  },
+                  {
+                      "priority":  "P2",
+                      "change":  "Reduce empty lower stage space by enlarging the factory SVG about 8% within its panel while preserving the legend and event chain."
+                  }
+              ],
+    "model":  "muse-wonder-1.0"
 }

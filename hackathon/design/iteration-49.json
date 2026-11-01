@@ -1,0 +1,185 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px header / 52px guide / minmax(0,1fr) main / 56px action bar; cols 184px rail / minmax(0,1fr) stage / 360px inspector at 1366x768; stage at least 55vw and 60vh; no page scroll, internal scroll only in inspector and task lists; targets at least 36px; refit tight panels before shrinking type",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68), border rgba(197,204,212,.22); primary neon #A8F04A on #050705, one primary per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated elsewhere",
+    "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; enlarge stage labels under 11px to 11px minimum",
+    "motion": "160-220ms ease-out selection and panels; one 240ms route trace on real state change, then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; 2px neon focus ring with 2px offset on every interactive element; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; step rail from one steps array with aria-current, arrow-key movement and 36-40px targets; guide strip 52px with no duplicate primary; focusable cinematic factory stage SVG; inspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, with separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and action bar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
+    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit the inspector evidence list inside the 360px panel so its neon outline and scrollbar never clip at the right edge."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the smallest SVG job and metric labels to 11px minimum while preserving the 120 versus 80 mismatch alignment."
+        },
+        {
+          "priority": "medium",
+          "change": "Add a visible focus ring to the Inspect source evidence disclosure and each evidence card linked to its SVG node."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Tighten spacing between the route-health pre-flight panel and the separate Investigation panel so both headings and statuses fit without ambiguity."
+        },
+        {
+          "priority": "low",
+          "change": "Enlarge the offline route note to 12px and keep the select at a 40px target height."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Keep the typed consent form visually attached to the selected recovery option and show the exact phrase, typed count, and disabled Accept state on one line each."
+        },
+        {
+          "priority": "low",
+          "change": "Align the three option cards to equal row heights so finish and cost metrics share one baseline."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit the route annotation over CELL-MILL-1 so the 70 units and 40 via CELL-MILL-1 text never overlaps machine outlines or flow lines."
+        },
+        {
+          "priority": "medium",
+          "change": "Make the untracked-until-approval banner and each proposed task card fully visible within the inspector scroll region without clipping t2 details."
+        },
+        {
+          "priority": "low",
+          "change": "Remove duplication between the inspector Approve control and the single action-bar primary, leaving one primary per viewport."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Enlarge the PREVIEW: WILL GO OFFLINE label and tie it with pattern plus text to the dashed CELL-MILL-2 state before the shock is applied."
+        },
+        {
+          "priority": "medium",
+          "change": "Give the machine select a stronger 2px focus ring and keep its invalidating consequence directly beneath it at 12px minimum."
+        },
+        {
+          "priority": "low",
+          "change": "Compress the scenario management row so the inspector ends cleanly above the action bar at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Preserve the red cross-hatched CELL-MILL-2 as the sole red element and verify no feasible route trace crosses it."
+        },
+        {
+          "priority": "low",
+          "change": "Enlarge the CONSTRAINED hatch-plus-text chip under Split available capacity to 11px for legibility."
+        },
+        {
+          "priority": "low",
+          "change": "Keep the pre-flight route-health and Investigation panels separated when the inspector scrolls, with sticky mini-headings."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Anchor the typed consent form to the selected revised option and keep the invalidated prior acceptance status visible above it."
+        },
+        {
+          "priority": "low",
+          "change": "Align the constrained Split card hatch, label, and reason text so its unavailable state reads without color alone."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Separate the 3 blocked prior tasks group from the proposed replacements with distinct headings, counts, and scroll regions so both remain readable simultaneously."
+        },
+        {
+          "priority": "medium",
+          "change": "Refit the accepted-plan route annotation so MAT-ALLOY-B, 70 units, and 40 via CELL-MILL-1 clear the RECEIVING and CELL-MILL-1 bodies."
+        },
+        {
+          "priority": "low",
+          "change": "Ensure the inspector Approve control does not duplicate the action-bar Approve revised tasks primary."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit the three retained-evidence steps so Verify ledger, passphrase field, Seal packet, and Export checkpoint each show enabled or waiting status without vertical crowding."
+        },
+        {
+          "priority": "medium",
+          "change": "Make the passphrase helper text 12px and pair its checklist state with text, not color alone."
+        },
+        {
+          "priority": "low",
+          "change": "Align the Before-After metrics 70, 35h, and 48h on one tabular baseline in the inspector header."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Add a clear completed-state focus ring and aria-current treatment to Recovery story complete in the rail."
+        },
+        {
+          "priority": "low",
+          "change": "Keep the sealed-packet status centred in the action bar as status text, with no competing primary action."
+        },
+        {
+          "priority": "low",
+          "change": "Enlarge the smallest completion check labels in the retained-evidence panel to 11px minimum."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}
