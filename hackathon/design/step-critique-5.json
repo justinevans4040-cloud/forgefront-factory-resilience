@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 5,
-  "score": 9,
+  "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Preserve the strong neon feasible routes and preview cross-hatch, but label the preview state as PREVIEW 0h in the legend so pattern plus text carries meaning under reduced motion."
+      "priority": "high",
+      "change": "Make the three proposed task cards keyboard-focusable in sequence with 2px emerald focus rings, and sync focus with the numbered 1, 2, 3 proposal pager in the side zone."
     },
     {
-      "priority": "P2",
-      "change": "Ensure no preview route draws through CELL-MILL-2 once applied, and add a focus ring to the Machine to take offline selector with Esc restoring the prior preview."
+      "priority": "medium",
+      "change": "Clarify progress bars on proposed cards by labelling them as schedule spans rather than completion, since the proposal remains untracked until approval."
     },
     {
-      "priority": "P2",
-      "change": "Raise the small scenario-management link to a 36px target at 16px text so it is keyboard reachable without crowding the side zone."
+      "priority": "medium",
+      "change": "Enlarge station cards at the top of the scene so CELL-MILL-1 40h and CELL-MILL-2 24h capacity read as the dominant accepted-plan evidence."
     }
   ]
 }

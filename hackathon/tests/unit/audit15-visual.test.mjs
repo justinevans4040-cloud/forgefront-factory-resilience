@@ -20,18 +20,18 @@ test('history review keeps route-health refresh disabled and blocks recovery-car
 });
 
 test('route health stays a separate pre-flight group from investigation task', () => {
-  assert.match(html, /id="route-health-label">ROUTE HEALTH · PRE-FLIGHT/);
+  assert.match(html, /id="route-health-label">MODEL CONNECTION/);
   assert.match(html, /class="investigation-task"/);
   assert.match(css, /\.route-preflight\{/);
   assert.match(css, /\.investigation-task\{/);
   assert.match(css, /#route-help\{[^}]*font-size:12px/);
 });
 
-test('shock preview stays silver dashed until applied, and stopped red stays exclusive', () => {
+test('shock preview stays silver dashed until applied, and stopped state stays distinguishable', () => {
   assert.match(css, /\.factory-node\.preview-offline rect\{[^}]*stroke:#C5CCD4/);
   assert.match(css, /stroke-dasharray:6 4/);
   assert.match(app, /previewOffline\?'PREVIEW - not applied'/);
-  assert.match(css, /#factory-svg \.factory-node\.material-stopped rect\{stroke:#ff6b70!important\}/);
+  assert.match(css, /#factory-svg \.factory-node\.material-stopped rect\{stroke:#C5CCD4!important\}/);
 });
 
 test('proof actions keep ordered text status gates and passphrase feedback', () => {

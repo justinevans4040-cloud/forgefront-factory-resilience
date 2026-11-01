@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 6,
-  "score": 8,
+  "score": 9,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep stoppedRed only on CELL-MILL-2 outline, cross-hatch and OFFLINE text; remove the broad red fill wash so the exception stays legible against the emerald and silver palette."
+      "priority": "high",
+      "change": "Strengthen the CELL-MILL-2 preview with denser silver cross-hatching plus a clear x marker and plain OFFLINE preview text inside the station, while retaining no route through it after application."
     },
     {
-      "priority": "P1",
-      "change": "Enlarge the SVG scene to at least 70% of main and reconnect only feasible routes through CELL-MILL-1, with no route through the offline cell."
+      "priority": "medium",
+      "change": "Raise the side-zone selector label and consequence copy to 16px/24 and give the machine selector a visible emerald focus ring."
     },
     {
-      "priority": "P2",
-      "change": "Separate the nonce and identity pre-flight pending states from the not-run investigation evidence status with clearer 16px status lines and independent focus order."
+      "priority": "low",
+      "change": "Make the 24h to 0h preview metric larger and tabular, aligned with the affected station in the scene."
     }
   ]
 }

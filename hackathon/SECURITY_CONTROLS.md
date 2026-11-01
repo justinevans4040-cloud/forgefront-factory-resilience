@@ -134,3 +134,7 @@ These checks extend the SOC 2-style control mapping.
 ## Current verification continuity
 
 Design review refuses an existing iteration before any provider request or evidence write. Overview tiles retain the full task title in their accessible name and selected inspector. Keyboard verification uses visible controls, opens route disclosures before selection, and retains full acceptance, second-shock, encrypted-export, reset and auditor checks. Source and approval boundaries remain unchanged. Coverage: `tests/unit/run21-layout.test.mjs` and the real keyboard smoke.
+
+## Run twenty-two verification scope
+
+The layout changes preserve session, CSRF, identity, consent, provider allowlists, encrypted memory and ledger enforcement. Visible connection wording describes the same nonce and model-identity checks in plain English. Header and task navigation change the inspected workspace; human acceptance and task approval retain their existing server gates. The geometry harness checks every rendered text fragment for clipping and validates header coverage without changing security controls.

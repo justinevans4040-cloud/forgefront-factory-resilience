@@ -33,7 +33,7 @@ let ws;const errors=[];const checks=[];
 let keyboardActions=0;
 const group='primary-'+(baseline?(mockLive?'baseline-mocked':'baseline-offline'):mockLive?'browser-mocked':liveBrowser?'browser':'browser-offline');
 const output=new URL('../evidence/'+evidenceRun()+'/'+group+'/',import.meta.url);mkdirSync(output,{recursive:true});
-function save(name,contents){writeEvidence(new URL(name,output),contents);}
+function save(name,contents){if(process.argv.includes('--lean-evidence')&&name.endsWith('.png'))return;if(process.argv.includes('--lean-evidence')&&name==='screens.json')contents='[]';writeEvidence(new URL(name,output),contents);}
 try{
  const portFile=join(scratch,'browser','DevToolsActivePort');await until(()=>existsSync(portFile),'browser launch',15000);const port=Number(readFileSync(portFile,'utf8').split('\n')[0]);
  const tabs=await fetch(`http://127.0.0.1:${port}/json/list`).then(r=>r.json());ws=new WebSocket(tabs.find(t=>t.type==='page').webSocketDebuggerUrl);await new Promise((resolve,reject)=>{ws.addEventListener('open',resolve);ws.addEventListener('error',reject);});
@@ -142,7 +142,7 @@ try{
   if(n===5)assert.ok(visited.length>2,'Show next action must leave step 2 using primary controls');
  }
  assert.ok(await evaluate(`document.querySelector('#guide-title').textContent.includes('Recovery story complete')`),'all guided steps finish');
- if(geometry){writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+layoutDir+'/results.json',import.meta.url),JSON.stringify(geometryResults,null,2));const failures=geometryResults.filter(r=>r.hits.length||r.clipped.length||r.pageScroll||r.fill<.70||r.bodyPx<16);assert.equal(failures.length,0,'geometry failures: '+JSON.stringify(failures.map(r=>({state:r.state,viewport:r.viewport,hits:r.hits.map(h=>[h.a,h.b]),clipped:r.clipped,fill:r.fill}))));}
+ if(geometry){writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+layoutDir+'/results.json',import.meta.url),JSON.stringify(geometryResults,null,2));const failures=geometryResults.filter(r=>r.hits.length||r.clipped.length||r.pageScroll||r.fill<.70||r.bodyPx<16||r.textClipping.length||r.emptyElements.length||!r.headerNavigation.valid);assert.equal(failures.length,0,'geometry failures: '+JSON.stringify(failures.map(r=>({state:r.state,viewport:r.viewport,hits:r.hits.map(h=>[h.a,h.b]),clipped:r.clipped,fill:r.fill}))));}
  const session=await fetch(base+'/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+token}}).then(r=>r.json());const post=async action=>fetch(base+'/api/workflow/'+action,{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':session.session,'X-CSRF-Token':session.csrf},body:JSON.stringify(action==='export'?{acknowledgePlaintext:'EXPORT PLAINTEXT'}:{})}).then(r=>r.json());const packet=await post('export'),checkpoint=await post('checkpoint');assert.equal(verifyCheckpoint(packet,checkpoint).ok,true);save('packet.json',JSON.stringify(packet,null,2));save('checkpoint.json',JSON.stringify(checkpoint,null,2));
  await click('[data-view="board"]');
  await evaluate(`document.querySelector('#factory-svg [data-scene-task]')?.dispatchEvent(new Event('click'))`);
@@ -150,7 +150,7 @@ try{
  assert.deepEqual(errors,[],'tracked shell task inspection has no missing proposal handler');
  await click('[data-view="proof"]');
  const before=await evaluate(`document.querySelector('#ledger').textContent`);await click('#guide-back');await delay(1200);assert.ok(await evaluate(`document.querySelector('#guide-title').textContent.startsWith('Review')`));assert.ok(await evaluate(`[...document.querySelectorAll('#stage-deck button,#stage-deck input,#stage-deck select')].every(e=>e.disabled)`));await click('[data-view="decision"]');await evaluate(`document.querySelector('#options .option:not(.unavailable)').click()`);await delay(300);assert.equal((await post('export')).ledger.head,packet.ledger.head,'history recovery cards cannot create a consent review');await click('#guide-next');assert.equal(await evaluate(`document.querySelector('#ledger').textContent`),before);assert.equal((await post('export')).ledger.head,packet.ledger.head);await click('#guided-steps button');assert.ok(await evaluate(`document.querySelector('#guide-title').textContent.startsWith('Review')`));assert.equal((await post('export')).ledger.head,packet.ledger.head);
- if(geometry)assert.equal(geometryResults.filter(r=>r.hits.length||r.clipped.length||r.pageScroll||r.fill<.70||r.bodyPx<16).length,0,'all geometry states including shell');
+ if(geometry)assert.equal(geometryResults.filter(r=>r.hits.length||r.clipped.length||r.pageScroll||r.fill<.70||r.bodyPx<16||r.textClipping.length||r.emptyElements.length||!r.headerNavigation.valid).length,0,'all geometry states including shell');
  save('screens.json',JSON.stringify(captures,null,2));assert.deepEqual(errors,[]);save('summary.json',JSON.stringify({ok:true,live:liveBrowser&&!mockLive,mocked:mockLive,visited,consoleErrors:errors},null,2));console.log(JSON.stringify({ok:true,visited}));
  }catch(error){
  save('failure.json',JSON.stringify({ok:false,live:liveBrowser,reason:error.message,checks,consoleErrors:errors},null,2));

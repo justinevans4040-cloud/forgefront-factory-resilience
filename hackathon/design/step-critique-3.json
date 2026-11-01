@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 3,
-  "score": 8,
+  "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Enlarge the scene to at least 70% of main and tighten the empty centre so the three recovery options at the bottom align with the tradeoff cards in the side zone."
+      "priority": "high",
+      "change": "Condense the lower investigation notebook inside its reserved zone so all validated result rows fit at 1366x768 with 16px body type and no clipped final row."
     },
     {
-      "priority": "P1",
-      "change": "Show selected state on a recovery option card in both zones before the primary activates, and confirm selecting it opens the typed consent form."
+      "priority": "medium",
+      "change": "Keep the collapsed connection check visually subordinate and clearly separate from the expanded source-evidence results, with its own status text."
     },
     {
-      "priority": "P2",
-      "change": "Increase the small Select this path label and Human decision status to 16px minimum body size where space allows, keeping micro-labels at 12px only."
+      "priority": "medium",
+      "change": "Highlight the scene nodes tied to the validated 120 claim bidirectionally when the notebook row is focused or selected."
     }
   ]
 }

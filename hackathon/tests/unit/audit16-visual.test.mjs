@@ -16,7 +16,7 @@ test('investigation route helper stays visible with silver contrast', () => {
 });
 
 test('route health and investigation evidence remain separately headed groups', () => {
-  assert.match(html, /id="route-health-label">ROUTE HEALTH · PRE-FLIGHT/);
+  assert.match(html, /id="route-health-label">MODEL CONNECTION/);
   assert.match(html, /id="investigation-task-label">INVESTIGATION · SOURCE EVIDENCE/);
   assert.match(css, /\.route-preflight\{/);
   assert.match(css, /\.investigation-task\{/);

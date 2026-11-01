@@ -1,0 +1,972 @@
+{
+  "scope": "Exact judge-facing public set; historical runs excluded by the public-set selector",
+  "method": "Thumbnail red-pixel screening plus visual inspection of brand and showcase assets; not a substitute for a complete manual screenshot review",
+  "images": [
+    {
+      "path": "assets/brand/forgefront-systems-logo.png",
+      "sha256": "5d3333eb8a5d97e97d5b868ed81008c6994c19f3f756101208add0e7e526f707",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "assets/brand/forgefront-winged-emblem-C.png",
+      "sha256": "5d3333eb8a5d97e97d5b868ed81008c6994c19f3f756101208add0e7e526f707",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "assets/showcase/commercial-production-resilience.jpg",
+      "sha256": "cae86142aa338c202858cb440f42d6c9d2b46aa59a16dc77bfd71b1e0ac7b8f3",
+      "redFraction": 0.05925,
+      "status": "owner-decision-required-preserved"
+    },
+    {
+      "path": "assets/showcase/factory-resilience-hero.jpg",
+      "sha256": "aeb3462d63b252c5a59f1f8e97213de205506062032f79eccb2b47bba19be0e6",
+      "redFraction": 0.05377,
+      "status": "owner-decision-required-preserved"
+    },
+    {
+      "path": "assets/showcase/global-assembly-resilience.jpg",
+      "sha256": "466725dd096e9fca841e83e5dbfe0e02973c9a62135772bff4984ebb1766621f",
+      "redFraction": 0.08934,
+      "status": "owner-decision-required-preserved"
+    },
+    {
+      "path": "assets/showcase/mission-critical-resilience.jpg",
+      "sha256": "a8b4c608292971090525f22d47a30ae73b8e2565c8b5fe50ec5b758e0df7a162",
+      "redFraction": 0.04212,
+      "status": "owner-decision-required-preserved"
+    },
+    {
+      "path": "assets/showcase/small-shop-resilience.jpg",
+      "sha256": "3bdc1b64ad2864dde3584217322a05b53e5e412f3c604195292fbfc3b60e4d2a",
+      "redFraction": 0.04101,
+      "status": "owner-decision-required-preserved"
+    },
+    {
+      "path": "hackathon/evidence/browser/desktop.png",
+      "sha256": "c4b5479e2d61257f08094896dfcda06c1a083b6693cc97b6c3d7e0ef25cd0f11",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/browser/mobile.png",
+      "sha256": "92505d8dc365b1a8362604bdc681e0f5a0f7e4da22e8a97040bee3019f099627",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-1.png",
+      "sha256": "983d6ca525c98fe21d93eae0b43118b90e93c0a22c18ad92f1e03d86b82d7f8c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-10.png",
+      "sha256": "bed453168a253562f8109cab4074908513a5b17cae9c3a165b29dd216b51ea00",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-2.png",
+      "sha256": "3c5b2e7b19ff217dd242ed1532bcf16cf9b71e368d696fc641234bc6d7d33c9f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-3.png",
+      "sha256": "d7889f3aa4786705fb075f3329bf74d594c0defee6c99ab81eabfca87f0c64ac",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-4.png",
+      "sha256": "90bb7ac7876cb59eac54235b0426e031954d60da1806cb036e8081b799af547b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-5.png",
+      "sha256": "a0aa7d1ad2ae32bedc3d7e1145de977d94c8634bf8518abbd407ee0f74e3f373",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-6.png",
+      "sha256": "d2738af9f921d7f440f8daca7ac290ae8641927dea957bffb0a586d8837d2eae",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-7.png",
+      "sha256": "8a22c3391e52d83e5355e355e815ce0168d3b77ab3bf9c8f718cb3ba5e008819",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-8.png",
+      "sha256": "18890ffc3eeefd49fc22b3aebb4ab542b97c312a35766d2aa74c30148677d950",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/design-79/step-9.png",
+      "sha256": "515cd209afba6c511982bfce9d3b9b968026885f5a40e059bf3f6c06b08ff682",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/001-step-1-wide.png",
+      "sha256": "d34138b44660997e6879c38d2cdb60e36ec6fe8d6af13a4a5289c61dcec6d417",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/002-step-1-desktop.png",
+      "sha256": "983d6ca525c98fe21d93eae0b43118b90e93c0a22c18ad92f1e03d86b82d7f8c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/003-step-2-wide.png",
+      "sha256": "67f2e9a74720adb843c61436fd932bfa7913c81b77e4d2bebdaf9307b4e7ddac",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/004-step-2-desktop.png",
+      "sha256": "3c5b2e7b19ff217dd242ed1532bcf16cf9b71e368d696fc641234bc6d7d33c9f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/005-investigation-running-2-wide.png",
+      "sha256": "1fc2c1ba4df992b33101bd72a5b6a3ab748073886617ea6a12f2f81d2d20bfc5",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/006-investigation-running-2-desktop.png",
+      "sha256": "76fb0a42c6754213baaf7f27ef0fd7e11d46ff2b432cf9016e112a9333877142",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/007-step-3-wide.png",
+      "sha256": "b5e14bf11354ec15af584a2a5c9b8c0da4882d4b94bbd5cd537052bf8663eb75",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/008-step-3-desktop.png",
+      "sha256": "f7881096c434b97830dffaa043c3c252f0b8531a1382150080344bcdd571a312",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/009-investigation-running-3-wide.png",
+      "sha256": "01382580409b825d86f90d95d2ec5c094d6127536e90be62aaad38520db76de7",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/010-investigation-running-3-desktop.png",
+      "sha256": "547c280d926735a6a59163de7875bedb08884ba26210d288f64f0885f13ba41c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/011-step-4-wide.png",
+      "sha256": "29146385167b06f1c3e3cd839401d6c5af3135cce55359868c2480194b263026",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/012-step-4-desktop.png",
+      "sha256": "d7889f3aa4786705fb075f3329bf74d594c0defee6c99ab81eabfca87f0c64ac",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/013-hover-wait_replenishment-4-wide.png",
+      "sha256": "3dbce2401a6128a1eaa1023a073a409ad1fbf200cf9a00aa6d1ea12396c19231",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/014-hover-wait_replenishment-4-desktop.png",
+      "sha256": "c87ba3f7630dab6e6c3f9f99b45c59291be803752f005278198a157f5eafb199",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/015-selected-wait_replenishment-4-wide.png",
+      "sha256": "914d31880f24c60703d6563620b6ee118149f60335a5d6dd1371e92ce135b51a",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/016-selected-wait_replenishment-4-desktop.png",
+      "sha256": "d5743ba13dc42798cc69178164e3afb1a4c71dba36e6eaebd68c08943721c617",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/017-hover-allocate_substitute-4-wide.png",
+      "sha256": "4892c877e614fa7da084275f03184939a18dcde982cb631e587da1cff2a1b726",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/018-hover-allocate_substitute-4-desktop.png",
+      "sha256": "1b4de226a1222f55e4f4d5822160e744fd5b7704670f9b3f3f72b5191c93b56f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/019-selected-allocate_substitute-4-wide.png",
+      "sha256": "6f85d29ea3e4b01298ae626793a45d426f14a351fe2001d26ddab9dbe9c3a188",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/020-selected-allocate_substitute-4-desktop.png",
+      "sha256": "3e36bfcb295d10e5151f457f13f842549a8740507720491b8e8dd92534d8d560",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/021-hover-split_capacity-4-wide.png",
+      "sha256": "a9720e7ac0803a624eb89dfe221c8041adda394cf3f786e529e5eab7d3271d4f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/022-hover-split_capacity-4-desktop.png",
+      "sha256": "75ee27ae14e9d799ad1dc513a457a90380275396d188e8824cb7b5b5633d2785",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/023-selected-split_capacity-4-wide.png",
+      "sha256": "dda3d3f518bd9c38137520c2de433183f988ddf16a41618fb1755eac049955f5",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/024-selected-split_capacity-4-desktop.png",
+      "sha256": "11174028fde85ae4565263eb14e136bc842f70ebcaf24d5abb814ab8bd0e283d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/025-consent-initial-wide.png",
+      "sha256": "e7e45e0512195a040f987a39bef1f906290a2057573aa77d440861739763a529",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/026-consent-initial-desktop.png",
+      "sha256": "11174028fde85ae4565263eb14e136bc842f70ebcaf24d5abb814ab8bd0e283d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/027-step-5-wide.png",
+      "sha256": "cb8bad30bcb9f0ce6a9e97dd9b0850c30bfa6afce1e2148b5c053b813368a12b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/028-step-5-desktop.png",
+      "sha256": "90bb7ac7876cb59eac54235b0426e031954d60da1806cb036e8081b799af547b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/029-proposed-task-0-5-wide.png",
+      "sha256": "3d9e91d4f52b23cdd69de22638d4d79c21d67b79caa22f70bf5eb16988afdf7c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/030-proposed-task-0-5-desktop.png",
+      "sha256": "90bb7ac7876cb59eac54235b0426e031954d60da1806cb036e8081b799af547b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/031-proposed-task-1-5-wide.png",
+      "sha256": "d7fb0e59b845940463ab6f9c8372a91f2c32b7b85cf72084ff92702b0d608b15",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/032-proposed-task-1-5-desktop.png",
+      "sha256": "0b3e4e94fdcb480fa5218a75907dcfbc006711f89416b903664ba009f576e527",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/033-proposed-task-2-5-wide.png",
+      "sha256": "00ab4ce7a9ffa9fad523cf020e75aafbe7c0f6fc8d0d4162298ad67601853895",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/034-proposed-task-2-5-desktop.png",
+      "sha256": "70d19a88d43fd4fab0eec61fe113c842859e716bad2f640061ae3276f87011f1",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/035-board-accepted-wide.png",
+      "sha256": "a853177edcb5681c98136c879219705e0558350d95721d7e4dd013bd40c74360",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/036-board-accepted-desktop.png",
+      "sha256": "efd64a20e9191d2814ae2a981724f08dc71e0343d84ecbc18cff6af7941263e9",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/037-step-6-wide.png",
+      "sha256": "6d2c84a14071a52de4b40c02e1ba230a902579d22e94420785f8232606ce5a56",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/038-step-6-desktop.png",
+      "sha256": "a0aa7d1ad2ae32bedc3d7e1145de977d94c8634bf8518abbd407ee0f74e3f373",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/039-preview-CELL-MILL-1-wide.png",
+      "sha256": "c1ad6976f216bdcd1f97fc47da1f5974a9ec33cad0782d0947768c5e95939a14",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/040-preview-CELL-MILL-1-desktop.png",
+      "sha256": "55871629c24d9cfa40fa5834a7ec26cb5fa60911c640cf6cec46b958cb27aa6b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/041-preview-CELL-MILL-2-wide.png",
+      "sha256": "4902fc61099e4cbab6879a2b9d62fc5f731229775b73e1b184e58d743804a3c9",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/042-preview-CELL-MILL-2-desktop.png",
+      "sha256": "3a516a4ddee608e1723beb5aa4d4af0de069adc594dd7b49faa61d7fa341b5bc",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/043-step-7-wide.png",
+      "sha256": "52dc9de8f73f9fc2ab0bb9ee90d47b0364c6fa8b9485b2b417fb178f748ed636",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/044-step-7-desktop.png",
+      "sha256": "d2738af9f921d7f440f8daca7ac290ae8641927dea957bffb0a586d8837d2eae",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/045-investigation-running-7-wide.png",
+      "sha256": "cf2bb3900d0b84e1178ba799600b98958785b546154ae3c932e9f69268a42015",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/046-investigation-running-7-desktop.png",
+      "sha256": "1944d4f26cbf334f3bfbbffec3a95eda4017bf07bd936e675566dd9411bef616",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/047-board-blocked-wide.png",
+      "sha256": "2cdd10977c5bad0ec560e1ba54e4d5a5bf9bb6e07014f10f764b40275b28fa41",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/048-board-blocked-desktop.png",
+      "sha256": "26dac9fdd277013d03cd654f15a938e0d921504e7bb258815ccd86c0e6512ee4",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/049-step-7-wide.png",
+      "sha256": "7509340bd7e8c4d47db49fbe6157dbb369c407512136c6a26bc59aefdc80a1df",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/050-step-7-desktop.png",
+      "sha256": "4117ed78049d2e367232df28c1df7c1fa387c7588281ce2665a686c1400f87ed",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/051-investigation-running-7-wide.png",
+      "sha256": "af2c98baa3ea5ebf9b5cff38bdbd02c3712ff5644dafc73424d29408c7c33c21",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/052-investigation-running-7-desktop.png",
+      "sha256": "70d95079235ef388122c25188ddc04cbc1c5267bf3324b0703ea0aaf7e2743a5",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/053-board-blocked-wide.png",
+      "sha256": "77d419bae8f30e39214399828ee216385f68b3576c1b3e817ad60303dee3976e",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/054-board-blocked-desktop.png",
+      "sha256": "880536d53fe0544886c7580e2a71ea40d2343f4b6780bcc9e1a1c8db19874112",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/055-step-8-wide.png",
+      "sha256": "1771d99adcaaa70aaa013174aff1925be5036e4418d8505b181a4e48a78e2d51",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/056-step-8-desktop.png",
+      "sha256": "8a22c3391e52d83e5355e355e815ce0168d3b77ab3bf9c8f718cb3ba5e008819",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/057-hover-wait_replenishment-8-wide.png",
+      "sha256": "703e0ec8367d3a4d8f3db76face631e2393d6e817b35a0aa3088a87b929735a8",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/058-hover-wait_replenishment-8-desktop.png",
+      "sha256": "46f6d69ace678def3278915f82b7b9391827d51eb6092c8a4bf99fc5b24dc07f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/059-selected-wait_replenishment-8-wide.png",
+      "sha256": "68dc9b25742805639d6797269174446809fd500b427ac6153a5a827ea614e720",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/060-selected-wait_replenishment-8-desktop.png",
+      "sha256": "e56188fc3504fd7d4f59c478265bd70cb3295c668e4892d679ac8e9a03807932",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/061-hover-allocate_substitute-8-wide.png",
+      "sha256": "f94a9b014179a922cb44f4bbd65890f99233bfc37dc3e9c0371dc05a73fa4c76",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/062-hover-allocate_substitute-8-desktop.png",
+      "sha256": "52817e951660277e81c138cab148e7cce0958a833de81c5bde8d71cd2cc68e18",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/063-selected-allocate_substitute-8-wide.png",
+      "sha256": "8a4a55fba55133f8e5c7bd45a89e3f5b55ebd1885629e7f73d50a529a9386c2c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/064-selected-allocate_substitute-8-desktop.png",
+      "sha256": "3e2e15910d74ce3dcf6e34d5e3d23f3a40b4ab6081b0aff71a48939615989cf9",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/065-hover-split_capacity-8-wide.png",
+      "sha256": "5b5dc801d661bda53a0c08e5b9e8554325c8940d07961df11f52599758d0eabb",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/066-hover-split_capacity-8-desktop.png",
+      "sha256": "15931969ff424aeec8272e104a070e814662b4b23f1585bbf14155bcccddb987",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/067-consent-revised-wide.png",
+      "sha256": "e864c687ad89722ddf4775f178c3fddbc3b066e438bd22895df967d88289109d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/068-consent-revised-desktop.png",
+      "sha256": "bfb041747fc290646f90e83494a07c243a349b2fe8d7d2db42841654b81b6b8a",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/069-replan-entry-wide.png",
+      "sha256": "f81af67d2ca4e195dab39de758790f98a6cda0b1b9195b0df98b3102a32e77fb",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/070-replan-entry-desktop.png",
+      "sha256": "18890ffc3eeefd49fc22b3aebb4ab542b97c312a35766d2aa74c30148677d950",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/071-step-9-wide.png",
+      "sha256": "f81af67d2ca4e195dab39de758790f98a6cda0b1b9195b0df98b3102a32e77fb",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/072-step-9-desktop.png",
+      "sha256": "18890ffc3eeefd49fc22b3aebb4ab542b97c312a35766d2aa74c30148677d950",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/073-proposed-task-0-9-wide.png",
+      "sha256": "9ba3dbb35ea51bb86c00ab1914d577c539a4905f8251de43d43230790b49802d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/074-proposed-task-0-9-desktop.png",
+      "sha256": "18890ffc3eeefd49fc22b3aebb4ab542b97c312a35766d2aa74c30148677d950",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/075-proposed-task-1-9-wide.png",
+      "sha256": "086efb03d9578d416264c0c01cad3f591673eb6b6c78e12a88766fcc9c51973d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/076-proposed-task-1-9-desktop.png",
+      "sha256": "fd08f0c43999b223dba7672353b8d176d23824ca3886fb8d6b8c99a44867f31d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/077-proposed-task-2-9-wide.png",
+      "sha256": "3f081b1685e784f6d42c61f8cbbeba58f4b20314facfb25244a5a8a95e9dd48f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/078-proposed-task-2-9-desktop.png",
+      "sha256": "3323ae1fdc58874b87383232dc304cb70715376402da9e0abb9174025125e0d7",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/079-prior-task-0-9-wide.png",
+      "sha256": "9ba3dbb35ea51bb86c00ab1914d577c539a4905f8251de43d43230790b49802d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/080-prior-task-0-9-desktop.png",
+      "sha256": "18890ffc3eeefd49fc22b3aebb4ab542b97c312a35766d2aa74c30148677d950",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/081-prior-task-1-9-wide.png",
+      "sha256": "322e37d20a8d16f9bf1218c8a433fbe31a84be728ae410a0dc27db556ba2a5ad",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/082-prior-task-1-9-desktop.png",
+      "sha256": "6fbe6e0f801eb83d5c4fba6f002d226bbeb3caee46909bc7eac660de5ae6d614",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/083-prior-task-2-9-wide.png",
+      "sha256": "56ebff26ab475839d030dd9b5c90597defc3c7e44200931cb82e19cab0fd73be",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/084-prior-task-2-9-desktop.png",
+      "sha256": "b7a17f76047ec286e6bfe953f7f2f8c9d85d3c3fd5553004221372765b43a856",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/085-board-revised-wide.png",
+      "sha256": "6658fc863bd5001cfe8af52a28ca735667d0ec36737741f81a89fa63f2dad217",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/086-board-revised-desktop.png",
+      "sha256": "3ce1188bfef929143f78cd211ba3bda439d7afd31cf2504515a92763df002b5d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/087-proof-verify-ledger-wide.png",
+      "sha256": "4d0408f0374e26f4055715b53823810c0bb516b34958caf4fb1c63ad525d37ce",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/088-proof-verify-ledger-desktop.png",
+      "sha256": "515cd209afba6c511982bfce9d3b9b968026885f5a40e059bf3f6c06b08ff682",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/089-proof-seal-evidence-packet-wide.png",
+      "sha256": "5195b9486c5e8ef32d0c3760a64e3504f3831e5f241a0f058507bf4de5346b01",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/090-proof-seal-evidence-packet-desktop.png",
+      "sha256": "93f9675a05e971a437ddeb43d03df5d98e3d7fa974f4a637cae27230acfc8489",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/091-proof-seal-evidence-packet-wide.png",
+      "sha256": "170c1e0bd6b985f02dc8d7758484fa7bd188a6d6a9ea597537e7b1a062cb4f6a",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/092-proof-seal-evidence-packet-desktop.png",
+      "sha256": "851450be3a5d78c7cfcb97001764780abcf1aa62272117b2658178825a386f7b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/093-step-11-wide.png",
+      "sha256": "2c7be771f1127ca5c05c506821f59234002f60baeec34baea8dac808cb768734",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/094-step-11-desktop.png",
+      "sha256": "bed453168a253562f8109cab4074908513a5b17cae9c3a165b29dd216b51ea00",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/095-shell-board-wide.png",
+      "sha256": "ed2b3f62f110b193862eefb0a9f3bf8287e4d77e5938bf735b007c3524fba76d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/layout/096-shell-board-desktop.png",
+      "sha256": "b9f8d12b50c20fc1c21137da2b040a8935d5148e9031f74d171b90d13aa434a2",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/board-accepted.png",
+      "sha256": "efd64a20e9191d2814ae2a981724f08dc71e0343d84ecbc18cff6af7941263e9",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/board-blocked.png",
+      "sha256": "d700e381dc295323a2442c80aa21d8ad6fb1fd25e3dcb2e25805ae169948cda8",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/board-revised.png",
+      "sha256": "3ce1188bfef929143f78cd211ba3bda439d7afd31cf2504515a92763df002b5d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/consent-initial-desktop.png",
+      "sha256": "8133f4e33798a139dab3b3f8738af95b5cb42b9b046f91dda7ccc6cbb0cc7ec4",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/consent-initial-mobile.png",
+      "sha256": "1185324726d7c2c915b996af52cbfe9c1d803bf822d7422dfbce120535790783",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/consent-initial-wide.png",
+      "sha256": "1e7d86e30d316516995b86224ddd41f14f8612dece2b5a2d17b7d9fda2fddaba",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/consent-revised-desktop.png",
+      "sha256": "bfb041747fc290646f90e83494a07c243a349b2fe8d7d2db42841654b81b6b8a",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/consent-revised-mobile.png",
+      "sha256": "2eb444b2f4d6f4f8169269a779afe9b9a68e52af75f15168cf5fff59417e22dd",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/consent-revised-wide.png",
+      "sha256": "e864c687ad89722ddf4775f178c3fddbc3b066e438bd22895df967d88289109d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/opening.png",
+      "sha256": "a7a1717f5fb6491947699359e958a38f303fe3e90c4aad2797e0984e725b0986",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-1-desktop.png",
+      "sha256": "983d6ca525c98fe21d93eae0b43118b90e93c0a22c18ad92f1e03d86b82d7f8c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-1-mobile.png",
+      "sha256": "45bac1be7492dba1b3a577971c8f4e2826fd0ee67dc73bf197e5518c586b7d2c",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-1-wide.png",
+      "sha256": "d34138b44660997e6879c38d2cdb60e36ec6fe8d6af13a4a5289c61dcec6d417",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-10-desktop.png",
+      "sha256": "515cd209afba6c511982bfce9d3b9b968026885f5a40e059bf3f6c06b08ff682",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-10-mobile.png",
+      "sha256": "53ef651dcc47f02081133f11a7a86c6d95d228cec248c4029e6cff7c767d7518",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-10-wide.png",
+      "sha256": "4d0408f0374e26f4055715b53823810c0bb516b34958caf4fb1c63ad525d37ce",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-11-desktop.png",
+      "sha256": "bed453168a253562f8109cab4074908513a5b17cae9c3a165b29dd216b51ea00",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-11-mobile.png",
+      "sha256": "e31a0e0eb9580040d2934a796d98ef105c5737a70204cb255dc66779fe012371",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-11-wide.png",
+      "sha256": "2c7be771f1127ca5c05c506821f59234002f60baeec34baea8dac808cb768734",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-2-desktop.png",
+      "sha256": "3c5b2e7b19ff217dd242ed1532bcf16cf9b71e368d696fc641234bc6d7d33c9f",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-2-mobile.png",
+      "sha256": "94a9c4a62f081f12cdbb8c5c6f59b2cdfa2132e3f70f50e5af6fef863c9f332b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-2-wide.png",
+      "sha256": "67f2e9a74720adb843c61436fd932bfa7913c81b77e4d2bebdaf9307b4e7ddac",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-3-desktop.png",
+      "sha256": "f7881096c434b97830dffaa043c3c252f0b8531a1382150080344bcdd571a312",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-3-mobile.png",
+      "sha256": "b116183c84e8d5ea8f52297977d3a0d0e9a6f0664093c2d453f48992f434bc35",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-3-wide.png",
+      "sha256": "b5e14bf11354ec15af584a2a5c9b8c0da4882d4b94bbd5cd537052bf8663eb75",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-4-desktop.png",
+      "sha256": "d7889f3aa4786705fb075f3329bf74d594c0defee6c99ab81eabfca87f0c64ac",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-4-mobile.png",
+      "sha256": "c7d2ef551fcad89d14fe5c02e5452315c0b01b2d3fe89ea28bb19c8517f791f1",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-4-wide.png",
+      "sha256": "e1ec06fc088d4d1172b623cedd25833cb6f80acf6e72249ce41e62a42fd06e1a",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-5-desktop.png",
+      "sha256": "90bb7ac7876cb59eac54235b0426e031954d60da1806cb036e8081b799af547b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-5-mobile.png",
+      "sha256": "9d6a663a47cc3d4d1d64dbab2bd0d39fdea6d1a6632327d908bed0d93da14efc",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-5-wide.png",
+      "sha256": "cb8bad30bcb9f0ce6a9e97dd9b0850c30bfa6afce1e2148b5c053b813368a12b",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-6-desktop.png",
+      "sha256": "a0aa7d1ad2ae32bedc3d7e1145de977d94c8634bf8518abbd407ee0f74e3f373",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-6-mobile.png",
+      "sha256": "5965925f336f20aa673b2891303e1f5298d8a87cea4f8f0aabc38552c382642a",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-6-wide.png",
+      "sha256": "6d2c84a14071a52de4b40c02e1ba230a902579d22e94420785f8232606ce5a56",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-7-desktop.png",
+      "sha256": "d2738af9f921d7f440f8daca7ac290ae8641927dea957bffb0a586d8837d2eae",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-7-mobile.png",
+      "sha256": "3bafa15aa2a5120e73e2d9a6c1260d23d3496089da7c11907aee4afe23b62ec5",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-7-wide.png",
+      "sha256": "52dc9de8f73f9fc2ab0bb9ee90d47b0364c6fa8b9485b2b417fb178f748ed636",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-8-desktop.png",
+      "sha256": "8a22c3391e52d83e5355e355e815ce0168d3b77ab3bf9c8f718cb3ba5e008819",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-8-mobile.png",
+      "sha256": "86631e8189ecd9d15cd88e25dbb8b304032dd3b9ae443ba8a34869905dad3212",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-8-wide.png",
+      "sha256": "1771d99adcaaa70aaa013174aff1925be5036e4418d8505b181a4e48a78e2d51",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-9-desktop.png",
+      "sha256": "18890ffc3eeefd49fc22b3aebb4ab542b97c312a35766d2aa74c30148677d950",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-9-mobile.png",
+      "sha256": "f8709f9c7309262a8c4f467faf78abad35b5668e70605b0dba94be15b0700c85",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/evidence/run22/primary-browser-mocked/step-9-wide.png",
+      "sha256": "9ba3dbb35ea51bb86c00ab1914d577c539a4905f8251de43d43230790b49802d",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/public/brand-emblem.png",
+      "sha256": "80dfdd427c36836ea558e81cbe0b649cc0fcd82da9170528dfeb248584b54ac5",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/public/favicon.png",
+      "sha256": "4485cda1dac7c304fa2e4f11342ad497e79307ca540e6b36cbd7e99ff0271de2",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    },
+    {
+      "path": "hackathon/public/forgefront-systems-logo.png",
+      "sha256": "5d3333eb8a5d97e97d5b868ed81008c6994c19f3f756101208add0e7e526f707",
+      "redFraction": 0.0,
+      "status": "green-or-neutral"
+    }
+  ]
+}

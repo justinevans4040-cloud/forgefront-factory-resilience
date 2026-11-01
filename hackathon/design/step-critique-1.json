@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 1,
   "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Enlarge the factory SVG to at least 70% of main and shrink the empty gaps around CELL-MILL-2 and JOB-1002 so stations, jobs and routes read as one scene."
+      "priority": "high",
+      "change": "Enlarge the left factory scene toward 70% of main by narrowing the right evidence zone about 8% and increasing station and job card height within the reserved scene zone."
     },
     {
-      "priority": "P1",
-      "change": "Remove the small logo inside the scene panel; keep only the required header placement on this step and reserve the second placement for the opening story."
+      "priority": "medium",
+      "change": "Raise right-zone body copy and Source detail labels to a clear 16px/24, keeping the 120, 80 and 100 metrics tabular and aligned to the scene tracks."
     },
     {
-      "priority": "P2",
-      "change": "Raise side-zone body and Source detail text to 16px/24 and give each evidence row a visible focus ring with bidirectional highlight to the Certificate and Receiving tracks."
+      "priority": "medium",
+      "change": "Add a visible 2px emerald focus ring with offset to the Inspect source evidence primary and to focusable RECEIVING, CELL-MILL-1 and CELL-MILL-2 nodes."
     }
   ]
 }

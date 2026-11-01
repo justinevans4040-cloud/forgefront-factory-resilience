@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 2,
-  "score": 8,
+  "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Enlarge the factory SVG toward 70% of main; the central dark void weakens the cinematic scene despite clear discrepancy tracks."
+      "priority": "high",
+      "change": "Separate connection readiness and investigation more strongly with two titled reserved panels, distinct status lines and controls, so provider identity checking is never read as the evidence task."
     },
     {
-      "priority": "P1",
-      "change": "Keep Route health pre-flight, with nonce pending and identity pending, visually and operably separate from the Investigation source-evidence panel below it, each with its own status and control."
+      "priority": "high",
+      "change": "Refit the right zone so the bottom explanatory panel fits fully at 1366x768 without crowding the action bar, condensing narration to one instruction and one status sentence."
     },
     {
-      "priority": "P2",
-      "change": "Make the pending pre-flight status 16px and add aria-live polite so Check selected route and Run Spark Open results are announced without conflating the two controls."
+      "priority": "medium",
+      "change": "Enlarge the scene zone and make the primary Run action reachable after the route check control in tab order, with aria-live polite announcing the check result."
     }
   ]
 }

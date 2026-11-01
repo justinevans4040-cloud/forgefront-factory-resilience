@@ -1,19 +1,22 @@
 # The Meta Hackathon build — current evidence
 
-Run twenty-one records fresh full-screen layout measurements, source-grounded recovery and live Meta route checks.
+Run twenty-two, closed by independent audit twenty, verifies the owner’s header, readable inspector, factory scene and green brand requirements against fresh captures.
 
-| Question | Evidence |
-| --- | --- |
-| Wonder and Baseten identity | [Primary pre-flight](run21/providers.json) |
-| Every measured step and state at both sizes | [Geometry and screenshot index](run21/layout/results.json) |
-| Opening wide | [Fresh full-screen capture](run21/layout/001-step-1-wide.png) |
-| Opening desktop | [Fresh compact capture](run21/layout/002-step-1-desktop.png) |
-| Sample recovery | [Summary](run21/primary-browser-offline/summary.json) |
-| Controlled live-route regression | [Summary](run21/primary-browser-mocked/summary.json) |
-| Genuine Wonder reviews | [73](../design/iteration-73.json), [74](../design/iteration-74.json), [75](../design/iteration-75.json), [76](../design/iteration-76.json), [77](../design/iteration-77.json), [78 retained](../design/iteration-78.json) |
+- [Provider identity checks](run22/providers.json)
+- [Every measured step and state at both screen sizes](run22/layout/results.json)
+- [Live-shaped proposal geometry](run22/layout-live-proposals/results.json)
+- [Opening at wide size](run22/layout/001-step-1-wide.png)
+- [Opening at compact size](run22/layout/002-step-1-desktop.png)
+- [Shock capacity preview at wide size](run22/layout/041-preview-CELL-MILL-2-wide.png)
 
-Owner horizontal rail and reserved callout, station and job zones govern the visual design. Visual freeze remains open until every reviewed step reaches nine.
+Designed with Muse Wonder. Latest retained review is [iteration 82](../design/iteration-82.json). Reviews 80–82 keep original model output and independent scores.
 
-[Contributions](../HACKATHON_CONTRIBUTIONS.md) · [Controls](../SECURITY_CONTROLS.md).
+- [Live model orchestration and validated handoffs](run22/model-direction.json)
+- [Live guided recovery](run22/primary-browser/summary.json)
+- [Sample guided recovery](run22/primary-browser-offline/summary.json)
+- [Product suite](run22/product-check.txt), [root suite](run22/root-check.txt), [judge scan](run22/judge-check.json), [secret scan](run22/gitleaks-check.txt)
+- [Public-tree](run22/public-tree-check.txt), [accessibility](run22/a11y-check.txt), [geometry summary](run22/geometry-check.txt), [live-proposal geometry](run22/geometry-live-proposals-check.txt)
+- [Public image inventory and owner-controlled showcase assets](run22/image-audit.json)
+- [Wonder iterations 79–82](../design/iteration-82.json)
 
-Live run: [Wonder/Baseten guide](run21/primary-browser/summary.json). Checks: product suite 272, root suite 253, [keyboard accessibility](run21/a11y-check.txt), [public tree](run21/public-tree-check.txt), [judge](run21/judge-check.txt), [secret scan](run21/gitleaks-check.txt). Latest original Wonder scores (iteration 78): 8,8,8,7,9,8,8,8,7,9.
+Layout: 96 measured states with zero intersections; live-proposal geometry: 108 states with zero intersections. Product suite 284, root suite 254. Judge, public-tree, accessibility and secret scans pass. Visual freeze remains open while Investigate and Wonder packing stay at score 7.

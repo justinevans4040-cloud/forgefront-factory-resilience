@@ -2,6 +2,12 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty
+
+- Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures after run twenty-two: Shock capacity preview moved into a reserved top callout band above stations (full-width line), geometry measures callout panel rects against factory nodes, header workspace tabs remain large and equal-width, Britt guided gates stay off the fold, skip-link stays keyboard-reachable without false clip failures, and complementary inspector landmark remains present when the rail is visually collapsed.
+- Showcase marketing images recreated in black / emerald / brushed silver (same filenames); official logo byte-identical. Nested root `parent-npm-*` working-tree copies now delete themselves after the suite.
+- Designed with Muse Wonder: genuine screenshot reviews 80–82 on current run-twenty-two captures; latest iteration 82 scores 8,7,7,8,8,9,8,8,9,9. Owner layout contracts outrank residual step-2/3 score-7 items. Product suite 284, root suite 254, geometry 96 + live-proposals 108 with zero intersections, judge/public-tree/a11y and gitleaks clean.
+
 ## Independent audit nineteen
 
 - Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures: factory nodes span reserved band widths, Shock capacity preview stays in a side callout with a leader line, plain-English evidence cards, compact horizontal rail, ≥16px body, ≥70% scene fill, no unexplained page scroll.
@@ -154,7 +160,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 ## Foundation and scope
 
-The film uses the implementation under hackathon/. The root application provides regression context; root UI, PM/Kanban and earlier recordings are outside the film inventory. The five showcase images are retained visual assets. Independent planning fixtures have their own schema and arithmetic; [fixture alignment](docs/FIXTURE_RUNTIME_ALIGNMENT.md) maps those differences to the runtime oracle. Athere Mesh is a conceptual reference.
+The Meta Hackathon build ships the recovery room in this tree. The five showcase images are retained visual assets. Independent planning fixtures have their own schema and arithmetic; [fixture alignment](docs/FIXTURE_RUNTIME_ALIGNMENT.md) maps those differences to the runtime oracle. Athere Mesh is a conceptual reference.
 
 Repository history supplies authorship and original timestamps. The owner reviews contributors, foundation eligibility, rights and license against the source inventory before submission. [LICENSE](../LICENSE) governs the repository. [Shot eligibility](docs/SHOT_ELIGIBILITY.md) maps the presentation to the implementation.
 
@@ -176,3 +182,10 @@ Corrected the accepted-flow annotation to keep part demand separate from engine 
 ## Build run twenty-one
 
 The factory uses the full reserved machine and job width. Compact proposal cards retain live machine capacity context and bound overview titles while the inspector preserves complete task details. Tracked-task inspectors fit their content without nested scrolling. Keyboard smoke covers the full shell before starting the guide and opens the route disclosure with real keyboard input. Design iteration files are immutable; genuine screenshot reviews 73, 74 and 75 are retained. Current evidence contains fresh geometry, live Meta guide and keyboard results.
+
+## Build run twenty-two
+
+- Large, equal-width header tabs expose every workspace with a clear current step. Connection readiness uses plain English. Machine cards carry real status without decorative empty chips.
+- Every visible HTML text fragment is checked against clipping ancestors and the viewport. Geometry also checks empty content controls, header span and label size, plus independent text inside the same scene card.
+- Britt proposals occupy a state-driven task grid beside their complete inspector. Due-window bars and dependencies derive from proposed tasks; capacity remains visible above the tasks. Proof blocks project actual ledger event counts and current verification gates.
+- Green brand asset inventory preserves the official logo and the five owner-controlled showcase images. Designed with Muse Wonder: original screenshot reviews remain under design/. Current verification is indexed in evidence/.

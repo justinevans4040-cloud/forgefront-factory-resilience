@@ -22,3 +22,13 @@ export function tileTitle(value,width=23,maxLines=3){
  visible[maxLines-1]=visible[maxLines-1].slice(0,width-1).trimEnd()+'…';
  return visible;
 }
+
+// Task cards reserve distinct bands for identity, title, due window and human status.
+export function proposalLayout(count,height){
+ if(!Number.isSafeInteger(count)||count<1||count>12)throw Error('Invalid proposal count');
+ return Array.from({length:count},(_,i)=>{
+  const page=Math.floor(i/6),local=i%6,pageCount=Math.min(6,count-page*6),columns=Math.min(3,pageCount),rows=Math.ceil(pageCount/columns),gap=14,top=220;
+  const width=(800-gap*(columns-1))/columns,cardHeight=(height-24-top-gap*(rows-1))/rows,titleLines=Math.max(1,Math.min(3,Math.floor((cardHeight-120)/32)));
+  return {page,x:24+(local%columns)*(width+gap),y:top+Math.floor(local/columns)*(cardHeight+gap),width,height:cardHeight,titleLines,titleBottom:62+(titleLines-1)*32+8,dueY:cardHeight-52,statusY:cardHeight-20};
+ });
+}

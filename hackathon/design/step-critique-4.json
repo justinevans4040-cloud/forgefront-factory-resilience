@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 4,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Refit the left board so the proposed t1-t3 cards, station capacity and numbered markers occupy the scene zone without the large empty band above the stations."
+      "priority": "high",
+      "change": "Increase the three Select this path controls to at least 44px tall with 16px labels and a clear emerald selected state before the typed consent form opens."
     },
     {
-      "priority": "P1",
-      "change": "Reduce duplication between the left proposal cards and the right proposal detail; make bidirectional highlighting link t1-t3 across zones instead of repeating full text."
+      "priority": "medium",
+      "change": "Reduce the empty lower right area by enlarging the comparison and Human decision zones vertically inside their reserved column, keeping No acceptance recorded prominent."
     },
     {
-      "priority": "P2",
-      "change": "Clarify in 16px that the 3 proposed tasks remain untracked until approval, while keeping Approve and Decline as the only approval controls in their reserved zone."
+      "priority": "medium",
+      "change": "Mirror the focused recovery path in the left scene with emerald route emphasis while keeping unselected paths in brushed silver."
     }
   ]
 }

@@ -32,3 +32,5 @@ The current task selector keeps one complete proposal card visible at a time, wi
 Current stage task tiles select the same complete task as the inspector pager. Show the owner, relative due window and dependencies before approving. The outage scene previews the selected machine capacity; the proof scene visibly seals Verify, Packet and Checkpoint against the current ledger. The shot sequence remains 2:51 between the four-second intro and five-second outro.
 
 The current opening spreads machine and job nodes across the reserved stage width. Britt proposal shots also show current machine availability below the compact proposal overview. The complete selected task remains in the inspector. The camera sequence and 2:51 application budget above remain unchanged.
+
+The current header presents six large workspace tabs. During Britt shots, show the task grid with its live capacity band, then inspect a task and approve. Proof cards show event markers from the current ledger and seal as each real gate completes. The shot sequence remains 2:51 between the four-second intro and five-second outro.

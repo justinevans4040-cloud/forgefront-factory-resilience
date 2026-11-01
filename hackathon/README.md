@@ -10,7 +10,7 @@ Use Node 20 or later, npm and a current browser. No install, dependencies or bui
 npm run demo --prefix hackathon
 ```
 
-Open **http://127.0.0.1:8791** — the demo opens straight into the recovery room. Choose **Start guided recovery**. The command binds to loopback and starts fresh disposable private state. Stop with **Ctrl+C**.
+The launch command prints the recovery-room link. Open it to enter the recovery room. Choose **Start guided recovery**. The command binds to loopback and starts fresh disposable private state. Stop with **Ctrl+C**.
 
 Privately provision `MUSE_API_KEY` (or `MODEL_API_KEY`) and `BASETEN_API_KEY` in the parent environment for live calls. No key is entered in the browser. Without keys, deliberately choose **Sample · offline walkthrough; no live AI** to walk the full local workflow.
 

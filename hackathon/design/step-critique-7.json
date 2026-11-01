@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 7,
   "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Preserve the constrained Split card cross-hatch and explanation, but raise its FINISH and INCREMENTAL placeholder labels to readable silver contrast."
+      "priority": "high",
+      "change": "Separate the connection readiness panel from the Investigation not run evidence panel with stronger headings, spacing and independent status so the two tasks remain unmistakably distinct."
     },
     {
-      "priority": "P1",
-      "change": "Link each side-zone path card to its bottom scene card with bidirectional highlighting and a visible selected marker before the typed consent form opens."
+      "priority": "medium",
+      "change": "Add plain OFFLINE text directly inside the cross-hatched CELL-MILL-2 station at readable size, paired with the x marker already spanning the card."
     },
     {
-      "priority": "P2",
-      "change": "Enlarge the central scene void into the SVG so JOB-1002 remains spatially tied to CELL-MILL-1 after CELL-MILL-2 stops."
+      "priority": "medium",
+      "change": "Show the constrained Split option in the scene footer with silver hatching and x CONSTRAINED text matching the side state, keeping only two feasible paths in emerald when selected."
     }
   ]
 }

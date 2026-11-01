@@ -26,4 +26,4 @@ Current visual reviews and retained reference are recorded in the current eviden
 
 - [ ] Review current run-nineteen screenshot inputs, original Wonder scores, request-budget proof and complete task-card regression before accepting the visual freeze.
 
-- [ ] Review fresh run-twenty-one opening, task and Shock screenshots at both desktop sizes, the complete geometry index and genuine Wonder iterations 73–75. The latest review does not meet every-step nine; visual freeze remains open.
+- [ ] Review fresh run-twenty-two opening, task and Shock screenshots at both desktop sizes, the complete geometry index and genuine Wonder iterations starting at 79. The latest review does not meet every-step nine; visual freeze remains open.

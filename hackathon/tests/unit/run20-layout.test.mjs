@@ -14,15 +14,16 @@ test('factory scenes reserve independent callout, machine, job and option bands'
  assert.match(app,/data-scene-band':'options'/);
  assert.match(app,/ResizeObserver/);
  assert.match(app,/CAPACITY PREVIEW/);
- assert.match(app,/shockStage\?8:Math\.max\(108/);
+ assert.match(app,/shockStage\?104:Math\.max\(108/);
  assert.doesNotMatch(app,/const machineY=incidentStage\?190:150/);
 });
 
-test('shock capacity preview lives in a side callout column, never a full-width overlay on stations',()=>{
- assert.match(app,/box\(658,machineY,226/);
- assert.match(app,/Apply → invalidate/);
+test('shock capacity preview lives in the top callout band above stations, never beside them',()=>{
+ assert.match(app,/box\(24,8,852,88/);
+ assert.match(app,/Apply → invalidate acceptance/);
  assert.match(app,/Captions stay inside the node box/);
- assert.match(app,/lineRight=shockStage\?640:876/);
+ assert.match(app,/const lineRight=876/);
+ assert.doesNotMatch(app,/lineRight=shockStage\?640/);
 });
 
 test('proof cards use available scene height and paths expose shared selection hooks',()=>{

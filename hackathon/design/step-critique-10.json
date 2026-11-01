@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 78,
+  "iteration": 82,
   "step": 10,
   "score": 9,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Preserve the sealed three-card completion state, but remove the neon outline around the hash-chain status line if it reads as an extra interactive control; reserve neon emphasis for the Complete rail state and status bar."
+      "priority": "high",
+      "change": "Add a visible Complete state to the compact horizontal rail item 10 matching the header Proof tab, with aria-current on the final step."
     },
     {
-      "priority": "P2",
-      "change": "Give the Complete rail item aria-current and ensure Back plus the side-zone export control retain visible focus rings in tab order."
+      "priority": "medium",
+      "change": "Make Verify ledger, Export independent checkpoint and the advanced downloads disclosure at least 44px tall with 16px labels and emerald focus rings."
     },
     {
-      "priority": "P2",
-      "change": "Keep final metrics 70, 35h and 48h at 26px tabular size and confirm the action-bar sealed summary fits one line at 1366x768 without truncation."
+      "priority": "medium",
+      "change": "Link the three SEALED scene cards bidirectionally to the retained evidence rows so focus on a card highlights Verify ledger, Seal packet or Retain checkpoint respectively."
     }
   ]
 }

@@ -50,7 +50,7 @@ test('factory SVG enlarges cert quantity tracks and labels PREVIEW - not applied
 
 test('inspector evidence uses fade padding and route health stays visually separate', () => {
   assert.match(css, /inspector-fade|#evidence:after|\.evidence-scroll/);
-  assert.match(html, /ROUTE HEALTH/);
+  assert.match(html, /MODEL CONNECTION/);
   assert.match(css, /\.route-preflight/);
   assert.match(app, /focusPanel\('model-output'\)|focusResult\('model-output'/);
 });

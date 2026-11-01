@@ -1,4 +1,4 @@
-import {stageScene,wrapSceneTitle,tileTitle} from './stage-scene.mjs';
+import {stageScene,wrapSceneTitle,tileTitle,proposalLayout} from './stage-scene.mjs';
 import {capacityStatus,stageFor,focusResult,storyView,shockPreview,proofChecklist,consentProgress,proposalBanner,proofActionGate} from './command-center.mjs';
 import {factoryPositions,certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel} from './factory-layout.mjs';
 import {routeHealthView} from './route-health.mjs';
@@ -169,7 +169,7 @@ function viewPast(index){
  $('guide-next').hidden=false;$('guide-next').textContent='Next · return through history';$('guide-back').disabled=index===0;renderStepRail();$('guide-title').focus();
 }
 $('guide-back').addEventListener('click',()=>{const index=reviewIndex??guideHistory.length-1;if(index>0)viewPast(index-1);});
-function renderRouteHealth(){if(!state)return;const view=routeHealthView($('provider').value,state.routeHealth);$('provider-status').textContent=view.message;$('provider-status').dataset.light=view.light;$('route-checklist').textContent=$('provider').value==='sample'?'○ Nonce: not requested · ○ Identity: not requested · offline sample':view.light==='GREEN'?'✓ Nonce matched · ✓ Model identity matched':view.light==='RED'?'× Nonce failed · × Identity failed · check another route':'○ Nonce check pending · ○ Identity check pending';$('investigation-empty').hidden=Boolean(run); $('provider-check').hidden=$('provider').value==='sample';$('provider-check').disabled=reviewIndex!==null||$('provider').value==='sample'||state.operator?.role==='auditor';}
+function renderRouteHealth(){if(!state)return;const view=routeHealthView($('provider').value,state.routeHealth);$('provider-status').textContent=view.message;$('provider-status').dataset.light=view.light;$('route-checklist').textContent=$('provider').value==='sample'?'Offline walkthrough ready. No connection needed.':view.light==='GREEN'?'Connection verified. Selected Meta model is ready.':view.light==='RED'?'Connection could not be verified. Check another route.':'Check the connection, then start the investigation.';$('investigation-empty').hidden=Boolean(run); $('provider-check').hidden=$('provider').value==='sample';$('provider-check').disabled=reviewIndex!==null||$('provider').value==='sample'||state.operator?.role==='auditor';}
 $('provider').addEventListener('change',()=>{if(guide){guide.mode=$('provider').value==='sample'?'offline':'live';renderGuide();}renderRouteHealth();});
 $('provider-check').addEventListener('click',()=>busy($('provider-check'),async()=>{const provider=$('provider').value;notice('Checking selected route · one live request, up to eight seconds.');const result=await api('provider-check',{provider});await refresh();focusPanel('provider-status');notice(result.light+' · '+result.reason+(result.light==='RED'?'. Choose a GREEN route explicitly.':''),result.light==='RED');}));
 setInterval(()=>{if(!requestBusy&&state)renderRouteHealth();},1000);
@@ -243,7 +243,7 @@ function renderFactory(){
       const y=80+row*cardHeight,index=scene.tasks.indexOf(task),tile=add('g',{'data-scene-task':index,class:'scene-task-tile','aria-label':'Inspect tracked task '+task.title},null,hero);
       box(x+8,y,174,cardHeight-10,tile,index===inspectedTask?'#A8F04A':'#71877a');
       label(x+18,y+25,task.id,18,tile);
-      wrapSceneTitle(task.title,16).forEach((line,n)=>label(x+18,y+53+n*23,line,18,tile));
+      tileTitle(task.title,16,Math.max(1,Math.floor((cardHeight-80)/32))).forEach((line,n)=>label(x+18,y+58+n*32,line,18,tile));
       activate(tile,()=>{inspectedTask=index;renderBoard();renderFactory();});
      });
     });
@@ -251,7 +251,7 @@ function renderFactory(){
    }else{
    add('text',{x:24,y:32,'font-size':20,fill:'#e8ede6','font-weight':700},scene.blocked+' BLOCKED PRIOR · '+scene.tasks.length+(scene.pending?' PROPOSED · UNTRACKED UNTIL APPROVAL':' TRACKED TASKS'),hero);
    const machineContext=add('g',{'data-scene-band':'board-machines'},null,hero);
-   const stationY=58,stationH=Math.max(220,height-280);
+   const stationY=58,stationH=140;
    const receivingSlot={x:24,width:200};
    const receivingCard=add('g',{'data-scene-machine':'RECEIVING',class:'factory-node board-machine'},null,machineContext);
    box(receivingSlot.x,stationY,receivingSlot.width,stationH,receivingCard,accepted?'#A8F04A':'#71877a');
@@ -261,60 +261,60 @@ function renderFactory(){
    scene.cells.forEach((cell,i)=>{
     const slot=factoryPositions(250,824,scene.cells.length,360)[i];
     const card=add('g',{'data-scene-machine':cell.cellId,class:'factory-node board-machine'},null,machineContext);
-    box(slot.x,stationY,slot.width,stationH,card,!cell.online?'#E5484D':accepted&&activeCells.has(cell.cellId)?'#A8F04A':'#71877a');
+    box(slot.x,stationY,slot.width,stationH,card,!cell.online?'#C5CCD4':accepted&&activeCells.has(cell.cellId)?'#A8F04A':'#71877a');
     label(slot.x+18,stationY+40,cell.cellId,24,card,{'font-weight':700});
     label(slot.x+18,stationY+80,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',18,card,{fill:'#c5ccd4'});
     label(slot.x+18,stationY+120,cell.online?cell.availableHours+'h capacity':'replan required',28,card,{'font-weight':700});
    });
-   const task=scene.tasks[Math.min(inspectedTask,scene.tasks.length-1)];
-   if(task){
-    const overview=add('g',{'data-scene-overview':inspectedTask,class:'scene-task-overview'},null,hero);
-    const overviewY=stationY+stationH+16;
-    add('rect',{x:24,y:overviewY,width:800,height:86,rx:8,fill:'#122219',stroke:'#a2ca8d','stroke-width':2,'stroke-dasharray':scene.pending?'6 4':'none'},null,overview);
-    add('text',{x:44,y:overviewY+28,'font-size':16,fill:'#c6ed8d'},task.id+' · '+(scene.pending?'UNTRACKED UNTIL APPROVAL':task.status.toUpperCase()),overview);
-    add('text',{x:44,y:overviewY+54,'font-size':18,fill:'#e8ede6','font-weight':600},tileTitle(task.title,70,1)[0],overview);
-    add('text',{x:44,y:overviewY+76,'font-size':16,fill:'#c5ccd4'},task.owner+' · due +'+Number(task.dueHours.toFixed(2))+'h · after '+(task.dependsOn.join(', ')||'Ready'),overview);
-   }
+   const taskSlots=proposalLayout(scene.tasks.length,height);
    scene.tasks.forEach((task,i)=>{
-    const count=Math.max(scene.tasks.length,1),width=Math.min(120,(800/count)-8),x=24+i*(800/count),y=height-58;
+    const slot=taskSlots[i];if(slot.page!==Math.floor(inspectedTask/6))return;const {x,y}=slot,tileW=slot.width,tileH=slot.height;
     const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'},null,hero);
-    const select=()=>{if(scene.pending)document.querySelector('[data-proposal-index="'+i+'"]')?.click();else{inspectedTask=i;renderBoard();renderFactory();}};tile.addEventListener('click',select);tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
-    add('rect',{x,y,width,height:42,rx:5,fill:i===inspectedTask?'#25422b':'#101b14',stroke:i===inspectedTask?'#A8F04A':'#9ab88c'},null,tile);
-    add('text',{x:x+12,y:y+28,'font-size':18,fill:'#e8ede6','font-weight':700},String(i+1)+' · '+task.id,tile);
+    const select=()=>document.querySelector('[data-proposal-index="'+i+'"]')?.click();tile.addEventListener('click',select);tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
+    box(x,y,tileW,tileH,tile,i===inspectedTask?'#A8F04A':'#71877a',i===inspectedTask?'#1b3525':'#101b14');
+    label(x+14,y+30,String(i+1).padStart(2,'0')+' · '+task.id,22,tile,{'font-weight':700,fill:'#88eba8'});
+    const titleLines=tileTitle(task.title,Math.floor((tileW-28)/10),slot.titleLines);
+    titleLines.forEach((line,n)=>label(x+14,y+62+n*32,line,20,tile,{'font-weight':600}));
+    label(x+14,y+tileH-52,'Due +'+Number(task.dueHours.toFixed(2))+'h',18,tile);
+    label(x+14,y+tileH-20,'Awaiting approval',18,tile,{fill:'#c5ccd4'});
+    tile.querySelector('rect').setAttribute('stroke-dasharray',i===inspectedTask?'none':'6 4');
+    if(tileH>230){const maxDue=Math.max(...scene.tasks.map(t=>t.dueHours),1),barY=y+tileH-110;box(x+14,barY,tileW-28,14,tile,'#71877a','#0b130e');add('rect',{x:x+14,y:barY,width:(tileW-28)*Math.max(0,task.dueHours)/maxDue,height:14,rx:4,fill:'#88eba8'},null,tile);label(x+14,barY-16,task.dependsOn.length?'After '+task.dependsOn.join(', '):'Ready to begin',18,tile);}
    });
    }
   }else{
-   add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.events+' events. One verified chain.',hero);
+   add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.gates.every(Boolean)?'Recovery complete. Evidence sealed.':scene.events+' events. One verified chain.',hero);
    ['VERIFY LEDGER','SEAL PACKET','RETAIN CHECKPOINT'].forEach((label,i)=>{
     const x=24+i*270,done=scene.gates[i],ready=i===0||scene.gates[i-1];
     add('rect',{x,y:90,width:254,height:height-140,rx:10,fill:done?'#193422':'#101b14',stroke:done?'#c6ed8d':'#728e7b','stroke-width':2,'stroke-dasharray':ready?'none':'6 5'},null,hero);
     add('text',{x:x+18,y:90+(height-140)*.25,'font-size':56,fill:done?'#c6ed8d':'#c5ccd4'},done?'✓':String(i+1).padStart(2,'0'),hero);
     add('text',{x:x+18,y:90+(height-140)*.50,'font-size':18,fill:'#e8ede6','font-weight':650},label,hero);
     add('text',{x:x+18,y:90+(height-140)*.80,'font-size':28,fill:done?'#c6ed8d':'#c5ccd4'},done?'SEALED':ready?'READY':'LOCKED',hero);
+    const chain=add('g',{'aria-label':scene.events+' recorded events · '+(done?'sealed':'awaiting this step')},null,hero);const marks=Math.min(scene.events,24),cols=8;for(let n=0;n<marks;n++){add('rect',{x:x+18+(n%cols)*27,y:90+(height-140)*.58+Math.floor(n/cols)*18,width:18,height:8,rx:2,fill:done?'#88eba8':'#52685a'},null,chain);}
    });
   }
 
  }else{
-  // Reserved vertical bands span the full viewBox: compare/callout | bay | machines | jobs | options. Shock callouts sit in a side column, never over stations.
+  // Reserved vertical bands: compare/callout | bay | machines | jobs | options.
+  // Shock capacity preview sits in the top callout band ABOVE stations — never beside or over them.
   const shockStage=stage==='shock';
-  const topBand=shockStage?8:Math.max(108,Math.round(height*0.15));
+  const topBand=shockStage?104:Math.max(108,Math.round(height*0.15));
   const bayY=topBand+4;
-  const machineY=bayY+26;
+  const machineY=bayY+28;
   const optionY=height-88;
   const nodeH=Math.min(148,Math.max(108,Math.round((optionY-machineY-40)/2)));
   const jobY=machineY+nodeH+Math.max(28,Math.round((optionY-machineY-nodeH*2-12)/2));
-  const lineRight=shockStage?640:876;
+  const lineRight=876;
   const receivingWidth=210-16-14;
   const cellCount=Math.max(cells.length,1),machineSlots=factoryPositions(210,lineRight,cellCount,Math.max(210,Math.floor((lineRight-210-13*(cellCount-1))/cellCount)));
   if(shockStage){
    const cell=cells.find(c=>c.cellId===$('shock-cell').value);
-   const panel=add('g',{'data-layout-zone':'callouts','data-scene-band':'callout'},null,callouts);
-   box(658,machineY,226,nodeH+56,panel,'#9caea0','#152019');
-   label(674,machineY+32,cell?cell.cellId:'CAPACITY',22,panel,{'font-weight':700});
-   label(674,machineY+60,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
-   label(674,machineY+98,cell?cell.availableHours+'h → 0h':'Outage applied',30,panel,{'font-weight':700});
-   label(674,machineY+132,cell?'Apply → invalidate':'Fresh decision',18,panel,{fill:'#c5ccd4'});
-   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width} ${machineY+nodeH/2} H 658`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
+   const panel=add('g',{'data-layout-zone':'callouts','data-scene-band':'callout','data-scene-callout':'capacity-preview'},null,callouts);
+   box(24,8,852,88,panel,'#9caea0','#152019');
+   label(40,40,cell?cell.cellId:'CAPACITY',24,panel,{'font-weight':700});
+   label(40,72,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
+   label(320,58,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700});
+   label(560,58,cell?'Apply → invalidate acceptance':'Fresh decision',20,panel,{fill:'#c5ccd4'});
+   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 96 V ${machineY}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
   }else{
    const qty=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').slice(0,2),comparison=certificateComparison(qty,420);
    qty.forEach((e,i)=>{const g=add('g',{'data-evidence':e.evidenceId,'data-scene-band':'compare','aria-label':evidencePlainEnglish(e)},null,callouts),y=8+i*48;
@@ -330,16 +330,15 @@ function renderFactory(){
   for(let i=0;i<5;i++)add('rect',{x:210+i*90,y:bayY+8,width:28,height:12,rx:2,fill:accepted?'#A8F04A':'#71877a',class:accepted?'material-flow':'lot-held'},null,routes);
   const node=(x,y,title,sub,kind,parent,width=186)=>{
    const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)},null,parent);
-   const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#E5484D':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';
+   const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#C5CCD4':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';
    // Captions stay inside the node box so they cannot intersect the next reserved band.
-   box(x,y,width,nodeH,g,stroke,stopped?'#2b1115':'#19271f');
-   const panelW=Math.max(54,Math.min(78,Math.floor((width-36)/2)));
-   add('path',{d:`M ${x+12} ${y+10} h ${panelW} v 28 h -${panelW} z M ${x+18+panelW} ${y+10} h ${panelW} v 28 h -${panelW} z`,fill:'#0b130e',stroke:'#8b9e90','stroke-width':2},null,g);
-   if(stopped)add('path',{d:`M ${x+10} ${y+8} l ${width-20} ${Math.max(36,nodeH*0.35)} m 0 -${Math.max(36,nodeH*0.35)} l -${width-20} ${Math.max(36,nodeH*0.35)}`,stroke:'#E5484D','stroke-width':3},null,g);
+   box(x,y,width,nodeH,g,stroke,stopped?'#13231b':'#19271f');
+   if(stopped){g.querySelector('rect').setAttribute('fill','url(#preview-hatch)');}
+   if(stopped)add('path',{d:`M ${x+10} ${y+8} l ${width-20} ${Math.max(36,nodeH*0.35)} m 0 -${Math.max(36,nodeH*0.35)} l -${width-20} ${Math.max(36,nodeH*0.35)}`,stroke:'#C5CCD4','stroke-width':3},null,g);
    if(preview){g.classList.add('preview-offline');g.querySelector('rect').setAttribute('stroke-dasharray','8 5');}
    label(x+12,y+Math.max(54,Math.round(nodeH*0.48)),title,22,g,{'font-weight':700});
    label(x+12,y+Math.max(84,Math.round(nodeH*0.74)),(stopped?'OFFLINE':preview?'PREVIEW · 0h':sub).slice(0,Math.max(18,Math.floor(width/9))),18,g,{fill:'#c5ccd4'});
-   if(title==='RECEIVING'&&!accepted)label(x+14,y+32,'× HOLD',18,g,{fill:'#ff8c91',class:'hold-marker'});
+   if(title==='RECEIVING'&&!accepted)label(x+14,y+32,'× HOLD',18,g,{fill:'#C5CCD4',class:'hold-marker'});
    activate(g,()=>{for(const old of svg.querySelectorAll('.selected-node'))old.classList.remove('selected-node');g.classList.add('selected-node');$('factory-selection').hidden=false;$('factory-selection').textContent=title+' · '+sub;});
    return g;
   };
@@ -376,7 +375,14 @@ $('britt-draft').addEventListener('click',()=>busy($('britt-draft'),draftBritt))
 for(const [id,action] of [['britt-approve','approve'],['britt-decline','decline']])$(id).addEventListener('click',()=>busy($(id),async()=>{await api('britt-decide',{proposalId:state.britt.proposal.id,action});await refresh();recap(action==='approve'?'Recovery tasks are tracked.':'Proposal declined.','The human decision is recorded in the ledger.','recovery-board');}));
 function renderBoard(){
  const board=state.board??{tasks:[]},proposal=state.britt?.proposal;
- $('britt-feed').replaceChildren(...[(run?.run.sample?'Sample · offline walkthrough; no live AI':'Meta investigation'),...((run?.run.trace??[]).filter(t=>t.type==='tool_result').map(t=>'✓ '+t.name)),proposal?'Proposal awaiting approval · untracked by design':'Awaiting operator direction'].map(v=>text('p',v)));
+ const feedLines=proposal
+  ?[]
+  :[(run?.run.sample?'Sample · offline walkthrough; no live AI':'Meta investigation'),...((run?.run.trace??[]).filter(t=>t.type==='tool_result').map(t=>'✓ '+({get_incident:'Source records read',compare_recovery_options:'Recovery paths calculated'}[t.name]??'Evidence checked'))),'Awaiting operator direction'];
+ $('britt-feed').replaceChildren(...feedLines.map(v=>text('p',v)));
+ $('britt-feed').hidden=Boolean(proposal);
+ // Keep human gates above the proposal list so they never fall below the fold.
+ const panel=$('britt-panel'),feed=$('britt-feed');
+ if(panel&&feed){const title=panel.querySelector('h2');const blurb=[...panel.children].find(el=>el.tagName==='P');(blurb??title??panel).after(feed);feed.after($('britt-draft'),$('britt-approve'),$('britt-decline'));}
  $('recovery-board').hidden=Boolean(proposal);$('britt-draft').hidden=Boolean(proposal);$('britt-approve').hidden=$('britt-decline').hidden=!proposal;$('britt-draft').disabled=state.decision.status!=='accepted'||Boolean(proposal);
  $('britt-approve').classList.add('secondary');
  $('britt-approve').textContent=guide?'Review proposed tasks':'Approve Britt’s proposal';
@@ -386,7 +392,7 @@ function renderBoard(){
  const blockedCount=board.tasks.filter(t=>t.status==='Blocked').length;const proposedCount=proposal?proposal.board.tasks.filter(t=>t.status!=='Done').length:0;
  $('britt-work').scrollTop=0;$('britt-proposal').scrollTop=0;
  $('britt-proposal').replaceChildren(...(banner&&proposal?[text('p',blockedCount+' BLOCKED prior · '+proposedCount+' proposed · UNTRACKED UNTIL APPROVAL','proposal-explain'),...(proposal.board.tasks.map(t=>{const card=text('div','','proposal-task');card.tabIndex=0;card.append(text('small',t.status==='Done'?'COMPLETED WORK RETAINED':'PROPOSED · UNTRACKED UNTIL APPROVAL','proposal-badge'),text('strong',t.id+' · '+t.title),text('small',t.owner+' · due +'+Number(t.dueHours.toFixed(2))+'h · after '+(t.dependsOn.join(', ')||'Ready')));return card;})),text('small','End of proposal · '+proposal.board.tasks.length+' tasks','proposal-end')]:[]));
- if(proposal){const cards=[...$('britt-proposal').querySelectorAll('.proposal-task')],nav=text('nav','','proposal-pages');nav.setAttribute('aria-label','Inspect proposed tasks');const label=$('britt-proposal').querySelector('.proposal-explain');const choose=index=>{inspectedTask=index;cards.forEach((c,i)=>c.hidden=i!==index);for(const [i,b]of [...nav.children].entries())b.setAttribute('aria-pressed',String(i===index));label.textContent=cards.length+' PROPOSED · Task '+(index+1)+' of '+cards.length+' · UNTRACKED UNTIL APPROVAL';renderFactory();};cards.forEach((card,index)=>{const b=text('button',String(index+1),'secondary');b.dataset.proposalIndex=String(index);b.setAttribute('aria-label','Inspect proposed task '+(index+1)+': '+proposal.board.tasks[index].title);b.addEventListener('click',()=>choose(index));nav.append(b);});nav.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const buttons=[...nav.children],i=buttons.indexOf(document.activeElement),next=buttons[(i+(event.key==='ArrowLeft'?-1:1)+buttons.length)%buttons.length];next.click();next.focus();});label.after(nav);choose(0);}
+ if(proposal){const cards=[...$('britt-proposal').querySelectorAll('.proposal-task')],nav=text('nav','','proposal-pages');nav.setAttribute('aria-label','Inspect proposed tasks');const label=$('britt-proposal').querySelector('.proposal-explain');const choose=index=>{inspectedTask=index;cards.forEach((c,i)=>c.hidden=i!==index);for(const [i,b]of [...nav.children].entries()){b.setAttribute('aria-pressed',String(i===index));if(i===index)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');}label.textContent=cards.length+' PROPOSED · Task '+(index+1)+' of '+cards.length+' · UNTRACKED UNTIL APPROVAL';renderFactory();};cards.forEach((card,index)=>{const b=text('button',String(index+1),'secondary');b.dataset.proposalIndex=String(index);b.setAttribute('aria-label','Inspect proposed task '+(index+1)+': '+proposal.board.tasks[index].title);b.addEventListener('click',()=>choose(index));nav.append(b);});nav.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const buttons=[...nav.children],i=buttons.indexOf(document.activeElement),next=buttons[(i+(event.key==='ArrowLeft'?-1:1)+buttons.length)%buttons.length];next.click();next.focus();});label.after(nav);choose(0);}
  $('prior-work').hidden=!(proposal&&board.tasks.length);if(proposal&&board.tasks.length)$('prior-work').open=true;$('prior-work').querySelector('summary').textContent=blockedCount+' BLOCKED prior tasks · separate from proposed replacements';$('prior-work-list').replaceChildren();
  if(proposal&&board.tasks.length){
   inspectedPriorTask=Math.min(inspectedPriorTask,board.tasks.length-1);

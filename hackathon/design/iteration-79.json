@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "1366x768, 100vw x 100dvh, overflow hidden; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; main split into independent reserved zones with no overlap: rendered scene at least 70% of main, plus separate callout, station and job zones; single non-wrapping horizontal rail of equal targets at least 36px high with aria-current and arrow-key movement; condense side content inside its reserved zone without overlap or scrolling",
+    "colorTokens": "Entirely black, emerald/neon green and brushed silver: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22), brushed silver #C5CCD4 for headings and machine bodies, dim silver rgba(197,204,212,.68), emerald/neon #A8F04A primary with #050705 text and only one primary per viewport; stopped states use silver cross-hatching, a cross marker and plain OFFLINE text with no other hue; official logo immutable in black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story",
+    "typography": "System sans; 16px/24 body minimum, header tab labels at least 16px, 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels minimum, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; no label under 12px",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on real state change then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text carry meaning; 2px neon focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left, large header tabs spanning most of the header, and Lock recovery room right; opening story carries the second required logo placement; compact horizontal rail from one steps array; focusable cinematic factory SVG as dominant scene; side zone keeps provider identity readiness checks separate from the investigation evidence task under separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite for results",
+    "visualizations": "State-driven 960x540 SVG enlarged to fill at least 70% of main using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver idle machines, stopped cell shown with silver cross-hatching, cross marker and plain OFFLINE text and no route through it; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend with pattern, marker and text; pending task proposals deliberately untracked until human approval, blocked prior tasks visible beside the approved recovery plan while replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge the rendered factory scene to at least 70% of main and shrink the right evidence zone, keeping callouts, stations and jobs in separate reserved zones."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise legend and station micro-labels to at least 12px and body copy to 16px/24 so the bottom legend remains legible at 1366x768."
+        },
+        {
+          "priority": "medium",
+          "change": "Add a visible 2px neon focus ring with offset to the Receiving, CELL-MILL-1, CELL-MILL-2 and job nodes in the SVG, with arrow-key movement between nodes."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Split the right zone into two clearly separated panels: provider identity readiness check with its own status and control, and investigation as a distinct evidence task with its own status and Run control."
+        },
+        {
+          "priority": "high",
+          "change": "Enlarge the scene to at least 70% of main; the repeated Certificate/Receiving block currently competes with the factory stations and jobs."
+        },
+        {
+          "priority": "medium",
+          "change": "Increase select and helper text to 16px and ensure the select, check control and primary each show the neon focus ring and pointer style only when enabled."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make each recovery option a full 16px radio row at least 44px high so selecting it clearly opens the typed consent form, instead of the small Select this path pill."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the scene to at least 70% of main and link hovering or focusing each option to the matching route and job zone in the SVG."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise FINISH and INCREMENTAL micro-labels to 12px and keep the No acceptance recorded status in the action-bar centre."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge the proposed-task scene area and keep the three untracked proposals visually distinct from tracked work with dashed silver borders and PROPOSED · UNTRACKED UNTIL APPROVAL on every card."
+        },
+        {
+          "priority": "medium",
+          "change": "Reduce empty space in the right proposal panel by enlarging task detail to 16px and aligning the 1-2-3 task switcher at least 36px high with aria-current."
+        },
+        {
+          "priority": "medium",
+          "change": "Add focus ring and bidirectional highlighting between each left task card and its right-zone detail."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Confirm the stopped preview uses only silver cross-hatching, a cross marker and plain OFFLINE text; remove any preview wording that implies a live state before Apply."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the factory route SVG within the scene zone so the neon recovery flow and the offline preview read at a glance, without shrinking job cards below 16px."
+        },
+        {
+          "priority": "medium",
+          "change": "Make the machine selector at least 44px high with a neon focus ring and announce the invalidation consequence in an aria-live status."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Refit CELL-MILL-2 to silver cross-hatching with a cross marker and plain OFFLINE text, replacing the large diagonal cross lines that read as a generic error."
+        },
+        {
+          "priority": "high",
+          "change": "Keep provider identity readiness and investigation evidence as separate headed panels with independent status, as in the required side-zone contract."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the scene to at least 70% of main and show feasible neon routes only through online cells, with no route through the offline cell."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Apply silver cross-hatching plus cross marker and OFFLINE text to the constrained Split option and to CELL-MILL-2 consistently, using pattern and text rather than colour alone."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the scene to at least 70% of main and visually link the constrained option in both zones so its unavailable state is identical in each."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise FINISH and INCREMENTAL labels to 12px and keep fresh review required status centred in the action bar at 16px."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep the 3 blocked prior tasks and the 3 proposed replacements in visually separate sub-zones, with blocked shown hatched and proposed dashed and explicitly untracked until approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the left scene so CELL-MILL-2 reads OFFLINE with silver cross-hatching and cross marker, matching the right-zone state."
+        },
+        {
+          "priority": "medium",
+          "change": "Sync focus and highlight between left task cards 01-03 and the right proposed-task detail, with at least 36px switcher targets."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge the three proof cards to fill the scene zone and raise LOCKED and step labels so the sequence reads without relying on the right zone."
+        },
+        {
+          "priority": "medium",
+          "change": "Increase right-zone checklist and passphrase guidance to a clear 16px, keep the input at least 44px high, and show the neon focus ring on Verify ledger, the input and Export controls."
+        },
+        {
+          "priority": "medium",
+          "change": "State tracked, done and blocked counts at 16px in the action-bar centre and announce Verify completion with aria-live polite."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Add a clear completed-state heading in the scene zone at 24px so SEALED on all three cards is paired with one plain completion sentence, with minimal narration."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure the Complete rail item carries aria-current and the header Proof tab and rail agree, with arrow-key movement still available on the horizontal rail."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise the bottom status and legend to at least 12px for labels and 16px for the PACKET SEALED status, preserving the black, emerald and brushed silver palette only."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

@@ -81,3 +81,7 @@ The opening presents source comparison and affected orders at stage scale. On ea
 ## Current layout verification
 
 Use `HACKATHON_EVIDENCE_RUN=run21` in the shell environment for fresh checks. Run `node --experimental-websocket hackathon/scripts/primary-guide-smoke.mjs --mock-live --guided --geometry` from the repository root for every measured state at both desktop sizes. Run `npm run check:a11y --prefix hackathon` for the independent keyboard flow. Review the screenshot index in current evidence before recording. Design reviews require a new iteration number and refuse existing iterations.
+
+## Current recovery controls
+
+Use the large header tabs for Incident, Investigate, Decide, Shock, Project board and Proof. The compact guided row reviews completed steps without changing decisions. Check model connection verifies the selected provider; the highlighted stage action performs the investigation. Inspect proposed work using its scene cards or numbered task controls, then approve deliberately. Machine capacity remains above the proposed work.

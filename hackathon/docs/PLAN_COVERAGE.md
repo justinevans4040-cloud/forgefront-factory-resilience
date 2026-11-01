@@ -49,3 +49,7 @@ The opening focuses on source comparison and affected jobs. The outage scene der
 ## Current layout and keyboard coverage
 
 Regression coverage includes band-spanning factory positions, detached live machine context, bounded overview titles, immutable design iterations, content-sized task inspectors and visible keyboard navigation through route disclosures. Fresh Sample and controlled-route geometry plus the bounded live Meta guide are indexed in current evidence. Genuine Wonder reviews 73–75 preserve original scores; the all-step visual-freeze target remains open.
+
+## Run twenty-two owner contracts
+
+Large workspace tabs share the header width and identify the selected stage. Factory stations expose actual status without decorative empty chips. The inspector uses plain-English connection readiness. Proposed tasks occupy a dynamic grid with capacity above and complete task details beside it. Geometry covers text inside each scene card, all visible HTML text, empty content controls, header width and tab-label size. Verification links are in the current evidence index.

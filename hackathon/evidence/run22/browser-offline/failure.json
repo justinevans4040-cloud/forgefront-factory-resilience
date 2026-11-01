@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "live": false,
+  "reason": "The expression evaluated to a falsy value:\n\n  assert.ok(roles.includes('complementary'))\n",
+  "checks": [
+    "demo opens straight into the recovery room with no sign-in",
+    "keyboard skip link",
+    "skip link activation into the recovery room",
+    "guide to lock keyboard order"
+  ],
+  "consoleErrors": []
+}

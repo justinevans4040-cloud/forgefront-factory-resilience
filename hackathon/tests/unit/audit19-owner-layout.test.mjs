@@ -16,13 +16,13 @@ test('factory nodes draw at the reserved factoryPositions width, not a fixed 186
  assert.doesNotMatch(app,/box\(x,y,186,nodeH/);
 });
 
-test('shock capacity preview stays in a reserved side column with a leader to the selected cell',()=>{
+test('shock capacity preview stays in a reserved top callout band with a leader to the selected cell',()=>{
  assert.match(app,/const shockStage=stage==='shock'/);
- assert.match(app,/lineRight=shockStage\?640:876/);
- assert.match(app,/box\(658,machineY,226/);
+ assert.match(app,/const lineRight=876/);
+ assert.match(app,/box\(24,8,852,88/);
  assert.match(app,/CAPACITY PREVIEW/);
- assert.match(app,/Apply → invalidate/);
- assert.match(app,/H 658/);
+ assert.match(app,/Apply → invalidate acceptance/);
+ assert.match(app,/V \$\{machineY\}/);
 });
 
 test('geometry harness fails independent text and node intersections without same-band siblings skipping',()=>{
