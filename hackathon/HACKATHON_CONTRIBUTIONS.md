@@ -2,6 +2,18 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit nineteen
+
+- Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures: factory nodes span reserved band widths, Shock capacity preview stays in a side callout with a leader line, plain-English evidence cards, compact horizontal rail, ≥16px body, ≥70% scene fill, no unexplained page scroll.
+- Geometry harness hardened to fail independent text/node intersections (no same-band sibling skip) and extended to live-shaped five-task proposals via `--live-proposals`.
+- Board stage restores dominant station capacity visualization behind compact proposed-task selectors; Britt/project board and read-only Back remain verified end to end.
+- Designed with Muse Wonder: genuine screenshot reviews 76–78 after the packing work; retained iteration 78 (8,8,8,7,9,8,8,8,7,9). Product suite 272, root suite 253, judge/public-tree/a11y and gitleaks clean; live Wonder/Baseten guide completes every step.
+
+## Build run twenty-one
+
+- Factory rows use reserved band widths; Britt proposal view compacted with live machine-capacity context; blocked-task nested scrollbar removed; keyboard-smoke navigation fixed; design reviews refuse to overwrite an existing iteration.
+- Designed with Muse Wonder: genuine iterations 73–75 (latest before audit nineteen: 7,7,8,7,8,8,8,8,7,9). Geometry: 96 captures, zero intersections, minimum scene fill 72.1%. Live Baseten → Wonder → human acceptance → Britt workflow verified; Fireworks uncalled.
+
 ## Build run twenty
 
 - Owner-blocking layout: reserved scene bands for callouts, bay, machines, jobs and options; Shock capacity preview moved into a side callout column with a leader line (never over stations); node captions stay inside station boxes; compact horizontal rail and plain-English evidence cards retained.
@@ -160,3 +172,7 @@ Corrected the accepted-flow annotation to keep part demand separate from engine 
 - Restored the investigation route helper to visible silver contrast, enlarged proposal pager targets to 40px, demoted inspector Approve to a secondary Review proposed tasks control during guided recovery, clarified nonce/identity status text, and kept blocked-prior versus untracked proposals in separate scroll regions.
 - Continued the genuine Muse Wonder screenshot design loop through iterations 54–57. Accepted non-regressed direction is iteration 55 (8, 8, 9, 8, 8, 9, 9, 8, 8, 9). Iterations 56 and 57 regressed and remain retained unedited. Run-eighteen reference iteration 52 (9, 8, 9, 8, 8, 9, 9, 8, 8, 9) still holds the peak step-one score. Visual freeze remains open.
 - Deleted 494 verified TEMP harness scratch directories left from run eighteen, then cleaned further harness leftovers after audit suites. Node 20 is not installed on this machine; runtime verified on Node v24.
+
+## Build run twenty-one
+
+The factory uses the full reserved machine and job width. Compact proposal cards retain live machine capacity context and bound overview titles while the inspector preserves complete task details. Tracked-task inspectors fit their content without nested scrolling. Keyboard smoke covers the full shell before starting the guide and opens the route disclosure with real keyboard input. Design iteration files are immutable; genuine screenshot reviews 73, 74 and 75 are retained. Current evidence contains fresh geometry, live Meta guide and keyboard results.

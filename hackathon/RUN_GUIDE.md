@@ -77,3 +77,7 @@ Inspect every proposed task with the numbered task selector before approval; arr
 ## Current visual workspaces
 
 The opening presents source comparison and affected orders at stage scale. On each Britt step, select a stage task tile or numbered inspector control to inspect that complete task, then approve through the highlighted primary action. The second-shock preview shows the selected cell capacity before application. Proof blocks track the same current-ledger gates as Verify, Seal and Retain. [Current evidence](evidence/README.md) holds the exact screenshot inputs and original Wonder scores.
+
+## Current layout verification
+
+Use `HACKATHON_EVIDENCE_RUN=run21` in the shell environment for fresh checks. Run `node --experimental-websocket hackathon/scripts/primary-guide-smoke.mjs --mock-live --guided --geometry` from the repository root for every measured state at both desktop sizes. Run `npm run check:a11y --prefix hackathon` for the independent keyboard flow. Review the screenshot index in current evidence before recording. Design reviews require a new iteration number and refuse existing iterations.

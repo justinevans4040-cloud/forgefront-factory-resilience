@@ -700,11 +700,11 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
  body[data-guided=true] .guide h2{font-size:14px!important;margin:0!important;white-space:nowrap}
  body[data-guided=true] .guide p{display:none!important}
  body[data-guided=true] .guide progress{height:3px;margin:0;flex:1}
- .stage-area{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,.75fr)!important;gap:8px!important;flex:1;min-height:0;align-items:stretch;height:100%}
+ .stage-area{display:grid!important;grid-template-columns:minmax(0,2.45fr) minmax(260px,.7fr)!important;gap:6px!important;flex:1;min-height:0;align-items:stretch;height:100%}
  body[data-active-stage=board] .stage-area{grid-template-columns:minmax(0,1.15fr) minmax(340px,1fr)!important}
  #guide-next:focus-visible,#guide-start:focus-visible,#guide-back:focus-visible,#decision-bar button:focus-visible{outline:2px solid #A8F04A!important;outline-offset:2px!important}
- #factory-stage{position:relative;display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;max-height:none!important;padding:6px 8px 56px!important;gap:2px!important}
- #opening-story{display:flex!important;flex:0 0 auto;min-height:0;max-height:48px!important;padding:0 0 2px!important;margin:0!important;gap:8px!important;align-items:center}
+ #factory-stage{position:relative;display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;max-height:none!important;padding:4px 6px 54px!important;gap:0!important}
+ #opening-story{display:flex!important;flex:0 0 auto;min-height:0;max-height:40px!important;padding:0!important;margin:0!important;gap:8px!important;align-items:center}
  #opening-story .story-logo{width:64px!important;height:32px!important}
  #opening-story .opening-message .eyebrow{display:none}
  #opening-story .opening-lead{font-size:16px!important;margin:0!important;line-height:1.05}
@@ -712,14 +712,14 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
  #opening-stakes{gap:14px!important;padding:0!important;margin-left:auto}
  .opening-stat strong{font-size:26px!important}
  .opening-stat span{font-size:10px!important}
- #factory-status{font-size:20px!important;margin:0 0 2px!important;flex:0 0 auto}
+ #factory-status{font-size:18px!important;margin:0!important;flex:0 0 auto;line-height:1.2}
  #factory-delta{margin:0 0 2px!important;padding:2px 6px!important;font-size:12px}
  #factory-svg{flex:1 1 auto!important;width:100%!important;height:100%!important;min-height:280px!important;max-height:none!important}
  #factory-stage .factory-legend{flex:0 0 auto;font-size:12px!important;margin:0!important}
  #britt-activity{display:none!important}
- #decision-bar{position:absolute!important;left:8px;right:8px;bottom:6px;height:44px!important;margin:0!important;display:flex!important;align-items:center;gap:8px;padding:4px 10px!important;border:1px solid #4d6a52;border-radius:8px;background:linear-gradient(90deg,#142018,#0a100c);z-index:6;box-shadow:0 10px 24px #0008}
- #decision-bar #guide-start,#decision-bar #guide-next{min-height:36px;font-size:15px!important;padding:8px 16px!important;font-weight:700}
- #decision-bar #guide-back{min-height:34px;font-size:13px}
+ #decision-bar{position:absolute!important;left:8px;right:8px;bottom:6px;height:48px!important;margin:0!important;display:flex!important;align-items:center;gap:8px;padding:4px 10px!important;border:1px solid #4d6a52;border-radius:8px;background:linear-gradient(90deg,#142018,#0a100c);z-index:6;box-shadow:0 10px 24px #0008}
+ #decision-bar #guide-start,#decision-bar #guide-next{min-height:40px;font-size:16px!important;padding:10px 18px!important;font-weight:700}
+ #decision-bar #guide-back{min-height:36px;font-size:14px}
  #decision-status{font-size:12px}
  #stage-deck{min-height:0;height:100%!important;overflow:hidden!important;padding:0!important;display:flex;flex-direction:column;scrollbar-gutter:auto}
  #stage-deck .stage{flex:1;min-height:0;overflow:hidden!important;display:flex;flex-direction:column}
@@ -741,8 +741,8 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
  .evidence-headline{margin:0!important;font-size:17px!important;line-height:1.3;color:#eef5ea;font-weight:600}
  .evidence-figure{font-size:28px!important;font-weight:700;color:#fff;font-variant-numeric:tabular-nums;margin-left:4px}
  .evidence-raw{margin-top:4px;border:0;padding:0}
- .evidence-raw>summary{font-size:12px;color:#a8b5a7;cursor:pointer}
- .evidence-raw code,.evidence-raw small{display:block;font-size:12px;color:#b9cbbf;margin-top:4px;overflow-wrap:anywhere}
+ .evidence-raw>summary{font-size:16px;color:#a8b5a7;cursor:pointer;line-height:1.5}
+ .evidence-raw code,.evidence-raw small{display:block;font-size:16px;color:#b9cbbf;margin-top:4px;line-height:1.5;overflow-wrap:anywhere}
  #factory-svg .mismatch-label{font-size:24px!important;font-weight:750}
  #factory-svg .node-caption{font-size:16px!important}
  body[data-active-stage=incident] #factory-svg .node-caption{font-size:17px!important}
@@ -837,8 +837,11 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
  #recovery-board .task-card strong{font-size:18px;line-height:1.3}
  #recovery-board .task-card p{margin:5px 0!important}
  #recovery-board .task-card select{width:100%}
- .tracked-task-pages{display:flex;gap:8px}
- .tracked-task-pages button{min-width:40px;min-height:40px}
+ .tracked-task-pages,.proposal-pages{display:flex;gap:8px}
+ .tracked-task-pages button,.proposal-pages button{min-width:40px;min-height:40px;font-size:16px!important}
+ .proposal-task{font-size:16px!important;line-height:1.5!important}
+ .stage[data-stage=board] .proposal-task strong{font-size:16px!important;line-height:1.5!important}
+ .stage[data-stage=board] .proposal-task small{font-size:14px!important;line-height:1.45!important}
  .stage[data-stage=board]:has(#recovery-board:not([hidden])) #britt-panel{flex:0 0 auto!important;min-height:0!important;margin-bottom:8px}
  .stage[data-stage=board]:has(#recovery-board:not([hidden])) #britt-work{display:none!important}
  #britt-feed{max-height:none!important;overflow:visible!important;height:auto!important}
@@ -892,3 +895,14 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
 }
 
 .investigate .route-preflight{display:block!important}
+
+/* The Meta Hackathon build: fit the selected task instead of introducing a nested scrollbar. */
+@media(min-width:901px){
+ #recovery-board .board-column{max-height:none!important;overflow:visible!important;flex:0 0 auto!important}
+ #recovery-board .task-card{max-height:none!important;overflow:visible!important;height:auto!important}
+ .stage[data-stage=decision] .decision{flex:0 0 auto!important;max-height:none!important;overflow:visible!important}
+ .stage[data-stage=decision]{justify-content:flex-start;gap:12px}
+ .factory-legend,#opening-stakes span{font-size:12px!important}
+}
+summary:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #A8F04A!important;outline-offset:2px!important}
+button:disabled{cursor:default}

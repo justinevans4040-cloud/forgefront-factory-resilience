@@ -25,3 +25,5 @@ Current visual reviews and retained reference are recorded in the current eviden
 - [ ] Review the current proposal selector, source-correct factory quantities, current-head proof-input gate and all saved Wonder review scores against the current evidence.
 
 - [ ] Review current run-nineteen screenshot inputs, original Wonder scores, request-budget proof and complete task-card regression before accepting the visual freeze.
+
+- [ ] Review fresh run-twenty-one opening, task and Shock screenshots at both desktop sizes, the complete geometry index and genuine Wonder iterations 73–75. The latest review does not meet every-step nine; visual freeze remains open.

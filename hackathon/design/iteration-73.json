@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; main uses independent reserved zones with no overlap: rendered scene at least 70% of main, plus fixed callout, station and job tracks; single non-wrapping horizontal rail of 9 equal step targets with aria-current and arrow-key movement; refit tight zones before reducing type; condense or paginate side content inside its reserved zone; all targets at least 36px",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); brushed silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68); emerald/neon #A8F04A primary with #050705 text, one primary per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated elsewhere",
+    "typography": "System sans; 16px/24 body minimum, 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; enlarge any label under 12px to 12px minimum",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on real state change, then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; 2px neon focus ring with 2px offset on every interactive element; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; compact horizontal rail from one steps array; guide line inside rail zone with no duplicate primary; focusable cinematic factory SVG as dominant scene; side zone keeps pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, with separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, SVG nodes, side zone and action bar in tab order; Enter/Space activate, Esc closes, aria-live polite announces results only",
+    "visualizations": "State-driven 960x540 SVG enlarged to fill at least 70% of main, using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge the factory SVG to at least 70% of main by narrowing the side zone; keep callout, station and job zones independent and non-overlapping."
+        },
+        {
+          "priority": "P1",
+          "change": "Add a visible 2px neon focus ring to Source detail disclosures and the primary action, and ensure pointer style appears only on enabled controls."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise legend and metric captions below 12px to 12px minimum while preserving 16px body type."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge the SVG to at least 70% of main; reserve separate fixed tracks for the discrepancy callout, stations and jobs."
+        },
+        {
+          "priority": "P1",
+          "change": "Keep Route health pre-flight nonce and identity checks under their own heading, visually and semantically separate from the Investigation source evidence task."
+        },
+        {
+          "priority": "P2",
+          "change": "Reduce repeated offline narration to one instruction and one status sentence so the 1366x768 side zone fits without crowding."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge the scene toward 70% fill and keep the three bottom option cards aligned to the job and station tracks without duplicating the side-zone comparison."
+        },
+        {
+          "priority": "P1",
+          "change": "Make each Select this path control at least 36px tall with a clear focus ring; on selection, open the typed consent form as the next state."
+        },
+        {
+          "priority": "P2",
+          "change": "Condense the empty Human Decision area into a compact reserved status zone so the comparison remains fully visible at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Restore a cinematic state-driven factory scene as the dominant zone; move the board detail into callout, station and job tracks instead of letting cards replace the scene."
+        },
+        {
+          "priority": "P1",
+          "change": "Keep the pending proposal clearly marked untracked until approval in both zones, with numbered task targets at least 36px and keyboard reachable."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge low-contrast owner, due and status text to 12px minimum and strengthen silver contrast against the panel."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Preserve the strong neon feasible route and preview state, but add pattern plus text so CELL-MILL-2 preview is not carried by colour alone."
+        },
+        {
+          "priority": "P2",
+          "change": "Give the machine selector and Apply second shock control explicit focus rings and announce the invalidation result through aria-live polite only."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise the smallest scenario-management and capacity labels to 12px minimum within their reserved side zone."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Apply stoppedRed #E5484D exclusively to CELL-MILL-2 with cross-hatch and OFFLINE-STOPPED text; keep all other machines silver or neon and show no route through that cell."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge the SVG to at least 70% of main and keep Certificate 120 versus Receiving 80 with DOES NOT MATCH fully inside stage bounds."
+        },
+        {
+          "priority": "P2",
+          "change": "Keep pre-flight nonce and identity checks distinct from the investigation evidence task, each with its own status and control."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Retain red, cross-hatch and text for stopped CELL-MILL-2 and mark Split available capacity as constrained with pattern and wording, not colour alone."
+        },
+        {
+          "priority": "P1",
+          "change": "Make the two feasible Select this path controls at least 36px with visible focus rings; selecting one must open the typed consent form."
+        },
+        {
+          "priority": "P2",
+          "change": "Condense the empty Human Decision zone so revised options, finish and cost metrics fit cleanly at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Keep 3 blocked prior tasks visibly separate from 3 proposed replacements, with the approved recovery plan status stated once in the action bar."
+        },
+        {
+          "priority": "P1",
+          "change": "Restore the factory scene as the dominant visual beside the station track, showing CELL-MILL-2 in reserved red and CELL-MILL-1 in silver."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise hatched-zone and task-meta text contrast and size to 12px minimum; keep numbered targets at least 36px."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Refit the side zone inside its reserved track so Verify, Seal and Retain controls and the passphrase field fit at 1366x768 without tight crowding; paginate within that zone if needed."
+        },
+        {
+          "priority": "P1",
+          "change": "Add explicit focus rings to Verify ledger, the passphrase input and checkpoint export, with step order announced only via aria-live polite."
+        },
+        {
+          "priority": "P2",
+          "change": "Replace the three empty stage cards with a compact evidence-chain visualization tied to the 21 events, while keeping READY and LOCKED text states."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "On completion, preserve the second logo placement only if this view is the opening story; otherwise keep the header logo as the sole logo in this viewport and do not add another."
+        },
+        {
+          "priority": "P2",
+          "change": "Keep the sealed evidence summary to one status sentence in the action bar and ensure disabled Verify ledger shows no pointer style."
+        },
+        {
+          "priority": "P2",
+          "change": "Confirm the Complete rail target retains aria-current, a 2px focus ring and at least 36px height alongside the other nine targets."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  1,
-    "score":  6,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Remove the extra logo inside the scene panel; retain only the header logo here and the second placement in the opening story."
-                  },
-                  {
-                      "priority":  "P1",
-                      "change":  "Enlarge the factory SVG to at least 70% of main and shrink the right evidence zone to its fixed track so stations, jobs and Certificate/Receiving tracks stay inside scene bounds."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Raise sub-16px source-detail and metric labels to 16px body or 12px micro-label minimum and give the primary Inspect source evidence a visible focus ring."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 1,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Enlarge the factory SVG to at least 70% of main and shrink the empty gaps around CELL-MILL-2 and JOB-1002 so stations, jobs and routes read as one scene."
+    },
+    {
+      "priority": "P1",
+      "change": "Remove the small logo inside the scene panel; keep only the required header placement on this step and reserve the second placement for the opening story."
+    },
+    {
+      "priority": "P2",
+      "change": "Raise side-zone body and Source detail text to 16px/24 and give each evidence row a visible focus ring with bidirectional highlight to the Certificate and Receiving tracks."
+    }
+  ]
 }

@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  6,
-    "score":  7,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Preserve red exclusively on stopped CELL-MILL-2 and remove red emphasis from RECEIVING HOLD so the stopped exception stays unambiguous; use held pattern and text for MAT-ALLOY-A."
-                  },
-                  {
-                      "priority":  "P1",
-                      "change":  "Keep nonce/identity pre-flight separate from the investigation evidence task and show that Split is constrained because no feasible route uses the offline cell."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Enlarge the scene toward 70% and raise the constrained option label to 16px with pattern plus text, not colour alone."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 6,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Keep stoppedRed only on CELL-MILL-2 outline, cross-hatch and OFFLINE text; remove the broad red fill wash so the exception stays legible against the emerald and silver palette."
+    },
+    {
+      "priority": "P1",
+      "change": "Enlarge the SVG scene to at least 70% of main and reconnect only feasible routes through CELL-MILL-1, with no route through the offline cell."
+    },
+    {
+      "priority": "P2",
+      "change": "Separate the nonce and identity pre-flight pending states from the not-run investigation evidence status with clearer 16px status lines and independent focus order."
+    }
+  ]
 }

@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh, overflow hidden at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; independent reserved zones for rendered scene, callouts, stations and jobs with no overlap; scene at least 70% of main; single non-wrapping horizontal rail of equal targets with aria-current and arrow-key movement; all targets at least 36px; condense side content inside its reserved zone without overlap",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); brushed silver #C5CCD4 for headings and machine bodies, dim silver rgba(197,204,212,.68); emerald/neon #A8F04A primary with #050705 text, one primary per viewport; stoppedRed #E5484D only for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable in black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story",
+    "typography": "System sans; 16px/24 body minimum, 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; no label under 12px",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on real state change then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text carry meaning; 2px neon focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries the second and final logo placement; compact horizontal rail from one steps array; focusable cinematic factory SVG as dominant scene; side zone keeps pre-flight route-health checks for nonce and identity separate from the investigation evidence task under separate headings, status and controls; action bar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite for results",
+    "visualizations": "State-driven 960x540 SVG enlarged to fill at least 70% of main using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver idle machines, red only for stopped CELL-MILL-2, no route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend with pattern, marker and text; pending task proposals deliberately untracked until human approval, blocked prior tasks visible beside the approved recovery plan while replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge the factory SVG to a true 70% scene fill and remove the extra stage logo, preserving only the header logo and the opening-story placement."
+        },
+        {
+          "priority": "P1",
+          "change": "Refit empty station and job glyph boxes into legible silver machine bodies at 16px body type, keeping Receiving held and both jobs inside their reserved zones."
+        },
+        {
+          "priority": "P2",
+          "change": "Align Certificate 120 and Receiving 80 on shared tracks with DOES NOT MATCH spanning the gap, and link each bar bidirectionally to its source-evidence card."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge the SVG scene, shrink empty central space, and raise side-zone body copy to 16px/24 while keeping pre-flight nonce and identity checks visually separate from the investigation evidence task."
+        },
+        {
+          "priority": "P1",
+          "change": "Give the route select, Check selected route and Run investigation controls one clear sequence with 2px focus ring, disabled pointer style removed, and aria-live status for check results."
+        },
+        {
+          "priority": "P2",
+          "change": "Condense the bottom narration to one instruction and one status sentence inside the reserved side zone at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Make each recovery option a full radio target of at least 36px with visible selected state; selecting it must open the typed consent form rather than relying on the pre-selection primary alone."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge the scene to 70% and refit the three option cards duplicated at stage bottom so scene options and side-zone options highlight bidirectionally without competing."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise tradeoff labels and finish/incremental microcopy contrast, keeping tabular 26px metrics and one primary per viewport."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Restore a dominant factory or capacity visualization to at least 70% of main; the current task cards leave large dead space and lose the cinematic station and job zones."
+        },
+        {
+          "priority": "P1",
+          "change": "Clarify the untracked-until-approval state once per zone, reduce repeated proposal text, and keep task targets 1-3 keyboard reachable with neon focus ring."
+        },
+        {
+          "priority": "P2",
+          "change": "Show CELL-MILL-1 40h and CELL-MILL-2 24h as reserved station zones linked to the proposed tasks, at 16px minimum."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Strengthen the preview distinction for CELL-MILL-2 going offline with pattern plus text before applying, while reserving full stoppedRed treatment for the actual stopped state."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge route lines and node labels, remove empty glyph boxes, and keep the feasible neon route from implying passage through the preview-offline cell after invalidation."
+        },
+        {
+          "priority": "P2",
+          "change": "Condense side-zone explanation to one instruction and one consequence sentence so the selector and primary fit comfortably at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Apply stoppedRed only to CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; keep its interior dark and ensure no feasible route is drawn through it toward JOB-1002."
+        },
+        {
+          "priority": "P1",
+          "change": "Keep pre-flight nonce and identity checks in their own headed zone, separate from the investigation evidence panel, with independent status and controls at 16px."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge the SVG to fill the reserved scene and raise small route and legend labels to the 12px minimum with patterns and markers, not colour alone."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Give the constrained Split option a non-interactive disabled treatment with pattern and reason text, and ensure the remaining two options open the typed consent form on selection."
+        },
+        {
+          "priority": "P1",
+          "change": "Preserve stoppedRed solely on CELL-MILL-2 and show fresh-review-required status in the action bar centre with one primary for the revised option."
+        },
+        {
+          "priority": "P2",
+          "change": "Refit empty node boxes into readable machine bodies and enlarge the scene so stations and jobs occupy their independent zones without overlap."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Keep 3 blocked prior tasks, the approved revised plan and 3 proposed replacements visibly coexisting, with replacements clearly untracked until approval and not merged into the blocked group."
+        },
+        {
+          "priority": "P1",
+          "change": "Apply stoppedRed to the CELL-MILL-2 offline station in the scene and link it bidirectionally to the blocked-task explanation in the side zone."
+        },
+        {
+          "priority": "P2",
+          "change": "Reduce repeated proposal wording, enlarge task targets, and add arrow-key movement across tasks 1-3 with a 2px focus ring and reduced-motion support."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Make the three proof stages a clear sequential control set: Verify enabled, Seal locked until verify, Retain locked until seal, each at least 36px with text status beyond colour."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise passphrase guidance and field text to 16px, keep one primary per viewport, and announce each completion through aria-live polite."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge the 01-03 stage cards to use the reserved scene more fully while keeping the side evidence zone independent and non-overlapping."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Confirm completion state is terminal and non-actionable where sealed, removing pointer style from completed Verify and retaining only the intended checkpoint action state."
+        },
+        {
+          "priority": "P2",
+          "change": "Keep the final status sentence concise in the action bar centre and ensure the Complete rail item uses aria-current with keyboard access."
+        },
+        {
+          "priority": "P2",
+          "change": "Verify no additional logo placement appears in the closing scene; only the header and opening-story placements remain, in immutable black, emerald/neon and brushed silver."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

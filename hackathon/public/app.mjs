@@ -1,6 +1,6 @@
-import {stageScene,wrapSceneTitle} from './stage-scene.mjs';
+import {stageScene,wrapSceneTitle,tileTitle} from './stage-scene.mjs';
 import {capacityStatus,stageFor,focusResult,storyView,shockPreview,proofChecklist,consentProgress,proposalBanner,proofActionGate} from './command-center.mjs';
-import {certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel} from './factory-layout.mjs';
+import {factoryPositions,certificateComparison,completionStatus,openingStakes,adjacentPath,acceptedFlow,evidencePlainEnglish,evidenceDetailLabel} from './factory-layout.mjs';
 import {routeHealthView} from './route-health.mjs';
 import {investigationStatus} from './investigation-status.mjs';
 import {passphraseFeedback,passphraseInputStatus} from './passphrase.mjs';
@@ -249,23 +249,39 @@ function renderFactory(){
     });
     scene.tasks.forEach((task,i)=>{const g=add('g',{'aria-label':'Inspect tracked task '+(i+1)+': '+task.title},null,hero),x=24+i*(800/scene.tasks.length);box(x,height-70,Math.min(80,800/scene.tasks.length-4),44,g,i===inspectedTask?'#A8F04A':'#71877a');label(x+10,height-40,String(i+1),20,g);activate(g,()=>{inspectedTask=i;renderBoard();renderFactory();});});
    }else{
-   add('text',{x:24,y:48,'font-size':24,fill:'#e8ede6','font-weight':700},scene.blocked+' BLOCKED PRIOR · '+scene.tasks.length+(scene.pending?' PROPOSED · AWAITING APPROVAL':' TRACKED TASKS'),hero);
+   add('text',{x:24,y:32,'font-size':20,fill:'#e8ede6','font-weight':700},scene.blocked+' BLOCKED PRIOR · '+scene.tasks.length+(scene.pending?' PROPOSED · UNTRACKED UNTIL APPROVAL':' TRACKED TASKS'),hero);
+   const machineContext=add('g',{'data-scene-band':'board-machines'},null,hero);
+   const stationY=58,stationH=Math.max(220,height-280);
+   const receivingSlot={x:24,width:200};
+   const receivingCard=add('g',{'data-scene-machine':'RECEIVING',class:'factory-node board-machine'},null,machineContext);
+   box(receivingSlot.x,stationY,receivingSlot.width,stationH,receivingCard,accepted?'#A8F04A':'#71877a');
+   label(receivingSlot.x+16,stationY+36,'RECEIVING',22,receivingCard,{'font-weight':700});
+   label(receivingSlot.x+16,stationY+70,accepted?'VERIFIED RECOVERY':'MATERIAL HOLD',18,receivingCard,{fill:'#c5ccd4'});
+   label(receivingSlot.x+16,stationY+110,state.snapshot.incident.heldMaterialId,18,receivingCard);
+   scene.cells.forEach((cell,i)=>{
+    const slot=factoryPositions(250,824,scene.cells.length,360)[i];
+    const card=add('g',{'data-scene-machine':cell.cellId,class:'factory-node board-machine'},null,machineContext);
+    box(slot.x,stationY,slot.width,stationH,card,!cell.online?'#E5484D':accepted&&activeCells.has(cell.cellId)?'#A8F04A':'#71877a');
+    label(slot.x+18,stationY+40,cell.cellId,24,card,{'font-weight':700});
+    label(slot.x+18,stationY+80,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',18,card,{fill:'#c5ccd4'});
+    label(slot.x+18,stationY+120,cell.online?cell.availableHours+'h capacity':'replan required',28,card,{'font-weight':700});
+   });
    const task=scene.tasks[Math.min(inspectedTask,scene.tasks.length-1)];
    if(task){
-    add('rect',{x:24,y:72,width:800,height:240,rx:10,fill:'#122219',stroke:'#a2ca8d','stroke-width':2,'stroke-dasharray':scene.pending?'6 4':'none'},null,hero);
-    add('text',{x:44,y:110,'font-size':20,fill:'#c6ed8d'},task.id+' · '+(scene.pending?'UNTRACKED UNTIL APPROVAL':task.status.toUpperCase()),hero);
-    wrapSceneTitle(task.title,60).forEach((line,n)=>add('text',{x:44,y:150+n*36,'font-size':24,fill:'#e8ede6','font-weight':600},line,hero));
-    add('text',{x:44,y:280,'font-size':20,fill:'#c5ccd4'},task.owner+' · due +'+Number(task.dueHours.toFixed(2))+'h · after '+(task.dependsOn.join(', ')||'Ready'),hero);
+    const overview=add('g',{'data-scene-overview':inspectedTask,class:'scene-task-overview'},null,hero);
+    const overviewY=stationY+stationH+16;
+    add('rect',{x:24,y:overviewY,width:800,height:86,rx:8,fill:'#122219',stroke:'#a2ca8d','stroke-width':2,'stroke-dasharray':scene.pending?'6 4':'none'},null,overview);
+    add('text',{x:44,y:overviewY+28,'font-size':16,fill:'#c6ed8d'},task.id+' · '+(scene.pending?'UNTRACKED UNTIL APPROVAL':task.status.toUpperCase()),overview);
+    add('text',{x:44,y:overviewY+54,'font-size':18,fill:'#e8ede6','font-weight':600},tileTitle(task.title,70,1)[0],overview);
+    add('text',{x:44,y:overviewY+76,'font-size':16,fill:'#c5ccd4'},task.owner+' · due +'+Number(task.dueHours.toFixed(2))+'h · after '+(task.dependsOn.join(', ')||'Ready'),overview);
    }
    scene.tasks.forEach((task,i)=>{
-    const x=24+(i%3)*(800/3),width=800/3-8;
-    const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'},null,hero);tile.style.display=Math.floor(i/3)===Math.floor(inspectedTask/3)?'':'none';
+    const count=Math.max(scene.tasks.length,1),width=Math.min(120,(800/count)-8),x=24+i*(800/count),y=height-58;
+    const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'},null,hero);
     const select=()=>{if(scene.pending)document.querySelector('[data-proposal-index="'+i+'"]')?.click();else{inspectedTask=i;renderBoard();renderFactory();}};tile.addEventListener('click',select);tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
-    add('rect',{x,y:330,width,height:Math.min(180,height-420),rx:5,fill:i===inspectedTask?'#25422b':'#101b14',stroke:'#9ab88c'},null,tile);
-    add('text',{x:x+10,y:362,'font-size':20,fill:'#c6ed8d'},task.id,tile);
-    wrapSceneTitle(task.title,Math.max(12,Math.floor((width-24)/10))).forEach((line,n)=>add('text',{x:x+10,y:390+n*24,'font-size':18,fill:'#e8ede6'},line,tile));
+    add('rect',{x,y,width,height:42,rx:5,fill:i===inspectedTask?'#25422b':'#101b14',stroke:i===inspectedTask?'#A8F04A':'#9ab88c'},null,tile);
+    add('text',{x:x+12,y:y+28,'font-size':18,fill:'#e8ede6','font-weight':700},String(i+1)+' · '+task.id,tile);
    });
-   scene.tasks.forEach((task,i)=>{const g=add('g',{'aria-label':'Inspect task '+(i+1)+': '+task.title},null,hero),x=24+i*(800/scene.tasks.length),w=Math.min(80,800/scene.tasks.length-4);box(x,height-55,w,42,g,i===inspectedTask?'#A8F04A':'#71877a');label(x+10,height-27,String(i+1),20,g);activate(g,()=>document.querySelector('[data-proposal-index="'+i+'"]')?.click());});
    }
   }else{
    add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.events+' events. One verified chain.',hero);
@@ -281,67 +297,69 @@ function renderFactory(){
  }else{
   // Reserved vertical bands span the full viewBox: compare/callout | bay | machines | jobs | options. Shock callouts sit in a side column, never over stations.
   const shockStage=stage==='shock';
-  const topBand=shockStage?10:Math.max(118,Math.round(height*0.18));
-  const bayY=topBand+6;
-  const machineY=bayY+30;
-  const optionY=height-92;
-  const nodeH=Math.min(118,Math.max(96,Math.round((optionY-machineY-56)/2)));
-  const jobY=machineY+nodeH+Math.max(36,Math.round((optionY-machineY-nodeH*2-16)/2));
+  const topBand=shockStage?8:Math.max(108,Math.round(height*0.15));
+  const bayY=topBand+4;
+  const machineY=bayY+26;
+  const optionY=height-88;
+  const nodeH=Math.min(148,Math.max(108,Math.round((optionY-machineY-40)/2)));
+  const jobY=machineY+nodeH+Math.max(28,Math.round((optionY-machineY-nodeH*2-12)/2));
   const lineRight=shockStage?640:876;
-  const cellCount=Math.max(cells.length,1),machinePitch=Math.min(210,(lineRight-210)/cellCount);
+  const receivingWidth=210-16-14;
+  const cellCount=Math.max(cells.length,1),machineSlots=factoryPositions(210,lineRight,cellCount,Math.max(210,Math.floor((lineRight-210-13*(cellCount-1))/cellCount)));
   if(shockStage){
    const cell=cells.find(c=>c.cellId===$('shock-cell').value);
    const panel=add('g',{'data-layout-zone':'callouts','data-scene-band':'callout'},null,callouts);
    box(658,machineY,226,nodeH+56,panel,'#9caea0','#152019');
-   label(674,machineY+32,cell?cell.cellId:'CAPACITY',20,panel,{'font-weight':700});
-   label(674,machineY+60,'CAPACITY PREVIEW',16,panel,{fill:'#c5ccd4'});
-   label(674,machineY+98,cell?cell.availableHours+'h → 0h':'Outage applied',28,panel,{'font-weight':700});
-   label(674,machineY+132,cell?'Apply → invalidate':'Fresh decision',16,panel,{fill:'#c5ccd4'});
-   if(cell){const idx=cells.findIndex(c=>c.cellId===cell.cellId);const mx=210+idx*machinePitch+93;add('path',{d:`M ${mx+93} ${machineY+54} H 658`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
+   label(674,machineY+32,cell?cell.cellId:'CAPACITY',22,panel,{'font-weight':700});
+   label(674,machineY+60,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
+   label(674,machineY+98,cell?cell.availableHours+'h → 0h':'Outage applied',30,panel,{'font-weight':700});
+   label(674,machineY+132,cell?'Apply → invalidate':'Fresh decision',18,panel,{fill:'#c5ccd4'});
+   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width} ${machineY+nodeH/2} H 658`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
   }else{
-   const qty=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').slice(0,2),comparison=certificateComparison(qty,400);
-   qty.forEach((e,i)=>{const g=add('g',{'data-evidence':e.evidenceId,'data-scene-band':'compare','aria-label':evidencePlainEnglish(e)},null,callouts),y=10+i*52;
+   const qty=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity').slice(0,2),comparison=certificateComparison(qty,420);
+   qty.forEach((e,i)=>{const g=add('g',{'data-evidence':e.evidenceId,'data-scene-band':'compare','aria-label':evidencePlainEnglish(e)},null,callouts),y=8+i*48;
     activate(g,()=>{$('evidence').parentElement.open=true;focusPanel('evidence');$(e.evidenceId)?.focus();});g.addEventListener('focus',()=>highlightEvidence(e.evidenceId));g.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));
-    label(24,y+32,i?'Receiving':'Certificate',22,g);label(200,y+32,String(e.quantity.value),32,g,{'text-anchor':'end'});
-    box(220,y,400,40,g);add('rect',{x:220,y,width:comparison.widths[i],height:40,rx:5,fill:i?'#A8F04A':'#c5ccd4'},null,g);
+    label(24,y+30,i?'Receiving':'Certificate',24,g);label(210,y+30,String(e.quantity.value),34,g,{'text-anchor':'end'});
+    box(230,y,420,38,g);add('rect',{x:230,y,width:comparison.widths[i],height:38,rx:5,fill:i?'#A8F04A':'#c5ccd4'},null,g);
    });
-   label(650,40,'DOES NOT',24,callouts,{class:'mismatch-label'});label(650,78,'MATCH',24,callouts,{class:'mismatch-label'});
+   label(680,36,'DOES NOT',26,callouts,{class:'mismatch-label'});label(680,72,'MATCH',26,callouts,{class:'mismatch-label'});
   }
   const bay=add('g',{'data-scene-band':'bay'},null,callouts);
-  label(24,bayY+18,'DOCK',18,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',18,bay,{class:'qa-gate scene-size-18'});
+  label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
   add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':8},null,routes);
-  for(let i=0;i<5;i++)add('rect',{x:210+i*90,y:bayY+8,width:24,height:10,rx:2,fill:accepted?'#A8F04A':'#71877a',class:accepted?'material-flow':'lot-held'},null,routes);
-  const node=(x,y,title,sub,kind,parent)=>{
+  for(let i=0;i<5;i++)add('rect',{x:210+i*90,y:bayY+8,width:28,height:12,rx:2,fill:accepted?'#A8F04A':'#71877a',class:accepted?'material-flow':'lot-held'},null,routes);
+  const node=(x,y,title,sub,kind,parent,width=186)=>{
    const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)},null,parent);
    const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#E5484D':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';
    // Captions stay inside the node box so they cannot intersect the next reserved band.
-   box(x,y,186,nodeH,g,stroke,stopped?'#2b1115':'#19271f');
-   add('path',{d:`M ${x+12} ${y+10} h 70 v 28 h -70 z M ${x+101} ${y+10} h 68 v 28 h -68 z`,fill:'#0b130e',stroke:'#8b9e90','stroke-width':2},null,g);
-   if(stopped)add('path',{d:`M ${x+10} ${y+8} l 166 40 m 0 -40 l -166 40`,stroke:'#E5484D','stroke-width':3},null,g);
+   box(x,y,width,nodeH,g,stroke,stopped?'#2b1115':'#19271f');
+   const panelW=Math.max(54,Math.min(78,Math.floor((width-36)/2)));
+   add('path',{d:`M ${x+12} ${y+10} h ${panelW} v 28 h -${panelW} z M ${x+18+panelW} ${y+10} h ${panelW} v 28 h -${panelW} z`,fill:'#0b130e',stroke:'#8b9e90','stroke-width':2},null,g);
+   if(stopped)add('path',{d:`M ${x+10} ${y+8} l ${width-20} ${Math.max(36,nodeH*0.35)} m 0 -${Math.max(36,nodeH*0.35)} l -${width-20} ${Math.max(36,nodeH*0.35)}`,stroke:'#E5484D','stroke-width':3},null,g);
    if(preview){g.classList.add('preview-offline');g.querySelector('rect').setAttribute('stroke-dasharray','8 5');}
-   label(x+12,y+56,title,20,g,{'font-weight':700});
-   label(x+12,y+88,(stopped?'OFFLINE':preview?'PREVIEW · 0h':sub).slice(0,22),16,g,{fill:'#c5ccd4'});
-   if(title==='RECEIVING'&&!accepted)label(x+14,y+32,'× HOLD',16,g,{fill:'#ff8c91',class:'hold-marker'});
+   label(x+12,y+Math.max(54,Math.round(nodeH*0.48)),title,22,g,{'font-weight':700});
+   label(x+12,y+Math.max(84,Math.round(nodeH*0.74)),(stopped?'OFFLINE':preview?'PREVIEW · 0h':sub).slice(0,Math.max(18,Math.floor(width/9))),18,g,{fill:'#c5ccd4'});
+   if(title==='RECEIVING'&&!accepted)label(x+14,y+32,'× HOLD',18,g,{fill:'#ff8c91',class:'hold-marker'});
    activate(g,()=>{for(const old of svg.querySelectorAll('.selected-node'))old.classList.remove('selected-node');g.classList.add('selected-node');$('factory-selection').hidden=false;$('factory-selection').textContent=title+' · '+sub;});
    return g;
   };
-  node(16,machineY,'RECEIVING',accepted?'VERIFIED RECOVERY':state.snapshot.incident.heldMaterialId,'idle',machines).classList.toggle('material-stopped',!accepted&&cells.every(c=>c.online));
-  cells.forEach((c,i)=>node(210+i*machinePitch,machineY,c.cellId,c.online?(activeCells.has(c.cellId)&&accepted?'RECOVERY FLOW':'AVAILABLE'):'OFFLINE',!c.online?'held':accepted&&activeCells.has(c.cellId)?'running':'idle',machines));
-  const jobPitch=Math.min(420,(lineRight-40)/Math.max(jobs.length,1));
+  node(16,machineY,'RECEIVING',accepted?'VERIFIED RECOVERY':state.snapshot.incident.heldMaterialId,'idle',machines,receivingWidth).classList.toggle('material-stopped',!accepted&&cells.every(c=>c.online));
+  cells.forEach((c,i)=>node(machineSlots[i].x,machineY,c.cellId,c.online?(activeCells.has(c.cellId)&&accepted?'RECOVERY FLOW':'AVAILABLE'):'OFFLINE',!c.online?'held':accepted&&activeCells.has(c.cellId)?'running':'idle',machines,machineSlots[i].width));
+  const jobSlots=factoryPositions(24,lineRight,Math.max(jobs.length,1),Math.max(210,Math.floor((lineRight-24-13*(Math.max(jobs.length,1)-1))/Math.max(jobs.length,1))));
   jobs.forEach((j,i)=>{
-   const x=24+i*jobPitch;
-   node(x,jobY,j.jobId,j.unitsRequired+' parts · +'+j.dueHours+'h',accepted?'running':'idle',orders);
+   const slot=jobSlots[i];
+   node(slot.x,jobY,j.jobId,j.unitsRequired+' parts · +'+j.dueHours+'h',accepted?'running':'idle',orders,slot.width);
    const cell=allocations.find(a=>a.jobId===j.jobId)?.cellId??allocations[0]?.cellId??cells.find(c=>c.online)?.cellId;
    const index=cells.findIndex(c=>c.cellId===cell&&c.online);
-   if(index>=0){const routeY=machineY+nodeH+16+i*14;
-    add('path',{d:`M ${210+index*machinePitch+186} ${machineY+nodeH/2} h 16 V ${routeY} H ${x+93} V ${jobY} `,class:accepted?'route-running selected-route':'route-held',fill:'none','stroke-width':3},null,routes);
+   if(index>=0){const routeY=machineY+nodeH+14+i*14;const machine=machineSlots[index];
+    add('path',{d:`M ${machine.x+machine.width} ${machineY+nodeH/2} h 14 V ${routeY} H ${slot.x+slot.width/2} V ${jobY} `,class:accepted?'route-running selected-route':'route-held',fill:'none','stroke-width':3},null,routes);
    }
   });
-  const optionPitch=Math.min(290,(876)/Math.max(state.analysis.recovery.options.length,1));
+  const optionCount=Math.max(state.analysis.recovery.options.length,1),optionPitch=(876-24)/optionCount;
   state.analysis.recovery.options.forEach((o,i)=>{
    const x=24+i*optionPitch,g=add('g',{'data-scene-band':'options','data-scene-option':o.optionId,'aria-label':titles[o.optionId]},null,paths);
-   box(x,optionY,Math.min(278,optionPitch-12),80,g,o.optionId===(envelope?.optionId??state.decision.optionId)?'#A8F04A':'#71877a');
-   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+28,(o.optionId===(envelope?.optionId??state.decision.optionId)?'✓ ':'')+titles[o.optionId],18,g);label(x+10,optionY+60,o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED',18,g);
+   box(x,optionY,Math.min(278,optionPitch-12),76,g,o.optionId===(envelope?.optionId??state.decision.optionId)?'#A8F04A':'#71877a');
+   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+28,(o.optionId===(envelope?.optionId??state.decision.optionId)?'✓ ':'')+titles[o.optionId],20,g);label(x+10,optionY+58,o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED',18,g);
    if(o.feasible)activate(g,()=>document.querySelector('[data-option="'+o.optionId+'"]')?.click());
   });
  }

@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  2,
-    "score":  7,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Keep Route health pre-flight for nonce and identity as a separate headed group from Investigation source evidence, each with its own status and control, as currently separated; preserve that separation when refitting."
-                  },
-                  {
-                      "priority":  "P1",
-                      "change":  "Enlarge the scene toward 70% fill by widening station and job nodes and reducing empty grid area below JOB-1002."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Raise the offline-sample explanatory text to 16px/24 and ensure the route select and Run Sample investigation are at least 36px with a 2px focus ring."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 2,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Enlarge the factory SVG toward 70% of main; the central dark void weakens the cinematic scene despite clear discrepancy tracks."
+    },
+    {
+      "priority": "P1",
+      "change": "Keep Route health pre-flight, with nonce pending and identity pending, visually and operably separate from the Investigation source-evidence panel below it, each with its own status and control."
+    },
+    {
+      "priority": "P2",
+      "change": "Make the pending pre-flight status 16px and add aria-live polite so Check selected route and Run Spark Open results are announced without conflating the two controls."
+    }
+  ]
 }

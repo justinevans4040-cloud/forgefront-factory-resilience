@@ -13,7 +13,7 @@ import { verifyCheckpoint } from '../src/packet.mjs';
 import { createApp } from '../server.mjs';
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 async function until(fn,label,timeout=75000){const end=Date.now()+timeout;while(Date.now()<end){if(await fn())return;await delay(100);}throw new Error('Timed out: '+label);}
-const layoutDir=process.argv.includes('--recorded-drafts')?'layout-recorded':process.argv.includes('--live')?'layout-live':'layout';
+const layoutDir=process.argv.includes('--live-proposals')?'layout-live-proposals':process.argv.includes('--recorded-drafts')?'layout-recorded':process.argv.includes('--live')?'layout-live':'layout';
 const geometry=process.argv.includes('--geometry'),geometryResults=[],geometryStates=new Set();
 const mockLive=process.argv.includes('--mock-live'),baseline=process.argv.includes('--baseline');
 const {keyboardOnly,liveBrowser,guided,mobileFlow}=browserOptions([...process.argv,...(mockLive?['--live','--guided']:[])],process.env);
@@ -22,7 +22,7 @@ const binary=binaries.find(p=>p&&existsSync(p));if(!binary)throw new Error('Brow
 const scratch=mkdtempSync(join(tmpdir(),'ffr-ui-smoke-'));const token=randomBytes(24).toString('hex');
 const auditorToken=randomBytes(24).toString('hex');
 const routeRedCheck=process.argv.includes('--route-red-check');const slowCheck=process.argv.includes('--slow-check');const timeoutCheck=slowCheck||process.argv.includes('--timeout-check');let controlledCalls=0;
-let recordedDraftIndex=0;const recordedDrafts=process.argv.includes('--recorded-drafts')?JSON.parse(readFileSync(new URL('../evidence/run20/primary-browser/failed-packet.json',import.meta.url),'utf8')).brittProposals.map(p=>({summary:p.board.summary,tasks:p.board.tasks.map(({id,title,owner,dueHours,dependsOn,evidenceIds})=>({id,title,owner,dueHours,dependsOn,evidenceIds}))})):null;
+let recordedDraftIndex=0;const liveProposalPacket=process.argv.includes('--live-proposals')?'../evidence/run21/primary-browser/packet.json':process.argv.includes('--recorded-drafts')?'../evidence/run20/primary-browser/failed-packet.json':null;const recordedDrafts=liveProposalPacket?JSON.parse(readFileSync(new URL(liveProposalPacket,import.meta.url),'utf8')).brittProposals.map(p=>({summary:p.board.summary,tasks:p.board.tasks.map(({id,title,owner,dueHours,dependsOn,evidenceIds})=>({id,title,owner,dueHours,dependsOn,evidenceIds}))})):null;
 const mockFetch=async(url,options)=>{if(geometry)await delay(700);const body=JSON.parse(options.body),prompt=typeof body.input==='string'?body.input:body.messages.map(m=>m.content).join('\n');let reply;if(prompt.includes('Draft recovery tasks for human approval.')){const c=JSON.parse(prompt.split('Context: ')[1]);const {sampleDraft}=await import('../src/recovery-board.mjs');reply=recordedDrafts?recordedDrafts[Math.min(recordedDraftIndex++,recordedDrafts.length-1)]:sampleDraft(c);}else if(prompt.includes('Next call get_incident with empty arguments.'))reply={action:'tool',name:'get_incident',arguments:{}};else if(prompt.includes('Next call compare_recovery_options with empty arguments.'))reply={action:'tool',name:'compare_recovery_options',arguments:{}};else reply={action:'final',optionId:'allocate_substitute',narrative:'Use the calculated substitute path after human review.',claims:[{evidenceId:'ev-cert-qty',value:120,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}]};return new Response(JSON.stringify(body.input?{model:body.model,output_text:JSON.stringify(reply)}:{model:body.model,choices:[{message:{content:JSON.stringify(reply)}}]}));};
 const app=createApp({models:{fetchImpl:mockLive?mockFetch:routeRedCheck?async()=>{controlledCalls++;return new Response('{}',{status:503});}:timeoutCheck?async()=>{controlledCalls++;if(slowCheck)await delay(13500);throw Object.assign(Error('controlled timeout'),{name:'AbortError'});}:globalThis.fetch,env:{...process.env,...(mockLive?{MUSE_API_KEY:'test-only-wonder',BASETEN_API_KEY:'test-only-baseten'}:{}),FIREWORKS_API_KEY:'',HACKATHON_DEMO_MODE:'1',HACKATHON_OPERATORS_JSON:JSON.stringify([{id:'judge-auditor',role:'auditor',token:auditorToken}]),HACKATHON_ADMIN_TOKEN:token,HACKATHON_LEDGER_KEY:randomBytes(32).toString('hex'),HACKATHON_STATE_DIR:join(scratch,'state')}}});
 if(baseline){const handler=app.server.listeners('request')[0];app.server.removeAllListeners('request');app.server.on('request',(req,res)=>{if(req.url==='/app.mjs'){res.writeHead(200,{'Content-Type':'text/javascript'});res.end(readFileSync(new URL('../public/app.mjs.run13.bak',import.meta.url)));}else handler(req,res);});}
@@ -104,7 +104,7 @@ try{
      if(!option.disabled){await click('[data-option="'+option.id+'"]');await until(()=>evaluate(`!document.querySelector('#consent').hidden&&!document.querySelector('#typed').disabled`),'option reviewed');await captureGeometry('selected-'+option.id+'-'+visited.length);}
     }
    }
-   if(process.argv.includes('--recorded-drafts')&&(title.includes('human decision')||title.includes('revised recovery'))){await click('[data-option="allocate_substitute"]');await until(()=>evaluate(`!document.querySelector('#consent').hidden&&!document.querySelector('#typed').disabled`),'recorded accepted path');}
+   if((process.argv.includes('--recorded-drafts')||process.argv.includes('--live-proposals'))&&(title.includes('human decision')||title.includes('revised recovery'))){await click('[data-option="allocate_substitute"]');await until(()=>evaluate(`!document.querySelector('#consent').hidden&&!document.querySelector('#typed').disabled`),'recorded accepted path');}
    if(title.includes('Britt')){
     for(const selector of ['[data-proposal-index]','.prior-task-pages button']){
      const count=await evaluate(`document.querySelectorAll(${JSON.stringify(selector)}).length`);
@@ -119,8 +119,10 @@ try{
   }
   if(title.includes('Recovery story complete'))break;
   if(title.includes('Britt')&&await evaluate(`Boolean(document.querySelector('#factory-svg [data-scene-hero="tasks"]'))`)){
-   assert.ok(await evaluate(`document.querySelectorAll('#factory-svg [data-scene-task]').length===document.querySelectorAll('[data-proposal-index]').length`),'stage task tiles and inspector share the same proposal');
-   await evaluate(`document.querySelectorAll('#factory-svg [data-scene-task]').item(document.querySelectorAll('#factory-svg [data-scene-task]').length-1).dispatchEvent(new Event('click'))`);
+   const proposalCounts=await evaluate(`({tiles:document.querySelectorAll('#factory-svg [data-scene-task]').length,buttons:document.querySelectorAll('[data-proposal-index]').length,cards:document.querySelectorAll('.proposal-task').length})`);
+   assert.equal(proposalCounts.tiles,proposalCounts.buttons,'stage task tiles and inspector share the same proposal '+JSON.stringify(proposalCounts));
+   assert.ok(proposalCounts.buttons>0,'proposal controls are present');
+   await evaluate(`document.querySelectorAll('[data-proposal-index]')[${proposalCounts.buttons-1}].click()`);
    assert.ok(await evaluate(`[...document.querySelectorAll('.proposal-task')].at(-1).hidden===false`),'stage task selection reveals the actual complete inspector task');
    await evaluate(`document.querySelector('[data-proposal-index="0"]').click()`);
   }

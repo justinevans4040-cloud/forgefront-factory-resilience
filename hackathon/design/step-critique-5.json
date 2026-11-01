@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  5,
-    "score":  8,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "In preview keep CELL-MILL-2 silver dashed as shown; on Apply switch only that station to stoppedRed outline, cross-hatch and OFFLINE-STOPPED text, with no route through it."
-                  },
-                  {
-                      "priority":  "P1",
-                      "change":  "Enlarge route traces between RECEIVING, CELL-MILL-1, JOB-1001 and JOB-1002 to fill more of the scene and reduce empty lower grid."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Raise preview micro-labels to 12px minimum and give Apply second shock a clear invalidating-action warning linked to the action-bar status."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 5,
+  "score": 9,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Preserve the strong neon feasible routes and preview cross-hatch, but label the preview state as PREVIEW 0h in the legend so pattern plus text carries meaning under reduced motion."
+    },
+    {
+      "priority": "P2",
+      "change": "Ensure no preview route draws through CELL-MILL-2 once applied, and add a focus ring to the Machine to take offline selector with Esc restoring the prior preview."
+    },
+    {
+      "priority": "P2",
+      "change": "Raise the small scenario-management link to a 36px target at 16px text so it is keyboard reachable without crowding the side zone."
+    }
+  ]
 }

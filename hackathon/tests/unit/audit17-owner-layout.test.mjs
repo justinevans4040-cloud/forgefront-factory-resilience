@@ -12,7 +12,7 @@ test('owner layout CSS makes the rail a compact horizontal strip and removes the
  assert.match(css,/\.guide\{[^}]*height:\s*0!important/);
  assert.match(css,/body\[data-guided=true\] \.guide\{[^}]*height:\s*32px!important/);
  assert.match(css,/#decision-bar\{[^}]*position:\s*absolute!important/);
- assert.match(css,/#factory-stage\{[^}]*padding:[^}]*56px!important/);
+ assert.match(css,/#factory-stage\{[^}]*padding:[^}]*54px!important/);
  assert.match(css,/body\[data-guided=true\] #stage-rail #workspace-switcher\{display:none!important\}/);
 });
 
@@ -29,7 +29,7 @@ test('owner layout raises body type and keeps evidence cards without forced scro
 test('incident SVG uses a filled viewBox and separates machine and comparison bands',()=>{
  assert.match(app,/viewBox',`0 0 900/);
  assert.match(app,/preserveAspectRatio','xMidYMid meet/);
- assert.match(app,/const machineY=bayY\+30/);
+ assert.match(app,/const machineY=bayY\+26/);
  assert.match(app,/const jobY=machineY\+nodeH\+/);
  assert.match(app,/data-scene-band':'compare'/);
  assert.match(app,/if\(child\.tagName!=='defs'\)child\.style\.display='none'/);

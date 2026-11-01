@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  3,
-    "score":  7,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Do not treat the pre-selection view as missing consent: on selecting any of the three paths, open the typed consent form and move focus into it with Esc to close."
-                  },
-                  {
-                      "priority":  "P1",
-                      "change":  "Enlarge the SVG scene to 70% fill; the large empty Human Decision panel should be condensed inside its reserved zone rather than displacing the scene."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Make each Select this path control at least 36px, keyboard reachable in SVG-to-side-zone order, with selected state shown by marker and text as well as neon outline."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 3,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Enlarge the scene to at least 70% of main and tighten the empty centre so the three recovery options at the bottom align with the tradeoff cards in the side zone."
+    },
+    {
+      "priority": "P1",
+      "change": "Show selected state on a recovery option card in both zones before the primary activates, and confirm selecting it opens the typed consent form."
+    },
+    {
+      "priority": "P2",
+      "change": "Increase the small Select this path label and Human decision status to 16px minimum body size where space allows, keeping micro-labels at 12px only."
+    }
+  ]
 }

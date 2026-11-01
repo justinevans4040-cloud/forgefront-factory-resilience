@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  9,
-    "score":  7,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Keep Verify, Seal and Retain as sequential gated stages with locked states carried by text and marker, and keep the passphrase field separate from the ledger control."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Enlarge the three stage cards to use more scene height while keeping the right evidence zone in its fixed track at 1366x768."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Raise checklist and passphrase guidance to 16px/24 and add aria-live polite announcement only when verification changes state."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 9,
+  "score": 7,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Make the three stage cards fill the scene zone more fully; the tall empty cards at 01-03 underuse the at-least-70% scene area."
+    },
+    {
+      "priority": "P1",
+      "change": "Raise the side-zone instructional text, passphrase hint and waiting states to 16px/24, keeping only headings and step markers as micro-labels."
+    },
+    {
+      "priority": "P2",
+      "change": "Add clear disabled styling with text reasons on Seal and Retain controls, plus a 2px focus ring on Verify ledger as the single primary action."
+    }
+  ]
 }

@@ -14,7 +14,7 @@ test('factory scenes reserve independent callout, machine, job and option bands'
  assert.match(app,/data-scene-band':'options'/);
  assert.match(app,/ResizeObserver/);
  assert.match(app,/CAPACITY PREVIEW/);
- assert.match(app,/shockStage\?10:Math\.max\(118/);
+ assert.match(app,/shockStage\?8:Math\.max\(108/);
  assert.doesNotMatch(app,/const machineY=incidentStage\?190:150/);
 });
 
@@ -34,6 +34,8 @@ test('proof cards use available scene height and paths expose shared selection h
 test('geometry harness fails on intersecting text or node boxes and is wired into the guided smoke',()=>{
  assert.match(geometry,/export function measureLayout/);
  assert.match(geometry,/hits\.push/);
+ assert.match(geometry,/closest\('g\.factory-node/);
+ assert.doesNotMatch(geometry,/a\.band&&b\.band&&a\.band===b\.band&&a\.kind==='text'&&b\.kind==='text'\)continue/);
  assert.match(geometry,/fill/);
  assert.match(geometry,/bodyPx/);
  assert.match(primary,/measureLayout/);

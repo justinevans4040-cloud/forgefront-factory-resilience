@@ -1,19 +1,19 @@
 # The Meta Hackathon build — current evidence
 
-Run twenty records the owner layout regression, reserved-zone Shock capacity preview, geometry measurements at both desktop sizes, and genuine Muse Wonder screenshot reviews. Scene fill uses the rendered viewBox.
+Run twenty-one records fresh full-screen layout measurements, source-grounded recovery and live Meta route checks.
 
 | Question | Evidence |
 | --- | --- |
-| Wonder and Baseten identity | [Primary pre-flight](run20/providers.json) |
-| Layout states and screenshots | [Geometry measurements](run20/layout/results.json), [Shock preview wide](run20/layout/037-preview-CELL-MILL-2-wide.png), [Shock preview desktop](run20/layout/038-preview-CELL-MILL-2-desktop.png) |
-| Owner opening gate | [Metrics](run20/owner-layout/layout-metrics.json), [Wide](run20/owner-layout/incident-wide.png), [Desktop](run20/owner-layout/incident-desktop.png) |
-| Sample recovery | [Summary](run20/primary-browser-offline/summary.json) |
-| Controlled live-route regression | [Summary](run20/primary-browser-mocked/summary.json) |
-| Live Wonder/Baseten guide | [Summary](run20/primary-browser/summary.json) |
-| Genuine Wonder reviews | [Iteration 70 retained](../design/iteration-70.json), [71](../design/iteration-71.json), [72](../design/iteration-72.json) |
-| Product verification | [Suite note](run20/product-final.txt) |
-| Root verification | [Suite note](run20/root-check.txt) |
+| Wonder and Baseten identity | [Primary pre-flight](run21/providers.json) |
+| Every measured step and state at both sizes | [Geometry and screenshot index](run21/layout/results.json) |
+| Opening wide | [Fresh full-screen capture](run21/layout/001-step-1-wide.png) |
+| Opening desktop | [Fresh compact capture](run21/layout/002-step-1-desktop.png) |
+| Sample recovery | [Summary](run21/primary-browser-offline/summary.json) |
+| Controlled live-route regression | [Summary](run21/primary-browser-mocked/summary.json) |
+| Genuine Wonder reviews | [73](../design/iteration-73.json), [74](../design/iteration-74.json), [75](../design/iteration-75.json), [76](../design/iteration-76.json), [77](../design/iteration-77.json), [78 retained](../design/iteration-78.json) |
 
-Retained Muse Wonder candidate after the reserved-zone layout is iteration seventy: 6, 7, 7, 6, 8, 7, 7, 8, 7, 8. Owner horizontal-rail and reserved callout/station/job zones outrank any vertical-rail preference. Visual freeze remains open until every step reaches nine.
+Owner horizontal rail and reserved callout, station and job zones govern the visual design. Visual freeze remains open until every reviewed step reaches nine.
 
 [Contributions](../HACKATHON_CONTRIBUTIONS.md) · [Controls](../SECURITY_CONTROLS.md).
+
+Live run: [Wonder/Baseten guide](run21/primary-browser/summary.json). Checks: product suite 272, root suite 253, [keyboard accessibility](run21/a11y-check.txt), [public tree](run21/public-tree-check.txt), [judge](run21/judge-check.txt), [secret scan](run21/gitleaks-check.txt). Latest original Wonder scores (iteration 78): 8,8,8,7,9,8,8,8,7,9.

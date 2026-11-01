@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; independent reserved zones for rendered scene, callouts, stations and jobs with no overlap; scene at least 70% of main; single non-wrapping horizontal rail of equal targets, aria-current, arrow-key movement; all targets at least 36px; condense side content inside its reserved zone",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); brushed silver #C5CCD4 headings and machine bodies, dim silver rgba(197,204,212,.68); emerald/neon #A8F04A primary with #050705 text, one primary per viewport; stoppedRed #E5484D only for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text; official logo immutable black, emerald/neon green and brushed silver at native aspect in exactly two placements: header and opening story",
+    "typography": "System sans; 16px/24 body minimum, 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; no label under 12px",
+    "motion": "160-220ms ease-out selection and panels; one 240ms route trace on real state change then static; no loops or pulses; prefers-reduced-motion removes transitions while pattern, marker and text carry meaning; 2px neon focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header 48px with official logo left and Lock recovery room right; opening story carries second and final logo placement; compact horizontal rail from one steps array; focusable cinematic factory SVG as dominant scene; side zone keeps pre-flight route-health checks for nonce and identity separate from investigation evidence task under separate headings, status and controls; action bar 56px Back left, status centre, one primary right; selecting a recovery option opens typed consent form; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite for results",
+    "visualizations": "State-driven 960x540 SVG enlarged to fill at least 70% of main using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver idle machines, red only for stopped CELL-MILL-2, no route through offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend with pattern, marker and text; pending task proposals deliberately untracked until human approval, blocked prior tasks visible beside approved recovery plan while replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge factory SVG to at least 70% of main and reduce empty mid-scene space so stations, jobs and routes read as one cinematic scene at 1366x768."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise side-zone body and Source detail text to 16px/24; keep three evidence callouts in their reserved zone without shrinking type."
+        },
+        {
+          "priority": "medium",
+          "change": "Add visible 2px neon focus ring with offset on rail, SVG nodes and Inspect source evidence, with arrow-key movement on the rail."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep Route health pre-flight with nonce and identity checks visually and semantically separate from Investigation source evidence, each with its own heading, status and control."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise route selector, helper text and investigation status to 16px/24 and give Check selected route and Run Spark Open clear enabled and pending states."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge scene toward 70% fill by refit of station and job spacing while preserving held MAT-ALLOY-A and the 120 versus 80 mismatch tracks."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make selecting any of the three recovery paths visibly select it in both scene cards and side comparison, then open the typed consent form from Review recovery option."
+        },
+        {
+          "priority": "medium",
+          "change": "Align finish and incremental metrics in tabular columns at 26px with 16px labels so 83h, 35h and 17.5h tradeoffs scan instantly."
+        },
+        {
+          "priority": "low",
+          "change": "Add bidirectional highlighting between bottom scene options and side-zone rows on hover and keyboard focus."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Restore a compact factory and station strip inside the reserved scene zone so the accepted Split plan remains spatially visible behind the proposed t1 to t3 work."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep proposed tasks clearly marked untracked until approval and separate from tracked work; retain 0 blocked prior wording exactly as shown."
+        },
+        {
+          "priority": "medium",
+          "change": "Increase task-card body to a consistent 16px/24 and make task selectors 1, 2 and 3 at least 36px with focus ring and aria-current."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Apply stopped styling only as preview here: keep CELL-MILL-2 preview cross-hatch distinct from confirmed stopped red until Apply second shock is activated."
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the neon feasible routes and station labels so the invalidation path reads at a glance; keep no route implied through the cell going offline."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise side-zone explanatory text to 16px/24 and keep the machine selector and invalidation warning inside the reserved callout zone."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve CELL-MILL-2 in stoppedRed #E5484D only for its outline, cross-hatch and OFFLINE text, with pattern plus text so colour is not the sole signal."
+        },
+        {
+          "priority": "medium",
+          "change": "Separate nonce and identity pre-flight status from the not-run investigation evidence panel, and announce route-check results through aria-live polite."
+        },
+        {
+          "priority": "medium",
+          "change": "Refit the scene to reduce central empty area while keeping feasible routes only through online cells and Split marked constrained."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make the constrained Split row non-selectable with pattern, marker and reason text, while the two feasible paths remain fully selectable toward the typed consent form."
+        },
+        {
+          "priority": "medium",
+          "change": "Strengthen bidirectional highlighting between side comparison rows and bottom scene cards, including keyboard focus."
+        },
+        {
+          "priority": "low",
+          "change": "Raise small finish and incremental captions to at least 12px/16 and keep metrics tabular."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep 3 blocked prior tasks, approved revised plan and 3 proposed replacement tasks as three labelled groups; proposed tasks stay untracked until approval."
+        },
+        {
+          "priority": "high",
+          "change": "Preserve stoppedRed only on CELL-MILL-2 OFFLINE replan required, with cross-hatch and text in addition to colour."
+        },
+        {
+          "priority": "medium",
+          "change": "Restore more factory scene presence in the main zone by compacting task cards, and make task selectors at least 36px with a clear focus ring."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep Verify, Seal and Retain as sequential gates with Ready and Locked conveyed by text, marker and border pattern, not colour alone."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise passphrase guidance and field text to 16px/24, show character-count feedback without exposing the entry, and keep the field inside its reserved zone."
+        },
+        {
+          "priority": "medium",
+          "change": "Make the three stage cards focusable in tab order with a 2px neon focus ring and reduced-motion-safe state changes."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "medium",
+          "change": "Retain all three Sealed states with check marker plus text, and keep CELL-MILL-2 offline retained in the final status sentence."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure the added Complete rail target keeps one non-wrapping horizontal rail of equal targets with aria-current on Complete at 1366x768."
+        },
+        {
+          "priority": "low",
+          "change": "Confirm no third logo placement is introduced in the completion scene; keep only header and opening story placements."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

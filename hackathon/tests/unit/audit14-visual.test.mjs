@@ -18,11 +18,11 @@ test('opening story logo lives on the factory stage, not as a third inspector ma
 });
 
 test('certificate discrepancy tracks render enlarged source-computed bars', () => {
-  assert.match(app, /certificateComparison\(qty,400\)/);
-  assert.match(app, /height:40/);
-  assert.match(app, /y\+32,String\(e.quantity.value\),32/);
+  assert.match(app, /certificateComparison\(qty,420\)/);
+  assert.match(app, /height:38/);
+  assert.match(app, /y\+30,String\(e.quantity.value\),34/);
   assert.match(app, /'text-anchor':'end'/);
-  assert.deepEqual(certificateComparison([120, 80].map((value) => ({quantity: {value}, source: {field: 'quantity'}})), 400).widths, [400, 266.6666666666667]);
+  assert.deepEqual(certificateComparison([120, 80].map((value) => ({quantity: {value}, source: {field: 'quantity'}})), 420).widths, [420, 280]);
 });
 
 test('completion demotes proof Verify styling and strengthens sealed status contrast', () => {

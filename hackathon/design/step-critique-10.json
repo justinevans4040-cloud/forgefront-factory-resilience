@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  10,
-    "score":  8,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Align the rail and heading with the 9-step story: label this as completion after Step 9 of 9 rather than implying an extra guided step, while keeping Complete marked current."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Keep all three sealed stages equal in emphasis with check, pattern and SEALED text, and retain CELL-MILL-2 offline status in the final status line."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Ensure Back remains the only action-bar control here with no duplicate primary, and give Export independent checkpoint a 2px focus ring and at least 36px height."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 10,
+  "score": 9,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Preserve the sealed three-card completion state, but remove the neon outline around the hash-chain status line if it reads as an extra interactive control; reserve neon emphasis for the Complete rail state and status bar."
+    },
+    {
+      "priority": "P2",
+      "change": "Give the Complete rail item aria-current and ensure Back plus the side-zone export control retain visible focus rings in tab order."
+    },
+    {
+      "priority": "P2",
+      "change": "Keep final metrics 70, 35h and 48h at 26px tabular size and confirm the action-bar sealed summary fits one line at 1366x768 without truncation."
+    }
+  ]
 }

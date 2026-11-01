@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  4,
-    "score":  6,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "Restore a visible factory scene presence: shrink the oversized t1 proposal card so station and job zones remain independently reserved and the scene does not become only task cards."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Keep the 3 proposed tasks clearly labelled untracked until approval, distinct from tracked work, and raise small due/after text to 16px."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Condense the duplicated proposal detail in the right zone into its fixed track so Approve and Decline remain visible without crowding the action bar."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 4,
+  "score": 7,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Refit the left board so the proposed t1-t3 cards, station capacity and numbered markers occupy the scene zone without the large empty band above the stations."
+    },
+    {
+      "priority": "P1",
+      "change": "Reduce duplication between the left proposal cards and the right proposal detail; make bidirectional highlighting link t1-t3 across zones instead of repeating full text."
+    },
+    {
+      "priority": "P2",
+      "change": "Clarify in 16px that the 3 proposed tasks remain untracked until approval, while keeping Approve and Decline as the only approval controls in their reserved zone."
+    }
+  ]
 }

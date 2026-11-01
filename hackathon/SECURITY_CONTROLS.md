@@ -130,3 +130,7 @@ Guided passphrase entry stays disabled until verification matches the current le
 | Complete task inspection | Browser checks contain badge, title, owner and deadline inside the selected card and inspect tracked work after approval | primary-guide browser regressions |
 
 These checks extend the SOC 2-style control mapping.
+
+## Current verification continuity
+
+Design review refuses an existing iteration before any provider request or evidence write. Overview tiles retain the full task title in their accessible name and selected inspector. Keyboard verification uses visible controls, opens route disclosures before selection, and retains full acceptance, second-shock, encrypted-export, reset and auditor checks. Source and approval boundaries remain unchanged. Coverage: `tests/unit/run21-layout.test.mjs` and the real keyboard smoke.

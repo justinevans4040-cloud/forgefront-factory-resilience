@@ -27,13 +27,18 @@ export function measureLayout(){
   add(r,r.getBoundingClientRect(),(g.getAttribute('aria-label')||'node').slice(0,90),'node',g.getAttribute('data-scene-band'));
  }
  const intersects=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>0&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>0;
- const related=(a,b)=>a.el===b.el||a.el.contains(b.el)||b.el.contains(a.el)||a.el.parentElement===b.el||b.el.parentElement===a.el||a.el.parentElement===b.el.parentElement;
+ // Labels drawn on their own card/node are intentional nesting; every other pair must stay clear.
+ const ownerGroup=el=>el.closest('g.factory-node,g[data-scene-option],g[data-scene-task],g[data-scene-overview],g[data-scene-machine],g[data-evidence],g[data-scene-band="callout"]');
+ const related=(a,b)=>{
+  if(a.el===b.el||a.el.contains(b.el)||b.el.contains(a.el))return true;
+  if(a.el.parentElement===b.el||b.el.parentElement===a.el)return true;
+  const ga=ownerGroup(a.el),gb=ownerGroup(b.el);
+  return Boolean(ga&&ga===gb);
+ };
  const hits=[];
  for(let i=0;i<entries.length;i++)for(let j=i+1;j<entries.length;j++){
   const a=entries[i],b=entries[j];
   if(related(a,b))continue;
-  // Same reserved band may share a panel; different bands must never collide.
-  if(a.band&&b.band&&a.band===b.band&&a.kind==='text'&&b.kind==='text')continue;
   if(intersects(a.box,b.box))hits.push({a:a.label,b:b.label,kind:a.kind+'/'+b.kind,bands:[a.band,b.band],boxes:[a.box,b.box]});
  }
  const stage=document.querySelector('#factory-stage').getBoundingClientRect(),svg=document.querySelector('#factory-svg'),s=svg.getBoundingClientRect();

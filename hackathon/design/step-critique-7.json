@@ -1,20 +1,20 @@
-﻿{
-    "iteration":  70,
-    "step":  7,
-    "score":  7,
-    "fixes":  [
-                  {
-                      "priority":  "P1",
-                      "change":  "On selecting a feasible revised path, open the typed consent form before acceptance; keep Review revised option disabled or clearly pending until a path is chosen."
-                  },
-                  {
-                      "priority":  "P1",
-                      "change":  "Preserve red only on CELL-MILL-2, show Split constrained with hatch, marker and reason text, and never draw a route through that cell."
-                  },
-                  {
-                      "priority":  "P2",
-                      "change":  "Condense the empty Human Decision area inside its reserved zone and enlarge station and job nodes to increase scene fill."
-                  }
-              ],
-    "model":  "muse-wonder-1.0"
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 78,
+  "step": 7,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Preserve the constrained Split card cross-hatch and explanation, but raise its FINISH and INCREMENTAL placeholder labels to readable silver contrast."
+    },
+    {
+      "priority": "P1",
+      "change": "Link each side-zone path card to its bottom scene card with bidirectional highlighting and a visible selected marker before the typed consent form opens."
+    },
+    {
+      "priority": "P2",
+      "change": "Enlarge the central scene void into the SVG so JOB-1002 remains spatially tied to CELL-MILL-1 after CELL-MILL-2 stops."
+    }
+  ]
 }

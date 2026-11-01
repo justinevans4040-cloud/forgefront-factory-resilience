@@ -45,3 +45,7 @@ The primary-guide test selects the final proposed task and returns to the first,
 ## Current scene coverage
 
 The opening focuses on source comparison and affected jobs. The outage scene derives lost capacity from the selected machine. Task scenes and inspector selection share actual proposal or tracked-board records; the source-state helper is tested with different counts, states and titles. Proof blocks derive each sealing outcome from the current ledger head. The browser guide verifies stage-to-inspector selection, full card content bounds, tracked-shell inspection, all three viewport sizes and retained-state review. Wonder request-budget tests verify the actual outbound JSON; current live evidence repeats the full recovery sequence.
+
+## Current layout and keyboard coverage
+
+Regression coverage includes band-spanning factory positions, detached live machine context, bounded overview titles, immutable design iterations, content-sized task inspectors and visible keyboard navigation through route disclosures. Fresh Sample and controlled-route geometry plus the bounded live Meta guide are indexed in current evidence. Genuine Wonder reviews 73–75 preserve original scores; the all-step visual-freeze target remains open.

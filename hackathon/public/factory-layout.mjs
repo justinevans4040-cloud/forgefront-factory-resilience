@@ -47,3 +47,11 @@ export function acceptedFlow(option,parts){
  for(const a of allocations)totals.set(a.cellId,(totals.get(a.cellId)??0)+a.hours);
  return {parts,materials:[...new Set(detail.materialId?[detail.materialId]:(detail.draws??[]).map(d=>d.materialId))],assignments:[...totals].map(([cellId,hours])=>({cellId,hours:Math.round(hours*100)/100}))};
 }
+
+// Span the whole reserved band; keep a gap even as the station count grows.
+export function factoryPositions(left,right,count,nodeWidth=186){
+ if(!Number.isSafeInteger(count)||count<1)return [];
+ const width=Math.min(nodeWidth,(right-left-13*(count-1))/count);
+ const pitch=count>1?(right-left-width)/(count-1):0;
+ return Array.from({length:count},(_,i)=>({x:left+i*pitch,width}));
+}
