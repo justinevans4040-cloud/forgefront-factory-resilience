@@ -1,0 +1,197 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px Header / 52px GuideStrip / minmax(0,1fr) / 56px DecisionBar; cols 184px StepRail / minmax(0,1fr) FactoryStage / 360px EvidenceInspector at 1366x768; FactoryStage at least 55vw and 60vh, no page scroll, only inspector and task lists scroll internally",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, silver #C5CCD4 for headings and machine bodies, silverDim rgba(197,204,212,.68), border rgba(197,204,212,.22); primary #A8F04A on #050705, one per viewport; stoppedRed #E5484D reserved exclusively for stopped CELL-MILL-2 outline, cross-hatch and OFFLINE-STOPPED text, preserving the required exception; official logo immutable in black, emerald/neon green and brushed silver at native aspect, exactly two placements: header and opening story, never recolored, cropped, redrawn or duplicated",
+    "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step; minimal narration; tabular alignment for quantities, time and cost",
+    "motion": "160-220ms ease-out for selection and panels; one 240ms route trace on a real state change, then static; no loops, pulses or glows; prefers-reduced-motion removes transitions while pattern, marker and text still carry meaning; visible focus ring on every interactive element",
+    "components": "Header 48px with official logo at left and Lock recovery room at right; opening story carries the second and final logo placement; StepRail generated from one steps array with aria-current, arrow-key movement and 36-40px targets; GuideStrip 52px with no duplicate primary; focusable cinematic FactoryStage SVG; EvidenceInspector 360px keeping pre-flight route-health checks for nonce and identity visually and semantically separate from the distinct investigation evidence task, never conflating their controls or status; DecisionBar 56px with Back left, status centre and one primary right; selecting a recovery option opens the typed consent form; skip-to-stage first, then header, rail, guide, SVG nodes, inspector and DecisionBar in tab order; Enter/Space activate, Esc closes, aria-live=polite announces results only",
+    "visualizations": "State-driven 960x540 SVG using real state only: MAT-ALLOY-A held, 40+30=70 units, feasible routes only in neon, silver for idle machines, red only for stopped CELL-MILL-2, never a route through the offline cell; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap; bidirectional SVG-to-inspector highlighting; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend using pattern, marker and text; pending task proposals deliberately untracked until human approval, while blocked prior tasks remain visible beside an approved recovery plan as replacement tasks await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Remove the extra logo block in the inspector; retain only the header logo and the opening-story placement, and give that saved height to source evidence."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge the 120 versus 80 comparison tracks and place DOES NOT MATCH in clear space so the discrepancy reads instantly at 1366x768."
+        },
+        {
+          "priority": "P2",
+          "change": "Link each evidence row to its SVG track and machine node with hover, focus ring and bidirectional highlighting."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Separate pre-flight nonce and identity route-health checks into their own labelled group, distinct in heading, border and status from the investigation task below."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge the route selector to a 40px minimum target and add a clear selected-state check plus focus ring."
+        },
+        {
+          "priority": "P2",
+          "change": "Shorten the offline explanation to one instruction and one status sentence so the primary action is visible without inspector scrolling."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Add a visible focus ring and live character-match state to the typed consent field, keeping Accept disabled until the exact phrase matches."
+        },
+        {
+          "priority": "P2",
+          "change": "Move SELECTED text off the price figure and align finish and incremental values in fixed tabular columns across all three paths."
+        },
+        {
+          "priority": "P2",
+          "change": "On selection, trace only the chosen feasible route once in the SVG, leaving stopped and idle machines visually quiet."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Keep PROPOSED - UNTRACKED UNTIL APPROVAL attached to each task card, not only the panel header, so no proposal reads as tracked work."
+        },
+        {
+          "priority": "P1",
+          "change": "Reduce route-label overlap around MAT-ALLOY-B and the two job allocations by shifting labels into clear SVG lanes."
+        },
+        {
+          "priority": "P2",
+          "change": "Make the inspector task list fully keyboard reachable with arrow keys, a visible focus ring and an announced untracked status."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Strengthen the preview state for CELL-MILL-2 with dashed red outline, PREVIEW marker and text, while reserving solid red cross-hatch for the applied stopped state."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge the machine selector to 40px and pair the dropdown change with an immediate SVG preview and status-centre warning in the DecisionBar."
+        },
+        {
+          "priority": "P2",
+          "change": "Dim the Scenario Management admin text or move it into a clearly secondary zone so Apply second shock remains the sole primary."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Sharpen the solid red cross-hatch and OFFLINE label on CELL-MILL-2 and confirm no feasible route line touches or crosses that cell."
+        },
+        {
+          "priority": "P1",
+          "change": "Keep pre-flight nonce and identity route-health separate from the reinvestigation evidence action, with independent headings, statuses and buttons."
+        },
+        {
+          "priority": "P2",
+          "change": "Surface the change summary, 3 to 2 feasible paths, as a compact delta chip beside the stage title rather than a full-width dark band."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Keep CONSTRAINED Split available capacity disabled with its reason visible, and prevent its radio control from receiving activation."
+        },
+        {
+          "priority": "P1",
+          "change": "Add a visible focus ring, exact-match progress and aria-live confirmation to the revised typed consent field before Accept revised decision can enable."
+        },
+        {
+          "priority": "P2",
+          "change": "Align the constrained row placeholders so finish and cost columns stay tabular with the two feasible options."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Visually split the inspector into Blocked prior tracked work and Proposed untracked replacements, stating beside the approved plan that replacements await approval."
+        },
+        {
+          "priority": "P1",
+          "change": "Fix clipped route labels near the recovery flow line by moving allocation text below the neon path with leader dots."
+        },
+        {
+          "priority": "P2",
+          "change": "Add counts, 3 blocked and proposed count untracked, as small summary chips above the task lists to speed scanning within the viewport."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Order the proof actions as a numbered sequence: enter passphrase, seal packet, verify ledger, export independent checkpoint, with only the current step enabled."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge the passphrase field and its rule text, and announce strength and completion through text and marker, never colour alone."
+        },
+        {
+          "priority": "P2",
+          "change": "Compress the Before-After strip so all proof controls fit at 1366x768 without pushing the DecisionBar primary below the fold."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 9,
+      "fixes": [
+        {
+          "priority": "P2",
+          "change": "Add a completion summary band with sealed packet, 18 events, revised plan accepted and CELL-MILL-2 offline retained, using text and markers alongside colour."
+        },
+        {
+          "priority": "P2",
+          "change": "Set final focus to the Recovery story complete heading and mark the rail completion item aria-current for keyboard and screen-reader users."
+        },
+        {
+          "priority": "P2",
+          "change": "Keep the completion logo count at two total placements; retain the header mark and do not add a celebratory duplicate in the inspector."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

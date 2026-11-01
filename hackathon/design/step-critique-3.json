@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 3,
-  "score": 6,
+  "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Fix inspector clipping: DETERMINISTIC COMPARISON header is cut at the viewport top; give the inspector its own scroll region starting below the GuideStrip."
+      "priority": "high",
+      "change": "Keep the typed consent form visibly bound to the selected option; move focus into the phrase field after selection and return focus to that option on Esc."
     },
     {
-      "priority": "P1",
-      "change": "Keep typed consent form tied to the selected path and show phrase, character count and expiry together; enable Accept only when the exact phrase matches, with aria-live result."
+      "priority": "medium",
+      "change": "Add tabular alignment and a selected marker plus text label to each option so time and cost scan without color alone."
     },
     {
-      "priority": "P2",
-      "change": "Replace tiny Select this path pills with full-row radio targets of at least 40px and a checked marker plus text."
+      "priority": "low",
+      "change": "Reduce the repeated option cards inside the stage to a compact accepted-route trace, freeing stage height for the machines."
     }
   ]
 }

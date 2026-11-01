@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 2,
-  "score": 8,
+  "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Label the pre-flight block explicitly as nonce/identity route-health checks and keep it visually separate from the distinct Run Sample investigation action below."
+      "priority": "high",
+      "change": "Separate ROUTE HEALTH PRE-FLIGHT, including nonce and identity status, from the investigation task with distinct headings, controls and status regions."
     },
     {
-      "priority": "P2",
-      "change": "Increase route-select text to 13px and add a focus-visible outline; keep offline/no-network status as text plus marker, not dot alone."
+      "priority": "medium",
+      "change": "Enlarge the route select to a 44px target with a visible focus ring and label its offline state without relying on color."
     },
     {
-      "priority": "P2",
-      "change": "Move the no-model-yet status into the DecisionBar centre so the primary Run Sample investigation is the sole neon action."
+      "priority": "low",
+      "change": "Trim the lower inspector copy to one status sentence so Run Sample investigation stays visible without crowding at 1366x768."
     }
   ]
 }

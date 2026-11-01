@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 10,
   "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Replace the rail checkmark-only completion item with Recovery story complete text plus aria-current, matching the 9-step rail pattern."
+      "priority": "high",
+      "change": "Replace the active Recovery complete primary with a completion status and a single Lock recovery room action, preventing a duplicate completion signal."
     },
     {
-      "priority": "P1",
-      "change": "Keep PACKET SEALED · 18 events · revised plan accepted in the DecisionBar and make Review recovery proof open a proof summary, not restart verification."
+      "priority": "medium",
+      "change": "Mask the passphrase permanently and add a text Complete marker to Seal, Verify and Retain so state does not rely on check glyphs alone."
     },
     {
-      "priority": "P2",
-      "change": "Ensure the sealed state on the SVG uses SEALED pattern/marker in the legend and does not recolor the immutable header logo or add any third logo placement."
+      "priority": "low",
+      "change": "Mark the final rail item aria-current and add a concise sealed-packet summary with 18 events and the retained offline state."
     }
   ]
 }

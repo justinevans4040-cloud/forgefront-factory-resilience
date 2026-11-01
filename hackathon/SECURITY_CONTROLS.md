@@ -12,7 +12,7 @@ Concrete controls protect the recovery decision from open room through evidence 
 | Scoped memory | Recovery context is encrypted in event storage and filtered by session, operator and scenario | Britt memory/scoping tests |
 | Primary Meta routes | Britt uses Wonder or Baseten; explicit offline Sample remains separate | Board provider tests |
 | Read-only review | Back and completed-step controls render retained states; task controls are disabled during review | Primary-guide browser regression |
-| Meta design review | Local screenshots sent to allowlisted primary routes with bounded deadlines; output schema and public-text checks precede evidence writes | Design-director mocked tests |
+| Meta design review | Local screenshots sent to allowlisted primary routes with bounded deadlines; schema validation plus public-text sanitize/accept before evidence writes; Baseten structured-layout fallback only | Design-director mocked sanitize and fallback tests |
 
 ## Command-center control continuity
 

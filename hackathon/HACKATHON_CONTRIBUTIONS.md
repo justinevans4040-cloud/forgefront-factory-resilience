@@ -2,6 +2,18 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Build run fifteen
+
+- Closed the decision-inspector clipping path: nearest-result focus, bounded decision stage, capacity preview that distinguishes selected outage from applied offline state, and stronger operator legibility.
+- Fixed Muse Wonder design-director public-text acceptance: sanitize blocked tokens without changing scores, harden the prompt, and keep Baseten as structured-layout fallback only. Genuine Wonder screenshot reviews continued through iterations 24–28 under evidence/run15.
+- Kept Spark Open on Baseten as the guided live investigator so Wonder receives a structured handoff; Britt drafting prefers Wonder with bounded Baseten fallback; Fireworks stays optional backup and is never requested by the standard guide or provider check.
+- Retained Sample and live primary-guide proof with Back/read-only rail review, project board and Britt approvals. Official logo and showcase bytes remain unchanged.
+
+## Independent audit thirteen
+
+- Verified run-fifteen claims against retained evidence and independent suites after the ENOSPC interruption: product and root suites, judge/public-tree, Sample/mocked/live guides, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub.
+- Raised the decision inspector and proof-panel fit from Muse Wonder critiques, then re-ran genuine Wonder reviews. Recorded the prompt/orchestration map and live Wonder/Baseten results in the audit report.
+
 ## Build run fourteen
 
 - Designed with Muse Wonder: five fresh screenshot reviews, iterations 15–19, preserve the actual returned scores and prioritized critique. Frozen inputs remain with current evidence.

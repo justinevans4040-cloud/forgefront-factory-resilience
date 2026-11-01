@@ -1,0 +1,198 @@
+{
+  "model": "meta-models/muse-spark-open",
+  "primaryFailures": [
+    "muse-wonder-1.0: Unsafe public review"
+  ],
+  "inputMode": "structured-layout",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh overflow:hidden; rows 48px Header /52px GuideStrip /1fr /56px DecisionBar, cols 184px StepRail /minmax(0,1fr) FactoryStage /360px EvidenceInspector at 1366x768; FactoryStage >=55vw and >=60vh dominant, no page scroll, internal scroll only in EvidenceInspector, all chrome fits viewport",
+    "colorTokens": "bg #050705, panel #0B100B, raised #121A12, silver #C5CCD4 headings/machine bodies, silverDim rgba(197,204,212,.68), border rgba(197,204,212,.22); primary #A8F04A on #050705 one per viewport; stoppedRed #E5484D reserved exclusively for stopped/offline CELL-MILL-2 outline/OFFLINE-STOPPED text/cross-hatch - preserve exception to emerald/silver palette; official logo immutable black/emerald-neon-green/brushed-silver native aspect exactly two placements header + opening story never recolored/cropped/redrawn/duplicated",
+    "typography": "System sans; 24/30 stage title, 15/20 panel title, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction + one status sentence per step, minimal narration, tabular numbers aligned",
+    "motion": "160-220ms ease-out selection/panel, single 240ms route trace on real state change then static; no loops/pulses/glows; prefers-reduced-motion removes transitions preserving pattern+marker+text meaning",
+    "components": "Header 48px with official logo left + Lock recovery room; StepRail from single steps array 9 steps + completion 36-40px aria-current buttons remove dead workspace disclosures; GuideStrip 52px without duplicate primary; focusable cinematic FactoryStage SVG; EvidenceInspector 360px keeps pre-flight nonce/identity route-health checks visually and semantically separate from distinct investigation evidence task - never conflate controls; DecisionBar 56px Back left/status centre/one primary right - selecting recovery option opens typed consent form never infer missing from pre-selection; skip-to-stage first then header>rail>guide>SVG nodes>inspector>DecisionBar, arrows in rail/SVG, Enter/Space activate, Esc closes, aria-live=polite for results only",
+    "visualizations": "State-driven 960x540 SVG: MAT-ALLOY-A held 40+30=70 units feasible routes only silver idle neon feasible/accepted red only stopped CELL-MILL-2 never route through offline cell; aligned Certificate 120 vs Receiving 80 tracks with DOES NOT MATCH spanning gap; bidirectional SVG-inspector highlight; persistent Running/Held/Blocked/Offline-Stopped/Feasible-Accepted legend with pattern+marker+text; pending task proposals deliberately untracked until human approval - blocked prior tasks coexist with approved recovery plan while replacements await approval"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Lock to 100dvh no page scroll; EvidenceInspector internal scroll only; verify FactoryStage >=55vw/>=60vh at 1366x768 without overflow"
+        },
+        {
+          "priority": "P2",
+          "change": "Trim to one verb instruction + one status sentence; move excess narrative to inspector disclosure; enforce 26px tabular metrics"
+        },
+        {
+          "priority": "P3",
+          "change": "Apply stoppedRed only to CELL-MILL-2 outline/label/cross-hatch; add persistent legend with pattern+marker+text"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Separate pre-flight nonce/identity health checks into distinct card from investigation evidence task with separate headings and aria-labels"
+        },
+        {
+          "priority": "P2",
+          "change": "Make FactoryStage SVG nodes keyboard focusable with bidirectional inspector highlight; show feasible routes in neon not through offline cell"
+        },
+        {
+          "priority": "P3",
+          "change": "Enforce single primary in DecisionBar; GuideStrip holds no duplicate CTA; retain GuideStrip 52px height"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Keep option cards as triggers that open typed consent form on select; do not judge pre-selection screenshot as missing functionality"
+        },
+        {
+          "priority": "P2",
+          "change": "Ensure one primary per viewport in DecisionBar (Back left/status centre/primary right); remove any extra primary in content"
+        },
+        {
+          "priority": "P3",
+          "change": "Preserve exactly two logo placements overall; no additional logo instance in this step chrome; keep logo native aspect"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Show blocked prior tasks coexisting with approved recovery plan; keep pending replacement proposals untracked until human approval"
+        },
+        {
+          "priority": "P2",
+          "change": "Update SVG neon for approved recovery routes, silver idle, red stays only on stopped cell; no route through offline"
+        },
+        {
+          "priority": "P3",
+          "change": "Maintain viewport fit; inspector internal scroll; Tab order header>rail>guide>SVG>inspector>DecisionBar"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Trigger single 240ms route trace only on real state change then static; no loops/pulses; respect prefers-reduced-motion static pattern"
+        },
+        {
+          "priority": "P2",
+          "change": "Collapse lengthy disruption narrative to one instruction + status; relocate detail to inspector expandable section"
+        },
+        {
+          "priority": "P3",
+          "change": "Ensure rows 48/52/1fr/56 fit 768px height; prevent Stage or inspector pushing overflow"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Restore distinct inspector sections: pre-flight route-health vs reinvestigation evidence task - separate groups visually and semantically"
+        },
+        {
+          "priority": "P2",
+          "change": "Drive SVG from changed capacity state; update feasible routes; legend with pattern+marker+text remains visible"
+        },
+        {
+          "priority": "P3",
+          "change": "Set StepRail aria-current correctly for step 6; 36-40px targets; arrow keys navigate rail and SVG nodes"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Treat pre-selection view as valid; selecting revised recovery option opens typed consent form - do not assume missing form"
+        },
+        {
+          "priority": "P2",
+          "change": "Display blocked tasks + approved revised plan together; pending proposals remain untracked until approved"
+        },
+        {
+          "priority": "P3",
+          "change": "Apply colorTokens bg #050705 panel #0B100B raised #121A12 border rgba(197,204,212,.22); one primary per viewport"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Reflect replanned recovery work in inspector with approved vs blocked states; pending stays hidden until approval"
+        },
+        {
+          "priority": "P2",
+          "change": "Keep cinematic SVG state-driven MAT-ALLOY-A 40+30=70 and Certificate 120 vs Receiving 80 gap with DOES NOT MATCH"
+        },
+        {
+          "priority": "P3",
+          "change": "Ensure skip-to-stage first focus; Enter/Space activate, Esc closes any overlay; aria-live polite only"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Show final verification in SVG: neon feasible/accepted, silver idle, red only stopped CELL-MILL-2; no offline routing"
+        },
+        {
+          "priority": "P2",
+          "change": "Constrain typography 24/30 title 13/19 body 11/14 micro-labels; reduce narration to instruction+status; inspector scrolls internally"
+        },
+        {
+          "priority": "P3",
+          "change": "Keep DecisionBar pinned 56px; Back/status/primary layout; ensure viewport fit at 1366x768 without page scroll"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Preserve required second logo placement in opening/completion story immutable black/emerald/brushed-silver native aspect; header logo remains first - no other instances"
+        },
+        {
+          "priority": "P2",
+          "change": "Keep full-screen 100dvh layout centered FactoryStage >=55vw; no overflow; completion metrics tabular aligned"
+        },
+        {
+          "priority": "P3",
+          "change": "Honor reduced-motion static visuals; retain persistent legend pattern+marker+text; full keyboard access intact"
+        }
+      ]
+    }
+  ]
+}

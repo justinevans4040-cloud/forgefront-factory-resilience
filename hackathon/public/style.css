@@ -136,3 +136,106 @@ body[data-guided=true] .story-hero{position:relative;height:48px;min-height:48px
 body[data-guided=true][data-active-stage=shock] .scenario-management{opacity:.55;order:9}body[data-guided=true][data-active-stage=shock] .scenario-management #reset{font-size:9px}
 #provider{min-height:40px}#provider:focus{outline:2px solid #c6ed8d;outline-offset:2px}
 .stage[data-stage=proof] .footer-actions>label small{display:none}.stage[data-stage=proof] .footer-actions>label::after{content:" 16–160 chars, three words or character types."}
+
+/* The Meta Hackathon build: bounded decision inspector, independent of focus scrolling. */
+@media(min-width:901px){
+ body[data-active-stage=decision] #stage-deck{overflow:hidden;scrollbar-gutter:auto}
+ .stage[data-stage=decision]{height:100%;max-height:100%;display:flex;flex-direction:column;overflow:hidden;gap:4px}
+ .stage[data-stage=decision] .section-heading{position:static;flex:0 0 auto;margin:0;padding:2px 0 0;z-index:2;background:linear-gradient(180deg,#0c120e 70%,transparent)}
+ .stage[data-stage=decision] .section-heading h2{font-size:18px;line-height:1.2;margin:0}
+ .stage[data-stage=decision] #options{flex:0 1 auto;max-height:42%;min-height:0;overflow:auto;display:grid;gap:5px;padding:0 0 4px;scrollbar-gutter:stable}
+ .stage[data-stage=decision] .option{position:relative;height:auto;min-height:58px;grid-template-rows:20px 24px;padding:6px 8px;overflow:hidden}
+ .stage[data-stage=decision] .option[data-selected=true]::before{position:absolute;right:5px;top:2px;font-size:10px;content:"SELECTED"}
+ .stage[data-stage=decision] .option.unavailable{height:auto;min-height:70px;grid-template-rows:22px auto}
+ .stage[data-stage=decision] .option button{min-height:28px;min-width:112px;margin:0;padding:6px 10px;font-size:11px}
+ .stage[data-stage=decision] .option .numbers strong{font-size:22px}
+ .stage[data-stage=decision] .decision{position:static;flex:1 1 auto;min-height:0;overflow:auto;margin:0;padding:10px 12px;border:1px solid rgba(197,204,212,.28);box-shadow:inset 0 0 0 1px rgba(168,240,74,.08)}
+ .stage[data-stage=decision] .decision input{margin:3px 0;min-height:40px;font-size:14px}
+ .stage[data-stage=decision] .decision code{padding:2px 0;font-size:13px;color:#dafb9a}
+ .stage[data-stage=decision] .decision h2{margin:2px 0;font-size:16px}
+ .stage[data-stage=decision] #consent-feedback{margin:3px 0;font-size:12px}
+ .stage[data-stage=decision] #confirm{min-height:40px}
+}
+
+/* The Meta Hackathon build: status hierarchy and legible operator controls. */
+.factory-delta{border-color:#c5ccd4;background:#132019;color:#dce7df}
+#shock-cell{min-height:40px;font-size:13px}
+.stage[data-stage=investigation] .model-controls select{font-size:13px}
+.proposal-task small,.task-card small,.task-card p{font-size:12px;line-height:1.4}
+.stage[data-stage=shock] .stage-heading p{font-size:12px;line-height:1.4}
+.metric strong,.numbers strong{font-variant-numeric:tabular-nums}
+.stage[data-stage=proof] .footer-actions>label,.stage[data-stage=proof] #passphrase-feedback{font-size:12px}
+
+/* The Meta Hackathon build: raise remaining stage fit and cinematic density. */
+@media(min-width:901px){
+ .stage[data-stage=shock] .stage-heading{padding:8px 0 4px}
+ .stage[data-stage=shock] #shock-cell{font-size:14px;min-height:44px}
+ .stage[data-stage=board] .britt-panel{max-height:100%;overflow:auto}
+ .stage[data-stage=board] #britt-feed{max-height:120px;overflow:auto;font-size:12px}
+ .stage[data-stage=proof] .results{flex:0 0 140px;height:140px}
+ .stage[data-stage=proof] .proof-action{min-height:40px}
+ #factory-status{letter-spacing:.2px;text-shadow:0 0 18px rgba(168,240,74,.18)}
+ .factory-legend{letter-spacing:.4px}
+}
+@media(prefers-reduced-motion:reduce){
+ .stage[data-stage=decision] .option,.option{transition:none}
+ #factory-status{text-shadow:none}
+}
+
+/* The Meta Hackathon build: Wonder iteration-24 P1 visual push. */
+body[data-guided=true] .story-hero,body[data-guided=true] .story-hero>.story-logo{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important}
+#typed:focus,#typed:focus-visible,#export-passphrase:focus,#export-passphrase:focus-visible,#provider:focus,#provider:focus-visible,#shock-cell:focus,#shock-cell:focus-visible{outline:2px solid #A8F04A;outline-offset:2px}
+#provider,#shock-cell{min-height:40px}
+.route-preflight{border:1px solid #6f8a74;box-shadow:inset 0 0 0 1px rgba(168,240,74,.08)}
+.stage[data-stage=decision] .option[data-selected=true]::before{content:"SELECTED";right:8px;top:4px;color:#A8F04A;background:#0b140d;padding:1px 5px;border:1px solid #A8F04A}
+.stage[data-stage=decision] .option .numbers{display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:132px}
+.stage[data-stage=decision] .option .numbers strong{font-size:22px;font-variant-numeric:tabular-nums}
+.proposal-badge{font-size:9px!important;letter-spacing:.7px;border:1px solid #A8F04A55;padding:2px 5px;display:inline-block}
+.factory-node.preview-offline rect{stroke:#E5484D;stroke-dasharray:5 4;stroke-width:2.5}
+.factory-node.preview-offline .node-caption{fill:#ffb0b3}
+#factory-svg .mismatch-label{font-size:20px;letter-spacing:1.2px}
+.stage[data-stage=proof] .footer-actions input{min-height:40px;font-size:14px}
+.stage[data-stage=proof] .proof-action{min-height:44px}
+.stage[data-stage=board] .proposal-explain{font-size:12px;color:#dafb9a;margin:0 0 8px}
+.stage[data-stage=board] .proposal-task{border:1px dashed #A8F04A66;background:#101810}
+/* The Meta Hackathon build: Wonder iteration-25 regression fixes. */
+.stage[data-stage=decision] .option[data-selected=true]::before{content:"SELECTED";left:8px;right:auto;top:4px;color:#A8F04A;background:#0b140d;padding:1px 6px;border:1px solid #A8F04A;z-index:2}
+.stage[data-stage=decision] .option[data-selected=true]{padding-top:22px}
+.stage[data-stage=decision] .option .numbers{justify-self:end;padding-right:4px;z-index:1;position:relative}
+.stage[data-stage=decision] .option.unavailable{min-height:88px;grid-template-rows:22px auto auto;align-items:start}
+.stage[data-stage=decision] .option.unavailable>p{grid-column:1/-1;white-space:normal;line-height:1.25;margin:2px 0 0;padding-right:8px;font-size:11px}
+.factory-node.preview-offline rect{stroke:#C5CCD4!important;stroke-dasharray:6 4;stroke-width:2.5}
+.factory-node.preview-offline .node-caption{fill:#C5CCD4!important}
+#factory-svg .factory-node.held rect{stroke:#9caf9f}
+#factory-svg .factory-node.held.offline-stopped rect,.factory-node rect[stroke="#E5484D"]{stroke:#E5484D}
+body[data-guided=true][data-active-stage=incident] .story-hero,body[data-guided=true][data-guide-complete=true] .story-hero{display:block!important;height:38px!important;min-height:38px!important}
+body[data-guided=true][data-active-stage=incident] .story-hero>.story-logo,body[data-guided=true][data-guide-complete=true] .story-hero>.story-logo{display:block!important;width:76px!important;height:38px!important}
+/* The Meta Hackathon build: Wonder iteration-25b held and SELECTED clarity. */
+#factory-svg .factory-node.held:not(.preview-offline) rect{stroke:#9caf9f!important;filter:none}
+#factory-svg .factory-node.held.order-bay rect{stroke:#a5b9ac!important;filter:none}
+.factory-node.preview-offline rect{stroke:#C5CCD4!important;stroke-dasharray:6 4!important;stroke-width:2.5!important;filter:none!important}
+.stage[data-stage=decision] .option[data-selected=true]::before{left:8px!important;right:auto!important;top:4px!important}
+.stage[data-stage=decision] .option[data-selected=true] .numbers{padding-top:0;margin-left:auto}
+body[data-guided=true][data-guide-complete=true] .story-hero{display:block!important;height:38px!important;min-height:38px!important}
+body[data-guided=true][data-guide-complete=true] .story-hero>.story-logo{display:block!important;width:76px!important;height:38px!important}
+/* The Meta Hackathon build: Wonder iteration-26 selected-card clarity. */
+.option[data-selected=true]::before,.stage[data-stage=decision] .option[data-selected=true]::before{content:none!important;display:none!important}
+.stage[data-stage=decision] .option[data-selected=true]{padding-top:8px}
+.stage[data-stage=decision] .option{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto;gap:4px 10px;align-items:center;min-height:64px;overflow:visible}
+.stage[data-stage=decision] .option h3{grid-column:1;grid-row:1;margin:0;padding-right:8px;font-size:13px;line-height:1.25;white-space:normal}
+.stage[data-stage=decision] .option .numbers{grid-column:2;grid-row:1/3;display:grid;grid-template-columns:72px 88px;gap:6px;margin:0;align-content:center;justify-items:end}
+.stage[data-stage=decision] .option .numbers strong{font-size:20px;line-height:1.1;font-variant-numeric:tabular-nums}
+.stage[data-stage=decision] .option button{grid-column:1;grid-row:2;justify-self:start;min-height:28px}
+.stage[data-stage=decision] .option.unavailable{min-height:92px;grid-template-rows:auto auto auto}
+.stage[data-stage=decision] .option.unavailable>p{grid-column:1/-1;grid-row:3;white-space:normal;overflow:visible;font-size:11px;line-height:1.3;margin:0}
+/* The Meta Hackathon build: Wonder iteration-27 proof panel fit. */
+.stage[data-stage=proof] .results{flex:0 0 auto;height:auto;max-height:132px;overflow:hidden;padding:10px 12px}
+.stage[data-stage=proof] .results h2{font-size:16px;margin:2px 0 6px}
+.stage[data-stage=proof] #result-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0}
+.stage[data-stage=proof] #result-metrics .metric strong{font-size:22px;line-height:1.1}
+.stage[data-stage=proof] #result-metrics .metric span{font-size:9px;letter-spacing:.4px}
+.stage[data-stage=proof] #recovery-timeline{display:none}
+.stage[data-stage=proof] .proof-action{border:1px solid #516958;padding:8px;margin:6px 0}
+.stage[data-stage=proof] .footer-actions{display:grid;grid-template-columns:1fr;gap:8px}
+/* The Meta Hackathon build: guided proof controls stay keyboard reachable. */
+body[data-guided=true] #verify,body[data-guided=true] #checkpoint{background:#101a13;color:#c6ed8d;border-color:#6e805d;box-shadow:none;font-size:11px;padding:8px}

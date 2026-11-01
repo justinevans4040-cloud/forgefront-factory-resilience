@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 9,
   "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Remove inspector vertical scrollbar overflow at 1366x768 by grouping Seal/Verify/Retain as three equal action cards inside the internal scroll area with sticky completion status."
+      "priority": "high",
+      "change": "Sequence Seal, Verify and Retain as numbered steps with disabled states until each prerequisite completes; never present them as simultaneous awaiting actions."
     },
     {
-      "priority": "P1",
-      "change": "Separate Verify ledger (DecisionBar primary) from Export independent checkpoint actions and label each Awaiting/Complete state with marker plus text."
+      "priority": "medium",
+      "change": "Add character-count and requirement feedback for the 16-160 character passphrase with a visible focus ring and aria-live result only."
     },
     {
-      "priority": "P2",
-      "change": "Enlarge passphrase helper text to 12px and show 16–160 character rule before typing, without implying custody guarantees."
+      "priority": "low",
+      "change": "Enlarge BEFORE-AFTER metrics and align 70, 35h and 48h on one tabular baseline."
     }
   ]
 }

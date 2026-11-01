@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 7,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Fix inspector top clipping again and keep the constrained Split row fully readable: reason, unavailable finish/cost shown as — with text explanation."
+      "priority": "high",
+      "change": "Show CONSTRAINED Split available capacity as disabled with pattern, marker and reason text; exclude it from keyboard focus as a selectable option."
     },
     {
-      "priority": "P1",
-      "change": "In the typed consent form, pair the fresh APPROVE phrase with Scenario changed · review required and prior-acceptance-invalidated status adjacent to the input."
+      "priority": "medium",
+      "change": "Move focus to the typed consent field when a feasible option is selected; keep Accept disabled until the exact phrase matches and say so beside the field."
     },
     {
-      "priority": "P2",
-      "change": "Use radio semantics for the three paths matching Step 3, with the selected revised path announced via aria-live only on change."
+      "priority": "low",
+      "change": "Compress option card padding so the full consent form and DecisionBar status fit without internal crowding at 768px height."
     }
   ]
 }

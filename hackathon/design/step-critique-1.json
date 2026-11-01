@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 1,
-  "score": 8,
+  "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Remove the floating duplicate logo card at the inspector top; retain only header logo plus the designated opening-story placement, neither cropped nor recolored."
+      "priority": "high",
+      "change": "Refit the salmon certificate bar to silver with a hatched mismatch segment so red stays reserved for the stopped station."
     },
     {
-      "priority": "P1",
-      "change": "Make RECEIVING, CELL-MILL-1/2 and JOB-1001/1002 focusable SVG nodes with bidirectional inspector highlighting and visible focus rings."
+      "priority": "medium",
+      "change": "Enlarge SVG route and job labels to 11px minimum and lift the 40/30 labels clear of machine outlines."
     },
     {
-      "priority": "P2",
-      "change": "Align Certificate 120 and Receiving 80 bars to one scale with labels inside the tracks so DOES NOT MATCH reads without scanning."
+      "priority": "medium",
+      "change": "Add a 2px neon focus ring to Inspect source evidence and each focusable SVG node; announce selection in the inspector."
     }
   ]
 }

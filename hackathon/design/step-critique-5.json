@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 5,
-  "score": 7,
+  "score": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Resolve contradiction: inspector lists CELL-MILL-2 as ONLINE while the SVG previews it stopped; label inspector row PREVIEW: WILL GO OFFLINE and keep red only on the stopped station preview."
+      "priority": "high",
+      "change": "Label CELL-MILL-2 as PREVIEW WILL GO OFFLINE with dashed silver outline only; apply stoppedRed cross-hatch and OFFLINE-STOPPED text only after Apply second shock."
     },
     {
-      "priority": "P1",
-      "change": "State in the DecisionBar centre exactly what Apply second shock invalidates before activation, and move Scenario Management/admin reset out of the main flow."
+      "priority": "medium",
+      "change": "Enlarge the machine select to 44px and pair its focus ring with the matching SVG preview highlight."
     },
     {
-      "priority": "P2",
-      "change": "Make the machine selector a labelled 40px control with keyboard focus ring and preview summary tied to the selected cell."
+      "priority": "low",
+      "change": "Remove the disabled Scenario Management block from the tab order and visual flow until it becomes actionable."
     }
   ]
 }

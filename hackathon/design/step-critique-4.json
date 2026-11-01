@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 4,
-  "score": 8,
+  "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep all three proposals explicitly PROPOSED · UNTRACKED UNTIL APPROVAL and ensure Approve is the only primary; Decline stays secondary in the inspector."
+      "priority": "high",
+      "change": "Preserve PROPOSED UNTRACKED UNTIL APPROVAL on every task card and in the DecisionBar until Approve is activated; do not show a tracked count for proposals."
     },
     {
-      "priority": "P2",
-      "change": "Show the accepted 40+30=70 route split on the SVG connectors to JOB-1001 and JOB-1002, not only MAT-ALLOY-B · 70 parts."
+      "priority": "medium",
+      "change": "Unclip the MAT-ALLOY-B 70 parts route labels where they cross JOB-1001 and JOB-1002; offset labels above the neon path."
     },
     {
-      "priority": "P2",
-      "change": "Add due/dependency text at 12px minimum so t1→t2→t3 order is legible at 1366x768 without zoom."
+      "priority": "medium",
+      "change": "Make Decline proposal a 40px secondary button with a focus ring instead of a low-contrast text link."
     }
   ]
 }

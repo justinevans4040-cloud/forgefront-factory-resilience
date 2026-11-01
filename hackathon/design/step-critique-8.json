@@ -1,20 +1,20 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 22,
+  "iteration": 28,
   "step": 8,
-  "score": 9,
+  "score": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep Prior tracked: 3 BLOCKED expanded or one-click expandable beside the approved revised plan, while replacement t1–t3 remain PROPOSED · UNTRACKED UNTIL APPROVAL."
+      "priority": "high",
+      "change": "Keep prior 3 BLOCKED tasks and the approved revised plan visible while replacement t1/t2 remain PROPOSED UNTRACKED UNTIL APPROVAL; label both groups explicitly."
     },
     {
-      "priority": "P2",
-      "change": "Add BLOCKED pattern/marker to the prior-work summary in the legend language so state is not colour-only."
+      "priority": "medium",
+      "change": "Collapse repeated blocked-task prose into one summary line per task with owner and reason, reducing inspector scroll."
     },
     {
-      "priority": "P2",
-      "change": "Confirm DecisionBar status Approved revised plan · replacement tasks await approval stays visible until Approve revised tasks is activated."
+      "priority": "medium",
+      "change": "Unclip route labels over JOB-1001 and JOB-1002 and add focus-ring highlighting between task cards and SVG jobs."
     }
   ]
 }

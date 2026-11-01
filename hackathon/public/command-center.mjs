@@ -6,7 +6,7 @@ export function focusResult(id,{document=globalThis.document,reducedMotion=globa
  for(const old of document.querySelectorAll('.result-highlight'))old.classList.remove('result-highlight');
  element.classList.add('result-highlight');
  if(!element.matches('button,input,select,a,summary'))element.tabIndex=-1;
- element.scrollIntoView({behavior:reducedMotion?'auto':'smooth',block:'start'});
+ element.scrollIntoView({behavior:reducedMotion?'auto':'smooth',block:'nearest',inline:'nearest'});
  element.focus({preventScroll:true});return true;
 }
 export function storyView(state,guide){
@@ -43,3 +43,5 @@ export function proofActionGate(state,guide={}){
   checkpoint:guide.verified===head&&guide.exported===head,
  };
 }
+
+export function capacityStatus(cell,preview){return !cell.online?'OFFLINE':cell.cellId===preview?'PREVIEW: WILL GO OFFLINE':'ONLINE';}
