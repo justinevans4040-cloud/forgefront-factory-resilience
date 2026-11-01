@@ -1,0 +1,20 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 14,
+  "step": 2,
+  "score": 7,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Add a distinct pre-flight checklist for nonce/identity health above the route selector, clearly separated from the Sample investigation evidence task."
+    },
+    {
+      "priority": "P1",
+      "change": "Keep the route select and Run Sample investigation state explicit: selected route, not-run status, and disabled reason must remain visible without scrolling."
+    },
+    {
+      "priority": "P2",
+      "change": "Reduce repeated offline/no-live-AI copy to one status sentence in the inspector."
+    }
+  ]
+}

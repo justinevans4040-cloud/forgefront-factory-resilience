@@ -1,0 +1,222 @@
+{
+  "model": "muse-wonder-1.0",
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "1366x768 first: 100vw x 100dvh shell, overflow:hidden, no page scroll. grid-template-columns:184px minmax(0,1fr) 360px; grid-template-rows:48px 52px minmax(0,1fr) 56px. Header spans top; single step rail left; guide above stage; cinematic factory centre; inspector right; decision bar bottom centre+right. Factory stage remains >=55% viewport width and >=60% height on every step, including board and proof steps; only inspector content may scroll internally, with its required action pinned visible.",
+    "colorTokens": {
+      "bg": "#050705",
+      "panel": "#0B100B",
+      "raised": "#121A12",
+      "action": "neon emerald #A8F04A with #050705 text",
+      "silver": "brushed silver #C5CCD4 for headings, machine bodies and structure",
+      "silverDim": "rgba(197,204,212,.68)",
+      "border": "rgba(197,204,212,.22)",
+      "stoppedRed": "#E5484D reserved only for the stopped station: red outline plus STOPPED/OFFLINE text and cross-hatch on CELL-MILL-2; never use red for held material, jobs, evidence bars, routes or generic alerts",
+      "held": "neon outline + diagonal hatch + HELD text",
+      "blocked": "silver dashed route + X marker + BLOCKED text",
+      "offline": "stoppedRed outline + cross-hatch + OFFLINE text",
+      "accepted": "solid neon route + check marker + ACCEPTED text",
+      "logo": "Supplied logo asset once in the header only, native aspect on its black field; never recolor, redraw, crop, outline or duplicate it."
+    },
+    "typography": "System sans only. Stage title 24px/30px 700, panel title 15px/20px 650, body 13px/19px, micro-label 11px/14px 700 uppercase, metrics 26px tabular-nums, currency tabular with two decimals. One verb-led instruction and one status sentence per screen; delete hero slogans, repeated offline explanations and recap copy from working surfaces.",
+    "motion": "160-220ms ease-out opacity/transform for selection and panel changes; one 240ms SVG route trace on a real state change, then static. No loops, pulses, parallax or decorative glows. @media (prefers-reduced-motion: reduce): remove transitions, animations and dash movement; show state instantly with patterns, markers and text, and render focus rings instantly.",
+    "components": {
+      "Header": "48px: immutable logo left, Forgefront Systems / FACTORY RESILIENCE, current recovery state and HUMAN DECISION right; Lock recovery room as a labelled button.",
+      "StepRail": "One rail generated from the same steps array used for every Step X of Y header. Real buttons 36-40px high; completed, current and locked states use icon, text and color; aria-current=step on current. Delete any second workflow list.",
+      "GuideStrip": "52px: Step X of Y from state, the current verb-led instruction, and one short status sentence. Do not place duplicate primary buttons here.",
+      "FactoryStage": "Focusable cinematic inline SVG with title chip, persistent legend and synced selection. It never shrinks to a thumbnail when a board or inspector opens; every node is keyboard-reachable and labelled.",
+      "EvidenceInspector": "360px task-specific panel only: evidence comparison, investigation route, decision radios, disruption control, reinvestigation comparison, task review or proof controls according to step. Required action stays visible without page scroll.",
+      "DecisionBar": "56px: Back left, required human decision or status centre, single primary next action right. Destructive and invalidating actions are separated, text-labelled and never color-only.",
+      "Keyboard": "Skip-to-stage first. Tab order: header, rail, guide, SVG nodes, inspector, decision bar. 2px neon focus outline with 2px offset. Arrow keys move within rail and SVG, Enter/Space activates, Esc closes drawers. aria-live=polite announces state results only."
+    },
+    "visualizations": {
+      "FactorySVG": "Inline SVG viewBox 0 0 960 540, cinematic side-elevation factory on black: receiving dock and held lot, QA/material-hold gate, conveyor spine, CELL-MILL-1 and CELL-MILL-2 as brushed-silver machine silhouettes, JOB-1001 and JOB-1002 order bays beneath. Silver idle strokes; neon only for feasible or accepted routes and primary selection; red only on CELL-MILL-2 when stopped/offline.",
+      "StateBinding": "Bind every node, route, badge, count and inspector row to real state only: certificate mismatch holds MAT-ALLOY-A; JOB-1001 40 parts and JOB-1002 30 parts equal the 70 held-demand units; impacted jobs, feasible paths, cell online/offline status, acceptance valid/invalidated/accepted, event count and packet sealed change SVG and inspector together. No decorative machines, unbound metrics or green routes through offline cells.",
+      "Evidence": "Certificate vs Receiving as two aligned, labelled quantity tracks with DOES NOT MATCH spanning the gap. Selecting an evidence item in the SVG highlights the matching inspector record and vice versa.",
+      "Legend": "Persistent beneath the stage: Running, Held, Blocked, Offline/Stopped and Feasible/Accepted, each with a distinct pattern, marker and text label; Offline/Stopped also uses the owner-required red."
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Remove the duplicated logo above the inspector; keep the immutable logo only once in the header."
+        },
+        {
+          "priority": "P0",
+          "change": "Replace salmon/red outlines on RECEIVING and jobs with HELD hatch and BLOCKED dashed markers; reserve red for a stopped station, and label the aligned certificate/receiving tracks DOES NOT MATCH."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge the factory to the specified stage area and make RECEIVING, cells, jobs and evidence markers keyboard-focusable with selection synced to the inspector."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Use one primary name and location: Investigate recovery in the DecisionBar; remove the conflicting Run Sample investigation button from the guide area."
+        },
+        {
+          "priority": "P1",
+          "change": "Delete the repeated Sample/offline narration and Britt investigates slogan; keep one status sentence: no model has run on this snapshot yet."
+        },
+        {
+          "priority": "P1",
+          "change": "Show the selected investigation route as a traced, labelled path through evidence nodes in the SVG, with arrow-key node navigation."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fit the already-open typed consent form inside 768px: option radios, exact APPROVE phrase input and Accept recovery decision must all be visible above the DecisionBar without clipping."
+        },
+        {
+          "priority": "P0",
+          "change": "Implement the three paths as a real radio fieldset with arrow-key selection, visible focus, and the selected plan, identifier and expiry bound to the consent input."
+        },
+        {
+          "priority": "P1",
+          "change": "Make the small option chips inside the factory stage read-only state mirrors synced to the radio selection, not a second set of controls."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Label the board Proposal awaiting approval — untracked by design, so 3 proposed and 0 tracked reads as the correct pre-approval state, not missing work."
+        },
+        {
+          "priority": "P0",
+          "change": "Keep one Approve Britt's proposal primary in the DecisionBar and place Decline proposal as a separated secondary; remove the duplicate top-right approve."
+        },
+        {
+          "priority": "P1",
+          "change": "Remove the duplicated Britt summary lines and show each proposed task once with owner, due offset and dependency in compact rows."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Name the invalidating action once as Simulate outage: CELL-MILL-2, state beside it that it invalidates the prior acceptance, and remove the differently named Apply second shock duplicate."
+        },
+        {
+          "priority": "P1",
+          "change": "Move Start a fresh scenario (admin) into a separated admin area away from the outage control."
+        },
+        {
+          "priority": "P1",
+          "change": "Replace Recovery meets the second shock hero copy with a compact accepted-plan summary so the operator sees exactly what will be invalidated."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Keep the owner-required red, cross-hatch and OFFLINE label on stopped CELL-MILL-2 only; return held jobs to hatch/dashed non-red states and block any route through CELL-MILL-2."
+        },
+        {
+          "priority": "P0",
+          "change": "Add an original-vs-current comparison in the inspector: CELL-MILL-2 online to offline and Split available capacity feasible to constrained, beside the reinvestigation control."
+        },
+        {
+          "priority": "P1",
+          "change": "Consolidate Run/Reinvestigate controls into one DecisionBar primary and delete the repeated Britt investigates and offline-route narration."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fit the already-open revised consent form at 768px so the typed APPROVE input and accept action are fully visible; compress the infeasible Split card without removing its reason."
+        },
+        {
+          "priority": "P0",
+          "change": "Keep red only on stopped CELL-MILL-2 and preview the selected substitute path only through online CELL-MILL-1."
+        },
+        {
+          "priority": "P1",
+          "change": "Put Prior acceptance invalidated — review required in the guide and DecisionBar status, bound to the revised plan identifier and expiry shown with the consent field."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Split the board into two labelled groups that can coexist: Prior tracked tasks — 3 blocked, and Revised proposal — 3 awaiting approval and untracked until approval."
+        },
+        {
+          "priority": "P0",
+          "change": "Use one Approve revised tasks primary in the DecisionBar; remove or rename the duplicate Approve Britt's proposal inside the card."
+        },
+        {
+          "priority": "P1",
+          "change": "Remove the repeated verify-material line and inspector scrollbar by showing each revised task once with its changed dependency and due offset."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Unstack the overlapping BEFORE-AFTER and EVIDENCE panels into one 360px inspector that fits 768px, with no clipped tracked-task line."
+        },
+        {
+          "priority": "P0",
+          "change": "Sequence the proof work as numbered actions: Verify ledger, enter separate passphrase, Export encrypted packet, Export independent checkpoint, with one primary per state in the DecisionBar."
+        },
+        {
+          "priority": "P1",
+          "change": "Relabel 48h as saved versus the 83h replenishment path and scope the task count so revised tracked work is not confused with prior blocked work."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Remove the clipped overlap between the proof summary and evidence panel; show packet sealed, event count and scoped task totals above the export controls without internal scrolling."
+        },
+        {
+          "priority": "P0",
+          "change": "Give the final SVG a sealed-state marker while keeping CELL-MILL-2 red and OFFLINE, the accepted route through CELL-MILL-1, and held-demand totals bound to JOB-1001 plus JOB-1002."
+        },
+        {
+          "priority": "P1",
+          "change": "Replace the duplicate Review recovery proof action with one final primary in the DecisionBar and keep Advanced plaintext downloads as a clearly separated disclosure."
+        }
+      ]
+    }
+  ]
+}

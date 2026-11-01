@@ -2,6 +2,18 @@
 
 Concrete controls protect the recovery decision from open room through evidence export. This map ties every control theme to implementation and executable verification.
 
+## Recovery work and sovereign-agent controls
+
+| Control theme | Implementation | Verification |
+| --- | --- | --- |
+| Human approval | Britt proposals are bound to actor/session, snapshot, accepted decision and a five-minute expiry; approve/decline precedes task creation | Britt workflow tests |
+| Task validation | Exact schema, allowlisted owners/evidence, finite due windows, cycle and dependency deadline rejection | Recovery board tests |
+| Durable tasks | Create, move and shock re-plan events share the encrypted HMAC-anchored ledger and encrypted export | Britt workflow tamper/export tests |
+| Scoped memory | Recovery context is encrypted in event storage and filtered by session, operator and scenario | Britt memory/scoping tests |
+| Primary Meta routes | Britt uses Wonder or Baseten; explicit offline Sample remains separate | Board provider tests |
+| Read-only review | Back and completed-step controls render retained states; task controls are disabled during review | Primary-guide browser regression |
+| Meta design review | Local screenshots sent to allowlisted primary routes with bounded deadlines; output schema and public-text checks precede evidence writes | Design-director mocked tests |
+
 ## Command-center control continuity
 
 | Control theme | Implementation | Verification |

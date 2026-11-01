@@ -1,0 +1,20 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 14,
+  "step": 4,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Mark every Britt task consistently as PROPOSED - UNTRACKED UNTIL APPROVAL and keep Approve/Decline as the only tracking-changing controls."
+    },
+    {
+      "priority": "P2",
+      "change": "Add dependency order t1>t2>t3 arrows and due/after-Ready metadata in tabular type so the proposal can be scanned without reading prose."
+    },
+    {
+      "priority": "P2",
+      "change": "Link MAT-ALLOY-B 70 parts in the SVG to the selected substitute card in the inspector with shared hover/focus highlight."
+    }
+  ]
+}

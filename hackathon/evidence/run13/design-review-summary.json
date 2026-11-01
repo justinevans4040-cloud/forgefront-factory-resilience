@@ -1,0 +1,1086 @@
+[
+  {
+    "path": "design/iteration-1.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 4
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Fit 1366x768 with zero page scroll: remove the stacked header notice, oversized guide card, recap banner, and hero panel; replace with 52px header, 56px guide strip, center factory stage, 340px evidence inspector, and 60px decision bar inside a 100dvh shell"
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Add the missing cinematic factory SVG as the dominant center surface: receiving dock, material hold/QA gate, stopped production line, and the 2 impacted production orders, all driven by the certificate-discrepancy state; remove the empty concentric-arc hero decoration"
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Reconcile step counts from one state source: screen says Step 1 of 7, sidebar shows 5 items, supplied guided steps list 8; render the count and rail labels from the same guided-steps array and mark Step 1 with aria-current=step"
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Bring the actual task into the first viewport: make Inspect source evidence the primary button in the decision bar and open the certificate-versus-receiving evidence in the right inspector by default instead of a collapsed disclosure below the fold"
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-2.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 5
+      },
+      {
+        "step": 2,
+        "score": 5
+      },
+      {
+        "step": 3,
+        "score": 4
+      },
+      {
+        "step": 4,
+        "score": 4
+      },
+      {
+        "step": 5,
+        "score": 3
+      },
+      {
+        "step": 6,
+        "score": 4
+      },
+      {
+        "step": 7,
+        "score": 5
+      },
+      {
+        "step": 8,
+        "score": 3
+      },
+      {
+        "step": 9,
+        "score": 3
+      },
+      {
+        "step": 10,
+        "score": 5
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Remove the duplicated logo and One bad cert hero from the right panel; open Certificate vs Receiving evidence there by default and make Inspect source evidence the DecisionBar primary."
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Replace red rectangular boxes with the cinematic state SVG: Receiving held with hatch, both mill cells AWAITING DECISION, dashed blocked routes to JOB-1001 and JOB-1002."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Bind investigation to the SVG: make ev-cert-qty, ev-recv-qty and ev-sub-stock focusable evidence nodes; selecting one highlights its route and inspector record, and a completed investigation traces the calculated recovery routes."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Compress the right panel to route label, one select, Check selected route as secondary, Investigate recovery as the only primary, and one status line; delete repeated offline explanations."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Fit the decision in 768px: convert the three tall option cards to compact selectable radio rows comparing finish and incremental cost, and keep the APPROVE phrase input plus seal action visible in the inspector/DecisionBar without scrolling."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Link option selection to the factory: preview that option's feasible route and affected jobs on the SVG before acceptance; keep held/blocked states pattern-and-label based, not red-only."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Turn the prose task list into three distinct reviewable task cards before approval, each with task name, dependency, due state and linked JOB/CELL node; selecting a card highlights the accepted SVG path."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Compress Britt 4.0 to a slim proposal header and fit To do / In progress / Done as three compact columns or a segmented board within the stage height; move Approve/Decline to the DecisionBar with Approve primary."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "Show the actual disruption task in the inspector at 768px: CELL-MILL-2 preselected as outage target, consequence text, and Simulate a machine outage as primary; do not let the project board occupy this step."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "On application, immediately change header, footer and SVG from RECOVERY ACCEPTED to ACCEPTANCE INVALIDATED: CELL-MILL-2 OFFLINE cross-hatch, its routes dashed/blocked, and the next action changed to reinvestigation."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Replace the repeated shock-simulation panel with the reinvestigation panel: retain the previously selected route, show CELL-MILL-2 OFFLINE / CELL-MILL-1 ONLINE constraints, and make Run investigation the single primary."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Fix the outage target conflict: do not default the selector to CELL-MILL-1 after CELL-MILL-2 is already offline; disable an already-applied outage and label it APPLIED."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Use the same compact radio-row comparison as Step 3 and keep the revised APPROVE input and acceptance action visible without inspector scrolling."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Resolve the state contradiction: the map says RECOVERY ACCEPTED and Approve Britt's proposal is active while a task says CELL-MILL-2 unavailable, fresh acceptance required. Gate Approve on one authoritative revised-acceptance state and align banner, board and buttons."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Fix numbering from one steps array: header Step 8 Britt replans must not coexist with rail items labelled 08 Verify and retain evidence and 09 Britt replans the recovery work."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Replace the project-board inspector with the actual proof task: ledger verification status, 18-event hash-chain state, export action, separate passphrase field and independent-checkpoint retention instruction, all visible at 768px."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Remove the duplicate rail entry 10 Verify and retain evidence and derive header and rail totals from the same steps array."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Reconcile completion numbering: header Step 9 of 9 Recovery story complete and rail 11 Recovery story complete must both be generated from the supplied steps array as the final step."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Keep the compact Before-After summary, but bring the retained-evidence passphrase completion and final export/retention action fully into the viewport instead of cutting them off below the fold."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-3.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 5
+      },
+      {
+        "step": 2,
+        "score": 5
+      },
+      {
+        "step": 3,
+        "score": 4
+      },
+      {
+        "step": 4,
+        "score": 4
+      },
+      {
+        "step": 5,
+        "score": 3
+      },
+      {
+        "step": 6,
+        "score": 3
+      },
+      {
+        "step": 7,
+        "score": 5
+      },
+      {
+        "step": 8,
+        "score": 3
+      },
+      {
+        "step": 9,
+        "score": 2
+      },
+      {
+        "step": 10,
+        "score": 5
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Delete the duplicate Incident/Investigate/Decide/Shock/Project board/Proof list below the guided rail; keep one rail with aria-current=step."
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Open 'Inspect source evidence' by default in the inspector as aligned Certificate vs Receiving tracks labelled DOES NOT MATCH, and make it the DecisionBar primary."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Bind investigation to the SVG: after Investigate recovery runs, trace only the calculated feasible routes and sync ev-cert-qty, ev-recv-qty and ev-sub-stock selection with inspector records."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Delete 'Find the recovery path.' and the repeated offline sentences; keep route label, one select, Check selected route, Investigate recovery as the only primary, and one status line."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Show the exact APPROVE phrase input and Seal acceptance action inside the 768px viewport; 'No acceptance recorded' alone cannot complete this step."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Convert the three 'Review this option' cards into compact selectable radio rows; selecting one previews its feasible route and affected jobs on the SVG before acceptance."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Restore the factory stage to the same large geometry as Steps 1-3; move the board into the inspector instead of shrinking the SVG to an illegible thumbnail."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Before approval show only the three proposed task rows with dependency and due state; populate To do/In progress/Blocked/Done only after approval, and move Approve/Decline into the DecisionBar."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "Replace the project-board inspector with the actual disruption task: CELL-MILL-2 preselected as outage target, its consequence in one sentence, and Simulate a machine outage as the sole primary."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "On application, immediately switch header, DecisionBar, footer and SVG to ACCEPTANCE INVALIDATED, with CELL-MILL-2 cross-hatched OFFLINE and its routes dashed BLOCKED."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Replace the repeated shock panel with the reinvestigation panel: retain the previously selected route, show original vs changed constraints, and make Run investigation the single primary."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Do not default Outage target to CELL-MILL-1 after CELL-MILL-2 is already offline; disable that outage and label it APPLIED."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Reuse the compact radio-row comparison and keep the revised APPROVE phrase input plus acceptance action visible in the inspector and DecisionBar without scrolling."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Make 'Split available capacity' a non-selectable radio with its focusable reason 'requires at least two online compatible cells'; show em-dash finish and cost only for that infeasible row."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Eliminate the page scrollbar at 1366x768: use segmented To do/In progress/Blocked/Done views or a compact 2x2 board, keep the SVG at full stage size, and put Approve in the DecisionBar."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Resolve the contradiction between '3 blocked', an active Approve Britt's proposal and RECOVERY ACCEPTED: gate Approve on the single authoritative revised-acceptance state and show each task's blocked reason."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Replace the entire project-board inspector with the proof task: ledger verification status, hash-chain event state, Verify ledger, export action, separate passphrase field and independent-checkpoint retention instruction, all visible at 768px."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Remove 'Draft recovery tasks' as the primary on this step and derive the Step 9 header and rail from one steps array with no duplicate proof entry."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Generate header and rail from the same steps array so this tenth supplied screen is not labelled 'Step 9 of 9' while the rail adds a separate unnumbered completion item."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Fix the final SVG state: route accepted work through CELL-MILL-1 only, render CELL-MILL-2 cross-hatched OFFLINE with a blocked route, and label both jobs '18 EVENTS · PACKET SEALED'; remove the green route through the offline cell to JOB-1002."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-4.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 5
+      },
+      {
+        "step": 2,
+        "score": 5
+      },
+      {
+        "step": 3,
+        "score": 4
+      },
+      {
+        "step": 4,
+        "score": 4
+      },
+      {
+        "step": 5,
+        "score": 6
+      },
+      {
+        "step": 6,
+        "score": 4
+      },
+      {
+        "step": 7,
+        "score": 5
+      },
+      {
+        "step": 8,
+        "score": 3
+      },
+      {
+        "step": 9,
+        "score": 4
+      },
+      {
+        "step": 10,
+        "score": 5
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Delete the duplicate Incident/Investigate/Decide/Shock/Project board/Proof list below the guided rail; keep one rail with aria-current=step."
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Open 'Inspect source evidence' by default in the inspector as aligned Certificate 120 vs Receiving 80 tracks labelled DOES NOT MATCH, and make it the DecisionBar primary."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Bind investigation to the SVG: after Investigate recovery runs, trace only the calculated feasible routes and sync ev-cert-qty, ev-recv-qty and ev-sub-stock selection with inspector records."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Delete 'Find the recovery path.' and the repeated offline sentences; keep the route label, one select, Check selected route, Investigate recovery as the only primary, and one status line."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Show the exact APPROVE phrase input and Seal acceptance action inside the 768px viewport; 'No acceptance recorded' alone cannot complete this step."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Convert the three 'Review this option' cards into compact selectable radio rows; selecting one previews its feasible route and affected jobs on the SVG before acceptance."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Restore the factory stage to the same large geometry as Steps 1-3; move the board into the inspector as segmented To do/In progress/Blocked/Done views instead of shrinking the SVG to an illegible thumbnail and clipping columns at 768px."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Before approval show only the three proposed task rows with dependency and due state; populate tracked columns only after approval, and move Approve/Decline into the DecisionBar with no internal Britt panel scrollbar."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "On Simulate a machine outage, immediately switch header, DecisionBar, footer and SVG to ACCEPTANCE INVALIDATED, with CELL-MILL-2 cross-hatched OFFLINE and its routes dashed BLOCKED."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "Replace generic 'Show next action' with 'Simulate a machine outage' as the sole primary, and move 'Start a fresh scenario (admin)' out of the working flow as a separated, text-labelled destructive action."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Replace the repeated Step 2 investigation panel with the reinvestigation panel: retain the previously selected route, show original vs changed constraints, and make Run investigation the single primary."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Show the CELL-MILL-2 outage as APPLIED in the changed constraints and do not reset the status to 'No model has run on this snapshot yet' after the outage event."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Reuse the compact radio-row comparison and keep the revised APPROVE phrase input plus Seal revised acceptance visible in the inspector and DecisionBar without scrolling."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Make 'Split available capacity' a disabled, non-selectable radio: remove its 'Review this option' button, keep its focusable reason 'requires at least two online compatible cells', and show em-dash finish and cost only for that row."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Eliminate the page scrollbar at 1366x768: use segmented board views in the inspector, keep the SVG at full stage size, and put Approve Britt's proposal in the DecisionBar."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Resolve the contradiction between '3 blocked', an active Approve button and RECOVERY ACCEPTED: gate Approve on the single authoritative revised-acceptance state, show each task's blocked reason, and remove the green route from offline CELL-MILL-2 to JOB-1002."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Add the missing proof task before export: ledger verification status, hash-chain event state and a Verify ledger primary in the DecisionBar; do not leave 'Show next action' as the only forward control."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Fix the final SVG state: route accepted work through CELL-MILL-1 only, render CELL-MILL-2 cross-hatched OFFLINE with a dashed BLOCKED route, and remove the green route through it to JOB-1002."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Generate header and rail from the same steps array so this tenth supplied screen is labelled Step 10 of 10 or unnumbered Complete, not 'Step 9 of 9' plus a separate rail completion item."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Fix the sealed SVG state: accepted route through CELL-MILL-1 only, CELL-MILL-2 cross-hatched OFFLINE with blocked route, and both job bays labelled with the sealed packet state; remove the green route through the offline cell."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-5.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 5
+      },
+      {
+        "step": 2,
+        "score": 4
+      },
+      {
+        "step": 3,
+        "score": 4
+      },
+      {
+        "step": 4,
+        "score": 3
+      },
+      {
+        "step": 5,
+        "score": 6
+      },
+      {
+        "step": 6,
+        "score": 4
+      },
+      {
+        "step": 7,
+        "score": 4
+      },
+      {
+        "step": 8,
+        "score": 3
+      },
+      {
+        "step": 9,
+        "score": 5
+      },
+      {
+        "step": 10,
+        "score": 4
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Delete the duplicate Incident/Investigate/Decide/Shock/Project board/Proof list below the guided rail; keep one rail with aria-current=step."
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Open Inspect source evidence by default in the inspector as aligned Certificate 120 vs Receiving 80 tracks labelled DOES NOT MATCH, and make it the DecisionBar primary."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Merge Run Sample investigation and Investigate recovery into one primary in the DecisionBar; remove the duplicate top-bar action."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Bind investigation to the SVG: after the run, trace only calculated feasible routes and sync ev-cert-qty, ev-recv-qty and ev-sub-stock selection with inspector records."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Show the exact APPROVE phrase input and Seal acceptance action inside the 768px viewport; No acceptance recorded alone cannot complete this step."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Convert the three Review this option cards into compact selectable radio rows; selecting one previews its feasible route and affected jobs on the SVG before acceptance."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Restore the factory stage to the same large geometry as Steps 1-3; move the board into the inspector as segmented To do/In progress/Blocked/Done views instead of shrinking the SVG and clipping columns at 768px."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Before approval show only the three proposed task rows with dependency and due state; populate tracked columns only after approval, and move Approve/Decline into the DecisionBar with no internal Britt panel scrollbar."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "Keep Simulate a machine outage as the sole primary; remove the duplicate Apply second shock action from the guide strip."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "On applying the outage, immediately switch header, DecisionBar, footer and SVG to ACCEPTANCE INVALIDATED, with CELL-MILL-2 cross-hatched OFFLINE and its routes dashed BLOCKED."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Replace the repeated Step 2 investigation panel with a reinvestigation panel: retained prior route, original vs changed constraints, and Run investigation as the single primary."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Show the CELL-MILL-2 outage as APPLIED in changed constraints and replace No model has run on this snapshot yet with Prior acceptance invalidated; reinvestigation not run."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Reuse the compact radio-row comparison and keep the revised APPROVE phrase input plus Seal revised acceptance visible in the inspector and DecisionBar without scrolling."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Make Split available capacity a disabled, non-selectable radio: remove its Review this option button, keep its focusable reason requires at least two online compatible cells, and show em-dash finish and cost only for that row."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Eliminate the page scrollbar at 1366x768: use segmented board views in the inspector, keep the SVG at full stage size, and put Approve Britt's proposal in the DecisionBar."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Resolve the contradiction between 3 blocked, an active Approve button and RECOVERY ACCEPTED: gate Approve on the single authoritative revised-acceptance state and show each task's blocked reason."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Compress Before-After and Evidence, Retained so ledger verification status, the separate passphrase field and Export encrypted evidence packet fit without inspector or page scrollbars."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Fix the final SVG state: draw the accepted route unambiguously through CELL-MILL-1 only, render CELL-MILL-2 cross-hatched OFFLINE with a dashed BLOCKED route, and remove salmon outlines."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Generate header and rail from the same steps array so this screen is Step 10 of 10 Complete or unnumbered Complete, not a separate rail item after Step 9 of 9."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Make completion distinct from Step 9: show sealed packet state on both job bays, replace the repeated export form with a completion summary, and keep Review recovery proof as a secondary action."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-6.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 5
+      },
+      {
+        "step": 2,
+        "score": 5
+      },
+      {
+        "step": 3,
+        "score": 5
+      },
+      {
+        "step": 4,
+        "score": 6
+      },
+      {
+        "step": 5,
+        "score": 6
+      },
+      {
+        "step": 6,
+        "score": 5
+      },
+      {
+        "step": 7,
+        "score": 5
+      },
+      {
+        "step": 8,
+        "score": 6
+      },
+      {
+        "step": 9,
+        "score": 5
+      },
+      {
+        "step": 10,
+        "score": 6
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Remove the duplicated logo above the inspector; keep the immutable logo only once in the header."
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Replace salmon/red outlines on RECEIVING and jobs with HELD hatch and BLOCKED dashed markers; reserve red for a stopped station, and label the aligned certificate/receiving tracks DOES NOT MATCH."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Use one primary name and location: Investigate recovery in the DecisionBar; remove the conflicting Run Sample investigation button from the guide area."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Fit the already-open typed consent form inside 768px: option radios, exact APPROVE phrase input and Accept recovery decision must all be visible above the DecisionBar without clipping."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Implement the three paths as a real radio fieldset with arrow-key selection, visible focus, and the selected plan, identifier and expiry bound to the consent input."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Label the board Proposal awaiting approval — untracked by design, so 3 proposed and 0 tracked reads as the correct pre-approval state, not missing work."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Keep one Approve Britt's proposal primary in the DecisionBar and place Decline proposal as a separated secondary; remove the duplicate top-right approve."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "Name the invalidating action once as Simulate outage: CELL-MILL-2, state beside it that it invalidates the prior acceptance, and remove the differently named Apply second shock duplicate."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Keep the owner-required red, cross-hatch and OFFLINE label on stopped CELL-MILL-2 only; return held jobs to hatch/dashed non-red states and block any route through CELL-MILL-2."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Add an original-vs-current comparison in the inspector: CELL-MILL-2 online to offline and Split available capacity feasible to constrained, beside the reinvestigation control."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Fit the already-open revised consent form at 768px so the typed APPROVE input and accept action are fully visible; compress the infeasible Split card without removing its reason."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Keep red only on stopped CELL-MILL-2 and preview the selected substitute path only through online CELL-MILL-1."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Split the board into two labelled groups that can coexist: Prior tracked tasks — 3 blocked, and Revised proposal — 3 awaiting approval and untracked until approval."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Use one Approve revised tasks primary in the DecisionBar; remove or rename the duplicate Approve Britt's proposal inside the card."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Unstack the overlapping BEFORE-AFTER and EVIDENCE panels into one 360px inspector that fits 768px, with no clipped tracked-task line."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Sequence the proof work as numbered actions: Verify ledger, enter separate passphrase, Export encrypted packet, Export independent checkpoint, with one primary per state in the DecisionBar."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Remove the clipped overlap between the proof summary and evidence panel; show packet sealed, event count and scoped task totals above the export controls without internal scrolling."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Give the final SVG a sealed-state marker while keeping CELL-MILL-2 red and OFFLINE, the accepted route through CELL-MILL-1, and held-demand totals bound to JOB-1001 plus JOB-1002."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-7.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 5.5
+      },
+      {
+        "step": 2,
+        "score": 5
+      },
+      {
+        "step": 3,
+        "score": 6
+      },
+      {
+        "step": 4,
+        "score": 6.5
+      },
+      {
+        "step": 5,
+        "score": 6
+      },
+      {
+        "step": 6,
+        "score": 5.5
+      },
+      {
+        "step": 7,
+        "score": 4.5
+      },
+      {
+        "step": 8,
+        "score": 5.5
+      },
+      {
+        "step": 9,
+        "score": 5
+      },
+      {
+        "step": 10,
+        "score": 6
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Remove the duplicated logo above the inspector; keep the immutable logo only once in the header."
+      },
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Fill the empty 52px guide strip with 'Step 1 of 9', one verb-led instruction and one status sentence; remove the duplicate 'Inspect source evidence' action from the inspector disclosure."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Merge the greyed 'Check selected route' and neon 'Run Sample investigation' into one clear sequence: checking enables the single bottom primary, with its disabled reason exposed via aria-describedby."
+      },
+      {
+        "step": 3,
+        "priority": "P0",
+        "change": "Gate 'Accept recovery decision': disable it until the typed phrase exactly matches the selected plan, with inline match/mismatch text announced via aria-live."
+      },
+      {
+        "step": 4,
+        "priority": "P0",
+        "change": "Strengthen the proposal banner to '3 proposed · 0 tracked until approval' so the deliberately untracked proposal can never be misread as tracked work."
+      },
+      {
+        "step": 5,
+        "priority": "P0",
+        "change": "Change 'Apply second shock' from neon primary to a separated silver-outline disruptive action labelled 'Take CELL-MILL-2 offline', requiring an inline confirmation that names the cell and states the prior acceptance will be invalidated."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Keep the owner-required red on CELL-MILL-2, but enlarge the OFFLINE text and cross-hatch inside the node so stopped state is never carried by colour alone."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Add a changed-capacity delta at the top of the inspector: CELL-MILL-2 offline, split path constrained, prior acceptance invalidated; do not repeat the generic step 2 investigation copy unchanged."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Fix the inspector overflow: the typed consent input is clipped at the bottom of the 768px viewport. Compress the path cards and pin the complete Human decision block visible above the decision bar."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Disable 'Select this path' on the infeasible Split card, mark it aria-disabled with its reason 'requires at least two online compatible cells', and keep its em-dash finish/cost values."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Split the board header into two unambiguous groups: 'Prior tracked: 3 blocked' and 'Revised proposal: 3 proposed · 0 tracked until approval', replacing the current '3 proposed · 3 tracked · 3 blocked' string."
+      },
+      {
+        "step": 8,
+        "priority": "P0",
+        "change": "Render the prior blocked tasks as their own collapsed silver-dashed BLOCKED group above the untracked replacement proposal, so coexistence is auditable without lengthening the board."
+      },
+      {
+        "step": 9,
+        "priority": "P0",
+        "change": "Repair the sliced, overlapping text strip between the Before-After and Evidence panels: merge them into one inspector panel that fits 1366x768 with only internal scroll and the passphrase actions pinned."
+      },
+      {
+        "step": 10,
+        "priority": "P0",
+        "change": "Fix the same clipped inspector strip as step 9 and head the panel with the real completion state 'Packet sealed · 18 events', replacing the repeated sales headline."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-8.json",
+    "model": "meta-models/muse-spark-open",
+    "scores": [
+      {
+        "step": 1,
+        "score": 7
+      },
+      {
+        "step": 2,
+        "score": 7
+      },
+      {
+        "step": 3,
+        "score": 8
+      },
+      {
+        "step": 4,
+        "score": 6
+      },
+      {
+        "step": 5,
+        "score": 7
+      },
+      {
+        "step": 6,
+        "score": 7
+      },
+      {
+        "step": 7,
+        "score": 8
+      },
+      {
+        "step": 8,
+        "score": 6
+      },
+      {
+        "step": 9,
+        "score": 7
+      },
+      {
+        "step": 10,
+        "score": 7
+      }
+    ],
+    "blockingFixes": []
+  },
+  {
+    "path": "design/iteration-9.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 7
+      },
+      {
+        "step": 2,
+        "score": 7
+      },
+      {
+        "step": 3,
+        "score": 8
+      },
+      {
+        "step": 4,
+        "score": 8
+      },
+      {
+        "step": 5,
+        "score": 7
+      },
+      {
+        "step": 6,
+        "score": 8
+      },
+      {
+        "step": 7,
+        "score": 8
+      },
+      {
+        "step": 8,
+        "score": 8
+      },
+      {
+        "step": 9,
+        "score": 7
+      },
+      {
+        "step": 10,
+        "score": 8
+      }
+    ],
+    "blockingFixes": []
+  },
+  {
+    "path": "design/iteration-10.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 7
+      },
+      {
+        "step": 2,
+        "score": 6
+      },
+      {
+        "step": 3,
+        "score": 7
+      },
+      {
+        "step": 4,
+        "score": 7
+      },
+      {
+        "step": 5,
+        "score": 8
+      },
+      {
+        "step": 6,
+        "score": 7
+      },
+      {
+        "step": 7,
+        "score": 6
+      },
+      {
+        "step": 8,
+        "score": 8
+      },
+      {
+        "step": 9,
+        "score": 7
+      },
+      {
+        "step": 10,
+        "score": 7
+      }
+    ],
+    "blockingFixes": [
+      {
+        "step": 1,
+        "priority": "P0",
+        "change": "Remove duplicated logo at top of Inspector; keep only immutable header logo."
+      },
+      {
+        "step": 2,
+        "priority": "P0",
+        "change": "Reconcile Inspector 'Check selected route' with DecisionBar 'Run Sample investigation': one label, one action, disabled state explained once."
+      },
+      {
+        "step": 6,
+        "priority": "P0",
+        "change": "Preserve red cross-hatched CELL-MILL-2 and ensure no neon route enters it; route feasible paths only via CELL-MILL-1."
+      },
+      {
+        "step": 7,
+        "priority": "P0",
+        "change": "Fix Inspector overflow at 768px: pin Human Decision typed-consent block visible, make only comparison list scroll internally."
+      }
+    ]
+  },
+  {
+    "path": "design/iteration-11.json",
+    "model": "muse-wonder-1.0",
+    "scores": [
+      {
+        "step": 1,
+        "score": 7
+      },
+      {
+        "step": 2,
+        "score": 7
+      },
+      {
+        "step": 3,
+        "score": 8
+      },
+      {
+        "step": 4,
+        "score": 8
+      },
+      {
+        "step": 5,
+        "score": 8
+      },
+      {
+        "step": 6,
+        "score": 9
+      },
+      {
+        "step": 7,
+        "score": 7
+      },
+      {
+        "step": 8,
+        "score": 9
+      },
+      {
+        "step": 9,
+        "score": 7
+      },
+      {
+        "step": 10,
+        "score": 8
+      }
+    ],
+    "blockingFixes": []
+  }
+]

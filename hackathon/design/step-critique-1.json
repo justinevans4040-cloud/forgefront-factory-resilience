@@ -1,0 +1,20 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 14,
+  "step": 1,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Remove the small logo block above the inspector unless it is the designated opening-story placement; enforce exactly header + opening-story placements and never add a third instance."
+    },
+    {
+      "priority": "P2",
+      "change": "Make RECEIVING, quantity tracks, CELL-MILL-1/2 and JOB-1001/1002 focusable SVG nodes with visible focus and bidirectional inspector highlighting."
+    },
+    {
+      "priority": "P2",
+      "change": "Increase the dim 40/30-part and evidence labels to at least 11px with silverDim contrast at 1366x768."
+    }
+  ]
+}

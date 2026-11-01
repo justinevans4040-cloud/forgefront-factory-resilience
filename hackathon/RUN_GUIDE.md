@@ -17,15 +17,15 @@ Open **http://127.0.0.1:8791** — the demo opens straight into the recovery roo
 
 ## The command center
 
-A fixed header identifies Forgefront Systems. The stage rail opens **Incident**, **Investigate**, **Decide**, **Shock** and **Proof**. Each stage keeps its own focused content inside the workspace. **Show next action** opens the required stage, scrolls to the next control and focuses it. A highlighted result and a short recap explain every completed action. Revisit any stage with the rail.
+A fixed header identifies Forgefront Systems. The stage rail opens **Incident**, **Investigate**, **Decide**, **Shock** and **Proof**, plus **Project board**. Each stage keeps its own focused content inside the workspace. **highlighted primary action** performs the current guided action and focuses the next required control. Typed recovery acceptance and Britt approval remain deliberate human actions. **Back** and completed rail steps review earlier states without repeating model calls or changing the ledger. A highlighted result and a short recap explain every completed action. Revisit any stage with the rail.
 
-The opening story computes affected parts, production orders and due windows from the snapshot. **Start guided recovery** begins a fresh incident. The live story has eight steps; selecting Sample explicitly changes to a seven-step offline story. Successful Sample results advance only the offline story. Switching back to a primary route restores the live-model requirements.
+The opening story computes affected parts, production orders and due windows from the snapshot. **Start guided recovery** begins a fresh incident. The live story has ten steps; explicit Sample has nine. Both include Britt task approval and revised-work review. Successful Sample results advance only the offline story. Switching back to a primary route restores the live-model requirements.
 
 During inference, the status names the selected model, elapsed time, each bounded request and the remaining timeout. Read-only tool results add the number of source records read and feasible paths calculated. Final source matches, rejected claims and model analysis remain separately inspectable. The Proof stage compares the accepted completion time with replenishment and records the second shock, human acceptance and matching-head verification/export/checkpoint outcomes.
 
 ## Follow the recovery
 
-1. **Understand:** use **Show next action** to open source evidence. Compare the certificate's 120 pieces with receiving's 80 and inspect the two jobs demanding 70 units.
+1. **Understand:** use **highlighted primary action** to open source evidence. Compare the certificate's 120 pieces with receiving's 80 and inspect the two jobs demanding 70 units.
 2. **Investigate:** select Spark Open on Baseten, press **Check selected route**, then **Investigate recovery**. Run Wonder on the unchanged snapshot. Inspect validated facts, model interpretation, read-only tools and observed latency.
 3. **Decide:** compare wait, verified substitute and split-capacity plans. Review a feasible option. Type the exact displayed APPROVE phrase and choose **Accept recovery decision**. **Recovery decision accepted** confirms the recorded decision.
 4. **Challenge:** take CELL-MILL-2 offline. The earlier acceptance becomes invalid and split capacity becomes constrained. Investigate the changed snapshot and accept a remaining feasible option.
@@ -63,3 +63,7 @@ npm run smoke:browser --prefix hackathon -- --live --guided --mobile
 Browser checks use installed Chrome/Edge or CHROME_PATH. On Node 20 set NODE_OPTIONS=--experimental-websocket. The browser harness closes its server and browser in finally. The keyboard check uses explicit Sample and real keyboard events. The public-tree check runs the exact public files without provider credentials or the root package.
 
 [Current evidence](evidence/README.md) · [Shot list](docs/DEMO_RUNBOOK.md) · [Control mapping](SECURITY_CONTROLS.md) · [Claim proof](docs/CLAIM_PROOF.md)
+
+## Meta design director
+
+Run `npm run design:review --prefix hackathon -- design/screens.json 3` from the repository root with primary keys provisioned privately. The screenshot manifest contains paths relative to hackathon/. Wonder receives actual PNG inputs; Baseten is the bounded structured-layout fallback. Reviews are saved under design/.

@@ -1,0 +1,20 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 14,
+  "step": 7,
+  "score": 7,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Fix inspector clipping: the constrained option explanation and Human Decision heading are cut by internal scroll; pin the consent form and give the comparison its own bounded scroll region."
+    },
+    {
+      "priority": "P1",
+      "change": "Disable selection for the constrained Split option with reason text and a non-colour marker, while keeping the two feasible options selectable into the typed consent form."
+    },
+    {
+      "priority": "P2",
+      "change": "Truncate the GuideStrip instruction cleanly without ellipsis cutting meaning at 1366px."
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh, overflow:hidden; rows 48px/52px/1fr/56px, cols 184px/1fr/360px; FactoryStage >=55vw x >=60vh at 1366x768 on all steps, Inspector internal-scroll only, DecisionBar pinned",
+    "colorTokens": {
+      "bg": "#050705",
+      "panel": "#0B100B",
+      "raised": "#121A12",
+      "action": "#A8F04A on #050705, primary only",
+      "silver": "#C5CCD4 headings/machine bodies",
+      "silverDim": "rgba(197,204,212,.68)",
+      "border": "rgba(197,204,212,.22)",
+      "stoppedRed": "#E5484D only for stopped/offline CELL-MILL-2 outline, OFFLINE/STOPPED text and cross-hatch; preserved owner exception",
+      "logo": "immutable supplied black/emerald/silver asset, once in header, native aspect, never recolor/crop/redraw/duplicate"
+    },
+    "typography": "System sans; 24/30 stage title, 15/20 panel, 13/19 body, 11/14 uppercase micro-labels, 26px tabular metrics; one verb-led instruction + one status sentence, no slogans on working surfaces",
+    "motion": "160-220ms ease-out selection/panel; single 240ms route trace on real state change then static; no loops/pulses/glows; prefers-reduced-motion removes transitions and uses pattern+marker+text",
+    "components": {
+      "Header": "48px, logo left, state centre-right, Lock recovery room as button",
+      "StepRail": "All 9 steps from one steps array, 36-40px icon+text+colour buttons, completed/current/locked, aria-current=step; remove dead Workspaces disclosure",
+      "GuideStrip": "52px, Step X of 9, instruction + status only, no duplicate primary",
+      "FactoryStage": "Focusable cinematic SVG, synced inspector selection, every node keyboard-reachable, 2px #A8F04A focus outline offset 2px",
+      "EvidenceInspector": "360px, task-only content, required action pinned, blocked prior tasks visible as collapsed group until replacement approval",
+      "DecisionBar": "56px, Back left, human decision/status centre, one primary right; invalidating actions separated and text-labelled",
+      "Keyboard": "Skip-to-stage first; header>rail>guide>SVG nodes>inspector>DecisionBar; arrows in rail/SVG, Enter/Space activate, Esc closes, aria-live=polite for results only"
+    },
+    "visualizations": {
+      "FactorySVG": "Inline SVG 960x540 cinematic side-elevation: dock/held lot, QA gate, conveyor, brushed-silver CELL-MILL-1/2, JOB-1001/1002 bays; silver idle, neon feasible/accepted only, red only stopped CELL-MILL-2, no route through offline cell",
+      "StateBinding": "Bind nodes/routes/badges/counts/inspector to real state: MAT-ALLOY-A held, 40+30=70 units, feasible paths, online/offline, acceptance state, events, sealed packet; pending proposal deliberately untracked until approval; blocked prior tasks coexist with approved revised plan; selecting an option opens typed consent",
+      "Evidence": "Aligned Certificate 120 vs Receiving 80 quantity tracks with DOES NOT MATCH spanning gap; SVG-inspector bidirectional highlight",
+      "Legend": "Persistent: Running/Held/Blocked/Offline-Stopped/Feasible-Accepted, each pattern+marker+text, never colour-only"
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Remove duplicated logo at top of Inspector; keep only immutable header logo."
+        },
+        {
+          "priority": "P1",
+          "change": "Enlarge FactorySVG to fill stage width/height and move 2/70/3 metrics into Inspector header so stage is cinematic, not thumbnail-centred."
+        },
+        {
+          "priority": "P1",
+          "change": "Show all 9 rail steps locked/completed/current and make RECEIVING/JOB nodes focusable buttons synced to Inspector evidence."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Reconcile Inspector 'Check selected route' with DecisionBar 'Run Sample investigation': one label, one action, disabled state explained once."
+        },
+        {
+          "priority": "P1",
+          "change": "Delete repeated offline/no-live-AI narration in GuideStrip, Inspector body and footer; keep one status sentence."
+        },
+        {
+          "priority": "P1",
+          "change": "Keep investigation controls pinned in Inspector while FactorySVG scales up; do not shrink map for the select."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Make selected path a radio group with visible focus and route highlighted in SVG; retain typed exact-phrase gating for Accept."
+        },
+        {
+          "priority": "P1",
+          "change": "Move character-remaining and match state adjacent to input with aria-live, and state '27 characters remaining' only until typing begins."
+        },
+        {
+          "priority": "P2",
+          "change": "Compress option cards to fit without Inspector scroll at 768px while keeping finish/incremental tabular figures aligned."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Label t1-t3 explicitly 'PROPOSED · UNTRACKED UNTIL APPROVAL' once per card and keep Approve/Decline as distinct DecisionBar/Inspector actions, not colour-only."
+        },
+        {
+          "priority": "P1",
+          "change": "Fix clipped 'MAT-ALLOY-B · 70 parts' route label in SVG; reroute label above conveyor with leader line."
+        },
+        {
+          "priority": "P2",
+          "change": "Remove duplicate option-summary chips from stage bottom or bind them as selectable evidence linked to the accepted substitute."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Strengthen invalidating-action separation: red is reserved for stopped cell, so keep Apply second shock neon-outlined with explicit text warning already in DecisionBar, plus confirmation focus trap."
+        },
+        {
+          "priority": "P1",
+          "change": "Show affected accepted route/tasks preview in Inspector before applying shock, listing what becomes invalid/blocked."
+        },
+        {
+          "priority": "P2",
+          "change": "Remove low-value 'Start a fresh scenario (admin)' from primary flow or move behind labelled admin menu."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Preserve red cross-hatched CELL-MILL-2 and ensure no neon route enters it; route feasible paths only via CELL-MILL-1."
+        },
+        {
+          "priority": "P1",
+          "change": "Replace top dashed banner duplication with one GuideStrip status: 'CELL-MILL-2 offline · feasible paths 3→2'."
+        },
+        {
+          "priority": "P1",
+          "change": "Resolve dual actions 'Check selected route' vs 'Reinvestigate recovery' into single primary label matching DecisionBar."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fix Inspector overflow at 768px: pin Human Decision typed-consent block visible, make only comparison list scroll internally."
+        },
+        {
+          "priority": "P1",
+          "change": "Mark CONSTRAINED Split option disabled with reason and non-selectable radio; keep Selected path state and SVG route in sync."
+        },
+        {
+          "priority": "P1",
+          "change": "Surface 'Prior acceptance invalidated' in GuideStrip and DecisionBar once, not repeated in Inspector."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Keep 'Prior tracked work · 3 BLOCKED' collapsed group expanded-on-focus/visible with count; clarify it coexists with approved revised plan while replacements await approval."
+        },
+        {
+          "priority": "P1",
+          "change": "Deduplicate t1-t3 titles against Step 4 by adding 'Revised' context or changed due/dependency deltas from real state."
+        },
+        {
+          "priority": "P2",
+          "change": "Fix clipped MAT-ALLOY-B label and keep offline CELL-MILL-2 red while accepted route uses only CELL-MILL-1."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Pin passphrase field, Verify ledger and Export checkpoint without Inspector scroll; move Before-After summary into compact stage-adjacent strip."
+        },
+        {
+          "priority": "P1",
+          "change": "Give passphrase requirements, error and success states text+aria-live, not placeholder-only; keep primary Verify ledger consistent between Inspector and DecisionBar."
+        },
+        {
+          "priority": "P2",
+          "change": "Show 3 tracked · 0 done · 0 blocked once in DecisionBar and link tasks to SVG job bays."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Change completion primary from generic 'Review recovery proof' to the actual retained-proof action/view and show PACKET SEALED state in SVG legend/event chain."
+        },
+        {
+          "priority": "P1",
+          "change": "Rename rail item from Step 10 to completion state outside 'Step X of 9' count, with check+text, while retaining Back."
+        },
+        {
+          "priority": "P2",
+          "change": "Trim duplicated Before-After/Evidence panels so sealed factory stage remains >=60vh and proof summary is scannable at 768px."
+        }
+      ]
+    }
+  ]
+}

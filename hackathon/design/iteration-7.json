@@ -1,0 +1,222 @@
+{
+  "model": "muse-wonder-1.0",
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "1366x768 first: 100vw x 100dvh shell, overflow:hidden, no page scroll; grid-template-columns:184px minmax(0,1fr) 360px; grid-template-rows:48px 52px minmax(0,1fr) 56px. Header spans top, one step rail left, guide above stage, cinematic factory centre, inspector right, decision bar bottom centre+right. Factory stage stays >=55% viewport width and >=60% height on every step, including board and proof steps; only inspector content may scroll internally, with its required action pinned visible.",
+    "colorTokens": {
+      "bg": "#050705",
+      "panel": "#0B100B",
+      "raised": "#121A12",
+      "action": "neon emerald #A8F04A with #050705 text",
+      "silver": "brushed silver #C5CCD4 for headings, machine bodies and structure",
+      "silverDim": "rgba(197,204,212,.68)",
+      "border": "rgba(197,204,212,.22)",
+      "stoppedRed": "#E5484D reserved only for the stopped station: red outline plus STOPPED/OFFLINE text and cross-hatch on CELL-MILL-2; never use red for held material, jobs, evidence bars, routes or generic alerts",
+      "held": "neon outline + diagonal hatch + HELD text",
+      "blocked": "silver dashed route + X marker + BLOCKED text",
+      "offline": "stoppedRed outline + cross-hatch + OFFLINE text",
+      "accepted": "solid neon route + check marker + ACCEPTED text",
+      "logo": "Supplied logo asset once in the header only, native aspect on its black field; never recolor, redraw, crop, outline or duplicate it."
+    },
+    "typography": "System sans only. Stage title 24px/30px 700, panel title 15px/20px 650, body 13px/19px, micro-label 11px/14px 700 uppercase, metrics 26px tabular-nums, currency tabular with two decimals. One verb-led instruction and one status sentence per screen; delete hero slogans, repeated offline explanations and recap copy from working surfaces.",
+    "motion": "160-220ms ease-out opacity/transform for selection and panel changes; one 240ms SVG route trace on a real state change, then static. No loops, pulses, parallax or decorative glows. @media (prefers-reduced-motion: reduce): remove transitions, animations and dash movement; show state instantly with patterns, markers and text, and render focus rings instantly.",
+    "components": {
+      "Header": "48px: immutable logo left, Forgefront Systems / FACTORY RESILIENCE, current recovery state and HUMAN DECISION right; Lock recovery room as a labelled button.",
+      "StepRail": "One rail generated from the same steps array used for every Step X of Y header. Real buttons 36-40px high; completed, current and locked states use icon, text and color; aria-current=step on current. Delete any second workflow list.",
+      "GuideStrip": "52px: Step X of Y from state, the current verb-led instruction, and one short status sentence. Do not place duplicate primary buttons here.",
+      "FactoryStage": "Focusable cinematic inline SVG with title chip, persistent legend and synced selection. It never shrinks to a thumbnail when a board or inspector opens; every node is keyboard-reachable and labelled.",
+      "EvidenceInspector": "360px task-specific panel only: evidence comparison, investigation route, decision radios, disruption control, reinvestigation comparison, task review or proof controls according to step. Required action stays visible without page scroll.",
+      "DecisionBar": "56px: Back left, required human decision or status centre, single primary next action right. Destructive and invalidating actions are separated, text-labelled and never color-only.",
+      "Keyboard": "Skip-to-stage first. Tab order: header, rail, guide, SVG nodes, inspector, decision bar. 2px neon focus outline with 2px offset. Arrow keys move within rail and SVG, Enter/Space activates, Esc closes drawers. aria-live=polite announces state results only."
+    },
+    "visualizations": {
+      "FactorySVG": "Inline SVG viewBox 0 0 960 540, cinematic side-elevation factory on black: receiving dock and held lot, QA/material-hold gate, conveyor spine, CELL-MILL-1 and CELL-MILL-2 as brushed-silver machine silhouettes, JOB-1001 and JOB-1002 order bays beneath. Silver idle strokes; neon only for feasible or accepted routes and primary selection; red only on CELL-MILL-2 when stopped/offline.",
+      "StateBinding": "Bind every node, route, badge, count and inspector row to real state only: certificate mismatch holds MAT-ALLOY-A; JOB-1001 40 parts and JOB-1002 30 parts equal the 70 held-demand units; impacted jobs, feasible paths, cell online/offline status, acceptance valid/invalidated/accepted, event count and packet sealed change SVG and inspector together. No decorative machines, unbound metrics or green routes through offline cells.",
+      "Evidence": "Certificate vs Receiving as two aligned, labelled quantity tracks with DOES NOT MATCH spanning the gap. Selecting an evidence item in the SVG highlights the matching inspector record and vice versa.",
+      "Legend": "Persistent beneath the stage: Running, Held, Blocked, Offline/Stopped and Feasible/Accepted, each with a distinct pattern, marker and text label; Offline/Stopped also uses the owner-required red."
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 5.5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Remove the duplicated logo above the inspector; keep the immutable logo only once in the header."
+        },
+        {
+          "priority": "P0",
+          "change": "Fill the empty 52px guide strip with 'Step 1 of 9', one verb-led instruction and one status sentence; remove the duplicate 'Inspect source evidence' action from the inspector disclosure."
+        },
+        {
+          "priority": "P1",
+          "change": "Recolour RECEIVING and the certificate bar: held material uses neon outline, hatch and HELD text, certificate uses silver; reserve red solely for a stopped CELL-MILL-2, and align the 120 vs 80 evidence tracks to one scale with keyboard-focusable cross-highlighting."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Merge the greyed 'Check selected route' and neon 'Run Sample investigation' into one clear sequence: checking enables the single bottom primary, with its disabled reason exposed via aria-describedby."
+        },
+        {
+          "priority": "P1",
+          "change": "Add a 'NOT RUN YET' state chip on the factory stage synced to the inspector, so the pre-run snapshot is not read as completed investigation output."
+        },
+        {
+          "priority": "P1",
+          "change": "Fill the empty guide strip with 'Step 2 of 9', the investigate instruction and the no-live-call status; keep the route selector and its consequence in one inspector group."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Gate 'Accept recovery decision': disable it until the typed phrase exactly matches the selected plan, with inline match/mismatch text announced via aria-live."
+        },
+        {
+          "priority": "P1",
+          "change": "Normalise the stage option chips to the inspector format: 35h $3,115.00 and 17.5h $3,202.50, tabular-nums throughout, and make each whole path card a keyboard-selectable radio."
+        },
+        {
+          "priority": "P1",
+          "change": "Repeat the selected plan name directly above the consent input so the operator confirms 'Use verified substitute' at the moment of typing, without scrolling back to the cards."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 6.5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Strengthen the proposal banner to '3 proposed · 0 tracked until approval' so the deliberately untracked proposal can never be misread as tracked work."
+        },
+        {
+          "priority": "P1",
+          "change": "Replace opaque dependencies 'after Ready / after t1 / after t2' on task cards with the named predecessor task plus the existing due offset."
+        },
+        {
+          "priority": "P1",
+          "change": "Move 'Decline proposal' out from under the cards into the decision bar as a separated, text-labelled secondary opposite 'Approve Britt's proposal'."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Change 'Apply second shock' from neon primary to a separated silver-outline disruptive action labelled 'Take CELL-MILL-2 offline', requiring an inline confirmation that names the cell and states the prior acceptance will be invalidated."
+        },
+        {
+          "priority": "P1",
+          "change": "Before the action, summarise what is at stake in the inspector: CELL-MILL-2 24h capacity at $90/h and the split-capacity path that depends on it."
+        },
+        {
+          "priority": "P2",
+          "change": "Keep 'Start a fresh scenario (admin)' visually demoted but raise it to a real focusable button with a confirmation, not a low-contrast text link."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 5.5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Keep the owner-required red on CELL-MILL-2, but enlarge the OFFLINE text and cross-hatch inside the node so stopped state is never carried by colour alone."
+        },
+        {
+          "priority": "P0",
+          "change": "Add a changed-capacity delta at the top of the inspector: CELL-MILL-2 offline, split path constrained, prior acceptance invalidated; do not repeat the generic step 2 investigation copy unchanged."
+        },
+        {
+          "priority": "P1",
+          "change": "Resolve the duplicate 'Check selected route' and 'Reinvestigate recovery' actions into one sequence with one primary, as in step 2."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 4.5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fix the inspector overflow: the typed consent input is clipped at the bottom of the 768px viewport. Compress the path cards and pin the complete Human decision block visible above the decision bar."
+        },
+        {
+          "priority": "P0",
+          "change": "Disable 'Select this path' on the infeasible Split card, mark it aria-disabled with its reason 'requires at least two online compatible cells', and keep its em-dash finish/cost values."
+        },
+        {
+          "priority": "P1",
+          "change": "Gate 'Accept revised decision' on an exact typed-phrase match for the selected revised plan, with inline validation, exactly as in the first consent form."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 5.5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Split the board header into two unambiguous groups: 'Prior tracked: 3 blocked' and 'Revised proposal: 3 proposed · 0 tracked until approval', replacing the current '3 proposed · 3 tracked · 3 blocked' string."
+        },
+        {
+          "priority": "P0",
+          "change": "Render the prior blocked tasks as their own collapsed silver-dashed BLOCKED group above the untracked replacement proposal, so coexistence is auditable without lengthening the board."
+        },
+        {
+          "priority": "P1",
+          "change": "Chipthe stage title area 'Approved revised plan · replacement tasks awaiting approval' to distinguish the accepted plan from its still-untracked tasks."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Repair the sliced, overlapping text strip between the Before-After and Evidence panels: merge them into one inspector panel that fits 1366x768 with only internal scroll and the passphrase actions pinned."
+        },
+        {
+          "priority": "P1",
+          "change": "Label the orphan metrics explicitly: '70 parts at stake', '35h accepted plan', '48h saved vs 83h replenishment', and drop the 'Your recovery, proven.' slogan for a plain status sentence."
+        },
+        {
+          "priority": "P1",
+          "change": "Deduplicate 'Verify ledger': keep one primary in the decision bar, keep 'Export independent checkpoint' as the inspector secondary, and state beside it what enables it."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fix the same clipped inspector strip as step 9 and head the panel with the real completion state 'Packet sealed · 18 events', replacing the repeated sales headline."
+        },
+        {
+          "priority": "P1",
+          "change": "Clarify that sealing is complete while 'Export independent checkpoint' remains a separate pending action; do not let the active export button imply the checkpoint was already exported."
+        },
+        {
+          "priority": "P1",
+          "change": "Make 'Review recovery proof' open a sealed-packet summary of the 18 events and integrity status, and demote the still-available 'Verify ledger' to a secondary re-check."
+        }
+      ]
+    }
+  ]
+}

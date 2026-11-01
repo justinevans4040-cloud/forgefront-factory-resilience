@@ -1,0 +1,20 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 14,
+  "step": 3,
+  "score": 8,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Keep the exact-phrase input, character count and disabled Accept action pinned while only the three-option comparison scrolls internally."
+    },
+    {
+      "priority": "P2",
+      "change": "Replace radio-dot-only selection with a bordered selected card, Selected path text and matching neon route trace in the SVG."
+    },
+    {
+      "priority": "P2",
+      "change": "Show phrase mismatch/remaining characters adjacent to the input and announce match state via aria-describedby, not colour alone."
+    }
+  ]
+}

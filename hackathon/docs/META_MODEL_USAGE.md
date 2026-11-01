@@ -14,4 +14,4 @@ The shared JSON-envelope investigation is bounded to six turns, ten read-only to
 
 Run `npm run check:providers --prefix hackathon` for one nonce/identity request per primary route. The optional backup reports a RED light without a request in this standard check. In the room, **Check selected route** makes one eight-second request on the selected route and records its result. GREEN requires exact nonce and returned-model agreement. RED names failure; UNCHECKED requests a new check. Health expires after fifteen minutes. Provider-reported identity is the identity field tested by these checks.
 
-[Provider proof](../evidence/run12/providers.json) · [Live guided packet](../evidence/run12/browser/packet.json) · [Same-snapshot comparison](MODEL_COMPARISON.md) · [API contract](API_CONTRACT.md).
+[Provider proof](../evidence/README.md) · [Live guided packet](../evidence/README.md) · [Same-snapshot comparison](MODEL_COMPARISON.md) · [API contract](API_CONTRACT.md).

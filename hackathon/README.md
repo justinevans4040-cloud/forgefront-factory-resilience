@@ -16,7 +16,7 @@ Privately provision `MUSE_API_KEY` (or `MODEL_API_KEY`) and `BASETEN_API_KEY` in
 
 ## 3-minute demo path
 
-Use the five-stage command center and **Show next action** to open and focus the current step. Each result is highlighted and explained; the Proof stage summarizes the computed recovery. The guide advances on actual application state.
+Use the full-screen command center and **highlighted primary action** to open and focus the current step. Each result is highlighted and explained; the Proof stage summarizes the computed recovery. The guide advances on actual application state.
 
 1. Inspect the source certificate discrepancy and receiving records.
 2. Run Spark Open on Baseten, then Wonder on the same snapshot. Inspect source-validated facts, read-only traces and model narrative.
@@ -25,6 +25,12 @@ Use the five-stage command center and **Show next action** to open and focus the
 5. Verify the hash-chained, tamper-evident ledger. Export an encrypted packet using a separate passphrase; retain its checkpoint independently.
 
 [Shot-by-shot demo](docs/DEMO_RUNBOOK.md) · [Latest evidence](evidence/README.md) · [Run guide](RUN_GUIDE.md).
+
+## Designed with Muse Wonder
+
+Muse Wonder directs the visual design of the Meta Hackathon build: real full-screen captures go to Meta for a component specification and scored step critiques. The [saved design reviews](design/design-direction.json) guide the black, emerald and brushed-silver command center. The factory map connects source quantities, affected orders, accepted allocations and sealed events to the live recovery state.
+
+**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Keys and encrypted state stay on the operator’s machine; inference uses the selected Meta route.
 
 ## How Meta models are used
 

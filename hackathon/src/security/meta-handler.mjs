@@ -62,7 +62,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
     if(!body||typeof body!=='object'||Array.isArray(body))throw fail(400,'JSON object required');
     if(path.startsWith('/api/workflow/')) {
       const fieldsByRoute=Object.create(null);
-      Object.assign(fieldsByRoute,{status:[],review:['runId','optionId'],confirm:['nonce','typed'],revoke:[],shock:['cellId'],reset:[],verify:[],export:['acknowledgePlaintext'],'encrypted-export':['passphrase'],checkpoint:[],report:['acknowledgePlaintext'],investigate:['provider'],'investigation-start':['provider'],'investigation-status':['jobId'],'provider-check':['provider']});
+      Object.assign(fieldsByRoute,{status:[],'britt-draft':['provider'],'britt-decide':['proposalId','action'],'task-move':['taskId','status','idempotencyKey'],review:['runId','optionId'],confirm:['nonce','typed'],revoke:[],shock:['cellId'],reset:[],verify:[],export:['acknowledgePlaintext'],'encrypted-export':['passphrase'],checkpoint:[],report:['acknowledgePlaintext'],investigate:['provider'],'investigation-start':['provider'],'investigation-status':['jobId'],'provider-check':['provider']});
       const route=path.slice('/api/workflow/'.length);
       if(!Object.prototype.hasOwnProperty.call(fieldsByRoute,route))throw fail(404,'Unknown workflow route');
       const fields=fieldsByRoute[route];
@@ -71,7 +71,10 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       if(['export','report'].includes(route)&&body.acknowledgePlaintext!=='EXPORT PLAINTEXT')throw fail(400,'Explicit plaintext export acknowledgement required');
       const actor=sessionToken;
       if(path==='/api/workflow/investigation-status')return workflow.investigationStatus(body.jobId,actor);
-      if(path==='/api/workflow/status')return {...workflow.status(),routeHealth:Object.fromEntries(['wonder','baseten','fireworks'].map(provider=>[provider,routeHealth[provider]??{light: (provider==='wonder'?(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()):env[provider==='baseten'?'BASETEN_API_KEY':'FIREWORKS_API_KEY']?.trim())?'UNCHECKED':'RED',reason:'Key unavailable',checkedAt:null}])),pendingConsents:workflow.pendingFor(sessionToken,session.operator),operator:session.operator,providers:{wonder:Boolean(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()),baseten:Boolean(env.BASETEN_API_KEY?.trim()),fireworks:Boolean(env.FIREWORKS_API_KEY?.trim())}};
+      if(path==='/api/workflow/status')return {...workflow.status(),britt:workflow.brittFor(sessionToken,session.operator),routeHealth:Object.fromEntries(['wonder','baseten','fireworks'].map(provider=>[provider,routeHealth[provider]??{light: (provider==='wonder'?(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()):env[provider==='baseten'?'BASETEN_API_KEY':'FIREWORKS_API_KEY']?.trim())?'UNCHECKED':'RED',reason:'Key unavailable',checkedAt:null}])),pendingConsents:workflow.pendingFor(sessionToken,session.operator),operator:session.operator,providers:{wonder:Boolean(env.MUSE_API_KEY?.trim()||env.MODEL_API_KEY?.trim()),baseten:Boolean(env.BASETEN_API_KEY?.trim()),fireworks:Boolean(env.FIREWORKS_API_KEY?.trim())}};
+      if(path==='/api/workflow/britt-decide')return workflow.decideTasks(body.proposalId,body.action,actor,session.operator);
+      if(path==='/api/workflow/task-move')return workflow.moveTask(body.taskId,body.status,session.operator,body.idempotencyKey);
+      if(path==='/api/workflow/britt-draft'&&!['sample','wonder','baseten'].includes(body.provider))throw fail(400,'Choose a primary Meta route');
       if(path==='/api/workflow/review')return workflow.review(body.runId,body.optionId,actor,session.operator);
       if(path==='/api/workflow/confirm')return workflow.confirm(body.nonce,body.typed,actor,session.operator);
       if(path==='/api/workflow/revoke')return workflow.revoke(session.operator);
@@ -95,6 +98,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
         workflow.recordModelCall({type:'model_call',operatorId:session.operator.id,operatorRole:session.operator.role,mode:'live',sample:false,provider,requestedModel:client?.route.model??null,returnedModel:result?.modelId??null,latencyMs:Date.now()-started,status:passed?'accepted':'rejected',failure:passed?null:'PREFLIGHT_FAILED',purpose:'provider_preflight',operationalRelease:false});
         return routeHealth[provider]={light:passed?'GREEN':'RED',reason,checkedAt:Date.now()};
       }
+      if(path==='/api/workflow/britt-draft'&&body.provider==='sample')return workflow.draftTasks(createModelClient('sample'),actor,session.operator);
       if(body.provider==='sample')return path.endsWith('investigation-start')?workflow.startInvestigation(createModelClient('sample'),actor,session.operator):workflow.investigate(createModelClient('sample'),session.operator);
       if (!['wonder', 'baseten', 'fireworks'].includes(body.provider)) throw fail(400, 'Select wonder, baseten or fireworks');
       const authEnv = { wonder: 'MUSE_API_KEY', baseten: 'BASETEN_API_KEY', fireworks: 'FIREWORKS_API_KEY' }[body.provider];
@@ -103,6 +107,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       const client = body.provider === 'wonder'
         ? createModelClient('wonder', { apiKey, fetchImpl })
         : createModelClient('spark-open', { apiKey, route: body.provider === 'baseten' ? SPARK_BASETEN_ROUTE : SPARK_FIREWORKS_ROUTE, fetchImpl });
+      if(path==='/api/workflow/britt-draft')return workflow.draftTasks(client,actor,session.operator);
       if(path==='/api/workflow/investigation-start')return workflow.startInvestigation(client,sessionToken,session.operator);
       return workflow.investigate(client,session.operator);
     }

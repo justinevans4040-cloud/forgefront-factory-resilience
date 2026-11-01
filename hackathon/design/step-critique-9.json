@@ -1,0 +1,20 @@
+{
+  "model": "muse-wonder-1.0",
+  "iteration": 14,
+  "step": 9,
+  "score": 7,
+  "fixes": [
+    {
+      "priority": "P1",
+      "change": "Separate proof actions into three labelled fieldsets - Seal encrypted packet, Verify ledger, Retain independent checkpoint - each with its own button and status; remove the duplicate Verify ledger primary from the DecisionBar or make it the single primary only."
+    },
+    {
+      "priority": "P1",
+      "change": "Fix the Before-After panel clipped list and bottom scrollbar by using internal scroll with a visible end state inside the 360px inspector."
+    },
+    {
+      "priority": "P2",
+      "change": "Show passphrase requirements as a checklist tied to input validation, without inventing strength results before entry."
+    }
+  ]
+}

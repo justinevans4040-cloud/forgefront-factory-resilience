@@ -2,6 +2,14 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Build run thirteen
+
+- Designed with Muse Wonder: real screenshot inputs, concrete component direction and scored critiques retained in [design evidence](design/). The bounded design director uses Wonder first and Baseten only on failure, with mocked API tests.
+- Reproduced the primary-button stall in a browser regression, then connected guide actions to real workflow controls. Added visible Back and completed-step review with preserved state and no repeated inference.
+- Built the full-screen factory SVG from current source quantities, jobs, cell availability, accepted allocations and ledger events. Added compact evidence and decision inspectors and responsive keyboard paths.
+- Built the recovery project board and Britt 4.0 inside the Meta Hackathon build: validated Meta task drafts, explicit approve/decline, dependency-aware idempotent moves, second-shock blockers, encrypted scoped memory and exportable ledger events.
+- Preserved the immutable official logo and five showcase images. Current execution proof is under evidence/run13.
+
 ## Build run twelve
 
 - Preserved immediate demo entry and persistent-operation authentication.
@@ -11,6 +19,12 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 - Increased the bounded Spark Open final-response allowance after live usage showed reasoning consuming the previous output budget; envelope validation and deliberate retry remain enforced.
 - Prevented standard provider pre-flight from calling the optional backup even with inherited credentials. Wonder and Baseten determine readiness.
 - Refreshed report labels, component rights, fixture contracts, operating guide and camera path. Added failing-first behavior tests and desktop/mobile/keyboard proof under evidence/run12.
+
+## Independent audit eleven
+
+- Confirmed run-thirteen engineering claims against retained evidence and independent suites: product tests 196 after audit fixes, root tests 253, judge/public-tree clean, Sample/mocked/live primary guides complete, keyboard desktop and mobile clean, Wonder/Baseten pre-flight GREEN with Fireworks uncalled, gitleaks clean, official logo and showcase bytes unchanged.
+- Closed visual P1 gaps from Muse Wonder critiques: always-visible workspace rail, cinematic dock/QA/conveyor factory SVG, shock-stage-only offline preview, opening-story logo retained beside the header mark, labelled proof fieldsets, and a fresh Wonder design loop through iteration 14.
+- Added failing-first audit coverage for guide progression, Back/read-only review, Meta routing, and the visual contract. Recorded the prompt/orchestration map and live Wonder/Baseten guide results in the audit report.
 
 ## Independent audit ten
 

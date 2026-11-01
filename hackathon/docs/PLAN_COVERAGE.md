@@ -4,7 +4,7 @@ The recovery room connects each product claim to working code and observable pro
 
 | Goal | Capability | Proof |
 | --- | --- | --- |
-| Guided command center | Fixed shell, five focused stages, computed opening stakes, evidence-gated live/offline guides, focus/scroll results, recaps and final recovery timeline | command-center tests; live desktop/mobile and keyboard proof |
+| Guided command center | Full-screen factory shell, Back/history review, primary-button actions, computed opening stakes, evidence-gated live/offline guides, focus/scroll results, recaps and final recovery timeline | command-center tests; live desktop/mobile and keyboard proof |
 | Immediate judge entry | Hero, pitch, sixty-second start, three-minute path, Meta roles and four manufacturing contexts | README structure/copy tests and showcase integrity |
 | Source-grounded investigation | Immutable registry, exact structured source checks and read-only tools | Evidence, tools, investigation and adversarial tests |
 | Real recovery math | Stock conservation, compatible capacity and three calculated choices | Runtime oracle and engine tests |
@@ -17,6 +17,10 @@ The recovery room connects each product claim to working code and observable pro
 | Exportable proof | Passphrase-encrypted packet and independent prefix checkpoint | Export/checkpoint tests and browser packets |
 | Keyboard and responsive presentation | Real keyboard path, semantic controls, focus, measured contrast and width checks | Offline accessibility and mobile browser evidence |
 | Public delivery | Exact public file copy, newest run only, scrubbed text, portable links | Judge/public-tree gates |
+
+| Recovery project board | Source-bound task drafts, owners, due windows, dependencies, human approval and shock blockers | Board/Britt tests and primary-guide evidence |
+| Britt 4.0 | Meta-only sovereign agent, read-only tools, encrypted scoped context and human-gated tasks | Workflow, memory, provider and export tests |
+| Meta design direction | Real screenshot reviews and component specification | Saved design iterations and mocked director tests |
 
 ## Owner completion path
 

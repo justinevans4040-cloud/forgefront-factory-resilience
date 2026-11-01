@@ -1,0 +1,104 @@
+{
+  "model": "muse-wonder-1.0",
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": {
+      "viewport": "Design first for 1366x768: 100vw x 100dvh app shell, overflow hidden, no page scroll, all primary actions and evidence visible without scrolling",
+      "shell": "grid-template-columns: 200px minmax(0,1fr) 340px; grid-template-rows: 52px minmax(0,1fr) 60px; header spans all columns, step rail spans rows 2-3, factory stage center, evidence inspector right, decision bar bottom center+right",
+      "stageRatio": "Factory SVG receives at least 55% of viewport width and 62% of viewport height; guide becomes one 56px instruction strip above the stage, not a stacked card",
+      "density": "12px shell padding, 8px panel gaps, 16px panel padding; internal evidence overflow:auto only inside the right inspector if content exceeds available height"
+    },
+    "colorTokens": {
+      "bg-0": "#050705 page and stage background",
+      "panel-1": "#0b0f0b panels on black",
+      "panel-2": "#111711 raised inspector and decision surfaces",
+      "accent-action": "#c6ed8d primary actions, active step, affected-state highlights",
+      "accent-action-text": "#050705 text on accent buttons",
+      "silver-primary": "#c5ccd4 headings and brushed-silver structural lines",
+      "silver-secondary": "rgba(197,204,212,0.68) secondary labels on #050705",
+      "silver-border": "rgba(197,204,212,0.22) 1px dividers and SVG idle equipment",
+      "logo-emerald": "Reserved exclusively to the supplied immutable logo asset; never recolor, redraw, outline, or sample it as a substitute UI accent",
+      "logo-black": "#050705 logo field retained unchanged",
+      "hold-state": "#c6ed8d outline plus diagonal hatch pattern, never color alone",
+      "blocked-state": "#c5ccd4 dashed route with blocked marker, never color alone"
+    },
+    "typography": {
+      "family": "System sans stack only, no external font dependency for offline use",
+      "scale": "Stage title 26px/32px 700, panel title 16px/22px 650, body 13px/19px, micro-label 11px/14px 700 uppercase 0.08em letter-spacing, metrics 28px/30px tabular-nums",
+      "heroRule": "No 48px+ hero headline inside the working surface; incident name is the stage title and status is one sentence maximum",
+      "narrationRule": "One current instruction, one status line, one primary verb per screen; delete repeated notice, recap, and mission copy",
+      "numbers": "Impact metrics use tabular figures and stay attached to the factory nodes or evidence they describe"
+    },
+    "motion": {
+      "default": "160-220ms ease-out on opacity and transform only for panel entry, route highlighting, and state change; no parallax, no continuous decorative loops",
+      "factory": "State-driven SVG transitions only: 240ms route trace when a path becomes feasible or blocked, single pulse on newly held equipment, then static",
+      "reducedMotion": "@media (prefers-reduced-motion: reduce): transition none, animation none, SVG dash/pulse/flow effects disabled, state shown with static hatch, icons, labels, and instant route changes",
+      "focusMotion": "Focus indicator appears instantly and is never animated"
+    },
+    "components": {
+      "Header": "52px, immutable logo at native aspect ratio on #050705 at left, Forgefront Systems and FACTORY RESILIENCE center-left, recovery state and HUMAN DECISION badge right; no separate operator notice row",
+      "StepRail": "200px vertical rail rendering every supplied guided step from state, not a shortened hard-coded list; each item is a real <button> or <a>, 40px high, numbered, completed/current/locked states shown by icon plus label plus color",
+      "GuideStrip": "Single 56px strip above stage: step count derived from the guided-steps array, current verb-led instruction, elapsed state if supplied by state, and one primary action at right; Lock recovery room moves to header as an icon button with text label",
+      "FactoryStage": "Full-bleed cinematic SVG command surface with title, status chip, legend, and zoom-independent labels; keyboard-focusable nodes expose the same facts as the evidence inspector",
+      "EvidenceInspector": "340px right panel: certificate versus receiving comparison, discrepancy callout, impacted jobs, held-demand units, feasible-path count; Inspect source evidence is the primary button, expanded by default on Step 1",
+      "DecisionBar": "60px bottom bar with back action left, current required action center, primary next action right; destructive or locking actions separated and labelled in text",
+      "KeyboardAccess": "Visible skip-to-stage link, logical tab order header > step rail > guide action > factory nodes > evidence > decision bar, 2px #c6ed8d focus outline with 2px offset on every interactive element, Left/Right or Up/Down moves between steps and factory nodes, Enter/Space activates, Esc closes any drawer, aria-current=step on the active step, aria-live=polite limited to state changes only"
+    },
+    "visualizations": {
+      "FactorySVG": "Cinematic inline SVG, viewBox 0 0 960 560, layered as receiving dock > material hold/QA gate > production line > two impacted production orders; equipment drawn in brushed-silver strokes on black, held segment in #c6ed8d with hatch fill and HELD label, blocked route dashed silver with a blocked marker",
+      "StateBinding": "Every SVG node, route, badge, and count binds to real supplied state: certificate discrepancy holds incoming material, 2 impacted jobs, 70 held-demand units, 3 feasible paths shown only as labelled route options when that state is active; no decorative machines, flows, percentages, or outcomes unrelated to state",
+      "EvidenceComparison": "Two aligned horizontal quantity tracks labelled Certificate and Receiving with an explicit DOES NOT MATCH marker spanning the gap; do not invent quantities beyond the supplied snapshot, show values only when present in state",
+      "ImpactOverlay": "Selecting or tabbing to an impacted job in the SVG highlights its route and the matching evidence row simultaneously; selecting the held lot highlights dock, QA gate, and stopped line segment",
+      "Legend": "Persistent 24px legend under the stage: Running, Held, Blocked, Feasible path, each distinguished by line pattern and label as well as color"
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 4,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fit 1366x768 with zero page scroll: remove the stacked header notice, oversized guide card, recap banner, and hero panel; replace with 52px header, 56px guide strip, center factory stage, 340px evidence inspector, and 60px decision bar inside a 100dvh shell"
+        },
+        {
+          "priority": "P0",
+          "change": "Add the missing cinematic factory SVG as the dominant center surface: receiving dock, material hold/QA gate, stopped production line, and the 2 impacted production orders, all driven by the certificate-discrepancy state; remove the empty concentric-arc hero decoration"
+        },
+        {
+          "priority": "P0",
+          "change": "Reconcile step counts from one state source: screen says Step 1 of 7, sidebar shows 5 items, supplied guided steps list 8; render the count and rail labels from the same guided-steps array and mark Step 1 with aria-current=step"
+        },
+        {
+          "priority": "P0",
+          "change": "Bring the actual task into the first viewport: make Inspect source evidence the primary button in the decision bar and open the certificate-versus-receiving evidence in the right inspector by default instead of a collapsed disclosure below the fold"
+        },
+        {
+          "priority": "P1",
+          "change": "Cut narration to one instruction: keep 'Open the certificate and receiving evidence' and delete the fresh-scenario notice, recovery-mission recap, hero paragraphs, and repeated discrepancy copy from the working surface"
+        },
+        {
+          "priority": "P1",
+          "change": "Replace the vague Show next action button with the verb-led current action and move Lock recovery room to the header as a labelled button; never stack a primary action above an unstyled text action in the guide"
+        },
+        {
+          "priority": "P1",
+          "change": "Attach the 2 impacted jobs, 70 held-demand units, and 3 feasible paths to their SVG nodes and evidence rows as compact state chips instead of three detached oversized numbers below a text box"
+        },
+        {
+          "priority": "P1",
+          "change": "Implement full keyboard access: step rail items and factory nodes are focusable controls with 2px #c6ed8d focus outline, arrow-key movement, Enter/Space activation, Esc to close drawers, and a skip-to-stage link as the first tab stop"
+        },
+        {
+          "priority": "P2",
+          "change": "Reduce the hero type from display scale to a 26px stage title 'Certificate discrepancy' with a single status line 'A line on hold' as a chip; preserve the immutable black, emerald/neon green, and brushed silver logo exactly as supplied, unrecolored and uncropped"
+        },
+        {
+          "priority": "P2",
+          "change": "Honour reduced motion: SVG hold pulse and route tracing run once at 240ms maximum, and under prefers-reduced-motion all pulse, dash, and flow animation is removed in favour of static hatch, dashed blocked routes, and text labels"
+        }
+      ]
+    }
+  ]
+}

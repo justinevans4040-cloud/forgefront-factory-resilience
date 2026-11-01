@@ -1,3 +1,4 @@
+import {draftBoard,moveTask as transitionTask,replanBoard,approveProposal} from './recovery-board.mjs';
 import { createHash, createHmac, randomUUID, timingSafeEqual } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync, appendFileSync, openSync, fsyncSync, closeSync, renameSync } from 'node:fs';
 import { join } from 'node:path';
@@ -22,6 +23,8 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
   const hmac=head=>createHmac('sha256',key).update(head).digest('hex');
   const redact=value=>redactSecrets(value,secrets);
   let events=[];let snapshot=createSnapshot(buildDemoScenarioInput());let runs=[];let decision={status:'none',operationalRelease:false};
+  let board={tasks:[]},proposals=[],memory=[];
+  const scopeFor=(session,operator)=>hash({session,operatorId:operator.id,scenarioId:snapshot.scenarioId});
   const pending=new Map();const jobs=new Map();let active=false;
   function durableWrite(path,value,purpose){
     const temporary=path+'.next';const fd=openSync(temporary,'w',0o600);
@@ -71,6 +74,10 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
   if(existsSync(log)){
     events=readEvents();
     for(const e of events){
+      if(e.type==='britt_proposed'){proposals.push(structuredClone(e.data));memory.push({scope:e.data.scope,summary:e.data.board.summary,snapshotDigest:e.data.snapshotDigest});}
+      if(['task_created','task_moved','tasks_replanned'].includes(e.type))board=e.data.board;
+      if(e.type==='britt_decided'){const p=proposals.find(p=>p.id===e.data.id);if(p)p.status=e.data.action==='approve'?'approved':'declined';}
+      if(e.type==='snapshot_changed'&&e.data.reset){board={tasks:[]};proposals=[];memory=[];}
       if(e.type==='snapshot_initialized')snapshot=createSnapshot(e.data.snapshot);
       if(e.type==='snapshot_changed'){snapshot=createSnapshot(e.data.snapshot);decision={status:e.data.reset===true?'none':'invalidated',operationalRelease:false};pending.clear();}
       if(e.type==='investigation_completed')runs.push(e.data);
@@ -82,7 +89,7 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
   const recoveredNonces=new Set(pending.keys());
   function append(type,data){
     // login_failed must not bootstrap scenario state: unauthenticated callers can append it.
-    verify();if(type!=='login_failed'&&type!=='snapshot_initialized'&&!events.some(e=>e.type==='snapshot_initialized'))append('snapshot_initialized',{snapshot});const body={sequence:events.length+1,type,epochMs:now(),previousHash:events.at(-1)?.eventHash??'GENESIS',data};
+    verify();if(type!=='login_failed'&&type!=='snapshot_initialized'&&!events.some(e=>e.type==='snapshot_initialized'))append('snapshot_initialized',{snapshot});const body={sequence:events.length+1,type,epochMs:now(),previousHash:events.at(-1)?.eventHash??'GENESIS',data:structuredClone(data)};
     const event={...body,eventHash:hash(body)};
     const next={count:events.length+1,head:event.eventHash,signature:hmac(event.eventHash)};
     const prior={count:events.length,head:body.previousHash};
@@ -97,6 +104,20 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
   function currentRun(id){verify();const r=runs.find(r=>r.runId===id);if(!r||r.run.snapshotDigest!==snapshot.snapshotDigest||!r.proposalValid)fail('STALE_OR_FAILED_INVESTIGATION');return r;}
   return {
     verify,
+    brittFor(session,operator){verify();const scope=scopeFor(session,operator);return {name:'Britt 4.0',proposal:structuredClone([...proposals].reverse().find(p=>p.scope===scope&&p.status==='pending')??null),memory:structuredClone(memory.filter(m=>m.scope===scope).slice(-12))};},
+    async draftTasks(client,session,operator){
+      verify();if(active)fail('INVESTIGATION_IN_PROGRESS');if(decision.status!=='accepted')fail('ACCEPT_RECOVERY_FIRST');active=true;const bound=snapshot.snapshotDigest;const decisionNonce=decision.nonce;
+      const scope=scopeFor(session,operator);const option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===decision.optionId&&o.feasible);
+      const context={snapshotDigest:bound,option,owner:operator.id,shockHours:0,evidence:buildEvidenceRegistry(snapshot).list().filter(e=>option.evidenceIds.includes(e.evidenceId)),memory:memory.filter(m=>m.scope===scope).slice(-6),priorBoard:board};
+      try{const drafted=await draftBoard(client,context);const done=board.tasks.filter(t=>t.status==='Done');const doneId=id=>id.startsWith('done-')?id:'done-'+id;drafted.board.tasks.push(...done.map(t=>({...structuredClone(t),id:doneId(t.id),dependsOn:t.dependsOn.map(doneId),completedSnapshot:t.completedSnapshot??board.snapshotDigest})));verify();if(snapshot.snapshotDigest!==bound||decision.status!=='accepted'||decision.nonce!==decisionNonce)fail('STALE_PROPOSAL');
+        const p=redact({id:randomUUID(),scope,snapshotDigest:bound,decisionNonce,status:'pending',...drafted,expires:now()+300000,operatorId:operator.id});append('britt_proposed',p);proposals.push(p);memory.push({scope,summary:p.board.summary,snapshotDigest:bound});return structuredClone(p);
+      }catch(error){append('britt_draft_rejected',{snapshotDigest:bound,operatorId:operator.id,reason:'DRAFT_FAILED_VALIDATION_OR_PROVIDER'});throw error;}finally{active=false;}
+    },
+    decideTasks(id,action,session,operator){verify();if(!['approve','decline'].includes(action))fail('APPROVAL_REQUIRED');const p=proposals.find(p=>p.id===id);if(!p||p.scope!==scopeFor(session,operator))fail('PROPOSAL_SCOPE_MISMATCH');if(p.status!=='pending'||p.expires<=now()||p.snapshotDigest!==snapshot.snapshotDigest||p.decisionNonce!==decision.nonce||decision.status!=='accepted')fail('STALE_PROPOSAL');
+      if(action==='approve'){const next=approveProposal(p,action,scopeFor(session,operator),snapshot.snapshotDigest);append('task_created',{board:next,proposalId:id,operatorId:operator.id});board=next;}
+      append('britt_decided',{id,action,operatorId:operator.id});p.status=action==='approve'?'approved':'declined';return this.status();
+    },
+    moveTask(id,status,operator,idempotencyKey){verify();if(idempotencyKey!==undefined){if(typeof idempotencyKey!=='string'||idempotencyKey.length<1||idempotencyKey.length>128)fail('INVALID_IDEMPOTENCY_KEY');const prior=events.find(e=>e.type==='task_moved'&&e.data.idempotencyKey===idempotencyKey&&e.data.operatorId===operator.id);if(prior){if(prior.data.taskId!==id||prior.data.status!==status)fail('IDEMPOTENCY_CONFLICT');return this.status();}}if(board.snapshotDigest!==snapshot.snapshotDigest)fail('STALE_BOARD');const next=transitionTask(board,id,status);append('task_moved',{board:next,taskId:id,status,operatorId:operator.id,...(idempotencyKey?{idempotencyKey}:{})});board=next;return this.status();},
     pendingFor(session,operator){verify();return [...pending.values()].filter(e=>e.expires>now()&&e.operatorId===operator.id&&e.operatorRole===operator.role&&(e.actor===hash(session)||recoveredNonces.has(e.nonce)));},
     recordLoginFailure(client){
       // Global rolling budget, recovered from verified events: address rotation/restart cannot reset it.
@@ -105,7 +126,7 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
       return append('login_failed',{clientDigest:hash(client),reason:recent.length===11?'GLOBAL_AUDIT_CAP_REACHED':'INVALID_CREDENTIAL',furtherAttemptsOmitted:recent.length===11,operationalRelease:false});
     },
     recordModelCall(entry){return append('model_call',redact(entry));},
-    status(){verify();return {snapshot,pendingConsents:[...pending.values()].filter(e=>e.expires>now()),analysis:analyzeSnapshot(snapshot),evidence:buildEvidenceRegistry(snapshot).list(),runs,decision,busy:active,ledger:verify(),storageProtection:{...storageProtection,encryption:'AES-256-GCM; HKDF-SHA256 domain-separated key'},synthetic:true,operationalRelease:false};},
+    status(){verify();return {snapshot,pendingConsents:[...pending.values()].filter(e=>e.expires>now()),board:structuredClone(board),analysis:analyzeSnapshot(snapshot),evidence:buildEvidenceRegistry(snapshot).list(),runs,decision,busy:active,ledger:verify(),storageProtection:{...storageProtection,encryption:'AES-256-GCM; HKDF-SHA256 domain-separated key'},synthetic:true,operationalRelease:false};},
     startInvestigation(client,actor,operator){
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');
       if(jobs.size>=32){const done=[...jobs].find(([,j])=>j.status!=='running');if(done)jobs.delete(done[0]);else fail('JOB_CAPACITY');}
@@ -137,11 +158,11 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
     shock(cellId,operator={id:'local-operator'}){
       verify();if(!snapshot.cells.some(c=>c.cellId===cellId&&c.online))fail('UNKNOWN_OR_OFFLINE_CELL');
       const input={...snapshot,cells:snapshot.cells.map(c=>({...c,online:c.cellId===cellId?false:c.online})),incident:{...snapshot.incident,summary:snapshot.incident.summary+` Secondary shock: ${cellId} unavailable.`}};
-      const next=createSnapshot(input);append('snapshot_changed',{priorDigest:snapshot.snapshotDigest,snapshot:next,operatorId:operator.id});snapshot=next;pending.clear();decision={status:'invalidated',operationalRelease:false};return this.status();
+      const next=createSnapshot(input);append('snapshot_changed',{priorDigest:snapshot.snapshotDigest,snapshot:next,operatorId:operator.id});snapshot=next;if(board.tasks.length){const nextBoard=replanBoard(board,next.snapshotDigest,cellId);append('tasks_replanned',{board:nextBoard,operatorId:operator.id});board=nextBoard;}pending.clear();decision={status:'invalidated',operationalRelease:false};return this.status();
     },
-    reset(operator={id:'local-operator'}){verify();const next=createSnapshot({...buildDemoScenarioInput(),scenarioId:'scenario-cert-hold-'+randomUUID()});append('snapshot_changed',{priorDigest:snapshot.snapshotDigest,snapshot:next,reset:true,operatorId:operator.id});snapshot=next;pending.clear();decision={status:'none',operationalRelease:false};return this.status();},
+    reset(operator={id:'local-operator'}){verify();const next=createSnapshot({...buildDemoScenarioInput(),scenarioId:'scenario-cert-hold-'+randomUUID()});append('snapshot_changed',{priorDigest:snapshot.snapshotDigest,snapshot:next,reset:true,operatorId:operator.id});snapshot=next;board={tasks:[]};proposals=[];memory=[];pending.clear();decision={status:'none',operationalRelease:false};return this.status();},
     exportCheckpoint(){const v=verify();return {format:'FORGEFRONT_CHECKPOINT_V1',count:v.count,head:v.head,signature:v.signature??hmac(v.head),synthetic:true,operationalRelease:false};},
     exportReport(){return {text:readablePacket(this.exportPacket()),format:'MARKDOWN',synthetic:true,operationalRelease:false};},
-    exportPacket(){const state=this.status();return {...state,snapshots:[...new Map([...events.filter(e=>['snapshot_initialized','snapshot_changed'].includes(e.type)).map(e=>e.data.snapshot),snapshot].map(s=>[s.snapshotDigest,s])).values()],format:'FORGEFRONT_ADVISORY_PACKET',label:'PLAINTEXT EXPORT; SYNTHETIC; ILLUSTRATIVE COSTS; ADVISORY ONLY',ledgerDescription:'hash-chained, tamper-evident',events,operationalRelease:false};}
+    exportPacket(){const state=this.status();return {...state,snapshots:[...new Map([...events.filter(e=>['snapshot_initialized','snapshot_changed'].includes(e.type)).map(e=>e.data.snapshot),snapshot].map(s=>[s.snapshotDigest,s])).values()],brittMemory:structuredClone(memory),brittProposals:structuredClone(proposals),format:'FORGEFRONT_ADVISORY_PACKET',label:'PLAINTEXT EXPORT; SYNTHETIC; ILLUSTRATIVE COSTS; ADVISORY ONLY',ledgerDescription:'hash-chained, tamper-evident',events,operationalRelease:false};}
   };
 }

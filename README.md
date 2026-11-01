@@ -65,7 +65,13 @@ Open **http://127.0.0.1:8791** — the demo opens straight into the recovery roo
 4. **Challenge** — take a machine offline. Watch the earlier acceptance get invalidated, re-investigate and accept a revised plan.
 5. **Prove** — verify the tamper-evident ledger and export an encrypted evidence packet with its independent checkpoint.
 
-The five-stage command center keeps one focused workspace on screen. **Show next action** reveals and focuses the current control; result highlights and recaps explain each transition. The final summary compares the accepted path with replenishment and checks the retained proof. The guide advances on real application state. Shot-by-shot: [demo runbook](hackathon/docs/DEMO_RUNBOOK.md).
+The full-screen command center keeps one focused workspace on screen. **highlighted primary action** runs the current guided action and focuses the next required control; result highlights and recaps explain each transition. The final summary compares the accepted path with replenishment and checks the retained proof. The guide advances on real application state. Shot-by-shot: [demo runbook](hackathon/docs/DEMO_RUNBOOK.md).
+
+## Designed with Muse Wonder
+
+Muse Wonder directs the visual design of the Meta Hackathon build: real full-screen captures go to Meta for a component specification and scored step critiques. The [saved design reviews](hackathon/design/design-direction.json) guide the black, emerald and brushed-silver command center. The factory map connects source quantities, affected orders, accepted allocations and sealed events to the live recovery state.
+
+**Britt 4.0, Forgefront’s sovereign agent**, plans recovery work with Meta models and read-only investigation tools. It drafts source-linked tasks from an accepted decision, remembers the recovery in encrypted session-scoped state, and waits for your approval. The recovery project board tracks owners, dependencies, due windows and blockers; a second shock visibly blocks affected work for a fresh human review. Keys and encrypted state stay on the operator’s machine; inference uses the selected Meta route.
 
 ## How Meta models are used
 

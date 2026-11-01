@@ -1,18 +1,23 @@
 # The Meta Hackathon build — current evidence
 
-Run twelve follows the focused recovery room from incident to verified proof. Public delivery selects this newest numbered run and shared model/tool evidence.
+Run thirteen follows the Meta-directed factory command center, Britt 4.0 and the recovery project board. Public delivery selects this newest numbered run.
 
 | Question | Evidence |
 | --- | --- |
-| Do the suites pass? | [Product suite](run12/hackathon-tests.txt), [root suite](run12/root-tests.txt) |
-| Which primary routes answered? | [Provider pre-flight](run12/providers.json) |
-| Does the offline keyboard workflow work? | [Accessibility command](run12/accessibility.txt), [keyboard summary](run12/browser-offline/summary.json), [mobile keyboard summary](run12/browser-offline-mobile/summary.json), [opening room](run12/browser-offline/recovery-open.png), [desktop](run12/browser-offline/desktop.png), [mobile](run12/browser-offline/mobile.png) |
-| Does the live guide complete? | [Desktop summary](run12/browser/summary.json), [desktop](run12/browser/desktop.png), [mobile-width summary](run12/browser-mobile/summary.json), [mobile](run12/browser-mobile/mobile.png) |
-| Does invalid output fail closed? | [Retained desktop rejection](run12/browser/failed-packet.json), [retained mobile rejection](run12/browser-mobile/failed-packet.json), [reasoning-budget regression](run12/tdd-reasoning-red.txt) |
-| Can the recovery be inspected? | [Live packet](run12/browser/packet.json), [checkpoint](run12/browser/checkpoint.json), [readable report](run12/browser/report.md) |
-| Does the public set stand alone? | [Judge check](run12/judge-check.txt), [isolated public tree](run12/public-tree.txt) |
-| Are assets and secrets protected? | [Secret scan](run12/gitleaks.txt), [working tree scan](run12/gitleaks-working-tree.txt), [showcase integrity](run12/showcase-integrity.json) |
-| Did independent audit ten re-verify? | [Product suite](run12/hackathon-tests-audit10.txt), [judge check](run12/judge-check-audit10.txt), [public tree](run12/public-tree-audit10.txt), [history scan](run12/gitleaks-audit10.txt) |
-| Was behavior tested first? | [Initial red](run12/tdd-red.txt), [guide/report red](run12/tdd-flow-red.txt), [provider policy red](run12/tdd-provider-red.txt), [narration red](run12/tdd-narration-red.txt), [restart red](run12/tdd-restart-red.txt), [smoke defaults red](run12/tdd-smoke-red.txt), [green](run12/tdd-green.txt) |
+| How did Meta direct the design? | [Design direction](../design/design-direction.json), [latest Wonder review](../design/iteration-14.json), [first review](../design/iteration-1.json) |
+| Do primary guided actions complete? | [Offline primary-button proof](run13/primary-browser-offline/summary.json), [live Wonder/Baseten proof](run13/primary-browser/summary.json) |
+| Which providers answered? | [Primary pre-flight](run13/providers.json) |
+| Can every step be inspected at three sizes? | [Screenshot manifest](run13/primary-browser-offline/screens.json), [live captures](run13/primary-browser/screens.json) |
+| Does the keyboard workflow work? | [Keyboard summary](run13/browser-offline/summary.json) |
+| Can the recovery be inspected? | [Offline packet](run13/browser-offline/packet.json), [independent checkpoint](run13/browser-offline/checkpoint.json) |
 
-Model-call records preserve requested and returned identities, exact source validation and elapsed inference. Sample runs are explicitly offline. The backup route receives no live request in this verification. [Contribution inventory](../HACKATHON_CONTRIBUTIONS.md) · [Owner checklist](../docs/SUBMISSION_CHECKLIST.md).
+Sample is explicitly offline. Primary live proof uses Wonder and Baseten. The optional backup receives no request. [Contribution inventory](../HACKATHON_CONTRIBUTIONS.md) · [Control mapping](../SECURITY_CONTROLS.md).
+
+| Verification | Result artifact |
+| --- | --- |
+| Product and root suites | [Product tests](run13/hackathon-tests.txt), [root tests](run13/root-tests.txt) |
+| Public delivery | [Isolated public tree](run13/public-tree.txt) |
+| Accessibility | [Desktop command](run13/accessibility.txt), [mobile keyboard](run13/browser-offline-mobile/summary.json) |
+| Root mission chain | [Node browser proof](run13/root-browser.txt) |
+| Secret scan | [History scan](run13/gitleaks.txt) |
+| Regression proof | [Original mocked-route stall](run13/primary-baseline-mocked/failure.json), [mocked-route completion](run13/primary-browser-mocked/summary.json) |

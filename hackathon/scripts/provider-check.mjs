@@ -15,6 +15,6 @@ if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const result=await checkProviders();
  for(const p of result.providers)console.log(`${p.light} ${p.provider} · ${p.elapsedMs}ms · ${p.reason}`);
  console.log(result.policy);
- writeEvidence(new URL('../evidence/run12/providers.json',import.meta.url),JSON.stringify(result,null,2)+'\n');
+ writeEvidence(new URL('../evidence/run13/providers.json',import.meta.url),JSON.stringify(result,null,2)+'\n');
  process.exitCode=result.passed?0:1;
 }

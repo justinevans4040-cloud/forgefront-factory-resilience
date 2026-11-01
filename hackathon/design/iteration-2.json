@@ -1,0 +1,221 @@
+{
+  "model": "muse-wonder-1.0",
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "1366x768 first: 100vw x 100dvh shell, overflow hidden, no page scroll. grid-template-columns:184px minmax(0,1fr) 360px; grid-template-rows:48px 52px minmax(0,1fr) 56px; header spans all rows of columns, rail left, guide above stage, factory centre, inspector right, decision bar bottom centre+right. Factory stage >=55% width and >=60% height. Only inspector/task list may scroll internally.",
+    "colorTokens": {
+      "bg": "#050705",
+      "panel": "#0B100B",
+      "raised": "#121A12",
+      "action": "neon emerald #A8F04A, text #050705",
+      "silver": "#C5CCD4 headings/structure",
+      "silverDim": "rgba(197,204,212,.68)",
+      "border": "rgba(197,204,212,.22)",
+      "held": "neon outline + diagonal hatch + HELD label",
+      "blocked": "silver dashed route + X marker + BLOCKED label",
+      "offline": "silver cross-hatch + OFFLINE label",
+      "accepted": "solid neon route + check + ACCEPTED label",
+      "logo": "Use supplied logo asset once in header only, at native aspect on its black field; never recolor, redraw, crop, outline or duplicate it. Remove red/orange state colors."
+    },
+    "typography": "System sans only for offline reliability. Stage title 24px/30px 700, panel title 15px/20px 650, body 13px/19px, micro-label 11px/14px 700 uppercase, metrics 26px tabular-nums. One verb-led instruction and one status sentence per screen; delete hero slogans, repeated mission text and recap banners from the working surface.",
+    "motion": "160-220ms ease-out opacity/transform for panel and selection changes; one 240ms SVG route trace on state change, then static. No loops, parallax or decorative glow pulses. @media (prefers-reduced-motion: reduce): all transition/animation/dash/pulse removed; state shown instantly with hatch, dashes, icons and text. Focus ring appears instantly.",
+    "components": {
+      "Header": "48px: immutable logo left, Forgefront Systems / FACTORY RESILIENCE, recovery state and HUMAN DECISION right; Lock recovery room as labelled header button.",
+      "StepRail": "One rail rendered from the same supplied steps array as every header count. Real buttons, 36-40px high, completed/current/locked shown by icon + text + color; aria-current=step on current.",
+      "GuideStrip": "52px: Step X of Y from state, current instruction, primary action right. Replace vague Show next action with the actual verb for that step.",
+      "FactoryStage": "Cinematic focusable inline SVG with title chip, legend and synced selection; every node is reachable and labelled.",
+      "EvidenceInspector": "360px task-specific panel: evidence comparison, options as radio groups, disruption control, task review or proof controls depending on step; required action never below the fold.",
+      "DecisionBar": "56px: Back left, required human action centre, primary next action right. Destructive/invalidating actions separated and text-labelled, never color-only.",
+      "Keyboard": "Skip-to-stage first; tab order header > rail > guide > SVG nodes > inspector > decision bar; 2px neon focus outline + 2px offset; Arrow keys move in rail and SVG, Enter/Space activates, Esc closes drawers; aria-live=polite only for state results."
+    },
+    "visualizations": {
+      "FactorySVG": "Inline SVG viewBox 0 0 960 540, cinematic side-elevation/isometric composition on black: receiving dock and held lot, QA/material-hold gate, conveyor, CELL-MILL-1 and CELL-MILL-2 as brushed-silver machine silhouettes, JOB-1001 and JOB-1002 order bays below. Silver idle strokes, neon only for accepted/feasible routes and primary highlights.",
+      "StateBinding": "Bind every node, route, badge and count to real state only: certificate mismatch holds MAT-ALLOY-A; JOB-1001 40 parts and JOB-1002 30 parts total 70 held-demand units; impacted jobs, feasible paths, cell online/offline, acceptance invalidated/accepted, event count and packet sealed change the SVG and inspector together. No decorative machines or unbound metrics.",
+      "Evidence": "Certificate vs Receiving as two aligned quantity tracks with DOES NOT MATCH spanning the gap; show quantities only when present in state. Selecting an SVG job/evidence node highlights the matching inspector row and vice versa.",
+      "Legend": "Persistent under stage: Running, Held, Blocked, Offline, Feasible/Accepted, each with distinct pattern, marker and text label."
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Remove the duplicated logo and One bad cert hero from the right panel; open Certificate vs Receiving evidence there by default and make Inspect source evidence the DecisionBar primary."
+        },
+        {
+          "priority": "P0",
+          "change": "Replace red rectangular boxes with the cinematic state SVG: Receiving held with hatch, both mill cells AWAITING DECISION, dashed blocked routes to JOB-1001 and JOB-1002."
+        },
+        {
+          "priority": "P1",
+          "change": "Delete the second out-of-order Incident/Investigate/Decide/Shock/Project board/Proof nav; keep one rail from the steps array with aria-current=step and visible focus."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Bind investigation to the SVG: make ev-cert-qty, ev-recv-qty and ev-sub-stock focusable evidence nodes; selecting one highlights its route and inspector record, and a completed investigation traces the calculated recovery routes."
+        },
+        {
+          "priority": "P0",
+          "change": "Compress the right panel to route label, one select, Check selected route as secondary, Investigate recovery as the only primary, and one status line; delete repeated offline explanations."
+        },
+        {
+          "priority": "P1",
+          "change": "Expose the same route facts by keyboard: logical focus order, Enter/Space to investigate, aria-live=polite announcing only the investigation result."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 4,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Fit the decision in 768px: convert the three tall option cards to compact selectable radio rows comparing finish and incremental cost, and keep the APPROVE phrase input plus seal action visible in the inspector/DecisionBar without scrolling."
+        },
+        {
+          "priority": "P0",
+          "change": "Link option selection to the factory: preview that option's feasible route and affected jobs on the SVG before acceptance; keep held/blocked states pattern-and-label based, not red-only."
+        },
+        {
+          "priority": "P1",
+          "change": "Remove Revoke acceptance when the state is No acceptance recorded; show it only after a sealed acceptance exists."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 4,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Turn the prose task list into three distinct reviewable task cards before approval, each with task name, dependency, due state and linked JOB/CELL node; selecting a card highlights the accepted SVG path."
+        },
+        {
+          "priority": "P0",
+          "change": "Compress Britt 4.0 to a slim proposal header and fit To do / In progress / Done as three compact columns or a segmented board within the stage height; move Approve/Decline to the DecisionBar with Approve primary."
+        },
+        {
+          "priority": "P1",
+          "change": "Resolve the counters: distinguish Proposal untracked from tracked board work so 0 tracked does not appear to contradict a ready proposal."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 3,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Show the actual disruption task in the inspector at 768px: CELL-MILL-2 preselected as outage target, consequence text, and Simulate a machine outage as primary; do not let the project board occupy this step."
+        },
+        {
+          "priority": "P0",
+          "change": "On application, immediately change header, footer and SVG from RECOVERY ACCEPTED to ACCEPTANCE INVALIDATED: CELL-MILL-2 OFFLINE cross-hatch, its routes dashed/blocked, and the next action changed to reinvestigation."
+        },
+        {
+          "priority": "P1",
+          "change": "Freeze the existing task board as read-only context behind the invalidated banner instead of presenting Draft recovery tasks as the current action."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 4,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Replace the repeated shock-simulation panel with the reinvestigation panel: retain the previously selected route, show CELL-MILL-2 OFFLINE / CELL-MILL-1 ONLINE constraints, and make Run investigation the single primary."
+        },
+        {
+          "priority": "P0",
+          "change": "Fix the outage target conflict: do not default the selector to CELL-MILL-1 after CELL-MILL-2 is already offline; disable an already-applied outage and label it APPLIED."
+        },
+        {
+          "priority": "P1",
+          "change": "Add an original-vs-changed constraint comparison tied to the SVG, with only the CELL-MILL-1 route feasible and the CELL-MILL-2 route statically blocked under reduced motion."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Use the same compact radio-row comparison as Step 3 and keep the revised APPROVE input and acceptance action visible without inspector scrolling."
+        },
+        {
+          "priority": "P1",
+          "change": "Make the change explicit on the options and SVG: Split available capacity changes from feasible to CONSTRAINED because it requires at least two online compatible cells; render it non-selectable with a focusable reason."
+        },
+        {
+          "priority": "P1",
+          "change": "When an option is selected, preview its revised route through CELL-MILL-1 and dim the offline CELL-MILL-2 path with pattern and OFFLINE label, not red alone."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 3,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Resolve the state contradiction: the map says RECOVERY ACCEPTED and Approve Britt's proposal is active while a task says CELL-MILL-2 unavailable, fresh acceptance required. Gate Approve on one authoritative revised-acceptance state and align banner, board and buttons."
+        },
+        {
+          "priority": "P0",
+          "change": "Fix numbering from one steps array: header Step 8 Britt replans must not coexist with rail items labelled 08 Verify and retain evidence and 09 Britt replans the recovery work."
+        },
+        {
+          "priority": "P1",
+          "change": "Fit the board as To do / In progress / Blocked / Done segmented views or a compact 2x2 grid; selecting Verify accepted source records highlights CELL-MILL-1, JOB-1001 and JOB-1002 and shows why the CELL-MILL-2 dependency is blocked."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 3,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Replace the project-board inspector with the actual proof task: ledger verification status, 18-event hash-chain state, export action, separate passphrase field and independent-checkpoint retention instruction, all visible at 768px."
+        },
+        {
+          "priority": "P0",
+          "change": "Remove the duplicate rail entry 10 Verify and retain evidence and derive header and rail totals from the same steps array."
+        },
+        {
+          "priority": "P1",
+          "change": "Put Verify ledger and Export evidence packet in the DecisionBar; give the masked passphrase an aria-describedby strength/retention note and announce verification results via aria-live=polite only."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 5,
+      "fixes": [
+        {
+          "priority": "P0",
+          "change": "Reconcile completion numbering: header Step 9 of 9 Recovery story complete and rail 11 Recovery story complete must both be generated from the supplied steps array as the final step."
+        },
+        {
+          "priority": "P0",
+          "change": "Keep the compact Before-After summary, but bring the retained-evidence passphrase completion and final export/retention action fully into the viewport instead of cutting them off below the fold."
+        },
+        {
+          "priority": "P1",
+          "change": "Set the final SVG state deliberately: accepted route through CELL-MILL-1, CELL-MILL-2 OFFLINE labelled, both jobs linked to 18 EVENTS - PACKET SEALED; remove generic live-recovery wording that implies work is still undecided."
+        }
+      ]
+    }
+  ]
+}

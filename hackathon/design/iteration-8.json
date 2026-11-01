@@ -1,0 +1,222 @@
+{
+  "model": "meta-models/muse-spark-open",
+  "inputMode": "structured-layout",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh shell overflow:hidden no page scroll; grid-template-columns:184px minmax(0,1fr) 360px; grid-template-rows:48px 52px minmax(0,1fr) 56px; Header spans top, StepRail left, GuideStrip 52px above stage, FactoryStage centre always >=55% vw and >=60% vh including board and proof steps, Inspector 360px right with internal scroll only, DecisionBar 56px bottom centre+right. Factory never thumbnails when inspector opens.",
+    "colorTokens": {
+      "bg": "#050705",
+      "panel": "#0B100B",
+      "raised": "#121A12",
+      "action": "neon emerald #A8F04A with #050705 text for primary actions only",
+      "silver": "brushed silver #C5CCD4 for headings, machine bodies and structure",
+      "silverDim": "rgba(197,204,212,.68)",
+      "border": "rgba(197,204,212,.22)",
+      "stoppedRed": "#E5484D reserved only for stopped station outline + STOPPED/OFFLINE text + cross-hatch on CELL-MILL-2, owner-required exception",
+      "held": "neon outline + diagonal hatch + HELD text",
+      "blocked": "silver dashed route + X marker + BLOCKED text",
+      "offline": "stoppedRed outline + cross-hatch + OFFLINE text",
+      "accepted": "solid neon route + check marker + ACCEPTED text",
+      "logo": "Supplied logo asset once in header on black field native aspect, never recolor redraw crop outline or duplicate, opening-story logos preserved as owner-required"
+    },
+    "typography": "System sans only. Stage title 24px/30px 700, panel title 15px/20px 650, body 13px/19px, micro-label 11px/14px 700 uppercase, metrics 26px tabular-nums, currency tabular 2 decimals. One verb-led instruction + one status sentence per screen, delete hero slogans and repeated offline explanations from working surfaces.",
+    "motion": "160-220ms ease-out for opacity/transform on selection and panel changes, one 240ms SVG route trace on real state change then static. No loops pulses parallax glows. Prefers-reduced-motion: remove transitions animations dash movement, show state instantly via pattern marker text, focus rings instant.",
+    "components": {
+      "Header": "48px: immutable logo left, Forgefront Systems / FACTORY RESILIENCE, current recovery state and HUMAN DECISION right, Lock recovery room as labelled button. Retain owner-required header and opening-story logos.",
+      "StepRail": "Single rail from same steps array as Step X of Y header. Buttons 36-40px completed/current/locked with icon text color, aria-current=step on current. No second workflow list.",
+      "GuideStrip": "52px: Step X of Y from state, one verb-led instruction, one short status sentence. No duplicate primary button here, primary stays in DecisionBar as in current state.",
+      "FactoryStage": "Focusable cinematic inline SVG title chip + persistent legend + synced selection. Always cinematic size, never thumbnail on board or proof steps. Every node keyboard-reachable with label, 2px neon focus outline 2px offset.",
+      "EvidenceInspector": "360px task-specific panel only: evidence comparison, route investigation, decision radios, disruption control, reinvestigation comparison, task review or proof controls. Required action pinned visible without page scroll, internal scroll only. Collapsed blocked-tasks group intentionally visible until replacement proposal approval.",
+      "DecisionBar": "56px: Back left, required human decision or status centre, single primary next action right. Destructive/invalidating actions separated text-labelled never color-only. Primary action in bar is correct.",
+      "Keyboard": "Skip-to-stage first. Tab order header > rail > guide > SVG nodes > inspector > decision bar. Arrow keys move rail and SVG, Enter/Space activates, Esc closes drawers. aria-live=polite announces state results only."
+    },
+    "visualizations": {
+      "FactorySVG": "Inline SVG viewBox 0 0 960 540 cinematic side-elevation on black: receiving dock and held lot, QA/material-hold gate, conveyor spine, CELL-MILL-1 and CELL-MILL-2 as brushed-silver silhouettes, JOB-1001 and JOB-1002 bays beneath. Silver idle strokes, neon only for feasible/accepted routes and selection, red only on CELL-MILL-2 when stopped/offline.",
+      "StateBinding": "Bind every node route badge count inspector row to real state only: certificate mismatch holds MAT-ALLOY-A, JOB-1001 40 + JOB-1002 30 = 70 held-demand units, impacted jobs, feasible paths, cell online/offline, acceptance valid/invalidated/accepted, event count, packet sealed update SVG and inspector together. No decorative machines or green through offline. Approved plan and blocked tasks may coexist while replacement tasks await approval as untracked until human approval is intentional. Selecting recovery option correctly opens typed consent form, pre-selection screenshot not missing functionality.",
+      "Evidence": "Certificate vs Receiving as two aligned labelled quantity tracks with DOES NOT MATCH spanning gap. SVG selection highlights matching inspector record and vice versa.",
+      "Legend": "Persistent beneath stage: Running, Held, Blocked, Offline/Stopped, Feasible/Accepted each with distinct pattern marker text label, Offline/Stopped includes owner-required red."
+    }
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Lock shell to 100dvh overflow:hidden and clamp Inspector to overflow-y:auto with DecisionBar 56px pinned so primary stays visible at 1366x768 without page scroll."
+        },
+        {
+          "priority": "medium",
+          "change": "Trim GuideStrip to single verb + single status sentence and move repeated offline explanation to inspector detail row."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure legend and HELD hatch plus HELD label remain inside FactoryStage at >=55% width and add 2px neon focus outline to SVG evidence nodes."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Verify red outline, cross-hatch and OFFLINE text appear only on CELL-MILL-2 and blocked route uses silver dashed + X + BLOCKED, no red for held or jobs."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep collapsed blocked-tasks group as is but add count badge and aria-expanded to clarify intentional visibility until proposal approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Enforce tabular-nums on impacted jobs and held units and keep SVG route selection synced to inspector row focus."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep exact-phrase input disabling primary until match and add aria-describedby explaining match requirement and live polite announcement on enable."
+        },
+        {
+          "priority": "medium",
+          "change": "Maintain radio selection preparing review without auto-navigating, ensure consent form opens only on explicit select as designed."
+        },
+        {
+          "priority": "low",
+          "change": "Increase disabled primary contrast border to meet non-text contrast while retaining neon enabled style."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Prevent FactoryStage shrink when task board opens, keep stage >=60% height and let only inspector column scroll internally."
+        },
+        {
+          "priority": "medium",
+          "change": "Condense inspector task copy to micro-label plus one line, keep blocked collapsed group and approved plan badge visible to show deliberate coexistence."
+        },
+        {
+          "priority": "medium",
+          "change": "Add keyboard roving focus to task rows and keep primary action pinned in DecisionBar without duplicate button in GuideStrip."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep disruption control as single destructive text-labelled button separated from primary, never color-only, with confirm step."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure viewport still fits at 768h after disruption banner by reducing GuideStrip padding and inspector row height to 36px."
+        },
+        {
+          "priority": "low",
+          "change": "Add reduced-motion fallback for any route invalidation animation to instant pattern swap with cross-hatch and BLOCKED marker."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Render reinvestigation as side-by-side comparison with identical row heights and tabular metrics to avoid layout shift at 1366x768."
+        },
+        {
+          "priority": "medium",
+          "change": "Sync changed capacity state to SVG so feasible routes update and offline cell never shows neon through path."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep GuideStrip to one instruction sentence and move secondary explanation to inspector status line."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 8,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Preserve exact-phrase disabled-until-match behavior and ensure focus moves to text input when revised recovery option selected."
+        },
+        {
+          "priority": "medium",
+          "change": "Use silver for unselected radios and neon only for selected plus focus ring to maintain emerald/silver hierarchy with red exception."
+        },
+        {
+          "priority": "low",
+          "change": "Add helper text that prior acceptance is invalidated and new acceptance will replace it, without inventing dates."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Maintain factory cinematic scale during replanning, inspector scrolls tasks internally, DecisionBar pinned with single primary."
+        },
+        {
+          "priority": "medium",
+          "change": "Show approved recovery plan badge and collapsed blocked group simultaneously with clear micro-labels to communicate pending replacement approval state."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure currency values use tabular 2-decimal aligned right and no unbound metrics appear outside real state."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep proof controls in inspector only with sealed count bound to real state, no page scroll, DecisionBar retains Verify primary."
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure SVG packet and evidence nodes are keyboard reachable and announce sealed change via aria-live polite."
+        },
+        {
+          "priority": "low",
+          "change": "Reduce narration to one verification instruction and remove duplicate recap copy from stage."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep completion shell at 100dvh no scroll with stage summary and legend visible, inspector shows retain evidence action pinned."
+        },
+        {
+          "priority": "medium",
+          "change": "Preserve owner-required header and opening-story logos, ensure immutable logo never duplicated or recolored in final view."
+        },
+        {
+          "priority": "low",
+          "change": "Add visible focus outline and reduced-motion instant state for final checkmarks without glow or pulse."
+        }
+      ]
+    }
+  ]
+}
