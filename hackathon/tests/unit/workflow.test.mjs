@@ -50,3 +50,18 @@ test('shock during inference records calls but rejects the stale completed propo
 test('reset never revives a previously successful investigation',async()=>{
  const w=createWorkflow(setup());const r=await w.investigate(model);w.reset();assert.notEqual(w.status().snapshot.snapshotDigest,r.run.snapshotDigest);assert.throws(()=>w.review(r.runId,r.analysis.recovery.options[0].optionId,'s'));
 });
+
+
+test('accepting one compared path consumes every outstanding review before and after restart',async()=>{
+ const options=setup(),w=createWorkflow(options),r=await w.investigate(model);
+ const ids=r.analysis.recovery.options.filter(o=>o.feasible).map(o=>o.optionId);
+ const first=w.review(r.runId,ids[0],'session-a');
+ const chosen=w.review(r.runId,ids[1],'session-a');
+ w.confirm(chosen.nonce,`APPROVE ${ids[1]}`,'session-a');
+ assert.deepEqual(w.status().pendingConsents,[]);
+ assert.throws(()=>w.confirm(first.nonce,`APPROVE ${ids[0]}`,'session-a'));
+ const restarted=createWorkflow(options);
+ assert.deepEqual(restarted.status().pendingConsents,[]);
+ assert.equal(restarted.status().decision.optionId,ids[1]);
+ assert.throws(()=>restarted.confirm(first.nonce,`APPROVE ${ids[0]}`,'session-a'));
+});

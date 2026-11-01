@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  6,
     "score":  7,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Preserve stoppedRed exclusively on CELL-MILL-2 outline, hatch and OFFLINE-STOPPED text; ensure no route line passes through that cell."
+                      "priority":  "P1",
+                      "change":  "Preserve red exclusively on stopped CELL-MILL-2 and remove red emphasis from RECEIVING HOLD so the stopped exception stays unambiguous; use held pattern and text for MAT-ALLOY-A."
                   },
                   {
-                      "priority":  "high",
-                      "change":  "Keep pre-flight nonce/identity checks separate above the distinct investigation evidence task, each with its own run status."
+                      "priority":  "P1",
+                      "change":  "Keep nonce/identity pre-flight separate from the investigation evidence task and show that Split is constrained because no feasible route uses the offline cell."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Fix overlapping Certificate says / Receiving counted / Substitute captions and dashed connector collisions around JOB-1001."
+                      "priority":  "P2",
+                      "change":  "Enlarge the scene toward 70% and raise the constrained option label to 16px with pattern plus text, not colour alone."
                   }
               ],
     "model":  "muse-wonder-1.0"

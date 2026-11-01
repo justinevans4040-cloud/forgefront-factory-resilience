@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  3,
     "score":  7,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Keep selected option opening the typed consent form in inspector, with exact-phrase field labelled, character count announced, and Accept disabled until matched."
+                      "priority":  "P1",
+                      "change":  "Do not treat the pre-selection view as missing consent: on selecting any of the three paths, open the typed consent form and move focus into it with Esc to close."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Give the three path cards equal height, right-aligned 26px finish/cost metrics, and a visible 2px focus ring on Select controls."
+                      "priority":  "P1",
+                      "change":  "Enlarge the SVG scene to 70% fill; the large empty Human Decision panel should be condensed inside its reserved zone rather than displacing the scene."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Fix overlapping evidence captions beneath the SVG and enlarge route option text to 11px minimum."
+                      "priority":  "P2",
+                      "change":  "Make each Select this path control at least 36px, keyboard reachable in SVG-to-side-zone order, with selected state shown by marker and text as well as neon outline."
                   }
               ],
     "model":  "muse-wonder-1.0"

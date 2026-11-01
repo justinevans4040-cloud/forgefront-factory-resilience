@@ -82,7 +82,7 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
       if(e.type==='snapshot_changed'){snapshot=createSnapshot(e.data.snapshot);decision={status:e.data.reset===true?'none':'invalidated',operationalRelease:false};pending.clear();}
       if(e.type==='investigation_completed')runs.push(e.data);
       if(e.type==='consent_reviewed'&&e.data.expires>now())pending.set(e.data.nonce,e.data);
-      if(e.type==='decision_accepted'){decision=e.data;pending.delete(e.data.nonce);}
+      if(e.type==='decision_accepted'){decision=e.data;pending.clear();}
       if(e.type==='decision_revoked'){decision=e.data;pending.clear();}
     }
   }
@@ -152,7 +152,7 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[]}) {
       verify();const e=pending.get(nonce);if(!e||e.expires<=now()||(e.actor!==hash(session)&&!(operator&&e.operatorId===operator.id&&e.operatorRole===operator.role&&recoveredNonces.has(nonce)))||e.snapshotDigest!==snapshot.snapshotDigest||typed!==`APPROVE ${e.optionId}`)fail('INVALID_EXPIRED_OR_STALE_CONSENT');
       const {signature,...body}=e;if(!safeEqual(signature,hmac(hash(body))))fail('CONSENT_SIGNATURE_INVALID');
       currentRun(e.runId);const option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===e.optionId&&o.feasible);if(!option||hash(option)!==e.planDigest)fail('PLAN_CHANGED');
-      const next={...e,status:'accepted',confirmationActor:hash(session),resumedAfterRestart:e.actor!==hash(session)&&recoveredNonces.has(nonce),operationalRelease:false};append('decision_accepted',next);pending.delete(nonce);decision=next;return decision;
+      const next={...e,status:'accepted',confirmationActor:hash(session),resumedAfterRestart:e.actor!==hash(session)&&recoveredNonces.has(nonce),operationalRelease:false};append('decision_accepted',next);pending.clear();decision=next;return decision;
     },
     revoke(operator={id:'local-operator'}){verify();pending.clear();const next={status:'revoked',operatorId:operator.id,operationalRelease:false};append('decision_revoked',next);decision=next;return next;},
     shock(cellId,operator={id:'local-operator'}){

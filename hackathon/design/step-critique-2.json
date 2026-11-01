@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  2,
-    "score":  6,
+    "score":  7,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Separate ROUTE HEALTH PRE-FLIGHT nonce/identity status from INVESTIGATION SOURCE EVIDENCE with distinct headings, borders and controls; never merge their status text."
+                      "priority":  "P1",
+                      "change":  "Keep Route health pre-flight for nonce and identity as a separate headed group from Investigation source evidence, each with its own status and control, as currently separated; preserve that separation when refitting."
                   },
                   {
-                      "priority":  "high",
-                      "change":  "Fix overlapping DOCK, MAT-ALLOY-A, QA and Receiving labels on SVG by refitting node geometry and moving labels into clear gutters."
+                      "priority":  "P1",
+                      "change":  "Enlarge the scene toward 70% fill by widening station and job nodes and reducing empty grid area below JOB-1002."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Remove third logo instance from stage header; retain only header and opening story placements."
+                      "priority":  "P2",
+                      "change":  "Raise the offline-sample explanatory text to 16px/24 and ensure the route select and Run Sample investigation are at least 36px with a 2px focus ring."
                   }
               ],
     "model":  "muse-wonder-1.0"

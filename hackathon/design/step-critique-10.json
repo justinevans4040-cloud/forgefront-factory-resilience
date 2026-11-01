@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  10,
     "score":  8,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Add a final status summary in action bar already present, and ensure Back does not imply further primary action; add a clearly labelled Close or Return control if exit is available in real state."
+                      "priority":  "P1",
+                      "change":  "Align the rail and heading with the 9-step story: label this as completion after Step 9 of 9 rather than implying an extra guided step, while keeping Complete marked current."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Keep all three SEALED cards equal size with check, title and state text, and retain red only on the retained offline CELL-MILL-2 reference."
+                      "priority":  "P2",
+                      "change":  "Keep all three sealed stages equal in emphasis with check, pattern and SEALED text, and retain CELL-MILL-2 offline status in the final status line."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Remove horizontal step scroller clipping in favour of the vertical rail so completion state for all steps is visible without scrolling."
+                      "priority":  "P2",
+                      "change":  "Ensure Back remains the only action-bar control here with no duplicate primary, and give Export independent checkpoint a 2px focus ring and at least 36px height."
                   }
               ],
     "model":  "muse-wonder-1.0"

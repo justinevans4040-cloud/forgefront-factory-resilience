@@ -1,0 +1,17 @@
+import {readFileSync,existsSync,readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {fileURLToPath} from 'node:url';
+import {publicFiles} from './public-set.mjs';
+import {writeEvidence} from './public-evidence.mjs';
+const root=new URL('../../',import.meta.url),base=new URL('../',import.meta.url);
+const save=(name,value)=>writeEvidence(new URL(name,base),JSON.stringify(value,null,2)+'\n');
+const iterations=[58,59,60,61,62,63].filter(i=>existsSync(new URL('design/iteration-'+i+'.json',base))).map(iteration=>{const r=JSON.parse(readFileSync(new URL('design/iteration-'+iteration+'.json',base)));return {iteration,model:r.model,inputMode:r.inputMode,primaryFailures:r.primaryFailures,scores:r.steps.map(({step,score})=>({step,score})),manifest:'evidence/run19/design-'+iteration+'/screens.json'};});
+save('evidence/run19/design-results.json',{iterations,scorePolicy:'Unedited model returns; no blended score',referenceIteration:62,visualFreeze:false});
+const critiques=[];for(let iteration=44;iteration<=57;iteration++){const r=JSON.parse(readFileSync(new URL('design/iteration-'+iteration+'.json',base)));for(const step of r.steps.filter(s=>[1,2,4,5,8,9].includes(s.step)))critiques.push({iteration,...step});}
+save('evidence/run19/critique-inventory.json',{critiques,recurring:['Source labels shrink in the tall universal map; evidence focus outlines and scrolling compete.','Route health and evidence investigation need separate independent groups.','Pending task cards clip or duplicate stage information; untracked and prior blocked states must remain separate.','Outage preview must use silver hatch and capacity consequence, distinct from applied red stopped state.','Proof must fit and expose current-head Verify, Seal, Retain prerequisites.']});
+const packet=JSON.parse(readFileSync(new URL('evidence/run19/primary-browser/packet.json',base)));
+const events=packet.events??[];
+save('evidence/run19/live-run-results.json',{ok:packet.runs.every(r=>r.proposalValid)&&packet.ledger.ok,orchestration:packet.runs.map(r=>({provider:r.calls[0]?.provider,model:r.calls[0]?.requestedModel,proposalValid:r.proposalValid,modelCalls:r.calls.length,acceptedClaims:r.claims.accepted.length,rejectedClaims:r.claims.rejected.length,toolCalls:r.run.toolCalls,elapsedMs:r.run.elapsedMs,validatedHandoff:Boolean(r.handoff)})),britt:packet.brittProposals.map(p=>({provider:p.provider,model:p.model,status:p.status,tasks:p.board.tasks.length,fallbackUsed:p.fallbackUsed})),events:packet.ledger.count,eventTypes:[...new Set(events.map(e=>e.type))],operationalRelease:packet.operationalRelease,fireworksCalls:packet.runs.flatMap(r=>r.calls).filter(c=>c.provider==='fireworks').length+packet.brittProposals.filter(p=>p.provider==='fireworks').length,source:'Bounded real primary guide after output-budget enforcement'});
+const files=publicFiles(fileURLToPath(root)).filter(f=>f.startsWith('hackathon/')&&!f.startsWith('hackathon/evidence/')&&!f.includes('/_audit')&&f!=='hackathon/docs/SOURCE_MANIFEST.json');
+save('docs/SOURCE_MANIFEST.json',{scope:'active Meta Hackathon build source, tests, design and documentation; excludes evidence, backups and private state; uncommitted candidate',files:files.map(f=>{const b=readFileSync(new URL(f,root));return {path:f.slice(10),bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')};})});
+console.log(JSON.stringify({iterations:iterations.length,sourceFiles:files.length,liveRuns:packet.runs.length,events:packet.ledger.count}));

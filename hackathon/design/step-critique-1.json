@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  1,
-    "score":  8,
+    "score":  6,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Replace clipped horizontal step scroller with 184px vertical rail showing all steps, aria-current on Inspect, and arrow-key movement."
+                      "priority":  "P1",
+                      "change":  "Remove the extra logo inside the scene panel; retain only the header logo here and the second placement in the opening story."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Remove duplicate logo treatment from stage opening story area unless this is the designated opening placement; keep header plus this one only, at native aspect."
+                      "priority":  "P1",
+                      "change":  "Enlarge the factory SVG to at least 70% of main and shrink the right evidence zone to its fixed track so stations, jobs and Certificate/Receiving tracks stay inside scene bounds."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Enlarge RECEIVING, CELL-MILL and JOB labels to 11px minimum and align Certificate/Receiving track ends so DOES NOT MATCH stays inside stage bounds."
+                      "priority":  "P2",
+                      "change":  "Raise sub-16px source-detail and metric labels to 16px body or 12px micro-label minimum and give the primary Inspect source evidence a visible focus ring."
                   }
               ],
     "model":  "muse-wonder-1.0"

@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  7,
     "score":  7,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Keep constrained Split path hatched with text reason and no finish/cost values, while feasible paths retain aligned metrics."
+                      "priority":  "P1",
+                      "change":  "On selecting a feasible revised path, open the typed consent form before acceptance; keep Review revised option disabled or clearly pending until a path is chosen."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Enlarge consent helper text to 11px minimum and associate exact-phrase label, input and 0/27 count programmatically."
+                      "priority":  "P1",
+                      "change":  "Preserve red only on CELL-MILL-2, show Split constrained with hatch, marker and reason text, and never draw a route through that cell."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Keep PRIOR ACCEPTANCE INVALIDATED status centred in action bar and disabled Accept visually distinct without relying on colour alone."
+                      "priority":  "P2",
+                      "change":  "Condense the empty Human Decision area inside its reserved zone and enlarge station and job nodes to increase scene fill."
                   }
               ],
     "model":  "muse-wonder-1.0"

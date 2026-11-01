@@ -27,10 +27,10 @@ test('owner layout raises body type and keeps evidence cards without forced scro
 });
 
 test('incident SVG uses a filled viewBox and separates machine and comparison bands',()=>{
- assert.match(app,/viewBox','0 0 900 520/);
+ assert.match(app,/viewBox',`0 0 900/);
  assert.match(app,/preserveAspectRatio','xMidYMid meet/);
- assert.match(app,/machineY=incidentStage\?190:150/);
- assert.match(app,/jobY=incidentStage\?400:340/);
+ assert.match(app,/const machineY=bayY\+30/);
+ assert.match(app,/const jobY=machineY\+nodeH\+/);
  assert.match(app,/data-scene-band':'compare'/);
  assert.match(app,/if\(child\.tagName!=='defs'\)child\.style\.display='none'/);
 });

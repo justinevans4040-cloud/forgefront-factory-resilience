@@ -700,8 +700,9 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
  body[data-guided=true] .guide h2{font-size:14px!important;margin:0!important;white-space:nowrap}
  body[data-guided=true] .guide p{display:none!important}
  body[data-guided=true] .guide progress{height:3px;margin:0;flex:1}
- .stage-area{display:grid!important;grid-template-columns:minmax(0,1.7fr) minmax(300px,.9fr)!important;gap:8px!important;flex:1;min-height:0;align-items:stretch;height:100%}
- body[data-active-stage=board] .stage-area{grid-template-columns:minmax(0,1fr) minmax(360px,1.1fr)!important}
+ .stage-area{display:grid!important;grid-template-columns:minmax(0,2fr) minmax(280px,.75fr)!important;gap:8px!important;flex:1;min-height:0;align-items:stretch;height:100%}
+ body[data-active-stage=board] .stage-area{grid-template-columns:minmax(0,1.15fr) minmax(340px,1fr)!important}
+ #guide-next:focus-visible,#guide-start:focus-visible,#guide-back:focus-visible,#decision-bar button:focus-visible{outline:2px solid #A8F04A!important;outline-offset:2px!important}
  #factory-stage{position:relative;display:flex!important;flex-direction:column!important;min-height:0!important;height:100%!important;max-height:none!important;padding:6px 8px 56px!important;gap:2px!important}
  #opening-story{display:flex!important;flex:0 0 auto;min-height:0;max-height:48px!important;padding:0 0 2px!important;margin:0!important;gap:8px!important;align-items:center}
  #opening-story .story-logo{width:64px!important;height:32px!important}
@@ -770,3 +771,124 @@ body[data-active-stage=incident] .factory-legend{font-size:11px!important}
  .evidence-headline{font-size:16px}
  .evidence-figure{font-size:24px}
 }
+
+/* The Meta Hackathon build: independent scene bands and readable compact panels. */
+@media(min-width:901px){
+ #opening-story{display:none!important}
+ body[data-active-stage=incident] #opening-story{display:flex!important}
+ #factory-stage>.eyebrow{display:none!important}
+ #factory-stage{padding-top:6px!important}
+ #factory-status{font-size:20px!important;line-height:1.25;margin:0 0 4px!important}
+ #factory-svg{min-height:0!important}
+ .factory-legend{font-size:12px!important;line-height:1.2}
+ #guided-steps{display:flex!important;width:100%;gap:4px;overflow:visible!important}
+ #guided-steps button{flex:1 1 0!important;min-width:0!important;max-width:none!important;padding:5px 4px!important;font-size:13px!important;white-space:nowrap;overflow:hidden}
+ #guided-steps button span{display:none}
+ #decision-status{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+ #factory-selection{position:static!important;flex:0 0 auto;font-size:16px;line-height:1.3;margin:0;padding:4px 8px;background:#17251a}
+ .evidence-raw:not([open])>*:not(summary){display:none!important}
+ details:not([open])>*:not(summary){display:none!important}
+ #stage-deck p,#stage-deck label,#stage-deck select,#stage-deck input,#stage-deck summary{font-size:16px!important;line-height:1.35}
+ #stage-deck small{font-size:14px!important;line-height:1.35}
+ .stage[data-stage=shock] .panel{padding:12px!important}
+ .stage[data-stage=shock] h2{font-size:24px!important;margin:4px 0 8px!important}
+ .stage[data-stage=shock] p{margin:4px 0 8px!important}
+ #capacity .cell{padding:10px 0!important}
+ #capacity .cell strong{font-size:17px}
+ #capacity .cell small{display:block}
+ #result-metrics .metric strong{line-height:1.3!important}
+ #result-metrics .metric span{line-height:1.5!important;margin-top:4px}
+}
+
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=incident] #opening-story .story-logo{display:block!important}
+ #stage-rail #guided-steps{flex:1;min-width:0;overflow:visible!important}
+ #stage-rail #guided-steps button{flex:1 1 0!important;min-width:0!important;padding:4px!important;font-size:13px!important}
+ .factory-node.preview-offline rect{fill:#19271f!important;stroke:#C5CCD4}
+}
+
+@media(min-width:901px){
+ .stage[data-stage=decision] .option .numbers{display:flex!important;gap:16px!important;min-width:210px;justify-content:space-between}
+ .stage[data-stage=decision] .option .numbers>div{flex:0 0 auto;min-width:70px}
+ .stage[data-stage=decision] .option .numbers strong{font-size:22px!important;line-height:1.25}
+ .stage[data-stage=decision] .option .numbers small{font-size:12px!important;line-height:1.5;display:block}
+ .stage[data-stage=board] #prior-work{flex:0 0 auto!important;max-height:none!important;overflow:visible!important}
+ .stage[data-stage=board] #prior-work-list{max-height:none!important;overflow:visible!important}
+ .stage[data-stage=board] #prior-work-list p{font-size:14px!important;line-height:1.3!important;margin:4px 0!important;padding:2px 4px!important}
+ .stage[data-stage=board] #britt-work{min-height:0!important;gap:10px!important}
+ .stage[data-stage=board] #britt-proposal{flex:1 0 auto!important;overflow:visible!important;min-height:0!important}
+}
+
+#factory-svg .scene-size-19{font-size:19px!important}
+#factory-svg .scene-size-20{font-size:20px!important}
+#factory-svg .scene-size-22{font-size:22px!important}
+#factory-svg .scene-size-24{font-size:24px!important}
+#factory-svg .scene-size-32{font-size:32px!important}
+#factory-svg .scene-size-36{font-size:36px!important}
+
+#factory-svg .scene-size-18{font-size:18px!important}
+.factory-node.preview-offline rect{fill:url(#preview-hatch)!important}
+
+@media(min-width:901px){
+ body[data-active-stage=board] .stage-area{grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr)!important}
+ #recovery-board{display:flex!important;flex-direction:column;gap:8px;overflow:visible!important;flex:0 0 auto}
+ #recovery-board .board-column{width:100%;min-width:0;padding:8px}
+ #recovery-board .task-card{width:100%;padding:8px}
+ #recovery-board .task-card strong{font-size:18px;line-height:1.3}
+ #recovery-board .task-card p{margin:5px 0!important}
+ #recovery-board .task-card select{width:100%}
+ .tracked-task-pages{display:flex;gap:8px}
+ .tracked-task-pages button{min-width:40px;min-height:40px}
+ .stage[data-stage=board]:has(#recovery-board:not([hidden])) #britt-panel{flex:0 0 auto!important;min-height:0!important;margin-bottom:8px}
+ .stage[data-stage=board]:has(#recovery-board:not([hidden])) #britt-work{display:none!important}
+ #britt-feed{max-height:none!important;overflow:visible!important;height:auto!important}
+}
+
+@media(min-width:901px){
+ .stage[data-stage=board] #britt-feed{display:flex;flex-wrap:wrap;gap:4px 12px;margin:0!important}
+ .stage[data-stage=board] #britt-feed p{font-size:14px!important;line-height:1.3!important;margin:0!important}
+ .stage[data-stage=board] #britt-panel{padding:8px!important;gap:4px!important}
+ .stage[data-stage=board] #britt-panel>p{font-size:14px!important;line-height:1.3!important}
+ .stage[data-stage=board] #board-outcomes{font-size:16px!important;line-height:1.3!important;margin:4px 0!important}
+ .stage[data-stage=board]>h2{margin:2px 0!important;font-size:22px!important}
+ .stage[data-stage=board] #prior-work-list p{font-size:14px!important;line-height:1.25!important;margin:2px 0!important}
+ .stage[data-stage=board] #prior-work summary{font-size:14px!important;line-height:1.25!important;min-height:24px!important;padding:0!important}
+ .stage[data-stage=board] #prior-work{padding:4px!important;min-height:0!important}
+ .stage[data-stage=board] .proposal-explain{font-size:14px!important;line-height:1.25!important;padding:3px!important}
+ .stage[data-stage=board] .proposal-task{min-height:0!important;padding:6px!important}
+ .stage[data-stage=board] .proposal-task strong{font-size:16px!important;line-height:1.3!important}
+ .stage[data-stage=board] .proposal-task small{font-size:14px!important;line-height:1.3!important}
+ .stage[data-stage=board] #britt-work{flex:1 1 auto!important}
+ .stage[data-stage=board] #britt-proposal{flex:1 1 auto!important}
+}
+
+#recovery-board[hidden],#recovery-board .task-card[hidden],#recovery-board .board-column[hidden]{display:none!important}
+
+@media(min-width:901px){
+ .prior-task-pages{display:flex;flex-wrap:wrap;gap:4px;margin:3px 0}
+ .prior-task-pages button{min-width:36px;min-height:36px;padding:4px;font-size:14px}
+ .stage[data-stage=board] #prior-work-list p{font-size:16px!important;line-height:1.3!important}
+ .stage[data-stage=board] #britt-feed p{font-size:16px!important}
+ .stage[data-stage=board] #britt-work{overflow:visible!important;flex:1 1 auto!important}
+ .stage[data-stage=board] #britt-proposal{flex:1 0 auto!important}
+}
+
+#factory-svg .path-linked>rect{stroke:#A8F04A;stroke-width:3}
+#options .path-linked{outline:2px solid #A8F04A;outline-offset:-2px}
+#factory-svg g[role=button]:focus-visible{outline:2px solid #A8F04A;outline-offset:3px}
+@media(max-width:900px){body{font-size:16px}}
+
+@media(min-width:901px){
+ .route-preflight>summary,#model-output>summary{font-size:16px!important;min-height:36px;line-height:1.35;padding:6px 0}
+ .route-preflight>#route-health-label,#model-output>h2{display:none}
+ .route-preflight:not([open]){margin-bottom:8px!important}
+ #model-output{flex:0 0 auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:10px!important}
+ #model-output p{font-size:16px!important;line-height:1.35!important;margin:4px 0!important}
+ #model-output .eyebrow{font-size:12px;line-height:1.3;margin:4px 0}
+ .stage[data-stage=investigation] .investigate{flex:0 0 auto!important;min-height:0!important;padding:8px!important}
+ .stage[data-stage=investigation] .investigation-task{margin-top:8px!important;margin-bottom:4px!important;padding:8px!important}
+ .stage[data-stage=investigation] .route-preflight{padding:8px!important}
+ .stage[data-stage=investigation]>[aria-label="Investigation status"]{padding:8px!important;min-height:0;flex:0 0 auto}
+}
+
+.investigate .route-preflight{display:block!important}

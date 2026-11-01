@@ -30,7 +30,7 @@ test('route health stays a separate pre-flight group from investigation task', (
 test('shock preview stays silver dashed until applied, and stopped red stays exclusive', () => {
   assert.match(css, /\.factory-node\.preview-offline rect\{[^}]*stroke:#C5CCD4/);
   assert.match(css, /stroke-dasharray:6 4/);
-  assert.match(app, /preview\?'PREVIEW - not applied'/);
+  assert.match(app, /previewOffline\?'PREVIEW - not applied'/);
   assert.match(css, /#factory-svg \.factory-node\.material-stopped rect\{stroke:#ff6b70!important\}/);
 });
 

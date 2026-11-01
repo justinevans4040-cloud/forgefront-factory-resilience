@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  4,
     "score":  6,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Reduce duplicated proposal detail between stage and inspector; stage shows t1-t3 summary chips, inspector shows full untracked-until-approval proposal."
+                      "priority":  "P1",
+                      "change":  "Restore a visible factory scene presence: shrink the oversized t1 proposal card so station and job zones remain independently reserved and the scene does not become only task cards."
                   },
                   {
-                      "priority":  "high",
-                      "change":  "Move Review proposed tasks and Decline proposal out of the inspector footer duplication and keep one primary Approve in the 56px action bar."
+                      "priority":  "P2",
+                      "change":  "Keep the 3 proposed tasks clearly labelled untracked until approval, distinct from tracked work, and raise small due/after text to 16px."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Add a visible focus ring and 36px height to task chips 1, 2, 3 and to t1/t2/t3 stage selectors."
+                      "priority":  "P2",
+                      "change":  "Condense the duplicated proposal detail in the right zone into its fixed track so Approve and Decline remain visible without crowding the action bar."
                   }
               ],
     "model":  "muse-wonder-1.0"

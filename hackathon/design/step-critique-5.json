@@ -1,19 +1,19 @@
 ﻿{
-    "iteration":  65,
+    "iteration":  70,
     "step":  5,
-    "score":  7,
+    "score":  8,
     "fixes":  [
                   {
-                      "priority":  "high",
-                      "change":  "Refit the capacity preview callout so Apply arrow, 24h to 0h and MAT-ALLOY-B route label do not overlap machine nodes or flow lines."
+                      "priority":  "P1",
+                      "change":  "In preview keep CELL-MILL-2 silver dashed as shown; on Apply switch only that station to stoppedRed outline, cross-hatch and OFFLINE-STOPPED text, with no route through it."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Make preview state for CELL-MILL-2 use silver dashed preview styling, reserving stoppedRed for the actually stopped state in later steps."
+                      "priority":  "P1",
+                      "change":  "Enlarge route traces between RECEIVING, CELL-MILL-1, JOB-1001 and JOB-1002 to fill more of the scene and reduce empty lower grid."
                   },
                   {
-                      "priority":  "medium",
-                      "change":  "Shorten inspector scenario copy to one instruction plus one consequence sentence, keeping the primary Apply second shock in the action bar only."
+                      "priority":  "P2",
+                      "change":  "Raise preview micro-labels to 12px minimum and give Apply second shock a clear invalidating-action warning linked to the action-bar status."
                   }
               ],
     "model":  "muse-wonder-1.0"
