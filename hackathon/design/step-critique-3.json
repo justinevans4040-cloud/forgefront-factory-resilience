@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 3,
   "score": 7,
-  "wowScore": 5,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep the three recovery paths as large radio targets of at least 36px with visible focus ring, and state that selecting one opens the typed consent form before any approval is recorded."
+      "priority": "P1",
+      "change": "Make selected path glow on the factory SVG with cost and finish mirrored on JOB-1001 and JOB-1002 before approval."
     },
     {
-      "priority": "medium",
-      "change": "Link each side-zone path bidirectionally to its scene route so focus or hover glows the matching stations and jobs in the SVG."
+      "priority": "P1",
+      "change": "Clarify primary flow: selecting an option opens one-click Approve then Authorize this decision wall, labelled in that order."
     },
     {
-      "priority": "medium",
-      "change": "Raise tradeoff metrics to 26px tabular figures and keep FINISH and INCREMENTAL labels at 12px minimum for instant scanning."
+      "priority": "P2",
+      "change": "Increase side-zone option text and radio targets to at least 36px with clear focus ring."
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 4,
-  "score": 6,
-  "wowScore": 5,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Present the typed consent form as the clear next panel after selection, with the chosen path, plan reference and typed field grouped together and one primary action in the 56px action bar."
+      "priority": "P1",
+      "change": "Give proposed tasks depth and emerald state glow linked to matching stations, keeping UNTRACKED UNTIL APPROVAL prominent."
     },
     {
-      "priority": "medium",
-      "change": "Remove duplicate approval emphasis by keeping a single primary per viewport while the side zone shows status only."
+      "priority": "P1",
+      "change": "Reduce duplicated board narration on right; reserve zone for station and job callouts without overlap."
     },
     {
-      "priority": "medium",
-      "change": "Keep DOES NOT MATCH spanning the aligned 120 and 80 tracks inside stage bounds at every width down to 1366x768."
+      "priority": "P2",
+      "change": "Enlarge t1-t3 progress tracks and due labels to 16px body minimum for viewport readability."
     }
   ]
 }

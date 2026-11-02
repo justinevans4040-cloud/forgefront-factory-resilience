@@ -156,6 +156,10 @@ try{
  await click('#plant-launcher');
  await until(()=>evaluate(`document.querySelector('#plant-room')?.open`),'full shop');
  await capture('full-shop');
+ await evaluate(`(()=>{const s=document.querySelector('#plant-failure');if(s){s.value='wrong-cert';s.dispatchEvent(new Event('change',{bubbles:true}));}})()`);
+ await click('#plant-trigger');
+ await delay(1200);
+ await capture('full-shop-cascade-active');
  await evaluate(`document.querySelector('#plant-room').close()`);
 
  writeEvidence(new URL('results.json',outDir),JSON.stringify({base,visited,results,failures},null,2));

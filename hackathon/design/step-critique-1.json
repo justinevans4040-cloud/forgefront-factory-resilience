@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 1,
   "score": 7,
-  "wowScore": 5,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Enlarge the factory scene to at least 70% of main and refit station and job cards inside separate reserved zones so the discrepancy tracks, callouts and recovery options never compete for the same space."
+      "priority": "P1",
+      "change": "Enlarge factory scene to at least 70% of main; narrow right callout zone so 120 vs 80 tracks and jobs read as one cinematic scene at 1366x768."
     },
     {
-      "priority": "medium",
-      "change": "Replace flat station boxes with layered machine depth, soft shadows and emerald glow only on held Receiving and feasible routes, keeping idle machines brushed silver."
+      "priority": "P1",
+      "change": "Add living emerald material flow along feasible path and state glow on RECEIVING hold, paused under reduced motion."
     },
     {
-      "priority": "medium",
-      "change": "Lift all body copy to 16px/24 and keep the second required logo placement in the opening story at native aspect without enlarging it into a banner."
+      "priority": "P2",
+      "change": "Raise rail and tab labels fully to 16px and add visible 2px focus ring on SVG stations and jobs."
     }
   ]
 }

@@ -13,6 +13,15 @@ export function assertNewIteration(directory,iteration){
  return target;
 }
 export function backupReviewFile(path,iteration){if(!existsSync(path))return;let backup=path+'.iteration-'+iteration+'.bak',n=0;while(existsSync(backup))backup=path+'.iteration-'+iteration+'.'+(++n)+'.bak';copyFileSync(path,backup);return backup;}
+export function directionBeats(candidate,retained){
+ if(!retained?.steps?.length)return true;
+ if(!candidate?.steps?.length)return false;
+ const sum=steps=>steps.reduce((n,s)=>n+(Number(s.score)||0),0);
+ const byStep=steps=>new Map(steps.map(s=>[s.step,Number(s.score)||0]));
+ const next=byStep(candidate.steps),prev=byStep(retained.steps);
+ for(const [step,score]of prev){if((next.get(step)??-1)<score)return false;}
+ return sum(candidate.steps)>sum(retained.steps);
+}
 function acceptPublicReview(result){
  const kinds=auditText(JSON.stringify(result));
  if(!kinds.length)return {...result,sanitized:false};
@@ -44,6 +53,6 @@ export async function reviewDesign({screens,previous=null,env=process.env,fetchI
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  try{assertNewIteration(resolve(root,'design'),designIteration(process.argv[3]??1));const manifest=resolve(process.argv[2]??resolve(root,'design/screens.json'));const screens=JSON.parse(readFileSync(manifest,'utf8')).map(s=>{const path=resolve(root,s.path);const rel=relative(root,path);if(isAbsolute(rel)||rel.startsWith('..'))throw Error('Screenshot outside build');return {...s,image:'data:'+screenshotMime(path)+';base64,'+readFileSync(path).toString('base64')};});
  const iteration=designIteration(process.argv[3]??1);const dir=resolve(root,'design');mkdirSync(dir,{recursive:true});const last=resolve(dir,'design-direction.json');const previous=existsSync(last)?JSON.parse(readFileSync(last,'utf8')):null;
- const result=await reviewDesign({screens,previous});for(const [name,value]of[['design-direction.json',result],['iteration-'+iteration+'.json',result],...result.steps.map(s=>['step-critique-'+s.step+'.json',{model:result.model,iteration,...s}])]){const path=resolve(dir,name);backupReviewFile(path,iteration);writeFileSync(path,JSON.stringify(value,null,2)+'\n');}console.log(JSON.stringify({model:result.model,iteration,scores:result.steps.map(s=>({step:s.step,score:s.score})),sanitized:Boolean(result.sanitized)}));
+ const result=await reviewDesign({screens,previous});const promote=directionBeats(result,previous);for(const [name,value]of[['iteration-'+iteration+'.json',result],...result.steps.map(s=>['step-critique-'+s.step+'.json',{model:result.model,iteration,...s}])]){const path=resolve(dir,name);backupReviewFile(path,iteration);writeFileSync(path,JSON.stringify(value,null,2)+'\n');}if(promote){const path=resolve(dir,'design-direction.json');backupReviewFile(path,iteration);writeFileSync(path,JSON.stringify(result,null,2)+'\n');}console.log(JSON.stringify({model:result.model,iteration,scores:result.steps.map(s=>({step:s.step,score:s.score,wowScore:s.wowScore})),promotedDirection:promote,sanitized:Boolean(result.sanitized)}));
  }catch(error){console.error(error.message);process.exitCode=1;}
 }

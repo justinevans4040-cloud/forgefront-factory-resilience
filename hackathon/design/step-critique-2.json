@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 2,
   "score": 6,
-  "wowScore": 4,
+  "wowScore": 5,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Separate connection readiness, which checks provider identity, from the investigation evidence task with distinct headings, status lines and controls in the side zone."
+      "priority": "P1",
+      "change": "Separate provider identity readiness from investigation evidence under distinct headings and controls in the side zone."
     },
     {
-      "priority": "high",
-      "change": "Fill the empty lower side zone with reserved evidence and route-selection slots at 16px type instead of leaving a large black void beside the scene."
+      "priority": "P1",
+      "change": "Enlarge scene, shrink dense side panel, and surface 3 feasible paths as emerald route traces over stations."
     },
     {
-      "priority": "medium",
-      "change": "Add living emerald flow along the selected feasible route only, with a 240ms trace on state change and full removal under reduced motion."
+      "priority": "P2",
+      "change": "Replace tiny sample-status text with one 16px status sentence and aria-live summary of findings."
     }
   ]
 }

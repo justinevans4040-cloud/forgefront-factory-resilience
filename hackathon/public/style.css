@@ -1143,3 +1143,18 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
  body[data-active-stage=decision] .option .numbers small{font-size:10px!important;letter-spacing:0}
  body[data-active-stage=decision] .option{grid-template-columns:minmax(0,1fr) auto!important}
 }
+
+/* audit27: The Britt signature board build + mismatch crack + cascade depth */
+.britt-signature-banner{display:none;margin:0 0 8px;padding:8px 12px;border:1px solid #A8F04A88;border-radius:8px;background:linear-gradient(120deg,#1a3a24,#0b1610);color:#A8F04A;font-size:16px;font-weight:700;letter-spacing:.04em;box-shadow:0 0 28px #A8F04A33}
+#britt-panel.britt-signature + .britt-signature-banner,
+#britt-signature-banner:not([hidden]){display:block}
+#britt-panel.britt-signature{border-color:#A8F04A;box-shadow:0 0 36px #A8F04A28, inset 0 0 24px #A8F04A12;animation:britt-glow 1.8s ease-in-out 1}
+.britt-signature-line{margin:0 0 6px!important;color:#A8F04A!important;font-size:15px!important;font-weight:700;letter-spacing:.03em}
+.britt-build-card{animation:britt-build .45s ease-out both;animation-delay:var(--build-delay,0ms);border-style:dashed!important}
+@keyframes britt-glow{0%{box-shadow:0 0 8px #A8F04A11}50%{box-shadow:0 0 40px #A8F04A55}100%{box-shadow:0 0 28px #A8F04A28}}
+@keyframes britt-build{from{opacity:0;transform:translateY(10px) scale(.98);filter:brightness(.7)}to{opacity:1;transform:none;filter:none}}
+#factory-svg .mismatch-label{animation:mismatch-crack .9s ease-out 1;filter:drop-shadow(0 0 10px #C5CCD488)}
+@keyframes mismatch-crack{0%{opacity:0;letter-spacing:.4em;fill:#fff}40%{opacity:1;letter-spacing:.12em;fill:#A8F04A}100%{letter-spacing:normal}}
+body[data-active-stage] .stage{animation:stage-cinematic .28s ease-out}
+@keyframes stage-cinematic{from{opacity:.72;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.britt-build-card,#factory-svg .mismatch-label,body[data-active-stage] .stage,#britt-panel.britt-signature{animation:none!important}}

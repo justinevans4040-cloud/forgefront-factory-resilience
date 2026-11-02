@@ -8,7 +8,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
  const controls=el('div',null,'plant-controls'),failureLabel=el('label','Choose a failure'),failureSelect=el('select'),strategyLabel=el('label','Recovery path'),strategySelect=el('select');failureSelect.id='plant-failure';strategySelect.id='plant-strategy';failureLabel.htmlFor=failureSelect.id;strategyLabel.htmlFor=strategySelect.id;
  const labels={'wrong-cert':'Wrong certificate','wrong-material':'Wrong material','wrong-grain':'Wrong grain direction','wrong-sticker':'Mislabeled sticker','failed-hardness':'Failed hardness'};
  for(const [id,label]of[['reroute','Reroute to alternate machines'],['expedite','Expedite verified replacement'],['rework','Rework and re-inspect']]){const option=el('option',label);option.value=id;strategySelect.append(option);}
- const trigger=el('button','Trigger failure'),recover=el('button','Accept calculated recovery'),overview=el('button','All departments','secondary'),previous=el('button','Previous','secondary'),next=el('button','Next','secondary');controls.append(failureLabel,failureSelect,trigger,strategyLabel,strategySelect,recover);
+ const trigger=el('button','Trigger failure'),recover=el('button','Accept calculated recovery'),overview=el('button','All departments','secondary'),previous=el('button','Previous','secondary'),next=el('button','Next','secondary');trigger.id='plant-trigger';recover.id='plant-recover';controls.append(failureLabel,failureSelect,trigger,strategyLabel,strategySelect,recover);
  const consent=el('div',null,'plant-consent');consent.hidden=true;const consentLabel=el('label','Approve the calculated plant recovery');const approve=el('button','Approve recovery');approve.id='plant-approve';const cancelConsent=el('button','Cancel','secondary');consent.append(consentLabel,approve,cancelConsent);
  const authorize=el('dialog',null,'plant-authorize');authorize.id='plant-authorize';authorize.innerHTML='<h2>Authorize this decision</h2><p class="plant-authorize-detail"></p><p class="muted">This seals the plant recovery to the evidence snapshot and ledger.</p><div class="authorize-actions"></div>';const authorizeDetail=authorize.querySelector('.plant-authorize-detail');const authorizeConfirm=el('button','Authorize');const authorizeCancel=el('button','Cancel','secondary');authorize.querySelector('.authorize-actions').append(authorizeConfirm,authorizeCancel);document.body.append(authorize);
  const metrics=el('div',null,'plant-metrics'),caption=el('p','','plant-caption'),legend=el('div',null,'plant-legend'),floor=el('div',null,'plant-floor'),tiles=el('div',null,'plant-tiles'),canvas=el('canvas',null,'plant-flow'),navigation=el('div',null,'plant-navigation'),pageLabel=el('span');
@@ -37,14 +37,16 @@ export function mountCascade({loadPlant,launcher,workflow}){
    const members=t.item.machines??[t.item],ids=new Set(members.map(m=>m.id)),affected=result.cascade.filter(c=>ids.has(c.machineId)),depth=affected.reduce((min,c)=>Math.min(min,c.depth),Infinity);
    card.dataset.depth=String(depth);card.dataset.affected=String(affected.length>0);card.dataset.recovered=String(recovered);card.classList.toggle('chain-linked',members.some(m=>highlighted.has(m.id)));
    const affectedIds=new Set(affected.map(c=>c.machineId)),offlineCount=[...ids].filter(id=>affectedIds.has(id)).length,runningCount=Math.max(0,members.length-offlineCount);
+   card.dataset.offlineCount=String(offlineCount);card.dataset.memberCount=String(members.length);card.dataset.runningCount=String(runningCount);
+   // Before the cascade wave reaches this tile, both lines read RUNNING from the same counts; after impact they share one OFFLINE derivation.
+   const departmentState=departmentStatus({recovered,active,offlineCount,runningCount,members:members.length,hit:false});
+   const subLine=department?members[0].capacityHours+'h capacity · $'+members[0].hourlyCostUsd+'/h':members.length+' machines · '+(active?(offlineCount?offlineCount+' will go offline':members.length+' ready'):members.length+' ready');
+   card.append(el('strong',t.item.label),el('span',subLine,'plant-sub'),el('span',departmentState,'plant-state'));
    const fullyOffline=active&&!recovered&&offlineCount>0&&offlineCount===members.length;
-   const departmentState=recovered?'RECOVERY ACCEPTED':fullyOffline?'OFFLINE · '+members.length+' machines':active&&offlineCount?offlineCount+' OFFLINE · '+runningCount+' RUNNING':'RUNNING · '+members.length+' machines';
-   card.append(el('strong',t.item.label),el('span',department?members[0].capacityHours+'h capacity · $'+members[0].hourlyCostUsd+'/h':members.length+' machines · '+(active?offlineCount+' offline':members.length+' ready'),'plant-sub'),el('span',departmentState,'plant-state'));
    if(fullyOffline)card.dataset.depthLayer=String(Math.min(4,Math.max(1,Math.round(depth)||1)));
    card.dataset.partialOffline=String(active&&!recovered&&offlineCount>0&&!fullyOffline);
-   // Offline machine art appears only after Trigger failure (or during recovery) - never as a static preview that contradicts RUNNING metrics.
-   const artOfflineIds=active||recovered?affectedIds:new Set();
-   const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},artOfflineIds,recovered);card.querySelector('.plant-state').before(art);
+   // Art stays running until the cascade wave hits the tile so glyphs never contradict the status line.
+   const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},recovered?affectedIds:new Set(),recovered);card.querySelector('.plant-state').before(art);
    card.addEventListener('click',()=>{if(!department){department=t.item.id;page=0;draw();}else{highlighted=new Set();for(const op of plant.operations.filter(op=>op.machineId===t.item.id))for(const id of dependencyChain(plant,op.id)){const item=plant.operations.find(o=>o.id===id);highlighted.add(item.machineId);}caption.textContent='Dependency chain highlighted for '+t.item.label;draw();}});tiles.append(card);
   }
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;
@@ -52,24 +54,43 @@ export function mountCascade({loadPlant,launcher,workflow}){
   caption.textContent=selectedMachine?'Dependency chain · '+selectedMachine+' → '+highlighted.size+' connected machines':recovered?'Recovery accepted · '+result.recovery.assignments.length+' operations · '+format(result.recovery.finishHours)+'h · $'+format(result.recovery.costUsd):active?labels[failureSelect.value]+' → '+result.affected.length+' affected operations. Preview a recovery, then accept it.':plant.label+' · '+plant.machines.length+' machines. Choose a failure to see the cascade.';
   paintMetrics(1);cancelAnimationFrame(raf);animate(performance.now());
  }
- function paintMetrics(progress){const m=result.metrics;metrics.replaceChildren(...[[active?m.lostHours*progress:0,'HOURS AT RISK'],[active?m.lateOrders*progress:0,'LATE ORDERS'],[active?m.exposureUsd*progress:0,'COST AT RISK'],[active?m.shipSlipHours*progress:0,'SHIP SLIP · HOURS']].map(([n,label])=>{const cell=el('div');cell.append(el('strong',(label==='COST AT RISK'?'$':'')+format(n)),el('span',label));return cell;}));}
+ function paintMetrics(progress){
+  const m=result.metrics;
+  if(!active&&!recovered){
+   metrics.replaceChildren(...[['—','HOURS AT RISK'],['—','LATE ORDERS'],['—','COST AT RISK'],['—','SHIP SLIP · HOURS']].map(([n,label])=>{const cell=el('div');cell.append(el('strong',n),el('span',label));cell.append(el('small','Awaiting failure selection','plant-metric-wait'));return cell;}));
+   return;
+  }
+  metrics.replaceChildren(...[[m.lostHours*progress,'HOURS AT RISK'],[m.lateOrders*progress,'LATE ORDERS'],[m.exposureUsd*progress,'COST AT RISK'],[m.shipSlipHours*progress,'SHIP SLIP · HOURS']].map(([n,label])=>{const cell=el('div');cell.append(el('strong',(label==='COST AT RISK'?'$':'')+format(n)),el('span',label));return cell;}));
+ }
  function animate(now){if(!dialog.open)return;const sample=globalThis.__cascadeFpsSample;if(sample&&sample.collecting){if(sample.last)sample.frames.push(now-sample.last);sample.last=now;}
   const progress=reduced.matches?1:Math.min(1,(now-start)/2400);if(active)paintMetrics(progress);
-  for(const node of tiles.children){const depthReady=active&&!recovered&&Number(node.dataset.depth)<=progress*result.cascade.reduce((n,c)=>Math.max(n,c.depth),1);const hit=depthReady&&node.dataset.affected==='true'&&node.dataset.partialOffline!=='true';node.classList.toggle('cascade-hit',hit);node.classList.toggle('cascade-partial',depthReady&&node.dataset.partialOffline==='true');const mark=node.querySelector('.plant-offline-mark');if(hit&&!node.classList.contains('plant-tile-machine')){if(!mark){const badge=el('span','×','plant-offline-mark');badge.setAttribute('aria-hidden','true');node.append(badge);}}else if(mark)mark.remove();}
+  const maxDepth=result.cascade.reduce((n,c)=>Math.max(n,c.depth),1);
+  for(const node of tiles.children){
+   const depthReady=active&&!recovered&&Number(node.dataset.depth)<=progress*maxDepth;
+   const offlineCount=Number(node.dataset.offlineCount||0),memberCount=Number(node.dataset.memberCount||0),runningCount=Number(node.dataset.runningCount||0);
+   const hit=depthReady&&node.dataset.affected==='true'&&node.dataset.partialOffline!=='true';
+   const partial=depthReady&&node.dataset.partialOffline==='true';
+   node.classList.toggle('cascade-hit',hit);node.classList.toggle('cascade-partial',partial);
+   const stateEl=node.querySelector('.plant-state'),subEl=node.querySelector('.plant-sub');
+   if(stateEl)stateEl.textContent=departmentStatus({recovered,active,offlineCount,runningCount,members:memberCount,hit:hit||partial});
+   if(subEl&&!department)subEl.textContent=memberCount+' machines · '+(recovered?'recovery live':!active?memberCount+' ready':(hit||partial)?offlineCount+' offline · '+runningCount+' running':memberCount+' ready');
+   const mark=node.querySelector('.plant-offline-mark');if(hit&&!node.classList.contains('plant-tile-machine')){if(!mark){const badge=el('span','×','plant-offline-mark');badge.setAttribute('aria-hidden','true');node.append(badge);}}else if(mark)mark.remove();
+   syncMachineArt(node,hit||partial||recovered);
+  }
   const box=floor.getBoundingClientRect(),dpr=devicePixelRatio||1;if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,box.width,box.height);
   const nodes=[...tiles.children];
-  const drawFlow=(from,to,color,nowStamp)=>{
+  const drawFlow=(from,to,color,nowStamp,width=2.5)=>{
    const ax=parseFloat(from.style.left)+parseFloat(from.style.width)/2,ay=parseFloat(from.style.top)+parseFloat(from.style.height)/2;
    const bx=parseFloat(to.style.left)+parseFloat(to.style.width)/2,by=parseFloat(to.style.top)+parseFloat(to.style.height)/2;
-   ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.setLineDash(reduced.matches?[]:[10,8]);ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();ctx.setLineDash([]);
-   if(!reduced.matches){const t=((nowStamp/14)%100)/100;ctx.fillStyle=color;ctx.beginPath();ctx.arc(ax+(bx-ax)*t,ay+(by-ay)*t,5,0,Math.PI*2);ctx.fill();}
+   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(reduced.matches?[]:[10,8]);ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();ctx.setLineDash([]);
+   if(!reduced.matches){const t=((nowStamp/14)%100)/100;ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=12;ctx.beginPath();ctx.arc(ax+(bx-ax)*t,ay+(by-ay)*t,6,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}
   };
   if(recovered&&nodes.length>1){
-   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now);
+   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,3.5);
+   if(!reduced.matches){const sweep=(now/8)%box.width;const grad=ctx.createLinearGradient(sweep-120,0,sweep+120,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a55');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
   }else if(active&&!recovered&&nodes.length>1){
-   // Feasible recovery preview: emerald flow only between departments that still have running capacity.
    const runningNodes=[...nodes].filter(n=>/RUNNING/.test(n.querySelector('.plant-state')?.textContent??'')||!n.classList.contains('cascade-hit'));
-   const path=runningNodes.length>1?runningNodes:nodes;
+   const path=runningNodes.length>1?runningNodes:nodes.filter(n=>!n.classList.contains('cascade-hit'));
    for(let i=0;i<path.length-1;i++)drawFlow(path[i],path[i+1],'#56ff9a88',now);
    ctx.strokeStyle='#27664c';ctx.lineWidth=1.5;
    for(const node of nodes){const y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.stroke();}
@@ -111,23 +132,47 @@ export function mountCascade({loadPlant,launcher,workflow}){
  launcher.addEventListener('click',async event=>{event.preventDefault();try{plant=await loadPlant();failureSelect.replaceChildren(...Object.keys(plant.failurePolicies).map(id=>{const option=el('option',labels[id]??id);option.value=id;return option;}));department=null;page=0;active=false;recovered=false;setConsent(false);dialog.showModal();start=performance.now();resize=new ResizeObserver(draw);resize.observe(floor);draw();}catch{launcher.textContent='Open the recovery room to explore the full shop';}});
  return {dialog};
 }
-
 function legendChip(label,className){const chip=el('span',label,className);chip.setAttribute('aria-hidden','true');return chip;}
+export function departmentStatus({recovered,active,offlineCount,runningCount,members,hit}){
+ if(recovered)return 'RECOVERY ACCEPTED';
+ if(!active||!hit)return 'RUNNING · '+members+' machines';
+ if(offlineCount>=members&&members>0)return 'OFFLINE · '+members+' machines';
+ if(offlineCount>0)return offlineCount+' OFFLINE · '+runningCount+' RUNNING';
+ return 'RUNNING · '+members+' machines';
+}
+function syncMachineArt(node,showOffline){
+ const svg=node.querySelector('.plant-machinery');if(!svg)return;
+ for(const g of svg.querySelectorAll('[data-plant-machine]')){
+  const want=showOffline&&node.dataset.affected==='true';
+  const has=g.dataset.artOffline==='true';
+  if(want===has)continue;
+  g.dataset.artOffline=String(want);
+  g.querySelectorAll('[data-offline-art]').forEach(n=>n.remove());
+  g.querySelectorAll('[data-online-art]').forEach(n=>n.remove());
+  if(want){
+   const hatch=document.createElementNS('http://www.w3.org/2000/svg','rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+svg.dataset.hatchId+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
+   for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS('http://www.w3.org/2000/svg','path');line.setAttribute('data-offline-art','1');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
+   const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('data-offline-art','1');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','40');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','18');label.setAttribute('font-weight','800');g.append(label);
+  }else{
+   const window=document.createElementNS('http://www.w3.org/2000/svg','rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);
+   const light=document.createElementNS('http://www.w3.org/2000/svg','circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);
+  }
+ }
+}
 
 function machineArt(machines,onMachine,affectedIds=new Set(),recovered=false){
  const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 480 150');svg.setAttribute('aria-label','Machines in this department');svg.classList.add('plant-machinery');
- const defs=document.createElementNS(ns,'defs'),pattern=document.createElementNS(ns,'pattern');pattern.id='plant-offline-hatch-'+Math.random().toString(36).slice(2,8);pattern.setAttribute('width','8');pattern.setAttribute('height','8');pattern.setAttribute('patternUnits','userSpaceOnUse');pattern.setAttribute('patternTransform','rotate(45)');const hatchLine=document.createElementNS(ns,'line');hatchLine.setAttribute('x1','0');hatchLine.setAttribute('y1','0');hatchLine.setAttribute('x2','0');hatchLine.setAttribute('y2','8');hatchLine.setAttribute('stroke','#c5ccd4');hatchLine.setAttribute('stroke-width','2');pattern.append(hatchLine);defs.append(pattern);svg.append(defs);
- // Cap overview density so sparse departments (Assembly) and dense ones (CNC mills) share balanced glyph size.
- const limit=Math.min(machines.length,8),shown=machines.slice(0,limit),overflow=machines.length-shown.length;
- const columns=Math.max(1,Math.ceil(Math.sqrt(shown.length*1.35))),rows=Math.ceil(shown.length/columns),pitchX=480/columns,pitchY=(overflow?132:150)/rows,scale=Math.min(1.35,Math.max(0.72,Math.min(pitchX/64,pitchY/58)));
- shown.forEach((machine,i)=>{const g=document.createElementNS(ns,'g');g.dataset.plantMachine=machine.id;g.setAttribute('tabindex','0');g.setAttribute('role','button');const offline=!recovered&&affectedIds.has(machine.id);g.setAttribute('aria-label',(offline?'OFFLINE ':'')+'Inspect '+machine.label);const select=event=>{event.preventDefault();event.stopPropagation();onMachine(machine);};g.addEventListener('click',select);g.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' ')select(event);});g.setAttribute('transform','translate('+((i%columns)*pitchX+pitchX/2-30*scale)+' '+(Math.floor(i/columns)*pitchY+pitchY/2-25*scale)+') scale('+scale+')');
+ const defs=document.createElementNS(ns,'defs'),pattern=document.createElementNS(ns,'pattern');pattern.id='plant-offline-hatch-'+Math.random().toString(36).slice(2,8);pattern.setAttribute('width','8');pattern.setAttribute('height','8');pattern.setAttribute('patternUnits','userSpaceOnUse');pattern.setAttribute('patternTransform','rotate(45)');const hatchLine=document.createElementNS(ns,'line');hatchLine.setAttribute('x1','0');hatchLine.setAttribute('y1','0');hatchLine.setAttribute('x2','0');hatchLine.setAttribute('y2','8');hatchLine.setAttribute('stroke','#c5ccd4');hatchLine.setAttribute('stroke-width','2');pattern.append(hatchLine);defs.append(pattern);svg.append(defs);svg.dataset.hatchId=pattern.id;
+ const shown=machines,overflow=0;
+ const columns=Math.max(1,Math.ceil(Math.sqrt(Math.max(shown.length,1)*1.2))),rows=Math.ceil(Math.max(shown.length,1)/columns),pitchX=480/columns,pitchY=150/rows,scale=Math.min(0.95,Math.max(0.42,Math.min(pitchX/70,pitchY/62)));
+ shown.forEach((machine,i)=>{const g=document.createElementNS(ns,'g');g.dataset.plantMachine=machine.id;g.setAttribute('tabindex','0');g.setAttribute('role','button');const offline=!recovered&&affectedIds.has(machine.id);g.dataset.artOffline=String(offline);g.setAttribute('aria-label',(offline?'OFFLINE ':'')+'Inspect '+machine.label);const select=event=>{event.preventDefault();event.stopPropagation();onMachine(machine);};g.addEventListener('click',select);g.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' ')select(event);});g.setAttribute('transform','translate('+((i%columns)*pitchX+pitchX/2-30*scale)+' '+(Math.floor(i/columns)*pitchY+pitchY/2-25*scale)+') scale('+scale+')');
   for(const [points,fill]of[['0,14 20,2 62,2 43,14',offline?'#8a9399':'#a9cbb7'],['43,14 62,2 62,42 43,54',offline?'#3a4147':'#294b3a'],['0,14 43,14 43,54 0,54',offline?'#5c656c':'#527862']]){const p=document.createElementNS(ns,'polygon');p.setAttribute('points',points);p.setAttribute('fill',fill);p.setAttribute('stroke','#c5ccd4');p.setAttribute('stroke-width','1');g.append(p);}
   if(offline){
-   const hatch=document.createElementNS(ns,'rect');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+pattern.id+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
-   for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS(ns,'path');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
-   const label=document.createElementNS(ns,'text');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','40');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','18');label.setAttribute('font-weight','800');label.setAttribute('letter-spacing','0.4');g.append(label);
+   const hatch=document.createElementNS(ns,'rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+pattern.id+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
+   for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS(ns,'path');line.setAttribute('data-offline-art','1');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
+   const label=document.createElementNS(ns,'text');label.setAttribute('data-offline-art','1');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','40');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','18');label.setAttribute('font-weight','800');label.setAttribute('letter-spacing','0.4');g.append(label);
   }
-  else{const window=document.createElementNS(ns,'rect');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);const light=document.createElementNS(ns,'circle');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);}
+  else{const window=document.createElementNS(ns,'rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);const light=document.createElementNS(ns,'circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);}
   svg.append(g);
  });
  if(overflow>0){const more=document.createElementNS(ns,'text');more.textContent='+'+overflow+' more';more.setAttribute('x','240');more.setAttribute('y','146');more.setAttribute('text-anchor','middle');more.setAttribute('fill','#a9c8b8');more.setAttribute('font-size','16');more.setAttribute('font-weight','700');svg.append(more);}

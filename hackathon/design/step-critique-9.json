@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 9,
   "score": 8,
-  "wowScore": 6,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep blocked prior tasks and proposed replacements in visually separate reserved groups, since an approved revised plan and awaiting-approval replacements correctly coexist."
+      "priority": "P1",
+      "change": "Add cinematic depth to 01-03 proof stages with emerald completion glow progressing only on real verification state."
     },
     {
-      "priority": "medium",
-      "change": "Mark blocked priors with silver hatching and a blocked marker while proposed replacements stay dashed and explicitly untracked until approval."
+      "priority": "P1",
+      "change": "Keep passphrase guidance at 16px and ensure right evidence zone fits 768px height without clipped controls."
     },
     {
-      "priority": "medium",
-      "change": "Add focus-linked glow between the side-zone task list and the matching scene task cards for keyboard and pointer parity."
+      "priority": "P2",
+      "change": "Make Verify ledger primary singular, with locked stages showing pattern plus text, not colour alone."
     }
   ]
 }

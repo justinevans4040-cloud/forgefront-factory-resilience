@@ -2,6 +2,12 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty-seven
+
+- Visual audit gate re-proved at three desktop sizes with triggered full-shop cascade captures (51 captures / 0 failures under run30). Cascade department OFFLINE/RUNNING status stays wave-synced with machine art; metrics await failure selection before trigger.
+- The Britt signature board-build moment is visible in the project-board step. Design director retains iteration 82 unless a Wonder round beats it; genuine reviews 110–112 recorded honestly (cascade best 7 / README best 8).
+- Bounded live Wonder and Baseten investigation both completed with validated claims; Fireworks never called. Judge pitch order and public-tree checks stay green.
+
 ## Independent audit twenty-six
 
 - Hard visual audit gate walks every guided step plus full-shop at 1366×768, 1536×864 and 1920×1080 and fails on clipped text, border-through-text, overlaps, empty boxes or a missing The article before the agent name; run29 records 48 captures with zero failures.

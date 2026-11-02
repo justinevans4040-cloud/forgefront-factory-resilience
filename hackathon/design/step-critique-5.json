@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 5,
-  "score": 7,
-  "wowScore": 6,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Make the untracked-until-approval state unmistakable on all three proposed tasks with dashed silver borders and plain PROPOSED text, reserving emerald fill for approved work only."
+      "priority": "P1",
+      "change": "Animate 24h to 0h as a single cinematic route collapse into CELL-MILL-2 cross-hatching, x marker and OFFLINE, then static."
     },
     {
-      "priority": "medium",
-      "change": "Add depth and state glow to the accepted-plan stations while keeping proposed task bars static under reduced motion."
+      "priority": "P2",
+      "change": "Add explicit OFFLINE word inside previewed CELL-MILL-2, not only hatch and preview copy."
     },
     {
-      "priority": "medium",
-      "change": "Enlarge task titles and due labels to 16px body minimum inside their reserved job zone so the board reads at presentation distance."
+      "priority": "P2",
+      "change": "Make dropdown and Apply targets at least 36px with focus ring and Esc to clear preview."
     }
   ]
 }

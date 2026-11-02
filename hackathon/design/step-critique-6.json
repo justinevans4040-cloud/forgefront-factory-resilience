@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 6,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Strengthen the shock preview by showing CELL-MILL-2 in silver cross-hatching with a cross marker and plain OFFLINE text before the shock is applied, with no route drawn through it."
+      "priority": "P1",
+      "change": "Sever routes through CELL-MILL-2, reroute emerald flow only via CELL-MILL-1, and keep cross-hatch with x marker and OFFLINE."
     },
     {
-      "priority": "medium",
-      "change": "Animate one cinematic reroute trace away from the stopped cell on apply, then settle static, with flow fully removed under reduced motion."
+      "priority": "P1",
+      "change": "Fill empty lower side zone with reserved callouts for stations and jobs, condensed without scrolling."
     },
     {
-      "priority": "medium",
-      "change": "Keep the invalidating consequence as one status sentence centred in the action bar so the cost of applying the shock is read before the primary."
+      "priority": "P2",
+      "change": "Distinguish investigation action from provider readiness with separate heading, status and control."
     }
   ]
 }

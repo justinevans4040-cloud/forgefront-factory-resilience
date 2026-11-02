@@ -28,11 +28,13 @@ In production, every approval sits behind an authorization wall such as a passke
 
 ## What you'll see
 
-1. **Find the fault.** Certificate 120 versus receiving 80 freezes seventy parts on the line.
-2. **Investigate with Meta AI.** Spark Open reads every source; Wonder weighs the calculated paths.
-3. **Approve the path.** One click, then authorize. The Britt builds the live board.
-4. **Survive the next shock.** A machine goes offline. The stale plan falls; you recover again.
-5. **Prove it.** Seal the ledger and keep the evidence packet with the decision.
+| | Step |
+| ---: | --- |
+| **1** | **Find the fault.** Certificate 120 versus receiving 80 freezes seventy parts on the line. |
+| **2** | **Investigate with Meta AI.** Spark Open reads every source; Wonder weighs the calculated paths. |
+| **3** | **Approve the path.** One click, then authorize. The Britt builds the live board. |
+| **4** | **Survive the next shock.** A machine goes offline. The stale plan falls; you recover again. |
+| **5** | **Prove it.** Seal the ledger and keep the evidence packet with the decision. |
 
 ## Meet The Britt
 

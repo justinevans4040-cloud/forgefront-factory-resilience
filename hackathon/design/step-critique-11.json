@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 106,
+  "iteration": 112,
   "step": 11,
-  "score": 6,
+  "score": 7,
   "wowScore": 6,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Refit the full-shop cascade so every department and machine fits one 1920x1080 view without the oversized Assembly row crowding out the other departments."
+      "priority": "P1",
+      "change": "Lead judge pitch with live demo link and one-line outcome above the opening logo story, preserving required logo placement and presentation order."
     },
     {
-      "priority": "high",
-      "change": "Render every stopped machine with silver cross-hatching, a cross marker and plain OFFLINE text at consistent scale, and reserve emerald glow and living flow for running and feasible-recovery machines only."
+      "priority": "P1",
+      "change": "Enlarge embedded cascade preview so machines and recovery states are legible instead of thin dark columns."
     },
     {
-      "priority": "medium",
-      "change": "Restore cinematic depth with layered machine forms and soft shadows, and add a single 240ms cascade trace on failure or recovery state change that settles static and stops under reduced motion."
+      "priority": "P2",
+      "change": "Tighten step table to the five judge moments, 16px minimum, with human approval and sealed proof bolded for rapid scanning."
     }
   ]
 }
