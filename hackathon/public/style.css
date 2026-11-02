@@ -1609,3 +1609,72 @@ body[data-guided=true][data-active-stage=incident] #factory-svg .material-spark{
  #factory-svg .shock-withdraw,#factory-svg .board-sequence-spine,#factory-svg .proposal-sequence-line,
  #factory-svg .proof-chain-node.ready{animation:none!important}
 }
+
+/* audit39 — Wonder 167–170 guided lifts: risk traces, 26px metrics, denser scene, selected-path glow */
+#factory-svg .risk-job-trace{filter:drop-shadow(0 0 8px #A8F04A88);animation:cert-recv-flow 1.2s ease-out 1}
+#factory-svg .risk-job-spark{animation:lot-flow 1.1s linear infinite;filter:drop-shadow(0 0 6px #A8F04Aaa)}
+body[data-guided=true][data-active-stage=investigation] .investigation-metric strong{
+ font-size:26px!important;line-height:1.1!important;font-variant-numeric:tabular-nums;color:#A8F04A!important
+}
+body[data-guided=true][data-active-stage=investigation] .investigation-metric span{font-size:12px!important;letter-spacing:.06em;color:#c5ccd4}
+body[data-guided=true][data-active-stage=decision] .option .numbers strong{font-size:26px!important;font-variant-numeric:tabular-nums}
+body[data-guided=true][data-active-stage=decision] .option .numbers span{font-size:12px!important;letter-spacing:.08em}
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.55fr) minmax(292px,.62fr)!important}
+ body[data-guided=true] #factory-svg{min-height:380px!important}
+ body[data-guided=true][data-active-stage=incident] #factory-svg .material-spark,
+ body[data-guided=true][data-active-stage=incident] #factory-svg .risk-job-spark{filter:drop-shadow(0 0 10px #A8F04Acc)}
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{
+  box-shadow:0 0 40px #A8F04A77,inset 0 0 20px #A8F04A28;border-color:#A8F04A
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true]{
+  box-shadow:0 0 28px #A8F04A66;border-color:#A8F04A
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .risk-job-trace,#factory-svg .risk-job-spark{animation:none!important}
+}
+
+/* audit39b — Wonder 171 lifts for steps still under 9 */
+body[data-guided=true][data-active-stage=investigation] .route-preflight>summary{
+ font-size:15px!important;font-weight:700;letter-spacing:.02em;color:#c5ccd4!important
+}
+body[data-guided=true][data-active-stage=investigation] .route-preflight{
+ border-left:5px solid #C5CCD4!important;background:#0a100c!important
+}
+body[data-guided=true][data-active-stage=investigation] .investigation-task>summary,
+body[data-guided=true][data-active-stage=investigation] #model-output>summary{
+ font-size:16px!important;font-weight:700;color:#e8f6ee!important
+}
+body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims{
+ min-height:120px;border:1px solid #4d6a56;border-radius:8px;padding:8px;background:#0d1611
+}
+body[data-guided=true][data-active-stage=board] .proposal-task strong{font-size:16px!important;line-height:1.25!important}
+body[data-guided=true][data-active-stage=board] .proposal-task small{font-size:13px!important;line-height:1.3!important}
+body[data-guided=true][data-active-stage=board] .proposal-compact{max-height:64px;overflow:hidden}
+body[data-guided=true][data-active-stage=board] #board-outcomes{
+ display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px!important;line-height:1.3
+}
+body[data-guided=true][data-active-stage=board] #board-outcomes::before{
+ content:"BOARD STATE";font-size:11px;letter-spacing:.08em;color:#A8F04A;font-weight:800;margin-right:4px
+}
+body[data-guided=true][data-active-stage=decision] .option.unavailable,
+body[data-guided=true][data-active-stage=decision] .option:has(.option-constrained){
+ outline:2px solid #C5CCD4;box-shadow:inset 0 0 0 1px #C5CCD466
+}
+body[data-guided=true][data-active-stage=proof] #passphrase-rules{
+ font-size:12px!important;line-height:1.25!important;max-height:34px;overflow:hidden;color:#c5ccd4
+}
+body[data-guided=true][data-active-stage=proof] .footer-actions>label{
+ font-size:13px!important;line-height:1.25!important;margin:2px 0!important
+}
+body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true]{
+ box-shadow:0 0 28px #A8F04A77;border-color:#A8F04A
+}
+#factory-svg .proof-chain-node.ready{
+ filter:drop-shadow(0 0 16px #A8F04Acc);stroke:#A8F04A
+}
+body[data-guided=true][data-active-stage=incident] #factory-svg .factory-node text,
+body[data-guided=true][data-active-stage=investigation] #factory-svg .factory-node text{
+ font-size:16px
+}

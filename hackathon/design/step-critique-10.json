@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 10,
-  "score": 6,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Repair legibility where cross-hatching overwhelms labels in Saw, Heat treat, Inspection, Finishing and Assembly; keep pattern behind content and retain x OFFLINE text on every stopped department."
+      "priority": "high",
+      "change": "Make the emerald mills to lathes arc the cinematic hero with living flow, depth and glow, while every stopped department uses silver cross-hatching, x and OFFLINE text."
     },
     {
-      "priority": "P1",
-      "change": "Strengthen the living emerald mills to lathes route with layered depth, directional flow and glow, and ensure it crosses only feasible departments."
+      "priority": "medium",
+      "change": "Label each department and machine count at at least 12px with 16px department titles so the cascade is legible without zooming at 1366x768."
     },
     {
-      "priority": "P2",
-      "change": "Enlarge department machine glyphs and OFFLINE count badges to 12px minimum labels with 16px department body text, preserving the full plant in one viewport."
+      "priority": "medium",
+      "change": "Reduce empty silver cubes in offline departments and anchor OFFLINE counts inside each department zone to improve plant-wide scan."
     }
   ]
 }

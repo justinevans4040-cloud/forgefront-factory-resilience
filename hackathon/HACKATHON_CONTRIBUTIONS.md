@@ -2,6 +2,12 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit thirty-nine
+
+- Cascade restore from Wonder 167–170 critiques: reserved solid OFFLINE status strip above soft hatch, larger machine glyphs, living SVG mills→lathes recovery arc with directional arrow, ultra rAF idle after the wave (CSS carries flow), guided receiving→job risk traces and 26px investigation metrics. Build stamp `audit39-cascade-restore`. Visual audit gate re-proved under run43 (51 captures / 0 failures at 1366 / 1536 / 1920 including Shock and triggered cascade).
+- Genuine Muse Wonder reviews 171–174: best cascade **9**, README best **8**, guided **7–9**; retained direction remains iteration 82 (`promotedDirection: false`).
+- Bounded live Wonder and Baseten investigation both MODEL_STOP with 3 validated claims; Fireworks never called. No-cap plant proofs at 1,000 and 5,000 machines retained under run43.
+
 ## Independent audit thirty-eight
 
 - Wonder finish lifts: Certificate→Receiving feed into the factory spine, three silhouette depth layers, board sequence Receiving→online mill→PROPOSED tasks (no route through OFFLINE), Authorize wall retained, cascade OFFLINE footers with counts, living mills→lathes CSS arc, README cascade three-signal table. Build stamp `audit38-wonder-finish`. Visual audit gate re-proved under run42 (51 captures / 0 failures at 1366 / 1536 / 1920 including Shock and triggered cascade).

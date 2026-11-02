@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 5,
   "score": 8,
   "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep CELL-MILL-2 preview strictly in silver cross-hatching with x marker and WILL GO OFFLINE text; reserve plain OFFLINE for the applied state."
+      "priority": "high",
+      "change": "Increase cinematic impact of the shock banner while keeping CELL-MILL-2 preview in silver cross-hatching with x and WILL GO OFFLINE text, no route through it."
     },
     {
-      "priority": "P2",
-      "change": "Animate a single cinematic capacity drain 24h to 0h on the preview, then settle static, with reduced-motion showing the end state immediately."
+      "priority": "medium",
+      "change": "Make the invalidating consequence one concise status sentence centred in the action bar beside Apply second shock."
     },
     {
-      "priority": "P2",
-      "change": "Enlarge the INVALIDATING ACTION status to 16px and tie its glow to the accepted Use verified substitute card only."
+      "priority": "low",
+      "change": "Add a single 240ms emerald-to-silver transition on the affected cell, fully static under reduced motion."
     }
   ]
 }

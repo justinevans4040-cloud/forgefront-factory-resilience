@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 4,
   "score": 7,
   "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Clarify plan state in one line: 0 BLOCKED prior, approved plan retained, 3 PROPOSED replacements UNTRACKED UNTIL APPROVAL, without implying tracked work."
+      "priority": "high",
+      "change": "Clarify board state in one 16px line: 0 BLOCKED prior, approved plan retained, 3 PROPOSED replacements UNTRACKED UNTIL APPROVAL."
     },
     {
-      "priority": "P1",
-      "change": "Give the Approve control a stronger cinematic focus state and keep the one-click Approve wording consistent across scene, side zone and action bar."
+      "priority": "medium",
+      "change": "Give PROPOSED 01-03 equal depth and dashed silver borders, with only the focused proposal in emerald, so awaiting approval never reads as tracked work."
     },
     {
-      "priority": "P2",
-      "change": "Add depth and connector flow from RECEIVING through CELL-MILL-1 to proposed tasks t1-t3 so the board reads as living work, not static cards."
+      "priority": "medium",
+      "change": "Enlarge task numbers 1-3 to at least 36px targets with arrow-key movement and visible focus ring."
     }
   ]
 }

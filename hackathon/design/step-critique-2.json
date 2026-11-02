@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 2,
   "score": 7,
   "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Visually separate CONNECTION provider-identity readiness from EVIDENCE investigation with distinct headings, status lines and controls; keep their actions unmerged."
+      "priority": "high",
+      "change": "Visually separate CONNECTION provider identity readiness from EVIDENCE investigation with distinct headings, status lines and controls in the reserved side zone."
     },
     {
-      "priority": "P1",
-      "change": "Enlarge the 3 / 0 / 3 verified-facts metrics to 26px tabular and link each fact row bidirectionally to the Certificate and Receiving tracks."
+      "priority": "medium",
+      "change": "Make the 3 verified facts, 0 rejected and 3 feasible paths tabular 26px metrics and link each finding bidirectionally to its scene node on hover and keyboard focus."
     },
     {
-      "priority": "P2",
-      "change": "Reduce the empty lower area in JOB-1001 and JOB-1002 panels by moving the path-summary chips into those reserved job zones."
+      "priority": "low",
+      "change": "Strengthen state glow on the verified route trace once for 240ms, then hold static under reduced motion."
     }
   ]
 }

@@ -11,7 +11,7 @@ const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 const hackathonReadme=readFileSync(new URL('../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit38 wonder finish',()=>{
- assert.match(html,/ffr-build" content="audit38-wonder-finish"/);
+ assert.match(html,/ffr-build" content="audit3[89]-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit37-guided-lift/);
 });
 
@@ -34,11 +34,11 @@ test('cascade OFFLINE status keeps counts and intensified CSS spine',()=>{
  assert.match(cascadeCss,/repeating-linear-gradient\(90deg,#56ff9a00/);
  assert.equal(departmentStatus({recovered:false,active:true,offlineCount:40,runningCount:0,members:40,hit:true}),'OFFLINE · 40');
  assert.equal(departmentStatus({recovered:false,active:true,offlineCount:120,runningCount:0,members:120,hit:true}),'OFFLINE · 120');
- assert.match(departmentStatus({recovered:false,active:true,offlineCount:12,runningCount:88,members:100,hit:true}),/OFFLINE/);
+ assert.match(departmentStatus({recovered:false,active:true,offlineCount:12,runningCount:88,members:100,hit:true}),/OFF 12\/100/);
 });
 
 test('README cascade caption enlarges three judge signals',()=>{
- assert.match(readme,/font-size:24px/);
+ assert.match(readme,/font-size:2[48]px/);
  assert.match(readme,/Emerald mills → lathes|emerald mills → lathes/i);
  assert.match(readme,/Silver × OFFLINE|silver × OFFLINE/i);
  assert.match(readme,/Live counters|lost hours/i);

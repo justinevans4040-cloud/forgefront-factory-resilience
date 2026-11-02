@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 7,
   "score": 8,
-  "wowScore": 6,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Mark Split available capacity as constrained with pattern, x marker and text, and exclude it from selectable radio behaviour in the comparison zone."
+      "priority": "high",
+      "change": "Make the constrained Split option non-selectable with pattern, x and plain CONSTRAINED text while keeping its finish and cost shown as unavailable dashes aligned to other rows."
     },
     {
-      "priority": "P2",
-      "change": "On selecting a revised path, preview its emerald living route through CELL-MILL-1 only, reinforcing that no route passes through CELL-MILL-2."
+      "priority": "medium",
+      "change": "Amplify PRIOR ACCEPTANCE INVALIDATED as the action-bar status and direct focus to Review revised option after selection."
     },
     {
-      "priority": "P2",
-      "change": "Raise the PRIOR ACCEPTANCE INVALIDATED action-bar message contrast and pair it with a matching scene banner inside stage bounds."
+      "priority": "low",
+      "change": "Use bidirectional highlighting between the two remaining feasible paths and JOB-1001/JOB-1002 to show revised capacity flow."
     }
   ]
 }

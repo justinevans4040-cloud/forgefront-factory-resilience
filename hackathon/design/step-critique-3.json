@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 3,
   "score": 8,
-  "wowScore": 6,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Make the selected-path state unmistakable with emerald fill, state glow and a matched route trace in the scene before Review recovery option activates."
+      "priority": "high",
+      "change": "Make each Select this path a full 44px target and show the chosen path with emerald fill plus depth in both side zone and scene before Review recovery option activates."
     },
     {
-      "priority": "P2",
-      "change": "Align scene option cards exactly under their right-zone counterparts and highlight both together on hover, focus and selection."
+      "priority": "medium",
+      "change": "Align finish and incremental cost columns in tabular figures so 83h/$0, 35h/$3,115 and 17.5h/$3,202.50 compare instantly."
     },
     {
-      "priority": "P2",
-      "change": "Increase right-zone tradeoff figures to 26px and keep FINISH and INCREMENTAL labels at 12px minimum."
+      "priority": "low",
+      "change": "Keep No acceptance recorded in plain silver text until selection, reserving emerald glow for the pending Approve action."
     }
   ]
 }

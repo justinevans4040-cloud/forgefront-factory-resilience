@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 1,
   "score": 7,
-  "wowScore": 6,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Enlarge the factory scene toward 70% of main by tightening the right evidence zone and compressing the three option cards into the scene footer."
+      "priority": "high",
+      "change": "Enlarge the factory scene to at least 70% of main and tighten the right callout zone so Certificate 120 versus Receiving 80 and DOES NOT MATCH read as one cinematic comparison at 1366x768."
     },
     {
-      "priority": "P1",
-      "change": "Raise side-zone body and Source detail text to 16px and mute silver contrast up to rgba(197,204,212,.68) minimum."
+      "priority": "medium",
+      "change": "Add depth and flowing emerald material along the feasible route only, with silver glow on held stations and a clear 2px focus ring on SVG nodes."
     },
     {
-      "priority": "P2",
-      "change": "Add a living emerald flow trace from RECEIVING hold to JOB-1001 and JOB-1002 so the 70 parts at risk read instantly."
+      "priority": "medium",
+      "change": "Raise secondary station text to 16px and keep the three recovery options inside their reserved zone without crowding the legend."
     }
   ]
 }

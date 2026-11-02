@@ -27,9 +27,14 @@ export function plantTiles(items,{width,height,minWidth=180,minHeight=92,gap=16,
   const count=Math.max(0,end-start);
   if(!count)continue;
   const cellWidth=(width-gap*(count-1))/count;
+  const y=row*(baseHeight+gap);
+  // Clamp to the floor box so cascade state chrome never reports a tile past the floor (plant clip gate).
+  const tileHeight=Math.max(1,Math.min(baseHeight,height-y));
   for(let i=0;i<count;i++){
    const index=start+i;
-   tiles.push({item:items[index],x:i*(cellWidth+gap),y:row*(baseHeight+gap),width:cellWidth,height:baseHeight});
+   const x=i*(cellWidth+gap);
+   const tileWidth=Math.max(1,Math.min(cellWidth,width-x));
+   tiles.push({item:items[index],x,y,width:tileWidth,height:tileHeight});
   }
  }
  return {tiles,page:selected,pages,total:items.length,pageSize,columns,rows};

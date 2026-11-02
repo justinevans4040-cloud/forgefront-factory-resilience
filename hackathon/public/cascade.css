@@ -27,7 +27,7 @@
  border:1px solid #2f4a3c;border-radius:12px;box-shadow:inset 0 0 40px #0008}
 .plant-floor{overflow:hidden}
 .plant-flow,.plant-tiles{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
-.plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:2px;padding:8px 12px 18px;box-sizing:border-box;overflow:visible;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 0 1px #c5ccd414;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s,transform .35s ease-out;transform:perspective(900px) translateZ(0)}
+.plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:2px;padding:8px 12px 18px;box-sizing:border-box;overflow:hidden;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 0 1px #c5ccd414;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s,transform .35s ease-out;transform:perspective(900px) translateZ(0)}
 .plant-room .plant-tile:not(.cascade-hit){animation:plant-tile-breathe 2.8s ease-in-out infinite}
 .plant-tile strong{font-size:18px;line-height:1.15;text-shadow:0 1px 0 #0008;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.plant-sub,.plant-state{font-size:13px;line-height:1.2;max-width:100%;overflow:hidden;display:block;white-space:nowrap;text-overflow:ellipsis}.plant-state{color:#a7fac3;font-weight:700;letter-spacing:.02em;font-size:13px}
 .plant-flow{z-index:3;pointer-events:none;mix-blend-mode:screen}
@@ -89,16 +89,16 @@
 .plant-room[open]{grid-template-rows:44px auto minmax(86px,auto) 34px 28px minmax(0,1fr) 36px!important}
 .plant-room .plant-tile{min-height:156px;padding:10px 12px 20px}
 .plant-tile.cascade-hit{box-shadow:inset 0 0 0 2px #C5CCD4,0 0 34px #C5CCD455,0 18px 0 -14px #0006}
-.plant-floor[data-css-flow="1"] .plant-tile:not(.cascade-hit){transform:perspective(900px) translateZ(8px);box-shadow:0 16px 34px #000a,0 0 34px #56ff9a44,inset 2px 2px #def9e038}
+.plant-floor[data-css-flow="1"] .plant-tile:not(.cascade-hit){transform:none;box-shadow:0 16px 34px #000a,0 0 34px #56ff9a44,inset 2px 2px #def9e038}
 /* Wonder 168 cascade P1: living emerald mills→lathes arc with dashed flow, bypassing silver OFFLINE cards */
 .plant-floor[data-css-flow="1"]::before{
  content:"";pointer-events:none;position:absolute;inset:18% 8% 22% 8%;z-index:5;border-radius:40% 60%;
  border:3px dashed #56ff9acc;box-shadow:0 0 28px #56ff9a66,inset 0 0 24px #56ff9a33;
- animation:plant-mills-lathes-arc 1.4s linear infinite;opacity:.95
+ animation:plant-mills-lathes-arc 1.4s linear infinite;opacity:.55
 }
 .plant-floor[data-css-flow="2"]::before{
  content:"";pointer-events:none;position:absolute;inset:18% 8% 22% 8%;z-index:5;border-radius:40% 60%;
- border:3px solid #56ff9aaa;box-shadow:0 0 22px #56ff9a55;animation:none
+ border:3px solid #56ff9aaa;box-shadow:0 0 22px #56ff9a55;animation:none;opacity:.4
 }
 @keyframes plant-mills-lathes-arc{from{stroke-dashoffset:0;filter:drop-shadow(0 0 8px #56ff9a66)}to{stroke-dashoffset:48;filter:drop-shadow(0 0 18px #8affb8aa)}}
 @media(prefers-reduced-motion:reduce){
@@ -106,6 +106,43 @@
 }
 @media(prefers-reduced-motion:reduce){
  .plant-floor[data-css-flow="1"]::after{animation:none!important;background-position:40% 48%,center,center}
+}
+/* audit39 — Wonder 167–170: reserved OFFLINE strip, soft hatch, living SVG mills→lathes arc */
+/* Height comes from plantTiles layout only — never force min-height past the floor (plant clip gate). */
+.plant-room .plant-tile{padding:8px 10px 30px!important;min-height:0!important;box-sizing:border-box}
+.plant-status-strip{
+ position:absolute;left:8px;right:8px;bottom:6px;z-index:4;
+ display:block;padding:4px 8px;border-radius:5px;
+ background:#0b1410f2;border:1px solid #c5ccd4;
+ color:#e8f6ee;font-size:13px;font-weight:800;letter-spacing:.04em;
+ line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+ box-shadow:0 0 14px #c5ccd422,inset 0 1px #c5ccd433;pointer-events:none
+}
+.plant-tile.cascade-hit .plant-status-strip{color:#c5ccd4;border-color:#c5ccd4;background:#12181aee}
+.plant-tile:not(.cascade-hit) .plant-status-strip{color:#9affbd;border-color:#56ff9a88;background:#0c1a12ee}
+.plant-tile.cascade-hit{
+ background:linear-gradient(145deg,#1c2c24f2 0 58%,#101913f8 58% 100%)!important;
+ box-shadow:inset 0 0 0 2px #C5CCD4,0 0 34px #C5CCD455,0 18px 0 -14px #0006
+}
+.plant-tile.cascade-hit::before{
+ content:"";position:absolute;inset:0 0 34px 0;z-index:0;pointer-events:none;border-radius:10px 10px 0 0;
+ background:repeating-linear-gradient(135deg,#c5ccd418 0 6px,transparent 6px 14px);opacity:.55
+}
+.plant-tile.cascade-hit>*{position:relative;z-index:1}
+.plant-offline-chip{display:none!important}
+.plant-status-strip.plant-state{/* single status node — class plant-state kept for legacy selectors */}
+.plant-tile.cascade-hit .plant-state::before{content:none}
+.plant-machinery{min-height:96px;max-height:132px;filter:drop-shadow(0 12px 12px #000a)}
+.plant-tile strong{font-size:18px;color:#e8f6ee}
+.plant-tile:focus-visible{outline:2px solid #A8F04A;outline-offset:3px;box-shadow:0 0 0 2px #050705,0 0 22px #A8F04A66}
+.plant-recovery-arc{position:absolute;inset:0;width:100%;height:100%;z-index:6;pointer-events:none;overflow:visible}
+.plant-arc-glow{stroke:#56ff9a;stroke-width:14;stroke-opacity:.28;filter:drop-shadow(0 0 18px #56ff9acc)}
+.plant-arc-spine{stroke:#8affb8;stroke-width:5;stroke-dasharray:18 10;stroke-linecap:round;filter:drop-shadow(0 0 12px #56ff9aee);animation:plant-arc-dash 1.1s linear infinite}
+.plant-arc-glow.recovered,.plant-arc-spine.recovered{stroke:#56ff9a;animation:none;stroke-dasharray:none}
+.plant-arc-arrow{fill:#A8F04A;filter:drop-shadow(0 0 10px #56ff9acc)}
+@keyframes plant-arc-dash{to{stroke-dashoffset:-56}}
+@media(prefers-reduced-motion:reduce){
+ .plant-arc-spine{animation:none!important;stroke-dasharray:none}
 }
 @media(max-width:800px){
  .plant-room{padding:12px}

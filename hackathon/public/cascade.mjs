@@ -46,10 +46,10 @@ export function mountCascade({loadPlant,launcher,workflow}){
   const gap=16;
   const overviewCols=!department&&items.length>=5?4:null;
   const overviewMinWidth=overviewCols?Math.max(160,Math.floor((box.width-gap*(overviewCols-1))/overviewCols)-2):188;
-  const overviewMinHeight=Math.min(172,Math.max(132,Math.floor((box.height-gap)/2)-2));
+  const overviewMinHeight=Math.min(168,Math.max(128,Math.floor((box.height-gap)/2)-4));
   const layout=plantTiles(items,{width:box.width,height:box.height,minWidth:department?220:overviewMinWidth,minHeight:department?176:overviewMinHeight,page});page=layout.page;
   tiles.replaceChildren();
-  for(const t of layout.tiles){const card=el('button',null,'plant-tile');card.dataset.plantNode=t.item.id;card.style.left=t.x+'px';card.style.top=t.y+'px';card.style.width=t.width+'px';card.style.height=t.height+'px';
+  for(const t of layout.tiles){const card=el('button',null,'plant-tile');card.dataset.plantNode=t.item.id;card.style.left=t.x+'px';card.style.top=t.y+'px';card.style.width=t.width+'px';card.style.height=t.height+'px';card.style.maxWidth=t.width+'px';card.style.maxHeight=t.height+'px';card.style.overflow='hidden';
    const members=t.item.machines??[t.item],ids=new Set(members.map(m=>m.id)),affected=result.cascade.filter(c=>ids.has(c.machineId)),depth=affected.reduce((min,c)=>Math.min(min,c.depth),Infinity);
    card.dataset.depth=String(depth);card.dataset.affected=String(affected.length>0);card.dataset.recovered=String(recovered);card.classList.toggle('chain-linked',members.some(m=>highlighted.has(m.id)));
    const affectedIds=new Set(affected.map(c=>c.machineId)),offlineCount=[...ids].filter(id=>affectedIds.has(id)).length,runningCount=Math.max(0,members.length-offlineCount);
@@ -57,9 +57,12 @@ export function mountCascade({loadPlant,launcher,workflow}){
    // Before the cascade wave reaches this tile, both lines read RUNNING from the same counts; after impact they share one OFFLINE derivation.
    const departmentState=departmentStatus({recovered,active,offlineCount,runningCount,members:members.length,hit:false});
    const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':(members.length>=100?String(members.length):members.length+' machines');
-   const state=el('span',departmentState,'plant-state');state.style.minHeight='22px';state.style.display='block';
+   // Single reserved footer strip carries OFFLINE/RUNNING (Wonder 167–170); no duplicate status nodes for the clip gate.
+   const strip=el('span',departmentState,'plant-status-strip plant-state');
    const title=el('strong',t.item.label);if((t.item.label||'').length>18)title.textContent=(t.item.label||'').slice(0,16)+'…';
-   card.append(title,el('span',subLine,'plant-sub'),state);
+   card.append(title,el('span',subLine,'plant-sub'),strip);
+   card.setAttribute('tabindex','0');
+   card.setAttribute('aria-label',t.item.label+' · '+departmentState+(department?'':' · '+subLine));
    const fullyOffline=active&&!recovered&&offlineCount>0&&offlineCount===members.length;
    if(fullyOffline)card.dataset.depthLayer=String(Math.min(4,Math.max(1,Math.round(depth)||1)));
    card.dataset.partialOffline=String(active&&!recovered&&offlineCount>0&&!fullyOffline);
@@ -76,7 +79,36 @@ export function mountCascade({loadPlant,launcher,workflow}){
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;
   recover.disabled=!active||recovered||!result.recovery.feasible||busy||!consent.hidden;
   caption.textContent=selectedMachine?'Dependency chain · '+selectedMachine+' → '+highlighted.size+' connected machines':recovered?'Recovery accepted · '+result.recovery.assignments.length+' operations · '+format(result.recovery.finishHours)+'h · $'+format(result.recovery.costUsd):active?labels[failureSelect.value]+' freezes '+result.affected.length+' affected operations across the plant. Emerald recovery stays on the feasible mills → lathes path.':plant.label+' · '+plant.machines.length+' machines. Choose a failure to see the cascade.';
-  animate.tileCache=null;animate.staticDirty=true;paintMetrics(1);cancelAnimationFrame(raf);animate(performance.now());
+  animate.tileCache=null;animate.staticDirty=true;paintMetrics(1);cancelAnimationFrame(raf);refreshTileCache();paintRecoveryArc(animate.tileCache);animate(performance.now());
+ }
+ function paintRecoveryArc(cache){
+  // Layered SVG mills→lathes arc with directional chevrons (Wonder 167–170 cascade P1); static under reduced motion.
+  let arc=floor.querySelector('.plant-recovery-arc');
+  if(!active||!cache?.mills||!cache?.lathes){arc?.remove();return;}
+  const a=cache.mills,b=cache.lathes;
+  const x1=a.cx,y1=a.cy,x2=b.cx,y2=b.cy;
+  const mx=(x1+x2)/2,my=Math.min(a.y,b.y)-18;
+  if(!arc){
+   arc=document.createElementNS('http://www.w3.org/2000/svg','svg');
+   arc.classList.add('plant-recovery-arc');
+   arc.setAttribute('aria-hidden','true');
+   floor.append(arc);
+  }
+  arc.setAttribute('viewBox','0 0 '+Math.max(1,Math.round(floor.clientWidth))+' '+Math.max(1,Math.round(floor.clientHeight)));
+  arc.replaceChildren();
+  const ns='http://www.w3.org/2000/svg';
+  const glow=document.createElementNS(ns,'path');
+  glow.setAttribute('d',`M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`);
+  glow.setAttribute('class',recovered?'plant-arc-glow recovered':'plant-arc-glow');
+  glow.setAttribute('fill','none');
+  const spine=document.createElementNS(ns,'path');
+  spine.setAttribute('d',`M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`);
+  spine.setAttribute('class',recovered?'plant-arc-spine recovered':'plant-arc-spine');
+  spine.setAttribute('fill','none');
+  const marker=document.createElementNS(ns,'polygon');
+  marker.setAttribute('points',`${x2-14},${y2-8} ${x2},${y2} ${x2-14},${y2+8}`);
+  marker.setAttribute('class','plant-arc-arrow');
+  arc.append(glow,spine,marker);
  }
  function paintMetrics(progress){
   const m=result.metrics;
@@ -106,7 +138,8 @@ export function mountCascade({loadPlant,launcher,workflow}){
     memberCount:Number(node.dataset.memberCount||0),
     runningCount:Number(node.dataset.runningCount||0),
     label:((node.dataset.plantNode||'')+' '+(node.querySelector('strong')?.textContent||'')).toLowerCase(),
-    stateEl:node.querySelector('.plant-state'),
+    stateEl:node.querySelector('.plant-status-strip'),
+    stripEl:node.querySelector('.plant-status-strip'),
     subEl:node.querySelector('.plant-sub'),
     hitKey:node.dataset.hitKey||''
    };
@@ -176,19 +209,21 @@ export function mountCascade({loadPlant,launcher,workflow}){
     if(tile.hitKey===key)continue;
     tile.hitKey=key;tile.node.dataset.hitKey=key;
     tile.node.classList.toggle('cascade-hit',hit);tile.node.classList.toggle('cascade-partial',partial);
-    if(tile.stateEl)tile.stateEl.textContent=departmentStatus({recovered,active,offlineCount:tile.offlineCount,runningCount:tile.runningCount,members:tile.memberCount,hit:hit||partial});
+    const statusText=departmentStatus({recovered,active,offlineCount:tile.offlineCount,runningCount:tile.runningCount,members:tile.memberCount,hit:hit||partial});
+    if(tile.stripEl)tile.stripEl.textContent=statusText;
     if(tile.subEl&&!department)tile.subEl.textContent=tile.memberCount>=100?String(tile.memberCount):tile.memberCount+' machines';
-    // Corner × stays; OFFLINE word lives in .plant-state (Wonder 168). Extreme plants skip the chip to protect the clip gate.
+    // corner × only — OFFLINE word lives solely in the reserved footer strip (Wonder 167–170 / clip gate).
     let mark=tile.node.querySelector('.plant-offline-mark');
     if(hit||partial){
      if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
-     if(!extreme&&!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
-    }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
+    }else if(mark){mark.remove();}
+    tile.node.querySelector('.plant-offline-chip')?.remove();
     // Extreme plants rely on tile CSS/hatch chips; glyph art flips only under lighter plants (LOD).
     if(!extreme)syncMachineArt(tile.node,hit||partial||recovered);
     // Heavy static layer is hit-agnostic — skip static-layer refreshes during the cascade wave.
     if(!heavy)animate.staticDirty=true;
    }
+   paintRecoveryArc(cache);
   }
   if(!animate.boxCache||animate.boxCache.at<now-2000){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
   const box=animate.boxCache.box;
@@ -197,7 +232,9 @@ export function mountCascade({loadPlant,launcher,workflow}){
   if(ultra){
    if(canvas.width!==1){canvas.width=1;canvas.height=1;canvas.style.width='100%';canvas.style.height='100%';animate.ctx=null;animate.staticDirty=true;}
    if(ultra&&active&&progress>=1&&animate.lastMetrics!==-1){animate.lastMetrics=-1;paintMetrics(1);}
-   raf=(!reduced.matches||(sample&&sample.collecting))?requestAnimationFrame(animate):0;
+   // After the wave settles, CSS carries living flow — stop rAF unless FPS sampling needs frames (audit39 FPS).
+   const needRaf=(sample&&sample.collecting)||(active&&!recovered&&progress<1&&!reduced.matches);
+   raf=needRaf?requestAnimationFrame(animate):0;
    return;
   }
   // Backing-store density LOD: identity-transform pixel buffer; machine graph unchanged.
@@ -288,15 +325,16 @@ function legendChip(label,className){const chip=el('span',label,className);chip.
 export function departmentStatus({recovered,active,offlineCount,runningCount,members,hit}){
  if(recovered)return 'RECOVERY ACCEPTED';
  // Compact chips on huge departments stay inside tile bounds (clip gate); wording stays plain OFFLINE / RUNNING with counts (Wonder cascade P1).
- if(!active||!hit)return members>=100?('RUNNING · '+members):('RUNNING · '+members+' machines');
- // Compact OFFLINE footers stay fully visible (Wonder high step 10): never truncate the OFFLINE word.
+ if(!active||!hit)return members>=100?('RUN · '+members):('RUNNING · '+members+' machines');
+ // Compact OFFLINE footers stay fully visible (Wonder high step 10): never truncate the OFFLINE word on small shops;
+ // dense plants use shorter OFF tokens so the reserved strip never exceeds tile width.
  if(offlineCount>=members&&members>0)return members>=100?('OFFLINE · '+members):('OFFLINE · '+members);
  if(offlineCount>0){
-  if(members>=100)return 'OFFLINE · '+offlineCount+'/'+members;
+  if(members>=100)return 'OFF '+offlineCount+'/'+members;
   if(offlineCount>=10||runningCount>=10)return offlineCount+' OFFLINE / '+runningCount+' RUN';
   return 'OFFLINE · '+offlineCount+' / '+runningCount+' RUN';
  }
- return members>=100?('RUNNING · '+members):('RUNNING · '+members+' machines');
+ return members>=100?('RUN · '+members):('RUNNING · '+members+' machines');
 }
 function syncMachineArt(node,showOffline){
  const svg=node.querySelector('.plant-machinery');if(!svg)return;
@@ -309,8 +347,8 @@ function syncMachineArt(node,showOffline){
   g.querySelectorAll('[data-offline-art]').forEach(n=>n.remove());
   g.querySelectorAll('[data-online-art]').forEach(n=>n.remove());
   if(want){
-   // Silver hatch + corner × only — no full-glyph diagonals over labels (Wonder cascade P1).
-   const hatch=document.createElementNS('http://www.w3.org/2000/svg','rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+svg.dataset.hatchId+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
+   // Soft hatch behind glyph only — never over footer OFFLINE strip (Wonder 170 cascade P1).
+   const hatch=document.createElementNS('http://www.w3.org/2000/svg','rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+svg.dataset.hatchId+')');hatch.setAttribute('opacity','0.42');g.prepend(hatch);
    const mark=document.createElementNS('http://www.w3.org/2000/svg','text');mark.setAttribute('data-offline-art','1');mark.setAttribute('x','52');mark.setAttribute('y','18');mark.setAttribute('text-anchor','middle');mark.setAttribute('fill','#c5ccd4');mark.setAttribute('font-size','16');mark.setAttribute('font-weight','800');mark.setAttribute('class','offline-x');mark.textContent='×';g.append(mark);
   }else{
    const window=document.createElementNS('http://www.w3.org/2000/svg','rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);
@@ -321,32 +359,34 @@ function syncMachineArt(node,showOffline){
 
 function fitMachineGlyphs(machines){
  // Viewport LOD only: show as many glyphs as fit without overlap; engine/drill-in still hold every machine.
+ // Prefer larger cubes (Wonder 169–170): slightly fewer glyphs when that raises scale.
  let lo=1,hi=Math.max(1,machines.length),best=1;
  while(lo<=hi){
   const mid=(lo+hi)>>1;
-  const columns=Math.max(1,Math.ceil(Math.sqrt(mid*1.2))),rows=Math.ceil(mid/columns);
-  const pitchX=480/columns,pitchY=150/rows;
-  const scale=Math.min(0.95,Math.max(0.42,Math.min(pitchX/70,pitchY/62)));
-  if(62*scale<=pitchX*0.92&&54*scale<=pitchY*0.92){best=mid;lo=mid+1;}else hi=mid-1;
+  const columns=Math.max(1,Math.ceil(Math.sqrt(mid*1.05))),rows=Math.ceil(mid/columns);
+  const pitchX=480/columns,pitchY=160/rows;
+  const scale=Math.min(1.15,Math.max(0.55,Math.min(pitchX/68,pitchY/58)));
+  if(58*scale<=pitchX*0.9&&50*scale<=pitchY*0.9){best=mid;lo=mid+1;}else hi=mid-1;
  }
  return {shown:machines.slice(0,best),overflow:Math.max(0,machines.length-best)};
 }
 function machineArt(machines,onMachine,affectedIds=new Set(),recovered=false){
- const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 480 150');svg.setAttribute('aria-label','Machines in this department');svg.classList.add('plant-machinery');
- const defs=document.createElementNS(ns,'defs'),pattern=document.createElementNS(ns,'pattern');pattern.id='plant-offline-hatch-'+Math.random().toString(36).slice(2,8);pattern.setAttribute('width','8');pattern.setAttribute('height','8');pattern.setAttribute('patternUnits','userSpaceOnUse');pattern.setAttribute('patternTransform','rotate(45)');const hatchLine=document.createElementNS(ns,'line');hatchLine.setAttribute('x1','0');hatchLine.setAttribute('y1','0');hatchLine.setAttribute('x2','0');hatchLine.setAttribute('y2','8');hatchLine.setAttribute('stroke','#c5ccd4');hatchLine.setAttribute('stroke-width','2');pattern.append(hatchLine);defs.append(pattern);svg.append(defs);svg.dataset.hatchId=pattern.id;
+ const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.setAttribute('viewBox','0 0 480 160');svg.setAttribute('aria-label','Machines in this department');svg.classList.add('plant-machinery');
+ const defs=document.createElementNS(ns,'defs'),pattern=document.createElementNS(ns,'pattern');pattern.id='plant-offline-hatch-'+Math.random().toString(36).slice(2,8);pattern.setAttribute('width','8');pattern.setAttribute('height','8');pattern.setAttribute('patternUnits','userSpaceOnUse');pattern.setAttribute('patternTransform','rotate(45)');const hatchLine=document.createElementNS(ns,'line');hatchLine.setAttribute('x1','0');hatchLine.setAttribute('y1','0');hatchLine.setAttribute('x2','0');hatchLine.setAttribute('y2','8');hatchLine.setAttribute('stroke','#c5ccd4');hatchLine.setAttribute('stroke-width','1.4');pattern.append(hatchLine);defs.append(pattern);svg.append(defs);svg.dataset.hatchId=pattern.id;
  const {shown,overflow}=fitMachineGlyphs(machines);
- const columns=Math.max(1,Math.ceil(Math.sqrt(Math.max(shown.length,1)*1.2))),rows=Math.ceil(Math.max(shown.length,1)/columns),pitchX=480/columns,pitchY=150/rows,scale=Math.min(0.95,Math.max(0.42,Math.min(pitchX/70,pitchY/62)));
- const labelOffline=shown.length<=8;
+ const columns=Math.max(1,Math.ceil(Math.sqrt(Math.max(shown.length,1)*1.05))),rows=Math.ceil(Math.max(shown.length,1)/columns),pitchX=480/columns,pitchY=160/rows,scale=Math.min(1.15,Math.max(0.55,Math.min(pitchX/68,pitchY/58)));
+ // Per-glyph OFFLINE words clip at overview density; footer strip carries the word (Wonder + plant clip gate).
+ const labelOffline=false;
  shown.forEach((machine,i)=>{const g=document.createElementNS(ns,'g');g.dataset.plantMachine=machine.id;g.setAttribute('tabindex','0');g.setAttribute('role','button');const offline=!recovered&&affectedIds.has(machine.id);g.dataset.artOffline=String(offline);g.setAttribute('aria-label',(offline?'OFFLINE ':'')+'Inspect '+machine.label);const select=event=>{event.preventDefault();event.stopPropagation();onMachine(machine);};g.addEventListener('click',select);g.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' ')select(event);});g.setAttribute('transform','translate('+((i%columns)*pitchX+pitchX/2-30*scale)+' '+(Math.floor(i/columns)*pitchY+pitchY/2-25*scale)+') scale('+scale+')');
   for(const [points,fill]of[['0,14 20,2 62,2 43,14',offline?'#8a9399':'#a9cbb7'],['43,14 62,2 62,42 43,54',offline?'#3a4147':'#294b3a'],['0,14 43,14 43,54 0,54',offline?'#5c656c':'#527862']]){const p=document.createElementNS(ns,'polygon');p.setAttribute('points',points);p.setAttribute('fill',fill);p.setAttribute('stroke','#c5ccd4');p.setAttribute('stroke-width','1');g.append(p);}
   if(offline){
-   const hatch=document.createElementNS(ns,'rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+pattern.id+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
+   const hatch=document.createElementNS(ns,'rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+pattern.id+')');hatch.setAttribute('opacity','0.42');g.prepend(hatch);
    const mark=document.createElementNS(ns,'text');mark.setAttribute('data-offline-art','1');mark.setAttribute('x','52');mark.setAttribute('y','18');mark.setAttribute('text-anchor','middle');mark.setAttribute('fill','#c5ccd4');mark.setAttribute('font-size','16');mark.setAttribute('font-weight','800');mark.setAttribute('class','offline-x');mark.textContent='×';g.append(mark);
    if(labelOffline){const offlineText=document.createElementNS(ns,'text');offlineText.setAttribute('data-offline-art','1');offlineText.setAttribute('x','31');offlineText.setAttribute('y','46');offlineText.setAttribute('text-anchor','middle');offlineText.setAttribute('fill','#c5ccd4');offlineText.setAttribute('font-size','14');offlineText.setAttribute('font-weight','800');offlineText.setAttribute('class','offline-label');offlineText.textContent='OFFLINE';g.append(offlineText);}
   }
   else{const window=document.createElementNS(ns,'rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);const light=document.createElementNS(ns,'circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);}
   svg.append(g);
  });
- if(overflow>0){const more=document.createElementNS(ns,'text');more.textContent='+'+overflow+' more';more.setAttribute('x','240');more.setAttribute('y','146');more.setAttribute('text-anchor','middle');more.setAttribute('fill','#a9c8b8');more.setAttribute('font-size','16');more.setAttribute('font-weight','700');svg.append(more);}
+ if(overflow>0){const more=document.createElementNS(ns,'text');more.textContent='+'+overflow+' more';more.setAttribute('x','240');more.setAttribute('y','156');more.setAttribute('text-anchor','middle');more.setAttribute('fill','#a9c8b8');more.setAttribute('font-size','16');more.setAttribute('font-weight','700');svg.append(more);}
  return svg;
 }

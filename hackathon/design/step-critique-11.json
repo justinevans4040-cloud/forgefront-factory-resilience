@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 170,
+  "iteration": 174,
   "step": 11,
-  "score": 8,
+  "score": 7,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep the fixed presentation order exactly: logo, one-line pitch, Live demo link, Powered by partners, hero and cascade visuals, then What you will see, Meet The Britt, why it matters, how Meta models are used; increase cascade screenshot width so the emerald mills to lathes path and x OFFLINE departments are legible at a glance."
+      "priority": "high",
+      "change": "Within the required order, enlarge the opening logo, one-line pitch and Live demo link so judges reach the recovery room in one glance, keeping Powered by partners directly after."
     },
     {
-      "priority": "P1",
-      "change": "Tighten the pitch to one line directly under the logo placement and make the Live demo link a single high-contrast emerald action at 16px."
+      "priority": "medium",
+      "change": "Make the hero and cascade visuals larger and add a concise caption under the cascade naming emerald mills to lathes, silver x OFFLINE departments and live counters for instant legibility."
     },
     {
-      "priority": "P2",
-      "change": "Add concise captions under hero and cascade visuals naming the three signals, preserving minimal narration and judge impact."
+      "priority": "medium",
+      "change": "Tighten What you will see into five bold verb-led rows and keep Meet The Britt, why it matters and how Meta models are used in short 16px paragraphs for faster judge scanning."
     }
   ]
 }

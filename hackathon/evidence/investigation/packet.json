@@ -373,14 +373,14 @@
   ],
   "runs": [
     {
-      "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+      "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
       "handoff": null,
       "run": {
         "ok": true,
         "stopReason": "MODEL_STOP",
         "turns": 3,
         "toolCalls": 2,
-        "elapsedMs": 8319,
+        "elapsedMs": 10056,
         "limits": {
           "maxTurns": 6,
           "maxToolCalls": 10,
@@ -390,7 +390,7 @@
         "mode": "live",
         "sample": false,
         "label": "LIVE — Muse Wonder",
-        "text": "Allocate substitute is the recommended recovery: it covers all 70 impacted units and finishes in 35 hours for $3,115, ahead of the 36- and 48-hour job deadlines. The certificate shows 120 each while receiving posted 80 each, leaving the held lot unavailable; verified substitute stock of 100 each is sufficient for the 70 units required. Waiting for replenishment would cost nothing incrementally but would finish in 83 hours, missing the deadlines, while splitting capacity would finish in 17.5 hours for $3,202.50, paying $87.50 more for speed not needed to meet the earliest deadline. This assumes quantities use the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, and substitute allocation uses only verified available stock. The held lot remains on hold and no supplier messaging is included.",
+        "text": "Split capacity across two cells is the recommended recovery: it covers all 70 impacted units in 17.5 hours for $3,202.50, using 70 of the 100 verified substitute units on hand while the held alloy remains unavailable. The counterfactuals are clear: using a single cell with the substitute would take 35 hours and cost $3,115, saving only $87.50 while doubling elapsed production time; waiting for replenishment would cost no incremental amount but would finish in 83 hours, comprising 48 hours for replenishment plus 35 hours of production, and would miss the nearer 36-hour and 48-hour job deadlines. The split therefore buys a 17.5-hour schedule advantage over the single-cell substitute for a modest premium, and a 65.5-hour advantage over waiting. This assumes quantities reflect the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, production can be split across compatible online cells, and substitute allocation draws only on verified available stock. The underlying gap remains unresolved: the certificate shows 120 units while receiving posted 80, so the held primary material is not issued under this option.",
         "trace": [
           {
             "type": "model_turn",
@@ -400,7 +400,7 @@
             "label": "LIVE — Muse Wonder",
             "modelId": "muse-wonder-1.0",
             "toolCallCount": 1,
-            "textDigest": "890b3bc4b5976413e707eb2a7e76f307a62d0cc84c0591b1cc806c240a3a6a80"
+            "textDigest": "3adc630be95e74067d9ee9f4ebada4cded9118eba1b2a81b81414773ed1dd35e"
           },
           {
             "type": "tool_result",
@@ -495,7 +495,7 @@
             "label": "LIVE — Muse Wonder",
             "modelId": "muse-wonder-1.0",
             "toolCallCount": 1,
-            "textDigest": "c837723005762907e42619d91adbbca28a2a61f7414280783515d27f2d3f77d8"
+            "textDigest": "e51c9aa843f3fe7d191dd0034bc066a44aca76efabcbc1502920f56bc8171847"
           },
           {
             "type": "tool_result",
@@ -673,7 +673,7 @@
             "label": "LIVE — Muse Wonder",
             "modelId": "muse-wonder-1.0",
             "toolCallCount": 0,
-            "textDigest": "a6bb360c4bc7e62dec003daa7f53086e673abd9750e263c555014a293c20cf21"
+            "textDigest": "68fe722672375210c7f0978232e28d2acade3267a59be18995f6ff81bbbcb168"
           }
         ],
         "operationalRelease": false
@@ -915,97 +915,97 @@
         ],
         "rejected": []
       },
-      "selectedOptionId": "allocate_substitute",
-      "narrative": "Allocate substitute is the recommended recovery: it covers all 70 impacted units and finishes in 35 hours for $3,115, ahead of the 36- and 48-hour job deadlines. The certificate shows 120 each while receiving posted 80 each, leaving the held lot unavailable; verified substitute stock of 100 each is sufficient for the 70 units required. Waiting for replenishment would cost nothing incrementally but would finish in 83 hours, missing the deadlines, while splitting capacity would finish in 17.5 hours for $3,202.50, paying $87.50 more for speed not needed to meet the earliest deadline. This assumes quantities use the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, and substitute allocation uses only verified available stock. The held lot remains on hold and no supplier messaging is included.",
+      "selectedOptionId": "split_capacity",
+      "narrative": "Split capacity across two cells is the recommended recovery: it covers all 70 impacted units in 17.5 hours for $3,202.50, using 70 of the 100 verified substitute units on hand while the held alloy remains unavailable. The counterfactuals are clear: using a single cell with the substitute would take 35 hours and cost $3,115, saving only $87.50 while doubling elapsed production time; waiting for replenishment would cost no incremental amount but would finish in 83 hours, comprising 48 hours for replenishment plus 35 hours of production, and would miss the nearer 36-hour and 48-hour job deadlines. The split therefore buys a 17.5-hour schedule advantage over the single-cell substitute for a modest premium, and a 65.5-hour advantage over waiting. This assumes quantities reflect the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, production can be split across compatible online cells, and substitute allocation draws only on verified available stock. The underlying gap remains unresolved: the certificate shows 120 units while receiving posted 80, so the held primary material is not issued under this option.",
       "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
       "calls": [
         {
           "type": "model_call",
-          "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+          "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
           "provider": "meta-model-api",
           "requestedModel": "muse-wonder-1.0",
           "fallbackUsed": false,
           "primaryProvider": "meta-model-api",
           "returnedModel": "muse-wonder-1.0",
-          "requestId": "resp_6ae86a75b22e7f83cc4e4712",
+          "requestId": "resp_6ae8883f72afaaccd3fc4d81",
           "mode": "live",
           "sample": false,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 2218,
+          "latencyMs": 2327,
           "usage": {
             "input_tokens": 823,
             "input_tokens_details": {
-              "cached_tokens": 742
+              "cached_tokens": 0
             },
-            "output_tokens": 47,
+            "output_tokens": 58,
             "output_tokens_details": {
               "reasoning_tokens": 5
             },
-            "total_tokens": 870
+            "total_tokens": 881
           },
-          "responseDigest": "890b3bc4b5976413e707eb2a7e76f307a62d0cc84c0591b1cc806c240a3a6a80",
+          "responseDigest": "3adc630be95e74067d9ee9f4ebada4cded9118eba1b2a81b81414773ed1dd35e",
           "protocol": "JSON_ENVELOPE",
           "operationalRelease": false
         },
         {
           "type": "model_call",
-          "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+          "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
           "provider": "meta-model-api",
           "requestedModel": "muse-wonder-1.0",
           "fallbackUsed": false,
           "primaryProvider": "meta-model-api",
           "returnedModel": "muse-wonder-1.0",
-          "requestId": "resp_6ae86a77283a0228b49d41b4",
+          "requestId": "resp_6ae88841046d24ce792f42ee",
           "mode": "live",
           "sample": false,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 1533,
+          "latencyMs": 2591,
           "usage": {
-            "input_tokens": 1411,
+            "input_tokens": 1422,
             "input_tokens_details": {
               "cached_tokens": 0
             },
-            "output_tokens": 45,
+            "output_tokens": 73,
             "output_tokens_details": {
-              "reasoning_tokens": 5
+              "reasoning_tokens": 8
             },
-            "total_tokens": 1456
+            "total_tokens": 1495
           },
-          "responseDigest": "c837723005762907e42619d91adbbca28a2a61f7414280783515d27f2d3f77d8",
+          "responseDigest": "e51c9aa843f3fe7d191dd0034bc066a44aca76efabcbc1502920f56bc8171847",
           "protocol": "JSON_ENVELOPE",
           "operationalRelease": false
         },
         {
           "type": "model_call",
-          "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+          "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
           "provider": "meta-model-api",
           "requestedModel": "muse-wonder-1.0",
           "fallbackUsed": false,
           "primaryProvider": "meta-model-api",
           "returnedModel": "muse-wonder-1.0",
-          "requestId": "resp_6ae86a7ba72a0b132aaf47c4",
+          "requestId": "resp_6ae8884617a8947efe5b40b2",
           "mode": "live",
           "sample": false,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 4373,
+          "latencyMs": 5038,
           "usage": {
-            "input_tokens": 2334,
+            "input_tokens": 2370,
             "input_tokens_details": {
               "cached_tokens": 0
             },
-            "output_tokens": 424,
+            "output_tokens": 579,
             "output_tokens_details": {
-              "reasoning_tokens": 106
+              "reasoning_tokens": 156
             },
-            "total_tokens": 2758
+            "total_tokens": 2949
           },
-          "responseDigest": "a6bb360c4bc7e62dec003daa7f53086e673abd9750e263c555014a293c20cf21",
+          "responseDigest": "68fe722672375210c7f0978232e28d2acade3267a59be18995f6ff81bbbcb168",
           "protocol": "JSON_ENVELOPE",
           "operationalRelease": false
         }
@@ -1016,14 +1016,14 @@
       "operatorRole": "operator"
     },
     {
-      "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+      "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
       "handoff": null,
       "run": {
         "ok": true,
         "stopReason": "MODEL_STOP",
         "turns": 3,
         "toolCalls": 2,
-        "elapsedMs": 12503,
+        "elapsedMs": 13751,
         "limits": {
           "maxTurns": 6,
           "maxToolCalls": 10,
@@ -1033,7 +1033,7 @@
         "mode": "live",
         "sample": false,
         "label": "LIVE — Muse Spark Open (baseten)",
-        "text": "Certificate hold investigated: certificate for lot ALLOY-A documents 120 each while receiving posted 80 each, leaving the primary lot held and unavailable. Impact is 70 units across 2 jobs requiring 35 production hours. Three feasible recoveries were computed from current records. Wait for Replenishment completes in 83 hours (48 hours replenishment lead time + 35 hours production) at no incremental cost but misses both due dates (36 and 48 hours). Allocate Substitute completes in 35 hours at $3,115 using verified substitute stock and meets due dates with minimal margin. Split Capacity Across Online Cells completes in 17.5 hours at $3,202.50 by dividing work across compatible online cells using the same verified substitute. Selected option is Split Capacity as the fastest on-time recovery, trading an additional $87.50 versus Allocate Substitute for 17.5 hours of schedule buffer. All options assume quantities reflect current certificate, receiving and stock records and costs reflect current hourly rates; substitute use is limited to verified available stock, the held primary lot remains on hold with no supplier messaging, and split production assumes compatible online cells. Decision to proceed remains with human operator; no release is approved in this analysis.",
+        "text": "Allocate Substitute recovers all 70 impacted units in 35 hours using 70 units of verified substitute MAT-ALLOY-B, meeting the 36-hour and 48-hour due dates with $3,115 incremental cost ( $2,975 labor + $140 material premium). The held alloy lot remains unavailable due to the 40-unit discrepancy between certificate quantity and receiving record and stays on hold with no supplier messaging under this option. Counterfactual: Wait for Replenishment finishes in 83 hours (48-hour replenishment lead time + 35 hours production) at zero added cost but misses both due dates by 35+ hours; Split Capacity finishes fastest in 17.5 hours across two compatible cells but costs $87.50 more ($3,202.50) due to higher rate on the second cell. All calculations assume quantities reflect current certificate, receiving and stock records, costs reflect snapshot hourly rates, and substitute use is limited to verified on-hand stock.",
         "trace": [
           {
             "type": "model_turn",
@@ -1316,7 +1316,7 @@
             "label": "LIVE — Muse Spark Open (baseten)",
             "modelId": "meta-models/muse-spark-open",
             "toolCallCount": 0,
-            "textDigest": "4ec6eb9ef76e756b393d309772238f3ae5a860e872178c7d320265a8196b699a"
+            "textDigest": "0bb95bdd9bdf57c7a798f5f1ec56018a0119848943d6c8ecaeca3e9f7ab2b695"
           }
         ],
         "operationalRelease": false
@@ -1558,38 +1558,38 @@
         ],
         "rejected": []
       },
-      "selectedOptionId": "split_capacity",
-      "narrative": "Certificate hold investigated: certificate for lot ALLOY-A documents 120 each while receiving posted 80 each, leaving the primary lot held and unavailable. Impact is 70 units across 2 jobs requiring 35 production hours. Three feasible recoveries were computed from current records. Wait for Replenishment completes in 83 hours (48 hours replenishment lead time + 35 hours production) at no incremental cost but misses both due dates (36 and 48 hours). Allocate Substitute completes in 35 hours at $3,115 using verified substitute stock and meets due dates with minimal margin. Split Capacity Across Online Cells completes in 17.5 hours at $3,202.50 by dividing work across compatible online cells using the same verified substitute. Selected option is Split Capacity as the fastest on-time recovery, trading an additional $87.50 versus Allocate Substitute for 17.5 hours of schedule buffer. All options assume quantities reflect current certificate, receiving and stock records and costs reflect current hourly rates; substitute use is limited to verified available stock, the held primary lot remains on hold with no supplier messaging, and split production assumes compatible online cells. Decision to proceed remains with human operator; no release is approved in this analysis.",
+      "selectedOptionId": "allocate_substitute",
+      "narrative": "Allocate Substitute recovers all 70 impacted units in 35 hours using 70 units of verified substitute MAT-ALLOY-B, meeting the 36-hour and 48-hour due dates with $3,115 incremental cost ( $2,975 labor + $140 material premium). The held alloy lot remains unavailable due to the 40-unit discrepancy between certificate quantity and receiving record and stays on hold with no supplier messaging under this option. Counterfactual: Wait for Replenishment finishes in 83 hours (48-hour replenishment lead time + 35 hours production) at zero added cost but misses both due dates by 35+ hours; Split Capacity finishes fastest in 17.5 hours across two compatible cells but costs $87.50 more ($3,202.50) due to higher rate on the second cell. All calculations assume quantities reflect current certificate, receiving and stock records, costs reflect snapshot hourly rates, and substitute use is limited to verified on-hand stock.",
       "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
       "calls": [
         {
           "type": "model_call",
-          "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+          "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
           "provider": "baseten",
           "requestedModel": "meta-models/muse-spark-open",
           "fallbackUsed": false,
           "primaryProvider": "baseten",
           "returnedModel": "meta-models/muse-spark-open",
-          "requestId": "chatcmpl-e20836bb03ea4d3788fb2b7523aec577",
+          "requestId": "chatcmpl-1444b41dcbc6457d8d7abb7eb764669a",
           "mode": "live",
           "sample": false,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 497,
+          "latencyMs": 1138,
           "usage": {
             "prompt_tokens": 960,
-            "completion_tokens": 31,
-            "total_tokens": 991,
+            "completion_tokens": 35,
+            "total_tokens": 995,
             "prompt_tokens_details": {
               "audio_tokens": 0,
               "cached_tokens": 0
             },
             "completion_tokens_details": {
-              "accepted_prediction_tokens": 18,
+              "accepted_prediction_tokens": 21,
               "audio_tokens": 0,
-              "reasoning_tokens": 7,
-              "rejected_prediction_tokens": 73
+              "reasoning_tokens": 11,
+              "rejected_prediction_tokens": 77
             }
           },
           "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
@@ -1598,32 +1598,32 @@
         },
         {
           "type": "model_call",
-          "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+          "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
           "provider": "baseten",
           "requestedModel": "meta-models/muse-spark-open",
           "fallbackUsed": false,
           "primaryProvider": "baseten",
           "returnedModel": "meta-models/muse-spark-open",
-          "requestId": "chatcmpl-09b45b0f3a3e4e96b2c440c1b818c661",
+          "requestId": "chatcmpl-31cb884ee8f6486fb5ae11f481145359",
           "mode": "live",
           "sample": false,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 634,
+          "latencyMs": 572,
           "usage": {
             "prompt_tokens": 1543,
-            "completion_tokens": 70,
-            "total_tokens": 1613,
+            "completion_tokens": 34,
+            "total_tokens": 1577,
             "prompt_tokens_details": {
               "audio_tokens": 0,
               "cached_tokens": 896
             },
             "completion_tokens_details": {
-              "accepted_prediction_tokens": 50,
+              "accepted_prediction_tokens": 21,
               "audio_tokens": 0,
-              "reasoning_tokens": 45,
-              "rejected_prediction_tokens": 90
+              "reasoning_tokens": 9,
+              "rejected_prediction_tokens": 70
             }
           },
           "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
@@ -1632,35 +1632,35 @@
         },
         {
           "type": "model_call",
-          "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+          "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
           "provider": "baseten",
           "requestedModel": "meta-models/muse-spark-open",
           "fallbackUsed": false,
           "primaryProvider": "baseten",
           "returnedModel": "meta-models/muse-spark-open",
-          "requestId": "chatcmpl-320c8eefa06749ce8ce2917f0de29fdd",
+          "requestId": "chatcmpl-fabc7fac60b041e1962a1beb5e9b9ee4",
           "mode": "live",
           "sample": false,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 11039,
+          "latencyMs": 11977,
           "usage": {
             "prompt_tokens": 2464,
-            "completion_tokens": 1780,
-            "total_tokens": 4244,
+            "completion_tokens": 3642,
+            "total_tokens": 6106,
             "prompt_tokens_details": {
               "audio_tokens": 0,
-              "cached_tokens": 1408
+              "cached_tokens": 0
             },
             "completion_tokens_details": {
-              "accepted_prediction_tokens": 1266,
+              "accepted_prediction_tokens": 2624,
               "audio_tokens": 0,
-              "reasoning_tokens": 1392,
-              "rejected_prediction_tokens": 2332
+              "reasoning_tokens": 3304,
+              "rejected_prediction_tokens": 4502
             }
           },
-          "responseDigest": "4ec6eb9ef76e756b393d309772238f3ae5a860e872178c7d320265a8196b699a",
+          "responseDigest": "0bb95bdd9bdf57c7a798f5f1ec56018a0119848943d6c8ecaeca3e9f7ab2b695",
           "protocol": "JSON_ENVELOPE",
           "operationalRelease": false
         }
@@ -1679,8 +1679,8 @@
   "ledger": {
     "ok": true,
     "count": 9,
-    "head": "6691925fcf4b3d88acbeed9089bf132a5ea6934bc5012a81208a1c694b3ada14",
-    "signature": "ea24c5a9c86b5b54b6a10ef30449886b964d724cb6218432c9cdd3da83589abf"
+    "head": "8f91d56bd91e21edf6e9f1acfcc62b6dcd41824619311b394871000f8ce354d1",
+    "signature": "32afabb9a951212e9d37668ae0288d713e456c0956d94bf14af465c8b7a0989f"
   },
   "storageProtection": {
     "protected": true,
@@ -1817,7 +1817,7 @@
     {
       "sequence": 1,
       "type": "snapshot_initialized",
-      "epochMs": 1793616501634,
+      "epochMs": 1793624127154,
       "previousHash": "GENESIS",
       "data": {
         "snapshot": {
@@ -1938,139 +1938,139 @@
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2"
         }
       },
-      "eventHash": "a46aad1c5691e3b24d75f39c20df032ce6fe291e34cdf9fe9c51ca2d72a838cd"
+      "eventHash": "4dd3df0b6453c36422943ccb8f5a9c19e078937e18088a1d74216c14587fb86a"
     },
     {
       "sequence": 2,
       "type": "model_call",
-      "epochMs": 1793616501652,
-      "previousHash": "a46aad1c5691e3b24d75f39c20df032ce6fe291e34cdf9fe9c51ca2d72a838cd",
+      "epochMs": 1793624127176,
+      "previousHash": "4dd3df0b6453c36422943ccb8f5a9c19e078937e18088a1d74216c14587fb86a",
       "data": {
         "type": "model_call",
-        "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+        "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
         "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "provider": "meta-model-api",
         "requestedModel": "muse-wonder-1.0",
         "fallbackUsed": false,
         "primaryProvider": "meta-model-api",
         "returnedModel": "muse-wonder-1.0",
-        "requestId": "resp_6ae86a75b22e7f83cc4e4712",
+        "requestId": "resp_6ae8883f72afaaccd3fc4d81",
         "mode": "live",
         "sample": false,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 2218,
+        "latencyMs": 2327,
         "usage": {
           "input_tokens": 823,
           "input_tokens_details": {
-            "cached_tokens": 742
+            "cached_tokens": 0
           },
-          "output_tokens": 47,
+          "output_tokens": 58,
           "output_tokens_details": {
             "reasoning_tokens": 5
           },
-          "total_tokens": 870
+          "total_tokens": 881
         },
-        "responseDigest": "890b3bc4b5976413e707eb2a7e76f307a62d0cc84c0591b1cc806c240a3a6a80",
+        "responseDigest": "3adc630be95e74067d9ee9f4ebada4cded9118eba1b2a81b81414773ed1dd35e",
         "protocol": "JSON_ENVELOPE",
         "operationalRelease": false,
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "906ec3b74014045c00ad4931e95183ce3b62048b189846d7fba840f5b6d5aa3b"
+      "eventHash": "1860c6967b21e07bfc9f8ab39e9497bca7d753a768beb8787119b38310fa8f6d"
     },
     {
       "sequence": 3,
       "type": "model_call",
-      "epochMs": 1793616503215,
-      "previousHash": "906ec3b74014045c00ad4931e95183ce3b62048b189846d7fba840f5b6d5aa3b",
+      "epochMs": 1793624129789,
+      "previousHash": "1860c6967b21e07bfc9f8ab39e9497bca7d753a768beb8787119b38310fa8f6d",
       "data": {
         "type": "model_call",
-        "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+        "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
         "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "provider": "meta-model-api",
         "requestedModel": "muse-wonder-1.0",
         "fallbackUsed": false,
         "primaryProvider": "meta-model-api",
         "returnedModel": "muse-wonder-1.0",
-        "requestId": "resp_6ae86a77283a0228b49d41b4",
+        "requestId": "resp_6ae88841046d24ce792f42ee",
         "mode": "live",
         "sample": false,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 1533,
+        "latencyMs": 2591,
         "usage": {
-          "input_tokens": 1411,
+          "input_tokens": 1422,
           "input_tokens_details": {
             "cached_tokens": 0
           },
-          "output_tokens": 45,
+          "output_tokens": 73,
           "output_tokens_details": {
-            "reasoning_tokens": 5
+            "reasoning_tokens": 8
           },
-          "total_tokens": 1456
+          "total_tokens": 1495
         },
-        "responseDigest": "c837723005762907e42619d91adbbca28a2a61f7414280783515d27f2d3f77d8",
+        "responseDigest": "e51c9aa843f3fe7d191dd0034bc066a44aca76efabcbc1502920f56bc8171847",
         "protocol": "JSON_ENVELOPE",
         "operationalRelease": false,
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "5924cbdf6918ee4e6e2b1238207cda48e1ce9c0ca2c2af1383148020d1c208cc"
+      "eventHash": "bfb7854cdc01c513e24775a7f57c107f49b4cd9e37f6d9ef71fb4259641fd2df"
     },
     {
       "sequence": 4,
       "type": "model_call",
-      "epochMs": 1793616507627,
-      "previousHash": "5924cbdf6918ee4e6e2b1238207cda48e1ce9c0ca2c2af1383148020d1c208cc",
+      "epochMs": 1793624134859,
+      "previousHash": "bfb7854cdc01c513e24775a7f57c107f49b4cd9e37f6d9ef71fb4259641fd2df",
       "data": {
         "type": "model_call",
-        "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+        "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
         "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "provider": "meta-model-api",
         "requestedModel": "muse-wonder-1.0",
         "fallbackUsed": false,
         "primaryProvider": "meta-model-api",
         "returnedModel": "muse-wonder-1.0",
-        "requestId": "resp_6ae86a7ba72a0b132aaf47c4",
+        "requestId": "resp_6ae8884617a8947efe5b40b2",
         "mode": "live",
         "sample": false,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 4373,
+        "latencyMs": 5038,
         "usage": {
-          "input_tokens": 2334,
+          "input_tokens": 2370,
           "input_tokens_details": {
             "cached_tokens": 0
           },
-          "output_tokens": 424,
+          "output_tokens": 579,
           "output_tokens_details": {
-            "reasoning_tokens": 106
+            "reasoning_tokens": 156
           },
-          "total_tokens": 2758
+          "total_tokens": 2949
         },
-        "responseDigest": "a6bb360c4bc7e62dec003daa7f53086e673abd9750e263c555014a293c20cf21",
+        "responseDigest": "68fe722672375210c7f0978232e28d2acade3267a59be18995f6ff81bbbcb168",
         "protocol": "JSON_ENVELOPE",
         "operationalRelease": false,
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "3171a715e0faa58245ed9c04dbad712eebc57b9637e81f8b9381b77d205d6d9b"
+      "eventHash": "e22c13afcad4342c3f9d07e97139af61334ff838bfac1653358fbbc2ef68c470"
     },
     {
       "sequence": 5,
       "type": "investigation_completed",
-      "epochMs": 1793616507736,
-      "previousHash": "3171a715e0faa58245ed9c04dbad712eebc57b9637e81f8b9381b77d205d6d9b",
+      "epochMs": 1793624134884,
+      "previousHash": "e22c13afcad4342c3f9d07e97139af61334ff838bfac1653358fbbc2ef68c470",
       "data": {
-        "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+        "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
         "handoff": null,
         "run": {
           "ok": true,
           "stopReason": "MODEL_STOP",
           "turns": 3,
           "toolCalls": 2,
-          "elapsedMs": 8319,
+          "elapsedMs": 10056,
           "limits": {
             "maxTurns": 6,
             "maxToolCalls": 10,
@@ -2080,7 +2080,7 @@
           "mode": "live",
           "sample": false,
           "label": "LIVE — Muse Wonder",
-          "text": "Allocate substitute is the recommended recovery: it covers all 70 impacted units and finishes in 35 hours for $3,115, ahead of the 36- and 48-hour job deadlines. The certificate shows 120 each while receiving posted 80 each, leaving the held lot unavailable; verified substitute stock of 100 each is sufficient for the 70 units required. Waiting for replenishment would cost nothing incrementally but would finish in 83 hours, missing the deadlines, while splitting capacity would finish in 17.5 hours for $3,202.50, paying $87.50 more for speed not needed to meet the earliest deadline. This assumes quantities use the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, and substitute allocation uses only verified available stock. The held lot remains on hold and no supplier messaging is included.",
+          "text": "Split capacity across two cells is the recommended recovery: it covers all 70 impacted units in 17.5 hours for $3,202.50, using 70 of the 100 verified substitute units on hand while the held alloy remains unavailable. The counterfactuals are clear: using a single cell with the substitute would take 35 hours and cost $3,115, saving only $87.50 while doubling elapsed production time; waiting for replenishment would cost no incremental amount but would finish in 83 hours, comprising 48 hours for replenishment plus 35 hours of production, and would miss the nearer 36-hour and 48-hour job deadlines. The split therefore buys a 17.5-hour schedule advantage over the single-cell substitute for a modest premium, and a 65.5-hour advantage over waiting. This assumes quantities reflect the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, production can be split across compatible online cells, and substitute allocation draws only on verified available stock. The underlying gap remains unresolved: the certificate shows 120 units while receiving posted 80, so the held primary material is not issued under this option.",
           "trace": [
             {
               "type": "model_turn",
@@ -2090,7 +2090,7 @@
               "label": "LIVE — Muse Wonder",
               "modelId": "muse-wonder-1.0",
               "toolCallCount": 1,
-              "textDigest": "890b3bc4b5976413e707eb2a7e76f307a62d0cc84c0591b1cc806c240a3a6a80"
+              "textDigest": "3adc630be95e74067d9ee9f4ebada4cded9118eba1b2a81b81414773ed1dd35e"
             },
             {
               "type": "tool_result",
@@ -2185,7 +2185,7 @@
               "label": "LIVE — Muse Wonder",
               "modelId": "muse-wonder-1.0",
               "toolCallCount": 1,
-              "textDigest": "c837723005762907e42619d91adbbca28a2a61f7414280783515d27f2d3f77d8"
+              "textDigest": "e51c9aa843f3fe7d191dd0034bc066a44aca76efabcbc1502920f56bc8171847"
             },
             {
               "type": "tool_result",
@@ -2363,7 +2363,7 @@
               "label": "LIVE — Muse Wonder",
               "modelId": "muse-wonder-1.0",
               "toolCallCount": 0,
-              "textDigest": "a6bb360c4bc7e62dec003daa7f53086e673abd9750e263c555014a293c20cf21"
+              "textDigest": "68fe722672375210c7f0978232e28d2acade3267a59be18995f6ff81bbbcb168"
             }
           ],
           "operationalRelease": false
@@ -2605,97 +2605,97 @@
           ],
           "rejected": []
         },
-        "selectedOptionId": "allocate_substitute",
-        "narrative": "Allocate substitute is the recommended recovery: it covers all 70 impacted units and finishes in 35 hours for $3,115, ahead of the 36- and 48-hour job deadlines. The certificate shows 120 each while receiving posted 80 each, leaving the held lot unavailable; verified substitute stock of 100 each is sufficient for the 70 units required. Waiting for replenishment would cost nothing incrementally but would finish in 83 hours, missing the deadlines, while splitting capacity would finish in 17.5 hours for $3,202.50, paying $87.50 more for speed not needed to meet the earliest deadline. This assumes quantities use the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, and substitute allocation uses only verified available stock. The held lot remains on hold and no supplier messaging is included.",
+        "selectedOptionId": "split_capacity",
+        "narrative": "Split capacity across two cells is the recommended recovery: it covers all 70 impacted units in 17.5 hours for $3,202.50, using 70 of the 100 verified substitute units on hand while the held alloy remains unavailable. The counterfactuals are clear: using a single cell with the substitute would take 35 hours and cost $3,115, saving only $87.50 while doubling elapsed production time; waiting for replenishment would cost no incremental amount but would finish in 83 hours, comprising 48 hours for replenishment plus 35 hours of production, and would miss the nearer 36-hour and 48-hour job deadlines. The split therefore buys a 17.5-hour schedule advantage over the single-cell substitute for a modest premium, and a 65.5-hour advantage over waiting. This assumes quantities reflect the current certificate, receiving and stock records, cell costs use the hourly rates in this snapshot, production can be split across compatible online cells, and substitute allocation draws only on verified available stock. The underlying gap remains unresolved: the certificate shows 120 units while receiving posted 80, so the held primary material is not issued under this option.",
         "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
         "calls": [
           {
             "type": "model_call",
-            "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+            "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
             "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
             "provider": "meta-model-api",
             "requestedModel": "muse-wonder-1.0",
             "fallbackUsed": false,
             "primaryProvider": "meta-model-api",
             "returnedModel": "muse-wonder-1.0",
-            "requestId": "resp_6ae86a75b22e7f83cc4e4712",
+            "requestId": "resp_6ae8883f72afaaccd3fc4d81",
             "mode": "live",
             "sample": false,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 2218,
+            "latencyMs": 2327,
             "usage": {
               "input_tokens": 823,
               "input_tokens_details": {
-                "cached_tokens": 742
+                "cached_tokens": 0
               },
-              "output_tokens": 47,
+              "output_tokens": 58,
               "output_tokens_details": {
                 "reasoning_tokens": 5
               },
-              "total_tokens": 870
+              "total_tokens": 881
             },
-            "responseDigest": "890b3bc4b5976413e707eb2a7e76f307a62d0cc84c0591b1cc806c240a3a6a80",
+            "responseDigest": "3adc630be95e74067d9ee9f4ebada4cded9118eba1b2a81b81414773ed1dd35e",
             "protocol": "JSON_ENVELOPE",
             "operationalRelease": false
           },
           {
             "type": "model_call",
-            "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+            "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
             "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
             "provider": "meta-model-api",
             "requestedModel": "muse-wonder-1.0",
             "fallbackUsed": false,
             "primaryProvider": "meta-model-api",
             "returnedModel": "muse-wonder-1.0",
-            "requestId": "resp_6ae86a77283a0228b49d41b4",
+            "requestId": "resp_6ae88841046d24ce792f42ee",
             "mode": "live",
             "sample": false,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 1533,
+            "latencyMs": 2591,
             "usage": {
-              "input_tokens": 1411,
+              "input_tokens": 1422,
               "input_tokens_details": {
                 "cached_tokens": 0
               },
-              "output_tokens": 45,
+              "output_tokens": 73,
               "output_tokens_details": {
-                "reasoning_tokens": 5
+                "reasoning_tokens": 8
               },
-              "total_tokens": 1456
+              "total_tokens": 1495
             },
-            "responseDigest": "c837723005762907e42619d91adbbca28a2a61f7414280783515d27f2d3f77d8",
+            "responseDigest": "e51c9aa843f3fe7d191dd0034bc066a44aca76efabcbc1502920f56bc8171847",
             "protocol": "JSON_ENVELOPE",
             "operationalRelease": false
           },
           {
             "type": "model_call",
-            "runId": "72b54d15-961d-4e08-afe4-836d076743ce",
+            "runId": "f5747f3f-8335-4930-9842-0f83ba44c4a7",
             "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
             "provider": "meta-model-api",
             "requestedModel": "muse-wonder-1.0",
             "fallbackUsed": false,
             "primaryProvider": "meta-model-api",
             "returnedModel": "muse-wonder-1.0",
-            "requestId": "resp_6ae86a7ba72a0b132aaf47c4",
+            "requestId": "resp_6ae8884617a8947efe5b40b2",
             "mode": "live",
             "sample": false,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 4373,
+            "latencyMs": 5038,
             "usage": {
-              "input_tokens": 2334,
+              "input_tokens": 2370,
               "input_tokens_details": {
                 "cached_tokens": 0
               },
-              "output_tokens": 424,
+              "output_tokens": 579,
               "output_tokens_details": {
-                "reasoning_tokens": 106
+                "reasoning_tokens": 156
               },
-              "total_tokens": 2758
+              "total_tokens": 2949
             },
-            "responseDigest": "a6bb360c4bc7e62dec003daa7f53086e673abd9750e263c555014a293c20cf21",
+            "responseDigest": "68fe722672375210c7f0978232e28d2acade3267a59be18995f6ff81bbbcb168",
             "protocol": "JSON_ENVELOPE",
             "operationalRelease": false
           }
@@ -2705,41 +2705,41 @@
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "1031acb91cb7fb2107215001bcf56a7411767f15def0e53b5fc96e4d47419573"
+      "eventHash": "1dac975331ea3a2b56d7eba3ae696ddc7fea842ff4d224bd31677c1f18abc1a2"
     },
     {
       "sequence": 6,
       "type": "model_call",
-      "epochMs": 1793616508354,
-      "previousHash": "1031acb91cb7fb2107215001bcf56a7411767f15def0e53b5fc96e4d47419573",
+      "epochMs": 1793624136051,
+      "previousHash": "1dac975331ea3a2b56d7eba3ae696ddc7fea842ff4d224bd31677c1f18abc1a2",
       "data": {
         "type": "model_call",
-        "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+        "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
         "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "provider": "baseten",
         "requestedModel": "meta-models/muse-spark-open",
         "fallbackUsed": false,
         "primaryProvider": "baseten",
         "returnedModel": "meta-models/muse-spark-open",
-        "requestId": "chatcmpl-e20836bb03ea4d3788fb2b7523aec577",
+        "requestId": "chatcmpl-1444b41dcbc6457d8d7abb7eb764669a",
         "mode": "live",
         "sample": false,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 497,
+        "latencyMs": 1138,
         "usage": {
           "prompt_tokens": 960,
-          "completion_tokens": 31,
-          "total_tokens": 991,
+          "completion_tokens": 35,
+          "total_tokens": 995,
           "prompt_tokens_details": {
             "audio_tokens": 0,
             "cached_tokens": 0
           },
           "completion_tokens_details": {
-            "accepted_prediction_tokens": 18,
+            "accepted_prediction_tokens": 21,
             "audio_tokens": 0,
-            "reasoning_tokens": 7,
-            "rejected_prediction_tokens": 73
+            "reasoning_tokens": 11,
+            "rejected_prediction_tokens": 77
           }
         },
         "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
@@ -2748,41 +2748,41 @@
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "f385d01b6c7fad65783c9c68197b47de8888db326fea5d2d33362f2816b4d955"
+      "eventHash": "2aeb6b93e41e10443d67dced1d1f59be4f95c830d452f1474949204d2e51b164"
     },
     {
       "sequence": 7,
       "type": "model_call",
-      "epochMs": 1793616509135,
-      "previousHash": "f385d01b6c7fad65783c9c68197b47de8888db326fea5d2d33362f2816b4d955",
+      "epochMs": 1793624136645,
+      "previousHash": "2aeb6b93e41e10443d67dced1d1f59be4f95c830d452f1474949204d2e51b164",
       "data": {
         "type": "model_call",
-        "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+        "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
         "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "provider": "baseten",
         "requestedModel": "meta-models/muse-spark-open",
         "fallbackUsed": false,
         "primaryProvider": "baseten",
         "returnedModel": "meta-models/muse-spark-open",
-        "requestId": "chatcmpl-09b45b0f3a3e4e96b2c440c1b818c661",
+        "requestId": "chatcmpl-31cb884ee8f6486fb5ae11f481145359",
         "mode": "live",
         "sample": false,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 634,
+        "latencyMs": 572,
         "usage": {
           "prompt_tokens": 1543,
-          "completion_tokens": 70,
-          "total_tokens": 1613,
+          "completion_tokens": 34,
+          "total_tokens": 1577,
           "prompt_tokens_details": {
             "audio_tokens": 0,
             "cached_tokens": 896
           },
           "completion_tokens_details": {
-            "accepted_prediction_tokens": 50,
+            "accepted_prediction_tokens": 21,
             "audio_tokens": 0,
-            "reasoning_tokens": 45,
-            "rejected_prediction_tokens": 90
+            "reasoning_tokens": 9,
+            "rejected_prediction_tokens": 70
           }
         },
         "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
@@ -2791,65 +2791,65 @@
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "961d2e4412e8879acb7688d29f94ccac850916e687b16384b68b1a714a46af43"
+      "eventHash": "b6f3493917642161b6f17c453729ca938305ae55882dd593991ebf48c1542648"
     },
     {
       "sequence": 8,
       "type": "model_call",
-      "epochMs": 1793616520327,
-      "previousHash": "961d2e4412e8879acb7688d29f94ccac850916e687b16384b68b1a714a46af43",
+      "epochMs": 1793624148641,
+      "previousHash": "b6f3493917642161b6f17c453729ca938305ae55882dd593991ebf48c1542648",
       "data": {
         "type": "model_call",
-        "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+        "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
         "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "provider": "baseten",
         "requestedModel": "meta-models/muse-spark-open",
         "fallbackUsed": false,
         "primaryProvider": "baseten",
         "returnedModel": "meta-models/muse-spark-open",
-        "requestId": "chatcmpl-320c8eefa06749ce8ce2917f0de29fdd",
+        "requestId": "chatcmpl-fabc7fac60b041e1962a1beb5e9b9ee4",
         "mode": "live",
         "sample": false,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 11039,
+        "latencyMs": 11977,
         "usage": {
           "prompt_tokens": 2464,
-          "completion_tokens": 1780,
-          "total_tokens": 4244,
+          "completion_tokens": 3642,
+          "total_tokens": 6106,
           "prompt_tokens_details": {
             "audio_tokens": 0,
-            "cached_tokens": 1408
+            "cached_tokens": 0
           },
           "completion_tokens_details": {
-            "accepted_prediction_tokens": 1266,
+            "accepted_prediction_tokens": 2624,
             "audio_tokens": 0,
-            "reasoning_tokens": 1392,
-            "rejected_prediction_tokens": 2332
+            "reasoning_tokens": 3304,
+            "rejected_prediction_tokens": 4502
           }
         },
-        "responseDigest": "4ec6eb9ef76e756b393d309772238f3ae5a860e872178c7d320265a8196b699a",
+        "responseDigest": "0bb95bdd9bdf57c7a798f5f1ec56018a0119848943d6c8ecaeca3e9f7ab2b695",
         "protocol": "JSON_ENVELOPE",
         "operationalRelease": false,
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "76698af6241a928a5fd3d10fc0072d1efa177d64acc5786fe771c87b39d64884"
+      "eventHash": "45c3258df04d1c6f048e0f5a7a5ea58979903a65248511b1be54355b7604122f"
     },
     {
       "sequence": 9,
       "type": "investigation_completed",
-      "epochMs": 1793616520366,
-      "previousHash": "76698af6241a928a5fd3d10fc0072d1efa177d64acc5786fe771c87b39d64884",
+      "epochMs": 1793624148665,
+      "previousHash": "45c3258df04d1c6f048e0f5a7a5ea58979903a65248511b1be54355b7604122f",
       "data": {
-        "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+        "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
         "handoff": null,
         "run": {
           "ok": true,
           "stopReason": "MODEL_STOP",
           "turns": 3,
           "toolCalls": 2,
-          "elapsedMs": 12503,
+          "elapsedMs": 13751,
           "limits": {
             "maxTurns": 6,
             "maxToolCalls": 10,
@@ -2859,7 +2859,7 @@
           "mode": "live",
           "sample": false,
           "label": "LIVE — Muse Spark Open (baseten)",
-          "text": "Certificate hold investigated: certificate for lot ALLOY-A documents 120 each while receiving posted 80 each, leaving the primary lot held and unavailable. Impact is 70 units across 2 jobs requiring 35 production hours. Three feasible recoveries were computed from current records. Wait for Replenishment completes in 83 hours (48 hours replenishment lead time + 35 hours production) at no incremental cost but misses both due dates (36 and 48 hours). Allocate Substitute completes in 35 hours at $3,115 using verified substitute stock and meets due dates with minimal margin. Split Capacity Across Online Cells completes in 17.5 hours at $3,202.50 by dividing work across compatible online cells using the same verified substitute. Selected option is Split Capacity as the fastest on-time recovery, trading an additional $87.50 versus Allocate Substitute for 17.5 hours of schedule buffer. All options assume quantities reflect current certificate, receiving and stock records and costs reflect current hourly rates; substitute use is limited to verified available stock, the held primary lot remains on hold with no supplier messaging, and split production assumes compatible online cells. Decision to proceed remains with human operator; no release is approved in this analysis.",
+          "text": "Allocate Substitute recovers all 70 impacted units in 35 hours using 70 units of verified substitute MAT-ALLOY-B, meeting the 36-hour and 48-hour due dates with $3,115 incremental cost ( $2,975 labor + $140 material premium). The held alloy lot remains unavailable due to the 40-unit discrepancy between certificate quantity and receiving record and stays on hold with no supplier messaging under this option. Counterfactual: Wait for Replenishment finishes in 83 hours (48-hour replenishment lead time + 35 hours production) at zero added cost but misses both due dates by 35+ hours; Split Capacity finishes fastest in 17.5 hours across two compatible cells but costs $87.50 more ($3,202.50) due to higher rate on the second cell. All calculations assume quantities reflect current certificate, receiving and stock records, costs reflect snapshot hourly rates, and substitute use is limited to verified on-hand stock.",
           "trace": [
             {
               "type": "model_turn",
@@ -3142,7 +3142,7 @@
               "label": "LIVE — Muse Spark Open (baseten)",
               "modelId": "meta-models/muse-spark-open",
               "toolCallCount": 0,
-              "textDigest": "4ec6eb9ef76e756b393d309772238f3ae5a860e872178c7d320265a8196b699a"
+              "textDigest": "0bb95bdd9bdf57c7a798f5f1ec56018a0119848943d6c8ecaeca3e9f7ab2b695"
             }
           ],
           "operationalRelease": false
@@ -3384,38 +3384,38 @@
           ],
           "rejected": []
         },
-        "selectedOptionId": "split_capacity",
-        "narrative": "Certificate hold investigated: certificate for lot ALLOY-A documents 120 each while receiving posted 80 each, leaving the primary lot held and unavailable. Impact is 70 units across 2 jobs requiring 35 production hours. Three feasible recoveries were computed from current records. Wait for Replenishment completes in 83 hours (48 hours replenishment lead time + 35 hours production) at no incremental cost but misses both due dates (36 and 48 hours). Allocate Substitute completes in 35 hours at $3,115 using verified substitute stock and meets due dates with minimal margin. Split Capacity Across Online Cells completes in 17.5 hours at $3,202.50 by dividing work across compatible online cells using the same verified substitute. Selected option is Split Capacity as the fastest on-time recovery, trading an additional $87.50 versus Allocate Substitute for 17.5 hours of schedule buffer. All options assume quantities reflect current certificate, receiving and stock records and costs reflect current hourly rates; substitute use is limited to verified available stock, the held primary lot remains on hold with no supplier messaging, and split production assumes compatible online cells. Decision to proceed remains with human operator; no release is approved in this analysis.",
+        "selectedOptionId": "allocate_substitute",
+        "narrative": "Allocate Substitute recovers all 70 impacted units in 35 hours using 70 units of verified substitute MAT-ALLOY-B, meeting the 36-hour and 48-hour due dates with $3,115 incremental cost ( $2,975 labor + $140 material premium). The held alloy lot remains unavailable due to the 40-unit discrepancy between certificate quantity and receiving record and stays on hold with no supplier messaging under this option. Counterfactual: Wait for Replenishment finishes in 83 hours (48-hour replenishment lead time + 35 hours production) at zero added cost but misses both due dates by 35+ hours; Split Capacity finishes fastest in 17.5 hours across two compatible cells but costs $87.50 more ($3,202.50) due to higher rate on the second cell. All calculations assume quantities reflect current certificate, receiving and stock records, costs reflect snapshot hourly rates, and substitute use is limited to verified on-hand stock.",
         "narrativeValidation": "UNVALIDATED_MODEL_OUTPUT",
         "calls": [
           {
             "type": "model_call",
-            "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+            "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
             "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
             "provider": "baseten",
             "requestedModel": "meta-models/muse-spark-open",
             "fallbackUsed": false,
             "primaryProvider": "baseten",
             "returnedModel": "meta-models/muse-spark-open",
-            "requestId": "chatcmpl-e20836bb03ea4d3788fb2b7523aec577",
+            "requestId": "chatcmpl-1444b41dcbc6457d8d7abb7eb764669a",
             "mode": "live",
             "sample": false,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 497,
+            "latencyMs": 1138,
             "usage": {
               "prompt_tokens": 960,
-              "completion_tokens": 31,
-              "total_tokens": 991,
+              "completion_tokens": 35,
+              "total_tokens": 995,
               "prompt_tokens_details": {
                 "audio_tokens": 0,
                 "cached_tokens": 0
               },
               "completion_tokens_details": {
-                "accepted_prediction_tokens": 18,
+                "accepted_prediction_tokens": 21,
                 "audio_tokens": 0,
-                "reasoning_tokens": 7,
-                "rejected_prediction_tokens": 73
+                "reasoning_tokens": 11,
+                "rejected_prediction_tokens": 77
               }
             },
             "responseDigest": "747948d8fb43b90c9c5ed7d1182e56f88f168262e92c231bd14054c383c01b41",
@@ -3424,32 +3424,32 @@
           },
           {
             "type": "model_call",
-            "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+            "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
             "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
             "provider": "baseten",
             "requestedModel": "meta-models/muse-spark-open",
             "fallbackUsed": false,
             "primaryProvider": "baseten",
             "returnedModel": "meta-models/muse-spark-open",
-            "requestId": "chatcmpl-09b45b0f3a3e4e96b2c440c1b818c661",
+            "requestId": "chatcmpl-31cb884ee8f6486fb5ae11f481145359",
             "mode": "live",
             "sample": false,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 634,
+            "latencyMs": 572,
             "usage": {
               "prompt_tokens": 1543,
-              "completion_tokens": 70,
-              "total_tokens": 1613,
+              "completion_tokens": 34,
+              "total_tokens": 1577,
               "prompt_tokens_details": {
                 "audio_tokens": 0,
                 "cached_tokens": 896
               },
               "completion_tokens_details": {
-                "accepted_prediction_tokens": 50,
+                "accepted_prediction_tokens": 21,
                 "audio_tokens": 0,
-                "reasoning_tokens": 45,
-                "rejected_prediction_tokens": 90
+                "reasoning_tokens": 9,
+                "rejected_prediction_tokens": 70
               }
             },
             "responseDigest": "3c7596182950a37fb1adc8cb3dbeb582917acb5f50a878d222fe68a3b50d5c0d",
@@ -3458,35 +3458,35 @@
           },
           {
             "type": "model_call",
-            "runId": "cf2fcb05-f3b5-4edc-a07d-24e6131cfa16",
+            "runId": "3c7e014d-83a4-4991-9c95-92f0573f84ca",
             "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
             "provider": "baseten",
             "requestedModel": "meta-models/muse-spark-open",
             "fallbackUsed": false,
             "primaryProvider": "baseten",
             "returnedModel": "meta-models/muse-spark-open",
-            "requestId": "chatcmpl-320c8eefa06749ce8ce2917f0de29fdd",
+            "requestId": "chatcmpl-fabc7fac60b041e1962a1beb5e9b9ee4",
             "mode": "live",
             "sample": false,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 11039,
+            "latencyMs": 11977,
             "usage": {
               "prompt_tokens": 2464,
-              "completion_tokens": 1780,
-              "total_tokens": 4244,
+              "completion_tokens": 3642,
+              "total_tokens": 6106,
               "prompt_tokens_details": {
                 "audio_tokens": 0,
-                "cached_tokens": 1408
+                "cached_tokens": 0
               },
               "completion_tokens_details": {
-                "accepted_prediction_tokens": 1266,
+                "accepted_prediction_tokens": 2624,
                 "audio_tokens": 0,
-                "reasoning_tokens": 1392,
-                "rejected_prediction_tokens": 2332
+                "reasoning_tokens": 3304,
+                "rejected_prediction_tokens": 4502
               }
             },
-            "responseDigest": "4ec6eb9ef76e756b393d309772238f3ae5a860e872178c7d320265a8196b699a",
+            "responseDigest": "0bb95bdd9bdf57c7a798f5f1ec56018a0119848943d6c8ecaeca3e9f7ab2b695",
             "protocol": "JSON_ENVELOPE",
             "operationalRelease": false
           }
@@ -3496,7 +3496,7 @@
         "operatorId": "local-operator",
         "operatorRole": "operator"
       },
-      "eventHash": "6691925fcf4b3d88acbeed9089bf132a5ea6934bc5012a81208a1c694b3ada14"
+      "eventHash": "8f91d56bd91e21edf6e9f1acfcc62b6dcd41824619311b394871000f8ce354d1"
     }
   ]
 }

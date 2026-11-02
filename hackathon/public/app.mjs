@@ -468,6 +468,16 @@ function renderFactory(){
  const receivingNode=node(16,machineY,'RECEIVING',accepted?'VERIFIED RECOVERY':'× HOLD','idle',machines,receivingWidth,state.snapshot.incident.heldMaterialId);receivingNode.setAttribute('data-scene-machine','RECEIVING');receivingNode.classList.toggle('material-stopped',!accepted&&cells.every(c=>c.online));
  cells.forEach((c,i)=>{const machine=node(machineSlots[i].x,machineY,c.cellId,c.online?(activeCells.has(c.cellId)&&accepted?'RECOVERY FLOW':'AVAILABLE'):'OFFLINE',!c.online?'held':accepted&&activeCells.has(c.cellId)?'running':'idle',machines,machineSlots[i].width,c.cellId===previewOffline?'WILL GO OFFLINE':c.online?c.availableHours+'h capacity':'0h · replan');machine.setAttribute('data-scene-machine',c.cellId);});
   const jobSlots=factoryPositions(24,lineRight,Math.max(jobs.length,1),Math.max(210,Math.floor((lineRight-24-13*(Math.max(jobs.length,1)-1))/Math.max(jobs.length,1))));
+  // Wonder 170 step 1: living emerald risk trace from RECEIVING hold into every at-risk job.
+  if(!accepted&&!shockStage&&jobs.length){
+   const risk=add('g',{'data-scene-band':'bay','class':'receiving-job-risk','aria-hidden':'true'},null,routes);
+   jobs.forEach((j,i)=>{
+    const slot=jobSlots[i];
+    const midY=machineY+nodeH+8+i*10;
+    add('path',{d:`M ${16+receivingWidth} ${machineY+nodeH/2} H ${16+receivingWidth+18} V ${midY} H ${slot.x+slot.width/2} V ${jobY}`,class:'risk-job-trace',fill:'none',stroke:'#A8F04A','stroke-width':2.5,'stroke-dasharray':'7 5'},null,risk);
+    add('circle',{cx:slot.x+slot.width/2,cy:midY,r:3.5,fill:'#A8F04A',class:'risk-job-spark spark-'+i},null,risk);
+   });
+  }
   jobs.forEach((j,i)=>{
    const slot=jobSlots[i];
    node(slot.x,jobY,j.jobId,j.unitsRequired+' parts · +'+j.dueHours+'h',accepted?'running':'idle',orders,slot.width,accepted?'ON ACCEPTED PATH':'AT RISK');

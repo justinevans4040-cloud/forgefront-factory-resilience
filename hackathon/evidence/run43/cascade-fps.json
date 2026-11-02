@@ -1,0 +1,25 @@
+{
+  "profiles": [
+    {
+      "fps": 7.1,
+      "reducedMotion": false,
+      "samples": 22,
+      "machineCount": 1000,
+      "p95FrameMs": 233.3,
+      "plantFolder": "plant-1000",
+      "avgFrameMs": 140.15,
+      "viewport": "1920x1080"
+    },
+    {
+      "machineCount": 5000,
+      "samples": 25,
+      "avgFrameMs": 129.33,
+      "fps": 7.7,
+      "p95FrameMs": 166.6,
+      "reducedMotion": false,
+      "plantFolder": "plant-5000",
+      "viewport": "1920x1080"
+    }
+  ],
+  "note": "Headless Chromium audit39: ultra CSS spine + SVG mills-lathes arc + rAF idle after wave. Machine counts unchanged. Headless --disable-gpu rAF ceiling remains low; CSS/SVG carry living emerald flow."
+}
