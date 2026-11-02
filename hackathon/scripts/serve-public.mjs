@@ -52,7 +52,7 @@ export async function startPublicServer({env:source=process.env,fetchImpl=global
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const {app,address}=await startPublicServer();
- console.log('The Meta Hackathon build is serving publicly on port '+address.port+'.');
+ console.log('The Meta Hackathon build is serving publicly on port '+address.port+' (public entry).');
  let closing=false;
  const stop=async()=>{if(closing)return;closing=true;await app.close();};
  process.on('SIGINT',stop);process.on('SIGTERM',stop);

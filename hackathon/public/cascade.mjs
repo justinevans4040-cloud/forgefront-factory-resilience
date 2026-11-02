@@ -88,10 +88,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
    if(hit||partial){
     if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');node.append(mark);}
    }else if(mark){mark.remove();}
-   let offlineChip=node.querySelector('.plant-offline-chip');
-   if(hit&&offlineCount>0){
-    if(!offlineChip){offlineChip=el('span','OFFLINE','plant-offline-chip');offlineChip.setAttribute('aria-hidden','true');node.append(offlineChip);}
-   }else if(offlineChip){offlineChip.remove();}
+   const strayChip=node.querySelector('.plant-offline-chip');if(strayChip)strayChip.remove();
    syncMachineArt(node,hit||partial||recovered);
   }
   const box=floor.getBoundingClientRect(),dpr=devicePixelRatio||1;if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,box.width,box.height);
@@ -122,8 +119,9 @@ export function mountCascade({loadPlant,launcher,workflow}){
     const hit=from.classList.contains('cascade-hit')||to.classList.contains('cascade-hit');
     drawFlow(from,to,hit?'#c5ccd433':'#c5ccd422',now,hit?2.0:2.2,0);
    }
-   if(mills&&lathes&&!(mills.classList.contains('cascade-hit')&&lathes.classList.contains('cascade-hit'))){
-    drawFlow(mills,lathes,'#56ff9a',now,5.8,14);
+   if(mills&&lathes){
+    drawFlow(mills,lathes,'#56ff9a',now,7.2,18);
+    drawFlow(lathes,mills,'#8affb888',now,3.4,8);
    }
    if(!reduced.matches){
     const alarm=(now/5)%(box.width+200)-100;

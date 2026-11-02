@@ -14,7 +14,7 @@ test('factory nodes carry three live status lines with no floating HOLD marker',
  assert.match(app,/nodeH\*0\.52/);
  assert.match(app,/nodeH\*0\.78/);
  assert.match(app,/availableHours\+'h capacity'/);
- assert.match(app,/0h · will go offline/);
+ assert.match(app,/WILL GO OFFLINE/);
  assert.match(app,/accepted\?'ON ACCEPTED PATH':'AT RISK'/);
  assert.match(app,/accepted\?'VERIFIED RECOVERY':'× HOLD'/);
  assert.doesNotMatch(app,/class:'hold-marker'/);
