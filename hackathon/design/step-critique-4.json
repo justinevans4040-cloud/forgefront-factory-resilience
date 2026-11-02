@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 4,
   "score": 7,
-  "wowScore": 6,
+  "wowScore": 5,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Give proposed tasks depth and emerald state glow linked to matching stations, keeping UNTRACKED UNTIL APPROVAL prominent."
+      "priority": "high",
+      "change": "Add station depth and a subtle emerald progress flow across t1 to t3 while keeping dashed untracked styling until approval"
     },
     {
-      "priority": "P1",
-      "change": "Reduce duplicated board narration on right; reserve zone for station and job callouts without overlap."
+      "priority": "medium",
+      "change": "Reduce duplication between the board cards and the right-zone proposal summary so one zone shows stations and the other shows the pending task detail"
     },
     {
-      "priority": "P2",
-      "change": "Enlarge t1-t3 progress tracks and due labels to 16px body minimum for viewport readability."
+      "priority": "medium",
+      "change": "Enlarge task titles and due labels to 16px body minimum for scanning at 1366x768"
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 8,
   "score": 7,
-  "wowScore": 6,
+  "wowScore": 5,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Visually separate 3 BLOCKED prior tasks in silver hatch from 3 PROPOSED replacements in emerald outline, both coexisting beside approved plan."
+      "priority": "high",
+      "change": "Visually distinguish the 3 blocked prior tasks from the 3 proposed replacements, showing both can coexist while replacements await approval"
     },
     {
-      "priority": "P1",
-      "change": "Link each replacement task hover and focus bidirectionally to CELL-MILL-1 and affected job zones."
+      "priority": "medium",
+      "change": "Add OFFLINE with x marker and cross-hatching to CELL-MILL-2 on the board header to match the factory scene state"
     },
     {
-      "priority": "P2",
-      "change": "Enlarge blocked-list text to 16px and give numbered task chips keyboard focus."
+      "priority": "low",
+      "change": "Enlarge the replacement-task progress bars and add depth to t1 as the ready-to-begin node"
     }
   ]
 }

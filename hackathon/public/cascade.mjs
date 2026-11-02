@@ -18,7 +18,8 @@ export function mountCascade({loadPlant,launcher,workflow}){
   legendChip('OFFLINE','plant-legend-offline'),
   legendChip('FEASIBLE RECOVERY','plant-legend-recovery')
  );
- floor.append(canvas,tiles);navigation.append(overview,previous,pageLabel,next);dialog.append(top,controls,consent,metrics,caption,legend,floor,navigation);document.body.append(dialog);
+ // Flow canvas sits above tiles so emerald paths remain visible in still captures and motion.
+ floor.append(tiles,canvas);canvas.style.pointerEvents='none';canvas.style.zIndex='3';tiles.style.zIndex='1';navigation.append(overview,previous,pageLabel,next);dialog.append(top,controls,consent,metrics,caption,legend,floor,navigation);document.body.append(dialog);
  let selectedMachine=null,plant,result,department=null,page=0,active=false,recovered=false,start=0,raf=0,highlighted=new Set(),resize,envelope=null,busy=false;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
  const calculate=()=>analyzePlant(plant,{lotId:plant.lots[0].id,failure:failureSelect.value,strategy:strategySelect.value});
@@ -83,36 +84,41 @@ export function mountCascade({loadPlant,launcher,workflow}){
   const box=floor.getBoundingClientRect(),dpr=devicePixelRatio||1;if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,box.width,box.height);
   const nodes=[...tiles.children];
   const center=node=>{const x=parseFloat(node.style.left)+parseFloat(node.style.width)/2,y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;return {x,y};};
-  const drawFlow=(from,to,color,nowStamp,width=2.8,particles=3)=>{
+  const drawFlow=(from,to,color,nowStamp,width=3.4,particles=6)=>{
    const a=center(from),b=center(to);
-   const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-Math.min(48,Math.abs(b.x-a.x)*0.18);
-   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches?0:10;ctx.setLineDash(reduced.matches?[]:[14,10]);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.quadraticCurveTo(mx,my,b.x,b.y);ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;
+   const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-Math.min(56,Math.abs(b.x-a.x)*0.22);
+   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches?0:16;ctx.setLineDash(reduced.matches?[]:[14,10]);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.quadraticCurveTo(mx,my,b.x,b.y);ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;
    if(reduced.matches)return;
    for(let p=0;p<particles;p++){
-    const t=((nowStamp/12)+p*(1/particles))%1;
+    const t=((nowStamp/10)+p*(1/particles))%1;
     const ox=(1-t)*(1-t)*a.x+2*(1-t)*t*mx+t*t*b.x,oy=(1-t)*(1-t)*a.y+2*(1-t)*t*my+t*t*b.y;
-    ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=14;ctx.beginPath();ctx.arc(ox,oy,5+(p%2),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=18;ctx.beginPath();ctx.arc(ox,oy,6+(p%3),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
    }
   };
   const ordered=[...nodes].sort((left,right)=>parseFloat(left.style.left)-parseFloat(right.style.left)||parseFloat(left.style.top)-parseFloat(right.style.top));
   if(recovered&&ordered.length>1){
-   for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a',now,3.8,4);
+   for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a',now,4.4,7);
    if(!reduced.matches){const sweep=(now/7)%(box.width+160)-80;const grad=ctx.createLinearGradient(sweep-140,0,sweep+140,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a66');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
   }else if(active&&!recovered&&ordered.length>1){
-   const running=ordered.filter(n=>!n.classList.contains('cascade-hit'));
-   const path=running.length>1?running:ordered.filter(n=>n.dataset.partialOffline==='true'||!n.classList.contains('cascade-hit'));
-   for(let i=0;i<path.length-1;i++)drawFlow(path[i],path[i+1],'#56ff9a99',now,3,3);
+   // Always paint the department spine so still captures keep cinematic emerald language during the wave.
+   for(let i=0;i<ordered.length-1;i++){
+    const from=ordered[i],to=ordered[i+1];
+    const hit=from.classList.contains('cascade-hit')||to.classList.contains('cascade-hit');
+    drawFlow(from,to,hit?'#c5ccd455':'#56ff9acc',now,hit?2.2:4.2,hit?2:7);
+   }
    if(!reduced.matches){
     const alarm=(now/5)%(box.width+200)-100;
-    const alarmGrad=ctx.createLinearGradient(alarm-90,0,alarm+90,0);alarmGrad.addColorStop(0,'#c5ccd400');alarmGrad.addColorStop(.5,'#c5ccd433');alarmGrad.addColorStop(1,'#c5ccd400');
+    const alarmGrad=ctx.createLinearGradient(alarm-90,0,alarm+90,0);alarmGrad.addColorStop(0,'#c5ccd400');alarmGrad.addColorStop(.5,'#c5ccd455');alarmGrad.addColorStop(1,'#c5ccd400');
     ctx.fillStyle=alarmGrad;ctx.fillRect(0,0,box.width,box.height);
     for(const node of ordered.filter(n=>n.classList.contains('cascade-hit'))){
-     const c=center(node),pulse=12+((now/30)%20);
-     ctx.strokeStyle='#c5ccd466';ctx.lineWidth=2;ctx.beginPath();ctx.arc(c.x,c.y,pulse,0,Math.PI*2);ctx.stroke();
+     const c=center(node),pulse=14+((now/28)%24);
+     ctx.strokeStyle='#c5ccd488';ctx.lineWidth=3;ctx.beginPath();ctx.arc(c.x,c.y,pulse,0,Math.PI*2);ctx.stroke();
+    }
+    for(const node of ordered.filter(n=>!n.classList.contains('cascade-hit'))){
+     const c=center(node);
+     ctx.fillStyle='#8affb8';ctx.shadowColor='#56ff9a';ctx.shadowBlur=18;ctx.beginPath();ctx.arc(c.x,c.y,5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
     }
    }
-   ctx.strokeStyle='#1f3d30';ctx.lineWidth=1.4;
-   for(const node of ordered){const y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.stroke();}
   }else if(ordered.length){
    ctx.strokeStyle='#27664c';ctx.lineWidth=2.2;
    for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a77',now,2.6,3);

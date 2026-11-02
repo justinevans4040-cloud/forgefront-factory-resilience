@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 6,
-  "score": 7,
-  "wowScore": 6,
+  "score": 6,
+  "wowScore": 5,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Sever routes through CELL-MILL-2, reroute emerald flow only via CELL-MILL-1, and keep cross-hatch with x marker and OFFLINE."
+      "priority": "high",
+      "change": "Replace the large blank lower side zone with the distinct investigation task, route choice and evidence status while keeping provider readiness separate above it"
     },
     {
-      "priority": "P1",
-      "change": "Fill empty lower side zone with reserved callouts for stations and jobs, condensed without scrolling."
+      "priority": "medium",
+      "change": "Make CELL-MILL-2 read stopped at a glance: heavier silver cross-hatching, centred x marker and plain OFFLINE, with no route drawn through it"
     },
     {
-      "priority": "P2",
-      "change": "Distinguish investigation action from provider readiness with separate heading, status and control."
+      "priority": "medium",
+      "change": "Show 3 to 2 feasible paths as an animated reroute around CELL-MILL-2 ending on CELL-MILL-1"
     }
   ]
 }

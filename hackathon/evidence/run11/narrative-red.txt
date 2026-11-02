@@ -1,0 +1,31 @@
+✔ judge UI opens confidently and keeps offline Sample explicit (1.3099ms)
+✔ route health expires and guidance never selects a replacement route (1.1956ms)
+✔ completed investigation presents a reviewable success and keeps wait copy concise (0.8215ms)
+✖ calculated option copy and offline narrative describe the recovery in product language (9.3521ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85.0603
+
+✖ failing tests:
+
+test at hackathon\tests\unit\run11-presentation.test.mjs:24:1
+✖ calculated option copy and offline narrative describe the recovery in product language (9.3521ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /illustrative|synthetic demo|OEM quotes/i. Input:
+  
+  'All quantities are synthetic demo values. Illustrative cell costs are not OEM quotes. Documented replenishment lead time 48 hours Held lot remains unavailable until replenishment posts All quantities are synthetic demo values. Illustrative cell costs are not OEM quotes. Substitute allocation uses only verified available stock Held MAT lot remains on hold No supplier messaging All quantities are synthetic demo values. Illustrative cell costs are not OEM quotes. Production hours split across compatible online cells Held primary material not issued Illustrative incremental cost only'
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/run11-presentation.test.mjs:27:110)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'All quantities are synthetic demo values. Illustrative cell costs are not OEM quotes. Documented replenishment lead time 48 hours Held lot remains unavailable until replenishment posts All quantities are synthetic demo values. Illustrative cell costs are not OEM quotes. Substitute allocation uses only verified available stock Held MAT lot remains on hold No supplier messaging All quantities are synthetic demo values. Illustrative cell costs are not OEM quotes. Production hours split across compatible online cells Held primary material not issued Illustrative incremental cost only',
+    expected: /illustrative|synthetic demo|OEM quotes/i,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }

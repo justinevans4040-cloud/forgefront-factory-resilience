@@ -1,0 +1,16 @@
+gitleaks.exe :
+At [private-local-path] char:81
++ ... esilience"; & "[private-local-path] ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+    ○
+    │╲
+    │ ○
+    ○ ░
+    ░    gitleaks
+
+1:32PM INF 64 commits scanned.
+1:32PM INF scanned ~3774623 bytes (3.77 MB) in 1.39s
+1:32PM INF no leaks found

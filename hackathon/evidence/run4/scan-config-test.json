@@ -1,0 +1,1 @@
+{"ok":true,"cases":[{"case":"empty-template","expectedExit":0,"observedExit":0,"ok":true},{"case":"nonempty-template","expectedExit":1,"observedExit":1,"ok":true},{"case":"other-file","expectedExit":1,"observedExit":1,"ok":true}],"fixtures":"synthetic random detector inputs only; no live credentials; scratch retained"}

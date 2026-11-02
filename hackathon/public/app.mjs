@@ -236,9 +236,9 @@ function renderFactory(){
  const previousSnapshot=guideHistory[0]?.state;const changedSnapshot=previousSnapshot&&previousSnapshot.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$('factory-delta').hidden=!changedSnapshot;if(changedSnapshot){const delta=state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+' OFFLINE').join(' · ');$('factory-delta').textContent=delta+' · '+previousSnapshot.analysis.recovery.feasibleCount+' → '+state.analysis.recovery.feasibleCount+' feasible paths';}if($('constraint-change'))$('constraint-change').hidden=changedSnapshot||!$('constraint-change').textContent;
 
  const stage=document.body.dataset.activeStage,scene=stageScene(stage,state,guide);
- // Match viewBox aspect to the live SVG box so meet never letterboxes dead black into the stage.
- const svgW=Math.max(320,svg.clientWidth||900),svgH=Math.max(240,svg.clientHeight||520);
- const height=Math.max(560,Math.round(900*svgH/svgW));
+ // Match viewBox aspect to the live SVG box exactly — any fixed floor letterboxes and fails the fill gate.
+ const svgW=Math.max(320,svg.clientWidth||900),svgH=Math.max(200,svg.clientHeight||520);
+ const height=Math.max(200,Math.round(900*svgH/svgW));
  svg.setAttribute('viewBox',`0 0 900 ${height}`);svg.setAttribute('preserveAspectRatio','xMidYMid meet');svg.dataset.scene=scene.kind;
  const defs=add('defs',{});const previewHatch=add('pattern',{id:'preview-hatch',width:10,height:10,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},null,defs);add('rect',{width:10,height:10,fill:'#19271f'},null,previewHatch);add('path',{d:'M 0 0 V 10',stroke:'#C5CCD4','stroke-width':2},null,previewHatch);
  const zone=(name)=>add('g',{'data-layout-zone':name});
@@ -301,9 +301,12 @@ function renderFactory(){
    }
   }else{
    add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.gates.every(Boolean)?'Recovery complete. Evidence sealed.':scene.events+' events. One verified chain.',hero);
+   const chainY=78;
+   add('path',{d:`M 150 ${chainY} H 750`,class:'proof-chain-spine',fill:'none',stroke:scene.gates.every(Boolean)?'#A8F04A':'#5f7a68','stroke-width':4},null,hero);
    ['VERIFY LEDGER','SEAL PACKET','RETAIN CHECKPOINT'].forEach((label,i)=>{
     const x=24+i*270,done=scene.gates[i],ready=i===0||scene.gates[i-1];
-    add('rect',{x,y:90,width:254,height:height-140,rx:10,fill:done?'#193422':'#101b14',stroke:done?'#c6ed8d':'#728e7b','stroke-width':2,'stroke-dasharray':ready?'none':'6 5'},null,hero);
+    add('circle',{cx:x+127,cy:chainY,r:10,fill:done?'#A8F04A':ready?'#88eba8':'#52685a',class:done?'proof-chain-node sealed':'proof-chain-node'},null,hero);
+    add('rect',{x,y:90,width:254,height:height-140,rx:10,fill:done?'#193422':'#101b14',stroke:done?'#c6ed8d':'#728e7b','stroke-width':2,'stroke-dasharray':ready?'none':'6 5',class:done?'proof-station sealed':'proof-station'},null,hero);
     add('text',{x:x+18,y:90+(height-140)*.25,'font-size':56,fill:done?'#c6ed8d':'#c5ccd4'},done?'✓':String(i+1).padStart(2,'0'),hero);
     add('text',{x:x+18,y:90+(height-140)*.50,'font-size':18,fill:'#e8ede6','font-weight':650},label,hero);
     add('text',{x:x+18,y:90+(height-140)*.80,'font-size':28,fill:done?'#c6ed8d':'#c5ccd4'},done?'SEALED':ready?'READY':'LOCKED',hero);
@@ -315,12 +318,17 @@ function renderFactory(){
   // Reserved vertical bands: compare/callout | bay | machines | jobs | options.
   // Shock capacity preview sits in the top callout band ABOVE stations — never beside or over them.
   const shockStage=stage==='shock';
-  const topBand=shockStage?120:Math.max(108,Math.round(height*0.15));
+  // Compare/callout band must clear certificate rows before DOCK/QA; never share glyphs with the bay.
+  const topBand=shockStage?Math.max(110,Math.min(130,Math.round(height*0.2))):Math.max(118,Math.min(150,Math.round(height*0.17)));
   const bayY=topBand+8;
-  const machineY=bayY+32;
-  const optionY=height-88;
-  const nodeH=Math.min(148,Math.max(108,Math.round((optionY-machineY-40)/2)));
-  const jobY=machineY+nodeH+Math.max(28,Math.round((optionY-machineY-nodeH*2-12)/2));
+  const machineY=bayY+30;
+  const optionH=Math.min(76,Math.max(56,Math.round(height*0.11)));
+  const optionY=height-optionH-8;
+  // Keep jobs and options in separate reserved bands even when the stage is short.
+  const bandGap=Math.max(12,Math.round(height*0.022));
+  const available=Math.max(120,optionY-machineY-bandGap);
+  const nodeH=Math.min(136,Math.max(58,Math.floor((available-bandGap)/2)));
+  const jobY=Math.min(optionY-nodeH-bandGap,machineY+nodeH+bandGap);
   const lineRight=876;
   const receivingWidth=210-16-14;
   const cellCount=Math.max(cells.length,1),machineSlots=factoryPositions(210,lineRight,cellCount,Math.max(210,Math.floor((lineRight-210-13*(cellCount-1))/cellCount)));
@@ -347,9 +355,10 @@ function renderFactory(){
   }
   const bay=add('g',{'data-scene-band':'bay'},null,callouts);
   label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
-  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':10},null,routes);
-  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':3,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
-  for(let i=0;i<8;i++)add('rect',{x:200+i*78,y:bayY+6,width:26,height:14,rx:3,fill:accepted?'#A8F04A':'#71877a',class:(accepted?'material-flow':'lot-held')+' lot-'+i},null,routes);
+  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':12},null,routes);
+  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':4,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
+  for(let i=0;i<12;i++)add('rect',{x:190+i*56,y:bayY+5,width:22,height:16,rx:3,fill:accepted?'#A8F04A':'#71877a',class:(accepted?'material-flow':'lot-held')+' lot-'+i},null,routes);
+  for(let i=0;i<6;i++)add('circle',{cx:210+i*110,cy:bayY+14,r:3,fill:accepted?'#dafb9a':'#9aada0',class:(accepted?'material-spark':'lot-held')+' spark-'+i},null,routes);
   const legend=$('factory-legend');
   if(legend){
    const launcher=legend.querySelector('#plant-launcher');
@@ -359,11 +368,16 @@ function renderFactory(){
   const node=(x,y,title,sub,kind,parent,width=186,detail='')=>{
    const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)+(detail?' · '+detail:'')},null,parent);
    const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#C5CCD4':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';
-   // Three live status lines fill the card — no empty chrome. Captions stay inside the node box so they cannot intersect the next reserved band.
-   box(x,y,width,nodeH,g,stroke,stopped?'#13231b':'#19271f');
+   // Three live status lines fill the card — Captions stay inside the node box so they cannot intersect the next reserved band.
+   // Layered machine body — bevels stay strictly inside the node rect so bands never collide.
+   const face=stopped?'#13231b':kind==='running'?'#1b3524':'#19271f';
+   box(x,y,width,nodeH,g,stroke,face);
+   add('rect',{x:x+3,y:y+3,width:width-6,height:10,rx:3,fill:stopped?'#6d757c88':kind==='running'?'#A8F04A33':'#c5ccd422',class:'machine-bevel'},null,g);
+   add('rect',{x:x+width-12,y:y+12,width:8,height:nodeH-18,rx:2,fill:stopped?'#3a424888':kind==='running'?'#163826aa':'#101a14aa',class:'machine-bevel'},null,g);
    if(stopped){g.querySelector('rect').setAttribute('fill','url(#preview-hatch)');}
    if(stopped)add('path',{d:`M ${x+10} ${y+8} l ${width-20} ${Math.max(36,nodeH*0.35)} m 0 -${Math.max(36,nodeH*0.35)} l -${width-20} ${Math.max(36,nodeH*0.35)}`,stroke:'#C5CCD4','stroke-width':3},null,g);
    if(preview){g.classList.add('preview-offline');g.querySelector('rect').setAttribute('stroke-dasharray','8 5');}
+   if(kind==='running')add('circle',{cx:x+width-18,cy:y+18,r:6,fill:'#A8F04A',class:'machine-live-light'},null,g);
    const clip=Math.max(18,Math.floor(width/9));
    label(x+12,y+Math.round(nodeH*0.24),title,22,g,{'font-weight':700});
    label(x+12,y+Math.round(nodeH*0.52),(stopped?'OFFLINE':preview?'PREVIEW · 0h':sub).slice(0,clip),18,g,{fill:'#c5ccd4',class:'node-caption scene-size-18'});
@@ -386,8 +400,8 @@ function renderFactory(){
   const optionCount=Math.max(state.analysis.recovery.options.length,1),optionPitch=(876-24)/optionCount;
   state.analysis.recovery.options.forEach((o,i)=>{
    const x=24+i*optionPitch,g=add('g',{'data-scene-band':'options','data-scene-option':o.optionId,'aria-label':titles[o.optionId]},null,paths);
-   box(x,optionY,Math.min(278,optionPitch-12),76,g,o.optionId===(envelope?.optionId??state.decision.optionId)?'#A8F04A':'#71877a');
-   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+28,(o.optionId===(envelope?.optionId??state.decision.optionId)?'✓ ':'')+titles[o.optionId],20,g);label(x+10,optionY+58,o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED',18,g);
+   box(x,optionY,Math.min(278,optionPitch-12),optionH,g,o.optionId===(envelope?.optionId??state.decision.optionId)?'#A8F04A':'#71877a');
+   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+Math.round(optionH*0.38),(o.optionId===(envelope?.optionId??state.decision.optionId)?'✓ ':'')+titles[o.optionId],Math.min(20,Math.max(16,Math.round(optionH*0.28))),g);label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED',Math.min(18,Math.max(14,Math.round(optionH*0.24))),g);
    if(o.feasible)activate(g,()=>document.querySelector('[data-option="'+o.optionId+'"]')?.click());
   });
  }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 10,
   "score": 6,
-  "wowScore": 7,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Turn static department cards into cinematic SVG shop floor with living flow between Saw, mills, lathes, heat treat, inspection, finishing and assembly."
+      "priority": "high",
+      "change": "Enlarge department cards and machine icons so the full-shop cascade reads at 1366x768, with living emerald flow only between CNC mills and CNC lathes as feasible recovery"
     },
     {
-      "priority": "P1",
-      "change": "Apply silver cross-hatching, x markers and plain OFFLINE to every stopped machine; keep running machines emerald with text legend."
+      "priority": "high",
+      "change": "Give every stopped department silver cross-hatching, x markers and plain OFFLINE inside the cards, matching the legend exactly"
     },
     {
-      "priority": "P2",
-      "change": "Fix truncated department counts and enlarge machine labels; ensure legend and metrics fit at 1366x768."
+      "priority": "medium",
+      "change": "Add depth and state glow to running machines and raise metric and department labels to 16px minimum where space allows"
     }
   ]
 }

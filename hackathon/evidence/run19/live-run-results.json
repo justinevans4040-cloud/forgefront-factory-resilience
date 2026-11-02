@@ -1,0 +1,81 @@
+{
+  "ok": true,
+  "orchestration": [
+    {
+      "provider": "baseten",
+      "model": "meta-models/muse-spark-open",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 11760,
+      "validatedHandoff": false
+    },
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 20085,
+      "validatedHandoff": true
+    },
+    {
+      "provider": "baseten",
+      "model": "meta-models/muse-spark-open",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 9073,
+      "validatedHandoff": false
+    },
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "proposalValid": true,
+      "modelCalls": 3,
+      "acceptedClaims": 3,
+      "rejectedClaims": 0,
+      "toolCalls": 2,
+      "elapsedMs": 14597,
+      "validatedHandoff": true
+    }
+  ],
+  "britt": [
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "status": "approved",
+      "tasks": 4,
+      "fallbackUsed": false
+    },
+    {
+      "provider": "meta-model-api",
+      "model": "muse-wonder-1.0",
+      "status": "approved",
+      "tasks": 4,
+      "fallbackUsed": false
+    }
+  ],
+  "events": 30,
+  "eventTypes": [
+    "snapshot_initialized",
+    "snapshot_changed",
+    "model_call",
+    "investigation_completed",
+    "consent_reviewed",
+    "decision_accepted",
+    "britt_proposed",
+    "task_created",
+    "britt_decided",
+    "tasks_replanned"
+  ],
+  "operationalRelease": false,
+  "fireworksCalls": 0,
+  "source": "Bounded real primary guide after output-budget enforcement"
+}

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 7,
   "score": 7,
-  "wowScore": 6,
+  "wowScore": 5,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Show constrained split path as silver cross-hatched unavailable in scene and side zone, with feasible alternatives emerald."
+      "priority": "high",
+      "change": "Apply the same cross-hatching, x marker and OFFLINE treatment to the constrained Split option and the stopped cell so infeasibility reads consistently"
     },
     {
-      "priority": "P1",
-      "change": "Highlight revised feasible route across jobs with one 240ms trace and state glow, reduced-motion static equivalent."
+      "priority": "medium",
+      "change": "Link each Select this path control to its scene route with emerald flow and glow on hover, focus and selection"
     },
     {
-      "priority": "P2",
-      "change": "State prior acceptance invalidated in one status sentence centred in action bar."
+      "priority": "low",
+      "change": "Keep prior-acceptance-invalidated status centred in the action bar at 16px so the fresh-review requirement is unmissable"
     }
   ]
 }

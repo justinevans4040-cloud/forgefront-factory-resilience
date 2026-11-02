@@ -1,0 +1,99 @@
+✖ evidence redacts Windows, JSON escaped, POSIX and environment profile paths without changing provider URLs (3.0222ms)
+✔ evidence writers redact text and preserve binary screenshots and existing backups (6.4794ms)
+✖ tracked public text contains no profile paths or real contact coordinates (212.0363ms)
+✖ README npm quickstarts resolve scripts and fail for a nonexistent script (1.7955ms)
+✔ tracked demo dependency closure needs no ignored or untracked files and detects omissions (47.6597ms)
+✔ CI is pinned, read-only, credential-free and runs both suites and gitleaks (1.0287ms)
+✔ environment templates have empty assignments only and backups are ignored (0.9774ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 4
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 348.5516
+
+✖ failing tests:
+
+test at hackathon\tests\unit\run8-public-readiness.test.mjs:8:1
+✖ evidence redacts Windows, JSON escaped, POSIX and environment profile paths without changing provider URLs (3.0222ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Unexpected non-whitespace character after JSON at position 83 (line 1 column 84)"
+      at TestContext.<anonymous> (hackathon/tests/unit/run8-public-readiness.test.mjs:14:69)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: SyntaxError: Unexpected non-whitespace character after JSON at position 83 (line 1 column 84)
+        at JSON.parse (<anonymous>)
+        at hackathon/tests/unit/run8-public-readiness.test.mjs:14:91
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (hackathon/tests/unit/run8-public-readiness.test.mjs:14:69)
+        at async Test.run (node:internal/test_runner/test:1125:7)
+        at async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at hackathon\tests\unit\run8-public-readiness.test.mjs:22:1
+✖ tracked public text contains no profile paths or real contact coordinates (212.0363ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   {
+  +     file: '.review agent/rules/build-standards.mdc',
+  +     kind: 'stale'
+  +   },
+  +   {
+  +     file: 'evidence/run5/',
+  +     kind: 'stale'
+  +   },
+  +   {
+  +     file: 'evidence/run6/',
+  +     kind: 'stale'
+  +   },
+  +   {
+  +     file: 'hackathon/README.md',
+  +     kind: 'stale'
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (hackathon/tests/unit/run8-public-readiness.test.mjs:23:80)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: '.review agent/rules/build-standards.mdc', kind: 'stale' }, { file: 'evidence/run5/', kind: 'stale' }, { file: 'evidence/run6/', kind: 'stale' }, { file: 'hackathon/README.md', kind: 'stale' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at hackathon\tests\unit\run8-public-readiness.test.mjs:25:1
+✖ README npm quickstarts resolve scripts and fail for a nonexistent script (1.7955ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+
+  + [
+  +   {
+  +     prefix: '.',
+  +     script: 'and'
+  +   }
+  + ]
+  - []
+
+      at TestContext.<anonymous> (hackathon/tests/unit/run8-public-readiness.test.mjs:26:83)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { script: 'and', prefix: '.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

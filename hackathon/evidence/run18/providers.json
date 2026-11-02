@@ -1,0 +1,36 @@
+{
+  "passed": true,
+  "policy": "One request per route; no retry, switch or Sample. Wonder and Baseten gate readiness. Fireworks is an optional backup that reports GREEN/RED and never fails the overall check. Identity is provider-reported.",
+  "providers": [
+    {
+      "provider": "wonder",
+      "light": "GREEN",
+      "status": "PASS",
+      "elapsedMs": 1535,
+      "requestedModel": "muse-wonder-1.0",
+      "returnedModel": "muse-wonder-1.0",
+      "reason": "Live nonce and model identity matched",
+      "optionalBackup": false
+    },
+    {
+      "provider": "spark-baseten",
+      "light": "GREEN",
+      "status": "PASS",
+      "elapsedMs": 4856,
+      "requestedModel": "meta-models/muse-spark-open",
+      "returnedModel": "meta-models/muse-spark-open",
+      "reason": "Live nonce and model identity matched",
+      "optionalBackup": false
+    },
+    {
+      "provider": "spark-fireworks",
+      "light": "RED",
+      "status": "BLOCKED",
+      "elapsedMs": 0,
+      "requestedModel": "accounts/fireworks/models/muse-spark-open",
+      "returnedModel": null,
+      "reason": "Optional backup not requested; primary routes checked",
+      "optionalBackup": true
+    }
+  ]
+}

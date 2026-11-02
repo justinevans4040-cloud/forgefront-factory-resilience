@@ -1,0 +1,21 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
++ actual - expected
+
++ 'ForgeFront · Recovery room'
+- 'ForgeFront · Recovery room'
+              ^
+
+    at hackathon/scripts/browser-smoke.mjs:36:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'ForgeFront · Recovery room',
+  expected: 'ForgeFront · Recovery room',
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.14.1

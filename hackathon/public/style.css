@@ -1167,3 +1167,40 @@ body[data-active-stage] .stage{animation:stage-cinematic .28s ease-out}
 @keyframes hold-pulse{0%,100%{filter:drop-shadow(0 0 6px #C5CCD444)}50%{filter:drop-shadow(0 0 16px #C5CCD488)}}
 @keyframes spine-dash{to{stroke-dashoffset:-36}}
 @media(prefers-reduced-motion:reduce){.britt-build-card,#factory-svg .mismatch-label,body[data-active-stage] .stage,#britt-panel.britt-signature,#factory-svg .factory-node.material-stopped rect,#factory-svg .living-spine{animation:none!important}}
+
+/* audit29: cinematic shop-floor depth, denser findings, proof chain glow; keep rail wide enough to avoid clipping */
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,2.55fr) minmax(300px,.78fr)!important}
+ body[data-guided=true][data-active-stage=decision] .stage-area,
+ body[data-guided=true][data-active-stage=board] .stage-area,
+ body[data-guided=true][data-active-stage=proof] .stage-area,
+ body[data-guided=true][data-active-stage=shock] .stage-area{grid-template-columns:minmax(0,2.05fr) minmax(340px,.95fr)!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #run-summary{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #investigation-highlights{margin:2px 0 6px!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:26px!important}
+ /* Never line-clamp narrative — clamped overflow fails the textClipping gate; keep the short JS summary fully visible */
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #narrative{max-height:none!important;-webkit-line-clamp:unset!important;display:block!important;overflow:visible!important;font-size:15px!important;line-height:1.3!important}
+ body[data-active-stage=investigation] #model-output>summary{border:0!important;outline:0!important;box-shadow:none!important;background:linear-gradient(90deg,#A8F04A22,transparent)!important;border-radius:4px}
+ body[data-guided=true] #factory-status{display:none!important}
+ body[data-guided=true] #factory-stage{padding:2px 4px 52px!important}
+ body[data-guided=true][data-active-stage=shock] .scenario-management,
+ body[data-guided=true][data-active-stage=shock] #reset{display:none!important}
+ body[data-guided=true][data-active-stage=proof] .story-results .metrics span{font-size:11px!important;line-height:1.2!important;white-space:normal!important}
+ body[data-guided=true][data-active-stage=proof] .stage[data-stage=proof]{overflow:hidden!important;height:100%!important;max-height:100%!important}
+ body[data-guided=true][data-active-stage=proof] .results{flex:0 0 auto!important;height:auto!important;max-height:28%!important;overflow:hidden!important}
+ body[data-guided=true][data-active-stage=proof] .results .metrics{gap:8px!important}
+ body[data-guided=true][data-active-stage=proof] #recovery-timeline{display:none!important}
+ body[data-guided=true][data-active-stage=proof] .footer-actions{gap:4px!important;margin-top:4px!important}
+ body[data-guided=true][data-active-stage=proof] #plaintext-options{display:none!important}
+ body[data-guided=true][data-active-stage=board] #prior-work{display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal{max-height:42vh!important;overflow:hidden!important}
+}
+#factory-svg .machine-live-light{filter:drop-shadow(0 0 8px #A8F04Aaa);animation:live-light 1.4s ease-in-out infinite}
+#factory-svg .material-spark{filter:drop-shadow(0 0 6px #A8F04A88);animation:factory-lot-travel 1.6s linear infinite}
+#factory-svg .proof-chain-spine{filter:drop-shadow(0 0 10px #A8F04A66);stroke-dasharray:12 8;animation:spine-dash 1.4s linear infinite}
+#factory-svg .proof-chain-node.sealed{filter:drop-shadow(0 0 12px #A8F04Acc)}
+#factory-svg .proof-station.sealed{filter:drop-shadow(0 0 18px #A8F04A44)}
+#factory-stage{background-image:radial-gradient(ellipse at 50% 18%,#2a7a4833,transparent 55%),linear-gradient(#304e3b18 1px,transparent 1px),linear-gradient(90deg,#304e3b18 1px,transparent 1px),radial-gradient(ellipse at 50% 40%,#22583855,transparent 65%)!important;background-size:100% 100%,36px 36px,36px 36px,100% 100%!important}
+@keyframes live-light{0%,100%{opacity:.65}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){#factory-svg .machine-live-light,#factory-svg .material-spark,#factory-svg .proof-chain-spine{animation:none!important}}

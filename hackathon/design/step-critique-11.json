@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 11,
-  "score": 7,
-  "wowScore": 6,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Lead judge pitch with live demo link and one-line outcome above the opening logo story, preserving required logo placement and presentation order."
+      "priority": "high",
+      "change": "Enlarge the full-shop cascade visual and its caption type so judges can read departments, OFFLINE states and the feasible route without zooming"
     },
     {
-      "priority": "P1",
-      "change": "Enlarge embedded cascade preview so machines and recovery states are legible instead of thin dark columns."
+      "priority": "medium",
+      "change": "Tighten spacing between logo, one-line pitch, Live demo link and Powered by partners so the required order reaches the hero visual faster"
     },
     {
-      "priority": "P2",
-      "change": "Tighten step table to the five judge moments, 16px minimum, with human approval and sealed proof bolded for rapid scanning."
+      "priority": "medium",
+      "change": "Make the hero headline and Meet The Britt section more cinematic with emerald depth accents while retaining black, emerald and brushed silver only"
     }
   ]
 }

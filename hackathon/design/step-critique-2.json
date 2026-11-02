@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 2,
   "score": 6,
-  "wowScore": 5,
+  "wowScore": 4,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Separate provider identity readiness from investigation evidence under distinct headings and controls in the side zone."
+      "priority": "high",
+      "change": "Separate provider identity readiness from the investigation evidence task in the side zone, each with its own heading, status and control"
     },
     {
-      "priority": "P1",
-      "change": "Enlarge scene, shrink dense side panel, and surface 3 feasible paths as emerald route traces over stations."
+      "priority": "high",
+      "change": "Replace the 0/0/3 verified-findings summary with legible 16px evidence rows linked bidirectionally to the Certificate and Receiving tracks"
     },
     {
-      "priority": "P2",
-      "change": "Replace tiny sample-status text with one 16px status sentence and aria-live summary of findings."
+      "priority": "medium",
+      "change": "Increase scene depth with animated feasible-route traces that settle after one pass, keeping DOES NOT MATCH fully inside stage bounds"
     }
   ]
 }

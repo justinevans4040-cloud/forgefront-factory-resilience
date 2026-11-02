@@ -1,0 +1,18 @@
+{
+  "ok": false,
+  "live": true,
+  "reason": "The expression evaluated to a falsy value:\n\n  assert.ok(await evaluate(`document.querySelector('#run-summary').textContent.includes('Investigation complete')`))\n",
+  "checks": [
+    "demo opens straight into the recovery room with no sign-in",
+    "keyboard skip link",
+    "skip link activation into the recovery room",
+    "guide to lock keyboard order",
+    "Chromium accessibility tree landmarks and control names",
+    "default encrypted export without plaintext acknowledgement",
+    "explicit plaintext download gate",
+    "source inspection",
+    "visible text contrast measured across all five stages",
+    "explicit GREEN preflight baseten"
+  ],
+  "consoleErrors": []
+}

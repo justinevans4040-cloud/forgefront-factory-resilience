@@ -1,0 +1,257 @@
+✔ single-command demo entry exposes actual loopback URL and readiness without starting AI, then stops (1791.5217ms)
+✔ authenticates Meta requests, enforces CSRF and origin, and returns provider text (1308.1788ms)
+✔ named operators have separate authenticated identities and auditors cannot invoke privileged workflow (1564.4526ms)
+✔ invalid duplicate or ambiguous operator configuration fails closed at startup (1.1692ms)
+✔ selected route preflight is explicit, ledgered, red on failure and green only on nonce identity match (1433.8475ms)
+✔ login failures are ledgered without credentials, role rights differ, and plaintext exports require acknowledgement (1433.5761ms)
+✔ failed login attempts are bounded with Retry-After and cannot bypass the limit using forwarded headers (1371.0291ms)
+✔ server restart requires reauthentication and restores consent only to its original named operator (2516.7931ms)
+✔ encrypted export requires session, accepts auditor and never needs plaintext acknowledgement (1398.7031ms)
+✔ normal startup preserves exhausted login quota across server restart with Retry-After (2550.8574ms)
+✔ one-command demo cold starts without persisted configuration and stops cleanly (1630.0059ms)
+✔ HTML grants no seat, every data route is protected, and wrong-port origins fail (126.6127ms)
+✔ API attempts are rate limited with Retry-After (540.3319ms)
+✔ live Meta routes fail closed without keys and never return sample bodies (1330.395ms)
+▶ server skeleton
+  ✔ serves public health without secrets (10.1251ms)
+  ✔ rejects disallowed Host headers (24.8827ms)
+  ✔ returns scenario and analysis from the live snapshot (15.6628ms)
+  ✔ invokes a read-only tool through the HTTP API (18.5549ms)
+  ✔ rejects unknown tool invocations (11.4167ms)
+✔ server skeleton (158.0075ms)
+✔ HttpOnly same-site session supports CSRF, protected logout and replay denial (138.2506ms)
+✔ serves strict-CSP browser entry and denies private paths (140.4041ms)
+✔ workflow request schemas reject null, arrays, unknown fields and wrong field types before transitions (1416.3501ms)
+✔ authenticated workflow completes investigation, acceptance, shock and evidence export (1415.6367ms)
+✔ source injection remains data and model-requested approval cannot dispatch or mutate snapshot (13.2776ms)
+✔ persistent endpoint outage is retained and requires explicit retry without sample substitution (2.0764ms)
+✔ redaction removes JSON-escaped quotes and backslashes from secrets (1.6568ms)
+✔ weak ledger keys and admin tokens are rejected (4.2443ms)
+✔ workflow does not leave a swappable prior-anchor bak that restores after truncate (2379.7804ms)
+✔ checkpoint verifier reports prefix retention honestly and rejects forged prefix events (1046.8625ms)
+✔ unknown meta routes and prototype workflow paths return 404 without provider calls (927.0637ms)
+✔ migration refuses nested destinations and measures an unchanged source digest (661.7735ms)
+✔ escaped secrets are redacted from persisted model_call notes (516.7507ms)
+✔ login_failed does not bootstrap snapshot_initialized; later work still seals a snapshot (1089.0143ms)
+✔ readable report labels plaintext export in the opening banner (1337.3476ms)
+✔ decrypt retains length-only validation so historically length-gated packets remain recoverable (151.7336ms)
+✔ async job failures retain the concrete stop code instead of a generic opaque label (1278.5633ms)
+▶ calculation engine
+  ✔ never reuses cell capacity across substitute material draws (7.4858ms)
+  ✔ rejects invalid references, duplicate IDs and inconsistent or nonfinite quantities (1.3553ms)
+  ✔ splits real production work across cells and recomputes after outage (1.6646ms)
+  ✔ computes impacted jobs and units from the held material (0.7666ms)
+  ✔ rejects negative material quantities when building a snapshot (0.758ms)
+  ✔ produces three recovery options without over-allocating substitute stock (0.8511ms)
+  ✔ marks wait option infeasible when replenishment hours are missing (1.0713ms)
+  ✔ returns insufficient status when no substitute stock exists (0.7457ms)
+  ✔ analyzeSnapshot binds digest across sections (0.9921ms)
+✔ calculation engine (18.1023ms)
+✔ known tool and request codes keep public messages and mapped statuses (1.6044ms)
+✔ unexpected errors strip internal paths and stack details (1.3872ms)
+▶ evidence registry
+  ✔ serves entries for the current digest only (8.8753ms)
+  ✔ rejects cross-snapshot digest requests (3.4365ms)
+✔ evidence registry (14.6106ms)
+✔ guided story requires source inspection, both live Meta routes and deliberate decisions across shock (2.03ms)
+✔ investigation dispatches multiple read-only steps and validates exact source quantities (8.8284ms)
+✔ provider errors and timeout stop with recorded failure and require explicit retry (4.9977ms)
+✔ wrong values, units, source entities and fabricated citations are rejected (1.2724ms)
+✔ malformed claims, invented relationships and wrong source lines cannot gain validation (1.0728ms)
+✔ unknown tools, malformed JSON and wrong returned model stop visibly (1.5421ms)
+✔ call evidence redacts credentials and excludes raw prompts and replies (1.5309ms)
+✔ Meta commentary prefixes remain data while one terminal JSON envelope dispatches (1.2794ms)
+✔ async investigations return an owner-bound job and expose completion without bypassing active lock (1305.7234ms)
+✔ stops on schema rejection and never accepts a completion beyond its deadline (6.7877ms)
+✔ serializes normalized tool calls for the chat protocol and keeps release advisory (4.094ms)
+✔ explicit migration verifies source and writes encrypted copy without altering source (2256.3924ms)
+✔ rejects arbitrary Spark endpoints and model overrides before network access (3.42ms)
+✔ wonder preserves absent provider identity as unknown (1.8558ms)
+✔ spark-open preserves absent provider identity as unknown (1.3544ms)
+▶ Meta model clients
+  ✔ fails closed when Wonder keys are missing instead of substituting sample (2.3758ms)
+  ✔ Wonder live path posts muse-wonder-1.0 with mocked fetch (9.4613ms)
+  ✔ Wonder uses MODEL_API_KEY when MUSE_API_KEY is absent (0.6691ms)
+  ✔ Spark Open uses meta-models/muse-spark-open (no -1026) with mocked fetch (1.4921ms)
+  ✔ Spark Open falls back to Fireworks route when Baseten key missing (1.7747ms)
+  ✔ sample client labels offline mode and uses analysis when provided (6.5262ms)
+✔ Meta model clients (24.7507ms)
+✔ private synthetic state restricts filesystem access before persistence (1407.4311ms)
+▶ request guards
+  ✔ allows loopback hosts and rejects others (1.8452ms)
+  ✔ rejects disallowed Origin values (0.6069ms)
+✔ request guards (5.2576ms)
+✔ public evidence keeps newest numbered run and shared evidence, excluding all backups (21.3891ms)
+✖ all public document links remain inside the exact public set (44.7215ms)
+✔ both judge introductions put runnable entry and exact demo before detail (4.0065ms)
+✔ live wait displays remaining bounded budget and stopped status keeps explicit retry (0.7347ms)
+✔ provider preflight uses fallback key, reports all routes and never echoes credentials (64.4325ms)
+✔ provider preflight timeout and HTTP errors stay red with one attempt per route (30.0584ms)
+✔ contrast calculation rejects low contrast and accepts the key text palette (2.1895ms)
+✔ owner-bound running job exposes only call timing and preserves single failure evidence (1297.2515ms)
+✔ per-call countdown distinguishes each bounded request from overall wait (0.6378ms)
+✔ offline keyboard checks cannot inherit live provider access or guided live gates (2.1847ms)
+✔ judge-facing README pitches stay sharp without hedge or internal field names (3.6418ms)
+✔ path scrub covers current numbered evidence including the newest public run (320.7252ms)
+✔ judge UI opens confidently and keeps offline Sample explicit (44.2141ms)
+✔ route health expires and guidance never selects a replacement route (4.3653ms)
+✔ restart rolls forward verified crash after intent (3949.0302ms)
+✔ restart rolls forward verified crash after event (1730.2819ms)
+✔ restart rolls forward verified crash after anchor (1553.1394ms)
+✔ completed intent cannot authorize truncation and prior anchor restoration (1113.2564ms)
+✔ encrypted pending consent survives restart, requires same named identity, expires and stays single-use (1947.7413ms)
+✔ partial encrypted append recovers only its exact authenticated suffix (1233.8311ms)
+✔ corrupt intent fails closed rather than resetting or repairing history (641.3462ms)
+✔ one client cannot consume another client allowance; forwarded headers cannot rotate identity; windows expire (8.427ms)
+✔ legacy API routes keep the 240 ceiling while authenticated workflow routes enforce a separate 120 ceiling (3426.9438ms)
+✔ global failed-login audit budget survives restart and rotating clients without scenario bootstrap (2588.9469ms)
+✔ encrypted quotas retain independent client windows across restart and reject corruption (26.4664ms)
+✔ clock rollback extends active quota windows instead of resetting them (6.5516ms)
+✔ quota persist failure after increment does not grant the request (1.9581ms)
+✔ createApp fails closed when an encrypted quota snapshot is corrupt (663.0781ms)
+✔ portable encrypted export round trips independently and rejects wrong password or altered ciphertext (348.5856ms)
+✔ offline decoder creates plaintext only at a new destination and never echoes a passphrase (950.125ms)
+✔ export strength rejects repeated and predictable secrets and accepts varied long phrases (173.9731ms)
+✔ reset returns to opening decision state while retaining verified history across restart (1948.4032ms)
+✔ evidence redacts Windows, JSON escaped, POSIX and environment profile paths without changing provider URLs (12.1895ms)
+✔ evidence writers redact text and preserve binary screenshots and existing backups (16.5915ms)
+✔ tracked public text contains no profile paths or real contact coordinates (262.6397ms)
+✔ public path scrub rejects Windows profile paths, file URL drives and mirror folder names (562.4936ms)
+✔ README npm quickstarts resolve scripts and fail for a nonexistent script (29.6416ms)
+✔ public docs point verification outcomes at in-tree evidence folders (4.2184ms)
+✔ tracked demo dependency closure needs no ignored or untracked files and detects omissions (32.9386ms)
+✔ CI is pinned, read-only, credential-free and runs public suites and gitleaks (1.0779ms)
+✔ environment templates have empty assignments only and backups are ignored (1.3952ms)
+✔ public evidence preserves command failure and redacts the actual child output (322.2051ms)
+✔ investigation choreography distinguishes empty, pending, slow, complete and stopped without invented progress (9.3052ms)
+✔ public scan rejects restricted pattern 0 (22.0375ms)
+✔ public scan rejects restricted pattern 1 (8.7069ms)
+✔ public scan rejects restricted pattern 2 (3.8004ms)
+✔ public scan rejects restricted pattern 3 (3.9856ms)
+✔ public scan rejects restricted pattern 4 (5.36ms)
+✔ public scan rejects restricted pattern 5 (14.17ms)
+✔ public scan rejects restricted pattern 6 (4.4091ms)
+✔ public scan rejects restricted pattern 7 (4.3322ms)
+✔ public scan decodes wide-character evidence and checks dated folders (6.2343ms)
+✔ public scan allows CSS pointer property only in its stylesheet (8.3759ms)
+✔ wide-character evidence writer emits portable UTF-8 and retains relative stack frames (9.3436ms)
+✔ scanner covers dates in text, BOM-free wide text and cannot skip damaged text (11.6705ms)
+✔ capture decodes wide-character child diagnostics before redaction (512.71ms)
+✔ public scope excludes private review files and README links stay inside the public set (13.4353ms)
+✔ dates are rejected in public contents and UTF-16 big endian is inspected (13.5798ms)
+✔ restricted CSS wording in comments cannot masquerade as a property (6.3768ms)
+✔ calendar rules cover day-first, dotted and month-only dates (11.6381ms)
+✔ independent arithmetic oracle matches runtime jobs, stock, shared work and shock (8.2876ms)
+✔ checks all providers independently and verifies nonce output (12.0167ms)
+✔ records missing credentials as blocked without invoking fetch (1.6843ms)
+✔ redacts exact credentials even when echoed without a recognizable prefix (0.7506ms)
+✔ does not treat HTTP success with incorrect output as passing (1.8537ms)
+✔ AES GCM state uses unique nonces, authenticates purpose and fails on wrong key or modification (6.2007ms)
+✔ encrypted workflow restarts and independent checkpoint detects rollback and chain corruption (1673.4474ms)
+✔ removing both authoritative files during a running workflow cannot silently return genesis (497.3511ms)
+✔ readable report binds actor, plan, accepted run and source records and escapes model HTML (514.9273ms)
+✔ packet retains full immutable initial and changed snapshots for independent replay (757.6104ms)
+▶ read-only agent tools
+  ✔ exposes only the five allowlisted tool names (2.9739ms)
+  ✔ returns incident and evidence bound to the snapshot digest (3.2155ms)
+  ✔ rejects unknown tools and write-style names (7.7144ms)
+  ✔ rejects bad schemas and unknown evidence ids (1.1005ms)
+  ✔ compare_recovery_options returns computed feasible options (2.5906ms)
+✔ read-only agent tools (19.7282ms)
+✔ review binds actor, session and digest; confirmation is typed and single use (926.0984ms)
+✔ shock invalidates old proposals and consent; restart preserves authoritative state (1196.3661ms)
+✔ ledger tampering blocks reads and exports without clearing evidence (758.4121ms)
+✔ expired review and pending consent after restart are denied (733.8658ms)
+✔ confirmation races succeed at most once and cannot resurrect after restart (782.7781ms)
+✔ shock during inference records calls but rejects the stale completed proposal (432.746ms)
+✔ reset never revives a previously successful investigation (594.8302ms)
+ℹ tests 155
+ℹ suites 6
+ℹ pass 154
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15293.6111
+
+✖ failing tests:
+
+test at hackathon\tests\unit\run10-judge.test.mjs:14:1
+✖ all public document links remain inside the exact public set (44.7215ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     file: 'hackathon/docs/MODEL_COMPARISON.md',
+  +     target: '../evidence/run10/browser/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/hackathon-tests.txt'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/root-tests.txt'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/providers.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser/desktop.png'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser-mobile/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser-mobile/mobile.png'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser-slow/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser-slow/stopped.png'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/browser-offline/summary.json'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/judge-check.txt'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/public-tree.txt'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/gitleaks.txt'
+  +   },
+  +   {
+  +     file: 'hackathon/evidence/README.md',
+  +     target: 'run10/showcase-integrity.json'
+  +   }
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (hackathon/tests/unit/run10-judge.test.mjs:15:80)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { file: 'hackathon/docs/MODEL_COMPARISON.md', target: '../evidence/run10/browser/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run10/hackathon-tests.txt' }, { file: 'hackathon/evidence/README.md', target: 'run10/root-tests.txt' }, { file: 'hackathon/evidence/README.md', target: 'run10/providers.json' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser/desktop.png' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser-mobile/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser-mobile/mobile.png' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser-slow/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser-slow/stopped.png' }, { file: 'hackathon/evidence/README.md', target: 'run10/browser-offline/summary.json' }, { file: 'hackathon/evidence/README.md', target: 'run10/judge-check.txt' }, { file: 'hackathon/evidence/README.md', target: 'run10/public-tree.txt' }, { file: 'hackathon/evidence/README.md', target: 'run10/gitleaks.txt' }, { file: 'hackathon/evidence/README.md', target: 'run10/showcase-integrity.json' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

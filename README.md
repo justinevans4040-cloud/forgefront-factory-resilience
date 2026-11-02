@@ -4,7 +4,11 @@
 
 **A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call.**
 
-Certificate says 120. Receiving counted 80. **70 parts at risk.** Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
+| | | |
+| ---: | ---: | ---: |
+| **120** certificate | **80** receiving | **70** parts at risk |
+
+Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
 
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)

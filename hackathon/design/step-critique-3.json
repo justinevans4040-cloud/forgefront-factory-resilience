@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 3,
   "score": 7,
-  "wowScore": 6,
+  "wowScore": 5,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Make selected path glow on the factory SVG with cost and finish mirrored on JOB-1001 and JOB-1002 before approval."
+      "priority": "high",
+      "change": "Make selection in the side comparison instantly highlight the matching bottom scene option and feasible route, with focus ring visible on the selected path"
     },
     {
-      "priority": "P1",
-      "change": "Clarify primary flow: selecting an option opens one-click Approve then Authorize this decision wall, labelled in that order."
+      "priority": "medium",
+      "change": "Enlarge finish and cost figures to tabular metric size so 83h/$0, 35h/$3,115 and 17.5h/$3,202.50 compare at a glance"
     },
     {
-      "priority": "P2",
-      "change": "Increase side-zone option text and radio targets to at least 36px with clear focus ring."
+      "priority": "low",
+      "change": "Keep Review recovery option as the single primary and clarify it opens Approve then the authorization wall"
     }
   ]
 }

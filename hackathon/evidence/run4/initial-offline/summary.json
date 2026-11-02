@@ -1,0 +1,15 @@
+{
+  "ok": true,
+  "live": false,
+  "checks": [
+    "explicit authentication",
+    "source inspection",
+    "investigation",
+    "typed acceptance",
+    "second shock and stale proposal rejection",
+    "reinvestigation and fresh acceptance",
+    "ledger verification and export",
+    "mobile overflow check"
+  ],
+  "consoleErrors": []
+}

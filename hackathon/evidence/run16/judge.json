@@ -1,0 +1,54 @@
+
+> forgefront-factory-resilience-hackathon@0.1.0 check:judge
+> node scripts/judge-check.mjs
+
+{
+  "public": {
+    "files": 493,
+    "findings": []
+  },
+  "readme": [],
+  "links": [],
+  "demo": {
+    "required": [
+      "hackathon/fixtures/scenario-v1.json",
+      "hackathon/package.json",
+      "hackathon/public/app.mjs",
+      "hackathon/public/command-center.mjs",
+      "hackathon/public/factory-layout.mjs",
+      "hackathon/public/guide.mjs",
+      "hackathon/public/index.html",
+      "hackathon/public/investigation-status.mjs",
+      "hackathon/public/passphrase.mjs",
+      "hackathon/public/route-health.mjs",
+      "hackathon/public/style.css",
+      "hackathon/scripts/rehearse.mjs",
+      "hackathon/server.mjs",
+      "hackathon/src/agent/investigation.mjs",
+      "hackathon/src/agent/loop.mjs",
+      "hackathon/src/agent/prompts.mjs",
+      "hackathon/src/agent/tools.mjs",
+      "hackathon/src/contracts.mjs",
+      "hackathon/src/domain/engine.mjs",
+      "hackathon/src/domain/evidence.mjs",
+      "hackathon/src/domain/scenario.mjs",
+      "hackathon/src/models/client.mjs",
+      "hackathon/src/models/routes.mjs",
+      "hackathon/src/models/sample.mjs",
+      "hackathon/src/models/spark-open.mjs",
+      "hackathon/src/models/wonder.mjs",
+      "hackathon/src/packet.mjs",
+      "hackathon/src/recovery-board.mjs",
+      "hackathon/src/security/client-limit.mjs",
+      "hackathon/src/security/export-codec.mjs",
+      "hackathon/src/security/meta-handler.mjs",
+      "hackathon/src/security/operators.mjs",
+      "hackathon/src/security/private-directory.mjs",
+      "hackathon/src/security/redact.mjs",
+      "hackathon/src/security/request.mjs",
+      "hackathon/src/security/state-codec.mjs",
+      "hackathon/src/workflow.mjs"
+    ],
+    "missing": []
+  }
+}

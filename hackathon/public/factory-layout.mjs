@@ -72,13 +72,13 @@ export function investigationHandoff(run,selectedRoute){
 }
 
 /** Compact rail copy: keep a short plain-English summary; full text opens in a modal. */
-export function summarizeAnalysis(text,limit=160){
+export function summarizeAnalysis(text,limit=110){
  const clean=String(text??'').replace(/\s+/g,' ').trim();
  if(!clean)return {summary:'',truncated:false,full:''};
- if(clean.length<=limit)return {summary:clean,truncated:false,full:clean};
+ if(clean.length<=limit)return {summary:clean,truncated:clean.length>80,full:clean};
  const window=clean.slice(0,limit);
  const breakAt=Math.max(window.lastIndexOf('. '),window.lastIndexOf('; '),window.lastIndexOf('? '),window.lastIndexOf('! '));
- const summary=(breakAt>=48?window.slice(0,breakAt+1):window.trimEnd())+'…';
+ const summary=(breakAt>=40?window.slice(0,breakAt+1):window.trimEnd())+'…';
  return {summary,truncated:true,full:clean};
 }
 

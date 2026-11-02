@@ -2,6 +2,13 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty-nine
+
+- Factory scene fill gate: viewBox matches live SVG aspect exactly (no letterbox floor), layered machine bevels, denser living material flow, proof-chain glow, and investigation rail that never line-clamps narrative. Visual audit gate re-proved under run32 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).
+- Full-shop cascade: flow canvas drawn above department tiles so emerald arcs stay visible in still captures; department titles no longer ellipsis-clip; stronger living flow during the failure wave. Cascade showcase refreshed.
+- Judge README adds the Certificate 120 / Receiving 80 / 70 parts metric row; Muse Wonder README score reached 9 (iteration 123). Genuine reviews 119–127 recorded honestly; cascade best this audit 8; retained direction remains iteration 82.
+- Bounded live Wonder and Baseten investigation both MODEL_STOP with validated claims; Fireworks never called. The Britt naming, Authorize wall and public-tree checks stay green.
+
 ## Independent audit twenty-eight
 
 - Living cascade flow: curved emerald department-to-department particles, alarm sweep on failure, per-machine OFFLINE hatching, single-page seven-department overview, factory living spine and hold pulse. Visual audit gate re-proved under run31 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).
@@ -32,7 +39,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 - Cascade floor fill: incomplete department rows stretch across the stage so the empty lower-right void is gone; persistent RUNNING / HELD / OFFLINE / FEASIBLE RECOVERY legend; reconciled offline machine counts; emerald recovery-flow preview between departments; larger machine glyphs with silver hatch, cross marker and plain OFFLINE text.
 - Judge README pitch sharpened with certificate-first claim, cascade showcase, Meet The Britt, and a real served pitch preview (Chromium data-URL size limit closed). README capture now asserts the pitch page rendered.
-- Bounded live Wonder and Baseten investigation re-run: both MODEL_STOP with validated claims; Fireworks never called. Guided live browser path still needs a focus fix on typed consent before freeze.
+- Bounded live Wonder and Baseten investigation re-run: both MODEL_STOP with validated claims; Fireworks never called. Demo approvals use one-click Approve then the Authorize this decision wall; server still seals `APPROVE <id>`.
 - Owner geometry re-verified under run27: layout 92, cascade-refined 74, zero intersections/clipping; plant browser proofs for generated 2 / 40 / 1,000 machines. Designed with Muse Wonder reviews 99–103 recorded honestly; cascade/README nine-point targets remain open; retained direction remains iteration 82.
 
 ## Independent audit twenty-three

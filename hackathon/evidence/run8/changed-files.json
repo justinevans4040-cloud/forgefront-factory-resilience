@@ -1,0 +1,578 @@
+{
+  "branch": "reviewed local branch",
+  "head": "815a0d95976bf3b02452b67c8faa70953e4cd9d1",
+  "staged": false,
+  "files": [
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "3e9262f83a107f2d33e840f85c94c2ed6b6bd898b615b1452a7eefefd888632b"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "ae6f304327a65f99bf094af41a68a7301049808f224181bc463ff8a6f7c7bd3c"
+    },
+    {
+      "path": ".env.example",
+      "status": "modified",
+      "sha256": "5813224c45741a31467200a50f5bef7232dd47e04920f8fe1450812f9c1408f1"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "new",
+      "sha256": "842acde31dd28cc99d0c85d94830766c5a571d252c65e0c1bc9581af56a884eb"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "new",
+      "sha256": "f62d8edf6e3ee2148a846303ea3430c9a55836b44d62e1729efa163a555c6f53"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "new",
+      "sha256": "f8fd377c22740e0ad9fbf62004ae27cd15d44be4751761c07f61de261223e8d6"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "status": "modified",
+      "sha256": "0f22e2736e5158c0c717ed61c41c5dce87f300d9d279276f3bc37dc643528e1a"
+    },
+    {
+      "path": ".gitignore",
+      "status": "modified",
+      "sha256": "ee0217cec697909b792adccca8ef2210cc4f43354af13e6a82eda951373af5e0"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "e4eba26d26f5fa2b9994eae84f31569de2cdad24c1fc6c941e8f06482548553f"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "0a66bd499e43ec781fa28e439714d7d5f385119da414ccd1409faefd10368ba0"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "136d6cc773dc91e866e804fc6aa6be78a7920310053207d035a0e7f3a92d7c02"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "24450d6697a9437441683062e5ae1d9e00732e88da08ae5f2966f1184d90aade"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "new",
+      "sha256": "c0943c72d6751fd6520500879ae46de2c8d3dff530b788b52aa370b1bb01647d"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "new",
+      "sha256": "56b7b5ab3e9e591ef4b8e1372f7a7d3c046fb1285304e2506dbded4daaa280a3"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "sha256": "fcba2f6455e58892ecbe885a996c909c30e6255492f0ce216c1645b78f9e7dff"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "new",
+      "sha256": "9989deba6ce7ffa35f50b0ac1044f0648bc346b8c22f9f61ef03843f050e6a32"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "5840090a57c59eb4ac282a82cf8bc812e3c60428a19eda137813e91962175519"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "230d0de0ca201714dcf7357e7be93e5f3eb3f3a65a2be1881cbf9c1984bbd766"
+    },
+    {
+      "path": "hackathon/HACKATHON_CONTRIBUTIONS.md",
+      "status": "modified",
+      "sha256": "62673db9cff94e6256055c7d8bdbc214cae56ea5262e581de303758c6392274a"
+    },
+    {
+      "path": "hackathon/README.md",
+      "status": "modified",
+      "sha256": "76f1466e483a3fc90a34234df5d3af667186efeaa505f26ffa49247a49340676"
+    },
+    {
+      "path": "hackathon/RUN_GUIDE.md",
+      "status": "modified",
+      "sha256": "d4b021896dd7713f525855039f93132a12dae6bf007d2c009daa9432c828f50d"
+    },
+    {
+      "path": "hackathon/SECURITY_CONTROLS.md",
+      "status": "modified",
+      "sha256": "d6e7ac50d6b3eaf52d64c3dd62c1b629ee91a7547371690ea441462874105534"
+    },
+    {
+      "path": "hackathon/docs/API_CONTRACT.md",
+      "status": "modified",
+      "sha256": "0e972c7f1acb45a097a5b45582a813ba5c6c42029e9c80f6be95b0cd5c87ad9e"
+    },
+    {
+      "path": "hackathon/docs/ARCHITECTURE.md",
+      "status": "modified",
+      "sha256": "05069655149b69bf29a461622a5b67be0eb3e23acc27e41d58f9ad96e6700d48"
+    },
+    {
+      "path": "hackathon/docs/CAPTIONS_DRAFT.srt",
+      "status": "modified",
+      "sha256": "6944c2ed4c569c7cf520fe6874b1dff22d7d5f6b95d4e361db82d90d24af7227"
+    },
+    {
+      "path": "hackathon/docs/DEMO_RUNBOOK.md",
+      "status": "modified",
+      "sha256": "ee14f93316ca3a02edafe11b23fdaee14d79a460e009b1229fe2890393010114"
+    },
+    {
+      "path": "hackathon/docs/PLAN_COVERAGE.md",
+      "status": "modified",
+      "sha256": "4f50321ec393522b54a6b329e8f3a9ee592721e131013972a8ead40742d52872"
+    },
+    {
+      "path": "hackathon/docs/RULES_AND_AWARDS.md",
+      "status": "modified",
+      "sha256": "85c120f86bee54de48b403340c729048d9a769b2f93e9c0ca629032da7b98de6"
+    },
+    {
+      "path": "hackathon/docs/SOURCE_MANIFEST.json",
+      "status": "modified",
+      "sha256": "cf6c32209b73fcca893d7e141d0903f6c2e9ac5cbf77c833a165370fa93d4e97"
+    },
+    {
+      "path": "hackathon/docs/SUBMISSION_CHECKLIST.md",
+      "status": "modified",
+      "sha256": "43e837bd8f440651bf1de3e71645c4de673e8b2da4ac7bc9c626c6483cc3d14d"
+    },
+    {
+      "path": "hackathon/evidence/run5/report-mirrors.json",
+      "status": "modified",
+      "sha256": "bfb9a35ad69d0231a7a439b24bb83c2d41fa9bf5063903125b5b8815483a4167"
+    },
+    {
+      "path": "hackathon/evidence/run6/report-mirrors.json",
+      "status": "modified",
+      "sha256": "6fcf9c1743ed779c73ddeacd5b9d27d5b7fcd24b4b7d750fc500397093019d5f"
+    },
+    {
+      "path": "hackathon/evidence/run7/hackathon-final-tests.txt",
+      "status": "modified",
+      "sha256": "014d2e36a169a453a9234fd9a7d685df67f214a72ed58ba2ebc1e01dff43007b"
+    },
+    {
+      "path": "hackathon/evidence/run7/hackathon-verified.txt",
+      "status": "modified",
+      "sha256": "8da77e1776fa6af380d730160ff387851ae87d0ccf128e611b7cbf78ecb37ea4"
+    },
+    {
+      "path": "hackathon/evidence/run7/report-mirrors.json",
+      "status": "modified",
+      "sha256": "e4ae0eeb4595a5d24603429485de90b2d98d76191b559023e4f594eb5bd3cbcd"
+    },
+    {
+      "path": "hackathon/evidence/run8/a11y-focus-red.txt",
+      "status": "new",
+      "sha256": "3fc4ba18c4a2078be027296eda07ece5696b3b655a5807d76bd557bbc4418b56"
+    },
+    {
+      "path": "hackathon/evidence/run8/a11y-red.txt",
+      "status": "new",
+      "sha256": "2bba6faf78fe10d022d04d00b92ab88f275592df10981f9b438388ac518323e8"
+    },
+    {
+      "path": "hackathon/evidence/run8/backup-preservation-green.txt",
+      "status": "new",
+      "sha256": "e12614ab406bb04badd3dd89d9a01f7b579dc24bde6c71cfd522ff4b2ff75ba5"
+    },
+    {
+      "path": "hackathon/evidence/run8/backup-preservation-red.txt",
+      "status": "new",
+      "sha256": "dd0b62b0a854d08b2be2df0472b9d5bbe96b3daab832c2ab7a09d4423575707d"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-final.txt",
+      "status": "new",
+      "sha256": "2b14664f495a8c5f64854458c669af347d87f6d4d1dc808f67aa560e54c897cc"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-keyboard-diagnostic.txt",
+      "status": "new",
+      "sha256": "c93640f7ebd011e464967cc35c29e091c93bcfb8446f5752fae353a4bd2f601d"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-keyboard-final.txt",
+      "status": "new",
+      "sha256": "be2598f5b31ea9daeb5a4c9960e7fadad097ab11a695d50e5e8fbc670e9e7165"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-keyboard.txt",
+      "status": "new",
+      "sha256": "29d485a6ec29e9c91c4e9c5daa17f0bbe6da447814536132405d3017c15f16a4"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-live-desktop.txt",
+      "status": "new",
+      "sha256": "1d099687ae2f50f7a5b1a471a13a935b61491720630f2e78096c38d131a69587"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-live-mobile.txt",
+      "status": "new",
+      "sha256": "1d099687ae2f50f7a5b1a471a13a935b61491720630f2e78096c38d131a69587"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-mobile/checkpoint.json",
+      "status": "new",
+      "sha256": "d5b620be2aea721632b32a36a1eb8b0aa3acf85e72ef7146444cab62abd8c1ef"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-mobile/desktop.png",
+      "status": "new",
+      "sha256": "8902bfbb765f5c907edc750dd9790872feb0278b4b00d11dd9bbed3238fc8c44"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-mobile/mobile.png",
+      "status": "new",
+      "sha256": "495d965a9a981c0f0f8ca743eba484130aeaf4fd524b8b00c4bd8f950f6490b2"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-mobile/packet.json",
+      "status": "new",
+      "sha256": "14d542b89530fa8c0d20f0dbe61d3d71e9c05609c708bf74bd61308f78410fa1"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-mobile/report.md",
+      "status": "new",
+      "sha256": "08671e446d693a0c6aed2a36f83707ad075e0ade21d5c95350675faba6f24951"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-mobile/summary.json",
+      "status": "new",
+      "sha256": "d9bb426fab40a1a44add7735849d4c425bc8cd7006e98e4d0790ad4979052909"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline.txt",
+      "status": "new",
+      "sha256": "8ce1100f67adbce84f7a37daafb685dd11e05b302537639d45fb4b9f444b781d"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline/checkpoint.json",
+      "status": "new",
+      "sha256": "f630f72f86ddcb412b6017e3086faa2777deba1accb149037cee43aafbf50406"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline/desktop.png",
+      "status": "new",
+      "sha256": "31b86cd3efdec23e03cd92105588343b66d8773e150d6b24112200e305478fc1"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline/mobile.png",
+      "status": "new",
+      "sha256": "79452fa9e86403fdb516d78dece2907e8c1fc3c989a684d8c8af9bc252d12365"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline/packet.json",
+      "status": "new",
+      "sha256": "bbb20eaa8a04e56576df57aac9bf97d86752077a447ca0effbe69758cb3dbc58"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline/report.md",
+      "status": "new",
+      "sha256": "ad32bd674bf7499f87c49ef145ea4f5d2edb1f369bf82410cc764f9f9868f3ce"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-offline/summary.json",
+      "status": "new",
+      "sha256": "1261e7f63d02a4f5c3a7fa1a01e9bcb4c5a93160394efefe448b6fe43f8239ba"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser-timeout-node20.txt",
+      "status": "new",
+      "sha256": "2b14664f495a8c5f64854458c669af347d87f6d4d1dc808f67aa560e54c897cc"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser/checkpoint.json",
+      "status": "new",
+      "sha256": "43fd7ded8e5b59c5369d2ba01d59f116e4af0d3b3bddcc66714350dcfa2761be"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser/desktop.png",
+      "status": "new",
+      "sha256": "c9cd8aa8812ded02a32b89a2feef18edf5a19ec657c976511041698e506fa844"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser/mobile.png",
+      "status": "new",
+      "sha256": "4b44e232b9eaf6afec086a49c11b90c4095c0688e681c5073622633344929353"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser/packet.json",
+      "status": "new",
+      "sha256": "bddfc593fc1ada3886b974fee4f5c9cb106c2df9453898acdf005d03dce40cd4"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser/report.md",
+      "status": "new",
+      "sha256": "3f0ad7314b2c1a8337701784d639902a8cb5565f78e24a6dd9fc5369c2bc6e92"
+    },
+    {
+      "path": "hackathon/evidence/run8/browser/summary.json",
+      "status": "new",
+      "sha256": "7965c548307c6baeebe2644b93332448b782fb049dfffa813385ab606efe2b2f"
+    },
+    {
+      "path": "hackathon/evidence/run8/changed-files.json",
+      "status": "new inventory",
+      "sha256": null
+    },
+    {
+      "path": "hackathon/evidence/run8/cleanup.json",
+      "status": "new",
+      "sha256": "274a5911a6bda88eb08783b95c6ff4e2df6ce5cdddd1b9944681aba862080e65"
+    },
+    {
+      "path": "hackathon/evidence/run8/github-public.json",
+      "status": "new",
+      "sha256": "2a15e93141b9107455b2fd5e5f132a2e42ff8bbe932189afecb5fa81e792934f"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-final.txt",
+      "status": "new",
+      "sha256": "8760e1059dbf9b484653be71ef9442cf6a4119706e82c80d07a1c0b5333594f2"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-history.txt",
+      "status": "new",
+      "sha256": "f40b9e7e9189c31ffe0aa1075eb8a5c0f50a88e5184f6882e477ea85c6fcecc0"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-native-diagnostic-after-template.txt",
+      "status": "new",
+      "sha256": "02e36bac2720a13dbdc430321af40ac1bbd0fc5ae96bf74b37a9500887c78ec0"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-native-diagnostic.txt",
+      "status": "new",
+      "sha256": "563db2fd943f56b8356ebde95f2294647891215f920dd5314de4ae5df91886c5"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-product-native.txt",
+      "status": "new",
+      "sha256": "620fd09cdff8bbaf563ea489330d98f396a937a02338745710e5cbcd2fdc0f84"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-public-working-tree.txt",
+      "status": "new",
+      "sha256": "1ab3b0bb0d2590ed04f614e74f0ad00439cde6ec1d6e4956eb67a8439b272fe7"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-working-tree-native-final.txt",
+      "status": "new",
+      "sha256": "87510dd0ac4f348f5a16c9916b0816dd7e7a6fde6873078f646d8e1ec8f345c6"
+    },
+    {
+      "path": "hackathon/evidence/run8/gitleaks-working-tree-native.txt",
+      "status": "new",
+      "sha256": "e62349453c70621ecec86f46f304cb7a520f6cb7e3e00d8268c7a8801142e80a"
+    },
+    {
+      "path": "hackathon/evidence/run8/hackathon-npm-final.txt",
+      "status": "new",
+      "sha256": "9a77f9d5d3c9f2cf9271ac3dac8703e9561ab43c02b44812edf25fb6d1116aec"
+    },
+    {
+      "path": "hackathon/evidence/run8/hackathon-release-final.txt",
+      "status": "new",
+      "sha256": "eab9e1647c49d50c7847365d6c4ea39c0da6aa6a38fb4bb922493978842966b0"
+    },
+    {
+      "path": "hackathon/evidence/run8/hackathon-tests.txt",
+      "status": "new",
+      "sha256": "3ee513131f156cb50839deb8e47deb1e526d3eba98fd4a38c4c8a60db4db77d8"
+    },
+    {
+      "path": "hackathon/evidence/run8/judge-check-final.txt",
+      "status": "new",
+      "sha256": "8b8d55f0c7a5c1712cd2458de3cff67e712355bfc4d67cbd600b37503b0426ca"
+    },
+    {
+      "path": "hackathon/evidence/run8/judge-check-release.txt",
+      "status": "new",
+      "sha256": "dd6b33a0e50ef0ef43b54e520f676a82f6acfacf228a22e2f4d811834b91e328"
+    },
+    {
+      "path": "hackathon/evidence/run8/judge-check.txt",
+      "status": "new",
+      "sha256": "dd6b33a0e50ef0ef43b54e520f676a82f6acfacf228a22e2f4d811834b91e328"
+    },
+    {
+      "path": "hackathon/evidence/run8/native-findings-after-template.json",
+      "status": "new",
+      "sha256": "75cb35fb43e9ba6c04a2f430fa0470c36f5c508991f52bd74e608707ece16b1b"
+    },
+    {
+      "path": "hackathon/evidence/run8/native-findings.json",
+      "status": "new",
+      "sha256": "530a14a2c741fbf9cb13abc29b3ef24b972dd0a7f22950c52bc95c73737c4cc1"
+    },
+    {
+      "path": "hackathon/evidence/run8/node20-tests.txt",
+      "status": "new",
+      "sha256": "868205676a5325c79760b78ea53025e126f510428612bd4a59a2617a6e59855e"
+    },
+    {
+      "path": "hackathon/evidence/run8/providers.json",
+      "status": "new",
+      "sha256": "52f040cbe325bde70f5c8280118cd5ba0b2ec0755cb7df949e15ef84de477168"
+    },
+    {
+      "path": "hackathon/evidence/run8/readiness-capture.txt",
+      "status": "new",
+      "sha256": "0cc8821c5b9487c50024e09c909aa33d1488f1d7fb6c6c7c497c8e975f10a7e8"
+    },
+    {
+      "path": "hackathon/evidence/run8/readiness-final.txt",
+      "status": "new",
+      "sha256": "5b1d726a5491be818fd2d2b1ea4adb6133ab374dceae9b512b7e78f73417793c"
+    },
+    {
+      "path": "hackathon/evidence/run8/readiness-first.txt",
+      "status": "new",
+      "sha256": "5fd895dd5e57492282c6a41fdfa09f155f803036ff01dc8862541d41c84f4c20"
+    },
+    {
+      "path": "hackathon/evidence/run8/readiness-green.txt",
+      "status": "new",
+      "sha256": "c80a185ed06d3d5bec0405002f8f9fb827974265836b2dbac5f0cd34a34a2eb2"
+    },
+    {
+      "path": "hackathon/evidence/run8/report-mirrors.json",
+      "status": "new",
+      "sha256": "75ca1071f762a445b44ee8ff349770b6f0ebdc3a322b7f6d08ed7d75388ee248"
+    },
+    {
+      "path": "hackathon/evidence/run8/root-browser-node20.txt",
+      "status": "new",
+      "sha256": "ce0ebd59579682818671cae56de266ba9a821105b9b48beecf87d7721e07de43"
+    },
+    {
+      "path": "hackathon/evidence/run8/root-npm-final.txt",
+      "status": "new",
+      "sha256": "cf098e4e72a41743c5a1479619d669b9971a327bdd3a00f761fff822647a2dc9"
+    },
+    {
+      "path": "hackathon/evidence/run8/root-npm-sequential.txt",
+      "status": "new",
+      "sha256": "1f922fa329e207c426f18597292a447874616e716d2c6f9769e2d6a2d3f1f89e"
+    },
+    {
+      "path": "hackathon/evidence/run8/root-tests.txt",
+      "status": "new",
+      "sha256": "6224fc7ee85714c8e7c078b44ec1c5e43b1e687c338feb6236988ab020267cbf"
+    },
+    {
+      "path": "hackathon/evidence/run8/static-checks.json",
+      "status": "new",
+      "sha256": "3be46eb6c2b12e25323e148f2e842c5c2902f305bde5ec2592346d34e27009a0"
+    },
+    {
+      "path": "hackathon/evidence/run8/syntax.txt",
+      "status": "new",
+      "sha256": "5c69f316c8573186fbff8576e31c058982a3bfa9a6a9268504c7bddfc5b08e5d"
+    },
+    {
+      "path": "hackathon/evidence/run8/working-tree-findings.json",
+      "status": "new",
+      "sha256": "8f7f294116dc2f9c756c29792e5fc4d80d0f0fd941c3e1db14bddb494f3f8fac"
+    },
+    {
+      "path": "hackathon/package.json",
+      "status": "modified",
+      "sha256": "d6b97d757f6961ec6a80d1a5bfc58f1e5b74329a872cdb8124682140bf18a350"
+    },
+    {
+      "path": "hackathon/public/app.mjs",
+      "status": "modified",
+      "sha256": "867c2cde29892e10cb310ca460640c4b298350091b23ad670aa2851455777394"
+    },
+    {
+      "path": "hackathon/public/index.html",
+      "status": "modified",
+      "sha256": "a4571e136a4e68f952a98a8cd8d8e42616202fe4cbb3c0f1d585990f2225bf92"
+    },
+    {
+      "path": "hackathon/public/style.css",
+      "status": "modified",
+      "sha256": "4faf62de46e01a527f5272bd024295e4a347742cf6a17ee541254f9d57903417"
+    },
+    {
+      "path": "hackathon/scripts/browser-smoke.mjs",
+      "status": "modified",
+      "sha256": "db6652afb3ec865f94d79372cbfbea9f88d755e0e6afe2911a28f9adecb5e0a7"
+    },
+    {
+      "path": "hackathon/scripts/capture-evidence.mjs",
+      "status": "new",
+      "sha256": "fc1604e97dd59c84f1e164aef51529558d76544a45a44571447617caab5d968e"
+    },
+    {
+      "path": "hackathon/scripts/judge-check.mjs",
+      "status": "new",
+      "sha256": "0282bc7d0b45c1f0f8cc2e419dd647513c9e568f4be98c9141bf96f535d2dfd6"
+    },
+    {
+      "path": "hackathon/scripts/live-investigation.mjs",
+      "status": "modified",
+      "sha256": "d96fce8b121d02949445c0172da1d0df8ccb6b34b22334daebdfd901c46d6098"
+    },
+    {
+      "path": "hackathon/scripts/public-evidence.mjs",
+      "status": "new",
+      "sha256": "7069213f8bad5909c7a69ab4defb95b3b540249a5244ac81c19fe6d93da901ad"
+    },
+    {
+      "path": "hackathon/scripts/serve-meta-smoke.mjs",
+      "status": "modified",
+      "sha256": "8df6e4d77e87bc19f75a41d078bc3cc3448bb635db5f16196f45ba81ef72423e"
+    },
+    {
+      "path": "hackathon/scripts/smoke-meta.mjs",
+      "status": "modified",
+      "sha256": "643d32230ead6b0329cca8ef442bf7ce65fca1712859d37bd72720a76b575c49"
+    },
+    {
+      "path": "hackathon/scripts/test.mjs",
+      "status": "modified",
+      "sha256": "ffca9ecc7047e37b465ec566f30904269ac6a5b0a846ee4665698578e81aad1d"
+    },
+    {
+      "path": "hackathon/tests/unit/run8-public-readiness.test.mjs",
+      "status": "new",
+      "sha256": "4ad6935ab776747556ab56acdd79fd3eec59144d60c43ca74e308a8336dd32e4"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "495e079435cdc9484f945d8f58a09cf210373ff171c32616bab83fe796a1d4bb"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "f92ac10e5468017ea1976670445cbce6080a4e54d77b9986b68882d8c561a790"
+    },
+    {
+      "path": "[internal review artifact]",
+      "status": "modified",
+      "sha256": "02870ec54c78b5c0653fa3093d569eac054be2ca66ac80dd65723e740cdeee51"
+    }
+  ],
+  "note": "Prospective nonignored review inventory. Self hash omitted; later verification metadata may be refreshed. Existing tracked backups are unchanged and listed in the root report."
+}

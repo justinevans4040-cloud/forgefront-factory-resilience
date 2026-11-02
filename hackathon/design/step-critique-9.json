@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 9,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Add cinematic depth to 01-03 proof stages with emerald completion glow progressing only on real verification state."
+      "priority": "high",
+      "change": "Turn the 01-02-03 proof chain into a cinematic connected trace with glow on READY and silver locked styling on later stages"
     },
     {
-      "priority": "P1",
-      "change": "Keep passphrase guidance at 16px and ensure right evidence zone fits 768px height without clipped controls."
+      "priority": "medium",
+      "change": "Condense the passphrase guidance to one 16px instruction per proof stage inside its reserved side zone"
     },
     {
-      "priority": "P2",
-      "change": "Make Verify ledger primary singular, with locked stages showing pattern plus text, not colour alone."
+      "priority": "medium",
+      "change": "Give the three stage cards machine-like depth and larger READY/LOCKED labels aligned to the dashed evidence line"
     }
   ]
 }

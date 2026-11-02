@@ -1,0 +1,10 @@
+hackathon/scripts/browser-smoke.mjs:11
+async function until(fn,label,timeout=75000){const end=Date.now()+timeout;while(Date.now()<end){if(await fn())return;await delay(100);}throw new Error('Timed out: '+label);}
+                                                                                                                                             ^
+
+Error: Timed out: acceptance
+    at until (hackathon/scripts/browser-smoke.mjs:11:142)
+    at async approve (hackathon/scripts/browser-smoke.mjs:69:462)
+    at async hackathon/scripts/browser-smoke.mjs:70:2
+
+Node.js v24.14.1

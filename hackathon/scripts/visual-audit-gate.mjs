@@ -158,7 +158,7 @@ try{
  await capture('full-shop');
  await evaluate(`(()=>{const s=document.querySelector('#plant-failure');if(s){s.value='wrong-cert';s.dispatchEvent(new Event('change',{bubbles:true}));}})()`);
  await click('#plant-trigger');
- await delay(1200);
+ await delay(1800);
  await capture('full-shop-cascade-active');
  await evaluate(`document.querySelector('#plant-room').close()`);
 

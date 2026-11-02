@@ -1,0 +1,13 @@
+
+> forgefront-factory-resilience-hackathon@0.1.0 smoke:browser
+> node scripts/browser-smoke.mjs --route-red-check
+
+Checking accessibility tree
+Accessibility enabled
+Accessibility tree received
+Accessibility roles checked
+Starting encrypted export
+Export requested
+Checking reset
+Checking accessibility
+{"ok":true,"checks":["demo opens straight into the recovery room with no sign-in","keyboard skip link","skip link activation into the recovery room","guide to lock keyboard order","Chromium accessibility tree landmarks and control names","default encrypted export without plaintext acknowledgement","explicit plaintext download gate","source inspection","visible text contrast measured across all five stages","CONTROLLED HTTP 503 remains RED with unchanged selected route and one request","investigation","typed acceptance with focused, highlighted result scrolled into the stage viewport","second shock and stale proposal rejection","reinvestigation and fresh acceptance","ledger verification and encrypted decision export","independent checkpoint and readable report","mobile overflow check","reset clears stale model, consent, guide and export state","automated visible control names, document language and tab order checks","HttpOnly session and explicit lock","named auditor UI and read-only controls"],"consoleErrors":[]}

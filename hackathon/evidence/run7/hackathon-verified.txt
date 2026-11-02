@@ -1,0 +1,152 @@
+
+> forgefront-factory-resilience-hackathon@0.1.0 test
+> node scripts/test.mjs
+
+✔ single-command demo entry exposes actual loopback URL and readiness without starting AI, then stops (1380.0123ms)
+✔ authenticates Meta requests, enforces CSRF and origin, and returns provider text (1182.0072ms)
+✔ named operators have separate authenticated identities and auditors cannot invoke privileged workflow (1426.1658ms)
+✔ invalid duplicate or ambiguous operator configuration fails closed at startup (2.0889ms)
+✔ login failures are ledgered without credentials, role rights differ, and plaintext exports require acknowledgement (1255.3182ms)
+✔ failed login attempts are bounded with Retry-After and cannot bypass the limit using forwarded headers (1444.4945ms)
+✔ server restart requires reauthentication and restores consent only to its original named operator (2180.9387ms)
+✔ encrypted export requires session, accepts auditor and never needs plaintext acknowledgement (1266.6408ms)
+✔ normal startup preserves exhausted login quota across server restart with Retry-After (2812.1759ms)
+✔ one-command demo cold starts without persisted configuration and stops cleanly (1387.9973ms)
+✔ HTML grants no seat, every data route is protected, and wrong-port origins fail (156.8934ms)
+✔ API attempts are rate limited with Retry-After (583.302ms)
+✔ live Meta routes fail closed without keys and never return sample bodies (1358.1739ms)
+▶ server skeleton
+  ✔ serves public health without secrets (10.4199ms)
+  ✔ rejects disallowed Host headers (23.9561ms)
+  ✔ returns scenario and analysis from the live snapshot (16.0745ms)
+  ✔ invokes a read-only tool through the HTTP API (15.8946ms)
+  ✔ rejects unknown tool invocations (5.8232ms)
+✔ server skeleton (159.9619ms)
+✔ HttpOnly same-site session supports CSRF, protected logout and replay denial (131.4981ms)
+✔ serves strict-CSP browser entry and denies private paths (191.0459ms)
+✔ workflow request schemas reject null, arrays, unknown fields and wrong field types before transitions (1182.0222ms)
+✔ authenticated workflow completes investigation, acceptance, shock and evidence export (1550.1271ms)
+✔ source injection remains data and model-requested approval cannot dispatch or mutate snapshot (10.789ms)
+✖ persistent endpoint outage is retained and bounded to a single retry without sample substitution (2.8364ms)
+✔ redaction removes JSON-escaped quotes and backslashes from secrets (2.3723ms)
+✔ weak ledger keys and admin tokens are rejected (2.4178ms)
+✔ workflow does not leave a swappable prior-anchor bak that restores after truncate (2372.7358ms)
+✔ checkpoint verifier reports prefix retention honestly and rejects forged prefix events (1035.1519ms)
+✔ unknown meta routes and prototype workflow paths return 404 without provider calls (915.0577ms)
+✔ migration refuses nested destinations and measures an unchanged source digest (670.0017ms)
+✔ escaped secrets are redacted from persisted model_call notes (597.1081ms)
+✔ login_failed does not bootstrap snapshot_initialized; later work still seals a snapshot (1238.2616ms)
+✔ readable report labels plaintext export in the opening banner (1104.2687ms)
+▶ calculation engine
+  ✔ never reuses cell capacity across substitute material draws (8.3868ms)
+  ✔ rejects invalid references, duplicate IDs and inconsistent or nonfinite quantities (1.4011ms)
+  ✔ splits real production work across cells and recomputes after outage (1.5849ms)
+  ✔ computes impacted jobs and units from the held material (0.5391ms)
+  ✔ rejects negative material quantities when building a snapshot (0.6139ms)
+  ✔ produces three recovery options without over-allocating substitute stock (0.6819ms)
+  ✔ marks wait option infeasible when replenishment hours are missing (0.6343ms)
+  ✔ returns insufficient status when no substitute stock exists (0.4803ms)
+  ✔ analyzeSnapshot binds digest across sections (0.5916ms)
+✔ calculation engine (16.8027ms)
+✔ known tool and request codes keep public messages and mapped statuses (1.4977ms)
+✔ unexpected errors strip internal paths and stack details (2.5283ms)
+▶ evidence registry
+  ✔ serves entries for the current digest only (4.44ms)
+  ✔ rejects cross-snapshot digest requests (0.9713ms)
+✔ evidence registry (6.8816ms)
+✔ guided story requires source inspection, both live Meta routes and deliberate decisions across shock (1.942ms)
+✔ investigation dispatches multiple read-only steps and validates exact source quantities (9.4164ms)
+✔ provider errors and timeout stop with recorded failure and require explicit retry (3.7399ms)
+✔ wrong values, units, source entities and fabricated citations are rejected (1.1553ms)
+✔ malformed claims, invented relationships and wrong source lines cannot gain validation (1.1277ms)
+✔ unknown tools, malformed JSON and wrong returned model stop visibly (1.7046ms)
+✔ call evidence redacts credentials and excludes raw prompts and replies (1.1801ms)
+✔ Meta commentary prefixes remain data while one terminal JSON envelope dispatches (1.4408ms)
+✔ async investigations return an owner-bound job and expose completion without bypassing active lock (1286.2202ms)
+✔ stops on schema rejection and never accepts a completion beyond its deadline (8.6155ms)
+✔ serializes normalized tool calls for the chat protocol and keeps release advisory (4.1714ms)
+✔ explicit migration verifies source and writes encrypted copy without altering source (2379.9071ms)
+✔ rejects arbitrary Spark endpoints and model overrides before network access (2.1503ms)
+✔ wonder preserves absent provider identity as unknown (1.2807ms)
+✔ spark-open preserves absent provider identity as unknown (0.7415ms)
+▶ Meta model clients
+  ✔ fails closed when Wonder keys are missing instead of substituting sample (2.5465ms)
+  ✔ Wonder live path posts muse-wonder-1.0 with mocked fetch (8.5232ms)
+  ✔ Wonder uses MODEL_API_KEY when MUSE_API_KEY is absent (0.6813ms)
+  ✔ Spark Open uses meta-models/muse-spark-open (no -1026) with mocked fetch (1.3993ms)
+  ✔ Spark Open falls back to Fireworks route when Baseten key missing (0.9358ms)
+  ✔ sample client labels offline mode and uses analysis when provided (10.4683ms)
+✔ Meta model clients (27.5239ms)
+✔ private synthetic state restricts filesystem access before persistence (1280.5728ms)
+▶ request guards
+  ✔ allows loopback hosts and rejects others (1.985ms)
+  ✔ rejects disallowed Origin values (0.7615ms)
+✔ request guards (5.7482ms)
+✔ restart rolls forward verified crash after intent (3641.9747ms)
+✔ restart rolls forward verified crash after event (1760.4029ms)
+✔ restart rolls forward verified crash after anchor (1436.631ms)
+✔ completed intent cannot authorize truncation and prior anchor restoration (646.5697ms)
+✔ encrypted pending consent survives restart, requires same named identity, expires and stays single-use (1275.4029ms)
+✔ partial encrypted append recovers only its exact authenticated suffix (1009.5673ms)
+✔ corrupt intent fails closed rather than resetting or repairing history (604.3041ms)
+✔ one client cannot consume another client allowance; forwarded headers cannot rotate identity; windows expire (2.9278ms)
+✔ legacy API routes keep the 240 ceiling while authenticated workflow routes enforce a separate 120 ceiling (3257.5901ms)
+✔ global failed-login audit budget survives restart and rotating clients without scenario bootstrap (2522.189ms)
+✔ encrypted quotas retain independent client windows across restart and reject corruption (41.6462ms)
+✔ clock rollback extends active quota windows instead of resetting them (5.0101ms)
+✔ quota persist failure after increment does not grant the request (2.9823ms)
+✔ createApp fails closed when an encrypted quota snapshot is corrupt (606.1661ms)
+✔ portable encrypted export round trips independently and rejects wrong password or altered ciphertext (355.2931ms)
+✔ offline decoder creates plaintext only at a new destination and never echoes a passphrase (939.2657ms)
+✔ export strength rejects repeated and predictable secrets and accepts varied long phrases (7.196ms)
+✔ independent arithmetic oracle matches runtime jobs, stock, shared work and shock (6.2743ms)
+✔ checks all providers independently and verifies nonce output (7.2069ms)
+✔ records missing credentials as blocked without invoking fetch (0.9124ms)
+✔ redacts exact credentials even when echoed without a recognizable prefix (0.3187ms)
+✔ does not treat HTTP success with incorrect output as passing (0.8996ms)
+✔ AES GCM state uses unique nonces, authenticates purpose and fails on wrong key or modification (10.8326ms)
+✔ encrypted workflow restarts and independent checkpoint detects rollback and chain corruption (1875.0776ms)
+✔ removing both authoritative files during a running workflow cannot silently return genesis (611.0501ms)
+✔ readable report binds actor, plan, accepted run and source records and escapes model HTML (579.8968ms)
+✔ packet retains full immutable initial and changed snapshots for independent replay (755.7251ms)
+▶ read-only agent tools
+  ✔ exposes only the five allowlisted tool names (5.4892ms)
+  ✔ returns incident and evidence bound to the snapshot digest (5.5865ms)
+  ✔ rejects unknown tools and write-style names (3.4518ms)
+  ✔ rejects bad schemas and unknown evidence ids (1.1255ms)
+  ✔ compare_recovery_options returns computed feasible options (2.6841ms)
+✔ read-only agent tools (34.5659ms)
+✔ review binds actor, session and digest; confirmation is typed and single use (978.7901ms)
+✔ shock invalidates old proposals and consent; restart preserves authoritative state (1483.1359ms)
+✔ ledger tampering blocks reads and exports without clearing evidence (870.1356ms)
+✔ expired review and pending consent after restart are denied (767.676ms)
+✔ confirmation races succeed at most once and cannot resurrect after restart (752.316ms)
+✔ shock during inference records calls but rejects the stale completed proposal (355.6145ms)
+✔ reset never revives a previously successful investigation (376.0767ms)
+ℹ tests 109
+ℹ suites 6
+ℹ pass 108
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13008.3955
+
+✖ failing tests:
+
+test at tests\unit\adversarial-acceptance.test.mjs:10:1
+✖ persistent endpoint outage is retained and bounded to a single retry without sample substitution (2.8364ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  1 !== 2
+
+      at TestContext.<anonymous> (hackathon/tests/unit/adversarial-acceptance.test.mjs:12:9)
+      at async Test.run (node:internal/test_runner/test:1125:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

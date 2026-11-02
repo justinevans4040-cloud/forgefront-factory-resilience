@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 112,
+  "iteration": 127,
   "step": 5,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Animate 24h to 0h as a single cinematic route collapse into CELL-MILL-2 cross-hatching, x marker and OFFLINE, then static."
+      "priority": "high",
+      "change": "Add a clear x cross marker inside the cross-hatched CELL-MILL-2 preview beside plain OFFLINE wording so preview and stopped state share one language"
     },
     {
-      "priority": "P2",
-      "change": "Add explicit OFFLINE word inside previewed CELL-MILL-2, not only hatch and preview copy."
+      "priority": "medium",
+      "change": "Animate one cinematic capacity trace from 24h to 0h along the line, then hold static, with reduced-motion showing the final state only"
     },
     {
-      "priority": "P2",
-      "change": "Make dropdown and Apply targets at least 36px with focus ring and Esc to clear preview."
+      "priority": "low",
+      "change": "Strengthen glow on JOB-1001 and JOB-1002 as on-accepted-path nodes while keeping the primary Apply second shock singular"
     }
   ]
 }
