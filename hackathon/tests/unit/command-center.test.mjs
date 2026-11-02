@@ -70,9 +70,9 @@ test('explicit offline guide advances only on a successful Sample result and sti
  const s=structuredClone(state),g={mode:'offline',initialDigest:'a',inspected:true};
  assert.equal(guideStep(s,g).id,'sample');
  s.runs=[{proposalValid:false,run:{sample:true,snapshotDigest:'a'},calls:[]}];assert.equal(guideStep(s,g).id,'sample');
- s.runs[0].proposalValid=true;assert.equal(guideStep(s,g).id,'accept');
+ s.runs[0].proposalValid=true;assert.equal(guideStep(s,g).id,'findings');g.findingsReviewed='a';assert.equal(guideStep(s,g).id,'accept');
  g.acceptedInitial=true;s.snapshot.snapshotDigest='b';assert.equal(guideStep(s,g).id,'recover');
- s.runs.push({proposalValid:true,run:{sample:true,snapshotDigest:'b'},calls:[]});assert.equal(guideStep(s,g).id,'reaccept');
+ s.runs.push({proposalValid:true,run:{sample:true,snapshotDigest:'b'},calls:[]});assert.equal(guideStep(s,g).id,'findings');g.findingsReviewed='b';assert.equal(guideStep(s,g).id,'reaccept');
  s.decision.status='accepted';assert.equal(guideStep(s,g).id,'export');g.verified=g.exported=g.checkpoint='h';assert.equal(guideStep(s,g).id,'complete');
 });
 test('readable report presents professional labels and preserves source and human-validation boundaries',()=>{

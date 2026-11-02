@@ -16,6 +16,6 @@ test('resilience rejects non-Baseten fallback and never retries identity mismatc
 test('validated Baseten fallback completes the requested Wonder stage without claiming Wonder answered',async()=>{
  const {guideStep}=await import('../../public/guide.mjs');
  const state={snapshot:{snapshotDigest:'current'},runs:[{proposalValid:true,run:{sample:false,snapshotDigest:'current'},calls:[{provider:'baseten'}]},{proposalValid:true,run:{sample:false,snapshotDigest:'current'},calls:[{provider:'baseten',primaryProvider:'meta-model-api',fallbackUsed:true}]}],decision:{status:'none'},ledger:{}};
- assert.equal(guideStep(state,{mode:'live',initialDigest:'current',inspected:true,acceptedInitial:false}).id,'accept');
+ assert.equal(guideStep(state,{mode:'live',initialDigest:'current',inspected:true,findingsReviewed:'current',acceptedInitial:false}).id,'accept');
  assert.equal(state.runs[1].calls[0].provider,'baseten');
 });

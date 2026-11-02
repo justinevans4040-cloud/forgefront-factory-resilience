@@ -1065,3 +1065,81 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
  body[data-guided=true][data-active-stage=investigation] .route-preflight[open]{max-height:none}
  body[data-guided=true][data-active-stage=investigation] .route-preflight:not([open]){margin-bottom:4px!important}
 }
+
+/* audit26: investigation rail must fit without clipping; no line through verified findings */
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigate>div:first-child details{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigate>div:first-child>p{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigate>div:first-child .eyebrow{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigate>div:first-child h2{font-size:18px!important;margin:0 0 4px!important}
+ body[data-active-stage=investigation] #model-output{border-top:0!important;border-left:4px solid #A8F04A!important;overflow:visible!important;max-height:none!important;flex:1 1 auto!important;min-height:0!important;display:flex!important;flex-direction:column!important;gap:4px!important;padding:8px 10px!important;background:linear-gradient(145deg,#15251b,#0c140f)!important}
+ body[data-active-stage=investigation] #model-output>summary{font-size:18px!important;font-weight:700;line-height:1.25!important;padding:6px 4px!important;margin:0!important;border:0!important;box-shadow:none!important;text-decoration:none!important;background:transparent!important;position:relative;z-index:2}
+ body[data-active-stage=investigation] #model-output.result-highlight{outline:none!important;box-shadow:inset 0 0 0 2px #dafb9a!important}
+ body[data-active-stage=investigation] #model-output>h2,#model-output>#model-label{display:none!important}
+ body[data-active-stage=investigation] #investigation-handoff{border-bottom:0!important;padding:2px 0 4px!important;margin:0!important;font-size:15px!important;line-height:1.3!important}
+ body[data-active-stage=investigation] #run-summary{font-size:13px!important;line-height:1.3!important;margin:0 0 4px!important;color:#b7c8ba}
+ body[data-active-stage=investigation] #investigation-highlights{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:4px 0!important}
+ body[data-active-stage=investigation] .investigation-metric{padding:6px!important}
+ body[data-active-stage=investigation] .investigation-metric strong{font-size:22px!important}
+ body[data-active-stage=investigation] .investigation-metric span{font-size:12px!important;margin-top:2px!important}
+ body[data-active-stage=investigation] .analysis-brief{margin:4px 0 0!important;padding:0!important;border:0!important}
+ body[data-active-stage=investigation] #narrative{font-size:15px!important;line-height:1.35!important;margin:0 0 6px!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;max-height:4.2em}
+ body[data-active-stage=investigation] #read-full-analysis{min-height:36px;font-size:15px;padding:6px 12px;margin:0!important;align-self:flex-start}
+ body[data-active-stage=investigation] #claims{display:flex!important;flex-wrap:wrap;gap:4px;margin:4px 0 0!important;max-height:72px;overflow:hidden}
+ body[data-active-stage=investigation] #claims .verified-finding{flex:1 1 140px;padding:4px 8px!important;margin:0!important}
+ body[data-active-stage=investigation] #claims .verified-finding>summary{font-size:13px!important;line-height:1.25!important;min-height:0!important}
+ body[data-active-stage=investigation] #claims .verified-finding>small{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .investigation-extra{display:none!important}
+ body[data-active-stage=investigation] .stage[data-stage=investigation]{overflow:hidden!important}
+ body[data-active-stage=investigation] #stage-deck{overflow:hidden!important}
+}
+#analysis-dialog{max-width:min(640px,calc(100vw - 48px));max-height:calc(100dvh - 48px);overflow:auto}
+#analysis-dialog #analysis-full{white-space:pre-wrap;font-size:16px;line-height:1.45}
+
+/* audit26: 1536 laptop band - factory fill and decision cards without clipping */
+@media(min-width:1400px) and (max-width:1599px){
+ .stage-area,body[data-guided=true] .stage-area{grid-template-columns:minmax(0,2.9fr) minmax(300px,.72fr)!important}
+ #factory-stage{padding:2px 4px 50px!important}
+ #factory-status{font-size:16px!important;line-height:1.15!important;margin:0 0 2px!important;max-height:22px;overflow:hidden}
+ #factory-stage .factory-legend{font-size:10px!important;line-height:1.1!important;margin:0!important;max-height:16px;overflow:hidden}
+ #factory-svg{flex:1 1 auto!important;min-height:0!important;height:100%!important}
+ #opening-story{max-height:36px!important}
+ body[data-active-stage=decision] #stage-deck{overflow:hidden!important}
+ body[data-active-stage=decision] .stage[data-stage=decision]{height:100%!important;max-height:100%!important;overflow:hidden!important;display:flex!important;flex-direction:column!important}
+ body[data-active-stage=decision] #options{overflow:visible!important;max-height:none!important;flex:0 1 auto!important;gap:6px!important}
+ body[data-active-stage=decision] .option{height:auto!important;min-height:70px!important;max-height:none!important;grid-template-rows:auto auto!important;grid-template-columns:1fr auto!important;align-items:start!important;gap:6px 8px!important;padding:8px!important;overflow:visible!important}
+ body[data-active-stage=decision] .option h3{font-size:14px!important;line-height:1.25!important;margin:0!important;white-space:normal!important;overflow:visible!important;grid-column:1;grid-row:1}
+ body[data-active-stage=decision] .option .numbers{grid-column:2;grid-row:1/3;align-self:center}
+ body[data-active-stage=decision] .option button{grid-column:1;grid-row:2;justify-self:start;margin-top:2px;position:relative;z-index:1}
+ body[data-active-stage=decision] .option.unavailable{min-height:56px!important}
+ body[data-active-stage=decision] .option.unavailable>p{display:none!important}
+ body[data-active-stage=decision] .decision{flex:0 0 auto!important;padding:8px!important}
+}
+
+/* audit26: keep decision-bar clear of legend; raise factory fill at laptop widths */
+@media(min-width:901px){
+ body[data-guided=true] #factory-stage .factory-legend{display:none!important}
+ body[data-guided=true] #factory-stage{padding-bottom:56px!important}
+ body[data-guided=true] #decision-bar{bottom:4px!important}
+ body[data-guided=true] #factory-svg{flex:1 1 auto!important;min-height:320px!important}
+}
+@media(min-width:1400px) and (max-width:1599px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.2fr) minmax(290px,.68fr)!important}
+ body[data-guided=true] #factory-status{display:none!important}
+ body[data-guided=true] #factory-delta{display:none!important}
+ body[data-guided=true] #factory-svg{min-height:0!important;height:100%!important}
+ body[data-guided=true] #factory-stage{padding:0 2px 52px!important}
+ body[data-active-stage=decision] .option h3{font-size:13px!important;line-height:1.2!important}
+ body[data-active-stage=decision] #options{gap:5px!important}
+ body[data-active-stage=decision] .option{min-height:64px!important;padding:6px 8px!important}
+}
+
+/* audit26: rebalance 1536 columns so option numbers stay on-screen */
+@media(min-width:1400px) and (max-width:1599px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,2.35fr) minmax(360px,.9fr)!important}
+ body[data-active-stage=decision] .option .numbers{min-width:120px!important;gap:10px!important}
+ body[data-active-stage=decision] .option .numbers strong{font-size:18px!important}
+ body[data-active-stage=decision] .option .numbers small{font-size:10px!important;letter-spacing:0}
+ body[data-active-stage=decision] .option{grid-template-columns:minmax(0,1fr) auto!important}
+}

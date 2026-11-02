@@ -7,5 +7,5 @@ test('second shock repeats Spark then Wonder before revised human acceptance',()
  const guide={mode:'live',initialDigest:'old',inspected:true,acceptedInitial:true,boardEnabled:true};
  assert.equal(guideStep(state,guide).provider,'baseten');
  state.runs.push(live('new','baseten'));assert.equal(guideStep(state,guide).id,'recover');assert.equal(guideStep(state,guide).provider,'wonder');
- state.runs.push(live('new','meta-model-api'));assert.equal(guideStep(state,guide).id,'reaccept');
+ state.runs.push(live('new','meta-model-api'));assert.equal(guideStep(state,guide).id,'findings');guide.findingsReviewed='new';assert.equal(guideStep(state,guide).id,'reaccept');
 });

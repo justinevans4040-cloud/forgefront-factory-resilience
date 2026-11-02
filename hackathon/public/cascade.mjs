@@ -36,13 +36,15 @@ export function mountCascade({loadPlant,launcher,workflow}){
   for(const t of layout.tiles){const card=el('button',null,'plant-tile');card.dataset.plantNode=t.item.id;card.style.left=t.x+'px';card.style.top=t.y+'px';card.style.width=t.width+'px';card.style.height=t.height+'px';
    const members=t.item.machines??[t.item],ids=new Set(members.map(m=>m.id)),affected=result.cascade.filter(c=>ids.has(c.machineId)),depth=affected.reduce((min,c)=>Math.min(min,c.depth),Infinity);
    card.dataset.depth=String(depth);card.dataset.affected=String(affected.length>0);card.dataset.recovered=String(recovered);card.classList.toggle('chain-linked',members.some(m=>highlighted.has(m.id)));
-   const offlineIds=new Set(affected.map(c=>c.machineId)),offlineCount=[...ids].filter(id=>offlineIds.has(id)).length,runningCount=Math.max(0,members.length-offlineCount);
+   const affectedIds=new Set(affected.map(c=>c.machineId)),offlineCount=[...ids].filter(id=>affectedIds.has(id)).length,runningCount=Math.max(0,members.length-offlineCount);
    const fullyOffline=active&&!recovered&&offlineCount>0&&offlineCount===members.length;
    const departmentState=recovered?'RECOVERY ACCEPTED':fullyOffline?'OFFLINE · '+members.length+' machines':active&&offlineCount?offlineCount+' OFFLINE · '+runningCount+' RUNNING':'RUNNING · '+members.length+' machines';
-   card.append(el('strong',t.item.label),el('span',department?members[0].capacityHours+'h capacity · $'+members[0].hourlyCostUsd+'/h':members.length+' machines · '+offlineCount+' offline','plant-sub'),el('span',departmentState,'plant-state'));
+   card.append(el('strong',t.item.label),el('span',department?members[0].capacityHours+'h capacity · $'+members[0].hourlyCostUsd+'/h':members.length+' machines · '+(active?offlineCount+' offline':members.length+' ready'),'plant-sub'),el('span',departmentState,'plant-state'));
    if(fullyOffline)card.dataset.depthLayer=String(Math.min(4,Math.max(1,Math.round(depth)||1)));
    card.dataset.partialOffline=String(active&&!recovered&&offlineCount>0&&!fullyOffline);
-   const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},new Set(affected.map(c=>c.machineId)),recovered);card.querySelector('.plant-state').before(art);
+   // Offline machine art appears only after Trigger failure (or during recovery) - never as a static preview that contradicts RUNNING metrics.
+   const artOfflineIds=active||recovered?affectedIds:new Set();
+   const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},artOfflineIds,recovered);card.querySelector('.plant-state').before(art);
    card.addEventListener('click',()=>{if(!department){department=t.item.id;page=0;draw();}else{highlighted=new Set();for(const op of plant.operations.filter(op=>op.machineId===t.item.id))for(const id of dependencyChain(plant,op.id)){const item=plant.operations.find(o=>o.id===id);highlighted.add(item.machineId);}caption.textContent='Dependency chain highlighted for '+t.item.label;draw();}});tiles.append(card);
   }
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;

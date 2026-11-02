@@ -71,6 +71,17 @@ export function investigationHandoff(run,selectedRoute){
  return completed+' findings ready. '+(selectedRoute==='wonder'&&model!=='muse-wonder-1.0'&&!run.run.sample?'Next: ask Muse Wonder to compare recovery tradeoffs.':'Next: compare the calculated paths before a human decision.');
 }
 
+/** Compact rail copy: keep a short plain-English summary; full text opens in a modal. */
+export function summarizeAnalysis(text,limit=160){
+ const clean=String(text??'').replace(/\s+/g,' ').trim();
+ if(!clean)return {summary:'',truncated:false,full:''};
+ if(clean.length<=limit)return {summary:clean,truncated:false,full:clean};
+ const window=clean.slice(0,limit);
+ const breakAt=Math.max(window.lastIndexOf('. '),window.lastIndexOf('; '),window.lastIndexOf('? '),window.lastIndexOf('! '));
+ const summary=(breakAt>=48?window.slice(0,breakAt+1):window.trimEnd())+'…';
+ return {summary,truncated:true,full:clean};
+}
+
 // Explicit range summary; every source remains in the evidence registry.
 export function comparisonRange(records){
  if(records.length<=2)return records;

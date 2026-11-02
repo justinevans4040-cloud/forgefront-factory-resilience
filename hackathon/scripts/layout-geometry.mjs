@@ -84,5 +84,42 @@ export function measureLayout(){
  headerNavigation.valid=headerNavigation.span>=.70&&headerNavigation.minLabelPx>=16&&headerNavigation.current===1;
  const bodyPx=parseFloat(getComputedStyle(document.body).fontSize);
  const pageScroll=document.documentElement.scrollHeight>innerHeight+2||document.documentElement.scrollWidth>innerWidth+2;
- return {hits,clipped,textClipping,emptyElements,headerNavigation,fill,bodyPx,pageScroll,measured:entries.length,viewBox:{w:v.width,h:v.height},svg:{w:s.width,h:s.height}};
+ // Horizontal borders/rules must never cross through visible text glyphs.
+ const borderThroughText=[];
+ const textRects=[];
+ const textWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ while(textWalker.nextNode()){
+  const node=textWalker.currentNode,el=node.parentElement;
+  if(!node.textContent.trim()||!visible(el)||el.closest('script,style,svg,dialog,a.skip'))continue;
+  const range=document.createRange();range.selectNodeContents(node);
+  for(const r of range.getClientRects())if(r.width>.5&&r.height>.5)textRects.push({text:node.textContent.trim().slice(0,80),box:rect(r),el});
+ }
+ for(const el of document.querySelectorAll('#stage-deck *,#factory-stage *,header *')){
+  if(!visible(el)||el.closest('dialog,svg'))continue;
+  const st=getComputedStyle(el),b=el.getBoundingClientRect();
+  const lines=[];
+  const bt=parseFloat(st.borderTopWidth)||0,bb=parseFloat(st.borderBottomWidth)||0;
+  if(bt>=1&&st.borderTopStyle!=='none'&&st.borderTopColor!=='rgba(0, 0, 0, 0)')lines.push({y:b.top+bt/2,left:b.left,right:b.right,owner:el.id||el.className||el.tagName,edge:'top'});
+  if(bb>=1&&st.borderBottomStyle!=='none'&&st.borderBottomColor!=='rgba(0, 0, 0, 0)')lines.push({y:b.bottom-bb/2,left:b.left,right:b.right,owner:el.id||el.className||el.tagName,edge:'bottom'});
+  for(const line of lines)for(const t of textRects){
+   // A rule "through" text sits strictly inside the glyph box (not flush with top/bottom edges).
+   if(line.y<=t.box.top+1.5||line.y>=t.box.bottom-1.5)continue;
+   if(Math.min(line.right,t.box.right)-Math.max(line.left,t.box.left)<=2)continue;
+   if(t.el===el||el.contains(t.el))continue;
+   // Sibling controls inside the same card are layout issues caught by clipping/overlap; border-through targets rules crossing foreign text.
+   const cardOf=node=>node.closest('.option,.evidence-card,.proposal-task,.task-card,.panel,.investigation-metric,[data-investigation-region]');
+   const ca=cardOf(el),cb=cardOf(t.el);if(ca&&ca===cb)continue;
+   borderThroughText.push({text:t.text,owner:String(line.owner).slice(0,80),y:line.y,box:t.box});
+  }
+ }
+ const rail=document.querySelector('#stage-deck');
+ const railClip=rail?{scrollHeight:rail.scrollHeight,clientHeight:rail.clientHeight,overflowY:getComputedStyle(rail).overflowY,clips:rail.scrollHeight>rail.clientHeight+2}:{scrollHeight:0,clientHeight:0,overflowY:'',clips:false};
+ const stagePanel=document.querySelector('.stage:not([hidden])');
+ const stageClip=stagePanel?{scrollHeight:stagePanel.scrollHeight,clientHeight:stagePanel.clientHeight,clips:stagePanel.scrollHeight>stagePanel.clientHeight+2}:{clips:false};
+ const bareBritt=[...document.querySelectorAll('h1,h2,h3,button,summary,label,p,[role=status],#guide-title,#guide-detail,#recap-title,#recap-detail,#britt-activity')].filter(e=>{
+  if(!visible(e))return false;
+  const scrubbed=(e.textContent||'').replace(/The Britt/gi,'AGENT');
+  return /\bBritt\b/i.test(scrubbed);
+ }).map(e=>({id:e.id,tag:e.tagName,text:e.textContent.trim().slice(0,80)}));
+ return {hits,clipped,textClipping,emptyElements,headerNavigation,fill,bodyPx,pageScroll,borderThroughText,railClip,stageClip,bareBritt,measured:entries.length,viewBox:{w:v.width,h:v.height},svg:{w:s.width,h:s.height}};
 }

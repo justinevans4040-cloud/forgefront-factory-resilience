@@ -27,6 +27,7 @@
     "design:review": "node scripts/design-director.mjs",
     "smoke:guide": "node scripts/primary-guide-smoke.mjs",
     "smoke:guide:mock": "node scripts/primary-guide-smoke.mjs --mock-live",
+    "audit:visual": "node scripts/visual-audit-gate.mjs",
     "serve:public": "node scripts/serve-public.mjs"
   }
 }
