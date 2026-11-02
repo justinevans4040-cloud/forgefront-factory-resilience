@@ -2,6 +2,14 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty-three
+
+- Public Render resilience: writable `HACKATHON_STATE_DIR` fallback when `/var/data` is missing, `/healthz` succeeds before Host allowlist checks, visitor workflow create failures fall back to the shared ledger, corrupt quota snapshots reset instead of crashing, and demo-entry uses a dedicated higher rate window with session eviction so prolonged demos no longer stall.
+- Plant Meta investigation for arbitrary plants: `plant-investigate` uses plant collection tools, validates claims against every plant evidence record, then seals consent through The Britt. Tests cover generated 2 / 40 / 1,000-machine plants end to end.
+- Split recovery draws every verified substitute by capacity math (not only the first substitute). Cascade OFFLINE art uses silver hatch, cross marker and plain OFFLINE text with reconciled department counts.
+- Owner geometry re-verified under run26: layout 92, live-proposals 92, cascade-refined 74, zero intersections/clipping, min fill ≥0.728, body 16px, header span ≥0.766.
+- Designed with Muse Wonder reviews 96–98 recorded honestly; cascade/README nine-point targets remain open; retained direction remains iteration 82. Product suite 359, root suite 254, judge/public-tree and gitleaks clean.
+
 ## Build run twenty-four
 
 - Added the shared plant graph engine, quantity grouping, iterative dependency validation, capacity-aware alternate scheduling and generated plant fixtures. Independent tests cover 2, 40, 1,000 and 5,000 machines and a 5,000-task board.

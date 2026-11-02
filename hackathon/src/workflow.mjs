@@ -6,6 +6,7 @@ import { createSnapshot, buildDemoScenarioInput } from './domain/scenario.mjs';
 import { analyzeSnapshot } from './domain/engine.mjs';
 import { buildEvidenceRegistry } from './domain/evidence.mjs';
 import { investigate, investigationHandoff } from './agent/investigation.mjs';
+import { investigatePlant } from './agent/plant-investigation.mjs';
 import { createStateCodec } from './security/state-codec.mjs';
 import { redactSecrets } from './security/redact.mjs';
 import { readablePacket } from './packet.mjs';
@@ -167,6 +168,15 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[],plant=null
         append('investigation_completed',r);runs.push(r);return r;
       }finally{active=false;}
     },
+    async investigatePlant(client,{lotId,failure,strategy='reroute'}={},operator={id:'local-operator',role:'operator'},progress=()=>{}){
+      verify();if(active)fail('INVESTIGATION_IN_PROGRESS');active=true;
+      try{
+        const result=await investigatePlant({plant:plantGraph,lotId,failure,strategy,client,secrets,progress,record:async entry=>append('model_call',{...entry,operatorId:operator.id,operatorRole:operator.role})});
+        if(!result.proposalValid)fail('STALE_OR_FAILED_INVESTIGATION');
+        const r={...result,operatorId:operator.id,operatorRole:operator.role};
+        append('investigation_completed',r);runs.push(r);return r;
+      }finally{active=false;}
+    },
     review(runId,optionId,session,operator={id:'local-operator',role:'operator'}){
       const r=currentRun(runId);const option=analyzeSnapshot(snapshot).recovery.options.find(o=>o.optionId===optionId&&o.feasible);if(!option)fail('INFEASIBLE_OPTION');
       const body={nonce:randomUUID(),runId,optionId,planDigest:hash(option),snapshotDigest:snapshot.snapshotDigest,actor:hash(session),operatorId:operator.id,operatorRole:operator.role,expires:now()+300000,operationalRelease:false};
@@ -176,8 +186,9 @@ export function createWorkflow({directory,key,now=Date.now,secrets=[],plant=null
     reviewPlant({lotId,failure,strategy},session,operator={id:'local-operator',role:'operator'}){
       verify();if(active)fail('INVESTIGATION_IN_PROGRESS');
       const option=plantOptionFrom(plantGraph,{lotId,failure,strategy});
-      const runId='plant:'+hash({plantId:plantGraph.id,lotId,failure,strategy,snapshotDigest:snapshot.snapshotDigest});
-      const body={nonce:randomUUID(),runId,optionId:option.optionId,planDigest:hash(option),snapshotDigest:snapshot.snapshotDigest,actor:hash(session),operatorId:operator.id,operatorRole:operator.role,expires:now()+300000,operationalRelease:false,kind:'plant',lotId,failure};
+      const prior=[...runs].reverse().find(r=>r.kind==='plant'&&r.proposalValid&&r.lotId===lotId&&r.failure===failure&&r.selectedOptionId===strategy);
+      const boundRunId=prior?.runId??('plant:'+hash({plantId:plantGraph.id,lotId,failure,strategy,snapshotDigest:snapshot.snapshotDigest}));
+      const body={nonce:randomUUID(),runId:boundRunId,optionId:option.optionId,planDigest:hash(option),snapshotDigest:snapshot.snapshotDigest,actor:hash(session),operatorId:operator.id,operatorRole:operator.role,expires:now()+300000,operationalRelease:false,kind:'plant',lotId,failure,investigated:Boolean(prior)};
       const envelope=Object.freeze({...body,signature:hmac(hash(body))});
       append('consent_reviewed',envelope);pending.set(envelope.nonce,envelope);return envelope;
     },

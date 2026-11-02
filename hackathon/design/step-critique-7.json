@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 95,
+  "iteration": 98,
   "step": 7,
   "score": 8,
-  "wowScore": 6,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "The stopped CELL-MILL-2 treatment is clear; add the explicit cross marker beside OFFLINE so meaning does not rely on hatching alone."
+      "change": "Retain silver cross-hatching, cross marker and plain OFFLINE text on CELL-MILL-2, and remove any route through it; feasible emerald flow should visibly stop at that boundary."
     },
     {
       "priority": "medium",
-      "change": "Separate provider-identity readiness from the evidence task as in step 2, keeping statuses independently updatable."
+      "change": "Keep connection readiness separate from the Reinvestigate recovery evidence task, with the sample offline status stated once in each zone."
     },
     {
-      "priority": "medium",
-      "change": "Show only two feasible paths in emerald flow and leave the constrained split path silver and inactive in the scene."
+      "priority": "low",
+      "change": "Make the CELL-MILL-2 OFFLINE banner a persistent callout in a reserved zone linked bidirectionally with the SVG node."
     }
   ]
 }

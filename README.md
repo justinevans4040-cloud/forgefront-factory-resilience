@@ -20,6 +20,14 @@
 
 <p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade with all 45 machines grouped across seven departments" /></p>
 
+## What you'll see
+
+1. **Find the fault.** Certificate says 120. Receiving counted 80. Seventy parts sit at risk while the hold freezes the line.
+2. **Investigate with Meta AI.** Spark Open reads every source. Wonder weighs the choices on the same factory state.
+3. **Make the call.** Accept a calculated path—then The Britt puts owners, deadlines and dependencies on a live board.
+4. **Survive the next shock.** Take a machine offline. The old plan falls; you recover again in minutes, not shifts.
+5. **Prove it.** Seal the record with the evidence that justified a 35-hour recovery instead of a multi-day scramble—and watch the full shop cascade light every machine the hold can starve.
+
 ## Meet The Britt
 
 **The Britt** is Forgefront’s sovereign recovery agent. After you accept a calculated path, The Britt turns that decision into a live project board the floor can run.
@@ -30,14 +38,6 @@
 4. Replans the board when a second disruption invalidates the old plan.
 
 You stay in command. The Britt keeps the work moving.
-
-## What you'll see
-
-1. **Seal the recovery.** Accept a calculated path, then watch The Britt put owners, deadlines and dependencies on a live board.
-2. **Prove it.** Verify the sealed record and keep the decision with the evidence that justified it.
-3. **Find the fault.** Certificate says 120. Receiving counted 80. Follow every machine the hold touches.
-4. **Investigate with Meta AI.** Spark Open reads the sources. Wonder weighs the choices on the same factory state.
-5. **Survive the next shock.** Take a machine offline. The old plan falls; you recover again.
 
 ## Why it matters
 

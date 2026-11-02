@@ -197,7 +197,7 @@ function computeSplit(snapshot, impact) {
   const held = materialById(snapshot, snapshot.incident.heldMaterialId);
   const evidenceIds = (snapshot.evidenceRecords||[]).filter(e=>e.field==='onHand').map(e=>e.evidenceId);
 
-  // Split path: cover demand using substitute material across all compatible online cells.
+  // Split path: cover demand using every verified substitute across all compatible online cells.
   if (!held?.substitutes?.length) {
     return optionBase(RECOVERY_OPTION_IDS.SPLIT_CAPACITY, false, {
       rejectReason: "Split capacity requires a verified substitute while primary material is held",
@@ -207,8 +207,9 @@ function computeSplit(snapshot, impact) {
     });
   }
 
-  const sub = materialById(snapshot, held.substitutes[0]);
-  if (!sub || sub.available < impact.impactedUnits) {
+  const substitutes=held.substitutes.map(id=>materialById(snapshot,id)).filter(sub=>sub&&sub.available>0);
+  const totalSubstituteUnits=substitutes.reduce((sum,sub)=>sum+sub.available,0);
+  if (!substitutes.length || totalSubstituteUnits < impact.impactedUnits) {
     return optionBase(RECOVERY_OPTION_IDS.SPLIT_CAPACITY, false, {
       rejectReason: "Substitute stock cannot cover all impacted units for split plan",
       impactedUnits: impact.impactedUnits,
@@ -218,7 +219,14 @@ function computeSplit(snapshot, impact) {
     });
   }
 
-  const cells = onlineCompatibleCells(snapshot, sub.materialId);
+  const cellCapacity=new Map();
+  for(const sub of substitutes){
+    for(const cell of onlineCompatibleCells(snapshot, sub.materialId)){
+      const prior=cellCapacity.get(cell.cellId);
+      if(!prior||cell.availableHours>prior.availableHours)cellCapacity.set(cell.cellId,{...cell});
+    }
+  }
+  const cells=[...cellCapacity.values()];
   if (cells.length < 2) {
     return optionBase(RECOVERY_OPTION_IDS.SPLIT_CAPACITY, false, {
       rejectReason: "Split requires at least two online compatible cells",
@@ -250,8 +258,18 @@ function computeSplit(snapshot, impact) {
     });
   }
 
+  let unitsLeft=impact.impactedUnits;
+  const draws=[];
+  let materialPremium=0;
+  for(const sub of substitutes){
+    if(unitsLeft<=0)break;
+    const take=Math.min(sub.available,unitsLeft);
+    const premium=round2(Math.max(0, sub.unitCostUsd - held.unitCostUsd) * take);
+    materialPremium=round2(materialPremium+premium);
+    draws.push({materialId:sub.materialId,units:take,materialPremiumUsd:premium});
+    unitsLeft=round2(unitsLeft-take);
+  }
   const laborCost = round2(allocations.reduce((s, a) => s + a.costUsd, 0));
-  const materialPremium = round2(Math.max(0, sub.unitCostUsd - held.unitCostUsd) * impact.impactedUnits);
   const finishHours = round2(Math.max(...allocations.map((a) => a.hours)));
 
   return optionBase(RECOVERY_OPTION_IDS.SPLIT_CAPACITY, true, {
@@ -264,7 +282,7 @@ function computeSplit(snapshot, impact) {
       "Production hours split across compatible online cells",
     ],
     constraints: ["Held primary material not issued", "Cost includes labor and material premium"],
-    detail: { materialId: sub.materialId, allocations },
+    detail: { draws, materialPremiumUsd: materialPremium, laborCostUsd: laborCost, allocations },
   });
 }
 

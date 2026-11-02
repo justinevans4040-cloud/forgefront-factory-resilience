@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 95,
+  "iteration": 98,
   "step": 12,
-  "score": 5,
-  "wowScore": 5,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "As presented this duplicates the opening incident screen; present the pitch in order as problem, live investigation, human decision, second shock, sealed proof, then full-shop impact."
-    },
-    {
-      "priority": "high",
-      "change": "Retain the required opening-story logo at native aspect, then add one concise judge-impact line tying 70 parts at risk to the 35h accepted outcome shown later."
+      "change": "Score judge impact explicitly in presentation: lead with the certificate discrepancy, human typed consent, second shock and proof chain in that order, with the official logo in the opening story as the second required placement."
     },
     {
       "priority": "medium",
-      "change": "Enlarge pitch type to at least 16px body with 26px headline metrics so impact is readable without opening the product."
+      "change": "Enlarge pitch type to at least 16px body and make the full-shop cascade image the hero visual showing every machine and affected-operation state."
+    },
+    {
+      "priority": "low",
+      "change": "Cut narration to one claim per section so impact, control and evidence read in a single pass."
     }
   ]
 }

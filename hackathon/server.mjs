@@ -77,7 +77,7 @@ export function createApp(options = {}) {
   const identityFor=req=>publicHosting?publicRequestIdentity(req,trustProxy):req.socket?.remoteAddress??'unknown';
   const guards = createRequestGuards({...options.guards,...(publicHosting?{schemeFor:req=>trustProxy(req.socket?.remoteAddress)&&req.headers['x-forwarded-proto']==='https'?'https':req.socket?.encrypted?'https':'http'}:{})});
   const operatorSecrets=loadOperators(env).map(o=>o.token);
-  const workflow=options.workflow??(env.HACKATHON_LEDGER_KEY?createWorkflow({directory:env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),key:env.HACKATHON_LEDGER_KEY,secrets:[...operatorSecrets,env.HACKATHON_OPERATORS_JSON,env.MUSE_API_KEY,env.MODEL_API_KEY,env.BASETEN_API_KEY,env.FIREWORKS_API_KEY,env.HACKATHON_ADMIN_TOKEN,env.HACKATHON_LEDGER_KEY]}):null);
+  const workflow=options.workflow??(env.HACKATHON_LEDGER_KEY?createWorkflow({directory:env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),key:env.HACKATHON_LEDGER_KEY,secrets:[...operatorSecrets,env.HACKATHON_OPERATORS_JSON,env.MUSE_API_KEY,env.MODEL_API_KEY,env.BASETEN_API_KEY,env.FIREWORKS_API_KEY,env.HACKATHON_ADMIN_TOKEN,env.HACKATHON_LEDGER_KEY],plant:options.plant}):null);
   // A configured persistent workflow has already verified its private directory and encryption key.
   const quotaPersistence=env.HACKATHON_LEDGER_KEY?name=>({path:join(env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),'quota-'+name+'.json'),key:env.HACKATHON_LEDGER_KEY}):undefined;
   const publicBudget=publicHosting?createPublicBudget({...publicHosting,persistence:quotaPersistence?.('public-live')}):null;
@@ -97,13 +97,18 @@ export function createApp(options = {}) {
 
   const server = http.createServer(async (req, res) => {
     try {
+      const url = new URL(req.url || "/", `http://${req.headers.host || "127.0.0.1"}`);
+      const path = url.pathname;
+      // Health probes must succeed even when a reverse-proxy Host is unexpected.
+      if (req.method === "GET" && (path === "/health"||path==='/healthz')) {
+        sendJson(res, 200, { ok: true, service: "forgefront-hackathon" });
+        return;
+      }
       guards.assertHost(req);
       res.setHeader('Content-Security-Policy',"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
       res.setHeader('X-Content-Type-Options','nosniff');
       res.setHeader('Referrer-Policy','no-referrer');
 
-      const url = new URL(req.url || "/", `http://${req.headers.host || "127.0.0.1"}`);
-      const path = url.pathname;
       if(path.startsWith('/api/')){
         if(Number(req.headers['content-length'])>guards.maxBodyBytes){req.resume();throw Object.assign(new Error('Request body too large'),{status:413});}
         if(ledgerFailure)throw Object.assign(new Error('LEDGER_TAMPERED'),{status:409});
@@ -119,11 +124,6 @@ export function createApp(options = {}) {
       if (meta && !meta.legacyAuthorized) { sendJson(res, 200, meta); return; }
       if(meta?.legacyAuthorized && workflow&&!publicHosting)replaceSnapshot(workflow.status().snapshot);
       const requestSnapshot=meta?.snapshot??snapshot;
-
-      if (req.method === "GET" && (path === "/health"||path==='/healthz')) {
-        sendJson(res, 200, { ok: true, service: "forgefront-hackathon" });
-        return;
-      }
 
       if (req.method === "GET" && path === "/api/scenario") {
         sendJson(res, 200, {

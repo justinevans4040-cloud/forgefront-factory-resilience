@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 95,
+  "iteration": 98,
   "step": 2,
   "score": 7,
   "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Visually separate connection readiness for provider identity from the investigation evidence task with distinct headings, status lines and controls in the side zone."
+      "change": "Separate connection readiness for provider identity from the investigation evidence task with distinct headings, status lines and controls; do not merge their actions."
     },
     {
       "priority": "medium",
-      "change": "Make Check selected route a secondary control and reserve the single emerald primary for starting the investigation."
+      "change": "Enlarge header tab labels to at least 16px and ensure the compact horizontal rail targets remain equal-width, non-wrapping and keyboard movable with arrow keys."
     },
     {
-      "priority": "medium",
-      "change": "Link SVG station focus to side-zone highlighting both ways, with a 2px emerald focus ring and aria-live result text."
+      "priority": "low",
+      "change": "Trim narration in the side zone to one instruction and one status sentence at 16px body type."
     }
   ]
 }

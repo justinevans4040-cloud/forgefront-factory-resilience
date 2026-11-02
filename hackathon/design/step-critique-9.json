@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 95,
+  "iteration": 98,
   "step": 9,
-  "score": 8,
-  "wowScore": 6,
+  "score": 9,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep blocked prior tasks and proposed replacements visually distinct while stating the approved revised plan and awaiting-approval replacements together."
+      "change": "Preserve coexistence clearly: label 3 BLOCKED prior tasks and 3 PROPOSED replacements as separate groups, with replacements untracked until approval and the approved revised plan stated in the action bar."
     },
     {
       "priority": "medium",
-      "change": "Add cross-hatching to the OFFLINE CELL-MILL-2 station to match its legend and the earlier stopped state."
+      "change": "Give the blocked group silver hatching and the proposed group dashed emerald-silver borders so state is readable without colour alone."
     },
     {
-      "priority": "medium",
-      "change": "Compress the blocked-prior strip so all three proposed tasks and approval control fit without crowding at 1366x768."
+      "priority": "low",
+      "change": "Enlarge the task pager targets and add focus ring visibility for keyboard stepping through tasks 1 to 3."
     }
   ]
 }

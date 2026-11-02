@@ -1,10 +1,10 @@
 import {test} from 'node:test';
 import http from 'node:http';
 import assert from 'node:assert/strict';
-import {mkdtempSync,rmSync,readFileSync} from 'node:fs';
+import {mkdtempSync,rmSync,readFileSync,mkdirSync,chmodSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {startPublicServer,publicEnvironment} from '../../scripts/serve-public.mjs';
+import {startPublicServer,publicEnvironment,resolveWritableStateDir} from '../../scripts/serve-public.mjs';
 
 test('public launcher binds PORT on all interfaces, retains configured state and removes standby credentials',async()=>{
  const directory=mkdtempSync(join(tmpdir(),'ffr-public-launch-'));
@@ -16,6 +16,7 @@ test('public launcher binds PORT on all interfaces, retains configured state and
   assert.equal(launched.address.address,'0.0.0.0');assert.ok(launched.address.port>0);
   const base=`http://127.0.0.1:${launched.address.port}`;
   assert.equal((await fetch(base+'/healthz')).status,200);
+  assert.equal((await fetch(base+'/healthz',{headers:{Host:'health.invalid'}})).status,200);
   const response=await new Promise((resolve,reject)=>{const request=http.request({hostname:'127.0.0.1',port:launched.address.port,path:'/api/meta/demo-entry',method:'POST',headers:{Host:'factory.example.invalid',Origin:'https://factory.example.invalid','X-Forwarded-Proto':'https'}},res=>{let body='';res.on('data',c=>body+=c);res.on('end',()=>resolve({status:res.statusCode,headers:res.headers,body}));});request.on('error',reject);request.end();});
   assert.equal(response.status,200,response.body);assert.match(response.headers['set-cookie'][0],/Secure/);
   const entry=JSON.parse(response.body);const r=await fetch(base+'/api/workflow/investigate',{method:'POST',headers:{'Content-Type':'application/json','X-Session-Token':entry.session,'X-CSRF-Token':entry.csrf},body:JSON.stringify({provider:'fireworks'})});
@@ -40,4 +41,28 @@ test('public launcher starts when state directory cannot be chmod locked',async(
   launched=await startPublicServer({env:{PORT:'0',HACKATHON_STATE_DIR:directory,HACKATHON_LEDGER_KEY:'synthetic-public-key',HACKATHON_ADMIN_TOKEN:'synthetic-public-admin',FIREWORKS_API_KEY:'never-call'},fetchImpl:async()=>{throw Error('Unexpected provider call');}});
   assert.equal((await fetch(`http://127.0.0.1:${launched.address.port}/healthz`)).status,200);
  }finally{await launched?.app.close();rmSync(directory,{recursive:true,force:true});}
+});
+test('public launcher falls back when preferred state directory is not writable',async()=>{
+ const warnings=[];
+ const blockedParent=mkdtempSync(join(tmpdir(),'ffr-public-blocked-parent-'));
+ const preferred=join(blockedParent,'nested-state');
+ mkdirSync(preferred,{recursive:true});
+ if(process.platform!=='win32')chmodSync(blockedParent,0o500);
+ const fallbackRoot=join(tmpdir(),'ffr-public-fallback-root-'+Date.now());
+ const preferredPath=process.platform==='win32'?join('C:\\Windows\\System32','ffr-should-fail-'+Date.now()):preferred;
+ const resolved=resolveWritableStateDir(preferredPath,{tmpdir:fallbackRoot,warn:message=>warnings.push(message)});
+ assert.notEqual(resolved,preferredPath);
+ assert.ok(warnings.length>=1);
+ let launched;
+ try{
+  launched=await startPublicServer({env:{PORT:'0',HACKATHON_STATE_DIR:preferredPath,HACKATHON_LEDGER_KEY:'synthetic-public-key',HACKATHON_ADMIN_TOKEN:'synthetic-public-admin',FIREWORKS_API_KEY:'never-call'},fetchImpl:async()=>{throw Error('Unexpected provider call');}});
+  assert.equal((await fetch(`http://127.0.0.1:${launched.address.port}/healthz`)).status,200);
+  assert.equal((await fetch(`http://127.0.0.1:${launched.address.port}/api/meta/demo-entry`,{method:'POST'})).status,200);
+ }finally{
+  await launched?.app.close();
+  if(process.platform!=='win32')chmodSync(blockedParent,0o700);
+  rmSync(blockedParent,{recursive:true,force:true});
+  rmSync(resolved,{recursive:true,force:true});
+  rmSync(fallbackRoot,{recursive:true,force:true});
+ }
 });

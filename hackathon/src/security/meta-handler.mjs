@@ -18,17 +18,19 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
   const accounts=loadOperators(env);
   const sessions = new Map();
   const routeHealth={};
+  const demoMode=String(env.HACKATHON_DEMO_MODE||'')==='1';
   const limit=createClientLimiter({maximum:120,persistence:quotaPersistence?.('meta'),identityFor});
   const loginLimit=createClientLimiter({maximum:12,persistence:quotaPersistence?.('login'),identityFor});
+  const demoEntryLimit=createClientLimiter({maximum:demoMode?240:12,persistence:quotaPersistence?.('demo-entry'),identityFor});
   return async function handle(req, res, path, guards, snapshot) {
     if (!path.startsWith('/api/')) return null;
     guards.assertOrigin(req);
     if ((path.startsWith('/api/meta/')||path.startsWith('/api/workflow/')) && req.method !== 'POST') throw fail(405, 'POST required');
     if (path === '/api/meta/session' || path === '/api/meta/demo-entry') {
-      const loginAllowance=loginLimit(req);
+      const gate=path==='/api/meta/demo-entry'?demoEntryLimit:loginLimit;
+      const loginAllowance=gate(req);
       if(!loginAllowance.allowed){res.setHeader('Retry-After',String(loginAllowance.retryAfter));throw fail(429,'Client request rate limit exceeded');}
       if (!accounts.length) throw fail(503, 'HACKATHON_ADMIN_TOKEN or HACKATHON_OPERATORS_JSON is not configured');
-      const demoMode=String(env.HACKATHON_DEMO_MODE||'')==='1';
       if(path==='/api/meta/demo-entry'&&!demoMode)throw fail(404,'Unknown meta route');
       const account=path==='/api/meta/demo-entry'
         ?(accounts.find(a=>a.role==='admin')||accounts[0])
@@ -38,8 +40,20 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       const session = randomBytes(32).toString('hex');
       const csrf = randomBytes(32).toString('hex');
       for (const [key, value] of sessions) if (value.expires <= Date.now()) sessions.delete(key);
+      if (sessions.size >= 100) {
+        const oldest=[...sessions.entries()].sort((left,right)=>left[1].expires-right[1].expires)[0];
+        if(oldest)sessions.delete(oldest[0]);
+      }
       if (sessions.size >= 100) {res.setHeader('Retry-After','600');throw fail(429, 'Session capacity reached');}
-      sessions.set(session, { csrf, operator, workflow:workflowForSession?.(session), expires: Date.now() + 10 * 60_000 });
+      let sessionWorkflow=null;
+      if(workflowForSession){
+        try{sessionWorkflow=workflowForSession(session);}
+        catch(error){
+          console.warn('meta-handler: visitor workflow unavailable ('+(error?.code||error?.message||'create-failed')+'); using shared workflow');
+          sessionWorkflow=defaultWorkflow;
+        }
+      }
+      sessions.set(session, { csrf, operator, workflow:sessionWorkflow, expires: Date.now() + 10 * 60_000 });
       res.setHeader('Set-Cookie',`ffr_session=${session}; HttpOnly; SameSite=Strict; Path=/; Max-Age=600${secureFor(req)?'; Secure':''}`);
       return path==='/api/meta/demo-entry'?{session,csrf,operator,demo:true}:{session,csrf,operator};
     }
@@ -66,7 +80,7 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
     if(!body||typeof body!=='object'||Array.isArray(body))throw fail(400,'JSON object required');
     if(path.startsWith('/api/workflow/')) {
       const fieldsByRoute=Object.create(null);
-      Object.assign(fieldsByRoute,{status:[],'britt-draft':['provider'],'britt-decide':['proposalId','action'],'task-move':['taskId','status','idempotencyKey'],review:['runId','optionId'],'plant-review':['lotId','failure','strategy'],confirm:['nonce','typed'],revoke:[],shock:['cellId'],reset:[],verify:[],export:['acknowledgePlaintext'],'encrypted-export':['passphrase'],checkpoint:[],report:['acknowledgePlaintext'],investigate:['provider'],'investigation-start':['provider'],'investigation-status':['jobId'],'provider-check':['provider']});
+      Object.assign(fieldsByRoute,{status:[],'britt-draft':['provider'],'britt-decide':['proposalId','action'],'task-move':['taskId','status','idempotencyKey'],review:['runId','optionId'],'plant-review':['lotId','failure','strategy'],confirm:['nonce','typed'],revoke:[],shock:['cellId'],reset:[],verify:[],export:['acknowledgePlaintext'],'encrypted-export':['passphrase'],checkpoint:[],report:['acknowledgePlaintext'],investigate:['provider'],'plant-investigate':['provider','lotId','failure','strategy'],'investigation-start':['provider'],'investigation-status':['jobId'],'provider-check':['provider']});
       const route=path.slice('/api/workflow/'.length);
       if(!Object.prototype.hasOwnProperty.call(fieldsByRoute,route))throw fail(404,'Unknown workflow route');
       const fields=fieldsByRoute[route];
@@ -83,6 +97,24 @@ export function createMetaHandler({ env = process.env, fetchImpl = globalThis.fe
       if(path==='/api/workflow/plant-review'){
         if(!['reroute','expedite','rework'].includes(body.strategy))throw fail(400,'Choose a calculated plant recovery path');
         return workflow.reviewPlant({lotId:body.lotId,failure:body.failure,strategy:body.strategy},actor,session.operator);
+      }
+      if(path==='/api/workflow/plant-investigate'){
+        if(!['sample','wonder','baseten'].includes(body.provider))throw fail(400,'Choose a primary Meta route');
+        if(!['reroute','expedite','rework'].includes(body.strategy))throw fail(400,'Choose a calculated plant recovery path');
+        if(publicBudget&&body.provider!=='sample'){
+          const allowance=publicBudget.reserve(identityFor(req));
+          if(allowance.mode==='limited'){res.setHeader('Retry-After',String(allowance.retryAfter));throw fail(429,'Hourly live-run limit reached. Choose Sample to continue offline.');}
+          if(allowance.mode==='sample')body.provider='sample';
+        }
+        if(body.provider==='sample')return workflow.investigatePlant(createModelClient('sample'),{lotId:body.lotId,failure:body.failure,strategy:body.strategy},session.operator);
+        const authEnv=body.provider==='wonder'?'MUSE_API_KEY':'BASETEN_API_KEY';
+        const apiKey=env[authEnv]?.trim()||(body.provider==='wonder'?env.MODEL_API_KEY?.trim():null);
+        if(!apiKey)throw fail(503,authEnv+' is unavailable');
+        const client=body.provider==='wonder'
+          ?createModelClient('wonder',{apiKey,fetchImpl})
+          :createModelClient('spark-open',{apiKey,route:SPARK_BASETEN_ROUTE,fetchImpl});
+        const investigationClient=body.provider==='wonder'&&env.BASETEN_API_KEY?.trim()?resilientWonder(client,()=>createModelClient('spark-open',{apiKey:env.BASETEN_API_KEY.trim(),route:SPARK_BASETEN_ROUTE,fetchImpl}),{record:async entry=>workflow.recordModelCall({...entry,operatorId:session.operator.id,operatorRole:session.operator.role})}):client;
+        return workflow.investigatePlant(investigationClient,{lotId:body.lotId,failure:body.failure,strategy:body.strategy},session.operator);
       }
       if(path==='/api/workflow/confirm')return workflow.confirm(body.nonce,body.typed,actor,session.operator);
       if(path==='/api/workflow/revoke')return workflow.revoke(session.operator);

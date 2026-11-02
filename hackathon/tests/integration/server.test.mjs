@@ -51,9 +51,14 @@ describe("server skeleton", () => {
     assert.equal(body.service, "forgefront-hackathon");
   });
 
-  it("rejects disallowed Host headers", async () => {
+  it("rejects disallowed Host headers while keeping health probes open", async () => {
+    const health = await rawRequest(port, {
+      path: "/healthz",
+      headers: { Host: "evil.example" },
+    });
+    assert.equal(health.status, 200);
     const res = await rawRequest(port, {
-      path: "/health",
+      path: "/",
       headers: { Host: "evil.example" },
     });
     assert.equal(res.status, 403);

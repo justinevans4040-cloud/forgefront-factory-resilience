@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 95,
+  "iteration": 98,
   "step": 11,
-  "score": 7,
-  "wowScore": 7,
+  "score": 6,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Every department and machine is represented; refit the lower empty grid area by enlarging department zones and machine depth so the plant fills the viewport."
+      "change": "Represent every machine in the full-shop cascade with consistent isometric depth, but ensure OFFLINE uses silver cross-hatching, cross marker and plain OFFLINE text on each stopped machine rather than icon-only meaning."
     },
     {
       "priority": "high",
-      "change": "Replace the repeated OFFLINE cross-only labels with silver cross-hatching, a cross marker and plain OFFLINE text on stopped machines, reserving HOLD as separate text."
+      "change": "Refit the department grid to fill the 1366x768 viewport without the empty lower-right void; enlarge cards and metrics while keeping all seven departments visible."
     },
     {
       "priority": "medium",
-      "change": "Add a feasible emerald recovery route with living flow once a path is chosen, and keep two top primaries reduced to one primary per viewport."
+      "change": "Add emerald living flow only on feasible recovery routes between departments and a persistent legend, with glow and flow removed under reduced motion."
     }
   ]
 }

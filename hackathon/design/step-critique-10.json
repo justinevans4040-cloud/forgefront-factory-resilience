@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 95,
+  "iteration": 98,
   "step": 10,
-  "score": 9,
+  "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Add cinematic depth and a restrained emerald glow to the three SEALED panels, turning static checks into a closing state driven by sealed status."
+      "change": "Make the 01 Verify, 02 Seal, 03 Retain sequence cinematic with depth and emerald glow only on the active READY stage, locked stages in dim silver."
     },
     {
       "priority": "medium",
-      "change": "Raise retained-evidence secondary copy to 16px and keep 70 parts, 35h and 48h metrics as the judge-facing summary."
+      "change": "Raise proof side-zone body copy to 16px and separate Verify ledger, Seal packet and Retain checkpoint into fixed reserved zones with distinct status lines."
     },
     {
       "priority": "low",
-      "change": "Confirm the header Proof tab and Complete rail state share aria-current styling and a visible focus ring."
+      "change": "Add a restrained cinematic transition when Verify completes, removed under prefers-reduced-motion."
     }
   ]
 }
