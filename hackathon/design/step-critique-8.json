@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 174,
+  "iteration": 178,
   "step": 8,
-  "score": 7,
-  "wowScore": 6,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "State coexistence plainly: 3 BLOCKED prior, approved plan retained, 3 PROPOSED replacements untracked until approval, at 16px in the board-state zone."
+      "change": "Clarify the coexistence in one line: 3 BLOCKED prior tasks, approved plan retained, 3 PROPOSED replacements untracked until approval"
     },
     {
       "priority": "medium",
-      "change": "Match step 4 card geometry exactly for continuity, changing only CELL-MILL-2 to silver cross-hatched OFFLINE and the revised timings."
+      "change": "Apply the OFFLINE cross-hatch, x marker and plain OFFLINE label consistently to CELL-MILL-2 and align its replan required note with the legend"
     },
     {
-      "priority": "medium",
-      "change": "Give Approve revised tasks one emerald primary treatment and keep the three proposal selectors at equal size with clear focus states."
+      "priority": "low",
+      "change": "Add focusable proposed cards with arrow-key movement across t1 to t3 and a visible 2px emerald focus ring"
     }
   ]
 }

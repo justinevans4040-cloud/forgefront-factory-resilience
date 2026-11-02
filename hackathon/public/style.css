@@ -1342,11 +1342,11 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
  body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:26px!important;font-variant-numeric:tabular-nums}
  body[data-guided=true][data-active-stage=investigation] .route-preflight{border-color:#7a8a80!important;background:#0c1210!important}
  body[data-guided=true][data-active-stage=investigation] .route-preflight summary{color:#c5ccd4!important;letter-spacing:.04em}
- body[data-guided=true][data-active-stage=investigation] .route-preflight summary::before{content:"CONNECTION · ";font-size:12px;letter-spacing:.08em;color:#8a9590}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight summary::before{content:"";font-size:12px;letter-spacing:.08em;color:#8a9590}
  body[data-guided=true][data-active-stage=investigation] .investigation-task{border-color:#A8F04A66!important;background:linear-gradient(140deg,#152219,#0b130e)!important;box-shadow:0 0 18px #A8F04A18}
  body[data-guided=true][data-active-stage=investigation] .investigation-task>summary,
  body[data-guided=true][data-active-stage=investigation] .investigation-task .eyebrow{color:#A8F04A!important}
- body[data-guided=true][data-active-stage=investigation] .investigation-task>summary::before{content:"EVIDENCE · ";font-size:12px;letter-spacing:.08em;color:#A8F04A}
+ body[data-guided=true][data-active-stage=investigation] .investigation-task>summary::before{content:"";font-size:12px;letter-spacing:.08em;color:#A8F04A}
  body[data-guided=true][data-active-stage=board] #britt-proposal{display:flex!important;flex-direction:column;gap:4px;max-height:42vh!important;overflow:hidden!important}
  body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task{flex:0 0 auto;padding:6px 8px!important;min-height:0!important}
  body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task strong{font-size:14px!important;line-height:1.25;white-space:normal;overflow-wrap:anywhere}
@@ -1477,11 +1477,11 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
  body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary{
   font-size:13px!important;min-height:28px!important;color:#c5ccd4!important;letter-spacing:.04em;border-bottom:0!important;margin:0!important
  }
- body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary::before{content:"CONNECTION · ";font-size:11px;letter-spacing:.08em;color:#8a9590}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary::before{content:"";font-size:11px;letter-spacing:.08em;color:#8a9590}
  body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-task{
   border:2px solid #A8F04A88!important;box-shadow:0 0 22px #A8F04A22;background:linear-gradient(140deg,#152219,#0b130e)!important
  }
- body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-task>summary::before{content:"EVIDENCE · ";font-size:12px;letter-spacing:.08em;color:#A8F04A}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-task>summary::before{content:"";font-size:12px;letter-spacing:.08em;color:#A8F04A}
  body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims .verified-finding>summary{
   font-size:16px!important;line-height:1.35!important;white-space:normal!important;overflow:visible!important;min-height:36px
  }
@@ -1594,7 +1594,7 @@ body[data-guided=true][data-active-stage=incident] #factory-svg .material-spark{
   border-left:5px solid #A8F04A!important;box-shadow:0 0 22px #A8F04A22
  }
  body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #model-output>summary::before{
-  content:"EVIDENCE · ";color:#A8F04A;letter-spacing:.06em;font-size:12px
+  content:"";color:#A8F04A;letter-spacing:.06em;font-size:12px
  }
  body[data-guided=true][data-active-stage=incident] .evidence-headline,
  body[data-guided=true] .evidence-headline{
@@ -1677,4 +1677,123 @@ body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true
 body[data-guided=true][data-active-stage=incident] #factory-svg .factory-node text,
 body[data-guided=true][data-active-stage=investigation] #factory-svg .factory-node text{
  font-size:16px
+}
+
+/* audit40 — Wonder uniform nines: CONNECTION/EVIDENCE chrome, authorize sequence, denser floor, board state */
+.authorize-sequence{
+ display:block;margin:6px 0 0;padding:6px 10px;border:1px solid #A8F04A88;border-radius:6px;
+ background:linear-gradient(120deg,#1a3324,#0b1610);color:#A8F04A;font-size:14px;font-weight:800;letter-spacing:.02em
+}
+body[data-guided=true][data-active-stage=investigation] .route-preflight>summary{
+ font-size:15px!important;font-weight:800;letter-spacing:.03em;color:#c5ccd4!important
+}
+/* audit40-round3 — board Approve coexistence cue (keep stage fill at prior safe ratios) */
+body[data-guided=true][data-active-stage=board] #britt-approve::after{
+ content:" · PROPOSED untracked until approval";font-size:12px;letter-spacing:.02em;color:#c5ccd4;font-weight:600
+}
+body[data-guided=true][data-active-stage=investigation] .investigation-task .eyebrow,
+body[data-guided=true][data-active-stage=investigation] .investigation-task-label{
+ font-size:14px!important;letter-spacing:.06em;color:#A8F04A!important;font-weight:800
+}
+body[data-guided=true][data-active-stage=investigation] #model-output>summary{
+ font-size:16px!important;font-weight:800;color:#e8f6ee!important
+}
+body[data-guided=true][data-active-stage=investigation] .route-preflight{
+ border:1px solid #6a7a72!important;border-left:6px solid #C5CCD4!important;background:#0a100c!important
+}
+body[data-guided=true][data-active-stage=investigation] .investigation-task,
+body[data-guided=true][data-active-stage=investigation] #model-output{
+ border:2px solid #A8F04A99!important;border-left:6px solid #A8F04A!important;
+ background:linear-gradient(140deg,#1a3324,#0b130e)!important;box-shadow:0 0 24px #A8F04A28
+}
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.8fr) minmax(286px,.55fr)!important}
+ body[data-guided=true] #factory-svg{min-height:400px!important}
+ body[data-guided=true][data-active-stage=decision] .authorize-sequence{font-size:15px!important;min-height:32px}
+ body[data-guided=true][data-active-stage=decision] .option button{min-height:44px!important;font-size:16px!important}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{
+  font-size:16px!important;line-height:1.35!important;font-weight:700;padding:10px 12px!important
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task{
+  border-style:dashed!important;border-color:#c5ccd4aa!important
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{
+  border-style:solid!important;border-color:#A8F04A!important;box-shadow:0 0 36px #A8F04A66
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-action{
+  min-height:44px;font-size:16px;box-shadow:inset 0 0 0 1px #A8F04A22
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true]{
+  box-shadow:0 0 28px #A8F04A66;border-color:#A8F04A
+ }
+ body[data-guided=true][data-active-stage=shock] #factory-svg .offline-x,
+ body[data-guided=true][data-active-stage=shock] #factory-svg .offline-label{font-size:22px!important}
+ body[data-guided=true][data-active-stage=incident] #factory-svg .mismatch-label{font-size:18px!important;font-weight:800}
+}
+#factory-svg .living-spine{stroke-width:8;filter:drop-shadow(0 0 22px #56ff9acc)}
+#factory-svg .material-flow{filter:drop-shadow(0 0 16px #A8F04Acc)}
+
+/* audit40-clip-guard: investigation headings never spill past the reserved side zone */
+body[data-guided=true][data-active-stage=investigation] .route-preflight,
+body[data-guided=true][data-active-stage=investigation] .investigation-task,
+body[data-guided=true][data-active-stage=investigation] #model-output{
+ max-width:100%!important;box-sizing:border-box!important;overflow:hidden!important
+}
+body[data-guided=true][data-active-stage=investigation] .route-preflight>summary,
+body[data-guided=true][data-active-stage=investigation] .investigation-task-label,
+body[data-guided=true][data-active-stage=investigation] #model-output>summary{
+ display:block!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;box-sizing:border-box!important
+}
+body[data-guided=true] #stage-deck{overflow:hidden!important;max-width:100%!important}
+
+/* audit40-board-clip: override earlier focus-task display:block smalls; titles only */
+body[data-guided=true] .board-coexistence-banner{display:none!important}
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=board] .stage-area{grid-template-columns:minmax(0,3.2fr) minmax(300px,.7fr)!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal{max-height:34vh!important;overflow:visible!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.britt-focus-task{
+  max-height:36px!important;min-height:32px!important;overflow:visible!important;transform:none!important
+ }
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.britt-focus-task>small,
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.britt-focus-task>small:not(.proposal-badge),
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task .proposal-badge,
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task .proposal-awaiting,
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task>small{
+  display:none!important
+ }
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task{
+  display:block!important;max-height:36px!important;min-height:32px!important;overflow:visible!important;padding:6px 8px!important
+ }
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task strong,
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.proposal-compact strong,
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.britt-focus-task strong{
+  display:block!important;font-size:14px!important;line-height:1.2!important;white-space:nowrap!important;overflow:visible!important;max-width:100%!important
+ }
+ /* One focused card visible; pager still reaches the rest (Wonder board coexistence stays in #board-outcomes). */
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.proposal-compact{display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .britt-signature-line,
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-explain{display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-feed{display:none!important}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{margin:0 0 6px!important;padding:6px 8px!important;font-size:14px!important}
+}
+
+/* audit40-round2 — photographable CONNECTION chip, denser scene, cascade room fit */
+.connection-ready-chip{
+ margin:0 0 8px;padding:6px 10px;border:1px solid #C5CCD4;border-left:6px solid #C5CCD4;border-radius:6px;
+ background:#0a100c;color:#c5ccd4;font-size:14px;font-weight:800;letter-spacing:.04em
+}
+.board-coexistence-banner{
+ margin:0 0 8px;padding:8px 10px;border:1px solid #A8F04A88;border-radius:8px;
+ background:linear-gradient(120deg,#1a3324,#0b1610);color:#A8F04A;font-size:15px;font-weight:700;line-height:1.35
+}
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,4.1fr) minmax(270px,.48fr)!important}
+ body[data-guided=true] #factory-svg{min-height:420px!important}
+ body[data-guided=true][data-active-stage=decision] .option[data-selected=true],
+ body[data-guided=true][data-active-stage=decision] .option:has(button.path-selected){
+  outline:3px solid #A8F04A;outline-offset:2px;box-shadow:0 0 36px #A8F04A77
+ }
+ body[data-guided=true][data-active-stage=decision] .authorize-sequence{font-size:16px!important}
+ body[data-guided=true][data-active-stage=board] .board-coexistence-banner{font-size:16px!important}
+ body[data-guided=true][data-active-stage=incident] #factory-svg .mismatch-label{font-size:20px!important}
 }

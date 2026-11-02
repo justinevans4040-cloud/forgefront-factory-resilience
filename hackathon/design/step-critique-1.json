@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 174,
+  "iteration": 178,
   "step": 1,
-  "score": 7,
+  "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Enlarge the factory scene to at least 70% of main and tighten the right callout zone so Certificate 120 versus Receiving 80 and DOES NOT MATCH read as one cinematic comparison at 1366x768."
+      "change": "Enlarge the factory scene toward 70% of main by trimming the bottom option cards into the SVG as compact route chips, keeping Certificate 120 versus Receiving 80 and DOES NOT MATCH fully inside stage bounds"
     },
     {
       "priority": "medium",
-      "change": "Add depth and flowing emerald material along the feasible route only, with silver glow on held stations and a clear 2px focus ring on SVG nodes."
+      "change": "Raise side-zone body copy to 16px/24 and strengthen the second logo placement contrast in the opening story so it reads at a glance"
     },
     {
       "priority": "medium",
-      "change": "Raise secondary station text to 16px and keep the three recovery options inside their reserved zone without crowding the legend."
+      "change": "Add bidirectional highlighting between Certificate, Receiving, RECEIVING HOLD and JOB-1001/JOB-1002 so hovering or focusing one lights the linked nodes"
     }
   ]
 }

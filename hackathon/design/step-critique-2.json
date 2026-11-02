@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 174,
+  "iteration": 178,
   "step": 2,
-  "score": 7,
-  "wowScore": 6,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Visually separate CONNECTION provider identity readiness from EVIDENCE investigation with distinct headings, status lines and controls in the reserved side zone."
+      "change": "Separate the side zone into two clearly headed blocks: connection readiness for provider identity above, investigation evidence task below, each with its own status and control"
     },
     {
       "priority": "medium",
-      "change": "Make the 3 verified facts, 0 rejected and 3 feasible paths tabular 26px metrics and link each finding bidirectionally to its scene node on hover and keyboard focus."
+      "change": "Make the 3 verified, 0 rejected, 3 feasible metrics 26px tabular and link each count to its evidence rows with focusable highlighting"
     },
     {
       "priority": "low",
-      "change": "Strengthen state glow on the verified route trace once for 240ms, then hold static under reduced motion."
+      "change": "Reduce the truncated finding sentence to one complete status sentence at 16px so the evidence zone fits without compression"
     }
   ]
 }

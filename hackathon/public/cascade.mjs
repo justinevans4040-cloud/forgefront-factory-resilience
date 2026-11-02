@@ -79,34 +79,39 @@ export function mountCascade({loadPlant,launcher,workflow}){
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;
   recover.disabled=!active||recovered||!result.recovery.feasible||busy||!consent.hidden;
   caption.textContent=selectedMachine?'Dependency chain · '+selectedMachine+' → '+highlighted.size+' connected machines':recovered?'Recovery accepted · '+result.recovery.assignments.length+' operations · '+format(result.recovery.finishHours)+'h · $'+format(result.recovery.costUsd):active?labels[failureSelect.value]+' freezes '+result.affected.length+' affected operations across the plant. Emerald recovery stays on the feasible mills → lathes path.':plant.label+' · '+plant.machines.length+' machines. Choose a failure to see the cascade.';
-  animate.tileCache=null;animate.staticDirty=true;paintMetrics(1);cancelAnimationFrame(raf);refreshTileCache();paintRecoveryArc(animate.tileCache);animate(performance.now());
+  animate.tileCache=null;animate.arcKey=null;animate.staticDirty=true;paintMetrics(1);cancelAnimationFrame(raf);refreshTileCache();paintRecoveryArc(animate.tileCache);animate(performance.now());
  }
  function paintRecoveryArc(cache){
   // Layered SVG mills→lathes arc with directional chevrons (Wonder 167–170 cascade P1); static under reduced motion.
+  // Geometry-keyed cache: never recreate SVG nodes every animation tick (audit40 FPS).
   let arc=floor.querySelector('.plant-recovery-arc');
-  if(!active||!cache?.mills||!cache?.lathes){arc?.remove();return;}
+  if(!active||!cache?.mills||!cache?.lathes){arc?.remove();animate.arcKey=null;return;}
   const a=cache.mills,b=cache.lathes;
   const x1=a.cx,y1=a.cy,x2=b.cx,y2=b.cy;
   const mx=(x1+x2)/2,my=Math.min(a.y,b.y)-18;
+  const vw=Math.max(1,Math.round(floor.clientWidth)),vh=Math.max(1,Math.round(floor.clientHeight));
+  const key=[active,recovered,x1,y1,x2,y2,vw,vh].join('|');
+  if(arc&&animate.arcKey===key)return;
+  animate.arcKey=key;
   if(!arc){
    arc=document.createElementNS('http://www.w3.org/2000/svg','svg');
    arc.classList.add('plant-recovery-arc');
    arc.setAttribute('aria-hidden','true');
    floor.append(arc);
   }
-  arc.setAttribute('viewBox','0 0 '+Math.max(1,Math.round(floor.clientWidth))+' '+Math.max(1,Math.round(floor.clientHeight)));
+  arc.setAttribute('viewBox','0 0 '+vw+' '+vh);
   arc.replaceChildren();
   const ns='http://www.w3.org/2000/svg';
   const glow=document.createElementNS(ns,'path');
-  glow.setAttribute('d',`M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`);
+  glow.setAttribute('d','M '+x1+' '+y1+' Q '+mx+' '+my+' '+x2+' '+y2);
   glow.setAttribute('class',recovered?'plant-arc-glow recovered':'plant-arc-glow');
   glow.setAttribute('fill','none');
   const spine=document.createElementNS(ns,'path');
-  spine.setAttribute('d',`M ${x1} ${y1} Q ${mx} ${my} ${x2} ${y2}`);
+  spine.setAttribute('d','M '+x1+' '+y1+' Q '+mx+' '+my+' '+x2+' '+y2);
   spine.setAttribute('class',recovered?'plant-arc-spine recovered':'plant-arc-spine');
   spine.setAttribute('fill','none');
   const marker=document.createElementNS(ns,'polygon');
-  marker.setAttribute('points',`${x2-14},${y2-8} ${x2},${y2} ${x2-14},${y2+8}`);
+  marker.setAttribute('points',(x2-14)+','+(y2-8)+' '+x2+','+y2+' '+(x2-14)+','+(y2+8));
   marker.setAttribute('class','plant-arc-arrow');
   arc.append(glow,spine,marker);
  }
@@ -188,7 +193,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
   // Viewport/pixel LOD only — never fewer machines. Cached centers + dirty static layer keep 1k/5k toward 60fps.
   const heavy=plantScale>=400;
   const extreme=plantScale>=800;
-  const ultra=plantScale>=1000;
+  const ultra=plantScale>=400; // audit40: CSS spine LOD earlier; machine counts unchanged
   // Metrics DOM refresh is expensive — throttle independently of canvas paints.
   // Ultra: skip mid-wave metric DOM (final paint below) so frame cost stays on the canvas spine.
   const metricsPeriod=ultra?1e9:extreme?240:heavy?120:80;

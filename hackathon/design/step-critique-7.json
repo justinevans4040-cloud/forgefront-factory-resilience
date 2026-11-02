@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 174,
+  "iteration": 178,
   "step": 7,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make the constrained Split option non-selectable with pattern, x and plain CONSTRAINED text while keeping its finish and cost shown as unavailable dashes aligned to other rows."
+      "change": "Make the constrained Split path unselectable with pattern, x marker and plain text, while keeping the two feasible Select this path controls at least 36px"
     },
     {
       "priority": "medium",
-      "change": "Amplify PRIOR ACCEPTANCE INVALIDATED as the action-bar status and direct focus to Review revised option after selection."
+      "change": "Link the Scenario changed notice in the side zone to the invalidated acceptance status in the action bar with shared emerald highlight on focus"
     },
     {
       "priority": "low",
-      "change": "Use bidirectional highlighting between the two remaining feasible paths and JOB-1001/JOB-1002 to show revised capacity flow."
+      "change": "Enlarge scene station labels slightly by reclaiming space from the Certificate tracks while keeping DOES NOT MATCH inside bounds"
     }
   ]
 }

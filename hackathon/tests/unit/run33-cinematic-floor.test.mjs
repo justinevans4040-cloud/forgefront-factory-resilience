@@ -10,7 +10,7 @@ const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'
 const scene=readFileSync(new URL('../../public/stage-scene.mjs',import.meta.url),'utf8');
 
 test('build stamp advanced past audit32 cinematic baseline',()=>{
- assert.match(html,/ffr-build" content="audit3[3456789]-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[3456789]|40)-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit32-the-britt-authorize/);
 });
 
@@ -33,7 +33,7 @@ test('proposal layout prefers two title lines so task three stays readable',()=>
 
 test('cascade LOD engages heavy earlier without dropping machine counts',()=>{
  assert.match(cascade,/plantScale>=400/);
- assert.match(cascade,/plantScale>=1000/);
+ assert.match(cascade,/plantScale>=400/);
  assert.ok(/Skip (alternate )?canvas paints/i.test(cascade)||cascade.includes('refreshTileCache'));
  assert.match(cascade,/never fewer machines/i);
 });

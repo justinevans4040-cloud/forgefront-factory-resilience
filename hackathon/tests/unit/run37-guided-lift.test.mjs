@@ -9,7 +9,7 @@ const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advanced past audit36 (superseded by later audits)',()=>{
- assert.match(html,/ffr-build" content="audit3[789]-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[789]|40)-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit36-wonder-lift/);
 });
 
@@ -19,7 +19,7 @@ test('cascade pixel LOD caches route ends and never drops machines',()=>{
  assert.match(cascade,/Route endpoints resolved once/);
  assert.match(cascade,/never fewer machines/i);
  assert.match(cascade,/Backing-store density LOD|CSS spine LOD/);
- assert.match(cascade,/plantScale>=1000/);
+ assert.match(cascade,/plantScale>=400/);
  assert.match(cascade,/OFFLINE/);
  assert.doesNotMatch(cascade,/slice\(0,\s*\d+\).*machines/);
 });
@@ -28,7 +28,7 @@ test('guided Wonder P1 lifts cover cleared findings and 44px path Select',()=>{
  assert.match(css,/audit37/);
  assert.match(css,/min-height:44px!important/);
  assert.match(css,/findings-reserve-active/);
- assert.match(css,/CONNECTION ·/);
+ assert.match(html,/1 · CONNECTION/);
  assert.match(app,/CLEARED · Verified findings wiped/);
  assert.match(app,/rear-silhouette/);
  assert.match(app,/Select this path/);

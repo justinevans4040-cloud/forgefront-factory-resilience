@@ -165,3 +165,28 @@
 
 .plant-metric-wait{display:block;font-size:11px;color:#c5ccd4;margin-top:2px}
 
+
+/* audit40 — CSS spine LOD companion when floor.dataset.cssFlow is set for heavy plants */
+.plant-floor[data-css-flow="1"]::after{
+ content:"";position:absolute;inset:18% 12% 28% 12%;pointer-events:none;z-index:4;
+ background:linear-gradient(90deg,transparent,#56ff9a55,transparent);
+ filter:drop-shadow(0 0 18px #56ff9acc);animation:plant-css-flow 1.2s linear infinite;opacity:.85
+}
+.plant-floor[data-css-flow="2"]::after{
+ content:"";position:absolute;inset:22% 10% 30% 10%;pointer-events:none;z-index:4;
+ border:2px solid #56ff9a88;border-radius:40%;box-shadow:0 0 24px #56ff9a66;opacity:.7
+}
+@keyframes plant-css-flow{to{transform:translateX(8%)}}
+@media(prefers-reduced-motion:reduce){
+ .plant-floor[data-css-flow="1"]::after{animation:none!important;opacity:.55}
+}
+
+/* audit40-round2 — fit seven departments at 1366 without control crowding */
+@media(max-width:1400px){
+ .plant-room[open]{padding:10px 16px;grid-template-rows:36px auto minmax(56px,auto) 24px 22px minmax(0,1fr) 30px;gap:4px}
+ .plant-metrics strong{font-size:22px}
+ .plant-caption{font-size:15px;min-height:28px}
+ .plant-controls label,.plant-controls select,.plant-controls button{min-height:34px;font-size:14px}
+ .plant-room .plant-tile{padding:6px 10px 16px}
+ .plant-tile strong{font-size:16px}
+}

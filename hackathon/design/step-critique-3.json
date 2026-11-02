@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 174,
+  "iteration": 178,
   "step": 3,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make each Select this path a full 44px target and show the chosen path with emerald fill plus depth in both side zone and scene before Review recovery option activates."
+      "change": "Keep the pre-selection state explicit: label the primary as disabled until a path is chosen, then on selection open one-click Approve followed by the Authorize this decision wall"
     },
     {
       "priority": "medium",
-      "change": "Align finish and incremental cost columns in tabular figures so 83h/$0, 35h/$3,115 and 17.5h/$3,202.50 compare instantly."
+      "change": "Enlarge the three path cards' finish and cost figures and mirror the selected path's glow onto its matching scene chip for instant linkage"
     },
     {
       "priority": "low",
-      "change": "Keep No acceptance recorded in plain silver text until selection, reserving emerald glow for the pending Approve action."
+      "change": "Tighten the scene's empty lower band so stations and jobs gain height within their reserved zones"
     }
   ]
 }

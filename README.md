@@ -10,7 +10,7 @@
 
 Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
 
-<p align="center"><a href="https://forgefront-factory-resilience.onrender.com"><strong style="font-size:22px;line-height:1.4;color:#A8F04A;border-bottom:2px solid #A8F04A">Live demo — open the recovery room</strong></a></p>
+<p align="center"><a href="https://forgefront-factory-resilience.onrender.com"><strong style="font-size:28px;line-height:1.35;color:#A8F04A;border-bottom:3px solid #A8F04A;letter-spacing:.02em">Live demo — open the recovery room</strong></a></p>
 
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
@@ -30,9 +30,9 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
 
-<p align="center"><em style="font-size:20px;line-height:1.45;color:#c5ccd4">Hero: command center · Cascade: emerald mills → lathes recovery with silver × OFFLINE departments</em></p>
+<p align="center"><em style="font-size:26px;line-height:1.45;color:#e8f6ee;font-weight:800">Hero: command center · Cascade: emerald mills → lathes recovery with silver × OFFLINE departments</em></p>
 
-<p align="center"><em style="font-size:28px;line-height:1.45;color:#e8f6ee;font-weight:800">Full-shop cascade — three signals at a glance:</em></p>
+<p align="center"><em style="font-size:36px;line-height:1.35;color:#A8F04A;font-weight:800">Full-shop cascade — three signals at a glance</em></p>
 
 | Signal | What judges see |
 | --- | --- |
@@ -40,7 +40,7 @@ In production, every approval sits behind an authorization wall such as a passke
 | **Silver × OFFLINE** | Every stopped department marked by pattern and text |
 | **Live counters** | Lost hours · late orders · cost · ship-date slip |
 
-<p align="center"><em style="font-size:18px;line-height:1.4;color:#A8F04A;font-weight:700">Emerald mills → lathes · Silver × OFFLINE · Live counters</em></p>
+<p align="center"><em style="font-size:26px;line-height:1.4;color:#A8F04A;font-weight:800">Emerald mills → lathes · Silver × OFFLINE · Live counters</em></p>
 
 ## What you'll see
 

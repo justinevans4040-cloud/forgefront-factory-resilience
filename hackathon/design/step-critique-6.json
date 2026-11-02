@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 174,
+  "iteration": 178,
   "step": 6,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep CELL-MILL-2 OFFLINE in silver cross-hatching with x marker and ensure the Split path is visibly constrained in both scene and options."
+      "change": "Keep connection readiness and the reinvestigation evidence task visually distinct in the side zone, with the CLEARED findings notice under the evidence heading only"
     },
     {
       "priority": "medium",
-      "change": "Separate the cleared-findings notice from the new investigation control so Reinvestigate recovery is the sole emerald primary."
+      "change": "Strengthen CELL-MILL-2 as OFFLINE with cross-hatching, x marker and no route through it, and grey the Split card with the same pattern language"
     },
     {
-      "priority": "medium",
-      "change": "Show 3 to 2 feasible paths as a large tabular change marker linked to the redrawn feasible emerald routes."
+      "priority": "low",
+      "change": "Add a single status sentence confirming 3 to 2 feasible paths so the change is understood without reading the top micro-label"
     }
   ]
 }

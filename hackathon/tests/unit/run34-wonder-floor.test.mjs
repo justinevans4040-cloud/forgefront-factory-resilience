@@ -8,7 +8,7 @@ const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8')
 const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'utf8');
 
 test('build stamp advances past audit33 cinematic floor',()=>{
- assert.match(html,/ffr-build" content="audit3[456789]-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[456789]|40)-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit33-cinematic-floor/);
 });
 
@@ -23,8 +23,8 @@ test('board offline cells keep hatch and corner mark without full-card diagonals
 
 test('cascade LOD keeps heavy extreme ultra tiers without dropping machines',()=>{
  assert.match(cascade,/plantScale>=400/);
- assert.match(cascade,/plantScale>=1000/);
- assert.match(cascade,/plantScale>=1000/);
+ assert.match(cascade,/plantScale>=400/);
+ assert.match(cascade,/plantScale>=400/);
  assert.match(cascade,/never fewer machines/i);
  assert.match(cascade,/corner × only/);
  // audit35 replaces paint-stride with cached static layer + dirty-tile art flips

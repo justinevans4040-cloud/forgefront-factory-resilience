@@ -1,0 +1,25 @@
+{
+  "profiles": [
+    {
+      "fps": 7.2,
+      "reducedMotion": false,
+      "samples": 25,
+      "machineCount": 1000,
+      "p95FrameMs": 200,
+      "plantFolder": "plant-1000",
+      "avgFrameMs": 138.66,
+      "viewport": "1920x1080"
+    },
+    {
+      "machineCount": 5000,
+      "samples": 30,
+      "avgFrameMs": 116.66,
+      "fps": 8.6,
+      "p95FrameMs": 166.6,
+      "reducedMotion": false,
+      "plantFolder": "plant-5000",
+      "viewport": "1920x1080"
+    }
+  ],
+  "note": "Headless Chromium audit40: CSS spine LOD from 400+ machines, arc geometry cache, rAF idle after wave. Machine counts unchanged. Headless --disable-gpu rAF ceiling remains low; CSS/SVG carry living emerald flow."
+}

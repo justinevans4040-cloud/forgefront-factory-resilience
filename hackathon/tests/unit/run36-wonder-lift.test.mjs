@@ -9,7 +9,7 @@ const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit36 wonder lift or later',()=>{
- assert.match(html,/ffr-build" content="audit3[6789]-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[6789]|40)-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit35-cascade-cache/);
 });
 

@@ -11,7 +11,7 @@ const cascadeCss=readFileSync(new URL('../../public/cascade.css',import.meta.url
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit39 cascade restore',()=>{
- assert.match(html,/ffr-build" content="audit39-cascade-restore"/);
+ assert.match(html,/ffr-build" content="audit(39-cascade-restore|40-wonder-uniform)"/);
  assert.doesNotMatch(html,/audit38-wonder-finish/);
 });
 
