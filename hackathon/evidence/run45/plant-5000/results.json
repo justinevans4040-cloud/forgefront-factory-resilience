@@ -1,0 +1,589 @@
+[
+  {
+    "state": "running",
+    "viewport": "1920x1080",
+    "screenshot": "plant-5000/running-1920.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "running",
+    "viewport": "1366x768",
+    "screenshot": "plant-5000/running-1366.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "wrong-cert",
+    "viewport": "1920x1080",
+    "screenshot": "plant-5000/wrong-cert-1920.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "wrong-cert",
+    "viewport": "1366x768",
+    "screenshot": "plant-5000/wrong-cert-1366.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "wrong-cert-reroute-preview",
+    "viewport": "1920x1080",
+    "screenshot": "plant-5000/wrong-cert-reroute-preview-1920.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "wrong-cert-reroute-preview",
+    "viewport": "1366x768",
+    "screenshot": "plant-5000/wrong-cert-reroute-preview-1366.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "wrong-cert-reroute-accepted",
+    "viewport": "1920x1080",
+    "screenshot": "plant-5000/wrong-cert-reroute-accepted-1920.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "wrong-cert-reroute-accepted",
+    "viewport": "1366x768",
+    "screenshot": "plant-5000/wrong-cert-reroute-accepted-1366.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 7,
+    "art": []
+  },
+  {
+    "state": "department-drill-in",
+    "viewport": "1920x1080",
+    "screenshot": "plant-5000/department-drill-in-1920.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 21,
+    "art": [
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 81.0689468383789,
+            "w": 34.248138427734375
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 349.6314392089844,
+            "w": 34.248138427734375
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 618.2095947265625,
+            "w": 34.24810791015625
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 886.7720947265625,
+            "w": 34.24810791015625
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1155.3502197265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1423.9127197265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1692.4908447265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 81.0689468383789,
+            "w": 34.248138427734375
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 349.6314392089844,
+            "w": 34.248138427734375
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 618.2095947265625,
+            "w": 34.24810791015625
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 886.7720947265625,
+            "w": 34.24810791015625
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1155.3502197265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1423.9127197265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1692.4908447265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 81.0689468383789,
+            "w": 34.248138427734375
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 349.6314392089844,
+            "w": 34.248138427734375
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 618.2095947265625,
+            "w": 34.24810791015625
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 886.7720947265625,
+            "w": 34.24810791015625
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1155.3502197265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1423.9127197265625,
+            "w": 34.2481689453125
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 230.5625,
+          "h": 132
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1692.4908447265625,
+            "w": 34.2481689453125
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "state": "department-drill-in",
+    "viewport": "1366x768",
+    "screenshot": "plant-5000/department-drill-in-1366.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 10,
+    "art": [
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 80.4677734375,
+            "w": 33.74681091308594
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 345.6552734375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 610.8583984375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 876.0615234375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1141.2646484375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 80.4677734375,
+            "w": 33.74681091308594
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 345.6552734375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 610.8583984375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 876.0615234375,
+            "w": 33.746826171875
+          }
+        ]
+      },
+      {
+        "groups": 1,
+        "viewBox": "0 0 480 160",
+        "rect": {
+          "w": 227.1875,
+          "h": 112.5
+        },
+        "transforms": [
+          {
+            "transform": "translate(85.5 51.25) scale(1.15)",
+            "x": 1141.2646484375,
+            "w": 33.746826171875
+          }
+        ]
+      }
+    ]
+  }
+]

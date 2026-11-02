@@ -1730,8 +1730,8 @@ body[data-guided=true][data-active-stage=investigation] #model-output{
  body[data-guided=true][data-active-stage=shock] #factory-svg .offline-label{font-size:22px!important}
  body[data-guided=true][data-active-stage=incident] #factory-svg .mismatch-label{font-size:18px!important;font-weight:800}
 }
-#factory-svg .living-spine{stroke-width:8;filter:drop-shadow(0 0 22px #56ff9acc)}
-#factory-svg .material-flow{filter:drop-shadow(0 0 16px #A8F04Acc)}
+#factory-svg .living-spine{stroke-width:4;filter:drop-shadow(0 0 10px #A8F04A55)}
+#factory-svg .material-flow{filter:drop-shadow(0 0 8px #A8F04A44)}
 
 /* audit40-clip-guard: investigation headings never spill past the reserved side zone */
 body[data-guided=true][data-active-stage=investigation] .route-preflight,
@@ -1797,3 +1797,49 @@ body[data-guided=true] .board-coexistence-banner{display:none!important}
  body[data-guided=true][data-active-stage=board] .board-coexistence-banner{font-size:16px!important}
  body[data-guided=true][data-active-stage=incident] #factory-svg .mismatch-label{font-size:20px!important}
 }
+
+/* audit41 / round42 — DESIGN_SYSTEM.md calm premium (restrain glow; do not enlarge stage geometry) */
+:root{
+ --ds-ink:#050705;--ds-panel:#0B100B;--ds-raised:#121A12;--ds-line:rgba(197,204,212,.22);
+ --ds-silver:#C5CCD4;--ds-accent:#A8F04A;--ds-glow:0 0 14px #A8F04A33
+}
+/* Restrained living path — one glow, no bleed stacks (layout ratios stay at audit40-safe values) */
+#factory-svg .living-spine{stroke-width:4;filter:drop-shadow(0 0 10px #A8F04A55)}
+#factory-svg .material-flow{filter:drop-shadow(0 0 8px #A8F04A44)}
+#factory-svg .material-flow.held-flow{filter:drop-shadow(0 0 8px #c5ccd455)}
+#factory-svg .route-entry-trace{animation:route-entry-trace 240ms ease-out 1}
+@keyframes route-entry-trace{
+ from{stroke-dashoffset:40;opacity:.4}
+ to{stroke-dashoffset:0;opacity:1}
+}
+@media(prefers-reduced-motion:reduce){#factory-svg .route-entry-trace{animation:none!important}}
+/* CONNECTION / EVIDENCE: hairline frames, not stacked neon */
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=investigation] .route-preflight{
+  border:1px solid var(--ds-line)!important;border-left:4px solid #C5CCD4!important;box-shadow:none!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-task,
+ body[data-guided=true][data-active-stage=investigation] #model-output{
+  border:1px solid rgba(168,240,74,.35)!important;border-left:4px solid #A8F04A!important;box-shadow:none!important
+ }
+ body[data-guided=true][data-active-stage=decision] .option[data-selected=true],
+ body[data-guided=true][data-active-stage=decision] .option:has(button.path-selected){
+  outline:2px solid #A8F04A;outline-offset:2px;box-shadow:var(--ds-glow)
+ }
+ body[data-guided=true][data-active-stage=incident] #factory-svg .mismatch-label{
+  font-size:16px!important;filter:none!important
+ }
+}
+.evidence-headline{
+ display:block!important;max-width:100%!important;box-sizing:border-box!important;
+ overflow:hidden!important;white-space:nowrap!important;text-overflow:ellipsis!important;
+ font-size:16px!important;line-height:1.3!important
+}
+#investigation-status,#provider-status,.investigation-empty{
+ max-width:100%!important;box-sizing:border-box!important;padding-right:8px!important;
+ overflow-wrap:anywhere!important;word-break:break-word!important;white-space:normal!important
+}
+body[data-guided=true] #route-help{display:none!important}
+body[data-guided=true] #factory-legend .scene-legend-chip,
+body[data-guided=true] .scene-legend-chip{display:none!important;border:0!important}
+#findings-reserve{font-size:16px!important;line-height:1.4!important;min-height:36px;padding:8px 12px!important}

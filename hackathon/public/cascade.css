@@ -190,3 +190,23 @@
  .plant-room .plant-tile{padding:6px 10px 16px}
  .plant-tile strong{font-size:16px}
 }
+
+/* audit41 / round42 — full department labels, calm feasible glow (DESIGN_SYSTEM: one accent, no bleed) */
+.plant-dept-label,.plant-tile strong.plant-dept-label{
+ font-size:14px!important;line-height:1.25!important;letter-spacing:.02em;
+ white-space:normal!important;overflow:visible!important;text-overflow:clip!important;
+ max-width:100%;hyphens:manual;color:#e8f6ee;font-weight:650
+}
+.plant-tile[data-offline-count] .plant-status-strip{font-size:12px!important;letter-spacing:.04em}
+.plant-tile.cascade-hit .plant-status-strip{font-size:13px!important;border-width:1px;box-shadow:0 0 10px #c5ccd433}
+.plant-floor[data-css-flow="1"]::after{filter:drop-shadow(0 0 12px #56ff9a88);opacity:.75}
+.plant-floor[data-css-flow="1"] .plant-tile:not(.cascade-hit){
+ box-shadow:0 10px 22px #0008,0 0 16px #56ff9a22,inset 1px 1px #def9e022
+}
+.plant-floor[data-css-flow="1"] .plant-tile:not(.cascade-hit) .plant-status-strip{
+ border-color:#56ff9a88;box-shadow:none
+}
+@media(max-width:1400px){
+ .plant-dept-label,.plant-tile strong.plant-dept-label{font-size:13px!important}
+ .plant-room .plant-tile{padding:8px 10px 20px!important}
+}

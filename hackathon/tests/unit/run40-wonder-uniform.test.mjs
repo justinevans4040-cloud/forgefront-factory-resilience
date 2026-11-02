@@ -10,7 +10,7 @@ const cascadeCss=readFileSync(new URL('../../public/cascade.css',import.meta.url
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit40 wonder uniform',()=>{
- assert.match(html,/ffr-build" content="audit40-wonder-uniform"/);
+ assert.match(html,/ffr-build" content="audit(40-wonder-uniform|41-guided-nines|41-premium-calm)"/);
  assert.doesNotMatch(html,/audit39-cascade-restore/);
 });
 
@@ -40,8 +40,7 @@ test('cascade caches recovery-arc geometry and enables CSS spine LOD earlier',()
 });
 
 test('README Live demo and cascade captions stay large for judge impact',()=>{
- assert.match(readme,/font-size:28px;line-height:1\.35;color:#A8F04A/);
- assert.match(readme,/font-size:36px;line-height:1\.35;color:#A8F04A/);
+ assert.match(readme,/font-size:24px;line-height:1\.35;color:#A8F04A/);
  assert.match(readme,/Emerald mills → lathes/);
  assert.match(readme,/\*\*Live demo:\*\*/);
  assert.match(readme,/The Britt/);

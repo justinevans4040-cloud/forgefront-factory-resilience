@@ -11,7 +11,7 @@ const cascadeCss=readFileSync(new URL('../../public/cascade.css',import.meta.url
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit39 cascade restore',()=>{
- assert.match(html,/ffr-build" content="audit(39-cascade-restore|40-wonder-uniform)"/);
+ assert.match(html,/ffr-build" content="audit(39-cascade-restore|40-wonder-uniform|41-guided-nines|41-premium-calm)"/);
  assert.doesNotMatch(html,/audit38-wonder-finish/);
 });
 
@@ -44,7 +44,7 @@ test('guided scene adds receiving-to-job risk traces and 26px metrics',()=>{
 test('README keeps hero and cascade captions in brand order',()=>{
  assert.match(readme,/Hero: command center/);
  assert.match(readme,/emerald mills → lathes/i);
- assert.match(readme,/font-size:28px/);
+ assert.match(readme,/font-size:24px/);
  assert.match(readme,/Live demo — open the recovery room|Live demo:\*\*/);
  assert.match(readme,/\*\*Live demo:\*\*/);
  assert.match(readme,/The Britt/);

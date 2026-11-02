@@ -10,7 +10,7 @@
 
 Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
 
-<p align="center"><a href="https://forgefront-factory-resilience.onrender.com"><strong style="font-size:28px;line-height:1.35;color:#A8F04A;border-bottom:3px solid #A8F04A;letter-spacing:.02em">Live demo — open the recovery room</strong></a></p>
+<p align="center"><a href="https://forgefront-factory-resilience.onrender.com" style="display:inline-block;min-height:32px;padding:6px 4px;outline-offset:4px"><strong style="font-size:24px;line-height:1.35;color:#A8F04A;border-bottom:2px solid #A8F04A;letter-spacing:.02em">Live demo — open the recovery room</strong></a></p>
 
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)

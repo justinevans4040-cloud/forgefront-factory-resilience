@@ -59,7 +59,9 @@ export function mountCascade({loadPlant,launcher,workflow}){
    const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':(members.length>=100?String(members.length):members.length+' machines');
    // Single reserved footer strip carries OFFLINE/RUNNING (Wonder 167–170); no duplicate status nodes for the clip gate.
    const strip=el('span',departmentState,'plant-status-strip plant-state');
-   const title=el('strong',t.item.label);if((t.item.label||'').length>18)title.textContent=(t.item.label||'').slice(0,16)+'…';
+   // Wonder 177 cascade P1: full department names at readable size — never crop left/lower labels.
+   const title=el('strong',t.item.label);
+   title.className='plant-dept-label';
    card.append(title,el('span',subLine,'plant-sub'),strip);
    card.setAttribute('tabindex','0');
    card.setAttribute('aria-label',t.item.label+' · '+departmentState+(department?'':' · '+subLine));
@@ -228,7 +230,9 @@ export function mountCascade({loadPlant,launcher,workflow}){
     // Heavy static layer is hit-agnostic — skip static-layer refreshes during the cascade wave.
     if(!heavy)animate.staticDirty=true;
    }
-   paintRecoveryArc(cache);
+   // Ultra CSS spine already paints mills→lathes flow — skip SVG arc redraws (FPS; machine counts unchanged).
+   if(!ultra)paintRecoveryArc(cache);
+   else floor.querySelector('.plant-recovery-arc')?.remove();
   }
   if(!animate.boxCache||animate.boxCache.at<now-2000){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
   const box=animate.boxCache.box;

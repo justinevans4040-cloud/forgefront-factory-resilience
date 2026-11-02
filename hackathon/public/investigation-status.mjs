@@ -1,5 +1,5 @@
 export function investigationStatus({phase='empty',elapsedMs=0,route='Meta route',call=null}={}){
- if(phase==='empty')return 'Choose a route, then Investigate. Sample stays offline.';
+ if(phase==='empty')return 'Choose a route, then Investigate.';
  if(phase==='failed')return route+' · Stopped. No replacement answer was generated. Inspect the recorded failure, then select the route and retry explicitly.';
  if(phase==='complete')return 'Ready for review. Inspect source-validated facts, model interpretation and calculated recovery options.';
  const seconds=Math.max(0,Math.floor(elapsedMs/1000));

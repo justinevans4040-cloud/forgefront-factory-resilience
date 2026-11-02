@@ -63,7 +63,7 @@ function render(){
  $('shock-consequence').textContent=state.decision.status==='accepted'?'Will invalidate acceptance for '+titles[state.decision.optionId]:state.decision.status==='invalidated'?'Prior acceptance invalidated · fresh investigation required':'';
  const previous=guideHistory[0]?.state;const changed=previous&&previous.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$('constraint-change').hidden=!changed;$('constraint-change').textContent=changed?state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+': '+(previous.snapshot.cells.find(p=>p.cellId===c.cellId)?.availableHours??c.availableHours)+'h available → OFFLINE').join(' · ')+' · '+previous.analysis.recovery.feasibleCount+' → '+state.analysis.recovery.feasibleCount+' feasible paths':'';
  const impact=state.analysis.impacted;$('metrics').replaceChildren(...[[impact.impactedJobCount,'IMPACTED JOBS'],[impact.impactedUnits,'HELD-DEMAND UNITS'],[state.analysis.recovery.feasibleCount,'FEASIBLE PATHS']].map(([n,label])=>{const div=text('div','','metric');div.append(text('strong',n),text('span',label));return div;}));
- $('evidence').replaceChildren(...state.evidence.map(e=>{const div=text('div','','source evidence-card');div.id=e.evidenceId;div.dataset.evidence=e.evidenceId;div.tabIndex=0;div.addEventListener('focus',()=>highlightEvidence(e.evidenceId));div.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));const plain=evidencePlainEnglish(e);const headline=text('p','','evidence-headline');if(e.quantity)headline.append(document.createTextNode(plain.replace(String(e.quantity.value),'').trim()+' '),text('strong',String(e.quantity.value),'evidence-figure'));else headline.textContent=plain;const detail=text('details','','evidence-raw');const sourceSummary=text('summary','Source detail');sourceSummary.addEventListener('click',event=>{event.preventDefault();openSourceDetail(e);});detail.append(sourceSummary,text('code',evidenceDetailLabel(e)),text('small',e.excerpt+' · Snapshot '+e.snapshotDigest.slice(0,10)));div.append(headline,detail);return div;}));
+ $('evidence').replaceChildren(...state.evidence.map(e=>{const div=text('div','','source evidence-card');div.id=e.evidenceId;div.dataset.evidence=e.evidenceId;div.tabIndex=0;div.addEventListener('focus',()=>highlightEvidence(e.evidenceId));div.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));const plain=evidencePlainEnglish(e);const headline=text('p','','evidence-headline');headline.textContent=plain;const detail=text('details','','evidence-raw');const sourceSummary=text('summary','Source detail');sourceSummary.addEventListener('click',event=>{event.preventDefault();openSourceDetail(e);});detail.append(sourceSummary,text('code',evidenceDetailLabel(e)),text('small',e.excerpt+' · Snapshot '+e.snapshotDigest.slice(0,10)));div.append(headline,detail);return div;}));
  renderCapacity();
  const online=state.snapshot.cells.filter(c=>c.online);$('shock-cell').replaceChildren(...online.map(c=>{const o=text('option',c.cellId);o.value=c.cellId;return o;}));if(online.length)$('shock-cell').value=online.at(-1).cellId;
  const current=[...state.runs].reverse().find(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest);run=current??null;
@@ -93,7 +93,15 @@ function render(){
  $('model-output').hidden=!run;$('model-output').toggleAttribute('hidden',!run);$('model-output').classList.toggle('findings-empty',!run);$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));const chip=$('connection-ready-chip');if(chip){chip.hidden=!run;chip.textContent=run?'CONNECTION · identity ready · route locked':'';}if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;document.querySelector('.route-preflight').open=false;$('model-output').open=true;}if(!run){document.querySelector('.route-preflight').open=true;$('model-output').open=false;}
  // After a capacity shock, keep a reserved findings summary so the side zone never reads as an empty box.
  const findingsReserve=$('findings-reserve');
- if(findingsReserve){const needsReserve=!run&&state.decision.status==='invalidated';findingsReserve.hidden=!needsReserve;findingsReserve.classList.toggle('findings-reserve-active',needsReserve);if(needsReserve)findingsReserve.textContent='CLEARED · Verified findings wiped by the capacity change · '+state.analysis.recovery.feasibleCount+' feasible paths remain · Reinvestigate source evidence to refill facts.';}
+ if(findingsReserve){
+  const cleared=!run&&state.decision.status==='invalidated';
+  const pending=!run&&state.decision.status!=='invalidated'&&document.body.dataset.activeStage==='investigation';
+  const needsReserve=cleared||pending;
+  findingsReserve.hidden=!needsReserve;
+  findingsReserve.classList.toggle('findings-reserve-active',needsReserve);
+  if(cleared)findingsReserve.textContent='CLEARED · Verified findings wiped by the capacity change · '+state.analysis.recovery.feasibleCount+' feasible paths remain · Reinvestigate source evidence to refill facts.';
+  else if(pending)findingsReserve.textContent='PENDING · Evidence findings reserved here after Investigate · 16px status keeps the side zone filled.';
+ }
  if(!run&&$('investigation-pending').hidden)$('investigation-status').textContent=investigationStatus();
  $('comparison').replaceChildren(...state.runs.filter(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest).map(r=>text('p',`${r.run.sample?'Sample · offline walkthrough; no live AI':r.calls.at(-1)?.returnedModel??'identity unavailable'} · ${(r.run.elapsedMs/1000).toFixed(1)}s · ${r.claims.accepted.length} validated / ${r.claims.rejected.length} rejected · ${r.proposalValid?'proposal valid':r.run.stopReason}`)));
  if(run){$('investigation-handoff').textContent=investigationHandoff(run,$('provider').value);$('investigation-highlights').replaceChildren(...investigationHighlights(run,state.analysis).map(({value,label})=>{const item=text('div','','investigation-metric');item.append(text('strong',value),text('span',label));return item;}));$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s`;const analysis=summarizeAnalysis(run.narrative);$('narrative').textContent=analysis.summary;$('analysis-full').textContent=analysis.full;$('read-full-analysis').hidden=!analysis.truncated;$('read-full-analysis').disabled=reviewIndex!==null;
@@ -439,8 +447,11 @@ function renderFactory(){
   if(legend){
    const launcher=legend.querySelector('#plant-launcher');
    legend.replaceChildren();
-   for(const [mark,label] of [['●','RUNNING'],['▣','HELD / BLOCKED'],['✕','OFFLINE'],['◆','FEASIBLE RECOVERY']]){
-    const chip=document.createElement('span');chip.className='scene-legend-chip';chip.textContent=mark+' '+label;legend.append(chip);
+   // Guided mode: launcher only — legend chips collide with the action bar at 1366.
+   if(!guide){
+    for(const [mark,label] of [['●','RUNNING'],['▣','HELD / BLOCKED'],['✕','OFFLINE'],['◆','FEASIBLE RECOVERY']]){
+     const chip=document.createElement('span');chip.className='scene-legend-chip';chip.textContent=mark+' '+label;legend.append(chip);
+    }
    }
    if(launcher){legend.append(launcher);}
   }
