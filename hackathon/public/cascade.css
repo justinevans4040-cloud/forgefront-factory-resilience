@@ -43,10 +43,10 @@
 .plant-sub{min-height:18px}.plant-tile[data-recovered=true] .plant-machinery{filter:drop-shadow(0 0 10px #56ff9a66)}
 .plant-room .plant-tile:not(.cascade-hit) .plant-machine-light{filter:drop-shadow(0 0 6px #8affb8)}
 .plant-offline-mark{position:absolute;top:8px;right:10px;font-size:22px;line-height:1;color:#c5ccd4;text-shadow:0 0 10px #c5ccd466;pointer-events:none;z-index:2}
-.plant-offline-chip{display:none!important}
+.plant-offline-chip{position:absolute;left:10px;bottom:8px;z-index:2;padding:2px 8px;border:1px solid #c5ccd4;border-radius:4px;background:#1a2420ee;color:#c5ccd4;font-size:12px;font-weight:800;letter-spacing:.08em;pointer-events:none;box-shadow:0 0 12px #c5ccd433}
 .plant-tile strong{padding-right:28px}
 .plant-machinery{margin-top:2px;min-height:88px;height:auto;max-height:120px}
-.plant-state,.plant-sub{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+.plant-state,.plant-sub{overflow:visible;text-overflow:clip;white-space:normal;max-width:100%;line-height:1.2}
 @keyframes machine-light{50%{opacity:.4;filter:drop-shadow(0 0 10px #8affb8)}}
 @keyframes recovery-glow{0%,100%{box-shadow:0 0 18px #37ff9438,inset 0 0 14px #37ff9418}50%{box-shadow:0 0 34px #37ff9468,inset 0 0 24px #37ff9430}}
 @keyframes plant-tile-breathe{0%,100%{box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 12px #56ff9a14}50%{box-shadow:0 14px 34px #0009,inset 2px 2px #def9e038,0 18px 0 -14px #0006,0 0 26px #56ff9a33}}

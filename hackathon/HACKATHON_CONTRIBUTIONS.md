@@ -2,6 +2,17 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit thirty-one
+
+- Persistent scene legend restored in guided mode; cascade OFFLINE chips and emerald mills→lathes→inspection living flow; board task bands no longer collide Due with Awaiting approval; investigation narrative/claims never hard-clamped. Visual audit gate re-proved under run35 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).
+- No-cap plant browser proof at 1,000 and 5,000 machines with viewport-fit glyph LOD (`+N more`); plant-cap audit clean; cascade FPS profiles recorded honestly (headless ~14–19 fps after thinning — 60 fps target remains open).
+- Genuine Muse Wonder reviews 137–140: best cascade **8**, README **9**, guided **8–9**; retained direction remains iteration 82.
+- Bounded live Wonder and Baseten investigation both MODEL_STOP with 3 validated claims; Fireworks never called. The Britt naming, Authorize wall and public-tree checks stay green.
+
+## Independent audit thirty
+
+- Bidirectional findings↔station highlight, OFFLINE × markers, stronger mills↔lathes cascade flow, Authorize prominence. Visual audit gate under run34 (51 / 0). Wonder rounds 133–136 recorded; cascade best this audit 7; retained direction iteration 82.
+
 ## Independent audit twenty-nine
 
 - Factory scene fill gate: viewBox matches live SVG aspect exactly (no letterbox floor), layered machine bevels, denser living material flow, proof-chain glow, and investigation rail that never line-clamps narrative. Visual audit gate re-proved under run32 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).

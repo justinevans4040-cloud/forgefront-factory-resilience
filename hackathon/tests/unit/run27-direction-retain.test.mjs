@@ -17,7 +17,7 @@ test('design direction retention rejects weaker Wonder rounds',()=>{
 test('cascade department status never mixes offline counts with RUNNING for the same hit',()=>{
  assert.equal(departmentStatus({recovered:false,active:true,offlineCount:5,runningCount:0,members:5,hit:false}),'RUNNING · 5 machines');
  assert.equal(departmentStatus({recovered:false,active:true,offlineCount:5,runningCount:0,members:5,hit:true}),'OFFLINE · 5 machines');
- assert.equal(departmentStatus({recovered:false,active:true,offlineCount:2,runningCount:3,members:5,hit:true}),'2 OFFLINE · 3 RUNNING');
+ assert.equal(departmentStatus({recovered:false,active:true,offlineCount:2,runningCount:3,members:5,hit:true}),'2 OFF / 3 RUN');
  assert.equal(departmentStatus({recovered:true,active:true,offlineCount:5,runningCount:0,members:5,hit:true}),'RECOVERY ACCEPTED');
 });
 

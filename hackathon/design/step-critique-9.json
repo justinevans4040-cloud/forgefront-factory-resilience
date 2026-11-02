@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 9,
   "score": 8,
-  "wowScore": 7,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Give the 18-event chain more scene depth: enlarge the three proof stages to fill the scene zone and add emerald glow to the active READY stage only."
+      "priority": "high",
+      "change": "Keep the three proof stages in their reserved horizontal chain with READY versus LOCKED carried by text and pattern, not colour alone."
     },
     {
-      "priority": "P2",
-      "change": "Keep Verify, Seal and Retain as sequential locked states with plain text reasons, one primary Verify ledger in the action bar."
+      "priority": "medium",
+      "change": "Enlarge the 70, 35h and 48h before-after metrics and align them as tabular figures in the side zone."
     },
     {
-      "priority": "P2",
-      "change": "Fit the passphrase guidance in the reserved side zone at 16px without scrolling by tightening spacing, not type size."
+      "priority": "low",
+      "change": "Give Verify ledger a visible focus ring and aria-live confirmation target; keep passphrase guidance at 16px minimal narration."
     }
   ]
 }

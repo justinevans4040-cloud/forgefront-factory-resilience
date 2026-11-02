@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 6,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "CELL-MILL-2 already reads OFFLINE with hatching; add a clear x marker and ensure no emerald route passes through it."
+      "priority": "high",
+      "change": "Keep CELL-MILL-2 fully silver cross-hatched with cross marker and OFFLINE text and ensure no emerald route passes through it; retain the constrained Split card in the same stopped treatment."
     },
     {
-      "priority": "P2",
-      "change": "Restore living emerald flow only on the remaining feasible CELL-MILL-1 route, with reduced-motion fallback to pattern and text."
+      "priority": "medium",
+      "change": "Clarify the side zone: label the investigation control as the evidence task, distinct from any provider-identity readiness check, with its own status line."
     },
     {
-      "priority": "P2",
-      "change": "Separate provider-identity readiness checks from the reinvestigation evidence task in the side zone with distinct status lines."
+      "priority": "low",
+      "change": "Reduce the empty verified-findings zone by vertically centring its collapsed header or adding the 3 to 2 feasible-paths summary at 16px."
     }
   ]
 }

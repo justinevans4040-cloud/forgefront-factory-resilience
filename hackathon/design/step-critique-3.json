@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 3,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "On selecting a path, surface the one-click Approve action followed by the Authorize this decision wall, with status centre in the action bar."
+      "priority": "high",
+      "change": "Ensure selecting any path visibly arms the one primary as Review recovery option, leading to one-click Approve and then the Authorize this decision wall; keep No acceptance recorded until that flow completes."
     },
     {
-      "priority": "P2",
-      "change": "Glow only the feasible selected route in emerald through CELL-MILL-1 and CELL-MILL-2; leave unselected routes dim silver."
+      "priority": "medium",
+      "change": "Add selected-path state glow and an emerald feasible route through the scene while the unselected paths stay silver and static."
     },
     {
-      "priority": "P2",
-      "change": "Enlarge path finish and cost metrics to 26px tabular figures for faster comparison at 1366x768."
+      "priority": "low",
+      "change": "Align side comparison finish and cost figures in tabular columns at 26px for faster tradeoff scanning."
     }
   ]
 }

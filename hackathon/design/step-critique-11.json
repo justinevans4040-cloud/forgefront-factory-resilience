@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 11,
   "score": 9,
   "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep the required order intact; enlarge the hero and cascade visuals so the full-shop flow, silver OFFLINE wave and emerald recovery are legible at first scroll."
+      "priority": "high",
+      "change": "Keep the required presentation order exactly: logo, one-line pitch, Live demo link, Powered by partners, hero and cascade visuals, then What you will see, Meet The Britt, why it matters, how Meta models are used; increase cascade caption and screenshot scale so the 35-operation freeze and emerald feasible path are legible without zooming."
     },
     {
-      "priority": "P2",
-      "change": "Make the cascade caption a concrete three-beat legend matching the image: emerald flow, silver OFFLINE, emerald restart."
+      "priority": "medium",
+      "change": "Make the Live demo link a larger at least 36px target with focus ring, placed immediately after the pitch as required."
     },
     {
-      "priority": "P2",
-      "change": "Raise small table and caption text toward 16px for judge readability while preserving the one-line pitch and Live demo prominence near the top."
+      "priority": "low",
+      "change": "Tighten the What you will see rows to bolder verb leads at 16px so a judge grasps the five beats in one scan."
     }
   ]
 }

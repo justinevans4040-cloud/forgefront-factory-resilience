@@ -24,6 +24,8 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="../assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade with every machine across seven departments in black, emerald and silver" /></p>
 
+<p align="center"><em>Full-shop cascade — 35 affected operations freeze across the plant; living emerald recovery restarts the feasible mills → lathes path while silver OFFLINE marks every stopped machine.</em></p>
+
 ## What you'll see
 
 1. **Find the fault.** Certificate 120 versus receiving 80 freezes seventy parts on the line.

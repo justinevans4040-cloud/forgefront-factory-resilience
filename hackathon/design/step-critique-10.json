@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 10,
-  "score": 9,
-  "wowScore": 9,
+  "score": 7,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Strengthen living material flow across all seven departments: emerald animated routes into CNC mills and lathes, silver cross-hatching with x and OFFLINE on stopped machines."
+      "priority": "high",
+      "change": "Increase legibility of department counts: pair every OFFLINE icon group with Running counts in 16px text, as the current small machine glyphs are hard to tally at 1366x768."
     },
     {
-      "priority": "P2",
-      "change": "Fix bottom department labels so OFFLINE counts sit inside their cards and never overlap the pager controls at 1366x768."
+      "priority": "medium",
+      "change": "Strengthen the single emerald mills to lathes recovery arc with layered glow and one cinematic trace on state change, then static, removed under reduced motion."
     },
     {
-      "priority": "P2",
-      "change": "Add depth via layered machine shadows and state glow on RUNNING machines, fully stilled under reduced motion while legend pattern and text remain."
+      "priority": "low",
+      "change": "Raise the footer department navigation targets to at least 36px and add focus rings to Recording view and Return to recovery room."
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 2,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Make verified findings highlight the matching SVG stations bidirectionally, with a 2px emerald focus ring on keyboard focus."
+      "priority": "high",
+      "change": "Separate provider-identity readiness from the investigation evidence panel with distinct headings, status and controls when those panels appear; keep Verified findings as the evidence task."
     },
     {
-      "priority": "P2",
-      "change": "Add depth and a single cinematic trace from Certificate 120 to Receiving 80 when findings open, then settle static."
+      "priority": "medium",
+      "change": "Raise the three finding rows to full 16px labels and bind each verified fact to bidirectional highlighting with its scene track or station."
     },
     {
-      "priority": "P2",
-      "change": "Keep provider-identity readiness separate from this investigation evidence panel under distinct headings and controls."
+      "priority": "low",
+      "change": "Add a single emerald route-trace animation on findings opening, then hold static, fully removed under reduced motion."
     }
   ]
 }

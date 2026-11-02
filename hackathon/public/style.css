@@ -1084,9 +1084,10 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
  body[data-active-stage=investigation] .investigation-metric strong{font-size:22px!important}
  body[data-active-stage=investigation] .investigation-metric span{font-size:12px!important;margin-top:2px!important}
  body[data-active-stage=investigation] .analysis-brief{margin:4px 0 0!important;padding:0!important;border:0!important}
- body[data-active-stage=investigation] #narrative{font-size:15px!important;line-height:1.35!important;margin:0 0 6px!important;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;max-height:4.2em}
+ /* audit31: never hard-clamp narrative/claims — JS summary + Read full analysis modal keep the rail short; clamps caused border-through-text and clipping */
+ body[data-active-stage=investigation] #narrative{font-size:15px!important;line-height:1.35!important;margin:0 0 6px!important;display:block!important;overflow:visible!important;max-height:none!important;-webkit-line-clamp:unset!important}
  body[data-active-stage=investigation] #read-full-analysis{min-height:36px;font-size:15px;padding:6px 12px;margin:0!important;align-self:flex-start}
- body[data-active-stage=investigation] #claims{display:flex!important;flex-wrap:wrap;gap:4px;margin:4px 0 0!important;max-height:72px;overflow:hidden}
+ body[data-active-stage=investigation] #claims{display:flex!important;flex-wrap:wrap;gap:4px;margin:4px 0 0!important;max-height:none!important;overflow:visible!important}
  body[data-active-stage=investigation] #claims .verified-finding{flex:1 1 140px;padding:4px 8px!important;margin:0!important}
  body[data-active-stage=investigation] #claims .verified-finding>summary{font-size:13px!important;line-height:1.25!important;min-height:0!important}
  body[data-active-stage=investigation] #claims .verified-finding>small{display:none!important}
@@ -1117,10 +1118,10 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
  body[data-active-stage=decision] .decision{flex:0 0 auto!important;padding:8px!important}
 }
 
-/* audit26: keep decision-bar clear of legend; raise factory fill at laptop widths */
+/* audit26/31: keep decision-bar clear; keep a compact persistent scene legend (Wonder ask) */
 @media(min-width:901px){
- body[data-guided=true] #factory-stage .factory-legend{display:none!important}
- body[data-guided=true] #factory-stage{padding-bottom:56px!important}
+ body[data-guided=true] #factory-stage .factory-legend{display:flex!important;flex-wrap:wrap;align-items:center;gap:8px 14px;font-size:12px!important;line-height:1.2!important;margin:0 0 4px!important;max-height:none!important;overflow:visible!important;color:#c5ccd4;letter-spacing:.03em}
+ body[data-guided=true] #factory-stage{padding-bottom:56px!important;padding-top:4px!important}
  body[data-guided=true] #decision-bar{bottom:4px!important}
  body[data-guided=true] #factory-svg{flex:1 1 auto!important;min-height:320px!important}
 }
@@ -1243,3 +1244,18 @@ body[data-active-stage=investigation] #investigation-status,body[data-active-sta
 #factory-svg .factory-node.running{filter:drop-shadow(0 0 18px #A8F04A66)}
 body[data-guided=true][data-active-stage=investigation] .stage:not([data-has-findings=true]) .investigation-task{padding:10px;border:1px solid #5f7a68;border-radius:8px;background:linear-gradient(140deg,#152219,#0b130e);min-height:120px}
 body[data-guided=true][data-active-stage=investigation] .stage:not([data-has-findings=true]) #investigation-status{font-size:16px!important;line-height:1.4!important;color:#e8f6ee}
+#factory-svg .node-caption{font-size:16px!important;fill:#d7e4db}
+body[data-guided=true][data-active-stage=board] .proposal-task{border-style:dashed!important;border-color:#c5ccd488!important}
+body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{border-style:solid!important;border-color:#A8F04A!important}
+body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims:empty::before{content:"Verified facts reserved · run investigation to fill";display:block;font-size:16px;color:#c5ccd4;padding:8px 0}
+
+/* audit31: Wonder cascade/guided wow — stronger living flow, OFFLINE language, legend chips, Authorize prominence */
+#factory-stage .factory-legend .scene-legend-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border:1px solid #5f7a68;border-radius:999px;background:#0e1812cc;font-size:12px;letter-spacing:.04em;color:#d7e8dc}
+#factory-svg .living-spine{stroke-width:5;filter:drop-shadow(0 0 10px #56ff9acc)}
+#factory-svg .material-flow{filter:drop-shadow(0 0 10px #A8F04Acc)}
+.plant-legend span{font-size:15px!important;letter-spacing:.05em}
+.plant-tile.cascade-hit .plant-state{font-size:16px!important;letter-spacing:.05em}
+#factory-svg .offline-label{fill:#C5CCD4;font-weight:800;letter-spacing:.06em;filter:drop-shadow(0 0 6px #C5CCD466)}
+body[data-guided=true][data-active-stage=decision] #authorize-wall h2{font-size:26px}
+body[data-guided=true] .evidence-card summary,body[data-guided=true] .evidence-card button{min-height:36px;font-size:16px}
+body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:30px!important}

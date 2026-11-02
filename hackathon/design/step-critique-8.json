@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 8,
-  "score": 9,
-  "wowScore": 8,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep 3 BLOCKED PRIOR and 3 PROPOSED visibly coexisting; label replacement tasks UNTRACKED UNTIL APPROVAL beside the approved revised plan status."
+      "priority": "high",
+      "change": "Preserve coexistence wording: 3 BLOCKED prior, approved plan, and 3 PROPOSED replacements awaiting approval, all visible without implying the proposals are tracked."
     },
     {
-      "priority": "P2",
-      "change": "Show CELL-MILL-2 as OFFLINE with silver hatching and x marker in the station zone, matching step 6 and 7."
+      "priority": "medium",
+      "change": "Mark CELL-MILL-2 OFFLINE with silver hatching and cross marker inside its station card to match steps 6 and 7, retaining replan required text."
     },
     {
-      "priority": "P2",
-      "change": "Add a brief cinematic replanning trace from CELL-MILL-1 to the three proposed tasks, removed under reduced motion."
+      "priority": "low",
+      "change": "Un-truncate task t3 within its card and keep Approve revised tasks as the single emerald primary."
     }
   ]
 }

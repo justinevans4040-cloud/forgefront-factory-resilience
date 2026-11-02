@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 5,
   "score": 9,
-  "wowScore": 9,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep CELL-MILL-2 preview in silver cross-hatching with x marker and plain OFFLINE wording; add WILL GO OFFLINE as the explicit preview label."
+      "priority": "high",
+      "change": "Strengthen the preview distinction: keep CELL-MILL-2 silver cross-hatched with cross marker and plain OFFLINE preview text, distinct from the applied offline state in later steps."
     },
     {
-      "priority": "P2",
-      "change": "Intensify the emerald flow and glow on the accepted path before the shock so invalidation reads cinematically in one 240ms trace."
+      "priority": "medium",
+      "change": "Enlarge the 24h to 0h capacity shift to headline metric scale and tie its glow to the highlighted feasible route."
     },
     {
-      "priority": "P2",
-      "change": "Make the capacity preview 24h to 0h a 26px tabular metric centred above the line for instant reading."
+      "priority": "low",
+      "change": "Confirm the machine selector is at least 36px with visible focus ring and labelled effect: Will invalidate acceptance."
     }
   ]
 }

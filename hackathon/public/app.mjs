@@ -276,7 +276,7 @@ function renderFactory(){
     });
     scene.tasks.forEach((task,i)=>{const g=add('g',{'aria-label':'Inspect tracked task '+(i+1)+': '+task.title},null,hero),x=24+i*(800/scene.tasks.length);box(x,height-70,Math.min(80,800/scene.tasks.length-4),44,g,i===inspectedTask?'#A8F04A':'#71877a');label(x+10,height-40,String(i+1),20,g);activate(g,()=>{inspectedTask=i;renderBoard();renderFactory();});});
    }else{
-   add('text',{x:24,y:32,'font-size':20,fill:'#e8ede6','font-weight':700},scene.blocked+' BLOCKED PRIOR · '+scene.tasks.length+(scene.pending?' PROPOSED · UNTRACKED UNTIL APPROVAL':' TRACKED TASKS'),hero);
+   add('text',{x:24,y:32,'font-size':18,fill:'#e8ede6','font-weight':700},scene.pending?(scene.blocked+' BLOCKED prior · approved plan · '+scene.tasks.length+' PROPOSED replacements awaiting approval'):(scene.blocked+' BLOCKED PRIOR · '+scene.tasks.length+' TRACKED TASKS'),hero);
    const machineContext=add('g',{'data-scene-band':'board-machines'},null,hero);
    const stationY=58,stationH=140;
    const receivingSlot={x:24,width:200};
@@ -302,10 +302,15 @@ function renderFactory(){
     label(x+14,y+30,String(i+1).padStart(2,'0')+' · '+task.id,22,tile,{'font-weight':700,fill:'#88eba8'});
     const titleLines=tileTitle(task.title,Math.floor((tileW-28)/10),slot.titleLines);
     titleLines.forEach((line,n)=>label(x+14,y+62+n*32,line,20,tile,{'font-weight':600}));
-    label(x+14,y+tileH-52,'Due +'+Number(task.dueHours.toFixed(2))+'h',18,tile);
-    label(x+14,y+tileH-20,'Awaiting approval',18,tile,{fill:'#c5ccd4'});
+    const dependsY=y+(slot.dependsY??slot.titleBottom+26);
+    const dueY=y+(slot.dueY??tileH-58);
+    const statusY=y+(slot.statusY??tileH-22);
+    const barY=y+(slot.barY??tileH-86);
+    if(dependsY+18<=barY-4)label(x+14,dependsY,task.dependsOn.length?'After '+task.dependsOn.join(', '):'Ready to begin',18,tile,{fill:'#88eba8'});
+    label(x+14,dueY,'Due +'+Number(task.dueHours.toFixed(2))+'h',18,tile);
+    label(x+14,statusY,'Awaiting approval',18,tile,{fill:'#c5ccd4'});
     tile.querySelector('rect').setAttribute('stroke-dasharray',i===inspectedTask?'none':'6 4');
-    if(tileH>230){const maxDue=Math.max(...scene.tasks.map(t=>t.dueHours),1),barY=y+tileH-110;box(x+14,barY,tileW-28,14,tile,'#71877a','#0b130e');add('rect',{x:x+14,y:barY,width:(tileW-28)*Math.max(0,task.dueHours)/maxDue,height:14,rx:4,fill:'#88eba8'},null,tile);label(x+14,barY-16,task.dependsOn.length?'After '+task.dependsOn.join(', '):'Ready to begin',18,tile);}
+    if(tileH>230&&barY+16<=dueY-6&&dependsY+18<=barY-2){const maxDue=Math.max(...scene.tasks.map(t=>t.dueHours),1);box(x+14,barY,tileW-28,12,tile,'#71877a','#0b130e');add('rect',{x:x+14,y:barY,width:(tileW-28)*Math.max(0,task.dueHours)/maxDue,height:12,rx:4,fill:'#88eba8'},null,tile);}
    });
    }
   }else{
@@ -372,8 +377,11 @@ function renderFactory(){
   const legend=$('factory-legend');
   if(legend){
    const launcher=legend.querySelector('#plant-launcher');
-   legend.replaceChildren(document.createTextNode('RUNNING · emerald glow   HELD · silver edge   OFFLINE · hatch + ×   FEASIBLE · accepted path'));
-   if(launcher){legend.append(document.createTextNode(' · '),launcher);}
+   legend.replaceChildren();
+   for(const [mark,label] of [['●','RUNNING'],['▣','HELD / BLOCKED'],['✕','OFFLINE'],['◆','FEASIBLE RECOVERY']]){
+    const chip=document.createElement('span');chip.className='scene-legend-chip';chip.textContent=mark+' '+label;legend.append(chip);
+   }
+   if(launcher){legend.append(launcher);}
   }
   const node=(x,y,title,sub,kind,parent,width=186,detail='')=>{
    const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)+(detail?' · '+detail:'')},null,parent);
@@ -385,7 +393,8 @@ function renderFactory(){
    add('rect',{x:x+3,y:y+3,width:width-6,height:10,rx:3,fill:stopped?'#6d757c88':kind==='running'?'#A8F04A33':'#c5ccd422',class:'machine-bevel'},null,g);
    add('rect',{x:x+width-12,y:y+12,width:8,height:nodeH-18,rx:2,fill:stopped?'#3a424888':kind==='running'?'#163826aa':'#101a14aa',class:'machine-bevel'},null,g);
   if(stopped){g.querySelector('rect').setAttribute('fill','url(#preview-hatch)');}
-  if(stopped){add('path',{d:`M ${x+10} ${y+8} l ${width-20} ${Math.max(36,nodeH*0.35)} m 0 -${Math.max(36,nodeH*0.35)} l -${width-20} ${Math.max(36,nodeH*0.35)}`,stroke:'#C5CCD4','stroke-width':3},null,g);label(x+width-28,y+Math.round(nodeH*0.28),'×',28,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
+  // Hatch + corner × stay below the title band so diagonals never cross the CELL-* label (Wonder P1).
+  if(stopped){const hatchTop=y+Math.round(nodeH*0.34);add('path',{d:`M ${x+14} ${hatchTop} l ${width-28} ${Math.max(28,nodeH*0.42)} m 0 -${Math.max(28,nodeH*0.42)} l -${width-28} ${Math.max(28,nodeH*0.42)}`,stroke:'#C5CCD4','stroke-width':2.5},null,g);label(x+width-28,y+Math.round(nodeH*0.26),'×',26,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
   if(preview){g.classList.add('preview-offline');g.querySelector('rect').setAttribute('stroke-dasharray','8 5');label(x+width-30,y+Math.round(nodeH*0.28),'×',24,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
   if(kind==='running')add('circle',{cx:x+width-18,cy:y+18,r:6,fill:'#A8F04A',class:'machine-live-light'},null,g);
   const clip=Math.max(18,Math.floor(width/9));

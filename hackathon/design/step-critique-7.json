@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 7,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Make the constrained Split path unselectable with silver hatching, x marker and the two-online-cells reason at 16px."
+      "priority": "high",
+      "change": "Keep the constrained Split path non-selectable with cross marker, hatching and the two-online-cells reason, while the two feasible paths keep clear radio targets at least 36px."
     },
     {
-      "priority": "P2",
-      "change": "On selection, present one-click Approve then the Authorize this decision wall; keep PRIOR ACCEPTANCE INVALIDATED in the action-bar centre."
+      "priority": "medium",
+      "change": "Make PRIOR ACCEPTANCE INVALIDATED the centre status in the action bar at 16px so the fresh-review requirement cannot be missed."
     },
     {
-      "priority": "P2",
-      "change": "Glow the two remaining feasible paths in emerald and dim the constrained path to silver."
+      "priority": "low",
+      "change": "Add emerald state glow to the newly feasible route only after a revised option is selected, animated once then static."
     }
   ]
 }

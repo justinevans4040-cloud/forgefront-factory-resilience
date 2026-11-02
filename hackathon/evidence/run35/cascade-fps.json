@@ -1,0 +1,27 @@
+{
+  "profiles": [
+    {
+      "machines": 1000,
+      "machineCount": 1000,
+      "samples": 49,
+      "avgFrameMs": 73.6,
+      "fps": 13.6,
+      "p95FrameMs": 116.7,
+      "reducedMotion": false,
+      "plantFolder": "plant-1000",
+      "viewport": "1920x1080"
+    },
+    {
+      "machines": 5000,
+      "machineCount": 5000,
+      "samples": 56,
+      "avgFrameMs": 51.59,
+      "fps": 19.4,
+      "p95FrameMs": 83.3,
+      "reducedMotion": false,
+      "plantFolder": "plant-5000",
+      "viewport": "1920x1080"
+    }
+  ],
+  "note": "Honest sustained requestAnimationFrame samples during cascade trigger in headless Chrome after large-plant particle thinning. Target 60fps remains open."
+}

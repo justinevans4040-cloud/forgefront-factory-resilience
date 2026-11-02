@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 4,
-  "score": 9,
-  "wowScore": 8,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Preserve the clear PROPOSED and UNTRACKED UNTIL APPROVAL state; add emerald glow only to task t1 as the current proposed item."
+      "priority": "high",
+      "change": "Keep PROPOSED and UNTRACKED UNTIL APPROVAL on every replacement card and in the action bar so the pending proposal never reads as tracked work."
     },
     {
-      "priority": "P2",
-      "change": "Animate The Britt board build as a short cinematic sequence of the three task cards, disabled under reduced motion."
+      "priority": "medium",
+      "change": "Un-truncate task t3 with a two-line wrap inside its reserved card zone and keep all three cards equal depth for cinematic board rhythm."
     },
     {
-      "priority": "P2",
-      "change": "Ensure the side-zone proposal detail fits its reserved zone at 16px without scrolling by condensing secondary lines."
+      "priority": "low",
+      "change": "Add focus ring and arrow-key movement across the 1-2-3 proposal selector in the side zone."
     }
   ]
 }

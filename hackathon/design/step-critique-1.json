@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 132,
+  "iteration": 140,
   "step": 1,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Enlarge the factory scene within its reserved zone so stations and jobs fill >=70% of main without crowding the right callout zone."
+      "priority": "high",
+      "change": "Enlarge the factory scene depth: add layered machine depth and emerald material-flow trace from RECEIVING toward jobs so the 120 versus 80 mismatch reads cinematically at a glance."
     },
     {
-      "priority": "P2",
-      "change": "Strengthen living flow along the DOCK-QA route with emerald state glow on RECEIVING hold, keeping reduced-motion pattern and x HOLD text intact."
+      "priority": "medium",
+      "change": "Tighten right-zone callouts to 16px body with larger 120/80 metrics and keep Source detail rows at least 36px tall for pointer and keyboard clarity."
     },
     {
-      "priority": "P2",
-      "change": "Raise small station detail text to 16px body where space allows and keep micro-labels >=12px with clearer silver contrast."
+      "priority": "low",
+      "change": "Make DOES NOT MATCH span only the aligned track gap and add a focus ring to the focusable scene nodes."
     }
   ]
 }
