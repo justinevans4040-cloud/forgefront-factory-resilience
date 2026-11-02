@@ -22,16 +22,23 @@ export function mountCascade({loadPlant,launcher,workflow}){
  floor.append(tiles,canvas);canvas.style.pointerEvents='none';canvas.style.zIndex='3';tiles.style.zIndex='1';navigation.append(overview,previous,pageLabel,next);dialog.append(top,controls,consent,metrics,caption,legend,floor,navigation);document.body.append(dialog);
  let selectedMachine=null,plant,result,department=null,page=0,active=false,recovered=false,start=0,raf=0,highlighted=new Set(),resize,envelope=null,busy=false;
  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
- const calculate=()=>analyzePlant(plant,{lotId:plant.lots[0].id,failure:failureSelect.value,strategy:strategySelect.value});
+ let calcCache=null;
+ const calculate=()=>{
+  const key=plant.machines.length+'|'+plant.lots[0].id+'|'+failureSelect.value+'|'+strategySelect.value+'|'+active+'|'+recovered;
+  if(calcCache&&calcCache.key===key)return calcCache.result;
+  const next=analyzePlant(plant,{lotId:plant.lots[0].id,failure:failureSelect.value,strategy:strategySelect.value});
+  calcCache={key,result:next};return next;
+ };
  const format=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:1}).format(n);
  function setConsent(open){
   consent.hidden=!open;
   if(open){approve.textContent='Approve '+strategySelect.value;approve.disabled=false;approve.focus();}
   else{envelope=null;if(authorize.open)authorize.close();}
  }
- function draw(){
+ function draw(reason='full'){
   if(!plant||!dialog.open)return;
   dialog.dataset.cascadeActive=String(active&&!recovered);
+  // Resize during cascade must not re-run analyzePlant (calcCache) — but must reflow tile geometry so bottom-row cards stay inside the floor.
   result=calculate();const groups=plantGroups(result.machines),items=department?groups.find(g=>g.id===department).machines:groups;
   // Keep every department on one overview page at 1366-wide: two rows beat pagination for the cascade wow moment.
   // Fit every department on one overview page in a balanced 4×2 / 4+3 grid (never a lonely bottom strip).
@@ -49,13 +56,21 @@ export function mountCascade({loadPlant,launcher,workflow}){
    card.dataset.offlineCount=String(offlineCount);card.dataset.memberCount=String(members.length);card.dataset.runningCount=String(runningCount);card.dataset.affectedIds=[...affectedIds].join(',');
    // Before the cascade wave reaches this tile, both lines read RUNNING from the same counts; after impact they share one OFFLINE derivation.
    const departmentState=departmentStatus({recovered,active,offlineCount,runningCount,members:members.length,hit:false});
-   const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':members.length+' machines';
-   card.append(el('strong',t.item.label),el('span',subLine,'plant-sub'),el('span',departmentState,'plant-state'));
+   const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':(members.length>=100?String(members.length):members.length+' machines');
+   const state=el('span',departmentState,'plant-state');state.style.minHeight='22px';state.style.display='block';
+   const title=el('strong',t.item.label);if((t.item.label||'').length>18)title.textContent=(t.item.label||'').slice(0,16)+'…';
+   card.append(title,el('span',subLine,'plant-sub'),state);
    const fullyOffline=active&&!recovered&&offlineCount>0&&offlineCount===members.length;
    if(fullyOffline)card.dataset.depthLayer=String(Math.min(4,Math.max(1,Math.round(depth)||1)));
    card.dataset.partialOffline=String(active&&!recovered&&offlineCount>0&&!fullyOffline);
    // Art stays running until the cascade wave hits the tile so glyphs never contradict the status line.
+   // Extreme plants: skip per-machine SVG glyphs on the overview (CSS hatch + canvas flow carry state; drill-in still draws glyphs).
+  const extremeArt=(plant.machines.length>=800)&&!department;
+  if(!extremeArt){
    const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},new Set(),recovered);card.querySelector('.plant-state').before(art);
+  }else{
+   const proxy=el('div',null,'plant-machinery-proxy');proxy.setAttribute('aria-hidden','true');card.querySelector('.plant-state').before(proxy);
+  }
    card.addEventListener('click',()=>{if(!department){department=t.item.id;page=0;draw();}else{highlighted=new Set();for(const op of plant.operations.filter(op=>op.machineId===t.item.id))for(const id of dependencyChain(plant,op.id)){const item=plant.operations.find(o=>o.id===id);highlighted.add(item.machineId);}caption.textContent='Dependency chain highlighted for '+t.item.label;draw();}});tiles.append(card);
   }
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;
@@ -66,10 +81,17 @@ export function mountCascade({loadPlant,launcher,workflow}){
  function paintMetrics(progress){
   const m=result.metrics;
   if(!active&&!recovered){
+   if(metrics.dataset.mode==='idle')return;
+   metrics.dataset.mode='idle';
    metrics.replaceChildren(...[['—','HOURS AT RISK'],['—','LATE ORDERS'],['—','COST AT RISK'],['—','SHIP SLIP · HOURS']].map(([n,label])=>{const cell=el('div');cell.append(el('strong',n),el('span',label));cell.append(el('small','Awaiting failure selection','plant-metric-wait'));return cell;}));
    return;
   }
-  metrics.replaceChildren(...[[m.lostHours*progress,'HOURS AT RISK'],[m.lateOrders*progress,'LATE ORDERS'],[m.exposureUsd*progress,'COST AT RISK'],[m.shipSlipHours*progress,'SHIP SLIP · HOURS']].map(([n,label])=>{const cell=el('div');cell.append(el('strong',(label==='COST AT RISK'?'$':'')+format(n)),el('span',label));return cell;}));
+  const values=[[m.lostHours*progress,'HOURS AT RISK'],[m.lateOrders*progress,'LATE ORDERS'],[m.exposureUsd*progress,'COST AT RISK'],[m.shipSlipHours*progress,'SHIP SLIP · HOURS']];
+  const key=values.map(([n,label])=>(label==='COST AT RISK'?'$':'')+format(n)).join('|');
+  if(metrics.dataset.mode==='live'&&metrics.dataset.key===key)return;
+  metrics.dataset.mode='live';metrics.dataset.key=key;
+  // Fixed min-height cells so number updates never reflow the floor (ResizeObserver FPS cliff).
+  metrics.replaceChildren(...values.map(([n,label])=>{const cell=el('div');cell.style.minHeight='64px';cell.append(el('strong',(label==='COST AT RISK'?'$':'')+format(n)),el('span',label));return cell;}));
  }
  function refreshTileCache(){
   // Cache layout centers + status nodes once per draw/layout — never parse style or querySelector every frame.
@@ -114,22 +136,22 @@ export function mountCascade({loadPlant,launcher,workflow}){
   }
   animate.staticDirty=false;
  }
- function animate(now){if(!dialog.open)return;const sample=globalThis.__cascadeFpsSample;if(sample&&sample.collecting){if(sample.last)sample.frames.push(now-sample.last);sample.last=now;}
+ function animate(now){if(!dialog.open){raf=0;return;}const sample=globalThis.__cascadeFpsSample;if(sample&&sample.collecting){if(sample.last)sample.frames.push(now-sample.last);sample.last=now;}
   const progress=reduced.matches?1:Math.min(1,(now-start)/2400);
   const plantScale=Math.max(1,plant?.machines?.length||1);
   // Viewport LOD only — never fewer machines. Cached centers + dirty static layer keep 1k/5k toward 60fps.
   const heavy=plantScale>=400;
-  const extreme=plantScale>=1000;
-  const ultra=plantScale>=2500;
+  const extreme=plantScale>=800;
+  const ultra=plantScale>=1000;
   // Metrics DOM refresh is expensive — throttle independently of canvas paints.
-  const metricsTick=!heavy||Math.floor(now/(ultra?200:extreme?120:80))!==Math.floor((animate.lastMetrics||0)/(ultra?200:extreme?120:80));
+  const metricsTick=!heavy||Math.floor(now/(ultra?240:extreme?160:80))!==Math.floor((animate.lastMetrics||0)/(ultra?240:extreme?160:80));
   if(active&&metricsTick){animate.lastMetrics=now;paintMetrics(progress);}
   if(!animate.tileCache||animate.tileCache.nodes.length!==tiles.children.length)refreshTileCache();
   const cache=animate.tileCache;const maxDepth=cache.maxDepth||1;
   // DOM status only on state change (dirty tiles) — syncMachineArt never runs every frame.
-  const domTick=!heavy||Math.floor(now/(ultra?240:extreme?160:90))!==Math.floor((animate.lastDom||0)/(ultra?240:extreme?160:90));
-  animate.lastDom=now;
+  const domTick=!heavy||Math.floor(now/(ultra?280:extreme?180:90))!==Math.floor((animate.lastDom||0)/(ultra?280:extreme?180:90));
   if(domTick){
+   animate.lastDom=now;
    for(const tile of cache.nodes){
     const depthReady=active&&!recovered&&tile.depth<=progress*maxDepth;
     const hit=depthReady&&tile.affected&&!tile.partialFlag;
@@ -139,12 +161,18 @@ export function mountCascade({loadPlant,launcher,workflow}){
     tile.hitKey=key;tile.node.dataset.hitKey=key;
     tile.node.classList.toggle('cascade-hit',hit);tile.node.classList.toggle('cascade-partial',partial);
     if(tile.stateEl)tile.stateEl.textContent=departmentStatus({recovered,active,offlineCount:tile.offlineCount,runningCount:tile.runningCount,members:tile.memberCount,hit:hit||partial});
-    if(tile.subEl&&!department)tile.subEl.textContent=tile.memberCount+' machines';
-    let mark=tile.node.querySelector('.plant-offline-mark');
-    if(hit||partial){
-     if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
-     if(!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
-    }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
+    if(tile.subEl&&!department)tile.subEl.textContent=tile.memberCount>=100?String(tile.memberCount):tile.memberCount+' machines';
+    // Extreme plants: CSS hatch on .cascade-hit carries OFFLINE — extra mark/chip nodes inflate button scrollWidth and fail the clip gate.
+    if(!extreme){
+     let mark=tile.node.querySelector('.plant-offline-mark');
+     if(hit||partial){
+      if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
+      if(!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
+     }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
+    }else{
+     tile.node.querySelector('.plant-offline-mark')?.remove();
+     tile.node.querySelector('.plant-offline-chip')?.remove();
+    }
     // Extreme plants rely on tile CSS/hatch chips; glyph art flips only under lighter plants (LOD).
     if(!extreme)syncMachineArt(tile.node,hit||partial||recovered);
     // Heavy static layer is hit-agnostic — skip static-layer refreshes during the cascade wave.
@@ -164,10 +192,11 @@ export function mountCascade({loadPlant,launcher,workflow}){
   const nodes=cache.nodes;
   const drawFlow=(a,b,color,nowStamp,width=4.2,particles=9)=>{
    const mx=(a.cx+b.cx)/2,my=(a.cy+b.cy)/2-Math.min(72,Math.abs(b.cx-a.cx)*0.28);
-   const particleCount=ultra?0:extreme?Math.min(2,particles):heavy?Math.min(4,particles):particles;
-   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches||heavy?0:18;ctx.setLineDash(reduced.matches?[]:[16,8]);ctx.beginPath();ctx.moveTo(a.cx,a.cy);
+   const particleCount=ultra?0:extreme?Math.min(1,particles):heavy?Math.min(3,particles):particles;
+   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowBlur=0;ctx.setLineDash(reduced.matches||extreme?[12,10]:[16,8]);ctx.beginPath();ctx.moveTo(a.cx,a.cy);
    if(heavy)ctx.lineTo(b.cx,b.cy);else ctx.quadraticCurveTo(mx,my,b.cx,b.cy);
-   ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;
+   if(!reduced.matches&&extreme)ctx.lineDashOffset=-((nowStamp/20)%40);
+   ctx.stroke();ctx.setLineDash([]);ctx.lineDashOffset=0;
    if(reduced.matches||particleCount<=0)return;
    for(let p=0;p<particleCount;p++){
     const t=((nowStamp/8)+p*(1/Math.max(particleCount,1)))%1;
@@ -177,7 +206,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
    }
   };
   if(recovered&&nodes.length>1){
-   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,5.2,heavy?4:10);
+   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,5.2,heavy?2:10);
    if(!reduced.matches&&!extreme){const sweep=(now/6)%(box.width+180)-90;const grad=ctx.createLinearGradient(sweep-160,0,sweep+160,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a66');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
   }else if(active&&!recovered&&nodes.length>1){
    const mills=nodes.find(n=>/cnc\s*mills/.test(n.label));
@@ -185,7 +214,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
    const inspect=nodes.find(n=>/inspect/.test(n.label));
    const finish=nodes.find(n=>/finish/.test(n.label));
    if(mills&&lathes){
-    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?6:24);
+    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?3:24);
     if(!heavy)drawFlow(lathes,mills,'#8affb888',now,3.8,10);
    }
    if(!extreme&&lathes&&inspect&&!inspect.node.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?3.6:5.6,heavy?3:14);
@@ -199,7 +228,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
     for(let n=0;n<(heavy?1:3);n++){ctx.fillStyle='#8cfbc0';ctx.fillRect((tile.x+offset+n*90)%box.width,tile.cy-3,14,5);}
    }
   }
-  if(!reduced.matches||(sample&&sample.collecting))raf=requestAnimationFrame(animate);
+  raf=(!reduced.matches||(sample&&sample.collecting))?requestAnimationFrame(animate):0;
 }
  trigger.addEventListener('click',()=>{active=true;recovered=false;setConsent(false);start=performance.now();draw();});
  recover.addEventListener('click',async()=>{
@@ -230,20 +259,21 @@ export function mountCascade({loadPlant,launcher,workflow}){
  });
  failureSelect.addEventListener('change',()=>{active=false;recovered=false;setConsent(false);draw();});strategySelect.addEventListener('change',()=>{recovered=false;setConsent(false);draw();});overview.addEventListener('click',()=>{department=null;page=0;draw();});previous.addEventListener('click',()=>{page--;draw();});next.addEventListener('click',()=>{page++;draw();});
  dialog.addEventListener('close',()=>{cancelAnimationFrame(raf);resize?.disconnect();setConsent(false);});
- launcher.addEventListener('click',async event=>{event.preventDefault();try{plant=await loadPlant();failureSelect.replaceChildren(...Object.keys(plant.failurePolicies).map(id=>{const option=el('option',labels[id]??id);option.value=id;return option;}));department=null;page=0;active=false;recovered=false;setConsent(false);dialog.showModal();start=performance.now();resize=new ResizeObserver(draw);resize.observe(floor);draw();}catch{launcher.textContent='Open the recovery room to explore the full shop';}});
+ launcher.addEventListener('click',async event=>{event.preventDefault();try{plant=await loadPlant();failureSelect.replaceChildren(...Object.keys(plant.failurePolicies).map(id=>{const option=el('option',labels[id]??id);option.value=id;return option;}));department=null;page=0;active=false;recovered=false;setConsent(false);dialog.showModal();start=performance.now();let resizeFrame=0,lastResizeBox='';resize=new ResizeObserver(entries=>{const box=entries[0]?.contentRect;const key=box?(Math.round(box.width)+'x'+Math.round(box.height)):'';if(key&&key===lastResizeBox)return;lastResizeBox=key;cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>draw('resize'));});resize.observe(floor);draw('full');}catch{launcher.textContent='Open the recovery room to explore the full shop';}});
  return {dialog};
 }
 function legendChip(label,className){const chip=el('span',label,className);chip.setAttribute('aria-hidden','true');return chip;}
 export function departmentStatus({recovered,active,offlineCount,runningCount,members,hit}){
  if(recovered)return 'RECOVERY ACCEPTED';
- if(!active||!hit)return 'RUNNING · '+members+' machines';
- if(offlineCount>=members&&members>0)return 'OFFLINE · '+members+' machines';
- // Full OFFLINE/RUNNING chips (Wonder P1); short form only when both counts exceed two digits.
+ // Large departments use compact chips so 160px overview tiles never trip scrollWidth clip checks.
+ if(!active||!hit)return members>=100?'RUN':('RUNNING · '+members+' machines');
+ if(offlineCount>=members&&members>0)return members>=100?'OFF':('OFFLINE · '+members+' machines');
  if(offlineCount>0){
+  if(members>=100)return 'MIX';
   if(offlineCount>=10||runningCount>=10)return offlineCount+' OFF / '+runningCount+' RUN';
   return 'OFFLINE · '+offlineCount+' · RUNNING · '+runningCount;
  }
- return 'RUNNING · '+members+' machines';
+ return members>=100?'RUN':('RUNNING · '+members+' machines');
 }
 function syncMachineArt(node,showOffline){
  const svg=node.querySelector('.plant-machinery');if(!svg)return;

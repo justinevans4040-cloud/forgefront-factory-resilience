@@ -1409,3 +1409,56 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
 @media(prefers-reduced-motion:reduce){
  #factory-svg .factory-floor-glow-line{opacity:.05!important}
 }
+
+/* audit36: Wonder P1 — board status once, connection chip with findings, deeper flow, README live target companion */
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,4fr) minmax(300px,.55fr)!important}
+ body[data-guided=true] #factory-svg{min-height:440px!important}
+ /* Keep a one-line connection readiness chip when verified findings are open (Wonder step 2). */
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight{display:block!important;max-height:40px;overflow:hidden;margin:0 0 6px!important;padding:4px 8px!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight[open]{max-height:40px}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary{font-size:14px!important;min-height:32px!important;color:#c5ccd4}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight> :not(summary){display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:26px!important;font-variant-numeric:tabular-nums}
+ body[data-guided=true][data-active-stage=investigation] .evidence-card .evidence-headline,
+ body[data-guided=true][data-active-stage=investigation] .evidence-card summary{font-size:16px!important;color:#c5ccd4}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{font-size:16px!important;line-height:1.35;font-weight:700;margin:0 0 8px;padding:8px 10px;border:1px solid #A8F04A66;border-radius:8px;background:linear-gradient(120deg,#1a3324,#0b1610)}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-explain{font-size:14px!important;color:#c5ccd4;margin:0 0 4px!important}
+ body[data-guided=true][data-active-stage=board] .proposal-task{border-style:dashed!important;border-color:#c5ccd4aa!important;background:linear-gradient(140deg,#152019,#0c1410)}
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{border-style:solid!important;border-color:#A8F04A!important;box-shadow:0 0 28px #A8F04A55}
+ body[data-guided=true][data-active-stage=board] .proposal-pages button{min-width:36px;min-height:36px;font-size:15px}
+ body[data-guided=true][data-active-stage=board] #britt-activity{display:none!important}
+ body[data-guided=true][data-active-stage=proof] .proof-action{min-height:40px;font-size:16px}
+ body[data-guided=true][data-active-stage=decision] .option button{min-height:40px!important}
+ body[data-guided=true][data-active-stage=shock] #decision-status{font-size:15px}
+}
+#factory-svg .machine-silhouette{pointer-events:none}
+#factory-svg .material-flow{filter:drop-shadow(0 0 16px #A8F04Acc)}
+#factory-svg .living-spine{stroke-width:7;filter:drop-shadow(0 0 18px #56ff9acc);animation:spine-dash 1.5s linear infinite}
+.plant-metrics{min-height:72px}
+.plant-metrics>div{min-height:64px}
+.plant-tile{overflow:hidden}
+.plant-tile strong,.plant-tile .plant-sub,.plant-tile .plant-state{max-width:100%;overflow:hidden;font-size:14px;line-height:1.2;word-break:break-word}
+.plant-tile .plant-state{min-height:22px;display:block;font-size:13px!important;letter-spacing:0}
+.plant-floor{contain:layout paint size}
+.plant-machinery-proxy{min-height:48px;pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .living-spine{animation:none!important}
+}
+
+/* audit36 round 2 — Wonder 157 P1 lifts toward uniform nines */
+@media(min-width:901px){
+ body[data-guided=true] #factory-svg .node-caption{font-size:16px!important;fill:#d7e4db!important}
+ body[data-guided=true] #factory-svg .offline-label,#factory-svg .offline-x{font-size:22px!important}
+ body[data-guided=true][data-active-stage=decision] .option button{min-height:44px!important;font-size:16px!important}
+ body[data-guided=true][data-active-stage=decision] .option .numbers strong{font-size:26px!important;font-variant-numeric:tabular-nums;line-height:1}
+ body[data-guided=true][data-active-stage=board] .proposal-task strong{font-size:16px!important;line-height:1.3}
+ body[data-guided=true][data-active-stage=board] .proposal-task .proposal-badge{font-size:13px!important;color:#c5ccd4!important;letter-spacing:.05em}
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{box-shadow:0 0 32px #A8F04A66,inset 0 0 20px #A8F04A22}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary{font-size:15px!important;color:#c5ccd4!important;border-bottom:1px solid #5f7a68;margin-bottom:4px}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims .verified-finding>summary{font-size:16px!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;-webkit-line-clamp:unset!important}
+ body[data-guided=true][data-active-stage=shock] #factory-svg .capacity-metric{font-size:26px!important;font-variant-numeric:tabular-nums}
+ body[data-guided=true] .evidence-card .evidence-headline{font-size:16px!important;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+#factory-svg .factory-node.held .node-caption{font-size:18px!important;fill:#e8f6ee!important;font-weight:800}
+#findings-reserve{font-size:16px!important;line-height:1.35}

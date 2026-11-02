@@ -1,0 +1,7 @@
+{
+  "profiles": [
+    {"machineCount":1000,"samples":32,"avgFrameMs":107.81,"fps":9.3,"p95FrameMs":183.3,"reducedMotion":false,"plantFolder":"plant-1000","viewport":"1920x1080"},
+    {"machineCount":5000,"samples":46,"avgFrameMs":77.17,"fps":13,"p95FrameMs":100,"reducedMotion":false,"plantFolder":"plant-5000","viewport":"1920x1080"}
+  ],
+  "note": "Headless Chromium after audit36: calcCache, glyph LOD on overview, seven-department generated fixture, resize reflows tile geometry without re-analyzing plant. Machine counts unchanged."
+}

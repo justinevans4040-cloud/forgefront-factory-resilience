@@ -7,8 +7,8 @@ const app=readFileSync(new URL('../../public/app.mjs',import.meta.url),'utf8');
 const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8');
 const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'utf8');
 
-test('build stamp advances to audit35 cascade cache',()=>{
- assert.match(html,/ffr-build" content="audit35-cascade-cache"/);
+test('build stamp remains past audit34 and keeps cascade-cache features',()=>{
+ assert.match(html,/ffr-build" content="audit3[56]-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit34-wonder-floor/);
 });
 
@@ -22,8 +22,8 @@ test('cascade uses cached tile centers and offscreen static layer without droppi
  assert.match(cascade,/metricsTick/);
  assert.doesNotMatch(cascade,/paintStride/);
  assert.match(cascade,/plantScale>=400/);
+ assert.match(cascade,/plantScale>=800/);
  assert.match(cascade,/plantScale>=1000/);
- assert.match(cascade,/plantScale>=2500/);
 });
 
 test('factory scene adds layered floor depth planes',()=>{
