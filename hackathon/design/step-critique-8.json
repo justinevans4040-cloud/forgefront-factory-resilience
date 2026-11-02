@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 8,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Clarify coexistence: 3 BLOCKED prior tasks, retained approved plan, and 3 PROPOSED replacements untracked until approval"
+      "priority": "high",
+      "change": "Retain explicit wording that 3 BLOCKED prior tasks and the retained approved plan coexist while 3 PROPOSED replacements remain UNTRACKED UNTIL APPROVAL"
     },
     {
-      "priority": "P2",
-      "change": "Give OFFLINE CELL-MILL-2 stronger silver hatch contrast and replan-required depth"
+      "priority": "medium",
+      "change": "Add a subtle emerald trace from CELL-MILL-1 ACCEPTED PLAN down to the proposed tasks to show replanned lineage"
     },
     {
-      "priority": "P2",
-      "change": "Fix truncated t1 side entry and raise agent panel text to 16px"
+      "priority": "low",
+      "change": "Enlarge the right-zone The Britt summary to 16px and give t1, t2 and t3 chips equal keyboard focus treatment"
     }
   ]
 }

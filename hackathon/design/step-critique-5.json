@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 5,
   "score": 9,
-  "wowScore": 9,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Retain strong OFFLINE cross-hatching, cross marker and plain text; ensure no route passes through CELL-MILL-2"
+      "priority": "high",
+      "change": "Preserve the strong silver cross-hatched WILL GO OFFLINE preview with x marker and plain text; ensure no route is drawn through CELL-MILL-2 in the preview"
     },
     {
-      "priority": "P2",
-      "change": "Tone peak glow slightly so 24h to 0h and WILL GO OFFLINE remain crisp at 1366x768"
+      "priority": "medium",
+      "change": "Make the capacity preview banner and machine selector share one labelled control at least 44px tall with a visible focus ring"
     },
     {
-      "priority": "P2",
-      "change": "Give machine selector a clear 16px label and visible focus ring"
+      "priority": "low",
+      "change": "Add a brief cinematic dimming of the invalidated accepted path on Apply, removed under reduced motion"
     }
   ]
 }

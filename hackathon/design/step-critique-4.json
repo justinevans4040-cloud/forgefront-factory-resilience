@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 4,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Make 0 BLOCKED, plan retained and 3 PROPOSED untracked-until-approval state readable at a glance with stronger tabular hierarchy"
+      "priority": "high",
+      "change": "Keep the board-state wording explicit that 0 blocked prior tasks coexist with the retained approved plan while 3 proposed replacements stay UNTRACKED until approval"
     },
     {
-      "priority": "P2",
-      "change": "Enlarge proposed task body text to 16px and add depth to station cards"
+      "priority": "medium",
+      "change": "Strengthen the emerald flow between Receiving VERIFIED RECOVERY and CELL-MILL-1 ACCEPTED PLAN with an animated trace on entry"
     },
     {
-      "priority": "P2",
-      "change": "Fix truncated t1 side entry so full task label fits its reserved zone"
+      "priority": "low",
+      "change": "Enlarge proposed task cards with 16px body copy and equal focus rings for keyboard review of t1, t2 and t3"
     }
   ]
 }

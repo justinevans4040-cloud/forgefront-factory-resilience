@@ -10,11 +10,11 @@
 
 Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
 
-<p align="center"><a href="https://forgefront-factory-resilience.onrender.com" style="display:inline-block;min-height:32px;padding:6px 4px;outline-offset:4px"><strong style="font-size:24px;line-height:1.35;color:#A8F04A;border-bottom:2px solid #A8F04A;letter-spacing:.02em">Open the recovery room</strong></a></p>
-
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
+
+<p align="center"><a href="https://forgefront-factory-resilience.onrender.com" style="display:inline-block;min-height:32px;padding:6px 4px;outline-offset:4px"><strong style="font-size:24px;line-height:1.35;color:#A8F04A;border-bottom:2px solid #A8F04A;letter-spacing:.02em">Open the recovery room</strong></a></p>
 
 In production, every approval sits behind an authorization wall such as a passkey, typed phrase, or other enterprise security control.
 
@@ -28,13 +28,13 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront factory recovery command center in black, emerald and silver" /></p>
 
-<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" style="max-width:100%;min-height:520px;object-fit:cover" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
+<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" style="max-width:100%;min-height:520px;object-fit:cover" alt="Full-shop failure cascade: emerald mills to lathes recovery route with silver × OFFLINE departments" /></p>
 
-<p align="center"><em style="font-size:22px;line-height:1.4;color:#e8f6ee;font-weight:700">Hero: command center · Cascade: emerald mills → lathes with silver × OFFLINE</em></p>
+<p align="center"><em style="font-size:20px;line-height:1.4;color:#e8f6ee;font-weight:700">Cascade at a glance: 105 hours · 5 late orders · $11,100</em></p>
 
+<p align="center"><em style="font-size:16px;line-height:1.4;color:#c5ccd4;font-weight:600">Hero: command center · Cascade: emerald mills → lathes with silver × OFFLINE</em></p>
 
-
-<p align="center"><em style="font-size:36px;line-height:1.35;color:#A8F04A;font-weight:800">Full-shop cascade — three signals at a glance</em></p>
+<p align="center"><em style="font-size:32px;line-height:1.35;color:#A8F04A;font-weight:800">Full-shop cascade — three signals at a glance</em></p>
 
 | Signal | Marker | What judges see |
 | --- | --- | --- |

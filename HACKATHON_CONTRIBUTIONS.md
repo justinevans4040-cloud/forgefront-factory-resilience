@@ -12,6 +12,13 @@ Eligible-period work for the Meta Global AI Developer Hackathon (event window op
   - P0 secret ACL hardener: `tools/harden-secret-acls.mjs`, `docs/SECRET_FILE_ACLS.md`, `npm run harden-secret-acls` (ledger key, notary secret, admin token paths; values never printed).
   - Tests: `tests/day1-hardening.test.mjs` plus updates to session helpers / Round 8–9 session callers.
 
+## Audit 45 / round 45
+
+- Wonder guided-nines pass on calm premium DESIGN_SYSTEM: RECEIVING↔certificate focus link, board accepted living flow, compact CONNECTION chip on cleared reinvestigate, proof READY/LOCKED below event track, Verify sole primary, README cascade glance caption; stamp `audit45-guided-nines`.
+- Visual audit gate run48: 51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade.
+- Genuine Muse Wonder reviews 189–197 (best iteration 194: cascade 9 / README 9 / guided 8–9); direction retained at iteration 82.
+- Live Wonder + Baseten investigation `MODEL_STOP` with 3 validated claims each; Fireworks unused.
+
 ## Audit 43 / round 44
 
 - Wonder 182–184 finish pass: held material flow stops at × HOLD, brushed-silver machine volume, bidirectional Certificate/Receiving track highlight, selected-path emerald route trace, cleared-findings separated from Reinvestigate, in-scene legend, proof-stage depth, README cascade width + signal markers; stamp `audit43-wonder-finish`.

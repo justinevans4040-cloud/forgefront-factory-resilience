@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 6,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Fill empty Findings reserved zone with concise pending-investigation status at 16px rather than blank depth"
+      "priority": "high",
+      "change": "Fill the empty Findings zone with a concise cleared-state sentence at 16px so the reserved zone never reads as unfinished"
     },
     {
-      "priority": "P2",
-      "change": "Make constrained Split card read as unavailable via hatch, cross and text, not dimming alone"
+      "priority": "medium",
+      "change": "Keep CELL-MILL-2 silver cross-hatched OFFLINE with x marker and keep the constrained Split path hatched with x CONSTRAINED text in both scene and options"
     },
     {
-      "priority": "P2",
-      "change": "Emphasise CELL-MILL-2 OFFLINE banner and 3 to 2 feasible paths above scene"
+      "priority": "low",
+      "change": "Separate any connection readiness check from the EVIDENCE Investigate task with its own heading if shown on this step"
     }
   ]
 }

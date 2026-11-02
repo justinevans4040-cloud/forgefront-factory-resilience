@@ -28,7 +28,11 @@ function highlightEvidence(id){
   const recv=/recv|receiving|80|counted/.test(key+plain);
   if(cert)for(const el of svg.querySelectorAll('[data-compare-role="certificate"]'))el.classList.add('compare-track-active','finding-trace');
   if(recv)for(const el of svg.querySelectorAll('[data-compare-role="receiving"]'))el.classList.add('compare-track-active','finding-trace');
-  if(cert||recv){const trace=svg.querySelector('[data-scene-band="compare"]')||svg;trace.classList.add('finding-trace');}
+  // Wonder 186 step 1: Certificate ↔ RECEIVING bidirectional focus ring.
+  if(cert||recv){
+   for(const el of svg.querySelectorAll('[data-scene-machine="RECEIVING"]'))el.classList.add('station-linked','receiving-cert-link');
+   const trace=svg.querySelector('[data-scene-band="compare"]')||svg;trace.classList.add('finding-trace');
+  }
  }
 }
 const work=document.createElement('div');work.id='britt-work';$('prior-work').before(work);work.append($('prior-work'),$('britt-proposal'));
@@ -98,7 +102,8 @@ function render(){
  $('export').disabled=$('report').disabled=!$('plaintext-ack').checked;
  $('shock').disabled=!state.snapshot.cells.some(c=>c.online);
  if(state.operator?.role==='auditor')for(const id of ['investigate','confirm','shock','reset','revoke','guide-start'])$(id).disabled=true;
- $('model-output').hidden=!run;$('model-output').toggleAttribute('hidden',!run);$('model-output').classList.toggle('findings-empty',!run);$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));const chip=$('connection-ready-chip');const preflight=document.querySelector('.route-preflight');const preflightSummary=preflight?.querySelector('summary');const clearedConnection=!run&&state.decision.status==='invalidated';if(preflightSummary)preflightSummary.textContent=run?'1 · CONNECTION · ready':'1 · CONNECTION';if(preflight)preflight.hidden=clearedConnection;if(chip){chip.textContent=run?'1 · CONNECTION · ready':'1 · CONNECTION';chip.hidden=Boolean(run)||clearedConnection;}if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;preflight.open=false;$('model-output').open=true;}if(!run){if(preflight)preflight.open=!clearedConnection;$('model-output').open=false;}
+ $('model-output').hidden=!run;$('model-output').toggleAttribute('hidden',!run);$('model-output').classList.toggle('findings-empty',!run);$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));const chip=$('connection-ready-chip');const preflight=document.querySelector('.route-preflight');const preflightSummary=preflight?.querySelector('summary');const clearedConnection=!run&&state.decision.status==='invalidated';if(preflightSummary)preflightSummary.textContent=run?'1 · CONNECTION · ready':'1 · CONNECTION';// Wonder 194 step 6: keep a compact CONNECTION status line above EVIDENCE even when cleared; hide the expandable preflight only.
+if(preflight)preflight.hidden=clearedConnection;if(chip){chip.textContent=clearedConnection?'1 · CONNECTION · ready · identity held':(run?'1 · CONNECTION · ready':'1 · CONNECTION');chip.hidden=Boolean(run);chip.classList.toggle('connection-cleared',clearedConnection);}if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;preflight.open=false;$('model-output').open=true;}if(!run){if(preflight)preflight.open=!clearedConnection;$('model-output').open=false;}
  // After a capacity shock, keep a reserved findings summary so the side zone never reads as an empty box.
  const findingsReserve=$('findings-reserve');
  if(findingsReserve){
@@ -107,12 +112,12 @@ function render(){
   const needsReserve=cleared||pending;
   findingsReserve.hidden=!needsReserve;
   findingsReserve.classList.toggle('findings-reserve-active',needsReserve);
-  if(cleared)findingsReserve.textContent='CLEARED · Verified findings wiped · '+state.analysis.recovery.feasibleCount+' feasible paths remain.';
+  if(cleared)findingsReserve.textContent='CLEARED · Verified findings wiped · '+state.analysis.recovery.feasibleCount+' feasible paths remain · constrained path hatched × CONSTRAINED · Reinvestigate when ready.';
   else if(pending)findingsReserve.textContent='PENDING · Evidence findings reserved · Choose a route, then Investigate.';
 }
  if(!run&&$('investigation-pending').hidden)$('investigation-status').textContent=investigationStatus();
  $('comparison').replaceChildren(...state.runs.filter(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest).map(r=>text('p',`${r.run.sample?'Sample · offline walkthrough; no live AI':r.calls.at(-1)?.returnedModel??'identity unavailable'} · ${(r.run.elapsedMs/1000).toFixed(1)}s · ${r.claims.accepted.length} validated / ${r.claims.rejected.length} rejected · ${r.proposalValid?'proposal valid':r.run.stopReason}`)));
- if(run){$('investigation-handoff').textContent=investigationHandoff(run,$('provider').value);$('investigation-highlights').replaceChildren(...investigationHighlights(run,state.analysis).map(({value,label})=>{const item=text('div','','investigation-metric');item.append(text('strong',value),text('span',label));return item;}));$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s`;const analysis=summarizeAnalysis(run.narrative);$('narrative').textContent=analysis.summary;$('analysis-full').textContent=analysis.full;$('read-full-analysis').hidden=!analysis.truncated;$('read-full-analysis').disabled=reviewIndex!==null;
+ if(run){$('investigation-handoff').textContent=investigationHandoff(run,$('provider').value);$('investigation-highlights').replaceChildren(...investigationHighlights(run,state.analysis).map(({value,label})=>{const item=text('div','','investigation-metric');item.tabIndex=0;item.dataset.metricLabel=String(label||'');item.append(text('strong',value),text('span',label));const linkMetric=()=>{const key=String(label||'').toLowerCase();if(/verif|accept|fact/.test(key))highlightEvidence(run.claims.accepted[0]?.evidenceId||'ev-cert-qty');else if(/reject/.test(key))highlightEvidence(null);else if(/feasib/.test(key)){const opt=state.analysis.recovery.options.find(o=>o.feasible);if(opt)highlightPath(opt.optionId);}else highlightEvidence(run.claims.accepted[0]?.evidenceId||null);};item.addEventListener('focus',linkMetric);item.addEventListener('pointerenter',linkMetric);return item;}));$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s`;const analysis=summarizeAnalysis(run.narrative);$('narrative').textContent=analysis.summary;$('analysis-full').textContent=analysis.full;$('read-full-analysis').hidden=!analysis.truncated;$('read-full-analysis').disabled=reviewIndex!==null;
  $('claims').replaceChildren(...run.claims.accepted.map(c=>{const view=claimPresentation(state.evidence.find(e=>e.evidenceId===c.evidenceId),c);const card=text('details','','claim verified-finding');card.dataset.evidenceId=c.evidenceId;card.append(text('summary','✓ '+view.headline),text('small',view.detail));card.tabIndex=0;card.addEventListener('focus',()=>highlightEvidence(c.evidenceId));card.addEventListener('pointerenter',()=>highlightEvidence(c.evidenceId));card.addEventListener('pointerleave',()=>highlightEvidence(null));card.addEventListener('click',()=>highlightEvidence(c.evidenceId));return card;}),...run.claims.rejected.map(c=>text('p',`Rejected [evidence:${c.evidenceId}]: ${c.reason}`,'claim')));
  if(run.claims.accepted[0])highlightEvidence(run.claims.accepted[0].evidenceId);
  $('trace').replaceChildren(...run.run.trace.filter(t=>t.type==='tool_result').map(t=>text('div',`${t.ok?'✓':'×'} ${t.name} · snapshot ${run.run.snapshotDigest.slice(0,12)}`,'trace-row')),...run.calls.map(c=>text('div',`${c.status} · ${c.returnedModel??'no identity'} · ${c.latencyMs}ms · ${c.failure??c.protocol}`,'trace-row')));
@@ -120,7 +125,7 @@ function render(){
  renderBoard();
  for(const item of proofChecklist(state,guide??{})){const field=$(item.id).closest('fieldset');field.dataset.complete=String(item.done);let status=field.querySelector('.proof-status');if(!status){status=text('small','','proof-status');field.append(status);}field.querySelector('legend').textContent=item.label;const gate=guide?proofActionGate(state,guide):{};const enabled=gate[item.id];status.textContent=item.done?'✓ Complete · current ledger':enabled===false?(item.id==='verify'?'1 · Verify first · currently waiting':item.id==='encrypted-export'?'2 · Waiting on verify · then separate passphrase':'3 · Waiting on sealed packet'):(item.id==='verify'?'1 · Verify the anchored history · enabled now':item.id==='encrypted-export'?'2 · Seal with separate passphrase · enabled now':'3 · Retain independent checkpoint · enabled now');}
  $('export-passphrase').disabled=reviewIndex!==null||Boolean(guide&&guide.verified!==state.ledger.head);
- if(guide){const gate=proofActionGate(state,guide);for(const [id,enabled] of Object.entries(gate)){const control=$(id);if(!control)continue;const blocked=!enabled||(id==='encrypted-export'&&!passphraseFeedback($('export-passphrase').value).ok);control.disabled=blocked;control.classList.toggle('secondary',id!=='verify'||Boolean(gate['encrypted-export']));}}
+ if(guide){const gate=proofActionGate(state,guide);for(const [id,enabled] of Object.entries(gate)){const control=$(id);if(!control)continue;const blocked=!enabled||(id==='encrypted-export'&&!passphraseFeedback($('export-passphrase').value).ok);control.disabled=blocked;const verifySole=id==='verify'&&enabled&&!gate['encrypted-export'];control.classList.toggle('secondary',!verifySole);control.classList.toggle('proof-sole-primary',verifySole);const field=control.closest('fieldset');if(field)field.classList.toggle('proof-sole-slot',verifySole);}}
 
 }
 $('login').addEventListener('submit',event=>{event.preventDefault();busy($('login').querySelector('button'),async()=>{const response=await fetch('/api/meta/session',{method:'POST',headers:{Authorization:'Bearer '+$('admin').value},signal:AbortSignal.timeout(12000)});$('admin').value='';const s=await response.json();if(!response.ok)throw new Error(s.error?.message??'Authentication failed');auth={'X-CSRF-Token':s.csrf};await refresh();$('guide-title').focus();notice('Recovery room open. Inspect evidence, then choose an investigation route.');});});
@@ -258,7 +263,7 @@ function renderFactory(){
  const stakes=openingStakes(state);$('opening-stakes').replaceChildren(...[[stakes.parts,'PARTS AT RISK'],[stakes.orders,'ORDERS AFFECTED'],[stakes.dueHours===null?'—':stakes.dueHours+'h','FIRST DUE WINDOW']].map(([value,label])=>{const metric=text('div','','opening-stat');metric.append(text('strong',String(value)),text('span',label));return metric;}));
  const selected=state.analysis.recovery.options.find(o=>o.optionId===(envelope?.optionId??state.decision.optionId));const allocations=selected?.detail?.allocations??selected?.detail?.draws?.flatMap(d=>d.cells)??[];const activeCells=new Set(allocations.map(a=>a.cellId));
  const previewOffline=document.body.dataset.activeStage==='shock'?shockPreview(state,document.body.dataset.activeStage,$('shock-cell')?.value):'';
- const coexistenceBanner=$('board-coexistence-banner');if(coexistenceBanner){const blocked=state.board?.tasks?.filter(t=>t.status==='Blocked').length??0;const proposed=state.britt?.proposal?state.britt.proposal.board.tasks.filter(t=>t.status!=='Done').length:0;const show=Boolean(state.britt?.proposal);coexistenceBanner.hidden=!show;if(show)coexistenceBanner.textContent=blocked+' BLOCKED prior · approved plan retained · '+proposed+' PROPOSED · UNTRACKED UNTIL APPROVAL';}if(!guide)$('britt-activity').replaceChildren(text('strong','THE BRITT'),text('span',state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':state.decision.status==='invalidated'?'Second shock · evidence and plan review required':accepted?('Human recovery accepted · '+(state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done'):'Evidence → calculations → human decision'));
+ const coexistenceBanner=$('board-coexistence-banner');if(coexistenceBanner){const blocked=state.board?.tasks?.filter(t=>t.status==='Blocked').length??0;const proposed=state.britt?.proposal?state.britt.proposal.board.tasks.filter(t=>t.status!=='Done').length:0;const show=Boolean(state.britt?.proposal);coexistenceBanner.hidden=!show;if(show)coexistenceBanner.textContent=blocked+' BLOCKED prior (plan retained) · '+proposed+' PROPOSED replacements · UNTRACKED UNTIL APPROVAL';}if(!guide)$('britt-activity').replaceChildren(text('strong','THE BRITT'),text('span',state.britt?.proposal?'PROPOSED · UNTRACKED UNTIL APPROVAL':state.decision.status==='invalidated'?'Second shock · evidence and plan review required':accepted?('Human recovery accepted · '+(state.board?.tasks?.length??0)+' tracked · '+(state.board?.tasks?.filter(t=>t.status==='Blocked').length??0)+' blocked · '+(state.board?.tasks?.filter(t=>t.status==='Done').length??0)+' done'):'Evidence → calculations → human decision'));
  $('factory-status').textContent=accepted?'RECOVERY ACCEPTED · '+titles[state.decision.optionId]:'MATERIAL HOLD · '+(state.decision.status==='invalidated'?'SECOND SHOCK':'CERTIFICATE DISCREPANCY');
  const previousSnapshot=guideHistory[0]?.state;const changedSnapshot=previousSnapshot&&previousSnapshot.snapshot.snapshotDigest!==state.snapshot.snapshotDigest;$('factory-delta').hidden=!changedSnapshot;if(changedSnapshot){const delta=state.snapshot.cells.filter(c=>!c.online).map(c=>c.cellId+' OFFLINE').join(' · ');$('factory-delta').textContent=delta+' · '+previousSnapshot.analysis.recovery.feasibleCount+' → '+state.analysis.recovery.feasibleCount+' feasible paths';}if($('constraint-change'))$('constraint-change').hidden=changedSnapshot||!$('constraint-change').textContent;
 
@@ -305,13 +310,14 @@ function renderFactory(){
    // Scene header carries the single coexistence line; side zone repeats it once in #board-outcomes only.
    add('text',{x:24,y:32,'font-size':18,fill:'#e8ede6','font-weight':700},scene.pending?(scene.blocked+' BLOCKED · plan retained · '+scene.tasks.length+' PROPOSED'):(scene.blocked+' BLOCKED PRIOR · '+scene.tasks.length+' TRACKED'),hero);
    const machineContext=add('g',{'data-scene-band':'board-machines'},null,hero);
-   const stationY=58,stationH=140;
+   // Wonder 186 step 4: compact station cards with geometry-safe gaps for title / OFFLINE / capacity.
+   const stationY=52,stationH=122;
    const receivingSlot={x:24,width:200};
    const receivingCard=add('g',{'data-scene-machine':'RECEIVING',class:'factory-node board-machine'},null,machineContext);
    box(receivingSlot.x,stationY,receivingSlot.width,stationH,receivingCard,accepted?'#A8F04A':'#71877a');
-   label(receivingSlot.x+16,stationY+36,'RECEIVING',22,receivingCard,{'font-weight':700});
-   label(receivingSlot.x+16,stationY+70,accepted?'VERIFIED RECOVERY':'MATERIAL HOLD',18,receivingCard,{fill:'#c5ccd4'});
-   label(receivingSlot.x+16,stationY+110,state.snapshot.incident.heldMaterialId,18,receivingCard);
+   label(receivingSlot.x+16,stationY+28,'RECEIVING',18,receivingCard,{'font-weight':700});
+   label(receivingSlot.x+16,stationY+56,accepted?'VERIFIED RECOVERY':'MATERIAL HOLD',16,receivingCard,{fill:'#c5ccd4'});
+   label(receivingSlot.x+16,stationY+92,state.snapshot.incident.heldMaterialId,16,receivingCard);
    const boardSlots=[];
    scene.cells.forEach((cell,i)=>{
     const slot=factoryPositions(250,824,scene.cells.length,360)[i];
@@ -321,17 +327,21 @@ function renderFactory(){
     if(!cell.online){
      // Hatch + corner × + OFFLINE text only — no full-card diagonals over the replan label (Wonder P1).
      card.querySelector('rect').setAttribute('fill','url(#preview-hatch)');
-     label(slot.x+slot.width-28,stationY+36,'×',26,card,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});
+     label(slot.x+slot.width-26,stationY+24,'×',22,card,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});
     }
-    label(slot.x+18,stationY+40,cell.cellId,24,card,{'font-weight':700});
-    label(slot.x+18,stationY+80,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',18,card,{fill:'#c5ccd4',class:!cell.online?'offline-label':''});
-    label(slot.x+18,stationY+120,cell.online?cell.availableHours+'h capacity':'replan required',28,card,{'font-weight':700,class:!cell.online?'offline-replan':''});
+    label(slot.x+18,stationY+26,cell.cellId,17,card,{'font-weight':700});
+    label(slot.x+18,stationY+64,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',15,card,{fill:'#c5ccd4',class:!cell.online?'offline-label':''});
+    label(slot.x+18,stationY+100,cell.online?cell.availableHours+'h capacity':'replan required',18,card,{'font-weight':700,class:!cell.online?'offline-replan':''});
    });
-   // Wonder P1 step 8: sequence Receiving → online mill → proposed tasks; no route through OFFLINE CELL-MILL-2.
+   // Wonder P1 step 8 / 186 step 4: living flow only along accepted Receiving → online mill; never through OFFLINE CELL-MILL-2.
    const onlineMill=boardSlots.find(s=>s.cell.online)||boardSlots[0];
    const offlineMill=boardSlots.find(s=>!s.cell.online);
    if(onlineMill){
-    add('path',{d:`M ${receivingSlot.x+receivingSlot.width} ${stationY+stationH/2} H ${onlineMill.slot.x}`,class:'board-sequence-spine',fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':'10 6'},null,machineContext);
+    add('path',{d:`M ${receivingSlot.x+receivingSlot.width} ${stationY+stationH/2} H ${onlineMill.slot.x}`,class:'board-sequence-spine'+(accepted?' accepted-living-flow':''),fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':accepted?'0':'10 6'},null,machineContext);
+    if(accepted){
+     const flowStart=receivingSlot.x+receivingSlot.width+8,flowEnd=onlineMill.slot.x-8,span=Math.max(flowEnd-flowStart,40);
+     for(let i=0;i<8;i++){const x=flowStart+(span/8)*i;add('rect',{x,y:stationY+stationH/2-8,width:18,height:14,rx:3,fill:'#A8F04A',class:'material-flow board-accepted-lot lot-'+i},null,machineContext);}
+    }
    }
    if(offlineMill){
     add('path',{d:`M ${onlineMill?onlineMill.slot.x+onlineMill.slot.width:receivingSlot.x+receivingSlot.width} ${stationY+stationH/2} H ${offlineMill.slot.x+8}`,class:'board-sequence-stop',fill:'none',stroke:'#C5CCD4','stroke-width':2,'stroke-dasharray':'4 6'},null,machineContext);
@@ -355,8 +365,10 @@ function renderFactory(){
     if(dependsY+18<=barY-4)label(x+14,dependsY,task.dependsOn.length?'After '+task.dependsOn.join(', '):'Ready to begin',18,tile,{fill:'#88eba8'});
     label(x+14,dueY,'Due +'+Number(task.dueHours.toFixed(2))+'h',18,tile);
     // Compact scene label — full phrase lives on the card aria-label and board-outcomes (Wonder P1, no card bleed).
+    // Compact scene label — full "UNTRACKED UNTIL APPROVAL" lives on board-outcomes (Wonder 186; geometry-safe).
     label(x+14,statusY,'UNTRACKED',16,tile,{fill:'#c5ccd4','font-weight':700,class:'proposal-untracked'});
     tile.querySelector('rect').setAttribute('stroke-dasharray',i===inspectedTask?'none':'6 4');
+    tile.classList.add('proposal-focusable');
     if(tileH>230&&barY+16<=dueY-6&&dependsY+18<=barY-2){const maxDue=Math.max(...scene.tasks.map(t=>t.dueHours),1);box(x+14,barY,tileW-28,12,tile,'#71877a','#0b130e');add('rect',{x:x+14,y:barY,width:(tileW-28)*Math.max(0,task.dueHours)/maxDue,height:12,rx:4,fill:'#88eba8'},null,tile);}
    });
    // Wonder P1 step 4: t1→t3 sequence connectors between proposed cards.
@@ -373,18 +385,20 @@ function renderFactory(){
    add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.gates.every(Boolean)?'Recovery complete. Evidence sealed.':scene.events+' events. One verified chain.',hero);
    const chainY=78;
    add('path',{d:`M 150 ${chainY} H 750`,class:'proof-chain-spine',fill:'none',stroke:scene.gates.every(Boolean)?'#A8F04A':'#5f7a68','stroke-width':4},null,hero);
-   // Wonder P1 step 9: brushed-silver depth + one emerald progress trace across 01→03; LOCKED stays silver dashed.
+   // Wonder 191 step 9: one status word per card BELOW the event track — never READY/LOCKED on the dashed spine.
    add('path',{d:`M 155 ${chainY} H 745`,class:'proof-progress-trace',fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':'14 8'},null,hero);
    ['VERIFY LEDGER','SEAL PACKET','RETAIN CHECKPOINT'].forEach((label,i)=>{
     const x=18+i*292,done=scene.gates[i],ready=i===0||scene.gates[i-1];
     const firstReady=ready&&!done&&scene.gates.findIndex((g,j)=>(j===0||scene.gates[j-1])&&!g)===i;
+    const status=done?'SEALED':firstReady?'READY':'LOCKED';
     add('circle',{cx:x+137,cy:chainY,r:14,fill:done?'#A8F04A':firstReady?'#A8F04A':'#C5CCD4',stroke:'#C5CCD4','stroke-width':2,class:done?'proof-chain-node sealed':firstReady?'proof-chain-node ready':'proof-chain-node'},null,hero);
     add('rect',{x,y:90,width:276,height:height-140,rx:10,fill:done?'#193422':firstReady?'#163224':'#12181a',stroke:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4','stroke-width':firstReady?3:2,'stroke-dasharray':ready?'none':'6 5',class:done?'proof-station sealed':firstReady?'proof-station ready':'proof-station'},null,hero);
     add('rect',{x:x+4,y:94,width:268,height:12,rx:3,fill:done?'#A8F04A33':firstReady?'#A8F04A22':'#C5CCD422',class:'proof-station-bevel'},null,hero);
-    add('text',{x:x+18,y:90+(height-140)*.25,'font-size':60,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4'},done?'✓':String(i+1).padStart(2,'0'),hero);
-    add('text',{x:x+18,y:90+(height-140)*.50,'font-size':20,fill:'#e8ede6','font-weight':650},label,hero);
-    add('text',{x:x+18,y:90+(height-140)*.80,'font-size':30,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4'},done?'SEALED':firstReady?'READY':'LOCKED',hero);
-    const chain=add('g',{'aria-label':scene.events+' recorded events · '+(done?'sealed':'awaiting this step')},null,hero);const marks=Math.min(scene.events,24),cols=8;for(let n=0;n<marks;n++){add('rect',{x:x+18+(n%cols)*27,y:90+(height-140)*.58+Math.floor(n/cols)*18,width:18,height:8,rx:2,fill:done?'#88eba8':'#52685a'},null,chain);}
+    add('text',{x:x+18,y:90+(height-140)*.18,'font-size':48,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4'},done?'✓':String(i+1).padStart(2,'0'),hero);
+    add('text',{x:x+18,y:90+(height-140)*.36,'font-size':16,fill:'#e8ede6','font-weight':650,class:'proof-card-body'},label,hero);
+    const chain=add('g',{'aria-label':scene.events+' recorded events · '+(done?'sealed':'awaiting this step')},null,hero);const marks=Math.min(scene.events,24),cols=8;for(let n=0;n<marks;n++){add('rect',{x:x+18+(n%cols)*27,y:90+(height-140)*.48+Math.floor(n/cols)*16,width:18,height:7,rx:2,fill:done?'#88eba8':'#52685a'},null,chain);}
+    add('text',{x:x+18,y:90+(height-140)*.78,'font-size':26,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4','font-weight':700,class:'proof-status-word'},status,hero);
+    if(!ready)add('text',{x:x+18,y:90+(height-140)*.92,'font-size':14,fill:'#A8B0A8',class:'proof-locked-helper'},'Dashed · complete prior step first',hero);
    });
   }
 
@@ -393,7 +407,7 @@ function renderFactory(){
   // Shock capacity preview sits in the top callout band ABOVE stations — never beside or over them.
   const shockStage=stage==='shock';
   // Compare/callout band must clear certificate rows before DOCK/QA; never share glyphs with the bay.
-  // Tighten compare/callout height so stations+jobs claim >=70% of the stage (Wonder P1 step 1).
+  // Wonder 186 step 1: keep stations/jobs dominant (>=70%) while option labels stay geometry-safe.
   const topBand=shockStage?Math.max(100,Math.min(118,Math.round(height*0.17))):Math.max(104,Math.min(128,Math.round(height*0.14)));
   const bayY=topBand+6;
   const machineY=bayY+26;
@@ -438,7 +452,8 @@ function renderFactory(){
     box(230,y+2,420,Math.min(34,compareRow-16),g);add('rect',{x:230,y:y+2,width:comparison.widths[i],height:Math.min(34,compareRow-16),rx:5,fill:i?'#A8F04A':'#c5ccd4','data-compare-role':role,class:'compare-track'},null,g);
    });
    label(660,40,'DOES NOT MATCH',24,callouts,{class:'mismatch-label scene-size-22','font-weight':800});
-   // Crack/flash cue on the mismatch gap — static under prefers-reduced-motion via CSS.
+   // Wonder 189: emerald brackets spanning the 120→80 gap; crack cue static under reduced motion.
+   add('path',{d:'M 640 12 H 655 V 68 H 640',class:'mismatch-bracket',fill:'none',stroke:'#A8F04A','stroke-width':2.5},null,callouts);
    add('path',{d:'M 640 18 L 652 40 L 640 62',class:'mismatch-crack',fill:'none',stroke:'#A8F04A','stroke-width':3},null,callouts);
   }
   const bay=add('g',{'data-scene-band':'bay'},null,callouts);
@@ -497,6 +512,9 @@ function renderFactory(){
   return g;
  };
  const receivingNode=node(16,machineY,'RECEIVING',accepted?'VERIFIED RECOVERY':'× HOLD','idle',machines,receivingWidth,state.snapshot.incident.heldMaterialId);receivingNode.setAttribute('data-scene-machine','RECEIVING');receivingNode.classList.toggle('material-stopped',!accepted&&cells.every(c=>c.online));
+  // Wonder 186: RECEIVING focus lights Certificate discrepancy tracks (bidirectional with highlightEvidence).
+  receivingNode.addEventListener('focus',()=>highlightEvidence('ev-cert-qty'));
+  receivingNode.addEventListener('pointerenter',()=>highlightEvidence('ev-recv-qty'));
  cells.forEach((c,i)=>{const machine=node(machineSlots[i].x,machineY,c.cellId,c.online?(activeCells.has(c.cellId)&&accepted?'RECOVERY FLOW':'AVAILABLE'):'OFFLINE',!c.online?'held':accepted&&activeCells.has(c.cellId)?'running':'idle',machines,machineSlots[i].width,c.cellId===previewOffline?'WILL GO OFFLINE':c.online?c.availableHours+'h capacity':'0h · replan');machine.setAttribute('data-scene-machine',c.cellId);});
   const jobSlots=factoryPositions(24,lineRight,Math.max(jobs.length,1),Math.max(210,Math.floor((lineRight-24-13*(Math.max(jobs.length,1)-1))/Math.max(jobs.length,1))));
   // Wonder 170 step 1: living emerald risk trace from RECEIVING hold into every at-risk job.
@@ -527,8 +545,8 @@ function renderFactory(){
    if(!o.feasible)g.classList.add('option-constrained');
    if(selected)g.classList.add('path-linked');
    g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));
-   label(x+10,optionY+Math.round(optionH*0.38),(selected?'✓ ':!o.feasible?'× ':'')+titles[o.optionId],Math.min(20,Math.max(16,Math.round(optionH*0.28))),g);
-   label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED · OFFLINE-ADJACENT',Math.min(18,Math.max(14,Math.round(optionH*0.22))),g);
+   label(x+10,optionY+Math.round(optionH*0.32),(selected?'✓ ':!o.feasible?'× ':'')+titles[o.optionId],Math.min(18,Math.max(15,Math.round(optionH*0.24))),g);
+   label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED · OFFLINE-ADJACENT',Math.min(16,Math.max(14,Math.round(optionH*0.2))),g);
    if(o.feasible)activate(g,()=>document.querySelector('[data-option="'+o.optionId+'"]')?.click());
    // Wonder P1 step 3: emerald route trace from selected feasible path through online cells into jobs.
    if(selected&&o.feasible){
@@ -583,7 +601,7 @@ function renderBoard(){
  $('britt-work').scrollTop=0;$('britt-proposal').scrollTop=0;
  // Coexistence line stays in #board-outcomes only (Wonder: do not repeat four times). Task cards keep PROPOSED badge.
  $('britt-proposal').replaceChildren(...(banner&&proposal?[text('p','The Britt is building the board','britt-signature-line'),text('p','Task 1 of '+proposedCount+' · inspect with the steppers','proposal-explain'),...(proposal.board.tasks.map((t,i)=>{const card=text('div','','proposal-task britt-build-card'+(i===0?' britt-focus-task':' proposal-compact'));card.tabIndex=0;card.style.setProperty('--build-delay',(i*90)+'ms');const guided=document.body.dataset.guided==='true';const title=t.id+' · '+t.title;const short=guided?(t.id+' · '+(t.title.length>18?t.title.slice(0,16)+'…':t.title)):title;if(guided){card.append(text('strong',short+' · UNTRACKED'));card.setAttribute('aria-label',(t.status==='Done'?'Completed':'Proposed')+' '+title+' · UNTRACKED UNTIL APPROVAL');}else{card.append(text('small',t.status==='Done'?'COMPLETED WORK RETAINED':'PROPOSED','proposal-badge'),text('small','UNTRACKED UNTIL APPROVAL · Awaiting approval','proposal-awaiting'),text('strong',title),text('small',t.owner+' · due +'+Number(t.dueHours.toFixed(2))+'h · after '+(t.dependsOn.join(', ')||'Ready')));}return card;}))]:[]));if(!proposal){$('britt-panel')?.classList.remove('britt-signature');const banner=$('britt-signature-banner');if(banner)banner.hidden=true;}
- if(proposal){const cards=[...$('britt-proposal').querySelectorAll('.proposal-task')],nav=text('nav','','proposal-pages');nav.setAttribute('aria-label','Inspect proposed tasks');const label=$('britt-proposal').querySelector('.proposal-explain');const choose=index=>{inspectedTask=index;cards.forEach((c,i)=>{c.hidden=false;c.classList.toggle('britt-focus-task',i===index);c.classList.toggle('proposal-compact',i!==index);});for(const [i,b]of [...nav.children].entries()){b.setAttribute('aria-pressed',String(i===index));if(i===index)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');}label.textContent='Task '+(index+1)+' of '+cards.length+' · use Approve when ready';renderFactory();};cards.forEach((card,index)=>{const b=text('button',String(index+1),'secondary');b.dataset.proposalIndex=String(index);b.setAttribute('aria-label','Inspect proposed task '+(index+1)+': '+proposal.board.tasks[index].title);b.addEventListener('click',()=>choose(index));nav.append(b);});nav.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const buttons=[...nav.children],i=buttons.indexOf(document.activeElement),next=buttons[(i+(event.key==='ArrowLeft'?-1:1)+buttons.length)%buttons.length];next.click();next.focus();});label.after(nav);choose(Math.min(inspectedTask,cards.length-1));}
+ if(proposal){const cards=[...$('britt-proposal').querySelectorAll('.proposal-task')],nav=text('nav','','proposal-pages');nav.setAttribute('aria-label','Inspect proposed tasks');const label=$('britt-proposal').querySelector('.proposal-explain');const choose=index=>{inspectedTask=index;cards.forEach((c,i)=>{c.hidden=false;c.classList.toggle('britt-focus-task',i===index);c.classList.toggle('proposal-compact',i!==index);c.classList.toggle('proposal-focus-ring',i===index);});for(const [i,b]of [...nav.children].entries()){b.setAttribute('aria-pressed',String(i===index));if(i===index)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');}label.textContent='Task '+(index+1)+' of '+cards.length+' · use Approve when ready';renderFactory();};cards.forEach((card,index)=>{card.addEventListener('focus',()=>choose(index));const b=text('button',String(index+1),'secondary');b.dataset.proposalIndex=String(index);b.setAttribute('aria-label','Inspect proposed task '+(index+1)+': '+proposal.board.tasks[index].title);b.addEventListener('click',()=>choose(index));nav.append(b);});nav.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const buttons=[...nav.children],i=buttons.indexOf(document.activeElement),next=buttons[(i+(event.key==='ArrowLeft'?-1:1)+buttons.length)%buttons.length];next.click();next.focus();});label.after(nav);choose(Math.min(inspectedTask,cards.length-1));}
  $('prior-work').hidden=!(proposal&&board.tasks.length);if(proposal&&board.tasks.length)$('prior-work').open=true;$('prior-work').querySelector('summary').textContent=blockedCount+' BLOCKED prior tasks · separate from proposed replacements';$('prior-work-list').replaceChildren();
  if(proposal&&board.tasks.length){
   inspectedPriorTask=Math.min(inspectedPriorTask,board.tasks.length-1);

@@ -8,7 +8,7 @@ const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8')
 const designSystem=new URL('../../design/DESIGN_SYSTEM.md',import.meta.url);
 
 test('build stamp advances to audit42 wonder nines',()=>{
- assert.match(html,/ffr-build" content="audit(42-wonder-nines|43-wonder-finish)"/);
+ assert.match(html,/ffr-build" content="audit(42-wonder-nines|43-wonder-finish|45-guided-nines)"/);
  assert.doesNotMatch(html,/audit41-premium-calm/);
 });
 

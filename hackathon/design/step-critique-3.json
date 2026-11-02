@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 3,
   "score": 8,
-  "wowScore": 8,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Strengthen selected-path glow and depth once a path is chosen before primary action"
+      "priority": "high",
+      "change": "Make the three Select this path controls at least 44px tall with a clear selected state that previews its route in the scene before approval"
     },
     {
-      "priority": "P2",
-      "change": "Reduce duplication between bottom option cards and right comparison rows by linking highlight both ways"
+      "priority": "medium",
+      "change": "Confirm selection leads to one-click Approve then an Authorize this decision wall, and label the action bar primary accordingly once selected"
     },
     {
-      "priority": "P2",
-      "change": "Keep Review recovery option as sole primary and clarify it opens Approve then Authorize this decision wall"
+      "priority": "low",
+      "change": "Add depth and a single route trace on hover or focus of each option, static under reduced motion"
     }
   ]
 }

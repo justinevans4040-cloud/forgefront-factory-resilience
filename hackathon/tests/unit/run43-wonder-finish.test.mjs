@@ -10,8 +10,8 @@ const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 const contributionsUrl=new URL('../../../HACKATHON_CONTRIBUTIONS.md',import.meta.url);
 const designSystem=new URL('../../design/DESIGN_SYSTEM.md',import.meta.url);
 
-test('build stamp advances to audit43 wonder finish',()=>{
- assert.match(html,/ffr-build" content="audit43-wonder-finish"/);
+test('build stamp advances past audit43 wonder finish',()=>{
+ assert.match(html,/ffr-build" content="audit(43-wonder-finish|45-guided-nines)"/);
  assert.doesNotMatch(html,/audit42-wonder-nines/);
 });
 
@@ -53,7 +53,7 @@ test('Wonder P1: cascade OFFLINE counts align with department labels',()=>{
 test('README keeps Live demo marker, widens cascade, and adds signal markers',()=>{
  assert.match(readme,/\*\*Live demo:\*\*/);
  assert.match(readme,/Open the recovery room/);
- assert.match(readme,/min-height:520px/);
+ assert.match(readme,/min-height:(520|560)px/);
  assert.match(readme,/\| Marker \|/);
 });
 

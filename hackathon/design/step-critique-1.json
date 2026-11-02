@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 1,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Enlarge factory scene toward 70% of main and reduce darkness in empty job boxes with stronger silver machine depth and route flow"
+      "priority": "high",
+      "change": "Enlarge scene to at least 70% of main by tightening the right callout zone and giving stations and jobs more vertical depth and glow on the held Receiving node"
     },
     {
-      "priority": "P2",
-      "change": "Lift side evidence body to full 16px and shorten repeated Source detail rows inside reserved zone"
+      "priority": "medium",
+      "change": "Raise rail and side-zone body copy to a full 16px and align Certificate 120 and Receiving 80 tracks so DOES NOT MATCH spans the gap without crowding"
     },
     {
-      "priority": "P2",
-      "change": "Make DOES NOT MATCH land tighter between aligned 120 and 80 track ends"
+      "priority": "low",
+      "change": "Add a persistent legend with pattern, marker and text for Held, At Risk and Available inside the scene reserved zone"
     }
   ]
 }

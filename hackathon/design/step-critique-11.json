@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 11,
   "score": 8,
   "wowScore": 8,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep required order logo, pitch, Live demo, Powered by partners, hero and cascade; enlarge cascade screenshot so three signals legible without zoom"
+      "priority": "high",
+      "change": "Inside the required order of logo, one-line pitch, Live demo link, Powered by partners, hero and cascade visuals, then What you will see, Meet The Britt, why it matters and how Meta models are used, enlarge the cascade visual so the emerald route and silver x OFFLINE pattern are legible without zooming"
     },
     {
-      "priority": "P2",
-      "change": "Tighten opening pitch and demo link hierarchy so judge impact lands before partner table"
+      "priority": "medium",
+      "change": "Raise the three-signals table and step table body copy to a consistent 16px and keep the cascade caption directly beneath its visual"
     },
     {
-      "priority": "P2",
-      "change": "Raise small table and caption text toward 16px for cascade legibility"
+      "priority": "low",
+      "change": "Give the hero headline stronger depth contrast against the machinery image while keeping only black, emerald and brushed silver tones"
     }
   ]
 }

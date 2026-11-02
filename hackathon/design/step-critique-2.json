@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 2,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Keep CONNECTION provider-identity readiness visually distinct from EVIDENCE findings with clearer separate headings and controls"
+      "priority": "high",
+      "change": "Keep CONNECTION provider-identity readiness and EVIDENCE findings as visibly separate headed zones with separate status and controls, enlarged to 16px body type"
     },
     {
-      "priority": "P2",
-      "change": "Raise truncated finding sentence to complete 16px status line without expanding side zone"
+      "priority": "medium",
+      "change": "Add emerald flow from evidence facts to the corresponding Certificate and Receiving nodes for bidirectional highlighting"
     },
     {
-      "priority": "P2",
-      "change": "Add visible focus ring state for Read full analysis and rail arrow-key use"
+      "priority": "low",
+      "change": "Enlarge the 3 / 0 / 3 metric tiles and give verified facts a state glow matching the scene"
     }
   ]
 }

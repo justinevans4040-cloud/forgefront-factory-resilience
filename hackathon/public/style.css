@@ -1925,4 +1925,125 @@ body[data-guided=true] #findings-reserve.findings-reserve-active{
  body[data-guided=true][data-active-stage=proof] .proof-status{font-size:14px!important;line-height:1.25}
  body[data-guided=true][data-active-stage=proof] .proof-action:not([data-complete=true]) button.secondary{opacity:.72}
  body[data-guided=true][data-active-stage=board] #board-outcomes{font-size:16px!important;line-height:1.35!important}
+}
+
+/* audit45 / round45 — Wonder 185–188 guided nines: calm premium, no regress on cascade/README */
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=incident] .stage-area{
+  grid-template-columns:minmax(0,2.5fr) minmax(280px,.72fr)!important
  }
+ .connection-ready-chip.connection-cleared{
+  display:block;font-size:16px!important;line-height:1.3;margin:0 0 8px;padding:6px 8px;
+  border:1px solid #516958;border-radius:6px;background:#0a120e;color:#c5ccd4
+ }
+ body[data-guided=true][data-active-stage=decision] .authorize-sequence,
+ body[data-guided=true][data-active-stage=decision] .authorize-hint{
+  font-size:16px!important;line-height:1.3;margin:4px 0 0;color:#A8F04A
+ }
+ body[data-guided=true][data-active-stage=decision] .option[data-selected=true]{
+  outline:2px solid #A8F04A;outline-offset:2px
+ }
+ body[data-guided=true][data-active-stage=decision] .option button{
+  min-height:36px!important
+ }
+ body[data-guided=true][data-active-stage=decision] .option button:focus-visible{
+  outline:2px solid #A8F04A;outline-offset:2px
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage-area{
+  grid-template-columns:minmax(0,2.35fr) minmax(300px,.78fr)!important
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task{
+  max-width:100%;overflow:hidden
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task>strong{
+  display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap!important
+ }
+ body[data-guided=true][data-active-stage=board] #britt-panel,
+ body[data-guided=true][data-active-stage=board] #britt-proposal{
+  max-width:100%;overflow:hidden
+ }
+ body[data-guided=true][data-active-stage=investigation] .route-preflight{
+  border:1px solid #516958;border-radius:8px;padding:8px 10px;margin:0 0 8px;background:#0a120e
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-task{
+  border:1px solid #3f5544;border-radius:8px;padding:8px 10px;background:#0d1611
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric{
+  outline:2px solid transparent;outline-offset:2px;cursor:pointer
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric:focus,
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric:hover{
+  outline-color:#A8F04A
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric strong{
+  font-size:26px!important;font-variant-numeric:tabular-nums;line-height:1
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric span,
+ body[data-guided=true][data-active-stage=investigation] .route-preflight>summary,
+ body[data-guided=true][data-active-stage=investigation] .investigation-task-label{
+  font-size:16px!important;line-height:1.35
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task{
+  outline:2px solid transparent;outline-offset:2px
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task.proposal-focus-ring,
+ body[data-guided=true][data-active-stage=board] .proposal-task:focus{
+  outline-color:#A8F04A;box-shadow:0 0 0 2px #A8F04A88
+ }
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task>strong{
+  font-size:16px!important;line-height:1.3!important
+ }
+ body[data-guided=true][data-active-stage=board] .board-coexistence-banner,
+ body[data-guided=true][data-active-stage=board] #board-outcomes{
+  font-size:16px!important;line-height:1.35!important;font-variant-numeric:tabular-nums
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-sole-slot{
+  border-color:#A8F04A;background:linear-gradient(120deg,#163224,#0e1812);box-shadow:0 0 18px #A8F04A33
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-sole-primary{
+  background:#A8F04A!important;color:#0a100c!important;border-color:#A8F04A!important;font-size:16px!important;font-weight:700
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-action:not(.proof-sole-slot) button{
+  opacity:.7
+ }
+ body[data-guided=true][data-active-stage=proof] .proof-status,
+ body[data-guided=true][data-active-stage=proof] #passphrase-feedback,
+ body[data-guided=true][data-active-stage=proof] #passphrase-rules{
+  font-size:16px!important;line-height:1.3;color:#A8B0A8
+ }
+ body[data-guided=true] #findings-reserve.findings-reserve-active{
+  font-size:16px!important;line-height:1.35!important;min-height:44px;padding:8px 10px;
+  border:1px dashed #516958;border-radius:8px;background:#0c140f;color:#e8ede6
+ }
+ body[data-guided=true][data-active-stage=incident] .evidence-raw>summary,
+ body[data-guided=true][data-active-stage=incident] .evidence-headline{
+  display:block;width:100%;box-sizing:border-box;
+  font-size:15px!important;line-height:1.25!important;overflow-wrap:anywhere;word-break:break-word;
+  max-width:100%;white-space:normal
+ }
+ body[data-guided=true][data-active-stage=incident] .evidence-card{
+  overflow:hidden;min-width:0;max-width:100%
+ }
+ body[data-guided=true][data-active-stage=incident] .evidence-cards,
+ body[data-guided=true][data-active-stage=incident] #evidence{
+  min-width:0;max-width:100%;overflow:hidden
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-status,
+ body[data-guided=true][data-active-stage=investigation] #investigation-status,
+ body[data-guided=true][data-active-stage=investigation] .investigation-empty{
+  font-size:16px!important;line-height:1.3!important;max-height:2.7em;overflow:hidden
+ }
+}
+#factory-svg .receiving-cert-link rect,
+#factory-svg .station-linked.receiving-cert-link rect{
+ stroke:#A8F04A;stroke-width:3;filter:drop-shadow(0 0 8px #A8F04A88)
+}
+#factory-svg .board-accepted-lot{filter:drop-shadow(0 0 6px #A8F04A88)}
+#factory-svg .proposal-focusable:focus rect{
+ stroke:#A8F04A;stroke-width:3;filter:drop-shadow(0 0 10px #A8F04A66)
+}
+#factory-svg .proof-locked-helper{letter-spacing:.02em}
+#factory-svg .proof-card-body{letter-spacing:.04em}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .board-accepted-lot,#factory-svg .proof-progress-trace{animation:none!important}
+}

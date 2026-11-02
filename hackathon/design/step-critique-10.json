@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 188,
+  "iteration": 197,
   "step": 10,
-  "score": 8,
+  "score": 9,
   "wowScore": 9,
   "fixes": [
     {
-      "priority": "P1",
-      "change": "Increase machine-cube depth and living emerald flow along mills to lathes route while preserving reduced-motion static pattern"
+      "priority": "high",
+      "change": "Keep the emerald mills to lathes arc as the single living flow; add small animated dashes along it, static under reduced motion, with no route through OFFLINE departments"
     },
     {
-      "priority": "P2",
-      "change": "Make OFFLINE labels larger and consistently paired with cross marker and hatch in every stopped department"
+      "priority": "medium",
+      "change": "Ensure every stopped department shows silver cross-hatching, x marker and plain OFFLINE text at legible size, matching the persistent legend"
     },
     {
-      "priority": "P2",
-      "change": "Raise control and legend labels toward 16px without pushing metrics off 1366x768 viewport"
+      "priority": "low",
+      "change": "Enlarge department labels and machine counts to at least 16px where space allows and keep the four top metrics tabular and aligned"
     }
   ]
 }
