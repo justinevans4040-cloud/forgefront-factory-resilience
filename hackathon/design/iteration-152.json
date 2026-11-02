@@ -1,0 +1,226 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh, no page scroll at 1366x768; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; independent reserved zones for scene, callouts, stations and jobs; rendered scene at least 70% of main; side content condensed inside its zone with no inspector scrolling",
+    "colorTokens": "Entirely black, emerald and brushed silver: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22), silver #C5CCD4, dim silver rgba(197,204,212,.68), emerald #A8F04A with #050705 on primary; official logo immutable black, emerald and brushed silver in header and opening story only; stopped states silver cross-hatching, x marker and plain OFFLINE text",
+    "typography": "System sans; 16px/24 body, no label under 12px, header tabs span most of header at 16px+, 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step",
+    "motion": "Living material flow, state glow, depth and cinematic 240ms route trace on real state change, then settle; 160-220ms selection transitions; honors prefers-reduced-motion by removing motion while pattern, x marker, glow-free outline and text retain meaning; 2px emerald focus ring with 2px offset; pointer style on enabled controls only",
+    "components": "48px header with official logo left and Lock recovery room right; compact horizontal rail with equal-width non-wrapping targets, aria-current and arrow-key movement; focusable cinematic factory SVG dominant; connection readiness checks for provider identity separate from investigation evidence task by heading, status and controls; selecting a recovery option opens one-click Approve then Authorize this decision wall; pending proposals untracked until approval; tab order skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite",
+    "visualizations": "960x540 state-driven factory SVG: MAT-ALLOY-A held, Certificate 120 versus Receiving 80, 40+30=70 units, feasible routes emerald only, silver idle machines, CELL-MILL-2 stopped with silver cross-hatching, x marker and OFFLINE, no route through it; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend with pattern, marker and text"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Enlarge Certificate and Receiving tracks and add depth, flowing material dots and state glow so DOES NOT MATCH reads as cinematic cause, not a flat chart"
+        },
+        {
+          "priority": "medium",
+          "change": "Raise side-zone secondary copy to 16px and tighten source evidence into one reserved callout zone without overlap"
+        },
+        {
+          "priority": "medium",
+          "change": "Make RECEIVING, cells and jobs focusable SVG-linked nodes with visible focus ring and bidirectional highlighting"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Animate one emerald evidence trace from verified findings into the factory scene on entry, then settle, with reduced-motion static equivalent"
+        },
+        {
+          "priority": "medium",
+          "change": "Enlarge the 3/0/3 metrics to 26px tabular and give Verified, Rejected and Feasible equal visual weight"
+        },
+        {
+          "priority": "low",
+          "change": "Reduce repeated scene option cards or label them as preview-only to sharpen the investigation focus"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 8,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Add selected-path glow and an emerald route through feasible cells in the scene as each Select this path radio gains focus or selection"
+        },
+        {
+          "priority": "medium",
+          "change": "Keep No acceptance recorded visually neutral in silver until selection, reserving emerald fill for the single primary action"
+        },
+        {
+          "priority": "low",
+          "change": "Increase tradeoff finish and cost metrics hierarchy so 17.5h versus 83h is scannable at a glance"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "wowScore": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Clarify board header wording to 0 BLOCKED prior, approved plan retained, 3 PROPOSED replacements untracked until approval, matching the side zone exactly"
+        },
+        {
+          "priority": "medium",
+          "change": "Add depth and a subtle live-board assembly transition for t1 to t3 while keeping dashed untracked styling distinct from tracked work"
+        },
+        {
+          "priority": "medium",
+          "change": "Condense duplicated PROPOSED panels in the side zone so all three tasks fit without crowding at 1366x768"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Strengthen the shock moment with a one-time cross-hatch sweep and 24h to 0h count transition on CELL-MILL-2, static under reduced motion"
+        },
+        {
+          "priority": "medium",
+          "change": "Make WILL GO OFFLINE preview visually distinct from final OFFLINE by label and border while retaining silver hatching and x marker"
+        },
+        {
+          "priority": "low",
+          "change": "Enlarge the machine selector to a 36px+ target with clear focus ring and grouped label"
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Separate provider identity readiness and investigation evidence controls under distinct headings in the side zone, with independent status and primary actions"
+        },
+        {
+          "priority": "medium",
+          "change": "Fade the cleared Verified findings panel to silver disabled styling and explain 3 to 2 feasible paths beside the constrained option"
+        },
+        {
+          "priority": "medium",
+          "change": "Remove any route through CELL-MILL-2 and reroute emerald flow visibly through CELL-MILL-1 only"
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 8,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Add an ember-free silver invalidation flash and emerald feasible-route retrace when the revised comparison first appears"
+        },
+        {
+          "priority": "medium",
+          "change": "Align constrained Split card metrics across scene and side zone, using dashes consistently with a plain reason"
+        },
+        {
+          "priority": "low",
+          "change": "Make Scenario changed, review required the single status sentence in the action bar and side zone to avoid duplication"
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 7,
+      "wowScore": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Reconcile status language: show 3 BLOCKED prior beside approved plan retained, with replacement tasks clearly untracked until approval"
+        },
+        {
+          "priority": "medium",
+          "change": "Give the replanned board a cinematic task-sequence glow from t1 to t3 that settles, respecting reduced motion"
+        },
+        {
+          "priority": "medium",
+          "change": "Compress the repeated side-zone proposal list so Approve revised tasks remains visible without crowding"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Deepen the three proof stages with layered chain links and a single emerald progress trace from Verify to Seal to Retain"
+        },
+        {
+          "priority": "medium",
+          "change": "Raise passphrase guidance and locked-state helper text to 16px body while keeping locked controls clearly non-interactive"
+        },
+        {
+          "priority": "low",
+          "change": "Make 18 events, 70 parts, 35h versus 48h a stronger before-after metric band with tabular alignment"
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Add living emerald material flow along the mills to lathes arc and clearer depth on running machines, with OFFLINE departments kept silver hatched with x markers"
+        },
+        {
+          "priority": "medium",
+          "change": "Reduce hatching contrast behind machine icons so counts and OFFLINE, RUNNING totals stay legible at 1366x768"
+        },
+        {
+          "priority": "medium",
+          "change": "Ensure Trigger failure and Accept calculated recovery are sequential and unambiguous, with only one emerald primary emphasized per state"
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Within the fixed order, enlarge the cascade visual caption and add a three-part annotation, freeze, feasible reroute, human approval, so judges read the full-shop story in seconds"
+        },
+        {
+          "priority": "medium",
+          "change": "Strengthen the one-line pitch and Live demo link contrast and size immediately after the opening logo for faster judge conversion"
+        },
+        {
+          "priority": "low",
+          "change": "Tighten What you will see into five bolder outcome rows and make Meet The Britt human-control promise stand out with a silver rule"
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

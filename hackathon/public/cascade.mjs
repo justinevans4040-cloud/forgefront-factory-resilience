@@ -77,12 +77,16 @@ export function mountCascade({loadPlant,launcher,workflow}){
   // Viewport LOD only — never fewer machines. Heavy earlier so 1k/5k stay fluid toward 60fps.
   const heavy=plantScale>=400;
   const extreme=plantScale>=1000;
+  const ultra=plantScale>=2500;
   const maxDepth=result.cascade.reduce((n,c)=>Math.max(n,c.depth),1);
   // Throttle DOM status updates on large plants; canvas flow still runs (or every other frame when extreme).
-  const domTick=!heavy||Math.floor(now/(extreme?160:110))!==Math.floor((animate.lastDom||0)/(extreme?160:110));
+  const domTick=!heavy||Math.floor(now/(ultra?220:extreme?180:110))!==Math.floor((animate.lastDom||0)/(ultra?220:extreme?180:110));
   animate.lastDom=now;
-  // Skip alternate canvas paints from heavy upward (LOD only; machine count unchanged).
-  const paintCanvas=!heavy||!animate.skipPaint;animate.skipPaint=heavy?!animate.skipPaint:false;
+  // Skip canvas paints on a cadence from heavy upward (LOD only; machine count unchanged).
+  // heavy: every 2nd frame · extreme: every 3rd · ultra (5k+): every 4th
+  const paintStride=ultra?4:extreme?3:heavy?2:1;
+  animate.paintPhase=((animate.paintPhase||0)+1)%paintStride;
+  const paintCanvas=animate.paintPhase===0;
   for(const node of tiles.children){
    const depthReady=active&&!recovered&&Number(node.dataset.depth)<=progress*maxDepth;
    const offlineCount=Number(node.dataset.offlineCount||0),memberCount=Number(node.dataset.memberCount||0),runningCount=Number(node.dataset.runningCount||0);
@@ -103,7 +107,9 @@ export function mountCascade({loadPlant,launcher,workflow}){
    }
   }
   if(!paintCanvas){if(!reduced.matches||(sample&&sample.collecting))raf=requestAnimationFrame(animate);return;}
-  const box=floor.getBoundingClientRect();
+  // Cache floor box between paints (LOD only) — same machine count, fewer layout reads.
+  if(!animate.boxCache||animate.boxCache.at<now-500){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
+  const box=animate.boxCache.box;
   // Cap devicePixelRatio on heavy plants (LOD only) — fewer canvas pixels, same machine count.
   const dpr=heavy?1:Math.min(devicePixelRatio||1,1.5);
   if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}
@@ -113,7 +119,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
   const drawFlow=(from,to,color,nowStamp,width=4.2,particles=9)=>{
    const a=center(from),b=center(to);
    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-Math.min(72,Math.abs(b.x-a.x)*0.28);
-   const particleCount=extreme?Math.min(1,particles):heavy?Math.min(2,particles):particles;
+   const particleCount=ultra?0:extreme?Math.min(1,particles):heavy?Math.min(2,particles):particles;
    ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches||heavy?0:22;ctx.setLineDash(reduced.matches?[]:[16,8]);ctx.beginPath();ctx.moveTo(a.x,a.y);
    // Straight routes on heavy plants (LOD only); quadratic depth retained under 400.
    if(heavy)ctx.lineTo(b.x,b.y);else ctx.quadraticCurveTo(mx,my,b.x,b.y);
@@ -234,9 +240,9 @@ function syncMachineArt(node,showOffline){
   g.querySelectorAll('[data-offline-art]').forEach(n=>n.remove());
   g.querySelectorAll('[data-online-art]').forEach(n=>n.remove());
   if(want){
-   // Silver hatch + × on glyphs; plain OFFLINE lives on the department chip so dense plants stay collision-free.
+   // Silver hatch + corner × only — no full-glyph diagonals over labels (Wonder cascade P1).
    const hatch=document.createElementNS('http://www.w3.org/2000/svg','rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+svg.dataset.hatchId+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
-   for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS('http://www.w3.org/2000/svg','path');line.setAttribute('data-offline-art','1');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
+   const mark=document.createElementNS('http://www.w3.org/2000/svg','text');mark.setAttribute('data-offline-art','1');mark.setAttribute('x','52');mark.setAttribute('y','18');mark.setAttribute('text-anchor','middle');mark.setAttribute('fill','#c5ccd4');mark.setAttribute('font-size','16');mark.setAttribute('font-weight','800');mark.setAttribute('class','offline-x');mark.textContent='×';g.append(mark);
   }else{
    const window=document.createElementNS('http://www.w3.org/2000/svg','rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);
    const light=document.createElementNS('http://www.w3.org/2000/svg','circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);
@@ -266,7 +272,7 @@ function machineArt(machines,onMachine,affectedIds=new Set(),recovered=false){
   for(const [points,fill]of[['0,14 20,2 62,2 43,14',offline?'#8a9399':'#a9cbb7'],['43,14 62,2 62,42 43,54',offline?'#3a4147':'#294b3a'],['0,14 43,14 43,54 0,54',offline?'#5c656c':'#527862']]){const p=document.createElementNS(ns,'polygon');p.setAttribute('points',points);p.setAttribute('fill',fill);p.setAttribute('stroke','#c5ccd4');p.setAttribute('stroke-width','1');g.append(p);}
   if(offline){
    const hatch=document.createElementNS(ns,'rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+pattern.id+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
-   for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS(ns,'path');line.setAttribute('data-offline-art','1');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
+   const mark=document.createElementNS(ns,'text');mark.setAttribute('data-offline-art','1');mark.setAttribute('x','52');mark.setAttribute('y','18');mark.setAttribute('text-anchor','middle');mark.setAttribute('fill','#c5ccd4');mark.setAttribute('font-size','16');mark.setAttribute('font-weight','800');mark.setAttribute('class','offline-x');mark.textContent='×';g.append(mark);
    if(labelOffline){const offlineText=document.createElementNS(ns,'text');offlineText.setAttribute('data-offline-art','1');offlineText.setAttribute('x','31');offlineText.setAttribute('y','46');offlineText.setAttribute('text-anchor','middle');offlineText.setAttribute('fill','#c5ccd4');offlineText.setAttribute('font-size','14');offlineText.setAttribute('font-weight','800');offlineText.setAttribute('class','offline-label');offlineText.textContent='OFFLINE';g.append(offlineText);}
   }
   else{const window=document.createElementNS(ns,'rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);const light=document.createElementNS(ns,'circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);}

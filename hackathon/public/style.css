@@ -1328,3 +1328,52 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
 @media(prefers-reduced-motion:reduce){
  #factory-svg .material-flow.held-flow,#factory-svg .material-spark.held-spark,#factory-svg .proof-chain-node.ready{animation:none!important}
 }
+
+/* audit34: Wonder P1 — equal path cards, denser findings, proof READY/LOCKED, board offline legibility, stage fill */
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.9fr) minmax(290px,.58fr)!important}
+ body[data-guided=true] #factory-svg{min-height:400px!important}
+ body[data-guided=true][data-active-stage=decision] #options{display:grid!important;grid-template-columns:1fr!important;gap:6px!important;align-items:stretch}
+ body[data-guided=true][data-active-stage=decision] .option{min-height:72px!important;height:auto;display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;align-items:center!important;overflow:visible!important}
+ body[data-guided=true][data-active-stage=decision] .option.unavailable{min-height:56px!important}
+ body[data-guided=true][data-active-stage=decision] .option.unavailable>p{display:none!important}
+ body[data-guided=true][data-active-stage=decision] .option .numbers strong{font-size:26px!important;font-variant-numeric:tabular-nums;min-width:3.2ch;text-align:right}
+ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true]{outline:2px solid #A8F04A;outline-offset:2px}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:26px!important;font-variant-numeric:tabular-nums}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight{border-color:#7a8a80!important;background:#0c1210!important}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight summary{color:#c5ccd4!important;letter-spacing:.04em}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight summary::before{content:"CONNECTION · ";font-size:12px;letter-spacing:.08em;color:#8a9590}
+ body[data-guided=true][data-active-stage=investigation] .investigation-task{border-color:#A8F04A66!important;background:linear-gradient(140deg,#152219,#0b130e)!important;box-shadow:0 0 18px #A8F04A18}
+ body[data-guided=true][data-active-stage=investigation] .investigation-task>summary,
+ body[data-guided=true][data-active-stage=investigation] .investigation-task .eyebrow{color:#A8F04A!important}
+ body[data-guided=true][data-active-stage=investigation] .investigation-task>summary::before{content:"EVIDENCE · ";font-size:12px;letter-spacing:.08em;color:#A8F04A}
+ body[data-guided=true][data-active-stage=board] #britt-proposal{display:flex!important;flex-direction:column;gap:4px;max-height:42vh!important;overflow:hidden!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task{flex:0 0 auto;padding:6px 8px!important;min-height:0!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task strong{font-size:14px!important;line-height:1.25;white-space:normal;overflow-wrap:anywhere}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task>small:not(.proposal-badge){display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.proposal-compact{padding:4px 8px!important;min-height:32px!important;display:flex;align-items:center;gap:8px}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.proposal-compact strong{display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.proposal-compact .proposal-badge{margin:0;font-size:12px}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-end{display:none!important}
+ body[data-guided=true][data-active-stage=proof] .proof-action{position:relative;min-height:40px;font-size:15px;padding:6px 10px!important;border-radius:8px;background:linear-gradient(140deg,#152219,#0b130e);overflow:visible}
+ body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true]{border-color:#A8F04A;box-shadow:0 0 16px #A8F04A33}
+ body[data-guided=true][data-active-stage=proof] .proof-action legend{padding-right:64px}
+ body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true] legend::after{content:" · READY";color:#A8F04A;font-weight:800;letter-spacing:.06em}
+ body[data-guided=true][data-active-stage=proof] .proof-action:not([data-complete=true]) legend::after{content:" · LOCKED";color:#8a9590;font-weight:700;letter-spacing:.06em}
+ body[data-guided=true][data-active-stage=proof] .stage[data-stage=proof]{overflow:hidden!important;height:100%!important;max-height:100%!important}
+ body[data-guided=true][data-active-stage=proof] .results{max-height:22%!important}
+ body[data-guided=true][data-active-stage=board] .proposal-task{border-style:dashed!important;border-width:1.5px!important;border-color:#c5ccd488!important;min-height:64px}
+ body[data-guided=true][data-active-stage=board] .proposal-task .proposal-badge{display:block;font-size:12px;letter-spacing:.06em;color:#A8F04A;margin-bottom:4px}
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{border-style:solid!important;border-color:#A8F04A!important;box-shadow:0 0 28px #A8F04A55}
+ body[data-guided=true][data-active-stage=shock] .shock-preview-hatch{font-size:16px;min-height:40px}
+}
+#factory-svg .offline-replan{fill:#e8f6ee;filter:drop-shadow(0 0 6px #C5CCD466)}
+#factory-svg .mismatch-label,#factory-svg .mismatch-crack{filter:drop-shadow(0 0 12px #A8F04Acc)}
+#factory-svg .cert-track,#factory-svg .recv-track{filter:drop-shadow(0 0 10px #A8F04A33)}
+#authorize-wall{border-width:2px;box-shadow:0 28px 80px #000d,0 0 40px #A8F04A33}
+#authorize-wall h2{letter-spacing:.02em}
+.plant-tile.cascade-hit{background:repeating-linear-gradient(-45deg,#152019,#152019 5px,#1c2a22 5px,#1c2a22 10px)!important}
+.plant-tile .plant-state{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){
+ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true]{outline-width:2px}
+}
