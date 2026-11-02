@@ -7,7 +7,7 @@ import {browserOptions,publicSmokeConfig} from './browser-options.mjs';
 import {contrastRatio} from '../public/accessibility.mjs';
 import {redactEvidence,writeEvidence,evidenceRun} from './public-evidence.mjs';
 import { spawn, execFileSync } from 'node:child_process';
-import { existsSync, mkdtempSync, readFileSync, mkdirSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { randomBytes } from 'node:crypto';
@@ -112,7 +112,7 @@ try{
    for(const [width,height]of [[1920,1080],[1366,768]]){
     await send('Emulation.setDeviceMetricsOverride',{width,height,deviceScaleFactor:1,mobile:false});await delay(250);
     const metrics=await evaluate(`(()=>{const room=document.querySelector('#plant-room'),nodes=[...room.querySelectorAll('.plant-tile')],visible=[...room.querySelectorAll('button,select,label,.plant-caption,.plant-metrics>div,.plant-navigation span')].filter(e=>e.checkVisibility()&&e.getBoundingClientRect().width>0);const clipped=[],hits=[];for(const e of visible){const r=e.getBoundingClientRect();if(r.left<0||r.top<0||r.right>innerWidth+1||r.bottom>innerHeight+1||e.scrollHeight>e.clientHeight+2||e.scrollWidth>e.clientWidth+2)clipped.push(e.textContent);}for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){const a=nodes[i].getBoundingClientRect(),b=nodes[j].getBoundingClientRect();if(Math.min(a.right,b.right)>Math.max(a.left,b.left)&&Math.min(a.bottom,b.bottom)>Math.max(a.top,b.top))hits.push([nodes[i].textContent,nodes[j].textContent]);}let glyphHits=0,glyphClipped=0;for(const svg of room.querySelectorAll('.plant-machinery')){const outer=svg.getBoundingClientRect(),boxes=[...svg.querySelectorAll('g')].map(g=>g.getBoundingClientRect()).sort((a,b)=>a.top-b.top);for(let i=0;i<boxes.length;i++){const a=boxes[i];if(a.left<outer.left-1||a.right>outer.right+1||a.top<outer.top-1||a.bottom>outer.bottom+1)glyphClipped++;for(let j=i-1;j>=0&&boxes[j].bottom>a.top;j--){const b=boxes[j];if(Math.min(a.right,b.right)>Math.max(a.left,b.left)+.1&&Math.min(a.bottom,b.bottom)>Math.max(a.top,b.top)+.1)glyphHits++;}}}return {clipped,hits,glyphHits,glyphClipped,pageScroll:room.scrollHeight>room.clientHeight+2,tiles:nodes.length,art:[...room.querySelectorAll('.plant-machinery')].map(svg=>({groups:svg.querySelectorAll('g').length,viewBox:svg.getAttribute('viewBox'),rect:{w:svg.getBoundingClientRect().width,h:svg.getBoundingClientRect().height},transforms:[...svg.querySelectorAll('g')].slice(0,3).map(g=>({transform:g.getAttribute('transform'),x:g.getBoundingClientRect().x,w:g.getBoundingClientRect().width}))}))};})()`);
-    const screenshot=plantFolder+'/'+label+'-'+width+'.jpg';writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+screenshot,import.meta.url),Buffer.from((await send('Page.captureScreenshot',{format:'jpeg',quality:80,captureBeyondViewport:false})).data,'base64'));plantResults.push({state:label,viewport:width+'x'+height,screenshot,...metrics});writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+plantFolder+'/results.json',import.meta.url),JSON.stringify(plantResults,null,2));assert.deepEqual(metrics.clipped,[],'plant clipping '+label);assert.deepEqual(metrics.hits,[],'plant overlap '+label);assert.equal(metrics.pageScroll,false);assert.equal(metrics.glyphHits,0,'machine artwork never overlaps');assert.equal(metrics.glyphClipped,0,'machine artwork stays in its reserved band');
+    const screenshot=plantFolder+'/'+label+'-'+width+'.jpg';writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+screenshot,import.meta.url),Buffer.from((await send('Page.captureScreenshot',{format:'jpeg',quality:80,captureBeyondViewport:false})).data,'base64'));plantResults.push({state:label,viewport:width+'x'+height,screenshot,...metrics});writeEvidence(new URL('../evidence/'+evidenceRun()+'/'+plantFolder+'/results.json',import.meta.url),JSON.stringify(plantResults,null,2));assert.deepEqual(metrics.clipped,[],'plant clipping '+label);assert.deepEqual(metrics.hits,[],'plant overlap '+label);assert.equal(metrics.pageScroll,false);assert.equal(metrics.glyphHits,0,'machine artwork never overlaps');assert.equal(metrics.glyphClipped,0,'machine artwork stays in its reserved band');if(!label.includes('department-drill-in')&&!plantSize)assert.equal(metrics.tiles,7,'full-shop overview keeps all seven departments visible at '+width+'x'+height+' for '+label);
    }
   };
   await capturePlant('running');
@@ -123,7 +123,7 @@ try{
   await evaluate(`document.querySelector('#plant-room .plant-tile').click()`);await capturePlant('department-drill-in');
 
   if(process.argv.includes('--showcase')){
-   await evaluate(`document.querySelector('#plant-failure').value='wrong-cert';document.querySelector('#plant-failure').dispatchEvent(new Event('change'));document.querySelector('#plant-room .plant-controls button').click();document.querySelector('#plant-room').classList.add('recording')`);await delay(2500);
+   await evaluate(`(()=>{const overview=[...document.querySelectorAll('#plant-room .plant-navigation button')].find(b=>/All departments/.test(b.textContent));if(overview&&!overview.disabled)overview.click();const failure=document.querySelector('#plant-failure');failure.value='wrong-cert';failure.dispatchEvent(new Event('change'));document.querySelector('#plant-room .plant-controls button').click();document.querySelector('#plant-room').classList.add('recording');})()`);await delay(2500);
    await send('Emulation.setDeviceMetricsOverride',{width:3840,height:2160,deviceScaleFactor:1,mobile:false});await delay(300);
    const target=new URL('../../assets/showcase/full-shop-cascade.png',import.meta.url);if(!process.argv.includes('--replace-showcase'))assert.equal(existsSync(target),false,'showcase must be a new asset');writeEvidence(target,Buffer.from((await send('Page.captureScreenshot',{format:'png',captureBeyondViewport:false})).data,'base64'));
   }
@@ -132,7 +132,12 @@ try{
  }
 
  if(process.argv.includes('--readme')){
-  await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});await send('Page.navigate',{url:'data:text/html;charset=utf-8,'+encodeURIComponent(renderJudgeReadme())});await delay(800);const layout=await send('Page.getLayoutMetrics');const size=layout.cssContentSize??layout.contentSize;writeEvidence(new URL('../evidence/'+evidenceRun()+'/readme-preview.jpg',import.meta.url),Buffer.from((await send('Page.captureScreenshot',{format:'jpeg',quality:90,captureBeyondViewport:true,clip:{x:0,y:0,width:size.width,height:size.height,scale:1}})).data,'base64'));
+  // Inline data URLs exceed Chromium limits once showcase images are embedded; serve the pitch from the smoke server instead.
+  const readmeHtml=renderJudgeReadme();const readmePath=join(scratch,'judge-readme.html');writeFileSync(readmePath,readmeHtml);
+  const handler=app.server.listeners('request')[0];app.server.removeAllListeners('request');app.server.on('request',(req,res)=>{if(req.url?.startsWith('/judge-readme')){res.writeHead(200,{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'});res.end(readFileSync(readmePath));return;}handler(req,res);});
+  await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});await send('Page.navigate',{url:base+'/judge-readme'});await delay(1200);
+  const title=await evaluate(`document.querySelector('h1')?.textContent||''`);assert.match(title,/Factory Resilience/i,'judge readme preview must render the pitch page');
+  const layout=await send('Page.getLayoutMetrics');const size=layout.cssContentSize??layout.contentSize;writeEvidence(new URL('../evidence/'+evidenceRun()+'/readme-preview.jpg',import.meta.url),Buffer.from((await send('Page.captureScreenshot',{format:'jpeg',quality:90,captureBeyondViewport:true,clip:{x:0,y:0,width:Math.min(size.width,1400),height:Math.min(size.height,4200),scale:1}})).data,'base64'));
  }
  if(!process.argv.includes('--plant-only')){
  const visited=[];const captures=[];

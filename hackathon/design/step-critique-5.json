@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 5,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Clarify the pending proposal state: keep 3 PROPOSED and UNTRACKED UNTIL APPROVAL visually distinct from tracked work with dashed silver borders and emerald only on the current task."
+      "change": "Make proposed tasks visually untracked until approval: dashed silver borders, PROPOSED label and no progress semantics beyond sequence."
     },
     {
       "priority": "medium",
-      "change": "Add depth and a subtle emerald glow to task t1 while t2 and t3 stay dimmed, preserving the Ready, After t1, After t2 sequence at 16px."
+      "change": "Strengthen depth between stations and job cards with raised silver edges and restrained emerald glow on the first ready task."
     },
     {
       "priority": "low",
-      "change": "Align the three station cards and three job cards on one grid rhythm to lift cinematic polish within 1366x768."
+      "change": "Ensure Approve proposal remains the sole primary in the 56px action bar."
     }
   ]
 }

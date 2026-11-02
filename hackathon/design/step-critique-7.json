@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 7,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Retain silver cross-hatching, cross marker and plain OFFLINE text on CELL-MILL-2, and remove any route through it; feasible emerald flow should visibly stop at that boundary."
+      "change": "Keep CELL-MILL-2 fully legible over hatching: raise label contrast, retain cross marker and OFFLINE text inside station bounds."
+    },
+    {
+      "priority": "high",
+      "change": "Separate provider-identity readiness from the investigation task exactly as on the earlier investigation step for consistency."
     },
     {
       "priority": "medium",
-      "change": "Keep connection readiness separate from the Reinvestigate recovery evidence task, with the sample offline status stated once in each zone."
-    },
-    {
-      "priority": "low",
-      "change": "Make the CELL-MILL-2 OFFLINE banner a persistent callout in a reserved zone linked bidirectionally with the SVG node."
+      "change": "Show only two feasible paths in emerald and mark Split as constrained in silver pattern and text."
     }
   ]
 }

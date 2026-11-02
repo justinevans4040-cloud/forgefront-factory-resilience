@@ -17,3 +17,19 @@ for(const size of [2,40,1000,5000])for(const [width,height]of [[1920,1080],[1366
   page++;
  }while(page<pages);assert.equal(seen.size,size);
 });
+test('department overview fills the floor with no empty trailing void',()=>{
+ const groups=plantGroups(jobShopPlant().machines);
+ assert.equal(groups.length,7);
+ for(const [width,height]of [[1920-80,1080-350],[1366-80,768-350]]){
+  const mins=height<360?{minWidth:190,minHeight:130}:{minWidth:210,minHeight:160};
+  const layout=plantTiles(groups,{width,height,...mins});
+  assert.equal(layout.pages,1);
+  assert.equal(layout.tiles.length,7);
+  const lastRowY=Math.max(...layout.tiles.map(t=>t.y));
+  const lastRow=layout.tiles.filter(t=>t.y===lastRowY);
+  const span=Math.max(...lastRow.map(t=>t.x+t.width));
+  assert.ok(Math.abs(span-width)<0.5,'last row must span the full floor width');
+  const covered=layout.tiles.reduce((sum,t)=>sum+t.width*t.height,0);
+  assert.ok(covered/ (width*height) > 0.92,'department cards must fill the floor');
+ }
+});

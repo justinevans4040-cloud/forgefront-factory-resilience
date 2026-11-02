@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 3,
   "score": 8,
   "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make the three recovery paths visually linked to the factory SVG: selecting or focusing a path highlights its feasible route with emerald flow and glow."
+      "change": "Make each Select this path control at least 36px, keyboard reachable, and visibly linked to the matching option card in the scene."
     },
     {
       "priority": "medium",
-      "change": "Increase tradeoff metrics to 26px tabular type and keep Select controls at least 36px tall with a clear 2px emerald focus ring."
+      "change": "Increase tradeoff metrics hierarchy while keeping one verb-led instruction and one status sentence."
     },
     {
       "priority": "low",
-      "change": "Reserve a fixed decision-status zone so No acceptance recorded does not shift layout when selection changes."
+      "change": "On selection, trace the chosen feasible route once for 240ms, then leave a static emerald glow."
     }
   ]
 }

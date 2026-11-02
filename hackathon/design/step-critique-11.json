@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 11,
-  "score": 6,
-  "wowScore": 6,
+  "score": 5,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Represent every machine in the full-shop cascade with consistent isometric depth, but ensure OFFLINE uses silver cross-hatching, cross marker and plain OFFLINE text on each stopped machine rather than icon-only meaning."
+      "change": "Refit the full-shop cascade to balanced department zones: enlarge every machine glyph, reduce the oversized Assembly area, and keep all departments visible without disproportionate empty space."
     },
     {
       "priority": "high",
-      "change": "Refit the department grid to fill the 1366x768 viewport without the empty lower-right void; enlarge cards and metrics while keeping all seven departments visible."
+      "change": "Apply consistent stopped treatment at every scale: silver cross-hatching, cross marker and plain OFFLINE text large enough to read at 1920x1080."
     },
     {
       "priority": "medium",
-      "change": "Add emerald living flow only on feasible recovery routes between departments and a persistent legend, with glow and flow removed under reduced motion."
+      "change": "Add living material flow and feasible-route glow only on real running paths, with depth on machine bodies and reduced-motion static equivalents."
     }
   ]
 }

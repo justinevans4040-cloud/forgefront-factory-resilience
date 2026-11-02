@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 2,
   "score": 7,
-  "wowScore": 5,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Separate connection readiness for provider identity from the investigation evidence task with distinct headings, status lines and controls; do not merge their actions."
+      "change": "Separate connection readiness, labelled as checking provider identity, from the distinct investigation evidence task with individual headings, status lines and controls."
     },
     {
       "priority": "medium",
-      "change": "Enlarge header tab labels to at least 16px and ensure the compact horizontal rail targets remain equal-width, non-wrapping and keyboard movable with arrow keys."
+      "change": "Compress the connection panel so the investigation action remains visible without squeezing the scene below 70%."
     },
     {
-      "priority": "low",
-      "change": "Trim narration in the side zone to one instruction and one status sentence at 16px body type."
+      "priority": "medium",
+      "change": "Add living flow only along the held route and a static silver state for idle machines, with reduced-motion fallback."
     }
   ]
 }

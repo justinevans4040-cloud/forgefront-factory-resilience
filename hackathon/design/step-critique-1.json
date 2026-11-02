@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 1,
-  "score": 7,
-  "wowScore": 6,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Enlarge the factory scene to at least 70% of main and give callouts, stations and jobs independent reserved zones so the discrepancy tracks sit inside the scene without crowding."
+      "change": "Enlarge the factory scene within its reserved zone to at least 70% of main and reduce empty station-card height so flow, glow and depth read cinematically at 1366x768."
     },
     {
       "priority": "medium",
-      "change": "Raise side-zone body copy to 16px/24 and keep the second official logo placement in the opening story at native aspect, black, emerald and brushed silver."
+      "change": "Raise right-zone body copy to 16px/24 and keep evidence values tabular; preserve both logo placements unchanged."
     },
     {
       "priority": "medium",
-      "change": "Add living emerald material-flow emphasis only on feasible routes and a soft state glow on RECEIVING hold, with reduced-motion fallback to pattern and text."
+      "change": "Link Certificate 120 and Receiving 80 bars bidirectionally to their evidence cards with a 2px emerald focus ring."
     }
   ]
 }

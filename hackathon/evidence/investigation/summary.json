@@ -7,8 +7,8 @@
     "toolCalls": 2,
     "validatedClaims": 3,
     "rejectedClaims": 0,
-    "elapsedMs": 12063,
-    "runId": "0b806628-aa99-413b-8465-1692bb98daf4"
+    "elapsedMs": 6813,
+    "runId": "67002c5c-aa7e-4239-94d5-4ca0bd5d04c1"
   },
   {
     "provider": "baseten",
@@ -18,18 +18,7 @@
     "toolCalls": 2,
     "validatedClaims": 3,
     "rejectedClaims": 0,
-    "elapsedMs": 9334,
-    "runId": "b487fdde-66e5-464b-849c-b55fbbba55cc"
-  },
-  {
-    "provider": "fireworks",
-    "ok": true,
-    "stopReason": "MODEL_STOP",
-    "turns": 3,
-    "toolCalls": 2,
-    "validatedClaims": 3,
-    "rejectedClaims": 0,
-    "elapsedMs": 43487,
-    "runId": "6dbd0511-2ea8-46af-8262-b6f6311ac5f8"
+    "elapsedMs": 13490,
+    "runId": "3937e2c1-c161-4369-b7b3-47c806da46ba"
   }
 ]

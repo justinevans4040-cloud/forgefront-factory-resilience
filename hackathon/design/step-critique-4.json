@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 4,
   "score": 8,
   "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep the typed consent form prominent after selection: enlarge the exact-phrase field to 16px, show match progress, and keep Accept disabled until exact with aria-live polite feedback."
+      "change": "Keep the typed consent form opened by selection, with the exact phrase, character count and disabled Accept state grouped as one labelled form."
     },
     {
       "priority": "medium",
-      "change": "Synchronise the selected Split available capacity card in the scene with the consent panel using emerald outline and state glow, static under reduced motion."
+      "change": "Give the consent input a 2px emerald focus ring and announce match state through aria-live polite."
     },
     {
-      "priority": "low",
-      "change": "Move the plan identifier into a muted silver micro-label so the typing instruction remains the dominant line."
+      "priority": "medium",
+      "change": "Dim unselected paths in silver without removing their readable hours and cost."
     }
   ]
 }

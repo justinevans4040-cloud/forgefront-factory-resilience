@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 98,
+  "iteration": 103,
   "step": 10,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make the 01 Verify, 02 Seal, 03 Retain sequence cinematic with depth and emerald glow only on the active READY stage, locked stages in dim silver."
+      "change": "Clarify the three proof stages as sequential gates with Ready, Locked and Locked text plus pattern, not glow alone."
     },
     {
       "priority": "medium",
-      "change": "Raise proof side-zone body copy to 16px and separate Verify ledger, Seal packet and Retain checkpoint into fixed reserved zones with distinct status lines."
+      "change": "Enlarge the 21 events headline and verified-chain metrics for judge-distance impact while keeping the scene zone dominant."
     },
     {
-      "priority": "low",
-      "change": "Add a restrained cinematic transition when Verify completes, removed under prefers-reduced-motion."
+      "priority": "medium",
+      "change": "Keep Verify ledger as sole primary and announce its result through aria-live polite."
     }
   ]
 }
