@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 11,
   "score": 8,
-  "wowScore": 7,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep the owner-fixed order exactly: logo, one-line pitch, Live demo link, Powered by partners, hero and cascade visuals, then What you will see, Meet The Britt, why it matters, how Meta models are used; increase pitch and Live demo prominence so judges act within seconds"
+      "priority": "P1",
+      "change": "Keep required order logo, pitch, Live demo, Powered by partners, hero and cascade; enlarge cascade screenshot so three signals legible without zoom"
     },
     {
-      "priority": "medium",
-      "change": "Enlarge the cascade visual and its caption so emerald mills to lathes, silver x OFFLINE departments and live counters are legible without zooming"
+      "priority": "P2",
+      "change": "Tighten opening pitch and demo link hierarchy so judge impact lands before partner table"
     },
     {
-      "priority": "low",
-      "change": "Tighten the partner table and model-use section to scannable 16px lines naming who investigates, who weighs choices and that the human decides"
+      "priority": "P2",
+      "change": "Raise small table and caption text toward 16px for cascade legibility"
     }
   ]
 }

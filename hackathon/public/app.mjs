@@ -15,13 +15,21 @@ let guideHistory=[],reviewIndex=null,reviewContext=null;
 let pendingAuthorize=null;
 function highlightPath(id){for(const e of document.querySelectorAll('[data-option-id],[data-scene-option]'))e.classList.toggle('path-linked',(e.dataset.optionId??e.dataset.sceneOption)===id);}
 function highlightEvidence(id){
- for(const element of document.querySelectorAll('.evidence-linked,.station-linked,.finding-trace'))element.classList.remove('evidence-linked','station-linked','finding-trace');
+ for(const element of document.querySelectorAll('.evidence-linked,.station-linked,.finding-trace,.compare-track-active'))element.classList.remove('evidence-linked','station-linked','finding-trace','compare-track-active');
  if(!id)return;
  for(const element of document.querySelectorAll('[data-evidence="'+CSS.escape(id)+'"],#'+CSS.escape(id)+',[data-evidence-id="'+CSS.escape(id)+'"]'))element.classList.add('evidence-linked');
  const key=String(id).toLowerCase();
- const station=/recv|cert|hold|alloy/.test(key)?'RECEIVING':/mill-1|cell-mill-1/.test(key)?'CELL-MILL-1':/mill-2|cell-mill-2/.test(key)?'CELL-MILL-2':'';
+ const plain=String(document.querySelector('[data-evidence="'+CSS.escape(id)+'"] .evidence-headline')?.textContent||id).toLowerCase();
+ const station=/recv|receiving|hold|alloy/.test(key+plain)?'RECEIVING':/mill-1|cell-mill-1/.test(key)?'CELL-MILL-1':/mill-2|cell-mill-2/.test(key)?'CELL-MILL-2':'';
  if(station)for(const element of document.querySelectorAll('[data-scene-machine="'+station+'"],.factory-node[aria-label^="'+station+' "]'))element.classList.add('station-linked');
- const svg=$('factory-svg');if(svg&&/cert|recv/.test(key)){const trace=svg.querySelector('[data-scene-band="compare"]')||svg;trace.classList.add('finding-trace');}
+ const svg=$('factory-svg');
+ if(svg){
+  const cert=/cert|certificate|120/.test(key+plain);
+  const recv=/recv|receiving|80|counted/.test(key+plain);
+  if(cert)for(const el of svg.querySelectorAll('[data-compare-role="certificate"]'))el.classList.add('compare-track-active','finding-trace');
+  if(recv)for(const el of svg.querySelectorAll('[data-compare-role="receiving"]'))el.classList.add('compare-track-active','finding-trace');
+  if(cert||recv){const trace=svg.querySelector('[data-scene-band="compare"]')||svg;trace.classList.add('finding-trace');}
+ }
 }
 const work=document.createElement('div');work.id='britt-work';$('prior-work').before(work);work.append($('prior-work'),$('britt-proposal'));
 const taskActions=document.createElement('div');taskActions.id='britt-controls';$('britt-approve').before(taskActions);taskActions.append($('britt-approve'),$('britt-decline'));
@@ -90,7 +98,7 @@ function render(){
  $('export').disabled=$('report').disabled=!$('plaintext-ack').checked;
  $('shock').disabled=!state.snapshot.cells.some(c=>c.online);
  if(state.operator?.role==='auditor')for(const id of ['investigate','confirm','shock','reset','revoke','guide-start'])$(id).disabled=true;
- $('model-output').hidden=!run;$('model-output').toggleAttribute('hidden',!run);$('model-output').classList.toggle('findings-empty',!run);$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));const chip=$('connection-ready-chip');const preflight=document.querySelector('.route-preflight');const preflightSummary=preflight?.querySelector('summary');if(preflightSummary)preflightSummary.textContent=run?'1 · CONNECTION · ready':'1 · CONNECTION';if(chip){chip.textContent=run?'CONNECTION · identity ready':'1 · CONNECTION · choose a route';chip.hidden=Boolean(run);}if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;preflight.open=false;$('model-output').open=true;}if(!run){preflight.open=true;$('model-output').open=false;}
+ $('model-output').hidden=!run;$('model-output').toggleAttribute('hidden',!run);$('model-output').classList.toggle('findings-empty',!run);$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));const chip=$('connection-ready-chip');const preflight=document.querySelector('.route-preflight');const preflightSummary=preflight?.querySelector('summary');const clearedConnection=!run&&state.decision.status==='invalidated';if(preflightSummary)preflightSummary.textContent=run?'1 · CONNECTION · ready':'1 · CONNECTION';if(preflight)preflight.hidden=clearedConnection;if(chip){chip.textContent=run?'1 · CONNECTION · ready':'1 · CONNECTION';chip.hidden=Boolean(run)||clearedConnection;}if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;preflight.open=false;$('model-output').open=true;}if(!run){if(preflight)preflight.open=!clearedConnection;$('model-output').open=false;}
  // After a capacity shock, keep a reserved findings summary so the side zone never reads as an empty box.
  const findingsReserve=$('findings-reserve');
  if(findingsReserve){
@@ -99,9 +107,9 @@ function render(){
   const needsReserve=cleared||pending;
   findingsReserve.hidden=!needsReserve;
   findingsReserve.classList.toggle('findings-reserve-active',needsReserve);
-  if(cleared)findingsReserve.textContent='CLEARED · Verified findings wiped by the capacity change · '+state.analysis.recovery.feasibleCount+' feasible paths remain · Reinvestigate source evidence to refill facts.';
-  else if(pending)findingsReserve.textContent='PENDING · Evidence findings reserved here after Investigate · 16px status keeps the side zone filled.';
- }
+  if(cleared)findingsReserve.textContent='CLEARED · Verified findings wiped · '+state.analysis.recovery.feasibleCount+' feasible paths remain.';
+  else if(pending)findingsReserve.textContent='PENDING · Evidence findings reserved · Choose a route, then Investigate.';
+}
  if(!run&&$('investigation-pending').hidden)$('investigation-status').textContent=investigationStatus();
  $('comparison').replaceChildren(...state.runs.filter(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest).map(r=>text('p',`${r.run.sample?'Sample · offline walkthrough; no live AI':r.calls.at(-1)?.returnedModel??'identity unavailable'} · ${(r.run.elapsedMs/1000).toFixed(1)}s · ${r.claims.accepted.length} validated / ${r.claims.rejected.length} rejected · ${r.proposalValid?'proposal valid':r.run.stopReason}`)));
  if(run){$('investigation-handoff').textContent=investigationHandoff(run,$('provider').value);$('investigation-highlights').replaceChildren(...investigationHighlights(run,state.analysis).map(({value,label})=>{const item=text('div','','investigation-metric');item.append(text('strong',value),text('span',label));return item;}));$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s`;const analysis=summarizeAnalysis(run.narrative);$('narrative').textContent=analysis.summary;$('analysis-full').textContent=analysis.full;$('read-full-analysis').hidden=!analysis.truncated;$('read-full-analysis').disabled=reviewIndex!==null;
@@ -365,14 +373,17 @@ function renderFactory(){
    add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.gates.every(Boolean)?'Recovery complete. Evidence sealed.':scene.events+' events. One verified chain.',hero);
    const chainY=78;
    add('path',{d:`M 150 ${chainY} H 750`,class:'proof-chain-spine',fill:'none',stroke:scene.gates.every(Boolean)?'#A8F04A':'#5f7a68','stroke-width':4},null,hero);
+   // Wonder P1 step 9: brushed-silver depth + one emerald progress trace across 01→03; LOCKED stays silver dashed.
+   add('path',{d:`M 155 ${chainY} H 745`,class:'proof-progress-trace',fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':'14 8'},null,hero);
    ['VERIFY LEDGER','SEAL PACKET','RETAIN CHECKPOINT'].forEach((label,i)=>{
     const x=18+i*292,done=scene.gates[i],ready=i===0||scene.gates[i-1];
     const firstReady=ready&&!done&&scene.gates.findIndex((g,j)=>(j===0||scene.gates[j-1])&&!g)===i;
-    add('circle',{cx:x+137,cy:chainY,r:12,fill:done?'#A8F04A':firstReady?'#A8F04A':'#52685a',class:done?'proof-chain-node sealed':firstReady?'proof-chain-node ready':'proof-chain-node'},null,hero);
-    add('rect',{x,y:90,width:276,height:height-140,rx:10,fill:done?'#193422':firstReady?'#163224':'#101b14',stroke:done?'#c6ed8d':firstReady?'#A8F04A':'#728e7b','stroke-width':firstReady?3:2,'stroke-dasharray':ready?'none':'6 5',class:done?'proof-station sealed':firstReady?'proof-station ready':'proof-station'},null,hero);
-    add('text',{x:x+18,y:90+(height-140)*.25,'font-size':60,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#c5ccd4'},done?'✓':String(i+1).padStart(2,'0'),hero);
+    add('circle',{cx:x+137,cy:chainY,r:14,fill:done?'#A8F04A':firstReady?'#A8F04A':'#C5CCD4',stroke:'#C5CCD4','stroke-width':2,class:done?'proof-chain-node sealed':firstReady?'proof-chain-node ready':'proof-chain-node'},null,hero);
+    add('rect',{x,y:90,width:276,height:height-140,rx:10,fill:done?'#193422':firstReady?'#163224':'#12181a',stroke:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4','stroke-width':firstReady?3:2,'stroke-dasharray':ready?'none':'6 5',class:done?'proof-station sealed':firstReady?'proof-station ready':'proof-station'},null,hero);
+    add('rect',{x:x+4,y:94,width:268,height:12,rx:3,fill:done?'#A8F04A33':firstReady?'#A8F04A22':'#C5CCD422',class:'proof-station-bevel'},null,hero);
+    add('text',{x:x+18,y:90+(height-140)*.25,'font-size':60,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4'},done?'✓':String(i+1).padStart(2,'0'),hero);
     add('text',{x:x+18,y:90+(height-140)*.50,'font-size':20,fill:'#e8ede6','font-weight':650},label,hero);
-    add('text',{x:x+18,y:90+(height-140)*.80,'font-size':30,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#c5ccd4'},done?'SEALED':firstReady?'READY':'LOCKED',hero);
+    add('text',{x:x+18,y:90+(height-140)*.80,'font-size':30,fill:done?'#c6ed8d':firstReady?'#A8F04A':'#C5CCD4'},done?'SEALED':firstReady?'READY':'LOCKED',hero);
     const chain=add('g',{'aria-label':scene.events+' recorded events · '+(done?'sealed':'awaiting this step')},null,hero);const marks=Math.min(scene.events,24),cols=8;for(let n=0;n<marks;n++){add('rect',{x:x+18+(n%cols)*27,y:90+(height-140)*.58+Math.floor(n/cols)*18,width:18,height:8,rx:2,fill:done?'#88eba8':'#52685a'},null,chain);}
    });
   }
@@ -421,8 +432,10 @@ function renderFactory(){
    const compareRows=Math.max(qty.length,1),compareRow=Math.max(56,Math.min(64,Math.floor((topBand-12)/compareRows)));
    qty.forEach((e,i)=>{const g=add('g',{'data-evidence':e.evidenceId,'data-scene-band':'compare','aria-label':evidencePlainEnglish(e)},null,callouts),y=6+i*compareRow;
     activate(g,()=>{$('evidence').parentElement.open=true;focusPanel('evidence');$(e.evidenceId)?.focus();});g.addEventListener('focus',()=>highlightEvidence(e.evidenceId));g.addEventListener('pointerenter',()=>highlightEvidence(e.evidenceId));
+    const role=allQuantities.length>2?(i?'lowest':'highest'):(i?'receiving':'certificate');
+    g.setAttribute('data-compare-role',role);
     label(24,y+28,allQuantities.length>2?(i?'Lowest source':'Highest source'):(i?'Receiving':'Certificate'),22,g);label(210,y+28,String(e.quantity.value),30,g,{'text-anchor':'end'});
-    box(230,y+2,420,Math.min(34,compareRow-16),g);add('rect',{x:230,y:y+2,width:comparison.widths[i],height:Math.min(34,compareRow-16),rx:5,fill:i?'#A8F04A':'#c5ccd4'},null,g);
+    box(230,y+2,420,Math.min(34,compareRow-16),g);add('rect',{x:230,y:y+2,width:comparison.widths[i],height:Math.min(34,compareRow-16),rx:5,fill:i?'#A8F04A':'#c5ccd4','data-compare-role':role,class:'compare-track'},null,g);
    });
    label(660,40,'DOES NOT MATCH',24,callouts,{class:'mismatch-label scene-size-22','font-weight':800});
    // Crack/flash cue on the mismatch gap — static under prefers-reduced-motion via CSS.
@@ -432,12 +445,16 @@ function renderFactory(){
   label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
   add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':14},null,routes);
   add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':5,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
-  // Living material flow along DOCK→mills (Wonder high / audit38): denser lots + three silhouette layers for cinematic depth.
-  for(let i=0;i<8;i++)add('rect',{x:180+i*92,y:machineY-18,width:84,height:18,rx:3,fill:'#0a140f',stroke:'#2f4a3a','stroke-width':1,opacity:.65,class:'machine-silhouette'},null,depth);
-  for(let i=0;i<7;i++)add('rect',{x:210+i*100,y:machineY-34,width:60,height:12,rx:2,fill:'#07110c',stroke:'#24382c','stroke-width':1,opacity:.45,class:'machine-silhouette rear-silhouette'},null,depth);
-  for(let i=0;i<6;i++)add('rect',{x:240+i*110,y:machineY-48,width:44,height:8,rx:2,fill:'#050c08',stroke:'#1c2e24','stroke-width':1,opacity:.3,class:'machine-silhouette far-silhouette'},null,depth);
-  for(let i=0;i<20;i++)add('rect',{x:176+i*36,y:bayY+3,width:24,height:20,rx:3,fill:accepted?'#A8F04A':'#8aa396',class:(accepted?'material-flow':'material-flow held-flow')+' lot-'+i},null,routes);
-  for(let i=0;i<14;i++)add('circle',{cx:184+i*58,cy:bayY+14,r:4.5,fill:accepted?'#dafb9a':'#c5ccd4',class:(accepted?'material-spark':'material-spark held-spark')+' spark-'+i},null,routes);
+  // Wonder P1 step 1: brushed-silver machine volume + emerald lots Dock→QA→Receiving; held flow stops at × HOLD.
+  for(let i=0;i<8;i++)add('rect',{x:180+i*92,y:machineY-18,width:84,height:18,rx:3,fill:'#1a2420',stroke:'#C5CCD466','stroke-width':1,opacity:.75,class:'machine-silhouette machine-volume'},null,depth);
+  for(let i=0;i<7;i++)add('rect',{x:210+i*100,y:machineY-34,width:60,height:12,rx:2,fill:'#121a16',stroke:'#C5CCD444','stroke-width':1,opacity:.55,class:'machine-silhouette rear-silhouette'},null,depth);
+  for(let i=0;i<6;i++)add('rect',{x:240+i*110,y:machineY-48,width:44,height:8,rx:2,fill:'#0a100c',stroke:'#C5CCD433','stroke-width':1,opacity:.4,class:'machine-silhouette far-silhouette'},null,depth);
+  const holdStopX=16+receivingWidth+8;
+  const flowLimit=accepted?lineRight:holdStopX;
+  for(let i=0;i<20;i++){const x=176+i*36;if(x+12>flowLimit)break;add('rect',{x,y:bayY+3,width:24,height:20,rx:3,fill:accepted?'#A8F04A':'#8aa396',class:(accepted?'material-flow':'material-flow held-flow')+' lot-'+i},null,routes);}
+  for(let i=0;i<14;i++){const cx=184+i*58;if(cx>flowLimit)break;add('circle',{cx,cy:bayY+14,r:4.5,fill:accepted?'#dafb9a':'#c5ccd4',class:(accepted?'material-spark':'material-spark held-spark')+' spark-'+i},null,routes);}
+  // Hold stop marker sits on the conveyor end only — RECEIVING already carries × HOLD text (geometry-safe).
+  if(!accepted){add('circle',{cx:holdStopX,cy:bayY+14,r:7,fill:'#C5CCD4',stroke:'#050705','stroke-width':2,class:'hold-flow-stop'},null,routes);add('text',{x:holdStopX,y:bayY+18,'font-size':12,fill:'#050705','text-anchor':'middle','font-weight':800,class:'hold-flow-stop'},'×',routes);}
   // Wonder P1 step 1: Certificate → Receiving → mills feed animates into station faces (audit38).
   if(!shockStage){
    const feed=add('g',{'data-scene-band':'compare','class':'cert-recv-feed','aria-hidden':'true'},null,routes);
@@ -461,10 +478,12 @@ function renderFactory(){
    const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#C5CCD4':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';
    // Three live status lines fill the card — Captions stay inside the node box so they cannot intersect the next reserved band.
    // Layered machine body — bevels stay strictly inside the node rect so bands never collide.
-   const face=stopped?'#13231b':kind==='running'?'#1b3524':'#19271f';
+   const face=stopped?'#13231b':kind==='running'?'#1b3524':'#1c2620';
    box(x,y,width,nodeH,g,stroke,face);
-   add('rect',{x:x+3,y:y+3,width:width-6,height:10,rx:3,fill:stopped?'#6d757c88':kind==='running'?'#A8F04A33':'#c5ccd422',class:'machine-bevel'},null,g);
-   add('rect',{x:x+width-12,y:y+12,width:8,height:nodeH-18,rx:2,fill:stopped?'#3a424888':kind==='running'?'#163826aa':'#101a14aa',class:'machine-bevel'},null,g);
+   // Brushed-silver machine volume (Wonder P1 step 1) — bevels stay inside the node rect.
+   add('rect',{x:x+3,y:y+3,width:width-6,height:12,rx:3,fill:stopped?'#C5CCD444':kind==='running'?'#A8F04A44':'#C5CCD433',class:'machine-bevel machine-volume-top'},null,g);
+   add('rect',{x:x+width-14,y:y+14,width:10,height:nodeH-20,rx:2,fill:stopped?'#C5CCD466':kind==='running'?'#163826cc':'#C5CCD455',class:'machine-bevel machine-volume-side'},null,g);
+   add('rect',{x:x+6,y:y+nodeH-10,width:width-20,height:5,rx:2,fill:'#05070588',class:'machine-bevel machine-volume-base'},null,g);
   if(stopped){g.querySelector('rect').setAttribute('fill','url(#preview-hatch)');}
   // Pattern fill + corner × + plain OFFLINE text — no full-card diagonals crossing labels (Wonder P1 / audit33).
   if(stopped){label(x+width-28,y+Math.round(nodeH*0.26),'×',26,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
@@ -507,9 +526,22 @@ function renderFactory(){
    // Hatch fill carries constrained meaning; avoid a second × glyph that intersects the caption (visual gate).
    if(!o.feasible)g.classList.add('option-constrained');
    if(selected)g.classList.add('path-linked');
-   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+Math.round(optionH*0.38),(selected?'✓ ':'')+titles[o.optionId],Math.min(20,Math.max(16,Math.round(optionH*0.28))),g);label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'OFFLINE-ADJACENT · two online cells',Math.min(18,Math.max(14,Math.round(optionH*0.22))),g);
+   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));
+   label(x+10,optionY+Math.round(optionH*0.38),(selected?'✓ ':!o.feasible?'× ':'')+titles[o.optionId],Math.min(20,Math.max(16,Math.round(optionH*0.28))),g);
+   label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED · OFFLINE-ADJACENT',Math.min(18,Math.max(14,Math.round(optionH*0.22))),g);
    if(o.feasible)activate(g,()=>document.querySelector('[data-option="'+o.optionId+'"]')?.click());
+   // Wonder P1 step 3: emerald route trace from selected feasible path through online cells into jobs.
+   if(selected&&o.feasible){
+    const online=machineSlots.filter((_,idx)=>cells[idx]?.online);
+    if(online[0]){
+     add('path',{d:`M ${online[0].x+online[0].width/2} ${machineY+nodeH} V ${jobY-8} H ${x+Math.min(278,optionPitch-12)/2} V ${optionY}`,class:'selected-path-trace',fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':'10 6'},null,routes);
+    }
+   }
   });
+  // Compact in-scene legend in the bay gutter (Wonder P1 step 6) — never over stations/jobs/options.
+  if(guide){
+   add('text',{x:300,y:bayY+18,'font-size':12,fill:'#C5CCD4',class:'scene-inline-legend'},'● RUNNING  ▣ HELD  ✕ OFFLINE  ◆ FEASIBLE',bay);
+  }
   // Wonder P1 steps 6–7: when only two paths remain feasible, mark the constrained Split fade in the scene.
   if(state.analysis.recovery.feasibleCount===2){
    const constrained=paths.querySelector('.option-constrained');

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 7,
   "score": 8,
-  "wowScore": 7,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Make the constrained Split path unselectable with pattern, x marker and plain text, while keeping the two feasible Select this path controls at least 36px"
+      "priority": "P1",
+      "change": "Add one-click Approve affordance preview after selection while preserving Authorize this decision wall as next gate"
     },
     {
-      "priority": "medium",
-      "change": "Link the Scenario changed notice in the side zone to the invalidated acceptance status in the action bar with shared emerald highlight on focus"
+      "priority": "P2",
+      "change": "Replace dashes in constrained row with explicit unavailable finish and cost wording"
     },
     {
-      "priority": "low",
-      "change": "Enlarge scene station labels slightly by reclaiming space from the Certificate tracks while keeping DOES NOT MATCH inside bounds"
+      "priority": "P2",
+      "change": "Strengthen bidirectional highlight between right comparison rows and bottom option cards"
     }
   ]
 }

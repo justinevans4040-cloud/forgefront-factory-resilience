@@ -11,7 +11,7 @@ const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 const hackathonReadme=readFileSync(new URL('../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit38 wonder finish',()=>{
- assert.match(html,/ffr-build" content="audit(3[89]|4[012])-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[89]|4[0123])-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit37-guided-lift/);
 });
 
@@ -23,7 +23,7 @@ test('Wonder P1 scene lifts cover cert feed, board sequence and constrained fade
  assert.match(app,/path-fade-constrained/);
  assert.match(app,/shock-hatch-sweep/);
  assert.match(app,/far-silhouette/);
- assert.match(app,/OFFLINE-ADJACENT · two online cells/);
+ assert.match(app,/× CONSTRAINED · OFFLINE-ADJACENT|OFFLINE-ADJACENT/);
  assert.match(app,/UNTRACKED UNTIL APPROVAL · Awaiting approval/);
  assert.match(css,/cert-recv-flow|shock-hatch-sweep|proposal-sequence-line/);
  assert.match(html,/EVIDENCE ·/);

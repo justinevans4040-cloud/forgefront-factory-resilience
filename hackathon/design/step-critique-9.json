@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 9,
   "score": 8,
   "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Increase the three proof cards' depth and state glow: 01 READY fully emerald-edged, 02 and 03 LOCKED in dashed silver, with the dashed progress line lighting segment by segment"
+      "priority": "P1",
+      "change": "Add cinematic state glow to timeline nodes while keeping locked steps legible by text, not colour alone"
     },
     {
-      "priority": "medium",
-      "change": "Keep Verify ledger, Seal packet and Retain checkpoint as a clear gated sequence in the side zone at 16px, with locked steps explaining their single prerequisite"
+      "priority": "P2",
+      "change": "Raise right evidence helper text to 16px and condense passphrase guidance inside reserved zone"
     },
     {
-      "priority": "low",
-      "change": "Raise the Before-After metrics to equal visual weight so 70, 35h and 48h compare instantly"
+      "priority": "P2",
+      "change": "Clarify bottom status counts so tracked, done and blocked match board state"
     }
   ]
 }

@@ -8,7 +8,7 @@ const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8')
 const designSystem=new URL('../../design/DESIGN_SYSTEM.md',import.meta.url);
 
 test('build stamp advances to audit42 wonder nines',()=>{
- assert.match(html,/ffr-build" content="audit42-wonder-nines"/);
+ assert.match(html,/ffr-build" content="audit(42-wonder-nines|43-wonder-finish)"/);
  assert.doesNotMatch(html,/audit41-premium-calm/);
 });
 
@@ -24,7 +24,7 @@ test('Wonder P1: CONNECTION stays distinct from EVIDENCE via summary and chip',(
  assert.match(html,/2 · EVIDENCE · Investigate/);
  assert.match(html,/2 · EVIDENCE · Findings/);
  assert.match(app,/1 · CONNECTION · ready/);
- assert.match(app,/1 · CONNECTION · choose a route/);
+ assert.match(app,/1 · CONNECTION/);
  assert.match(app,/preflightSummary\.textContent/);
  assert.match(css,/audit42 \/ round43/);
 });

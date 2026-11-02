@@ -1880,3 +1880,49 @@ body[data-guided=true][data-active-stage=proof] .proof-action{
   box-shadow:0 0 20px #A8F04A44;border-color:#A8F04A
  }
 }
+
+/* audit43 / round44 — Wonder 182–184 finish: hold-stop flow, compare-track link, path trace, proof depth */
+#factory-svg .compare-track-active{filter:drop-shadow(0 0 10px #A8F04Acc);stroke:#A8F04A;stroke-width:2}
+#factory-svg .selected-path-trace{animation:finding-trace .7s ease-out 1;filter:drop-shadow(0 0 10px #A8F04A88)}
+#factory-svg .hold-flow-stop{letter-spacing:.06em}
+#factory-svg .machine-volume-top,#factory-svg .machine-volume-side{pointer-events:none}
+#factory-svg .proof-progress-trace{animation:spine-dash 1.6s linear infinite;filter:drop-shadow(0 0 8px #A8F04A66)}
+#factory-svg .proof-station-bevel{pointer-events:none}
+#factory-svg .scene-inline-legend{letter-spacing:.04em;opacity:.9}
+body[data-guided=true][data-active-stage=decision] .option .numbers,
+body[data-guided=true][data-active-stage=decision] .option .numbers strong{
+ font-variant-numeric:tabular-nums;font-size:26px!important;line-height:1;min-width:4.5ch;text-align:right
+}
+body[data-guided=true][data-active-stage=shock] #shock-cell{
+ min-height:36px!important;font-size:16px!important;padding:6px 10px;outline:2px solid transparent
+}
+body[data-guided=true][data-active-stage=shock] #shock-cell:focus{
+ outline:2px solid #A8F04A;outline-offset:2px
+}
+body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{
+ box-shadow:0 0 28px #A8F04A55,inset 0 0 16px #A8F04A18;border-color:#A8F04A!important
+}
+body[data-guided=true] #findings-reserve.findings-reserve-active{
+ font-size:16px!important;line-height:1.35!important
+}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .selected-path-trace,#factory-svg .proof-progress-trace{animation:none!important}
+}
+
+/* audit43 pass 2 — Wonder 185 metrics + board wrap; CONNECTION stays in compact preflight summary (geometry-safe) */
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric strong{font-size:26px!important;font-variant-numeric:tabular-nums;line-height:1}
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task>strong{
+  white-space:normal!important;overflow:visible!important;font-size:16px!important;line-height:1.3!important
+ }
+ body[data-guided=true][data-active-stage=incident] .evidence-headline{font-size:16px!important}
+}
+.connection-ready-chip{max-width:100%;box-sizing:border-box;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* audit43 pass 3 — Wonder 186: proof 16px, CONNECTION 16px summary, receiving focus link */
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=investigation] .route-preflight>summary{font-size:16px!important}
+ body[data-guided=true][data-active-stage=proof] .proof-status{font-size:14px!important;line-height:1.25}
+ body[data-guided=true][data-active-stage=proof] .proof-action:not([data-complete=true]) button.secondary{opacity:.72}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{font-size:16px!important;line-height:1.35!important}
+ }

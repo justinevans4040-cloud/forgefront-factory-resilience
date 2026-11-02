@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 8,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Clarify the coexistence in one line: 3 BLOCKED prior tasks, approved plan retained, 3 PROPOSED replacements untracked until approval"
+      "priority": "P1",
+      "change": "Clarify coexistence: 3 BLOCKED prior tasks, retained approved plan, and 3 PROPOSED replacements untracked until approval"
     },
     {
-      "priority": "medium",
-      "change": "Apply the OFFLINE cross-hatch, x marker and plain OFFLINE label consistently to CELL-MILL-2 and align its replan required note with the legend"
+      "priority": "P2",
+      "change": "Give OFFLINE CELL-MILL-2 stronger silver hatch contrast and replan-required depth"
     },
     {
-      "priority": "low",
-      "change": "Add focusable proposed cards with arrow-key movement across t1 to t3 and a visible 2px emerald focus ring"
+      "priority": "P2",
+      "change": "Fix truncated t1 side entry and raise agent panel text to 16px"
     }
   ]
 }

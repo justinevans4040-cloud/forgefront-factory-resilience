@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 10,
-  "score": 7,
-  "wowScore": 8,
+  "score": 8,
+  "wowScore": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Recover department legibility: label every department, enlarge machine glyphs, and ensure stopped departments consistently show silver cross-hatching, x marker and plain OFFLINE count"
+      "priority": "P1",
+      "change": "Increase machine-cube depth and living emerald flow along mills to lathes route while preserving reduced-motion static pattern"
     },
     {
-      "priority": "medium",
-      "change": "Strengthen the living emerald mills to lathes arc with depth glow and a single route trace on change, keeping feasible machines bright and all other departments dim silver"
+      "priority": "P2",
+      "change": "Make OFFLINE labels larger and consistently paired with cross marker and hatch in every stopped department"
     },
     {
-      "priority": "medium",
-      "change": "Raise header controls and counters: failure and recovery selectors at least 36px tall, metric figures tabular, and the one primary Accept action unmistakable"
+      "priority": "P2",
+      "change": "Raise control and legend labels toward 16px without pushing metrics off 1366x768 viewport"
     }
   ]
 }

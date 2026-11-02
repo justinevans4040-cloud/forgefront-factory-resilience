@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 4,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "State plainly in the board zone that the 3 proposed replacements are untracked until approval while the approved plan is retained, using one 16px status sentence"
+      "priority": "P1",
+      "change": "Make 0 BLOCKED, plan retained and 3 PROPOSED untracked-until-approval state readable at a glance with stronger tabular hierarchy"
     },
     {
-      "priority": "medium",
-      "change": "Give proposed cards t1 to t3 stronger depth separation: first card emerald glow, remaining cards dashed silver, all with keyboard focus and focus ring"
+      "priority": "P2",
+      "change": "Enlarge proposed task body text to 16px and add depth to station cards"
     },
     {
-      "priority": "low",
-      "change": "Condense The Britt side panel so the 1-2-3 sequence and t1 summary fit with more breathing room at 1366x768"
+      "priority": "P2",
+      "change": "Fix truncated t1 side entry so full task label fits its reserved zone"
     }
   ]
 }

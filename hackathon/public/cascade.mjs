@@ -56,7 +56,8 @@ export function mountCascade({loadPlant,launcher,workflow}){
    card.dataset.offlineCount=String(offlineCount);card.dataset.memberCount=String(members.length);card.dataset.runningCount=String(runningCount);card.dataset.affectedIds=[...affectedIds].join(',');
    // Before the cascade wave reaches this tile, both lines read RUNNING from the same counts; after impact they share one OFFLINE derivation.
    const departmentState=departmentStatus({recovered,active,offlineCount,runningCount,members:members.length,hit:false});
-   const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':(members.length>=100?String(members.length):members.length+' machines');
+   // Wonder 184 cascade P1: align OFFLINE count badge with department label (pattern + count + text).
+   const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':(active&&!recovered&&offlineCount>0?(offlineCount+' × OFFLINE · '+runningCount+' running'):(members.length>=100?String(members.length):members.length+' machines'));
    // Single reserved footer strip carries OFFLINE/RUNNING (Wonder 167–170); no duplicate status nodes for the clip gate.
    const strip=el('span',departmentState,'plant-status-strip plant-state');
    // Wonder 177 cascade P1: full department names at readable size — never crop left/lower labels.

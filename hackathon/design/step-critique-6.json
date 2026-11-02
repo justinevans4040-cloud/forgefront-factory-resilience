@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 178,
+  "iteration": 188,
   "step": 6,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep connection readiness and the reinvestigation evidence task visually distinct in the side zone, with the CLEARED findings notice under the evidence heading only"
+      "priority": "P1",
+      "change": "Fill empty Findings reserved zone with concise pending-investigation status at 16px rather than blank depth"
     },
     {
-      "priority": "medium",
-      "change": "Strengthen CELL-MILL-2 as OFFLINE with cross-hatching, x marker and no route through it, and grey the Split card with the same pattern language"
+      "priority": "P2",
+      "change": "Make constrained Split card read as unavailable via hatch, cross and text, not dimming alone"
     },
     {
-      "priority": "low",
-      "change": "Add a single status sentence confirming 3 to 2 feasible paths so the change is understood without reading the top micro-label"
+      "priority": "P2",
+      "change": "Emphasise CELL-MILL-2 OFFLINE banner and 3 to 2 feasible paths above scene"
     }
   ]
 }

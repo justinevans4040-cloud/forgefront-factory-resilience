@@ -12,7 +12,7 @@ const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 const designSystem=new URL('../../design/DESIGN_SYSTEM.md',import.meta.url);
 
 test('build stamp advances past audit41 premium calm',()=>{
- assert.match(html,/ffr-build" content="audit(41-premium-calm|42-wonder-nines)"/);
+ assert.match(html,/ffr-build" content="audit(41-premium-calm|42-wonder-nines|43-wonder-finish)"/);
  assert.doesNotMatch(html,/audit40-wonder-uniform/);
  assert.doesNotMatch(html,/audit41-guided-nines"/);
 });

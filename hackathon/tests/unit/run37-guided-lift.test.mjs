@@ -9,7 +9,7 @@ const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advanced past audit36 (superseded by later audits)',()=>{
- assert.match(html,/ffr-build" content="audit(3[789]|4[012])-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[789]|4[0123])-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit36-wonder-lift/);
 });
 

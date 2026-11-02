@@ -10,7 +10,7 @@ const cascadeCss=readFileSync(new URL('../../public/cascade.css',import.meta.url
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
 test('build stamp advances to audit40 wonder uniform',()=>{
- assert.match(html,/ffr-build" content="audit(40-wonder-uniform|41-guided-nines|41-premium-calm|42-wonder-nines)"/);
+ assert.match(html,/ffr-build" content="audit(40-wonder-uniform|41-guided-nines|41-premium-calm|42-wonder-nines|43-wonder-finish)"/);
  assert.doesNotMatch(html,/audit39-cascade-restore/);
 });
 
@@ -20,7 +20,7 @@ test('CONNECTION and EVIDENCE labels are explicit in the investigation rail',()=
  assert.match(html,/2 · EVIDENCE · Findings/);
  assert.match(html,/connection-ready-chip/);
  assert.match(html,/board-coexistence-banner/);
- assert.match(app,/CONNECTION · identity ready/);
+ assert.match(app,/1 · CONNECTION · ready|CONNECTION · identity ready/);
  assert.match(html,/The Britt investigates\./);
  assert.doesNotMatch(html,/(?<!The )Britt investigates/);
 });

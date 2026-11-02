@@ -4,13 +4,20 @@ Eligible-period work for the Meta Global AI Developer Hackathon (event window op
 
 ## 2026-10-28
 
-- **R18 hackathon release prep** (commit `6be92f2` on `r18-hackathon-release`): source/provenance docs, secret-free `.env.example`, private-key ignore patterns; branch published for team visibility (see `FFR_Publish_20261028/PUSH_REPORT.md`). Post-push suite was **241 pass / 2 fail** (Windows `mkdir -p` portability in `tests/round17-stepladder-fixes.test.mjs`).
+- **R18 hackathon release prep** (commit `6be92f2` on `r18-hackathon-release`): source/provenance docs, secret-free `.env.example`, private-key ignore patterns; branch published for team visibility. Post-push suite was **241 pass / 2 fail** (Windows `mkdir -p` portability in `tests/round17-stepladder-fixes.test.mjs`).
 - **Day-1 hardening** (branch `day1-hardening`, tag `pre-event-baseline` at `6be92f2`):
   - Portable directory creation for Round 17 nested-repo tests (`mkdirSync` / working-tree copy).
   - P0 session admin/operator role gate: `X-Admin-Token` or same-origin HTML browser seat required for `GET /api/session`; sessions carry `role` (`operator` | `admin`).
   - P0 removed `FFR_PUBLIC_DEMO` / `*.trycloudflare.com` Host/Origin bypass from `src/security/request-guard.mjs`.
   - P0 secret ACL hardener: `tools/harden-secret-acls.mjs`, `docs/SECRET_FILE_ACLS.md`, `npm run harden-secret-acls` (ledger key, notary secret, admin token paths; values never printed).
   - Tests: `tests/day1-hardening.test.mjs` plus updates to session helpers / Round 8–9 session callers.
+
+## Audit 43 / round 44
+
+- Wonder 182–184 finish pass: held material flow stops at × HOLD, brushed-silver machine volume, bidirectional Certificate/Receiving track highlight, selected-path emerald route trace, cleared-findings separated from Reinvestigate, in-scene legend, proof-stage depth, README cascade width + signal markers; stamp `audit43-wonder-finish`.
+- Visual audit gate run47 target: every guided step + cascade at 1366 / 1536 / 1920.
+- Muse Wonder reviews continue from iteration 185; direction promotes only when every step beats iteration 82.
+- Public contributions log no longer references private publish-folder paths.
 
 ## Audit 42 / round 43
 
