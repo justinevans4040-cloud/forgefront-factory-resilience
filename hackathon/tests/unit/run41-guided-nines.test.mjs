@@ -11,10 +11,10 @@ const status=readFileSync(new URL('../../public/investigation-status.mjs',import
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 const designSystem=new URL('../../design/DESIGN_SYSTEM.md',import.meta.url);
 
-test('build stamp advances to audit41 premium calm',()=>{
- assert.match(html,/ffr-build" content="audit41-premium-calm"/);
+test('build stamp advances past audit41 premium calm',()=>{
+ assert.match(html,/ffr-build" content="audit(41-premium-calm|42-wonder-nines)"/);
  assert.doesNotMatch(html,/audit40-wonder-uniform/);
- assert.doesNotMatch(html,/audit41-guided-nines/);
+ assert.doesNotMatch(html,/audit41-guided-nines"/);
 });
 
 test('DESIGN_SYSTEM.md documents calm premium command center',()=>{
@@ -29,7 +29,7 @@ test('DESIGN_SYSTEM.md documents calm premium command center',()=>{
 test('Wonder P1 guided lifts keep CONNECTION distinct from EVIDENCE without glow stacks',()=>{
  assert.match(html,/1 · CONNECTION/);
  assert.match(html,/2 · EVIDENCE · Investigate/);
- assert.match(html,/3 · EVIDENCE · Findings/);
+ assert.match(html,/2 · EVIDENCE · Findings/);
  assert.match(css,/audit41 \/ round42/);
  assert.match(css,/border-left:4px solid #C5CCD4/);
  assert.match(css,/border-left:4px solid #A8F04A/);

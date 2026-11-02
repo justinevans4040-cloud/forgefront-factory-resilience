@@ -28,7 +28,7 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront factory recovery command center in black, emerald and silver" /></p>
 
-<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
+<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" style="max-width:1400px;min-height:420px;object-fit:cover" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
 
 <p align="center"><em style="font-size:26px;line-height:1.45;color:#e8f6ee;font-weight:800">Hero: command center · Cascade: emerald mills → lathes recovery with silver × OFFLINE departments</em></p>
 

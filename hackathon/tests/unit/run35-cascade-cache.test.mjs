@@ -8,7 +8,7 @@ const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8')
 const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'utf8');
 
 test('build stamp remains past audit34 and keeps cascade-cache features',()=>{
- assert.match(html,/ffr-build" content="audit(3[56789]|4[01])-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit(3[56789]|4[012])-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit34-wonder-floor/);
 });
 
