@@ -27,7 +27,7 @@
  border:1px solid #2f4a3c;border-radius:12px;box-shadow:inset 0 0 40px #0008}
 .plant-floor{overflow:hidden}
 .plant-flow,.plant-tiles{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
-.plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:2px;padding:8px 12px;box-sizing:border-box;overflow:hidden;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 0 1px #c5ccd414;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s,transform .35s ease-out;transform:perspective(900px) translateZ(0)}
+.plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:2px;padding:8px 12px 18px;box-sizing:border-box;overflow:visible;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 0 1px #c5ccd414;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s,transform .35s ease-out;transform:perspective(900px) translateZ(0)}
 .plant-room .plant-tile:not(.cascade-hit){animation:plant-tile-breathe 2.8s ease-in-out infinite}
 .plant-tile strong{font-size:18px;line-height:1.15;text-shadow:0 1px 0 #0008;max-width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.plant-sub,.plant-state{font-size:13px;line-height:1.2;max-width:100%;overflow:hidden;display:block;white-space:nowrap;text-overflow:ellipsis}.plant-state{color:#a7fac3;font-weight:700;letter-spacing:.02em;font-size:13px}
 .plant-flow{z-index:3;pointer-events:none;mix-blend-mode:screen}
@@ -73,6 +73,37 @@
 .plant-tile.cascade-hit .plant-state::before{content:"× ";color:#c5ccd4;font-weight:800}
 .plant-tile.cascade-hit strong{color:#c5ccd4}
 .plant-floor[data-css-flow="1"]{box-shadow:inset 0 0 40px #56ff9a22,inset 0 0 80px #0008}
+/* audit38: intensify mills→lathes cascade depth/glow; full OFFLINE legend language without extra clip-prone chips */
+.plant-floor[data-css-flow="1"]::after{
+ background:
+  repeating-linear-gradient(90deg,#56ff9a00 0 10px,#56ff9acc 10px 18px,#56ff9a00 18px 28px),
+  linear-gradient(90deg,transparent 6%,#56ff9a00 16%,#56ff9add 40%,#dafb9acc 54%,#56ff9a00 74%,transparent 92%),
+  radial-gradient(ellipse at 32% 46%,#56ff9a44,transparent 42%),
+  radial-gradient(ellipse at 68% 54%,#8affb833,transparent 40%);
+ background-size:180% 18px,220% 18px,100% 100%,100% 100%;background-position:0 48%,0 48%,center,center;
+ filter:drop-shadow(0 0 18px #56ff9a66);
+}
+.plant-floor[data-css-flow="1"] .plant-tile:not(.cascade-hit){box-shadow:0 12px 28px #0008,0 0 28px #56ff9a33,inset 2px 2px #def9e028}
+.plant-legend-offline{font-weight:800;letter-spacing:.08em}
+.plant-tile.cascade-hit .plant-state{text-shadow:0 0 10px #c5ccd466;font-size:15px!important;letter-spacing:.04em;white-space:nowrap;overflow:visible;text-overflow:clip;max-width:100%;position:relative;z-index:3}
+.plant-room[open]{grid-template-rows:44px auto minmax(86px,auto) 34px 28px minmax(0,1fr) 36px!important}
+.plant-room .plant-tile{min-height:156px;padding:10px 12px 20px}
+.plant-tile.cascade-hit{box-shadow:inset 0 0 0 2px #C5CCD4,0 0 34px #C5CCD455,0 18px 0 -14px #0006}
+.plant-floor[data-css-flow="1"] .plant-tile:not(.cascade-hit){transform:perspective(900px) translateZ(8px);box-shadow:0 16px 34px #000a,0 0 34px #56ff9a44,inset 2px 2px #def9e038}
+/* Wonder 168 cascade P1: living emerald mills→lathes arc with dashed flow, bypassing silver OFFLINE cards */
+.plant-floor[data-css-flow="1"]::before{
+ content:"";pointer-events:none;position:absolute;inset:18% 8% 22% 8%;z-index:5;border-radius:40% 60%;
+ border:3px dashed #56ff9acc;box-shadow:0 0 28px #56ff9a66,inset 0 0 24px #56ff9a33;
+ animation:plant-mills-lathes-arc 1.4s linear infinite;opacity:.95
+}
+.plant-floor[data-css-flow="2"]::before{
+ content:"";pointer-events:none;position:absolute;inset:18% 8% 22% 8%;z-index:5;border-radius:40% 60%;
+ border:3px solid #56ff9aaa;box-shadow:0 0 22px #56ff9a55;animation:none
+}
+@keyframes plant-mills-lathes-arc{from{stroke-dashoffset:0;filter:drop-shadow(0 0 8px #56ff9a66)}to{stroke-dashoffset:48;filter:drop-shadow(0 0 18px #8affb8aa)}}
+@media(prefers-reduced-motion:reduce){
+ .plant-floor[data-css-flow="1"]::before{animation:none!important;border-style:solid}
+}
 @media(prefers-reduced-motion:reduce){
  .plant-floor[data-css-flow="1"]::after{animation:none!important;background-position:40% 48%,center,center}
 }

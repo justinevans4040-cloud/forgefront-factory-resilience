@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 10,
-  "score": 7,
-  "wowScore": 8,
+  "score": 6,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Clarify department state counts: several departments read OFFLINE with all machines crossed while mills and lathes show mixed running counts; align icons, counts and legend so stopped machines use silver cross-hatching, x marker and OFFLINE text."
+      "change": "Repair legibility where cross-hatching overwhelms labels in Saw, Heat treat, Inspection, Finishing and Assembly; keep pattern behind content and retain x OFFLINE text on every stopped department."
     },
     {
       "priority": "P1",
-      "change": "Strengthen the single emerald mills to lathes recovery arc with living flow, glow and depth, and dim non-feasible routes."
+      "change": "Strengthen the living emerald mills to lathes route with layered depth, directional flow and glow, and ensure it crosses only feasible departments."
     },
     {
       "priority": "P2",
-      "change": "Enlarge department labels and machine icons, keep the four top metrics tabular, and ensure Accept calculated recovery is the sole primary."
+      "change": "Enlarge department machine glyphs and OFFLINE count badges to 12px minimum labels with 16px department body text, preserving the full plant in one viewport."
     }
   ]
 }

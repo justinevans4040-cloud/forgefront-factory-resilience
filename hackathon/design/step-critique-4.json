@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 4,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Correct the header count to match the scene: state blocked prior, approved plan and proposed replacements consistently in scene and side zone."
+      "change": "Clarify plan state in one line: 0 BLOCKED prior, approved plan retained, 3 PROPOSED replacements UNTRACKED UNTIL APPROVAL, without implying tracked work."
+    },
+    {
+      "priority": "P1",
+      "change": "Give the Approve control a stronger cinematic focus state and keep the one-click Approve wording consistent across scene, side zone and action bar."
     },
     {
       "priority": "P2",
-      "change": "Emphasise PROPOSED and UNTRACKED UNTIL APPROVAL on all three task cards with dashed silver borders, not only the first card."
-    },
-    {
-      "priority": "P2",
-      "change": "Enlarge task titles to 16px minimum and add depth and glow only to the current t1 card."
+      "change": "Add depth and connector flow from RECEIVING through CELL-MILL-1 to proposed tasks t1-t3 so the board reads as living work, not static cards."
     }
   ]
 }

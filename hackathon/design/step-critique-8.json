@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 8,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Refine CELL-MILL-2: retain cross-hatching and OFFLINE text but remove the large diagonal cross lines that obscure the replan required label."
+      "change": "State coexistence explicitly: 3 BLOCKED prior tasks, approved plan retained, 3 PROPOSED replacements untracked until approval, all in the side-zone summary."
+    },
+    {
+      "priority": "P1",
+      "change": "Retain the step 4 fix by keeping Approve revised tasks as the single primary and matching its label in scene, side zone and action bar."
     },
     {
       "priority": "P2",
-      "change": "State clearly that 3 BLOCKED prior tasks and the approved revised plan coexist while 3 PROPOSED replacements await approval."
-    },
-    {
-      "priority": "P2",
-      "change": "Add cinematic glow to CELL-MILL-1 as the accepted-plan machine and keep proposed tasks dashed until approval."
+      "change": "Add a subdued emerald connector from the accepted plan into t1-t3 with depth, pausing flow under reduced motion."
     }
   ]
 }

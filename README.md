@@ -28,7 +28,13 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
 
-<p align="center"><em style="font-size:20px;line-height:1.5;color:#c5ccd4;font-weight:600">Full-shop cascade — read three signals: silver OFFLINE departments, the living emerald mills → lathes path, and the live counters for lost hours, late orders, cost and ship-date slip.</em></p>
+<p align="center"><em style="font-size:24px;line-height:1.55;color:#c5ccd4;font-weight:700">Full-shop cascade — three signals at a glance:</em></p>
+
+| Signal | What judges see |
+| --- | --- |
+| **Emerald mills → lathes** | Living recovery path across the feasible route |
+| **Silver × OFFLINE** | Every stopped department marked by pattern and text |
+| **Live counters** | Lost hours · late orders · cost · ship-date slip |
 
 ## What you'll see
 

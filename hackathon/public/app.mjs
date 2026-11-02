@@ -296,8 +296,10 @@ function renderFactory(){
    label(receivingSlot.x+16,stationY+36,'RECEIVING',22,receivingCard,{'font-weight':700});
    label(receivingSlot.x+16,stationY+70,accepted?'VERIFIED RECOVERY':'MATERIAL HOLD',18,receivingCard,{fill:'#c5ccd4'});
    label(receivingSlot.x+16,stationY+110,state.snapshot.incident.heldMaterialId,18,receivingCard);
+   const boardSlots=[];
    scene.cells.forEach((cell,i)=>{
     const slot=factoryPositions(250,824,scene.cells.length,360)[i];
+    boardSlots.push({cell,slot});
     const card=add('g',{'data-scene-machine':cell.cellId,class:'factory-node board-machine'+(!cell.online?' held':'')},null,machineContext);
     box(slot.x,stationY,slot.width,stationH,card,!cell.online?'#C5CCD4':accepted&&activeCells.has(cell.cellId)?'#A8F04A':'#71877a');
     if(!cell.online){
@@ -309,25 +311,46 @@ function renderFactory(){
     label(slot.x+18,stationY+80,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',18,card,{fill:'#c5ccd4',class:!cell.online?'offline-label':''});
     label(slot.x+18,stationY+120,cell.online?cell.availableHours+'h capacity':'replan required',28,card,{'font-weight':700,class:!cell.online?'offline-replan':''});
    });
+   // Wonder P1 step 8: sequence Receiving → online mill → proposed tasks; no route through OFFLINE CELL-MILL-2.
+   const onlineMill=boardSlots.find(s=>s.cell.online)||boardSlots[0];
+   const offlineMill=boardSlots.find(s=>!s.cell.online);
+   if(onlineMill){
+    add('path',{d:`M ${receivingSlot.x+receivingSlot.width} ${stationY+stationH/2} H ${onlineMill.slot.x}`,class:'board-sequence-spine',fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':'10 6'},null,machineContext);
+   }
+   if(offlineMill){
+    add('path',{d:`M ${onlineMill?onlineMill.slot.x+onlineMill.slot.width:receivingSlot.x+receivingSlot.width} ${stationY+stationH/2} H ${offlineMill.slot.x+8}`,class:'board-sequence-stop',fill:'none',stroke:'#C5CCD4','stroke-width':2,'stroke-dasharray':'4 6'},null,machineContext);
+   }
    const taskSlots=proposalLayout(scene.tasks.length,height);
+   const taskAnchors=[];
    scene.tasks.forEach((task,i)=>{
     const slot=taskSlots[i];if(slot.page!==taskSlots[inspectedTask]?.page)return;const {x,y}=slot,tileW=slot.width,tileH=slot.height;
+    taskAnchors.push({i,x,y,tileW,tileH});
     const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'+(i===inspectedTask?' britt-focus-task':'')},null,hero);
     const select=()=>document.querySelector('[data-proposal-index="'+i+'"]')?.click();tile.addEventListener('click',select);tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
     box(x,y,tileW,tileH,tile,i===inspectedTask?'#A8F04A':'#71877a',i===inspectedTask?'#1b3525':'#101b14');
-    label(x+14,y+30,String(i+1).padStart(2,'0')+' · '+task.id,22,tile,{'font-weight':700,fill:'#88eba8'});
-    const titleLines=tileTitle(task.title,Math.floor((tileW-28)/8),Math.max(3,slot.titleLines));
-    titleLines.forEach((line,n)=>label(x+14,y+58+n*26,line,16,tile,{'font-weight':600}));
+    // Single header line keeps PROPOSED + id without text/text overlap (Wonder P1 + visual gate).
+    label(x+14,y+30,'PROPOSED · '+String(i+1).padStart(2,'0')+' · '+task.id,18,tile,{'font-weight':700,fill:'#88eba8',class:'proposal-scene-badge'});
+    const titleLines=tileTitle(task.title,Math.floor((tileW-28)/8),Math.max(2,slot.titleLines-1));
+    titleLines.forEach((line,n)=>label(x+14,y+58+n*28,line,16,tile,{'font-weight':600}));
     const dependsY=y+(slot.dependsY??slot.titleBottom+26);
     const dueY=y+(slot.dueY??tileH-58);
     const statusY=y+(slot.statusY??tileH-22);
     const barY=y+(slot.barY??tileH-86);
     if(dependsY+18<=barY-4)label(x+14,dependsY,task.dependsOn.length?'After '+task.dependsOn.join(', '):'Ready to begin',18,tile,{fill:'#88eba8'});
     label(x+14,dueY,'Due +'+Number(task.dueHours.toFixed(2))+'h',18,tile);
-    label(x+14,statusY,'Awaiting approval',18,tile,{fill:'#c5ccd4'});
+    label(x+14,statusY,'Awaiting approval',16,tile,{fill:'#c5ccd4','font-weight':700});
     tile.querySelector('rect').setAttribute('stroke-dasharray',i===inspectedTask?'none':'6 4');
     if(tileH>230&&barY+16<=dueY-6&&dependsY+18<=barY-2){const maxDue=Math.max(...scene.tasks.map(t=>t.dueHours),1);box(x+14,barY,tileW-28,12,tile,'#71877a','#0b130e');add('rect',{x:x+14,y:barY,width:(tileW-28)*Math.max(0,task.dueHours)/maxDue,height:12,rx:4,fill:'#88eba8'},null,tile);}
    });
+   // Wonder P1 step 4: t1→t3 sequence connectors between proposed cards.
+   for(let i=0;i<taskAnchors.length-1;i++){
+    const a=taskAnchors[i],b=taskAnchors[i+1];
+    add('path',{d:`M ${a.x+a.tileW} ${a.y+a.tileH/2} H ${b.x}`,class:'proposal-sequence-line',fill:'none',stroke:'#A8F04A','stroke-width':2,'stroke-dasharray':'8 5'},null,hero);
+   }
+   if(onlineMill&&taskAnchors[0]){
+    const t0=taskAnchors[0];
+    add('path',{d:`M ${onlineMill.slot.x+onlineMill.slot.width/2} ${stationY+stationH} V ${t0.y}`,class:'board-sequence-spine',fill:'none',stroke:'#A8F04A','stroke-width':2,'stroke-dasharray':'8 6'},null,hero);
+   }
    }
   }else{
    add('text',{x:24,y:48,'font-size':32,fill:'#e8ede6','font-weight':700},scene.gates.every(Boolean)?'Recovery complete. Evidence sealed.':scene.events+' events. One verified chain.',hero);
@@ -380,7 +403,9 @@ function renderFactory(){
    const shockPreviewEl=$('shock-preview');
    if(shockPreviewEl){shockPreviewEl.classList.add('shock-preview-hatch');shockPreviewEl.textContent=cell?(cell.cellId+' · × WILL GO OFFLINE · '+cell.availableHours+'h → 0h'):'Selecting a machine previews the offline state on the factory line.';}
    // Leader ends in the bay band above stations — never through machine faces.
-   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 104 V ${bayY+16}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
+   if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 104 V ${bayY+16}`,class:'route-held shock-withdraw',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
+   // Wonder P1 step 5: hatch sweep class on the capacity preview panel (CSS carries motion).
+   panel.classList.add('shock-hatch-sweep');
   }else{
    const allQuantities=state.evidence.filter(e=>e.quantity&&e.source.field==='quantity'),qty=comparisonRange(allQuantities),comparison=certificateComparison(qty,420);
    // Keep quantity rows clear of each other after SVG scale — font-34 glyphs need >=56px bands.
@@ -398,11 +423,18 @@ function renderFactory(){
   label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
   add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':14},null,routes);
   add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':5,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
-  // Living material flow along DOCK→mills (Wonder P1 / audit37): denser lots + layered silhouettes for depth.
-  for(let i=0;i<7;i++)add('rect',{x:190+i*100,y:machineY-22,width:78,height:16,rx:3,fill:'#0a140f',stroke:'#2f4a3a','stroke-width':1,opacity:.6,class:'machine-silhouette'},null,depth);
-  for(let i=0;i<6;i++)add('rect',{x:220+i*110,y:machineY-38,width:54,height:10,rx:2,fill:'#07110c',stroke:'#24382c','stroke-width':1,opacity:.4,class:'machine-silhouette rear-silhouette'},null,depth);
+  // Living material flow along DOCK→mills (Wonder high / audit38): denser lots + three silhouette layers for cinematic depth.
+  for(let i=0;i<8;i++)add('rect',{x:180+i*92,y:machineY-18,width:84,height:18,rx:3,fill:'#0a140f',stroke:'#2f4a3a','stroke-width':1,opacity:.65,class:'machine-silhouette'},null,depth);
+  for(let i=0;i<7;i++)add('rect',{x:210+i*100,y:machineY-34,width:60,height:12,rx:2,fill:'#07110c',stroke:'#24382c','stroke-width':1,opacity:.45,class:'machine-silhouette rear-silhouette'},null,depth);
+  for(let i=0;i<6;i++)add('rect',{x:240+i*110,y:machineY-48,width:44,height:8,rx:2,fill:'#050c08',stroke:'#1c2e24','stroke-width':1,opacity:.3,class:'machine-silhouette far-silhouette'},null,depth);
   for(let i=0;i<20;i++)add('rect',{x:176+i*36,y:bayY+3,width:24,height:20,rx:3,fill:accepted?'#A8F04A':'#8aa396',class:(accepted?'material-flow':'material-flow held-flow')+' lot-'+i},null,routes);
   for(let i=0;i<14;i++)add('circle',{cx:184+i*58,cy:bayY+14,r:4.5,fill:accepted?'#dafb9a':'#c5ccd4',class:(accepted?'material-spark':'material-spark held-spark')+' spark-'+i},null,routes);
+  // Wonder P1 step 1: Certificate → Receiving → mills feed animates into station faces (audit38).
+  if(!shockStage){
+   const feed=add('g',{'data-scene-band':'compare','class':'cert-recv-feed','aria-hidden':'true'},null,routes);
+   for(let i=0;i<5;i++)add('circle',{cx:250+i*70,cy:bayY-8,r:3.5,fill:i%2?'#A8F04A':'#c5ccd4',class:'cert-feed-spark spark-'+i},null,feed);
+   add('path',{d:`M 230 40 C 280 ${bayY-4}, 320 ${bayY+4}, 110 ${bayY+14}`,class:'cert-recv-trace',fill:'none',stroke:'#A8F04A','stroke-width':2,'stroke-dasharray':'8 6'},null,feed);
+  }
   const legend=$('factory-legend');
   if(legend){
    const launcher=legend.querySelector('#plant-launcher');
@@ -450,11 +482,17 @@ function renderFactory(){
    const x=24+i*optionPitch,g=add('g',{'data-scene-band':'options','data-scene-option':o.optionId,'aria-label':titles[o.optionId]+(o.feasible?'':' constrained')},null,paths);
    const selected=o.optionId===(envelope?.optionId??state.decision.optionId);
    box(x,optionY,Math.min(278,optionPitch-12),optionH,g,selected?'#A8F04A':o.feasible?'#71877a':'#C5CCD4',o.feasible?'#132019':'url(#preview-hatch)');
-   if(!o.feasible){label(x+Math.min(278,optionPitch-12)-28,optionY+24,'×',22,g,{fill:'#C5CCD4','font-weight':800});g.classList.add('option-constrained');}
+   // Hatch fill carries constrained meaning; avoid a second × glyph that intersects the caption (visual gate).
+   if(!o.feasible)g.classList.add('option-constrained');
    if(selected)g.classList.add('path-linked');
-   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+Math.round(optionH*0.38),(selected?'✓ ':'')+titles[o.optionId],Math.min(20,Math.max(16,Math.round(optionH*0.28))),g);label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'× CONSTRAINED · two online cells',Math.min(18,Math.max(14,Math.round(optionH*0.22))),g);
+   g.addEventListener('pointerenter',()=>highlightPath(o.optionId));g.addEventListener('focus',()=>highlightPath(o.optionId));label(x+10,optionY+Math.round(optionH*0.38),(selected?'✓ ':'')+titles[o.optionId],Math.min(20,Math.max(16,Math.round(optionH*0.28))),g);label(x+10,optionY+Math.round(optionH*0.78),o.feasible?o.finishHours+'h · $'+o.incrementalCostUsd.toLocaleString(undefined,{maximumFractionDigits:2}):'OFFLINE-ADJACENT · two online cells',Math.min(18,Math.max(14,Math.round(optionH*0.22))),g);
    if(o.feasible)activate(g,()=>document.querySelector('[data-option="'+o.optionId+'"]')?.click());
   });
+  // Wonder P1 steps 6–7: when only two paths remain feasible, mark the constrained Split fade in the scene.
+  if(state.analysis.recovery.feasibleCount===2){
+   const constrained=paths.querySelector('.option-constrained');
+   if(constrained)constrained.classList.add('path-fade-constrained');
+  }
   if(!shockStage&&document.body.dataset.activeStage==='investigation'&&run?.proposalValid){
    const compare=callouts.querySelector('[data-scene-band="compare"]');
    if(compare){add('path',{d:'M 230 34 H 650',class:'finding-compare-trace',fill:'none',stroke:'#A8F04A','stroke-width':3,'stroke-dasharray':'10 6'},null,callouts);}
@@ -490,7 +528,7 @@ function renderBoard(){
  const blockedCount=board.tasks.filter(t=>t.status==='Blocked').length;const proposedCount=proposal?proposal.board.tasks.filter(t=>t.status!=='Done').length:0;
  $('britt-work').scrollTop=0;$('britt-proposal').scrollTop=0;
  // Coexistence line stays in #board-outcomes only (Wonder: do not repeat four times). Task cards keep PROPOSED badge.
- $('britt-proposal').replaceChildren(...(banner&&proposal?[text('p','The Britt is building the board','britt-signature-line'),text('p','Task 1 of '+proposedCount+' · inspect with the steppers','proposal-explain'),...(proposal.board.tasks.map((t,i)=>{const card=text('div','','proposal-task britt-build-card'+(i===0?' britt-focus-task':' proposal-compact'));card.tabIndex=0;card.style.setProperty('--build-delay',(i*90)+'ms');card.append(text('small',t.status==='Done'?'COMPLETED WORK RETAINED':'PROPOSED · UNTRACKED UNTIL APPROVAL','proposal-badge'),text('strong',t.id+' · '+t.title),text('small',t.owner+' · due +'+Number(t.dueHours.toFixed(2))+'h · after '+(t.dependsOn.join(', ')||'Ready')));return card;}))]:[]));if(!proposal){$('britt-panel')?.classList.remove('britt-signature');const banner=$('britt-signature-banner');if(banner)banner.hidden=true;}
+ $('britt-proposal').replaceChildren(...(banner&&proposal?[text('p','The Britt is building the board','britt-signature-line'),text('p','Task 1 of '+proposedCount+' · inspect with the steppers','proposal-explain'),...(proposal.board.tasks.map((t,i)=>{const card=text('div','','proposal-task britt-build-card'+(i===0?' britt-focus-task':' proposal-compact'));card.tabIndex=0;card.style.setProperty('--build-delay',(i*90)+'ms');card.append(text('small',t.status==='Done'?'COMPLETED WORK RETAINED':'PROPOSED','proposal-badge'),text('small','UNTRACKED UNTIL APPROVAL · Awaiting approval','proposal-awaiting'),text('strong',t.id+' · '+t.title),text('small',t.owner+' · due +'+Number(t.dueHours.toFixed(2))+'h · after '+(t.dependsOn.join(', ')||'Ready')));return card;}))]:[]));if(!proposal){$('britt-panel')?.classList.remove('britt-signature');const banner=$('britt-signature-banner');if(banner)banner.hidden=true;}
  if(proposal){const cards=[...$('britt-proposal').querySelectorAll('.proposal-task')],nav=text('nav','','proposal-pages');nav.setAttribute('aria-label','Inspect proposed tasks');const label=$('britt-proposal').querySelector('.proposal-explain');const choose=index=>{inspectedTask=index;cards.forEach((c,i)=>{c.hidden=false;c.classList.toggle('britt-focus-task',i===index);c.classList.toggle('proposal-compact',i!==index);});for(const [i,b]of [...nav.children].entries()){b.setAttribute('aria-pressed',String(i===index));if(i===index)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');}label.textContent='Task '+(index+1)+' of '+cards.length+' · use Approve when ready';renderFactory();};cards.forEach((card,index)=>{const b=text('button',String(index+1),'secondary');b.dataset.proposalIndex=String(index);b.setAttribute('aria-label','Inspect proposed task '+(index+1)+': '+proposal.board.tasks[index].title);b.addEventListener('click',()=>choose(index));nav.append(b);});nav.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight'].includes(event.key))return;event.preventDefault();event.stopPropagation();const buttons=[...nav.children],i=buttons.indexOf(document.activeElement),next=buttons[(i+(event.key==='ArrowLeft'?-1:1)+buttons.length)%buttons.length];next.click();next.focus();});label.after(nav);choose(Math.min(inspectedTask,cards.length-1));}
  $('prior-work').hidden=!(proposal&&board.tasks.length);if(proposal&&board.tasks.length)$('prior-work').open=true;$('prior-work').querySelector('summary').textContent=blockedCount+' BLOCKED prior tasks · separate from proposed replacements';$('prior-work-list').replaceChildren();
  if(proposal&&board.tasks.length){

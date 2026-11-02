@@ -8,7 +8,7 @@ const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8')
 const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'utf8');
 
 test('build stamp advances past audit33 cinematic floor',()=>{
- assert.match(html,/ffr-build" content="audit3[4567]-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit3[45678]-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit33-cinematic-floor/);
 });
 

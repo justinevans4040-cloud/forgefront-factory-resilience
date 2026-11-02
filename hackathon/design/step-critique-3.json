@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 3,
-  "score": 9,
-  "wowScore": 7,
+  "score": 8,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Keep the three path cards at equal height, align 83h, 35h and 17.5h metrics, and show selected-path emerald glow before Approve."
+      "change": "Make the selected-path state unmistakable with emerald fill, state glow and a matched route trace in the scene before Review recovery option activates."
     },
     {
       "priority": "P2",
-      "change": "Clarify that selecting a path opens one-click Approve then the Authorize this decision wall, in 16px text beside the primary control."
+      "change": "Align scene option cards exactly under their right-zone counterparts and highlight both together on hover, focus and selection."
     },
     {
       "priority": "P2",
-      "change": "Add a cinematic route trace for the hovered or focused path across CELL-MILL-1 and CELL-MILL-2, static under reduced motion."
+      "change": "Increase right-zone tradeoff figures to 26px and keep FINISH and INCREMENTAL labels at 12px minimum."
     }
   ]
 }

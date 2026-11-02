@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 1,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Enlarge the factory scene to at least 70% of main and tighten the right zone so Certificate and Receiving tracks gain depth, glow and clearer DOES NOT MATCH alignment."
+      "change": "Enlarge the factory scene toward 70% of main by tightening the right evidence zone and compressing the three option cards into the scene footer."
+    },
+    {
+      "priority": "P1",
+      "change": "Raise side-zone body and Source detail text to 16px and mute silver contrast up to rgba(197,204,212,.68) minimum."
     },
     {
       "priority": "P2",
-      "change": "Add living emerald flow along the conveyor dots only where material can move; keep held material static."
-    },
-    {
-      "priority": "P2",
-      "change": "Raise small side-zone body copy to 16px and strengthen focus ring visibility on Source detail controls."
+      "change": "Add a living emerald flow trace from RECEIVING hold to JOB-1001 and JOB-1002 so the 70 parts at risk read instantly."
     }
   ]
 }

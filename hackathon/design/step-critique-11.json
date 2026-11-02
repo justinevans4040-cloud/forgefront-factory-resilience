@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 11,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Preserve the required order of logo, one-line pitch, Live demo link, Powered by partners, hero and cascade visuals, then What you will see, Meet The Britt, why it matters and how Meta models are used; enlarge the cascade visual so the mills to lathes emerald path and silver OFFLINE machines are legible at first scan."
+      "change": "Keep the fixed presentation order exactly: logo, one-line pitch, Live demo link, Powered by partners, hero and cascade visuals, then What you will see, Meet The Britt, why it matters, how Meta models are used; increase cascade screenshot width so the emerald mills to lathes path and x OFFLINE departments are legible at a glance."
+    },
+    {
+      "priority": "P1",
+      "change": "Tighten the pitch to one line directly under the logo placement and make the Live demo link a single high-contrast emerald action at 16px."
     },
     {
       "priority": "P2",
-      "change": "Make the hero headline and cascade caption larger and higher contrast in black, emerald and brushed silver, with the official logo kept immutable at native aspect."
-    },
-    {
-      "priority": "P2",
-      "change": "Tighten partner and model sections to scannable 16px rows so judge impact lands before the detailed tables."
+      "change": "Add concise captions under hero and cascade visuals naming the three signals, preserving minimal narration and judge impact."
     }
   ]
 }

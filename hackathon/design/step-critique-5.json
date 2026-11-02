@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 5,
-  "score": 9,
+  "score": 8,
   "wowScore": 8,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Keep CELL-MILL-2 preview in silver cross-hatching with x marker and plain WILL GO OFFLINE text; ensure no route flows through it in preview."
+      "change": "Keep CELL-MILL-2 preview strictly in silver cross-hatching with x marker and WILL GO OFFLINE text; reserve plain OFFLINE for the applied state."
     },
     {
       "priority": "P2",
-      "change": "Animate the 24h to 0h capacity change as a single cinematic drain on state change, frozen under reduced motion."
+      "change": "Animate a single cinematic capacity drain 24h to 0h on the preview, then settle static, with reduced-motion showing the end state immediately."
     },
     {
       "priority": "P2",
-      "change": "Make the machine selector at least 36px tall with a visible 2px emerald focus ring."
+      "change": "Enlarge the INVALIDATING ACTION status to 16px and tie its glow to the accepted Use verified substitute card only."
     }
   ]
 }

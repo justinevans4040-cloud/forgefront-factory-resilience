@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 7,
-  "score": 9,
-  "wowScore": 7,
+  "score": 8,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Keep Split available capacity visibly constrained with cross-hatching, x marker and the two-online-cells reason in both scene and side zone."
+      "change": "Mark Split available capacity as constrained with pattern, x marker and text, and exclude it from selectable radio behaviour in the comparison zone."
     },
     {
       "priority": "P2",
-      "change": "Align finish and incremental metrics for the two feasible paths and highlight the recommended route with living emerald flow on focus."
+      "change": "On selecting a revised path, preview its emerald living route through CELL-MILL-1 only, reinforcing that no route passes through CELL-MILL-2."
     },
     {
       "priority": "P2",
-      "change": "Strengthen PRIOR ACCEPTANCE INVALIDATED status in the action bar without shrinking it below 16px."
+      "change": "Raise the PRIOR ACCEPTANCE INVALIDATED action-bar message contrast and pair it with a matching scene banner inside stage bounds."
     }
   ]
 }

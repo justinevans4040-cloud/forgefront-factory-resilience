@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 6,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Show CELL-MILL-2 as OFFLINE with silver cross-hatching, x marker and 0h, and remove any feasible route through it."
+      "change": "Separate provider-identity connection readiness from the reinvestigation evidence task; label step 2 in the side zone as evidence work with its own Investigate control."
     },
     {
       "priority": "P1",
-      "change": "Keep provider identity readiness separate from the Reinvestigate recovery evidence action under separate headings."
+      "change": "Keep CELL-MILL-2 plain OFFLINE with silver cross-hatching and x marker, and remove any emerald route touching the Split card while it is offline-adjacent."
     },
     {
       "priority": "P2",
-      "change": "Fill the empty Verified findings zone with a concise cleared-state message at 16px instead of blank depth."
+      "change": "Make CLEARED findings explain the refill action in one 16px sentence and link Reinvestigate recovery to the Certificate and Receiving tracks."
     }
   ]
 }

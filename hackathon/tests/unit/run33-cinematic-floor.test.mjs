@@ -10,7 +10,7 @@ const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'
 const scene=readFileSync(new URL('../../public/stage-scene.mjs',import.meta.url),'utf8');
 
 test('build stamp advanced past audit32 cinematic baseline',()=>{
- assert.match(html,/ffr-build" content="audit3[34567]-[a-z0-9-]+"/);
+ assert.match(html,/ffr-build" content="audit3[345678]-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit32-the-britt-authorize/);
 });
 

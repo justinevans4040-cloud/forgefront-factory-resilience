@@ -15,7 +15,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
  legend.append(
   legendChip('RUNNING','plant-legend-run'),
   legendChip('HELD / BLOCKED','plant-legend-hold'),
-  legendChip('OFFLINE','plant-legend-offline'),
+  legendChip('× OFFLINE · pattern + text','plant-legend-offline'),
   legendChip('FEASIBLE RECOVERY','plant-legend-recovery')
  );
  // Flow canvas sits above tiles so emerald paths remain visible in still captures and motion.
@@ -178,14 +178,12 @@ export function mountCascade({loadPlant,launcher,workflow}){
     tile.node.classList.toggle('cascade-hit',hit);tile.node.classList.toggle('cascade-partial',partial);
     if(tile.stateEl)tile.stateEl.textContent=departmentStatus({recovered,active,offlineCount:tile.offlineCount,runningCount:tile.runningCount,members:tile.memberCount,hit:hit||partial});
     if(tile.subEl&&!department)tile.subEl.textContent=tile.memberCount>=100?String(tile.memberCount):tile.memberCount+' machines';
-    // Extreme plants: CSS hatch on .cascade-hit carries OFFLINE — extra mark/chip nodes inflate button scrollWidth and fail the clip gate.
-    if(!extreme){
-     let mark=tile.node.querySelector('.plant-offline-mark');
-     if(hit||partial){
-      if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
-      if(!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
-     }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
-    }
+    // Corner × stays; OFFLINE word lives in .plant-state (Wonder 168). Extreme plants skip the chip to protect the clip gate.
+    let mark=tile.node.querySelector('.plant-offline-mark');
+    if(hit||partial){
+     if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
+     if(!extreme&&!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
+    }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
     // Extreme plants rely on tile CSS/hatch chips; glyph art flips only under lighter plants (LOD).
     if(!extreme)syncMachineArt(tile.node,hit||partial||recovered);
     // Heavy static layer is hit-agnostic — skip static-layer refreshes during the cascade wave.
@@ -289,15 +287,16 @@ export function mountCascade({loadPlant,launcher,workflow}){
 function legendChip(label,className){const chip=el('span',label,className);chip.setAttribute('aria-hidden','true');return chip;}
 export function departmentStatus({recovered,active,offlineCount,runningCount,members,hit}){
  if(recovered)return 'RECOVERY ACCEPTED';
- // Compact chips on huge departments stay inside tile bounds (clip gate); wording stays plain OFFLINE / RUNNING.
- if(!active||!hit)return members>=100?'RUNNING':('RUNNING · '+members+' machines');
- if(offlineCount>=members&&members>0)return 'OFFLINE';
+ // Compact chips on huge departments stay inside tile bounds (clip gate); wording stays plain OFFLINE / RUNNING with counts (Wonder cascade P1).
+ if(!active||!hit)return members>=100?('RUNNING · '+members):('RUNNING · '+members+' machines');
+ // Compact OFFLINE footers stay fully visible (Wonder high step 10): never truncate the OFFLINE word.
+ if(offlineCount>=members&&members>0)return members>=100?('OFFLINE · '+members):('OFFLINE · '+members);
  if(offlineCount>0){
-  if(members>=100)return 'OFFLINE';
-  if(offlineCount>=10||runningCount>=10)return offlineCount+' OFFLINE / '+runningCount+' RUNNING';
-  return 'OFFLINE · '+offlineCount+' · RUNNING · '+runningCount;
+  if(members>=100)return 'OFFLINE · '+offlineCount+'/'+members;
+  if(offlineCount>=10||runningCount>=10)return offlineCount+' OFFLINE / '+runningCount+' RUN';
+  return 'OFFLINE · '+offlineCount+' / '+runningCount+' RUN';
  }
- return members>=100?'RUNNING':('RUNNING · '+members+' machines');
+ return members>=100?('RUNNING · '+members):('RUNNING · '+members+' machines');
 }
 function syncMachineArt(node,showOffline){
  const svg=node.querySelector('.plant-machinery');if(!svg)return;

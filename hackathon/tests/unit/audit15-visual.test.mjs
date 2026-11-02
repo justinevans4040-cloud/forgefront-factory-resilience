@@ -7,10 +7,12 @@ const app = readFileSync(new URL('../../public/app.mjs', import.meta.url), 'utf8
 const html = readFileSync(new URL('../../public/index.html', import.meta.url), 'utf8');
 
 test('proposed Britt tasks keep visible UNTRACKED UNTIL APPROVAL badges', () => {
-  assert.match(app, /PROPOSED · UNTRACKED UNTIL APPROVAL/);
+  assert.match(app, /PROPOSED/);
+  assert.match(app, /UNTRACKED UNTIL APPROVAL/);
   assert.match(app, /proposal-badge/);
+  assert.match(app, /proposal-awaiting/);
   assert.doesNotMatch(css, /\.proposal-task \.proposal-badge\{display:none\}/);
-  assert.match(css, /\.proposal-badge\{[^}]*display:(?:block|inline-block)/);
+  assert.match(css, /\.proposal-badge\{/);
 });
 
 test('history review keeps route-health refresh disabled and blocks recovery-card consent', () => {

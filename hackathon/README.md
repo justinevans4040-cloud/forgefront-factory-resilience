@@ -24,7 +24,7 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="../assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade with every machine across seven departments in black, emerald and silver" /></p>
 
-<p align="center"><em>Full-shop cascade — 35 affected operations freeze across the plant; living emerald recovery restarts the feasible mills → lathes path while silver OFFLINE marks every stopped machine.</em></p>
+<p align="center"><em style="font-size:22px;line-height:1.5;font-weight:700">Full-shop cascade — 35 affected operations freeze; living emerald mills → lathes recovery; silver × OFFLINE on every stopped department; live counters for lost hours · late orders · cost · ship-date slip.</em></p>
 
 ## What you'll see
 

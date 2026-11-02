@@ -1547,3 +1547,65 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
 #factory-svg .selected-route{stroke:#A8F04A;stroke-width:6;filter:drop-shadow(0 0 12px #A8F04Acc)}
 #factory-svg .option-constrained{filter:none}
 body[data-guided=true][data-active-stage=incident] #factory-svg .material-spark{filter:drop-shadow(0 0 8px #A8F04A88)}
+
+/* audit38 — Wonder 166 P1 finish: cert→recv feed, board sequence, shock hatch sweep, constrained fade, proof glow */
+#factory-svg .cert-recv-trace{animation:cert-recv-flow 1.4s ease-out 1;filter:drop-shadow(0 0 8px #A8F04A88)}
+#factory-svg .cert-feed-spark{animation:lot-flow 1.2s linear infinite;filter:drop-shadow(0 0 6px #A8F04Aaa)}
+@keyframes cert-recv-flow{0%{stroke-dashoffset:48;opacity:0}35%{opacity:1}100%{stroke-dashoffset:0;opacity:.9}}
+#factory-svg .shock-hatch-sweep>rect:first-child{animation:shock-hatch-sweep .9s ease-out 1}
+@keyframes shock-hatch-sweep{0%{opacity:0;transform:translateX(-12px)}55%{opacity:1}100%{opacity:.55;transform:none}}
+#factory-svg .shock-withdraw{animation:shock-withdraw .7s ease-out 1}
+@keyframes shock-withdraw{0%{stroke-opacity:1;stroke-dashoffset:0}100%{stroke-opacity:.35;stroke-dashoffset:18}}
+#factory-svg .path-fade-constrained{opacity:.72;filter:grayscale(.35)}
+#factory-svg .path-fade-constrained>rect{stroke:#C5CCD4!important;stroke-dasharray:6 4}
+#factory-svg .board-sequence-spine{animation:finding-trace 1s ease-out 1;filter:drop-shadow(0 0 8px #A8F04A88)}
+#factory-svg .board-sequence-stop{opacity:.85}
+#factory-svg .proposal-sequence-line{animation:finding-trace .9s ease-out 1;filter:drop-shadow(0 0 6px #A8F04A66)}
+#factory-svg .proposal-scene-badge{letter-spacing:.06em}
+.proposal-awaiting{display:block;font-size:13px!important;font-weight:700;letter-spacing:.04em;color:#c5ccd4!important;margin:0 0 4px}
+.proposal-badge{font-size:14px!important;font-weight:800!important;letter-spacing:.06em;color:#A8F04A!important}
+#factory-svg .proof-chain-node.ready{animation:proof-node-glow 1.4s ease-in-out infinite;filter:drop-shadow(0 0 14px #A8F04Acc)}
+@keyframes proof-node-glow{0%,100%{opacity:.85}50%{opacity:1}}
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=board] .proposal-badge{font-size:15px!important;min-height:22px}
+ body[data-guided=true][data-active-stage=board] .proposal-awaiting{font-size:14px!important}
+ body[data-guided=true][data-active-stage=decision] .option.unavailable,
+ body[data-guided=true][data-active-stage=decision] .option:has(.option-constrained){opacity:.85}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .verified-finding.evidence-linked,
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .verified-finding:focus-within{
+  box-shadow:0 0 28px #A8F04A66,inset 0 0 16px #A8F04A18;border-color:#A8F04A
+ }
+ /* Keep factory fill high without starving the rail (clip gate). */
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.2fr) minmax(300px,.68fr)!important}
+ body[data-guided=true] #factory-svg{min-height:360px!important}
+ /* Connection row must never clip past the stage when findings are open. */
+ /* Wonder high S2/S6: connection readiness stays a compact silver chip; findings stay the emerald evidence zone. */
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight{
+  display:block!important;max-width:100%!important;width:100%!important;box-sizing:border-box!important;
+  overflow:hidden!important;max-height:36px!important;margin:0 0 6px!important;padding:4px 8px!important;
+  border-left:5px solid #C5CCD4!important;background:#0a100c!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary{
+  display:block!important;max-width:100%!important;overflow:hidden!important;text-overflow:ellipsis!important;
+  white-space:nowrap!important;font-size:14px!important;min-height:28px!important;box-sizing:border-box;color:#c5ccd4!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight> :not(summary){display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #model-output{
+  border-left:5px solid #A8F04A!important;box-shadow:0 0 22px #A8F04A22
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #model-output>summary::before{
+  content:"EVIDENCE · ";color:#A8F04A;letter-spacing:.06em;font-size:12px
+ }
+ body[data-guided=true][data-active-stage=incident] .evidence-headline,
+ body[data-guided=true] .evidence-headline{
+  display:flex!important;align-items:baseline;gap:6px;max-width:100%!important;overflow:hidden!important;
+  white-space:nowrap!important;text-overflow:ellipsis!important;font-size:16px!important;line-height:1.25!important
+ }
+ body[data-guided=true] .evidence-headline .evidence-figure{flex:0 0 auto;font-size:18px!important}
+ body[data-guided=true] .stage[data-stage],body[data-guided=true] #stage-deck{overflow:hidden!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .cert-recv-trace,#factory-svg .cert-feed-spark,#factory-svg .shock-hatch-sweep>rect:first-child,
+ #factory-svg .shock-withdraw,#factory-svg .board-sequence-spine,#factory-svg .proposal-sequence-line,
+ #factory-svg .proof-chain-node.ready{animation:none!important}
+}

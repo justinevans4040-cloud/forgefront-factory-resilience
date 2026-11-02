@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 147,
+  "iteration": 170,
   "step": 9,
-  "score": 9,
-  "wowScore": 8,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "P1",
-      "change": "Keep Verify ledger, Seal packet and Retain checkpoint as sequential depth cards, with READY glowing and LOCKED cards in dim silver at 16px."
+      "change": "Condense the right evidence zone so all three proof stages fit at 1366x768 without inspector scrolling; shorten passphrase guidance to one 16px instruction plus checklist line."
     },
     {
       "priority": "P2",
-      "change": "Tighten the side-zone passphrase guidance to one checklist sentence so all three proof steps fit at 1366x768 without overlap."
+      "change": "Give stage 01 READY a cinematic verified-chain trace into stages 02 and 03 while keeping LOCKED stages dashed silver and inactive."
     },
     {
       "priority": "P2",
-      "change": "Animate the dashed chain line once when verification succeeds, static under reduced motion."
+      "change": "Move the 70 / 35h / 48h proof metrics into the scene header band to strengthen the before-after payoff."
     }
   ]
 }
