@@ -18,7 +18,7 @@ The recovery room connects each product claim to working code and observable pro
 | Keyboard and responsive presentation | Real keyboard path, semantic controls, focus, measured contrast and width checks | Offline accessibility and mobile browser evidence |
 | Public delivery | Render launcher, persistent disk, health probe, isolated visitor workspaces, encrypted spending limits and offline daily fallback; exact public file copy, newest run only, portable links | Public hosting/budget/launcher tests; judge/public-tree gates |
 
-| Recovery project board | Source-bound task drafts, owners, due windows, dependencies, human approval and shock blockers | Board/Britt tests and primary-guide evidence |
+| Recovery project board | Source-bound task drafts, owners, due windows, dependencies, human approval and shock blockers | Board/The Britt tests and primary-guide evidence |
 | The Britt | Meta-only sovereign agent, read-only tools, encrypted scoped context and human-gated tasks | Workflow, memory, provider and export tests |
 | Meta design direction | Real screenshot reviews and component specification | Saved design iterations and mocked director tests |
 
@@ -28,11 +28,11 @@ Review and freeze the audited source inventory; test a physical phone; film the 
 
 ## Current orchestration coverage
 
-`model-handoff.test.mjs` verifies validated same-snapshot Spark → Wonder data and accepted-investigation → Britt data. `reinvestigation-order.test.mjs` verifies the repeated two-model sequence after shock. `britt-fallback.test.mjs` verifies one Wonder attempt followed by at most one Baseten attempt under the shared task-draft deadline. `run14-visual.test.mjs` covers stage-bound outage preview and current-ledger proof outcomes. The current evidence index links browser and screenshot results.
+`model-handoff.test.mjs` verifies validated same-snapshot Spark → Wonder data and accepted-investigation → The Britt data. `reinvestigation-order.test.mjs` verifies the repeated two-model sequence after shock. `britt-fallback.test.mjs` verifies one Wonder attempt followed by at most one Baseten attempt under the shared task-draft deadline. `run14-visual.test.mjs` covers stage-bound outage preview and current-ledger proof outcomes. The current evidence index links browser and screenshot results.
 
 ## Source and viewport coverage
 
-The current primary-guide browser check asserts wide and compact page bounds, a bounded Britt inspector, exact-source activation from the keyboard, linked evidence highlighting, consent geometry and unchanged ledger heads during Back and rail review. Every visited state is captured at wide desktop, compact desktop and mobile sizes. Pure tests cover measured quantity-track geometry, current-machine terminal summaries and passphrase feedback. Temporary-profile cleanup rejects paths outside the owned temporary prefix.
+The current primary-guide browser check asserts wide and compact page bounds, a bounded The Britt inspector, exact-source activation from the keyboard, linked evidence highlighting, consent geometry and unchanged ledger heads during Back and rail review. Every visited state is captured at wide desktop, compact desktop and mobile sizes. Pure tests cover measured quantity-track geometry, current-machine terminal summaries and passphrase feedback. Temporary-profile cleanup rejects paths outside the owned temporary prefix.
 
 Opening-state regression coverage varies affected demand, source quantities and due windows. The primary-guide regression checks the compact first frame and inspector heading at compact desktop size, then captures every step at all three viewport sizes.
 
@@ -67,5 +67,5 @@ Large workspace tabs share the header width and identify the selected stage. Fac
 | Wonder failure path | One retry, shared deadline, Baseten-only fallback, actual provider identity and explicit handoff copy |
 | Large-plant model coverage | Page/summary helpers and plant/snapshot tools cover every machine, operation, evidence and recovery assignment across offsets; investigation projects tool history with truncated:false and idDigest; 1,000-entity unit proof |
 
-The full-shop calculation/view path and the secured guided Meta/decision workflow have separate execution evidence. Integration gates for full-plant Meta orchestration, persisted cascade decisions and plant-derived Britt work remain in the submission checklist.
+The full-shop calculation/view path and the secured guided Meta/decision workflow have separate execution evidence. Integration gates for full-plant Meta orchestration, persisted cascade decisions and plant-derived The Britt work remain in the submission checklist.
 

@@ -9,7 +9,8 @@ export function mountCascade({loadPlant,launcher,workflow}){
  const labels={'wrong-cert':'Wrong certificate','wrong-material':'Wrong material','wrong-grain':'Wrong grain direction','wrong-sticker':'Mislabeled sticker','failed-hardness':'Failed hardness'};
  for(const [id,label]of[['reroute','Reroute to alternate machines'],['expedite','Expedite verified replacement'],['rework','Rework and re-inspect']]){const option=el('option',label);option.value=id;strategySelect.append(option);}
  const trigger=el('button','Trigger failure'),recover=el('button','Accept calculated recovery'),overview=el('button','All departments','secondary'),previous=el('button','Previous','secondary'),next=el('button','Next','secondary');controls.append(failureLabel,failureSelect,trigger,strategyLabel,strategySelect,recover);
- const consent=el('div',null,'plant-consent');consent.hidden=true;const consentLabel=el('label','Type the approval phrase to seal this plant recovery');const consentInput=el('input');consentInput.id='plant-consent-phrase';consentInput.autocomplete='off';consentInput.spellcheck=false;consentLabel.htmlFor=consentInput.id;const seal=el('button','Seal recovery and draft The Britt');const cancelConsent=el('button','Cancel','secondary');consent.append(consentLabel,consentInput,seal,cancelConsent);
+ const consent=el('div',null,'plant-consent');consent.hidden=true;const consentLabel=el('label','Approve the calculated plant recovery');const approve=el('button','Approve recovery');approve.id='plant-approve';const cancelConsent=el('button','Cancel','secondary');consent.append(consentLabel,approve,cancelConsent);
+ const authorize=el('dialog',null,'plant-authorize');authorize.id='plant-authorize';authorize.innerHTML='<h2>Authorize this decision</h2><p class="plant-authorize-detail"></p><p class="muted">This seals the plant recovery to the evidence snapshot and ledger.</p><div class="authorize-actions"></div>';const authorizeDetail=authorize.querySelector('.plant-authorize-detail');const authorizeConfirm=el('button','Authorize');const authorizeCancel=el('button','Cancel','secondary');authorize.querySelector('.authorize-actions').append(authorizeConfirm,authorizeCancel);document.body.append(authorize);
  const metrics=el('div',null,'plant-metrics'),caption=el('p','','plant-caption'),legend=el('div',null,'plant-legend'),floor=el('div',null,'plant-floor'),tiles=el('div',null,'plant-tiles'),canvas=el('canvas',null,'plant-flow'),navigation=el('div',null,'plant-navigation'),pageLabel=el('span');
  legend.append(
   legendChip('RUNNING','plant-legend-run'),
@@ -24,8 +25,8 @@ export function mountCascade({loadPlant,launcher,workflow}){
  const format=n=>new Intl.NumberFormat('en-US',{maximumFractionDigits:1}).format(n);
  function setConsent(open){
   consent.hidden=!open;
-  if(open){consentInput.value='';consentInput.placeholder='APPROVE '+strategySelect.value;seal.disabled=true;consentInput.focus();}
-  else{envelope=null;consentInput.value='';}
+  if(open){approve.textContent='Approve '+strategySelect.value;approve.disabled=false;approve.focus();}
+  else{envelope=null;if(authorize.open)authorize.close();}
  }
  function draw(){
   if(!plant||!dialog.open)return;
@@ -82,22 +83,23 @@ export function mountCascade({loadPlant,launcher,workflow}){
    if(!investigation?.proposalValid)throw new Error('Plant investigation did not validate against source evidence');
    recover.textContent='Preparing consent…';
    envelope=await workflow.api('plant-review',{lotId:plant.lots[0].id,failure:failureSelect.value,strategy:strategySelect.value});
-   setConsent(true);caption.textContent='Meta investigation sealed the finding. Type APPROVE '+strategySelect.value+' to accept the calculated recovery.';
+   setConsent(true);caption.textContent='Meta investigation sealed the finding. Approve '+strategySelect.value+', then authorize to seal the calculated recovery.';
   }catch(error){caption.textContent=error?.message||'Plant recovery consent failed';}
   finally{busy=false;recover.textContent='Accept calculated recovery';draw();}
  });
- consentInput.addEventListener('input',()=>{seal.disabled=!envelope||consentInput.value.trim()!=='APPROVE '+strategySelect.value||busy;});
  cancelConsent.addEventListener('click',()=>{setConsent(false);draw();});
- seal.addEventListener('click',async()=>{
-  if(!envelope||busy||consentInput.value.trim()!=='APPROVE '+strategySelect.value)return;
-  busy=true;seal.disabled=true;seal.textContent='Sealing…';
+ authorizeCancel.addEventListener('click',()=>{if(authorize.open)authorize.close();});
+ approve.addEventListener('click',()=>{if(!envelope||busy)return;authorizeDetail.textContent='Authorize '+strategySelect.value+' against the sealed plant evidence.';authorize.showModal();authorizeConfirm.focus();});
+ authorizeConfirm.addEventListener('click',async()=>{
+  if(!envelope||busy)return;
+  busy=true;approve.disabled=true;authorizeConfirm.disabled=true;authorizeConfirm.textContent='Authorizing…';
   try{
-   await workflow.api('confirm',{nonce:envelope.nonce,typed:consentInput.value.trim()});
+   await workflow.api('confirm',{nonce:envelope.nonce,typed:'APPROVE '+strategySelect.value});
    recovered=true;setConsent(false);
    if(typeof workflow.afterAccept==='function')await workflow.afterAccept({strategy:strategySelect.value,failure:failureSelect.value});
    caption.textContent='Recovery sealed · The Britt is drafting tracked work from the accepted plant plan.';
   }catch(error){caption.textContent=error?.message||'Plant recovery confirmation failed';setConsent(Boolean(envelope));}
-  finally{busy=false;seal.textContent='Seal recovery and draft The Britt';draw();}
+  finally{busy=false;authorizeConfirm.disabled=false;authorizeConfirm.textContent='Authorize';if(authorize.open)authorize.close();draw();}
  });
  failureSelect.addEventListener('change',()=>{active=false;recovered=false;setConsent(false);draw();});strategySelect.addEventListener('change',()=>{recovered=false;setConsent(false);draw();});overview.addEventListener('click',()=>{department=null;page=0;draw();});previous.addEventListener('click',()=>{page--;draw();});next.addEventListener('click',()=>{page++;draw();});
  dialog.addEventListener('close',()=>{cancelAnimationFrame(raf);resize?.disconnect();setConsent(false);});

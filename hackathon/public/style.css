@@ -973,7 +973,7 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
  body[data-active-stage=shock] .stage[data-stage=shock] .stage-heading p{font-size:16px!important;margin:0 0 6px!important;line-height:1.35}
  body[data-active-stage=shock] .stage[data-stage=shock] aside{flex:1 1 auto;min-height:0;overflow:visible;padding:10px!important}
  body[data-active-stage=shock] .scenario-management{margin-top:8px!important;padding-top:8px!important}
- /* Board/replan: kill legacy grid placement and keep Britt gates above the fold. */
+ /* Board/replan: kill legacy grid placement and keep The Britt gates above the fold. */
  body[data-active-stage=board] #stage-deck{overflow:hidden!important}
  body[data-active-stage=board] .stage[data-stage=board]{display:flex;flex-direction:column;height:100%;max-height:100%;min-height:0;overflow:hidden;padding:6px 10px 4px!important;gap:4px}
  body[data-active-stage=board] .stage[data-stage=board]>h2,body[data-active-stage=board] .stage[data-stage=board]>.eyebrow,body[data-active-stage=board] #board-outcomes{flex:0 0 auto;margin:0 0 4px!important}
@@ -1040,3 +1040,28 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
 .source-dialog::backdrop{background:#020806d9;backdrop-filter:blur(5px)}.source-dialog code{display:block;white-space:normal;margin:20px 0;font-size:16px}.source-dialog h2{font-size:28px;margin-top:0}.source-dialog button{margin-bottom:0}
 
 @media(prefers-reduced-motion:reduce){button:hover,button:active,.option:hover{transform:none!important}}
+
+#authorize-wall{border:1px solid #7fad93;border-radius:12px;padding:22px 26px;background:linear-gradient(145deg,#14251c,#070e0b);color:#e8f6ee;max-width:440px;box-shadow:0 24px 60px #000c}
+#authorize-wall::backdrop{background:#000a}
+#authorize-wall h2{margin:0 0 8px;font-size:24px;color:#a8f04a}
+#authorize-wall .muted{color:#c5ccd4;font-size:15px;line-height:1.4}
+#authorize-wall .authorize-actions{display:flex;gap:10px;margin-top:16px}
+#approve-option{min-height:44px;font-size:16px;padding:10px 16px}
+
+/* audit25 investigation fit */
+@media(min-width:901px){
+ body[data-active-stage=investigation] .stage[data-stage=investigation]{padding:6px 8px!important;gap:6px!important}
+ body[data-active-stage=investigation] .investigate{padding:8px!important}
+ body[data-active-stage=investigation] .investigate h2{font-size:20px!important;margin:0 0 2px!important}
+ body[data-active-stage=investigation] .investigate .eyebrow{font-size:10px!important;margin:0!important}
+ body[data-active-stage=investigation] .investigate details{display:none!important}
+ body[data-active-stage=investigation] .route-preflight{padding:6px 8px!important;margin:0!important}
+ body[data-active-stage=investigation] .route-preflight>summary{font-size:15px!important;min-height:28px!important}
+ body[data-active-stage=investigation] #route-checklist,#provider-status,#investigation-status{font-size:15px!important;line-height:1.3!important;margin:2px 0!important}
+ body[data-active-stage=investigation] .investigation-task{padding:8px!important;margin:0!important}
+ body[data-active-stage=investigation] #investigate{min-height:36px;padding:8px 12px;margin:4px 0!important}
+ body[data-active-stage=investigation] #model-output{padding:8px!important}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight:not([open]) + .investigation-task,
+ body[data-guided=true][data-active-stage=investigation] .route-preflight[open]{max-height:none}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight:not([open]){margin-bottom:4px!important}
+}

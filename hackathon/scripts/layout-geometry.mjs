@@ -16,7 +16,7 @@ export function measureLayout(){
  };
  // Leaf text and actionable scene nodes — never measure opaque parent groups that swallow captions.
  for(const e of document.querySelectorAll('#factory-svg text,#factory-svg [data-scene-task],#factory-svg [data-scene-option],#room button:not([hidden]),#room #decision-bar button,#factory-selection:not([hidden])')){
-  if(!visible(e))continue;
+  if(!visible(e)||e.closest('dialog'))continue;
   add(e,e.getBoundingClientRect(),(e.textContent||e.getAttribute('aria-label')||e.id||'').trim().slice(0,90),e.namespaceURI?.includes('svg')?(e.tagName==='text'?'text':'node'):'control',e.getAttribute('data-scene-band'));
  }
  // Station/job rects (first rect of each factory-node) for node-vs-text collisions outside the same parent.
@@ -60,7 +60,7 @@ export function measureLayout(){
  const textClipping=[],walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
  while(walker.nextNode()){
   const node=walker.currentNode,el=node.parentElement;
-  if(!node.textContent.trim()||!visible(el)||el.closest('script,style,svg'))continue;
+  if(!node.textContent.trim()||!visible(el)||el.closest('script,style,svg,dialog'))continue;
   // Off-screen skip link must stay in tab order; exclude it from fold clipping until focused.
   if(el.closest('a.skip')&&document.activeElement!==el.closest('a.skip'))continue;
   let hidden=false;

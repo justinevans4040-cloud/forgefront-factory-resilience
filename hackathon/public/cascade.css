@@ -52,3 +52,9 @@
  .plant-room .plant-tile{transition:none}
  .plant-machine-light,.plant-room .plant-tile[data-recovered=true],.plant-room .chain-linked{animation:none!important}
 }
+
+.plant-authorize{border:1px solid #7fad93;border-radius:12px;padding:20px 24px;background:linear-gradient(140deg,#12251c,#070e0b);color:#e8f6ee;max-width:420px;}
+.plant-authorize::backdrop{background:#000a}
+.plant-authorize h2{margin:0 0 8px;font-size:22px;color:#a8f04a}
+.plant-authorize .muted{color:#c5ccd4;font-size:14px}
+.plant-authorize .authorize-actions{display:flex;gap:10px;margin-top:14px}

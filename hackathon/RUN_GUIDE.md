@@ -33,9 +33,9 @@ The live link is managed by `scripts/live-demo.mjs`. Change its `LIVE_DEMO_URL`,
 
 ## The command center
 
-A fixed header identifies Forgefront Systems. The stage rail opens **Incident**, **Investigate**, **Decide**, **Shock** and **Proof**, plus **Project board**. Each stage keeps its own focused content inside the workspace. **highlighted primary action** performs the current guided action and focuses the next required control. Typed recovery acceptance and Britt approval remain deliberate human actions. **Back** and completed rail steps review earlier states without repeating model calls or changing the ledger. A highlighted result and a short recap explain every completed action. Revisit any stage with the rail.
+A fixed header identifies Forgefront Systems. The stage rail opens **Incident**, **Investigate**, **Decide**, **Shock** and **Proof**, plus **Project board**. Each stage keeps its own focused content inside the workspace. **highlighted primary action** performs the current guided action and focuses the next required control. One-click recovery approval and The Britt authorization wall remain deliberate human actions. **Back** and completed rail steps review earlier states without repeating model calls or changing the ledger. A highlighted result and a short recap explain every completed action. Revisit any stage with the rail.
 
-The opening story computes affected parts, production orders and due windows from the snapshot. **Start guided recovery** begins a fresh incident. The live story has ten steps; explicit Sample has nine. Both include Britt task approval and revised-work review. Successful Sample results advance only the offline story. Switching back to a primary route restores the live-model requirements.
+The opening story computes affected parts, production orders and due windows from the snapshot. **Start guided recovery** begins a fresh incident. The live story has ten steps; explicit Sample has nine. Both include The Britt task approval and revised-work review. Successful Sample results advance only the offline story. Switching back to a primary route restores the live-model requirements.
 
 During inference, the status names the selected model, elapsed time, each bounded request and the remaining timeout. Read-only tool results add the number of source records read and feasible paths calculated. Final source matches, rejected claims and model analysis remain separately inspectable. The Proof stage compares the accepted completion time with replenishment and records the second shock, human acceptance and matching-head verification/export/checkpoint outcomes.
 
@@ -43,7 +43,7 @@ During inference, the status names the selected model, elapsed time, each bounde
 
 1. **Understand:** use **highlighted primary action** to open source evidence. Compare the certificate's 120 pieces with receiving's 80 and inspect the two jobs demanding 70 units.
 2. **Investigate:** select Spark Open on Baseten, press **Check selected route**, then **Investigate recovery**. Run Wonder on the unchanged snapshot. Inspect validated facts, model interpretation, read-only tools and observed latency.
-3. **Decide:** compare wait, verified substitute and split-capacity plans. Review a feasible option. Type the exact displayed APPROVE phrase and choose **Accept recovery decision**. **Recovery decision accepted** confirms the recorded decision.
+3. **Decide:** compare wait, verified substitute and split-capacity plans. Review a feasible option. Choose the one-click **Approve** button, then **Authorize this decision**. **Recovery decision accepted** confirms the recorded decision.
 4. **Challenge:** take CELL-MILL-2 offline. The earlier acceptance becomes invalid and split capacity becomes constrained. Investigate the changed snapshot and accept a remaining feasible option.
 5. **Prove:** choose **Verify ledger**, export the encrypted packet with a separate passphrase and export the independent checkpoint. Retain the checkpoint in separate trusted storage. The guide reaches **Recovery story complete** after all three actions match the ledger head.
 
@@ -86,13 +86,13 @@ Run `npm run design:review --prefix hackathon -- design/screens.json 44` from th
 
 ## Current verification evidence
 
-Set `HACKATHON_EVIDENCE_RUN=run19` in the shell before provider, primary-guide or browser smoke commands to retain this run’s sanitized proof. Evidence destinations accept numbered run names only. Run `npm run smoke:guide` for Sample and `npm run smoke:guide:mock` for controlled live-route regression. The live guide repeats Spark Open on Baseten then Muse Wonder after the machine shock, before revised typed acceptance. Britt task drafting uses Wonder with a bounded Baseten fallback; fallback never grants approval.
+Set `HACKATHON_EVIDENCE_RUN=run19` in the shell before provider, primary-guide or browser smoke commands to retain this run’s sanitized proof. Evidence destinations accept numbered run names only. Run `npm run smoke:guide` for Sample and `npm run smoke:guide:mock` for controlled live-route regression. The live guide repeats Spark Open on Baseten then Muse Wonder after the machine shock, before revised one-click authorization. The Britt task drafting uses Wonder with a bounded Baseten fallback; fallback never grants approval.
 
 Inspect every proposed task with the numbered task selector before approval; arrow keys move between its named controls. Prior blocked tasks remain separately inspectable during re-planning. The separate export passphrase field unlocks after Verify ledger completes on the current head. Back and completed rail items retain read-only review.
 
 ## Current visual workspaces
 
-The opening presents source comparison and affected orders at stage scale. On each Britt step, select a stage task tile or numbered inspector control to inspect that complete task, then approve through the highlighted primary action. The second-shock preview shows the selected cell capacity before application. Proof blocks track the same current-ledger gates as Verify, Seal and Retain. [Current evidence](evidence/README.md) holds the exact screenshot inputs and original Wonder scores.
+The opening presents source comparison and affected orders at stage scale. On each The Britt step, select a stage task tile or numbered inspector control to inspect that complete task, then approve through the highlighted primary action. The second-shock preview shows the selected cell capacity before application. Proof blocks track the same current-ledger gates as Verify, Seal and Retain. [Current evidence](evidence/README.md) holds the exact screenshot inputs and original Wonder scores.
 
 ## Current layout verification
 
@@ -106,7 +106,7 @@ Use the large header tabs for Incident, Investigate, Decide, Shock, Project boar
 
 In the recovery room, choose **Explore the full shop** beside the factory legend. Choose a failure, then **Trigger failure**. Department cards show affected operation counts and every machine. Select a department to inspect machines; activate a machine to highlight its downstream dependency chain. Choose a recovery path to recompute time and cost. **Recording view** hides the controls for a clean capture; **Show controls** restores them. Escape returns to the recovery room.
 
-The source fixture is `fixtures/job-shop.mjs`; calculations are in `public/plant-engine.mjs`. Generated plant fixtures and geometry tests exercise the larger navigation path. The guided recovery remains the camera path for authenticated Meta investigation, persisted human decisions and approved Britt work.
+The source fixture is `fixtures/job-shop.mjs`; calculations are in `public/plant-engine.mjs`. Generated plant fixtures and geometry tests exercise the larger navigation path. The guided recovery remains the camera path for authenticated Meta investigation, persisted human decisions and approved The Britt work.
 
 ## Prepare judge access for the final hosting switch
 

@@ -5,24 +5,32 @@ import {join,resolve} from 'node:path';
 import {randomBytes} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 
-export function resolveWritableStateDir(preferred, {tmpdir:tempRoot=tmpdir(),warn=console.warn}={}){
+export function resolveWritableStateDir(preferred, {
+ tmpdir:tempRoot=tmpdir(),
+ warn=console.warn,
+ mkdirSync:mkdir=mkdirSync,
+ accessSync:access=accessSync,
+ writeFileSync:write=writeFileSync,
+ unlinkSync:unlink=unlinkSync,
+ mkdtempSync:mkdtemp=mkdtempSync,
+}={}){
  const candidates=[];
  if(typeof preferred==='string'&&preferred.trim())candidates.push(preferred.trim());
  candidates.push(join(tempRoot,'ffr-public-state'));
  for(const directory of candidates){
   try{
-   mkdirSync(directory,{recursive:true});
-   accessSync(directory,constants.W_OK);
+   mkdir(directory,{recursive:true});
+   access(directory,constants.W_OK);
    const probe=join(directory,'.ffr-write-probe');
-   writeFileSync(probe,'ok');
-   unlinkSync(probe);
+   write(probe,'ok');
+   unlink(probe);
    if(preferred&&directory!==preferred.trim())warn('HACKATHON_STATE_DIR is not writable; continuing with a local fallback directory');
    return directory;
   }catch{
    // try the next candidate
   }
  }
- return mkdtempSync(join(tempRoot,'ffr-public-'));
+ return mkdtemp(join(tempRoot,'ffr-public-'));
 }
 
 export function publicEnvironment(source=process.env){

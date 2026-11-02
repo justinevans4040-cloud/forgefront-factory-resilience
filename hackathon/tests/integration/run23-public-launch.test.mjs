@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import http from 'node:http';
 import assert from 'node:assert/strict';
-import {mkdtempSync,rmSync,readFileSync,mkdirSync,chmodSync} from 'node:fs';
+import {mkdtempSync,rmSync,readFileSync,mkdirSync,chmodSync,accessSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {startPublicServer,publicEnvironment,resolveWritableStateDir} from '../../scripts/serve-public.mjs';
@@ -47,10 +47,28 @@ test('public launcher falls back when preferred state directory is not writable'
  const blockedParent=mkdtempSync(join(tmpdir(),'ffr-public-blocked-parent-'));
  const preferred=join(blockedParent,'nested-state');
  mkdirSync(preferred,{recursive:true});
- if(process.platform!=='win32')chmodSync(blockedParent,0o500);
+ // Deny the preferred directory itself. Chmod on a parent alone still leaves an
+ // existing child writable on Linux (W_OK checks the target, not the parent).
+ if(process.platform!=='win32')chmodSync(preferred,0o000);
  const fallbackRoot=join(tmpdir(),'ffr-public-fallback-root-'+Date.now());
  const preferredPath=process.platform==='win32'?join('C:\\Windows\\System32','ffr-should-fail-'+Date.now()):preferred;
- const resolved=resolveWritableStateDir(preferredPath,{tmpdir:fallbackRoot,warn:message=>warnings.push(message)});
+ const denied=new Error('simulated non-writable state directory');denied.code='EACCES';
+ const resolved=resolveWritableStateDir(preferredPath,{
+  tmpdir:fallbackRoot,
+  warn:message=>warnings.push(message),
+  mkdirSync:(directory,...rest)=>{
+   if(directory===preferredPath)throw denied;
+   return mkdirSync(directory,...rest);
+  },
+  accessSync:(directory,...rest)=>{
+   if(directory===preferredPath)throw denied;
+   return accessSync(directory,...rest);
+  },
+  writeFileSync:(path,...rest)=>{
+   if(String(path).startsWith(preferredPath))throw denied;
+   return writeFileSync(path,...rest);
+  },
+ });
  assert.notEqual(resolved,preferredPath);
  assert.ok(warnings.length>=1);
  let launched;
@@ -60,7 +78,7 @@ test('public launcher falls back when preferred state directory is not writable'
   assert.equal((await fetch(`http://127.0.0.1:${launched.address.port}/api/meta/demo-entry`,{method:'POST'})).status,200);
  }finally{
   await launched?.app.close();
-  if(process.platform!=='win32')chmodSync(blockedParent,0o700);
+  if(process.platform!=='win32'){try{chmodSync(preferred,0o700);}catch{/* best-effort restore */}}
   rmSync(blockedParent,{recursive:true,force:true});
   rmSync(resolved,{recursive:true,force:true});
   rmSync(fallbackRoot,{recursive:true,force:true});

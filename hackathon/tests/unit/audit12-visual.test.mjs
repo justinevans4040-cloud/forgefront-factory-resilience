@@ -12,11 +12,12 @@ test('typed consent reports exact progress as typed/total rather than remaining-
   assert.deepEqual(consentProgress('APPROVE allocate_substitute', ''), {match: false, label: '0/27 typed', enabled: false});
   assert.deepEqual(consentProgress('APPROVE allocate_substitute', 'APPROVE allocate_substitut'), {match: false, label: '26/27 typed', enabled: false});
   assert.deepEqual(consentProgress('APPROVE allocate_substitute', 'APPROVE allocate_substitute'), {match: true, label: 'Exact phrase matched. Acceptance enabled.', enabled: true});
-  assert.match(app, /consentProgress\(/);
+  assert.match(app, /openAuthorize\(/);
+  assert.match(app, /approveLabel\(/);
 });
 
 test('Britt proposal banner states untracked-until-approval when zero tasks are tracked', () => {
-  assert.equal(proposalBanner({tasks: []}, {board: {tasks: [{id: 't1'}, {id: 't2'}, {id: 't3'}]}}), '0 tracked · PROPOSED tasks stay untracked until you approve Britt’s proposal.');
+  assert.equal(proposalBanner({tasks: []}, {board: {tasks: [{id: 't1'}, {id: 't2'}, {id: 't3'}]}}), '0 tracked · PROPOSED tasks stay untracked until you approve The Britt’s proposal.');
   assert.match(proposalBanner({tasks: [{status: 'Blocked'}, {status: 'Blocked'}, {status: 'Blocked'}]}, {board: {tasks: [{id: 't1'}]}}), /Prior tracked work/);
   assert.match(app, /proposalBanner\(/);
 });

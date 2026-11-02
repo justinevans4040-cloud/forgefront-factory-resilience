@@ -18,11 +18,11 @@ Concrete controls protect the recovery decision from open room through evidence 
 
 | Control theme | Implementation | Verification |
 | --- | --- | --- |
-| Human approval | Britt proposals are bound to actor/session, snapshot, accepted decision and a five-minute expiry; approve/decline precedes task creation | Britt workflow tests |
+| Human approval | The Britt proposals are bound to actor/session, snapshot, accepted decision and a five-minute expiry; approve/decline precedes task creation | The Britt workflow tests |
 | Task validation | Exact schema, allowlisted owners/evidence, finite due windows, cycle and dependency deadline rejection | Recovery board tests |
-| Durable tasks | Create, move and shock re-plan events share the encrypted HMAC-anchored ledger and encrypted export | Britt workflow tamper/export tests |
-| Scoped memory | Recovery context is encrypted in event storage and filtered by session, operator and scenario | Britt memory/scoping tests |
-| Primary Meta routes | Britt uses Wonder or Baseten; explicit offline Sample remains separate | Board provider tests |
+| Durable tasks | Create, move and shock re-plan events share the encrypted HMAC-anchored ledger and encrypted export | The Britt workflow tamper/export tests |
+| Scoped memory | Recovery context is encrypted in event storage and filtered by session, operator and scenario | The Britt memory/scoping tests |
+| Primary Meta routes | The Britt uses Wonder or Baseten; explicit offline Sample remains separate | Board provider tests |
 | Read-only review | Back and completed-step controls render retained states; task controls are disabled during review | Primary-guide browser regression |
 | Meta design review | Local screenshots sent to allowlisted primary routes with bounded deadlines; schema validation plus public-text sanitize/accept before evidence writes; Baseten structured-layout fallback only | Design-director mocked sanitize and fallback tests |
 
@@ -103,7 +103,7 @@ The cryptographic controls use AES-256-GCM, HKDF-SHA256, HMAC and pinned scrypt 
 
 ## Source-bound model handoffs
 
-The server selects validated Spark results from the current snapshot only. Wonder receives accepted source claims and a selected option as data and independently re-reads evidence with tools. Britt receives the investigation identified by the accepted consent and scoped encrypted memory. Regression coverage: `tests/unit/model-handoff.test.mjs` and `tests/unit/reinvestigation-order.test.mjs`.
+The server selects validated Spark results from the current snapshot only. Wonder receives accepted source claims and a selected option as data and independently re-reads evidence with tools. The Britt receives the investigation identified by the accepted consent and scoped encrypted memory. Regression coverage: `tests/unit/model-handoff.test.mjs` and `tests/unit/reinvestigation-order.test.mjs`.
 
 Wonder task drafting has one primary attempt and at most one Baseten fallback, sharing a 45-second budget. Both attempts pass identical strict task validation. Fallback metadata is retained in the proposal event. Sample remains explicit; the optional backup is excluded. `tests/unit/britt-fallback.test.mjs` covers the provider boundary and successful-primary short circuit. This extends the SOC 2-style evidence mapping.
 
@@ -128,7 +128,7 @@ Guided passphrase entry stays disabled until verification matches the current le
 | Control theme | Implementation | Verification |
 | --- | --- | --- |
 | Passphrase gate | Export passphrase stays disabled until `guide.verified` matches the current ledger head and during history review | `tests/unit/audit16-visual.test.mjs`; primary-guide browser gate |
-| Proposal inspection | Numbered 40px pager targets inspect one complete untracked card; inspector Approve is secondary Review proposed tasks during guided recovery; action-bar Approve remains the primary | `tests/unit/audit16-visual.test.mjs`; primary-guide Britt card checks |
+| Proposal inspection | Numbered 40px pager targets inspect one complete untracked card; inspector Approve is secondary Review proposed tasks during guided recovery; action-bar Approve remains the primary | `tests/unit/audit16-visual.test.mjs`; primary-guide The Britt card checks |
 | Route separation | Route health pre-flight and investigation source evidence keep separate headings, status and controls; route helper stays visible at silver contrast | audit16 visual unit coverage; investigation HTML structure |
 | Allocation honesty | Accepted-flow annotations take part demand from impact analysis and keep machine hours separate | `tests/unit/accepted-flow.test.mjs` |
 

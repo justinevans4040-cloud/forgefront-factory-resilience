@@ -6,7 +6,7 @@ The recovery-room proof is collected in [current evidence](../evidence/README.md
 - [ ] Deploy the Render blueprint from the authorized submission branch with stable host secrets and persistent disk; confirm the README Live demo opens signed out and /healthz returns 200 over public HTTPS.
 - [ ] Review the current run-twenty-three screenshots, all-state geometry, public spending limits and original Muse Wonder iterations before approving the candidate.
 - [ ] Select the intended public candidate branch and authorize integration/publication separately.
-- [ ] Run the factory, evidence, decision, board, Britt and proof views on a physical phone; verify the mobile rail, next-action focus, recaps and final computed summary: open the recovery room, route selection, source inspection, typed acceptance, shock, renewed decision and export.
+- [ ] Run the factory, evidence, decision, board, The Britt and proof views on a physical phone; verify the mobile rail, next-action focus, recaps and final computed summary: open the recovery room, route selection, source inspection, typed acceptance, shock, renewed decision and export.
 - [ ] Re-run provider pre-flight. Present Wonder and a GREEN Spark Open route; check the selected route in the room. Choose an alternative explicitly when a route is RED.
 - [ ] Verify all human contributors, Representative, rights, proprietary license, new-work eligibility, account credits and actual track/bonus form controls.
 - [ ] Film the [camera path](DEMO_RUNBOOK.md) with human narration. Retain original takes, actual model identities and observed inference durations.
@@ -32,7 +32,7 @@ Current visual reviews and retained reference are recorded in the current eviden
 
 ## Build run twenty-four gates
 
-- [ ] Integrate plant graph scenarios with the complete authenticated investigation, human-decision, encrypted history and Britt task workflow at every generated plant size.
+- [ ] Integrate plant graph scenarios with the complete authenticated investigation, human-decision, encrypted history and The Britt task workflow at every generated plant size.
 - [x] Summarize or chunk complete large-plant model context with explicit coverage and source lookup; verify live grounded handoffs on that path.
 - [ ] Complete the whole-product audit of scenario assumptions, count ceilings, route calculation and viewport grouping beyond the entity-slice regression scan.
 - [ ] Review the new full-shop scene, every source-detail open state and every generated-plant viewport capture against the owner requirements.

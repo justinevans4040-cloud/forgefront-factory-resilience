@@ -10,6 +10,8 @@ Certificate says 120. Receiving counted 80. Forgefront turns that freeze into a 
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
+In production, every approval sits behind an authorization wall such as a passkey, typed phrase, or other enterprise security control.
+
 ## Powered by
 
 | Partner | Their role |
@@ -26,13 +28,13 @@ Certificate says 120. Receiving counted 80. Forgefront turns that freeze into a 
 
 1. **Find the fault.** Certificate 120 versus receiving 80 freezes seventy parts on the line.
 2. **Investigate with Meta AI.** Spark Open reads every source; Wonder weighs the calculated paths.
-3. **Type the consent.** Accept one path with a single-use phrase. The Britt builds the live board.
+3. **Approve the path.** One click, then authorize. The Britt builds the live board.
 4. **Survive the next shock.** A machine goes offline. The stale plan falls; you recover again.
 5. **Prove it.** Seal the ledger and keep the evidence packet with the decision.
 
 ## Meet The Britt
 
-**The Britt** is Forgefront's sovereign recovery agent. After you type consent, The Britt builds the floor's project board from the sealed decision.
+**The Britt** is Forgefront's sovereign recovery agent. After you authorize a recovery path, The Britt builds the floor's project board from the sealed decision.
 
 1. Reads the sealed path and the source evidence behind it.
 2. Drafts owners, deadlines and dependencies for every recovery move.

@@ -2,6 +2,13 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty-five
+
+- Public launcher writable-state fallback now simulates non-writable directories with injectable filesystem checks so Linux CI matches Windows behavior; chmod-on-parent alone no longer false-passes.
+- Every on-screen and public-doc mention is **The Britt**; Investigate heading is **The Britt investigates.** Naming scan fails unless the required article is present.
+- Demo approvals are one-click **Approve** buttons followed by an **Authorize this decision** wall; server still requires the exact `APPROVE <id>` digest/nonce seal. Production authorization sentence sits beside the live demo link and on the demo entry notice.
+- Investigate right rail tightened; authorize dialogs excluded from scene geometry so overlays never fail the intersection gate. Offline guided smoke advances all nine steps under run28 layout evidence.
+
 ## Independent audit twenty-four
 
 - Cascade floor fill: incomplete department rows stretch across the stage so the empty lower-right void is gone; persistent RUNNING / HELD / OFFLINE / FEASIBLE RECOVERY legend; reconciled offline machine counts; emerald recovery-flow preview between departments; larger machine glyphs with silver hatch, cross marker and plain OFFLINE text.
@@ -50,7 +57,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 ## Independent audit twenty
 
-- Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures after run twenty-two: Shock capacity preview moved into a reserved top callout band above stations (full-width line), geometry measures callout panel rects against factory nodes, header workspace tabs remain large and equal-width, Britt guided gates stay off the fold, skip-link stays keyboard-reachable without false clip failures, and complementary inspector landmark remains present when the rail is visually collapsed.
+- Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures after run twenty-two: Shock capacity preview moved into a reserved top callout band above stations (full-width line), geometry measures callout panel rects against factory nodes, header workspace tabs remain large and equal-width, The Britt guided gates stay off the fold, skip-link stays keyboard-reachable without false clip failures, and complementary inspector landmark remains present when the rail is visually collapsed.
 - Showcase marketing images recreated in black / emerald / brushed silver (same filenames); official logo byte-identical. Nested root `parent-npm-*` working-tree copies now delete themselves after the suite.
 - Designed with Muse Wonder: genuine screenshot reviews 80–82 on current run-twenty-two captures; latest iteration 82 scores 8,7,7,8,8,9,8,8,9,9. Owner layout contracts outrank residual step-2/3 score-7 items. Product suite 284, root suite 254, geometry 96 + live-proposals 108 with zero intersections, judge/public-tree/a11y and gitleaks clean.
 
@@ -58,13 +65,13 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 - Owner-blocking visual contract closed against fresh 1920×1080 and 1366×768 captures: factory nodes span reserved band widths, Shock capacity preview stays in a side callout with a leader line, plain-English evidence cards, compact horizontal rail, ≥16px body, ≥70% scene fill, no unexplained page scroll.
 - Geometry harness hardened to fail independent text/node intersections (no same-band sibling skip) and extended to live-shaped five-task proposals via `--live-proposals`.
-- Board stage restores dominant station capacity visualization behind compact proposed-task selectors; Britt/project board and read-only Back remain verified end to end.
+- Board stage restores dominant station capacity visualization behind compact proposed-task selectors; The Britt/project board and read-only Back remain verified end to end.
 - Designed with Muse Wonder: genuine screenshot reviews 76–78 after the packing work; retained iteration 78 (8,8,8,7,9,8,8,8,7,9). Product suite 272, root suite 253, judge/public-tree/a11y and gitleaks clean; live Wonder/Baseten guide completes every step.
 
 ## Build run twenty-one
 
-- Factory rows use reserved band widths; Britt proposal view compacted with live machine-capacity context; blocked-task nested scrollbar removed; keyboard-smoke navigation fixed; design reviews refuse to overwrite an existing iteration.
-- Designed with Muse Wonder: genuine iterations 73–75 (latest before audit nineteen: 7,7,8,7,8,8,8,8,7,9). Geometry: 96 captures, zero intersections, minimum scene fill 72.1%. Live Baseten → Wonder → human acceptance → Britt workflow verified; Fireworks uncalled.
+- Factory rows use reserved band widths; The Britt proposal view compacted with live machine-capacity context; blocked-task nested scrollbar removed; keyboard-smoke navigation fixed; design reviews refuse to overwrite an existing iteration.
+- Designed with Muse Wonder: genuine iterations 73–75 (latest before audit nineteen: 7,7,8,7,8,8,8,8,7,9). Geometry: 96 captures, zero intersections, minimum scene fill 72.1%. Live Baseten → Wonder → human acceptance → The Britt workflow verified; Fireworks uncalled.
 
 ## Build run twenty
 
@@ -97,18 +104,18 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 - Designed with Muse Wonder: six genuine screenshot reviews, iterations 38–43, retain unedited scores and frozen input manifests. Reviewed the recurring opening critiques, replaced the tall story band with a compact official-logo composition, and computed the large affected-parts, order and first-due-window metrics from current state.
 - Added an explicit material-hold marker to receiving, preserved applied-machine outage and preview distinctions, enlarged source labels, separated allocation labels, and clarified proposal groups and constrained options.
 - Added failing-first state, feasible-path arrow navigation and compact-opening browser regressions. Closed the route-health timer and recovery-card history mutation paths with delayed read-only browser checks. Kept typed consent, human task approval, read-only history, source links and export sequencing intact.
-- Retained fresh three-viewport Sample and real Wonder/Baseten recovery evidence under evidence/run17. The bounded live pass repeats Spark investigation, Wonder tradeoff, human decision and Britt task planning after the second shock.
+- Retained fresh three-viewport Sample and real Wonder/Baseten recovery evidence under evidence/run17. The bounded live pass repeats Spark investigation, Wonder tradeoff, human decision and The Britt task planning after the second shock.
 
 ## Independent audit fifteen
 
-- Verified run-seventeen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub. Confirmed route-health refresh and recovery-card history guards with tests.
+- Verified run-seventeen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including The Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub. Confirmed route-health refresh and recovery-card history guards with tests.
 - Restored visible UNTRACKED UNTIL APPROVAL proposal badges, separated blocked prior work from proposed replacements, sequenced proof gates with text-enabled status, clarified passphrase checklist copy, and linked inspector evidence rows to SVG tracks.
 - Continued the genuine Muse Wonder screenshot design loop through iterations 44–48. Peak accepted scores are iteration 47 (8, 9, 9, 8, 8, 9, 9, 8, 8, 9); iteration 48 regressed and is retained unedited. Visual freeze remains open.
 - Deleted verified TEMP harness scratch directories left from prior runs; Node 20 was not available on this machine (verified Node 24 only).
 
 ## Independent audit fourteen
 
-- Verified run-sixteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub.
+- Verified run-sixteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including The Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, and path scrub.
 - Relocated the opening-story logo onto the factory stage (header plus opening story only), enlarged source-computed discrepancy quantities with tabular end-aligned values, demoted completed proof Verify styling, strengthened sealed status contrast, and hardened the mobile guided rail to one non-overlapping row.
 - Continued the genuine Muse Wonder screenshot design loop through iterations 35–37. Recorded the prompt/orchestration map and live Wonder/Baseten guide results in the audit report.
 
@@ -116,7 +123,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 - Designed with Muse Wonder: fresh full-screen review loops retain actual scores and prioritized critiques. Input manifests are frozen beside the current evidence. Baseten remains the structured-layout fallback; the optional backup is not requested.
 - Refit source-quantity tracks with a measured silver mismatch segment, keyboard source activation and bidirectional highlighting. Factory allocation labels use clear lanes and dark text plates; the applied outage retains its red hatch and explicit stopped state.
-- Bound Britt's task workspace inside the viewport, with one scroll region for prior tracked work and untracked proposals, keyboard task navigation, proposal counts and a visible end marker. Human approval controls the board.
+- Bound The Britt's task workspace inside the viewport, with one scroll region for prior tracked work and untracked proposals, keyboard task navigation, proposal counts and a visible end marker. Human approval controls the board.
 - Sequence proof controls in both document and visual order; keep verification keyboard reachable, show passphrase character and requirement feedback, and use actual offline machine identities in the terminal summary.
 - Added failing-first source, geometry, passphrase, serving and viewport regressions. Browser checks remove their owned temporary profiles after closing. Preserved reset, read-only history, consent and Meta handoff hardening.
 
@@ -124,8 +131,8 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 - Closed the decision-inspector clipping path: nearest-result focus, bounded decision stage, capacity preview that distinguishes selected outage from applied offline state, and stronger operator legibility.
 - Fixed Muse Wonder design-director public-text acceptance: sanitize blocked tokens without changing scores, harden the prompt, and keep Baseten as structured-layout fallback only. Genuine Wonder screenshot reviews continued through iterations 24–28 under evidence/run15.
-- Kept Spark Open on Baseten as the guided live investigator so Wonder receives a structured handoff; Britt drafting prefers Wonder with bounded Baseten fallback; Fireworks stays optional backup and is never requested by the standard guide or provider check.
-- Retained Sample and live primary-guide proof with Back/read-only rail review, project board and Britt approvals. Official logo and showcase bytes remain unchanged.
+- Kept Spark Open on Baseten as the guided live investigator so Wonder receives a structured handoff; The Britt drafting prefers Wonder with bounded Baseten fallback; Fireworks stays optional backup and is never requested by the standard guide or provider check.
+- Retained Sample and live primary-guide proof with Back/read-only rail review, project board and The Britt approvals. Official logo and showcase bytes remain unchanged.
 
 ## Independent audit thirteen
 
@@ -135,7 +142,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 ## Build run fourteen
 
 - Designed with Muse Wonder: five fresh screenshot reviews, iterations 15–19, preserve the actual returned scores and prioritized critique. Frozen inputs remain with current evidence.
-- Passed validated Spark source claims and selected option into Wonder on the same snapshot; passed the accepted investigation and human decision into Britt’s task context. Stale snapshot results never transfer.
+- Passed validated Spark source claims and selected option into Wonder on the same snapshot; passed the accepted investigation and human decision into The Britt’s task context. Stale snapshot results never transfer.
 - Repeated Spark Open then Wonder after the second shock before revised guided acceptance. Added regression coverage for handoffs, changed-snapshot ordering and bounded Wonder-to-Baseten task drafting fallback.
 - Kept the shock preview visible through busy handoff, separated route health from evidence analysis, pinned consent, marked constrained and selected paths, and added current-head proof completion states.
 - Made smoke evidence destinations explicit and portable. Current execution proof is under evidence/run14; official logo and showcase bytes remain unchanged.
@@ -143,7 +150,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 ## Independent audit twelve
 
 - Confirmed run-fourteen engineering claims against retained evidence and independent suites: product tests after audit fixes, root tests, judge/public-tree clean, Sample/mocked/live primary guides complete, Wonder/Baseten pre-flight GREEN with Fireworks uncalled, gitleaks history clean, official logo and showcase bytes unchanged. Ignored pre-existing `.env.example.run8.bak` left untouched.
-- Closed Muse Wonder P1 gaps from iterations 19–22: shared-scale certificate tracks with DOES NOT MATCH bracket, typed consent progress as typed/total, proof action gating on the current ledger head, silver dashed shock preview until applied, opening-story logo labeling, untracked Britt proposal banner, and constrained-path non-selection.
+- Closed Muse Wonder P1 gaps from iterations 19–22: shared-scale certificate tracks with DOES NOT MATCH bracket, typed consent progress as typed/total, proof action gating on the current ledger head, silver dashed shock preview until applied, opening-story logo labeling, untracked The Britt proposal banner, and constrained-path non-selection.
 - Extended the genuine Muse Wonder design loop through iteration 22 with fresh full-screen captures. Recorded the prompt/orchestration map and live Wonder/Baseten guide results in the audit report.
 
 ## Build run thirteen
@@ -220,7 +227,7 @@ Corrected the accepted-flow annotation to keep part demand separate from engine 
 
 ## Independent audit sixteen
 
-- Verified run-eighteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, logo byte match, and path scrub. Confirmed export-passphrase current-head gating and keyboard proposal-card inspection with tests.
+- Verified run-eighteen engineering claims independently: product suite, root suite, judge/public-tree, Sample/mocked/live primary guides through every step including The Britt approvals, Wonder/Baseten pre-flight with Fireworks uncalled, gitleaks, logo byte match, and path scrub. Confirmed export-passphrase current-head gating and keyboard proposal-card inspection with tests.
 - Restored the investigation route helper to visible silver contrast, enlarged proposal pager targets to 40px, demoted inspector Approve to a secondary Review proposed tasks control during guided recovery, clarified nonce/identity status text, and kept blocked-prior versus untracked proposals in separate scroll regions.
 - Continued the genuine Muse Wonder screenshot design loop through iterations 54–57. Accepted non-regressed direction is iteration 55 (8, 8, 9, 8, 8, 9, 9, 8, 8, 9). Iterations 56 and 57 regressed and remain retained unedited. Run-eighteen reference iteration 52 (9, 8, 9, 8, 8, 9, 9, 8, 8, 9) still holds the peak step-one score. Visual freeze remains open.
 - Deleted 494 verified TEMP harness scratch directories left from run eighteen, then cleaned further harness leftovers after audit suites. Node 20 is not installed on this machine; runtime verified on Node v24.
@@ -233,5 +240,5 @@ The factory uses the full reserved machine and job width. Compact proposal cards
 
 - Large, equal-width header tabs expose every workspace with a clear current step. Connection readiness uses plain English. Machine cards carry real status without decorative empty chips.
 - Every visible HTML text fragment is checked against clipping ancestors and the viewport. Geometry also checks empty content controls, header span and label size, plus independent text inside the same scene card.
-- Britt proposals occupy a state-driven task grid beside their complete inspector. Due-window bars and dependencies derive from proposed tasks; capacity remains visible above the tasks. Proof blocks project actual ledger event counts and current verification gates.
+- The Britt proposals occupy a state-driven task grid beside their complete inspector. Due-window bars and dependencies derive from proposed tasks; capacity remains visible above the tasks. Proof blocks project actual ledger event counts and current verification gates.
 - Green brand asset inventory preserves the official logo and the five owner-controlled showcase images. Designed with Muse Wonder: original screenshot reviews remain under design/. Current verification is indexed in evidence/.

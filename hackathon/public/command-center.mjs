@@ -1,4 +1,4 @@
-const targets={'britt-draft':'board','britt-approve':'board','recovery-board':'board',evidence:'incident',incident:'incident',capacity:'shock',shock:'shock','shock-cell':'shock',reset:'shock',investigate:'investigation',provider:'investigation','provider-check':'investigation','provider-status':'investigation','model-output':'investigation','investigation-status':'investigation',options:'decision',typed:'decision',consent:'decision','decision-state':'decision',revoke:'decision','encrypted-export':'proof','export-passphrase':'proof',ledger:'proof',verify:'proof',checkpoint:'proof',export:'proof',report:'proof','story-results':'proof'};
+const targets={'britt-draft':'board','britt-approve':'board','recovery-board':'board',evidence:'incident',incident:'incident',capacity:'shock',shock:'shock','shock-cell':'shock',reset:'shock',investigate:'investigation',provider:'investigation','provider-check':'investigation','provider-status':'investigation','model-output':'investigation','investigation-status':'investigation',options:'decision',typed:'decision','approve-option':'decision',consent:'decision','authorize-wall':'decision','authorize-confirm':'decision','decision-state':'decision',revoke:'decision','encrypted-export':'proof','export-passphrase':'proof',ledger:'proof',verify:'proof',checkpoint:'proof',export:'proof',report:'proof','story-results':'proof'};
 export const stageFor=id=>targets[id]??null;
 export function focusResult(id,{document=globalThis.document,reducedMotion=globalThis.matchMedia?.('(prefers-reduced-motion: reduce)').matches,showStage=()=>{}}={}){
  const stage=stageFor(id);if(stage)showStage(stage);
@@ -32,7 +32,7 @@ export function proposalBanner(board={tasks:[]},proposal=null){
  if(!proposal)return '';
  const blocked=board.tasks.filter(t=>t.status==='Blocked').length;
  if(board.tasks.length)return `Prior tracked work · ${blocked} BLOCKED remains visible · revised proposal stays PROPOSED · UNTRACKED UNTIL APPROVAL.`;
- return '0 tracked · PROPOSED tasks stay untracked until you approve Britt’s proposal.';
+ return '0 tracked · PROPOSED tasks stay untracked until you approve The Britt’s proposal.';
 }
 
 export function proofActionGate(state,guide={}){
