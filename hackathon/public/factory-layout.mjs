@@ -72,7 +72,7 @@ export function investigationHandoff(run,selectedRoute){
 }
 
 /** Compact rail copy: keep a short plain-English summary; full text opens in a modal. */
-export function summarizeAnalysis(text,limit=110){
+export function summarizeAnalysis(text,limit=96){
  const clean=String(text??'').replace(/\s+/g,' ').trim();
  if(!clean)return {summary:'',truncated:false,full:''};
  if(clean.length<=limit)return {summary:clean,truncated:clean.length>80,full:clean};

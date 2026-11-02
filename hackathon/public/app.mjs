@@ -79,7 +79,7 @@ function render(){
  const assumptions=text('details');assumptions.append(text('summary','Assumptions'));for(const a of o.assumptions??[])assumptions.append(text('p',a));card.append(assumptions);
  if(o.rejectReason)card.append(text('p',o.rejectReason));const list=text('ul');for(const c of o.constraints)list.append(text('li',c));card.append(list);
  const sources=text('div');for(const id of o.evidenceIds){const a=text('a',id);a.href='#'+id;a.addEventListener('click',()=>{$('evidence').parentElement.open=true;focusPanel('evidence');$(id)?.focus();});sources.append(a,text('span',' '));}card.append(sources);
- const button=text('button',o.feasible?(envelope?.optionId===o.optionId?'● Selected path':'○ Select this path'):'Constrained · not selectable','secondary');button.setAttribute('role','radio');button.setAttribute('aria-checked',String(envelope?.optionId===o.optionId));button.setAttribute('aria-label',o.feasible?'Review '+titles[o.optionId]:titles[o.optionId]+' constrained');button.dataset.option=o.optionId;button.setAttribute('aria-disabled',String(!o.feasible));button.disabled=!o.feasible||!run?.proposalValid||state.operator?.role==='auditor';if(o.feasible){const selectPath=()=>busy(button,async()=>{envelope=await api('review',{runId:run.runId,optionId:o.optionId});$('consent').hidden=false;$('confirm-phrase').textContent=`APPROVE ${o.optionId}`;$('approve-option').textContent=approveLabel(o.optionId);const changed=state.decision.status==='invalidated'?`Revised after capacity change · ${state.analysis.recovery.feasibleCount} feasible paths · `:'';$('review-detail').textContent=`${changed}${titles[o.optionId]} · plan ${envelope.planDigest.slice(0,12)}.`;$('typed').value=`APPROVE ${o.optionId}`;$('consent-feedback').textContent='Ready to authorize. One click seals this path.';focusPanel('approve-option');recap('Your review is prepared.','Approve the path, then authorize to seal it to the evidence and your identity.');notice('Review prepared. Approve the path, then authorize this decision.');renderFactory();if(guide&&reviewIndex===null)renderGuide();});button.addEventListener('click',selectPath);card.tabIndex=0;card.addEventListener('click',event=>{if(reviewIndex!==null||button.disabled)return;if(event.target===button||button.contains(event.target))return;selectPath();});}else{card.tabIndex=-1;card.setAttribute('aria-disabled','true');}card.dataset.selected=String(envelope?.optionId===o.optionId);card.append(button);return card;
+ const selectedPath=envelope?.optionId===o.optionId;const button=text('button',o.feasible?(selectedPath?'● Selected path':'○ Select this path'):'Constrained · not selectable',selectedPath?'':'secondary');button.setAttribute('role','radio');button.setAttribute('aria-checked',String(selectedPath));button.setAttribute('aria-label',o.feasible?'Review '+titles[o.optionId]:titles[o.optionId]+' constrained');button.dataset.option=o.optionId;button.setAttribute('aria-disabled',String(!o.feasible));button.disabled=!o.feasible||!run?.proposalValid||state.operator?.role==='auditor';if(selectedPath)button.classList.add('path-selected');if(o.feasible){const selectPath=()=>busy(button,async()=>{envelope=await api('review',{runId:run.runId,optionId:o.optionId});$('consent').hidden=false;$('confirm-phrase').textContent=`APPROVE ${o.optionId}`;$('approve-option').textContent=approveLabel(o.optionId);const changed=state.decision.status==='invalidated'?`Revised after capacity change · ${state.analysis.recovery.feasibleCount} feasible paths · `:'';$('review-detail').textContent=`${changed}${titles[o.optionId]} · plan ${envelope.planDigest.slice(0,12)}.`;$('typed').value=`APPROVE ${o.optionId}`;$('consent-feedback').textContent='Ready to authorize. One click seals this path.';focusPanel('approve-option');recap('Your review is prepared.','Approve the path, then authorize to seal it to the evidence and your identity.');notice('Review prepared. Approve the path, then authorize this decision.');renderFactory();if(guide&&reviewIndex===null)renderGuide();});button.addEventListener('click',selectPath);card.tabIndex=0;card.addEventListener('click',event=>{if(reviewIndex!==null||button.disabled)return;if(event.target===button||button.contains(event.target))return;selectPath();});}else{card.tabIndex=-1;card.setAttribute('aria-disabled','true');}card.dataset.selected=String(envelope?.optionId===o.optionId);card.append(button);return card;
  }));
  $('revoke').hidden=state.decision.status!=='accepted';
  $('decision-state').textContent=state.decision.status==='accepted'?'Recovery decision accepted':state.decision.status==='invalidated'?'Scenario changed · review required':state.decision.status==='revoked'?'Acceptance revoked':'No acceptance recorded';
@@ -334,9 +334,10 @@ function renderFactory(){
   // Shock capacity preview sits in the top callout band ABOVE stations — never beside or over them.
   const shockStage=stage==='shock';
   // Compare/callout band must clear certificate rows before DOCK/QA; never share glyphs with the bay.
-  const topBand=shockStage?Math.max(110,Math.min(130,Math.round(height*0.2))):Math.max(118,Math.min(150,Math.round(height*0.17)));
-  const bayY=topBand+8;
-  const machineY=bayY+30;
+  // Tighten compare/callout height so stations+jobs claim >=70% of the stage (Wonder P1 step 1).
+  const topBand=shockStage?Math.max(100,Math.min(118,Math.round(height*0.17))):Math.max(104,Math.min(128,Math.round(height*0.14)));
+  const bayY=topBand+6;
+  const machineY=bayY+26;
   const optionH=Math.min(76,Math.max(56,Math.round(height*0.11)));
   const optionY=height-optionH-8;
   // Keep jobs and options in separate reserved bands even when the stage is short.
@@ -351,10 +352,14 @@ function renderFactory(){
    const cell=cells.find(c=>c.cellId===$('shock-cell').value);
    const panel=add('g',{'data-layout-zone':'callouts','data-scene-band':'callout','data-scene-callout':'capacity-preview'},null,callouts);
    box(24,8,852,96,panel,'#9caea0','#152019');
-   label(40,42,cell?cell.cellId:'CAPACITY',24,panel,{'font-weight':700});
-   label(40,74,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
-   label(320,60,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700});
-   label(560,60,cell?'Apply → invalidate acceptance':'Fresh decision',20,panel,{fill:'#c5ccd4'});
+   // Silver hatch + × + OFFLINE chip live in the reserved callout band (Wonder P1), never over stations.
+   add('rect',{x:24,y:8,width:852,height:96,fill:'url(#preview-hatch)',opacity:.55},null,panel);
+   label(40,40,cell?cell.cellId:'CAPACITY',24,panel,{'font-weight':700});
+   label(40,72,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
+   // Keep the 26px+ capacity metric alone in the center; OFFLINE chip sits in its own right column (no text/text overlap).
+   label(300,62,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700,class:'capacity-metric'});
+   label(560,40,'× WILL GO OFFLINE',18,panel,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});
+   label(560,72,cell?'Apply → invalidate acceptance':'Fresh decision',18,panel,{fill:'#c5ccd4'});
    // Leader ends in the bay band above stations — never through machine faces.
    if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 104 V ${bayY+16}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
   }else{

@@ -14,8 +14,9 @@ test('factory scenes reserve independent callout, machine, job and option bands'
  assert.match(app,/data-scene-band':'options'/);
  assert.match(app,/ResizeObserver/);
  assert.match(app,/CAPACITY PREVIEW/);
- assert.match(app,/shockStage\?Math\.max\(110/);
- assert.match(app,/Math\.max\(118,Math\.min\(150/);
+ assert.match(app,/shockStage\?Math\.max\(100/);
+ assert.match(app,/Math\.max\(104,Math\.min\(128/);
+ assert.match(app,/WILL GO OFFLINE/);
  assert.doesNotMatch(app,/const machineY=incidentStage\?190:150/);
 });
 
