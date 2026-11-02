@@ -2,7 +2,7 @@
 
 # Forgefront Factory Resilience
 
-**A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call.**
+**A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call. The Britt turns that authorized decision into a live floor plan.**
 
 | | | |
 | ---: | ---: | ---: |
@@ -28,7 +28,7 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
 
-<p align="center"><em style="font-size:16px;line-height:1.45;color:#c5ccd4">Full-shop cascade — 35 affected operations freeze across the plant; living emerald recovery restarts the feasible mills → lathes path while silver OFFLINE marks every stopped machine.</em></p>
+<p align="center"><em style="font-size:20px;line-height:1.5;color:#c5ccd4;font-weight:600">Full-shop cascade — read three signals: silver OFFLINE departments, the living emerald mills → lathes path, and the live counters for lost hours, late orders, cost and ship-date slip.</em></p>
 
 ## What you'll see
 

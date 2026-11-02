@@ -54,6 +54,28 @@
 .plant-floor::after{content:"";pointer-events:none;position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,#56ff9a18,transparent 55%);mix-blend-mode:screen;opacity:.55}
 .plant-room[data-cascade-active=true] .plant-floor::before{content:"";pointer-events:none;position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,transparent, #c5ccd422 48%, transparent);animation:plant-alarm-sweep 1.6s linear infinite}
 @keyframes plant-alarm-sweep{from{transform:translateX(-35%)}to{transform:translateX(135%)}}
+/* audit37: ultra plant CSS spine — emerald mills→lathes flow without per-frame canvas fills */
+.plant-floor[data-css-flow="1"]::after{
+ content:"";z-index:4;opacity:1;mix-blend-mode:screen;
+ background:
+  linear-gradient(90deg,transparent 8%,#56ff9a00 18%,#56ff9acc 42%,#8affb8aa 55%,#56ff9a00 72%,transparent 90%),
+  radial-gradient(ellipse at 35% 48%,#56ff9a33,transparent 40%),
+  radial-gradient(ellipse at 62% 52%,#8affb822,transparent 38%);
+ background-size:220% 14px,100% 100%,100% 100%;background-repeat:no-repeat;background-position:0 48%,center,center;
+ animation:plant-css-spine 1.1s linear infinite;
+}
+.plant-floor[data-css-flow="2"]::after{
+ content:"";z-index:4;opacity:1;mix-blend-mode:screen;
+ background:linear-gradient(90deg,#56ff9a22,#56ff9aaa 45%,#8affb866 70%,#56ff9a22);animation:none
+}
+@keyframes plant-css-spine{from{background-position:0 48%,center,center}to{background-position:100% 48%,center,center}}
+.plant-tile.cascade-hit .plant-state{font-size:14px!important;letter-spacing:.06em;color:#e8f6ee!important;overflow:visible;white-space:nowrap;text-overflow:clip;max-width:100%}
+.plant-tile.cascade-hit .plant-state::before{content:"× ";color:#c5ccd4;font-weight:800}
+.plant-tile.cascade-hit strong{color:#c5ccd4}
+.plant-floor[data-css-flow="1"]{box-shadow:inset 0 0 40px #56ff9a22,inset 0 0 80px #0008}
+@media(prefers-reduced-motion:reduce){
+ .plant-floor[data-css-flow="1"]::after{animation:none!important;background-position:40% 48%,center,center}
+}
 @media(max-width:800px){
  .plant-room{padding:12px}
  .plant-room[open]{grid-template-rows:48px auto auto auto auto minmax(150px,1fr) auto;gap:8px}

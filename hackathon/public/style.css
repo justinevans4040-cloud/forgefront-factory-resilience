@@ -1462,3 +1462,88 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
 }
 #factory-svg .factory-node.held .node-caption{font-size:18px!important;fill:#e8f6ee!important;font-weight:800}
 #findings-reserve{font-size:16px!important;line-height:1.35}
+
+/* audit37: Wonder P1 — lift guided steps 1/2/3/6/7 toward uniform nines; denser floor; path Select 44px; CLEARED findings */
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,4.15fr) minmax(292px,.52fr)!important}
+ body[data-guided=true] #factory-svg{min-height:460px!important}
+ body[data-guided=true][data-active-stage=incident] #factory-svg .node-caption,
+ body[data-guided=true][data-active-stage=incident] #factory-svg .factory-node text{font-size:18px!important}
+ body[data-guided=true][data-active-stage=incident] #factory-svg .machine-silhouette{opacity:.7}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight{
+  display:block!important;max-height:36px;overflow:hidden;margin:0 0 8px!important;padding:2px 8px!important;
+  border:1px solid #6a7a72!important;border-left:4px solid #c5ccd4!important;background:#0a100c!important;box-shadow:none!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary{
+  font-size:13px!important;min-height:28px!important;color:#c5ccd4!important;letter-spacing:.04em;border-bottom:0!important;margin:0!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .route-preflight>summary::before{content:"CONNECTION · ";font-size:11px;letter-spacing:.08em;color:#8a9590}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-task{
+  border:2px solid #A8F04A88!important;box-shadow:0 0 22px #A8F04A22;background:linear-gradient(140deg,#152219,#0b130e)!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-task>summary::before{content:"EVIDENCE · ";font-size:12px;letter-spacing:.08em;color:#A8F04A}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims .verified-finding>summary{
+  font-size:16px!important;line-height:1.35!important;white-space:normal!important;overflow:visible!important;min-height:36px
+ }
+ body[data-guided=true][data-active-stage=investigation] .evidence-card .evidence-headline{font-size:16px!important;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ body[data-guided=true][data-active-stage=decision] .option button,
+ body[data-guided=true][data-active-stage=decision] .option button.path-selected{
+  min-height:44px!important;font-size:16px!important;padding:10px 14px!important
+ }
+ body[data-guided=true][data-active-stage=decision] .option button.path-selected,
+ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] button,
+ body[data-guided=true][data-active-stage=decision] .option button[aria-checked=true]{
+  background:#A8F04A!important;color:#050705!important;border-color:#A8F04A!important;font-weight:800;outline:2px solid #A8F04A;outline-offset:2px
+ }
+ body[data-guided=true][data-active-stage=decision] .option .numbers strong{font-size:26px!important;font-variant-numeric:tabular-nums;line-height:1;min-width:3.5ch;text-align:right}
+ body[data-guided=true][data-active-stage=decision] .option.unavailable{
+  background:repeating-linear-gradient(-45deg,#152019,#152019 6px,#1c2a22 6px,#1c2a22 12px)!important;border-color:#C5CCD4!important
+ }
+ body[data-guided=true][data-active-stage=decision] .option.unavailable button{min-height:40px!important;font-size:14px!important;color:#c5ccd4!important}
+ body[data-guided=true][data-active-stage=investigation] #findings-reserve.findings-reserve-active{
+  display:block!important;font-size:16px!important;line-height:1.35!important;min-height:48px;padding:10px 12px;margin:0 0 8px;
+  border:2px dashed #C5CCD4;border-radius:8px;background:repeating-linear-gradient(-45deg,#152019,#152019 6px,#1c2a22 6px,#1c2a22 12px);
+  color:#e8f6ee;font-weight:700;letter-spacing:.02em
+ }
+ body[data-guided=true][data-active-stage=shock] #factory-svg .capacity-metric{font-size:28px!important;font-variant-numeric:tabular-nums}
+ body[data-guided=true][data-active-stage=board] .proposal-task strong{font-size:16px!important}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{font-size:16px!important}
+}
+#factory-svg .material-flow.held-flow{filter:drop-shadow(0 0 14px #c5ccd466) drop-shadow(0 0 22px #A8F04A33)}
+#factory-svg .living-spine{stroke-width:8;filter:drop-shadow(0 0 20px #56ff9acc)}
+#factory-svg .path-linked>rect{filter:drop-shadow(0 0 16px #A8F04A88)}
+#factory-svg .option-constrained>rect{stroke:#C5CCD4!important}
+#factory-svg .finding-compare-trace{animation:finding-trace .8s ease-out 1}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .finding-compare-trace{animation:none!important}
+ #factory-svg .material-flow.held-flow{filter:none}
+}
+
+/* audit37 round 2 — Wonder 160 P1: connection vs evidence, path glow, CLEARED zone, proof chain, cascade OFFLINE */
+@media(min-width:901px){
+ body[data-guided=true][data-active-stage=investigation] .route-preflight{
+  border:1px solid #6a7a72!important;border-left:5px solid #c5ccd4!important;background:#0a100c!important;box-shadow:none!important
+ }
+ body[data-guided=true][data-active-stage=investigation] .investigation-task{
+  border:2px solid #A8F04A99!important;background:linear-gradient(140deg,#1a3324,#0b130e)!important;box-shadow:0 0 24px #A8F04A28
+ }
+ body[data-guided=true][data-active-stage=investigation] .route-preflight>summary{color:#c5ccd4!important}
+ body[data-guided=true][data-active-stage=investigation] .investigation-task>summary{color:#A8F04A!important}
+ body[data-guided=true][data-active-stage=decision] .option[data-selected=true],
+ body[data-guided=true][data-active-stage=decision] .option:has(button.path-selected),
+ body[data-guided=true][data-active-stage=decision] .option:has(button[aria-checked=true]){
+  border:2px solid #A8F04A!important;box-shadow:0 0 28px #A8F04A55;background:linear-gradient(120deg,#243927,#0e1b12)!important
+ }
+ body[data-guided=true][data-active-stage=decision] .option.unavailable{
+  background:repeating-linear-gradient(-45deg,#152019,#152019 6px,#1c2a22 6px,#1c2a22 12px)!important;border:2px solid #C5CCD4!important
+ }
+ body[data-guided=true][data-active-stage=decision] .option.unavailable::after{content:" ×";color:#C5CCD4;font-weight:800}
+ body[data-guided=true][data-active-stage=proof] .proof-action[data-complete=true]{box-shadow:0 0 22px #A8F04A55}
+ body[data-guided=true][data-active-stage=proof] #recovery-timeline{box-shadow:inset 0 0 0 1px #A8F04A44}
+ body[data-guided=true][data-active-stage=board] .proposal-task.britt-focus-task{box-shadow:0 0 36px #A8F04A66,inset 0 0 18px #A8F04A22;transform:translateY(-1px)}
+ body[data-guided=true][data-active-stage=shock] .shock-preview-hatch{animation:capacity-drain .35s ease-out 1}
+}
+#factory-svg .path-linked{filter:drop-shadow(0 0 18px #A8F04Acc)}
+#factory-svg .selected-route{stroke:#A8F04A;stroke-width:6;filter:drop-shadow(0 0 12px #A8F04Acc)}
+#factory-svg .option-constrained{filter:none}
+body[data-guided=true][data-active-stage=incident] #factory-svg .material-spark{filter:drop-shadow(0 0 8px #A8F04A88)}

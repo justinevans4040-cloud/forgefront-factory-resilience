@@ -8,8 +8,8 @@ const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8')
 const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'utf8');
 const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
 
-test('build stamp advances to audit36 wonder lift',()=>{
- assert.match(html,/ffr-build" content="audit36-wonder-lift"/);
+test('build stamp advances to audit36 wonder lift or later',()=>{
+ assert.match(html,/ffr-build" content="audit3[67]-[a-z0-9-]+"/);
  assert.doesNotMatch(html,/audit35-cascade-cache/);
 });
 

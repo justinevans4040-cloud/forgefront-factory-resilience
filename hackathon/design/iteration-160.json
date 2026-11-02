@@ -1,0 +1,190 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh at 1366x768, overflow hidden; rows 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar; independent reserved zones for scene, callouts, stations and jobs; rendered scene at least 70% of main; side content condensed within its zone; targets at least 36px, equal-width non-wrapping rail items with aria-current and arrow-key movement",
+    "colorTokens": "Entirely black, emerald and brushed silver: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22), silver #C5CCD4, dim silver rgba(197,204,212,.68), emerald #A8F04A with #050705 text and one primary per viewport; stopped states use silver cross-hatching, x marker and plain OFFLINE text; official logo immutable in black, emerald and brushed silver at native aspect in header and opening story only",
+    "typography": "System sans; 16px/24 body minimum, no label under 12px; header tabs spanning most of header with labels at least 16px; 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step",
+    "motion": "Living material flow, state glow, depth and cinematic transitions driven by real state; 160-220ms ease-out selection, one 240ms route trace on state change; prefers-reduced-motion removes transitions while pattern, x marker and OFFLINE text retain meaning; 2px emerald focus ring with 2px offset; pointer style only on enabled controls",
+    "components": "Header with official logo left and Lock recovery room right; compact horizontal rail only; focusable cinematic factory SVG as dominant scene; connection readiness checks for provider identity kept separate from investigation evidence task under distinct headings, status and controls; action bar with Back left, status centre, one primary right; selecting a recovery option opens one-click Approve then Authorize this decision wall; pending task proposals untracked until human approval; blocked prior tasks and approved recovery plan may coexist while replacements await approval; skip-to-stage, Enter/Space activation, Esc close, aria-live polite results",
+    "visualizations": "State-driven 960x540 cinematic factory SVG filling at least 70% of main: MAT-ALLOY-A held, 40+30=70 units, feasible routes emerald only, silver idle machines, stopped CELL-MILL-2 in silver cross-hatching with x marker and plain OFFLINE text and no route through it; Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend with pattern, marker and text"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge scene depth: add layered machine silhouettes and emerald material flow dots along the dotted route to raise cinematic presence."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise option-card body text to a full 16px/24 and strengthen silver secondary contrast inside reserved job zone."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Separate Connection provider-identity check and Verified findings evidence into two visually distinct headed groups with independent status lines."
+        },
+        {
+          "priority": "P2",
+          "change": "Add bidirectional glow: hovering the 120 or 80 finding lights its matching track and value in the scene."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Make selected path glow unmistakable with filled emerald border and linked route trace through feasible cells only."
+        },
+        {
+          "priority": "P2",
+          "change": "Keep Review recovery option disabled in silver until a path is selected, preserving one-click Approve then Authorize flow wording."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 9,
+      "wowScore": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Add a subtle depth lift and emerald edge glow to task t1 only, keeping t2 and t3 dashed silver as untracked until approval."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge task-number chips to 36px targets with visible focus ring for keyboard approval flow."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 9,
+      "wowScore": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Intensify cinematic shock moment: animate capacity 24h to 0h once with cross-hatch sweep, static under reduced motion."
+        },
+        {
+          "priority": "P2",
+          "change": "Make INVALIDATING ACTION status at least 16px and pair it with the selected substitute card highlight."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Fill the empty Verified findings zone with a silver CLEARED placeholder at 16px so the reserved zone never reads as broken."
+        },
+        {
+          "priority": "P2",
+          "change": "Route emerald flow only through CELL-MILL-1 and jobs; keep CELL-MILL-2 hatched with x and OFFLINE."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Add hatched silver treatment with x to the constrained Split path consistently in scene cards and side comparison."
+        },
+        {
+          "priority": "P2",
+          "change": "Glow the two feasible paths faintly and leave the constrained path unlit to speed revised choice."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 9,
+      "wowScore": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Clarify coexistence: label prior tasks BLOCKED beside retained approved plan while replacements stay PROPOSED and untracked until approval."
+        },
+        {
+          "priority": "P2",
+          "change": "Add one 240ms emerald trace from CELL-MILL-1 into the revised task cards on entry, static under reduced motion."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 8,
+      "wowScore": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Strengthen cinematic chain: connect 01-02-03 with an emerald progress line and state glow on READY only, silver dashed for locked stages."
+        },
+        {
+          "priority": "P2",
+          "change": "Raise passphrase guidance and locked-stage text to 16px within its reserved zone without expanding the zone."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 7,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Correct every stopped department label to hatched silver with x and plain OFFLINE, reserving emerald only for RUNNING counts and the feasible mills to lathes route."
+        },
+        {
+          "priority": "P1",
+          "change": "Deepen cascade motion: staggered emerald flow along the dashed route and subtle parallax machine depth, fully static under reduced motion."
+        },
+        {
+          "priority": "P2",
+          "change": "Enlarge department machine icons and OFFLINE badges for legibility at 1366x768."
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "score": 8,
+      "wowScore": 8,
+      "fixes": [
+        {
+          "priority": "P1",
+          "change": "Enlarge the cascade visual caption and key metrics so judge impact lands without zooming; keep required order unchanged."
+        },
+        {
+          "priority": "P2",
+          "change": "Add one emerald route annotation on the cascade image naming the feasible mills to lathes path and silver OFFLINE stops."
+        },
+        {
+          "priority": "P2",
+          "change": "Tighten pitch line spacing and raise small table text toward 16px for faster scanning."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

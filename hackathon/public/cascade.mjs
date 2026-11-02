@@ -111,45 +111,61 @@ export function mountCascade({loadPlant,launcher,workflow}){
     hitKey:node.dataset.hitKey||''
    };
   }).sort((a,b)=>a.x-b.x||a.y-b.y);
-  animate.tileCache={nodes,at:performance.now(),maxDepth:result.cascade.reduce((n,c)=>Math.max(n,c.depth),1)};
+  // Route endpoints resolved once per layout — animate never re-scans labels each frame.
+  const find=re=>nodes.find(n=>re.test(n.label));
+  animate.tileCache={
+   nodes,at:performance.now(),
+   maxDepth:result.cascade.reduce((n,c)=>Math.max(n,c.depth),1),
+   mills:find(/cnc\s*mills/),lathes:find(/cnc\s*lathes/),inspect:find(/inspect/),finish:find(/finish/)
+  };
   animate.staticDirty=true;
  }
- function ensureCanvas(box,dpr){
-  const w=Math.round(box.width*dpr),h=Math.round(box.height*dpr);
-  if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;animate.staticDirty=true;}
+ function ensureCanvas(box,scale){
+  // Pixel LOD only — machine counts stay full. Identity transform in backing-store pixels.
+  const w=Math.max(1,Math.round(box.width*scale)),h=Math.max(1,Math.round(box.height*scale));
+  if(canvas.width!==w||canvas.height!==h){
+   canvas.width=w;canvas.height=h;
+   if(canvas.style.width!==box.width+'px')canvas.style.width=box.width+'px';
+   if(canvas.style.height!==box.height+'px')canvas.style.height=box.height+'px';
+   animate.staticDirty=true;animate.ctx=null;
+  }
   if(!animate.staticLayer||animate.staticLayer.width!==w||animate.staticLayer.height!==h){
    animate.staticLayer=typeof OffscreenCanvas!=='undefined'?new OffscreenCanvas(w,h):Object.assign(document.createElement('canvas'),{width:w,height:h});
    animate.staticDirty=true;
   }
-  return canvas.getContext('2d',{alpha:false,desynchronized:true});
+  if(!animate.ctx)animate.ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});
+  return animate.ctx;
  }
- function paintStaticLayer(box,dpr,heavy,cache){
-  const layer=animate.staticLayer;const sctx=layer.getContext('2d');sctx.setTransform(dpr,0,0,dpr,0,0);sctx.fillStyle='#050705';sctx.fillRect(0,0,box.width,box.height);
-  const nodes=cache.nodes;
-  const stroke=(a,b,color,width)=>{sctx.strokeStyle=color;sctx.lineWidth=width;sctx.shadowBlur=0;sctx.beginPath();sctx.moveTo(a.cx,a.cy);if(heavy)sctx.lineTo(b.cx,b.cy);else{const mx=(a.cx+b.cx)/2,my=(a.cy+b.cy)/2-Math.min(72,Math.abs(b.cx-a.cx)*0.28);sctx.quadraticCurveTo(mx,my,b.cx,b.cy);}sctx.stroke();};
+ function paintStaticLayer(box,scale,heavy,cache){
+  const layer=animate.staticLayer;const sctx=layer.getContext('2d');sctx.setTransform(1,0,0,1,0,0);sctx.fillStyle='#050705';sctx.fillRect(0,0,layer.width,layer.height);
+  const nodes=cache.nodes;const sx=scale,sy=scale;
+  const stroke=(a,b,color,width)=>{sctx.strokeStyle=color;sctx.lineWidth=width;sctx.shadowBlur=0;sctx.beginPath();sctx.moveTo(a.cx*sx,a.cy*sy);if(heavy)sctx.lineTo(b.cx*sx,b.cy*sy);else{const mx=((a.cx+b.cx)/2)*sx,my=((a.cy+b.cy)/2-Math.min(72,Math.abs(b.cx-a.cx)*0.28))*sy;sctx.quadraticCurveTo(mx,my,b.cx*sx,b.cy*sy);}sctx.stroke();};
   if(recovered&&nodes.length>1){for(let i=0;i<nodes.length-1;i++)stroke(nodes[i],nodes[i+1],'#2d6b4a',3.2);}
   else if(active&&!recovered&&nodes.length>1){
    if(!heavy)for(let i=0;i<nodes.length-1;i++){const hit=nodes[i].node.classList.contains('cascade-hit')||nodes[i+1].node.classList.contains('cascade-hit');stroke(nodes[i],nodes[i+1],hit?'#c5ccd433':'#c5ccd422',hit?2:2.2);}
    else for(let i=0;i<nodes.length-1;i++)stroke(nodes[i],nodes[i+1],'#1f3d3088',1.6);
   }else if(nodes.length){
-   for(const n of nodes){sctx.beginPath();sctx.moveTo(0,n.cy);sctx.lineTo(box.width,n.cy);sctx.strokeStyle='#1f3d3088';sctx.lineWidth=1.5;sctx.stroke();}
+   for(const n of nodes){sctx.beginPath();sctx.moveTo(0,n.cy*sy);sctx.lineTo(layer.width,n.cy*sy);sctx.strokeStyle='#1f3d3088';sctx.lineWidth=1.5;sctx.stroke();}
   }
   animate.staticDirty=false;
  }
  function animate(now){if(!dialog.open){raf=0;return;}const sample=globalThis.__cascadeFpsSample;if(sample&&sample.collecting){if(sample.last)sample.frames.push(now-sample.last);sample.last=now;}
   const progress=reduced.matches?1:Math.min(1,(now-start)/2400);
   const plantScale=Math.max(1,plant?.machines?.length||1);
-  // Viewport LOD only — never fewer machines. Cached centers + dirty static layer keep 1k/5k toward 60fps.
+  // Viewport/pixel LOD only — never fewer machines. Cached centers + dirty static layer keep 1k/5k toward 60fps.
   const heavy=plantScale>=400;
   const extreme=plantScale>=800;
   const ultra=plantScale>=1000;
   // Metrics DOM refresh is expensive — throttle independently of canvas paints.
-  const metricsTick=!heavy||Math.floor(now/(ultra?240:extreme?160:80))!==Math.floor((animate.lastMetrics||0)/(ultra?240:extreme?160:80));
+  // Ultra: skip mid-wave metric DOM (final paint below) so frame cost stays on the canvas spine.
+  const metricsPeriod=ultra?1e9:extreme?240:heavy?120:80;
+  const metricsTick=!ultra&&(!heavy||Math.floor(now/metricsPeriod)!==Math.floor((animate.lastMetrics||0)/metricsPeriod));
   if(active&&metricsTick){animate.lastMetrics=now;paintMetrics(progress);}
   if(!animate.tileCache||animate.tileCache.nodes.length!==tiles.children.length)refreshTileCache();
   const cache=animate.tileCache;const maxDepth=cache.maxDepth||1;
   // DOM status only on state change (dirty tiles) — syncMachineArt never runs every frame.
-  const domTick=!heavy||Math.floor(now/(ultra?280:extreme?180:90))!==Math.floor((animate.lastDom||0)/(ultra?280:extreme?180:90));
+  const domPeriod=ultra?480:extreme?220:heavy?120:90;
+  const domTick=!heavy||Math.floor(now/domPeriod)!==Math.floor((animate.lastDom||0)/domPeriod);
   if(domTick){
    animate.lastDom=now;
    for(const tile of cache.nodes){
@@ -169,9 +185,6 @@ export function mountCascade({loadPlant,launcher,workflow}){
       if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
       if(!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
      }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
-    }else{
-     tile.node.querySelector('.plant-offline-mark')?.remove();
-     tile.node.querySelector('.plant-offline-chip')?.remove();
     }
     // Extreme plants rely on tile CSS/hatch chips; glyph art flips only under lighter plants (LOD).
     if(!extreme)syncMachineArt(tile.node,hit||partial||recovered);
@@ -179,53 +192,64 @@ export function mountCascade({loadPlant,launcher,workflow}){
     if(!heavy)animate.staticDirty=true;
    }
   }
-  if(!animate.boxCache||animate.boxCache.at<now-1000){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
+  if(!animate.boxCache||animate.boxCache.at<now-2000){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
   const box=animate.boxCache.box;
-  const dpr=heavy?1:Math.min(devicePixelRatio||1,1.25);
-  const ctx=ensureCanvas(box,dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
-  // Extreme/ultra: skip offscreen blit — clear + living spine only (LOD; machine counts unchanged).
-  if(extreme){ctx.fillStyle='#050705';ctx.fillRect(0,0,box.width,box.height);}
+  // Ultra CSS spine LOD (audit37): living emerald flow moves to CSS; canvas stays clear. Machine counts unchanged.
+  floor.dataset.cssFlow=ultra&&active&&!recovered?'1':(ultra&&recovered?'2':'0');
+  if(ultra){
+   if(canvas.width!==1){canvas.width=1;canvas.height=1;canvas.style.width='100%';canvas.style.height='100%';animate.ctx=null;animate.staticDirty=true;}
+   if(ultra&&active&&progress>=1&&animate.lastMetrics!==-1){animate.lastMetrics=-1;paintMetrics(1);}
+   raf=(!reduced.matches||(sample&&sample.collecting))?requestAnimationFrame(animate):0;
+   return;
+  }
+  // Backing-store density LOD: identity-transform pixel buffer; machine graph unchanged.
+  const scale=extreme?0.4:heavy?0.55:Math.min(devicePixelRatio||1,1.25);
+  const ctx=ensureCanvas(box,scale);ctx.setTransform(1,0,0,1,0,0);
+  const sx=scale,sy=scale;
+  // Extreme: skip offscreen blit — clear + living spine only (LOD; machine counts unchanged).
+  if(extreme){ctx.fillStyle='#050705';ctx.fillRect(0,0,canvas.width,canvas.height);animate.staticDirty=false;}
   else{
-   if(animate.staticDirty!==false)paintStaticLayer(box,dpr,heavy,cache);
-   ctx.drawImage(animate.staticLayer,0,0,box.width,box.height);
+   if(animate.staticDirty!==false)paintStaticLayer(box,scale,heavy,cache);
+   ctx.drawImage(animate.staticLayer,0,0);
   }
   const nodes=cache.nodes;
   const drawFlow=(a,b,color,nowStamp,width=4.2,particles=9)=>{
-   const mx=(a.cx+b.cx)/2,my=(a.cy+b.cy)/2-Math.min(72,Math.abs(b.cx-a.cx)*0.28);
-   const particleCount=ultra?0:extreme?Math.min(1,particles):heavy?Math.min(3,particles):particles;
-   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowBlur=0;ctx.setLineDash(reduced.matches||extreme?[12,10]:[16,8]);ctx.beginPath();ctx.moveTo(a.cx,a.cy);
-   if(heavy)ctx.lineTo(b.cx,b.cy);else ctx.quadraticCurveTo(mx,my,b.cx,b.cy);
+   const ax=a.cx*sx,ay=a.cy*sy,bx=b.cx*sx,by=b.cy*sy;
+   const mx=(ax+bx)/2,my=(ay+by)/2-Math.min(72*sy,Math.abs(bx-ax)*0.28);
+   const particleCount=ultra?0:extreme?0:heavy?Math.min(2,particles):particles;
+   ctx.strokeStyle=color;ctx.lineWidth=Math.max(1,width*sx);ctx.shadowBlur=0;ctx.setLineDash(reduced.matches||extreme?[12,10]:[16,8]);ctx.beginPath();ctx.moveTo(ax,ay);
+   if(heavy)ctx.lineTo(bx,by);else ctx.quadraticCurveTo(mx,my,bx,by);
    if(!reduced.matches&&extreme)ctx.lineDashOffset=-((nowStamp/20)%40);
    ctx.stroke();ctx.setLineDash([]);ctx.lineDashOffset=0;
    if(reduced.matches||particleCount<=0)return;
    for(let p=0;p<particleCount;p++){
     const t=((nowStamp/8)+p*(1/Math.max(particleCount,1)))%1;
-    const ox=heavy?a.cx+(b.cx-a.cx)*t:(1-t)*(1-t)*a.cx+2*(1-t)*t*mx+t*t*b.cx;
-    const oy=heavy?a.cy+(b.cy-a.cy)*t:(1-t)*(1-t)*a.cy+2*(1-t)*t*my+t*t*b.cy;
+    const ox=heavy?ax+(bx-ax)*t:(1-t)*(1-t)*ax+2*(1-t)*t*mx+t*t*bx;
+    const oy=heavy?ay+(by-ay)*t:(1-t)*(1-t)*ay+2*(1-t)*t*my+t*t*by;
     ctx.fillStyle=color;ctx.beginPath();ctx.arc(ox,oy,heavy?2.2:6+(p%3),0,Math.PI*2);ctx.fill();
    }
   };
   if(recovered&&nodes.length>1){
-   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,5.2,heavy?2:10);
-   if(!reduced.matches&&!extreme){const sweep=(now/6)%(box.width+180)-90;const grad=ctx.createLinearGradient(sweep-160,0,sweep+160,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a66');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
+   if(extreme){const a=nodes[0],b=nodes[nodes.length-1];drawFlow(a,b,'#56ff9a',now,5.2,0);}
+   else for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,5.2,heavy?2:10);
+   if(!reduced.matches&&!extreme){const sweep=(now/6)%(canvas.width+180)-90;const grad=ctx.createLinearGradient(sweep-160,0,sweep+160,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a66');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,canvas.width,canvas.height);}
   }else if(active&&!recovered&&nodes.length>1){
-   const mills=nodes.find(n=>/cnc\s*mills/.test(n.label));
-   const lathes=nodes.find(n=>/cnc\s*lathes/.test(n.label));
-   const inspect=nodes.find(n=>/inspect/.test(n.label));
-   const finish=nodes.find(n=>/finish/.test(n.label));
+   const mills=cache.mills,lathes=cache.lathes,inspect=cache.inspect,finish=cache.finish;
    if(mills&&lathes){
-    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?3:24);
+    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?2:24);
     if(!heavy)drawFlow(lathes,mills,'#8affb888',now,3.8,10);
+   }else if(nodes.length>1){
+    drawFlow(nodes[0],nodes[nodes.length-1],'#56ff9a',now,heavy?6.4:9.2,0);
    }
-   if(!extreme&&lathes&&inspect&&!inspect.node.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?3.6:5.6,heavy?3:14);
+   if(!extreme&&lathes&&inspect&&!inspect.node.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?3.6:5.6,heavy?2:14);
    if(!heavy&&inspect&&finish&&!finish.node.classList.contains('cascade-hit'))drawFlow(inspect,finish,'#8affb866',now,3.6,8);
    if(!reduced.matches&&!extreme){
-    for(const tile of nodes){if(!tile.node.classList.contains('cascade-hit'))continue;const pulse=14+((now/28)%24);ctx.strokeStyle='#c5ccd466';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tile.cx,tile.cy,pulse,0,Math.PI*2);ctx.stroke();}
+    for(const tile of nodes){if(!tile.node.classList.contains('cascade-hit'))continue;const pulse=(14+((now/28)%24))*sx;ctx.strokeStyle='#c5ccd466';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tile.cx*sx,tile.cy*sy,pulse,0,Math.PI*2);ctx.stroke();}
    }
-  }else if(nodes.length&&!reduced.matches){
+  }else if(nodes.length&&!reduced.matches&&!extreme){
    for(const tile of nodes){
     const offset=(now/11)%box.width;
-    for(let n=0;n<(heavy?1:3);n++){ctx.fillStyle='#8cfbc0';ctx.fillRect((tile.x+offset+n*90)%box.width,tile.cy-3,14,5);}
+    for(let n=0;n<(heavy?1:3);n++){ctx.fillStyle='#8cfbc0';ctx.fillRect(((tile.x+offset+n*90)%box.width)*sx,(tile.cy-3)*sy,14*sx,5*sy);}
    }
   }
   raf=(!reduced.matches||(sample&&sample.collecting))?requestAnimationFrame(animate):0;
@@ -265,15 +289,15 @@ export function mountCascade({loadPlant,launcher,workflow}){
 function legendChip(label,className){const chip=el('span',label,className);chip.setAttribute('aria-hidden','true');return chip;}
 export function departmentStatus({recovered,active,offlineCount,runningCount,members,hit}){
  if(recovered)return 'RECOVERY ACCEPTED';
- // Large departments use compact chips so 160px overview tiles never trip scrollWidth clip checks.
- if(!active||!hit)return members>=100?'RUN':('RUNNING · '+members+' machines');
- if(offlineCount>=members&&members>0)return members>=100?'OFF':('OFFLINE · '+members+' machines');
+ // Compact chips on huge departments stay inside tile bounds (clip gate); wording stays plain OFFLINE / RUNNING.
+ if(!active||!hit)return members>=100?'RUNNING':('RUNNING · '+members+' machines');
+ if(offlineCount>=members&&members>0)return 'OFFLINE';
  if(offlineCount>0){
-  if(members>=100)return 'MIX';
-  if(offlineCount>=10||runningCount>=10)return offlineCount+' OFF / '+runningCount+' RUN';
+  if(members>=100)return 'OFFLINE';
+  if(offlineCount>=10||runningCount>=10)return offlineCount+' OFFLINE / '+runningCount+' RUNNING';
   return 'OFFLINE · '+offlineCount+' · RUNNING · '+runningCount;
  }
- return members>=100?'RUN':('RUNNING · '+members+' machines');
+ return members>=100?'RUNNING':('RUNNING · '+members+' machines');
 }
 function syncMachineArt(node,showOffline){
  const svg=node.querySelector('.plant-machinery');if(!svg)return;

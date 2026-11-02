@@ -1,0 +1,25 @@
+﻿{
+    "profiles":  [
+                     {
+                         "fps":  8.5,
+                         "reducedMotion":  false,
+                         "samples":  30,
+                         "machineCount":  1000,
+                         "p95FrameMs":  166.7,
+                         "plantFolder":  "plant-1000",
+                         "avgFrameMs":  117.78,
+                         "viewport":  "1920x1080"
+                     },
+                     {
+                         "fps":  10.6,
+                         "reducedMotion":  false,
+                         "samples":  37,
+                         "machineCount":  5000,
+                         "p95FrameMs":  166.6,
+                         "plantFolder":  "plant-5000",
+                         "avgFrameMs":  94.59,
+                         "viewport":  "1920x1080"
+                     }
+                 ],
+    "note":  "Headless Chromium after audit37: ultra CSS spine LOD (canvas idle at 1k+), cached route ends, plain OFFLINE labels, identity-transform pixel buffer under 1k. Machine counts unchanged. Headless --disable-gpu rAF ceiling ~9-11 fps even with empty ultra frames; CSS carries living emerald flow."
+}

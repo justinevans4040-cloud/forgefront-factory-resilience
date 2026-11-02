@@ -4,6 +4,7 @@ The Meta Hackathon build brings evidence investigation, calculated recovery, hum
 
 ## Independent audit thirty-six
 
+- Wonder P1 lifts for guided steps 1/2/3/6/7: denser layered material flow, separated CONNECTION vs EVIDENCE chrome, 44px Select-this-path emerald fill, unmistakable CLEARED findings reserve after capacity shock, cascade backing-store pixel LOD with cached route ends (machine counts unchanged). Build stamp `audit37-guided-lift`. Visual audit gate re-proved under run41.
 - Wonder P1 lifts: board coexistence line once, connection readiness chip beside verified findings, denser material flow and machine silhouettes, cascade calcCache + overview glyph LOD, seven-department generated plant fixture, resize reflows tile geometry. Build stamp `audit36-wonder-lift`. Visual audit gate re-proved under run40 (51 captures / 0 failures at 1366 / 1536 / 1920 including Shock and triggered cascade).
 - No-cap plant browser proof at 1,000 and 5,000 machines with seven shop departments; cascade FPS re-profiled honestly (headless ~9–13 fps after LOD — 60 fps target remains open).
 - Genuine Muse Wonder reviews 157–159: best cascade **9**, README **9**, guided **7–9**; retained direction remains iteration 82 (`promotedDirection: false`).
