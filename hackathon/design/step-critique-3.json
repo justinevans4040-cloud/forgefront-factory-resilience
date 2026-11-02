@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 3,
-  "score": 8,
-  "wowScore": 6,
+  "score": 7,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make each Select this path control at least 36px, keyboard reachable, and visibly linked to the matching option card in the scene."
+      "change": "Keep the three recovery paths as large radio targets of at least 36px with visible focus ring, and state that selecting one opens the typed consent form before any approval is recorded."
     },
     {
       "priority": "medium",
-      "change": "Increase tradeoff metrics hierarchy while keeping one verb-led instruction and one status sentence."
+      "change": "Link each side-zone path bidirectionally to its scene route so focus or hover glows the matching stations and jobs in the SVG."
     },
     {
-      "priority": "low",
-      "change": "On selection, trace the chosen feasible route once for 240ms, then leave a static emerald glow."
+      "priority": "medium",
+      "change": "Raise tradeoff metrics to 26px tabular figures and keep FINISH and INCREMENTAL labels at 12px minimum for instant scanning."
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 5,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Make proposed tasks visually untracked until approval: dashed silver borders, PROPOSED label and no progress semantics beyond sequence."
+      "change": "Make the untracked-until-approval state unmistakable on all three proposed tasks with dashed silver borders and plain PROPOSED text, reserving emerald fill for approved work only."
     },
     {
       "priority": "medium",
-      "change": "Strengthen depth between stations and job cards with raised silver edges and restrained emerald glow on the first ready task."
+      "change": "Add depth and state glow to the accepted-plan stations while keeping proposed task bars static under reduced motion."
     },
     {
-      "priority": "low",
-      "change": "Ensure Approve proposal remains the sole primary in the 56px action bar."
+      "priority": "medium",
+      "change": "Enlarge task titles and due labels to 16px body minimum inside their reserved job zone so the board reads at presentation distance."
     }
   ]
 }

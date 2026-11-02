@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 11,
-  "score": 5,
-  "wowScore": 5,
+  "score": 6,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Refit the full-shop cascade to balanced department zones: enlarge every machine glyph, reduce the oversized Assembly area, and keep all departments visible without disproportionate empty space."
+      "change": "Refit the full-shop cascade so every department and machine fits one 1920x1080 view without the oversized Assembly row crowding out the other departments."
     },
     {
       "priority": "high",
-      "change": "Apply consistent stopped treatment at every scale: silver cross-hatching, cross marker and plain OFFLINE text large enough to read at 1920x1080."
+      "change": "Render every stopped machine with silver cross-hatching, a cross marker and plain OFFLINE text at consistent scale, and reserve emerald glow and living flow for running and feasible-recovery machines only."
     },
     {
       "priority": "medium",
-      "change": "Add living material flow and feasible-route glow only on real running paths, with depth on machine bodies and reduced-motion static equivalents."
+      "change": "Restore cinematic depth with layered machine forms and soft shadows, and add a single 240ms cascade trace on failure or recovery state change that settles static and stops under reduced motion."
     }
   ]
 }

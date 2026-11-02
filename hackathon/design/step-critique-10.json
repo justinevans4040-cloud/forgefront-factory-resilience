@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 10,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Clarify the three proof stages as sequential gates with Ready, Locked and Locked text plus pattern, not glow alone."
+      "change": "Enlarge the three proof stages into the dominant scene area with layered depth, keeping READY in emerald and LOCKED stages in dim silver with text labels, not colour alone."
     },
     {
       "priority": "medium",
-      "change": "Enlarge the 21 events headline and verified-chain metrics for judge-distance impact while keeping the scene zone dominant."
+      "change": "Tighten the side zone to one verb-led instruction per proof stage at 16px, with passphrase guidance kept inside its reserved zone and no overlap."
     },
     {
       "priority": "medium",
-      "change": "Keep Verify ledger as sole primary and announce its result through aria-live polite."
+      "change": "Give Verify ledger a 2px emerald focus ring with offset and an aria-live polite result announcement on completion."
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "snapshot": {
     "version": 1,
-    "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+    "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
     "label": "SYNTHETIC",
     "incident": {
       "incidentId": "inc-cert-alloy-hold",
@@ -114,11 +114,11 @@
       "Quantities use the current certificate, receiving and stock records.",
       "Cell costs use the hourly rates in this snapshot."
     ],
-    "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667"
+    "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa"
   },
   "pendingConsents": [],
   "board": {
-    "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+    "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
     "optionId": "allocate_substitute",
     "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
     "tasks": [
@@ -168,8 +168,8 @@
     ]
   },
   "analysis": {
-    "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-    "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+    "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+    "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
     "incident": {
       "incidentId": "inc-cert-alloy-hold",
       "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held. Secondary shock: CELL-MILL-2 unavailable.",
@@ -177,7 +177,7 @@
       "discrepancy": "certificate claims 120 each; receiving posted 80 each"
     },
     "impacted": {
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
       "heldMaterialId": "MAT-ALLOY-A",
       "jobs": [
         {
@@ -203,9 +203,9 @@
       "impactedUnits": 70
     },
     "recovery": {
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
       "impacted": {
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
         "heldMaterialId": "MAT-ALLOY-A",
         "jobs": [
           {
@@ -322,7 +322,7 @@
       "message": "2 feasible recovery option(s) computed from snapshot inputs"
     },
     "capacity": {
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
       "cells": [
         {
           "cellId": "CELL-MILL-1",
@@ -350,7 +350,7 @@
   "evidence": [
     {
       "evidenceId": "ev-cert-qty",
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
       "source": {
         "documentId": "doc-cert-441",
         "recordId": "rec-cert-line-3",
@@ -365,7 +365,7 @@
     },
     {
       "evidenceId": "ev-recv-qty",
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
       "source": {
         "documentId": "doc-recv-882",
         "recordId": "rec-recv-posted",
@@ -380,7 +380,7 @@
     },
     {
       "evidenceId": "ev-sub-stock",
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
       "source": {
         "documentId": "doc-inv-snap",
         "recordId": "rec-inv-alloy-b",
@@ -396,20 +396,20 @@
   ],
   "runs": [
     {
-      "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
+      "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
       "handoff": null,
       "run": {
         "ok": true,
         "stopReason": "SAMPLE_COMPLETE",
         "turns": 1,
         "toolCalls": 0,
-        "elapsedMs": 16,
+        "elapsedMs": 18,
         "limits": {
           "maxTurns": 6,
           "maxToolCalls": 10,
           "maxWallClockMs": 60000
         },
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
         "mode": "sample",
         "sample": true,
         "label": "SAMPLE — OFFLINE; NO LIVE AI",
@@ -430,8 +430,8 @@
       },
       "proposalValid": true,
       "analysis": {
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-        "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
         "incident": {
           "incidentId": "inc-cert-alloy-hold",
           "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
@@ -439,7 +439,7 @@
           "discrepancy": "certificate claims 120 each; receiving posted 80 each"
         },
         "impacted": {
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
           "heldMaterialId": "MAT-ALLOY-A",
           "jobs": [
             {
@@ -465,9 +465,9 @@
           "impactedUnits": 70
         },
         "recovery": {
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
           "impacted": {
-            "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+            "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
             "heldMaterialId": "MAT-ALLOY-A",
             "jobs": [
               {
@@ -608,7 +608,7 @@
           "message": "3 feasible recovery option(s) computed from snapshot inputs"
         },
         "capacity": {
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
           "cells": [
             {
               "cellId": "CELL-MILL-1",
@@ -643,8 +643,8 @@
       "calls": [
         {
           "type": "model_call",
-          "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+          "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
           "provider": "none",
           "requestedModel": "sample-offline-template",
           "fallbackUsed": false,
@@ -655,7 +655,7 @@
           "sample": true,
           "status": "accepted",
           "failure": null,
-          "latencyMs": 0,
+          "latencyMs": 1,
           "usage": null,
           "responseDigest": "551b943ec417b0bd1c5431d72689de7b80f98be7f8b778cccdf2d78d42f39c16",
           "protocol": "JSON_ENVELOPE",
@@ -668,7 +668,7 @@
       "operatorRole": "admin"
     },
     {
-      "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
+      "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
       "handoff": null,
       "run": {
         "ok": true,
@@ -681,7 +681,7 @@
           "maxToolCalls": 10,
           "maxWallClockMs": 60000
         },
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
         "mode": "sample",
         "sample": true,
         "label": "SAMPLE — OFFLINE; NO LIVE AI",
@@ -702,8 +702,8 @@
       },
       "proposalValid": true,
       "analysis": {
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-        "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+        "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
         "incident": {
           "incidentId": "inc-cert-alloy-hold",
           "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held. Secondary shock: CELL-MILL-2 unavailable.",
@@ -711,7 +711,7 @@
           "discrepancy": "certificate claims 120 each; receiving posted 80 each"
         },
         "impacted": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "heldMaterialId": "MAT-ALLOY-A",
           "jobs": [
             {
@@ -737,9 +737,9 @@
           "impactedUnits": 70
         },
         "recovery": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "impacted": {
-            "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+            "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
             "heldMaterialId": "MAT-ALLOY-A",
             "jobs": [
               {
@@ -856,7 +856,7 @@
           "message": "2 feasible recovery option(s) computed from snapshot inputs"
         },
         "capacity": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "cells": [
             {
               "cellId": "CELL-MILL-1",
@@ -891,8 +891,8 @@
       "calls": [
         {
           "type": "model_call",
-          "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "provider": "none",
           "requestedModel": "sample-offline-template",
           "fallbackUsed": false,
@@ -917,27 +917,27 @@
     }
   ],
   "decision": {
-    "nonce": "396c16c4-02c6-4db4-b5c6-cb58f4e6877a",
-    "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
+    "nonce": "0e1d2a7a-0658-4a0a-8a8b-3254cffafd5e",
+    "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
     "optionId": "allocate_substitute",
     "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
-    "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-    "actor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
+    "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+    "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
     "operatorId": "local-admin",
     "operatorRole": "admin",
-    "expires": 1793583581623,
+    "expires": 1793584801203,
     "operationalRelease": false,
-    "signature": "cc315d40962a0383fe8246bee53836bdb1093c3f2976af81582027dfd7500c9f",
+    "signature": "8176183fe2fe805d87932a46d6e6be1ea69fb6da07d12d49222678622a81d1b7",
     "status": "accepted",
-    "confirmationActor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
+    "confirmationActor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
     "resumedAfterRestart": false
   },
   "busy": false,
   "ledger": {
     "ok": true,
-    "count": 18,
-    "head": "6e6055aeaa1f027c9e0649b5e596e9bd33c76356177c6699cabe313c1dfaf2c5",
-    "signature": "7869985e580c95e26f46534b2a11590e0e4a89b2d36c1c73d1a23dfdd725a3dc"
+    "count": 21,
+    "head": "68002860cdb6dfbe6ea9cdcaf048ffc1dbaedd1d1a1f5a1a6ecefd7f67b530f8",
+    "signature": "1a614865728eb62ee853d2140ac3044e7cd0810f0857e6b89721ad63d3c7c6d3"
   },
   "storageProtection": {
     "protected": true,
@@ -1066,7 +1066,7 @@
     },
     {
       "version": 1,
-      "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+      "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
       "label": "SYNTHETIC",
       "incident": {
         "incidentId": "inc-cert-alloy-hold",
@@ -1179,11 +1179,11 @@
         "Quantities use the current certificate, receiving and stock records.",
         "Cell costs use the hourly rates in this snapshot."
       ],
-      "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6"
+      "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4"
     },
     {
       "version": 1,
-      "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+      "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
       "label": "SYNTHETIC",
       "incident": {
         "incidentId": "inc-cert-alloy-hold",
@@ -1296,42 +1296,40 @@
         "Quantities use the current certificate, receiving and stock records.",
         "Cell costs use the hourly rates in this snapshot."
       ],
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667"
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa"
     }
   ],
   "brittMemory": [
     {
-      "scope": "55c63e8d2c66af48d677866428c3951be9ab34668911eb48e8e8dd217d7e7d88",
+      "scope": "b883466ebbdf8d00c3be378fddf42ab6570c575f529b6b692f890dda810403a0",
       "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
-      "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6"
+      "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4"
     },
     {
-      "scope": "55c63e8d2c66af48d677866428c3951be9ab34668911eb48e8e8dd217d7e7d88",
+      "scope": "b883466ebbdf8d00c3be378fddf42ab6570c575f529b6b692f890dda810403a0",
       "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667"
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa"
     }
   ],
   "brittProposals": [
     {
-      "id": "366290dc-256a-4700-a376-d0abefaa0c73",
-      "scope": "55c63e8d2c66af48d677866428c3951be9ab34668911eb48e8e8dd217d7e7d88",
-      "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-      "decisionNonce": "0ebbeadc-4a09-4796-a3b0-fdf2c5e872fa",
+      "id": "7975d02b-20a6-4f3b-9ca2-e2a21f74af1b",
+      "scope": "b883466ebbdf8d00c3be378fddf42ab6570c575f529b6b692f890dda810403a0",
+      "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+      "decisionNonce": "3eedb403-0580-4f09-ae1f-2b53de60d5db",
       "status": "approved",
       "board": {
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-        "optionId": "allocate_substitute",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "optionId": "split_capacity",
         "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
         "tasks": [
           {
             "id": "t1",
             "title": "Verify accepted source records",
             "owner": "local-admin",
-            "dueHours": 8.75,
+            "dueHours": 4.375,
             "dependsOn": [],
             "evidenceIds": [
-              "ev-cert-qty",
-              "ev-recv-qty",
               "ev-sub-stock"
             ],
             "status": "To do"
@@ -1340,13 +1338,11 @@
             "id": "t2",
             "title": "Coordinate the accepted capacity plan",
             "owner": "local-admin",
-            "dueHours": 17.5,
+            "dueHours": 8.75,
             "dependsOn": [
               "t1"
             ],
             "evidenceIds": [
-              "ev-cert-qty",
-              "ev-recv-qty",
               "ev-sub-stock"
             ],
             "status": "To do"
@@ -1355,13 +1351,11 @@
             "id": "t3",
             "title": "Confirm recovery completion with the operator",
             "owner": "local-admin",
-            "dueHours": 35,
+            "dueHours": 17.5,
             "dependsOn": [
               "t2"
             ],
             "evidenceIds": [
-              "ev-cert-qty",
-              "ev-recv-qty",
               "ev-sub-stock"
             ],
             "status": "To do"
@@ -1372,17 +1366,17 @@
       "model": "Sample",
       "provider": "sample",
       "fallbackUsed": false,
-      "expires": 1793583577334,
+      "expires": 1793584786777,
       "operatorId": "local-admin"
     },
     {
-      "id": "a9c881b0-df5f-419b-a383-d88fb11ae76c",
-      "scope": "55c63e8d2c66af48d677866428c3951be9ab34668911eb48e8e8dd217d7e7d88",
-      "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-      "decisionNonce": "396c16c4-02c6-4db4-b5c6-cb58f4e6877a",
+      "id": "33d7f881-ef1f-4d5f-941b-47e43e042bb2",
+      "scope": "b883466ebbdf8d00c3be378fddf42ab6570c575f529b6b692f890dda810403a0",
+      "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+      "decisionNonce": "0e1d2a7a-0658-4a0a-8a8b-3254cffafd5e",
       "status": "approved",
       "board": {
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
         "optionId": "allocate_substitute",
         "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
         "tasks": [
@@ -1435,7 +1429,7 @@
       "model": "Sample",
       "provider": "sample",
       "fallbackUsed": false,
-      "expires": 1793583582493,
+      "expires": 1793584804171,
       "operatorId": "local-admin"
     }
   ],
@@ -1446,7 +1440,7 @@
     {
       "sequence": 1,
       "type": "snapshot_initialized",
-      "epochMs": 1793583273368,
+      "epochMs": 1793584472565,
       "previousHash": "GENESIS",
       "data": {
         "snapshot": {
@@ -1567,18 +1561,18 @@
           "snapshotDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2"
         }
       },
-      "eventHash": "cff23cb5209d9643844a9637ea6a57b1e035ceb53bd5ba9549d4d3d0a531c6a1"
+      "eventHash": "48c83daea03ee654a9fc49b33dc5786d304091d4a82a38b30560625f8c116e56"
     },
     {
       "sequence": 2,
       "type": "snapshot_changed",
-      "epochMs": 1793583273387,
-      "previousHash": "cff23cb5209d9643844a9637ea6a57b1e035ceb53bd5ba9549d4d3d0a531c6a1",
+      "epochMs": 1793584472632,
+      "previousHash": "48c83daea03ee654a9fc49b33dc5786d304091d4a82a38b30560625f8c116e56",
       "data": {
         "priorDigest": "36522abb373c9d54e26b10fcbc3bc9768d24009b4ca32b1e6955753f2e99e1b2",
         "snapshot": {
           "version": 1,
-          "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+          "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
           "label": "SYNTHETIC",
           "incident": {
             "incidentId": "inc-cert-alloy-hold",
@@ -1691,22 +1685,22 @@
             "Quantities use the current certificate, receiving and stock records.",
             "Cell costs use the hourly rates in this snapshot."
           ],
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6"
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4"
         },
         "reset": true,
         "operatorId": "local-admin"
       },
-      "eventHash": "b3f3dd17f91354d69e4cf45a16a5dd2de61c7d8fe614f43dfabada06abec4637"
+      "eventHash": "aa34243429f5337506284384e7115555040dce88ded1d9e3e5bb9bef837bc472"
     },
     {
       "sequence": 3,
       "type": "model_call",
-      "epochMs": 1793583275027,
-      "previousHash": "b3f3dd17f91354d69e4cf45a16a5dd2de61c7d8fe614f43dfabada06abec4637",
+      "epochMs": 1793584478517,
+      "previousHash": "aa34243429f5337506284384e7115555040dce88ded1d9e3e5bb9bef837bc472",
       "data": {
         "type": "model_call",
-        "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+        "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
         "provider": "none",
         "requestedModel": "sample-offline-template",
         "fallbackUsed": false,
@@ -1717,7 +1711,7 @@
         "sample": true,
         "status": "accepted",
         "failure": null,
-        "latencyMs": 0,
+        "latencyMs": 1,
         "usage": null,
         "responseDigest": "551b943ec417b0bd1c5431d72689de7b80f98be7f8b778cccdf2d78d42f39c16",
         "protocol": "JSON_ENVELOPE",
@@ -1725,28 +1719,28 @@
         "operatorId": "local-admin",
         "operatorRole": "admin"
       },
-      "eventHash": "c0a77ff8e30c1889263052b82a9be3b0be6c996dc71ddd0b3abcceedb1296a63"
+      "eventHash": "54f12f5282f46eda3888fceb6de7a5f2237c095246df854c75e3d9e3d533c917"
     },
     {
       "sequence": 4,
       "type": "investigation_completed",
-      "epochMs": 1793583275046,
-      "previousHash": "c0a77ff8e30c1889263052b82a9be3b0be6c996dc71ddd0b3abcceedb1296a63",
+      "epochMs": 1793584478536,
+      "previousHash": "54f12f5282f46eda3888fceb6de7a5f2237c095246df854c75e3d9e3d533c917",
       "data": {
-        "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
+        "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
         "handoff": null,
         "run": {
           "ok": true,
           "stopReason": "SAMPLE_COMPLETE",
           "turns": 1,
           "toolCalls": 0,
-          "elapsedMs": 16,
+          "elapsedMs": 18,
           "limits": {
             "maxTurns": 6,
             "maxToolCalls": 10,
             "maxWallClockMs": 60000
           },
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
           "mode": "sample",
           "sample": true,
           "label": "SAMPLE — OFFLINE; NO LIVE AI",
@@ -1767,8 +1761,8 @@
         },
         "proposalValid": true,
         "analysis": {
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-          "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+          "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
           "incident": {
             "incidentId": "inc-cert-alloy-hold",
             "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held.",
@@ -1776,7 +1770,7 @@
             "discrepancy": "certificate claims 120 each; receiving posted 80 each"
           },
           "impacted": {
-            "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+            "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
             "heldMaterialId": "MAT-ALLOY-A",
             "jobs": [
               {
@@ -1802,9 +1796,9 @@
             "impactedUnits": 70
           },
           "recovery": {
-            "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+            "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
             "impacted": {
-              "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+              "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
               "heldMaterialId": "MAT-ALLOY-A",
               "jobs": [
                 {
@@ -1945,7 +1939,7 @@
             "message": "3 feasible recovery option(s) computed from snapshot inputs"
           },
           "capacity": {
-            "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+            "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
             "cells": [
               {
                 "cellId": "CELL-MILL-1",
@@ -1980,8 +1974,8 @@
         "calls": [
           {
             "type": "model_call",
-            "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
-            "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+            "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
+            "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
             "provider": "none",
             "requestedModel": "sample-offline-template",
             "fallbackUsed": false,
@@ -1992,7 +1986,7 @@
             "sample": true,
             "status": "accepted",
             "failure": null,
-            "latencyMs": 0,
+            "latencyMs": 1,
             "usage": null,
             "responseDigest": "551b943ec417b0bd1c5431d72689de7b80f98be7f8b778cccdf2d78d42f39c16",
             "protocol": "JSON_ENVELOPE",
@@ -2004,76 +1998,114 @@
         "operatorId": "local-admin",
         "operatorRole": "admin"
       },
-      "eventHash": "80cbb671784f764d83ceb0f36ea5393face20ed7bd4f0008c2c67446e3b12b78"
+      "eventHash": "e2d8e63c0f8e041ab235260472e881bef8125983cae751d1d3808ea5b4caf4cd"
     },
     {
       "sequence": 5,
       "type": "consent_reviewed",
-      "epochMs": 1793583276467,
-      "previousHash": "80cbb671784f764d83ceb0f36ea5393face20ed7bd4f0008c2c67446e3b12b78",
+      "epochMs": 1793584481307,
+      "previousHash": "e2d8e63c0f8e041ab235260472e881bef8125983cae751d1d3808ea5b4caf4cd",
       "data": {
-        "nonce": "0ebbeadc-4a09-4796-a3b0-fdf2c5e872fa",
-        "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
-        "optionId": "allocate_substitute",
-        "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-        "actor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
+        "nonce": "b40573fd-db18-4a0f-bcd6-dfe83f148551",
+        "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
+        "optionId": "wait_replenishment",
+        "planDigest": "d346901802ca24d5e334872fa7d213a8150488bed6b1e3d9cf7b6eab5938e597",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
         "operatorId": "local-admin",
         "operatorRole": "admin",
-        "expires": 1793583576465,
+        "expires": 1793584781306,
         "operationalRelease": false,
-        "signature": "5d462dd6cd608e33784702da022b979bbf1d7b6697b277e833e3be28b1ec337f"
+        "signature": "9b6ba163d2c8f61b735934bc6d76d0917dde8e00ecfa1b381adea7182a85ccc6"
       },
-      "eventHash": "a64b2b6e2635bea3872a5264b17a8501260334df375d11691bb6b44bc6b42414"
+      "eventHash": "3b218ae50d135b74b88d9ea1cae29729615fbf7fc0f1ccc376a15687b728c918"
     },
     {
       "sequence": 6,
-      "type": "decision_accepted",
-      "epochMs": 1793583277264,
-      "previousHash": "a64b2b6e2635bea3872a5264b17a8501260334df375d11691bb6b44bc6b42414",
+      "type": "consent_reviewed",
+      "epochMs": 1793584482912,
+      "previousHash": "3b218ae50d135b74b88d9ea1cae29729615fbf7fc0f1ccc376a15687b728c918",
       "data": {
-        "nonce": "0ebbeadc-4a09-4796-a3b0-fdf2c5e872fa",
-        "runId": "fb5da3d6-caa1-4b86-805f-02c7b0959803",
+        "nonce": "3dc178d0-d9db-4ef2-b042-424503a9e294",
+        "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
         "optionId": "allocate_substitute",
         "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-        "actor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
         "operatorId": "local-admin",
         "operatorRole": "admin",
-        "expires": 1793583576465,
+        "expires": 1793584782912,
         "operationalRelease": false,
-        "signature": "5d462dd6cd608e33784702da022b979bbf1d7b6697b277e833e3be28b1ec337f",
-        "status": "accepted",
-        "confirmationActor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
-        "resumedAfterRestart": false
+        "signature": "41d7805ae7653d8b8fe800e47cb56297832ffdb2f6714f8a5cefb407cf25242f"
       },
-      "eventHash": "2bdf2b77db7ee7e0468dd0f535af39a3d42ea2876b2fa196dbf027d8640433be"
+      "eventHash": "9835daf607c57aecbba6296f45248fc69840179403a80f80ca15b2256ce6b81a"
     },
     {
       "sequence": 7,
-      "type": "britt_proposed",
-      "epochMs": 1793583277335,
-      "previousHash": "2bdf2b77db7ee7e0468dd0f535af39a3d42ea2876b2fa196dbf027d8640433be",
+      "type": "consent_reviewed",
+      "epochMs": 1793584484530,
+      "previousHash": "9835daf607c57aecbba6296f45248fc69840179403a80f80ca15b2256ce6b81a",
       "data": {
-        "id": "366290dc-256a-4700-a376-d0abefaa0c73",
-        "scope": "55c63e8d2c66af48d677866428c3951be9ab34668911eb48e8e8dd217d7e7d88",
-        "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-        "decisionNonce": "0ebbeadc-4a09-4796-a3b0-fdf2c5e872fa",
+        "nonce": "3eedb403-0580-4f09-ae1f-2b53de60d5db",
+        "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
+        "optionId": "split_capacity",
+        "planDigest": "14e9eb89b6dcc173902467f3c60af626df3512ba5bc461f3b7a47172b2bfb9d1",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "operatorId": "local-admin",
+        "operatorRole": "admin",
+        "expires": 1793584784529,
+        "operationalRelease": false,
+        "signature": "e3e795d5d264c9232b1889d8e95e40daa91437065b5450accd7b75dacd4d365c"
+      },
+      "eventHash": "534fe62b17ae13207695f6bcf4b76ed2b05c66b0735c8e856aa7d0ba1889f6b6"
+    },
+    {
+      "sequence": 8,
+      "type": "decision_accepted",
+      "epochMs": 1793584486720,
+      "previousHash": "534fe62b17ae13207695f6bcf4b76ed2b05c66b0735c8e856aa7d0ba1889f6b6",
+      "data": {
+        "nonce": "3eedb403-0580-4f09-ae1f-2b53de60d5db",
+        "runId": "183629c1-fb05-4f14-9e0a-188bc4995d5d",
+        "optionId": "split_capacity",
+        "planDigest": "14e9eb89b6dcc173902467f3c60af626df3512ba5bc461f3b7a47172b2bfb9d1",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "operatorId": "local-admin",
+        "operatorRole": "admin",
+        "expires": 1793584784529,
+        "operationalRelease": false,
+        "signature": "e3e795d5d264c9232b1889d8e95e40daa91437065b5450accd7b75dacd4d365c",
+        "status": "accepted",
+        "confirmationActor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "resumedAfterRestart": false
+      },
+      "eventHash": "ba0656250875e4498a9a9674ed96be673405b3a069de0b7a545cf0e4260dff9c"
+    },
+    {
+      "sequence": 9,
+      "type": "britt_proposed",
+      "epochMs": 1793584486778,
+      "previousHash": "ba0656250875e4498a9a9674ed96be673405b3a069de0b7a545cf0e4260dff9c",
+      "data": {
+        "id": "7975d02b-20a6-4f3b-9ca2-e2a21f74af1b",
+        "scope": "b883466ebbdf8d00c3be378fddf42ab6570c575f529b6b692f890dda810403a0",
+        "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+        "decisionNonce": "3eedb403-0580-4f09-ae1f-2b53de60d5db",
         "status": "pending",
         "board": {
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-          "optionId": "allocate_substitute",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+          "optionId": "split_capacity",
           "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
           "tasks": [
             {
               "id": "t1",
               "title": "Verify accepted source records",
               "owner": "local-admin",
-              "dueHours": 8.75,
+              "dueHours": 4.375,
               "dependsOn": [],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "To do"
@@ -2082,13 +2114,11 @@
               "id": "t2",
               "title": "Coordinate the accepted capacity plan",
               "owner": "local-admin",
-              "dueHours": 17.5,
+              "dueHours": 8.75,
               "dependsOn": [
                 "t1"
               ],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "To do"
@@ -2097,13 +2127,11 @@
               "id": "t3",
               "title": "Confirm recovery completion with the operator",
               "owner": "local-admin",
-              "dueHours": 35,
+              "dueHours": 17.5,
               "dependsOn": [
                 "t2"
               ],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "To do"
@@ -2114,31 +2142,29 @@
         "model": "Sample",
         "provider": "sample",
         "fallbackUsed": false,
-        "expires": 1793583577334,
+        "expires": 1793584786777,
         "operatorId": "local-admin"
       },
-      "eventHash": "22796653a5150434f91a1185e64011e3ce6bb91693563118761da91c5461c7c3"
+      "eventHash": "0b4e8875e07809789f12cfe345a7d9e419c7f9bc9369556ea33d9cec4837a192"
     },
     {
-      "sequence": 8,
+      "sequence": 10,
       "type": "task_created",
-      "epochMs": 1793583278113,
-      "previousHash": "22796653a5150434f91a1185e64011e3ce6bb91693563118761da91c5461c7c3",
+      "epochMs": 1793584490490,
+      "previousHash": "0b4e8875e07809789f12cfe345a7d9e419c7f9bc9369556ea33d9cec4837a192",
       "data": {
         "board": {
-          "snapshotDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
-          "optionId": "allocate_substitute",
+          "snapshotDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
+          "optionId": "split_capacity",
           "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
           "tasks": [
             {
               "id": "t1",
               "title": "Verify accepted source records",
               "owner": "local-admin",
-              "dueHours": 8.75,
+              "dueHours": 4.375,
               "dependsOn": [],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "To do"
@@ -2147,13 +2173,11 @@
               "id": "t2",
               "title": "Coordinate the accepted capacity plan",
               "owner": "local-admin",
-              "dueHours": 17.5,
+              "dueHours": 8.75,
               "dependsOn": [
                 "t1"
               ],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "To do"
@@ -2162,46 +2186,44 @@
               "id": "t3",
               "title": "Confirm recovery completion with the operator",
               "owner": "local-admin",
-              "dueHours": 35,
+              "dueHours": 17.5,
               "dependsOn": [
                 "t2"
               ],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "To do"
             }
           ]
         },
-        "proposalId": "366290dc-256a-4700-a376-d0abefaa0c73",
+        "proposalId": "7975d02b-20a6-4f3b-9ca2-e2a21f74af1b",
         "operatorId": "local-admin"
       },
-      "eventHash": "33d064310c2a548bdc09f4f4b6063ebe6b5f73d3fcd8095fa425c5997da3fa7a"
+      "eventHash": "fdaaa496236153640f30433ff02796249bbc284ad70af61e90a578b372fe27d3"
     },
     {
-      "sequence": 9,
+      "sequence": 11,
       "type": "britt_decided",
-      "epochMs": 1793583278133,
-      "previousHash": "33d064310c2a548bdc09f4f4b6063ebe6b5f73d3fcd8095fa425c5997da3fa7a",
+      "epochMs": 1793584490510,
+      "previousHash": "fdaaa496236153640f30433ff02796249bbc284ad70af61e90a578b372fe27d3",
       "data": {
-        "id": "366290dc-256a-4700-a376-d0abefaa0c73",
+        "id": "7975d02b-20a6-4f3b-9ca2-e2a21f74af1b",
         "action": "approve",
         "operatorId": "local-admin"
       },
-      "eventHash": "1116f0c33f8ed87803aa6234c233f8b4ab66ca9c98537d2245720c0df67ce9ee"
+      "eventHash": "ce2e8547457eacef0be425edd37ab48da3c2fb242eea620986c027dc78cad5d8"
     },
     {
-      "sequence": 10,
+      "sequence": 12,
       "type": "snapshot_changed",
-      "epochMs": 1793583279107,
-      "previousHash": "1116f0c33f8ed87803aa6234c233f8b4ab66ca9c98537d2245720c0df67ce9ee",
+      "epochMs": 1793584494413,
+      "previousHash": "ce2e8547457eacef0be425edd37ab48da3c2fb242eea620986c027dc78cad5d8",
       "data": {
-        "priorDigest": "52ba0a00834fa28a9204ced87ac0c0f86e289bccfa5c70b04c91ad8ce23287a6",
+        "priorDigest": "e7e5683fdc6c89f500c216b150aa3584f317a464ae834df439bd041675df69b4",
         "snapshot": {
           "version": 1,
-          "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+          "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
           "label": "SYNTHETIC",
           "incident": {
             "incidentId": "inc-cert-alloy-hold",
@@ -2314,32 +2336,49 @@
             "Quantities use the current certificate, receiving and stock records.",
             "Cell costs use the hourly rates in this snapshot."
           ],
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667"
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa"
         },
         "operatorId": "local-admin"
       },
-      "eventHash": "11bb639cad4a5de9ed1f1c7101637cbbc6365b41b82c68395d6c6c1f0ce0ad54"
+      "eventHash": "5a61d8ecfd7e422398dc43a4ef919b35e2ba26eb116b1eecdb43e38a474600d2"
     },
     {
-      "sequence": 11,
+      "sequence": 13,
       "type": "tasks_replanned",
-      "epochMs": 1793583279129,
-      "previousHash": "11bb639cad4a5de9ed1f1c7101637cbbc6365b41b82c68395d6c6c1f0ce0ad54",
+      "epochMs": 1793584494434,
+      "previousHash": "5a61d8ecfd7e422398dc43a4ef919b35e2ba26eb116b1eecdb43e38a474600d2",
       "data": {
         "board": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-          "optionId": "allocate_substitute",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+          "optionId": "split_capacity",
           "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
           "tasks": [
             {
               "id": "t1",
               "title": "Verify accepted source records",
               "owner": "local-admin",
-              "dueHours": 8.75,
+              "dueHours": 4.375,
               "dependsOn": [],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
+                "ev-sub-stock"
+              ],
+              "status": "Blocked",
+              "change": {
+                "previousStatus": "To do",
+                "previousDueHours": 4.375,
+                "reason": "CELL-MILL-2 unavailable; fresh recovery acceptance and task review required",
+                "requiresReview": true
+              }
+            },
+            {
+              "id": "t2",
+              "title": "Coordinate the accepted capacity plan",
+              "owner": "local-admin",
+              "dueHours": 8.75,
+              "dependsOn": [
+                "t1"
+              ],
+              "evidenceIds": [
                 "ev-sub-stock"
               ],
               "status": "Blocked",
@@ -2351,16 +2390,14 @@
               }
             },
             {
-              "id": "t2",
-              "title": "Coordinate the accepted capacity plan",
+              "id": "t3",
+              "title": "Confirm recovery completion with the operator",
               "owner": "local-admin",
               "dueHours": 17.5,
               "dependsOn": [
-                "t1"
+                "t2"
               ],
               "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
                 "ev-sub-stock"
               ],
               "status": "Blocked",
@@ -2370,43 +2407,22 @@
                 "reason": "CELL-MILL-2 unavailable; fresh recovery acceptance and task review required",
                 "requiresReview": true
               }
-            },
-            {
-              "id": "t3",
-              "title": "Confirm recovery completion with the operator",
-              "owner": "local-admin",
-              "dueHours": 35,
-              "dependsOn": [
-                "t2"
-              ],
-              "evidenceIds": [
-                "ev-cert-qty",
-                "ev-recv-qty",
-                "ev-sub-stock"
-              ],
-              "status": "Blocked",
-              "change": {
-                "previousStatus": "To do",
-                "previousDueHours": 35,
-                "reason": "CELL-MILL-2 unavailable; fresh recovery acceptance and task review required",
-                "requiresReview": true
-              }
             }
           ]
         },
         "operatorId": "local-admin"
       },
-      "eventHash": "6cb87b6714facd0539312fa2ca20b8b5b7df0cd54364bc2bd4f96ccf4af3d8ee"
+      "eventHash": "9aa8691c2214ff9b3eea68bd24eb71a16f2e3843251b8f6649865bbe86757fba"
     },
     {
-      "sequence": 12,
+      "sequence": 14,
       "type": "model_call",
-      "epochMs": 1793583279845,
-      "previousHash": "6cb87b6714facd0539312fa2ca20b8b5b7df0cd54364bc2bd4f96ccf4af3d8ee",
+      "epochMs": 1793584495895,
+      "previousHash": "9aa8691c2214ff9b3eea68bd24eb71a16f2e3843251b8f6649865bbe86757fba",
       "data": {
         "type": "model_call",
-        "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+        "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
         "provider": "none",
         "requestedModel": "sample-offline-template",
         "fallbackUsed": false,
@@ -2425,15 +2441,15 @@
         "operatorId": "local-admin",
         "operatorRole": "admin"
       },
-      "eventHash": "e17f900147698ad52cdac9f0c200a169684fbcab5ce86124e739a59532c9c12a"
+      "eventHash": "00234facb5d3de992b0897e4ef07a962b564d6c8885d4460dc8defc6dc5ffb91"
     },
     {
-      "sequence": 13,
+      "sequence": 15,
       "type": "investigation_completed",
-      "epochMs": 1793583279864,
-      "previousHash": "e17f900147698ad52cdac9f0c200a169684fbcab5ce86124e739a59532c9c12a",
+      "epochMs": 1793584495914,
+      "previousHash": "00234facb5d3de992b0897e4ef07a962b564d6c8885d4460dc8defc6dc5ffb91",
       "data": {
-        "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
+        "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
         "handoff": null,
         "run": {
           "ok": true,
@@ -2446,7 +2462,7 @@
             "maxToolCalls": 10,
             "maxWallClockMs": 60000
           },
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "mode": "sample",
           "sample": true,
           "label": "SAMPLE — OFFLINE; NO LIVE AI",
@@ -2467,8 +2483,8 @@
         },
         "proposalValid": true,
         "analysis": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-          "scenarioId": "scenario-cert-hold-bc965dc5-254b-43c7-82e1-9f004925673b",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+          "scenarioId": "scenario-cert-hold-2ab6921e-2c41-4157-a2af-908eac00883a",
           "incident": {
             "incidentId": "inc-cert-alloy-hold",
             "summary": "Incoming alloy lot certificate quantity does not match receiving record; material held. Secondary shock: CELL-MILL-2 unavailable.",
@@ -2476,7 +2492,7 @@
             "discrepancy": "certificate claims 120 each; receiving posted 80 each"
           },
           "impacted": {
-            "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+            "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
             "heldMaterialId": "MAT-ALLOY-A",
             "jobs": [
               {
@@ -2502,9 +2518,9 @@
             "impactedUnits": 70
           },
           "recovery": {
-            "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+            "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
             "impacted": {
-              "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+              "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
               "heldMaterialId": "MAT-ALLOY-A",
               "jobs": [
                 {
@@ -2621,7 +2637,7 @@
             "message": "2 feasible recovery option(s) computed from snapshot inputs"
           },
           "capacity": {
-            "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+            "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
             "cells": [
               {
                 "cellId": "CELL-MILL-1",
@@ -2656,8 +2672,8 @@
         "calls": [
           {
             "type": "model_call",
-            "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
-            "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+            "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
+            "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
             "provider": "none",
             "requestedModel": "sample-offline-template",
             "fallbackUsed": false,
@@ -2680,64 +2696,84 @@
         "operatorId": "local-admin",
         "operatorRole": "admin"
       },
-      "eventHash": "e0315e9ff8f9f21ddbb50306450ef356178a2e9103828bb4e59cffd15c3256c8"
-    },
-    {
-      "sequence": 14,
-      "type": "consent_reviewed",
-      "epochMs": 1793583281625,
-      "previousHash": "e0315e9ff8f9f21ddbb50306450ef356178a2e9103828bb4e59cffd15c3256c8",
-      "data": {
-        "nonce": "396c16c4-02c6-4db4-b5c6-cb58f4e6877a",
-        "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
-        "optionId": "allocate_substitute",
-        "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-        "actor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
-        "operatorId": "local-admin",
-        "operatorRole": "admin",
-        "expires": 1793583581623,
-        "operationalRelease": false,
-        "signature": "cc315d40962a0383fe8246bee53836bdb1093c3f2976af81582027dfd7500c9f"
-      },
-      "eventHash": "18d2b861e86a8ec79c293b03a10c072239e880dab31896722c8baf6e70725ef7"
-    },
-    {
-      "sequence": 15,
-      "type": "decision_accepted",
-      "epochMs": 1793583282433,
-      "previousHash": "18d2b861e86a8ec79c293b03a10c072239e880dab31896722c8baf6e70725ef7",
-      "data": {
-        "nonce": "396c16c4-02c6-4db4-b5c6-cb58f4e6877a",
-        "runId": "3b8cf142-036c-4004-8f6a-e5be67fd67d9",
-        "optionId": "allocate_substitute",
-        "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-        "actor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
-        "operatorId": "local-admin",
-        "operatorRole": "admin",
-        "expires": 1793583581623,
-        "operationalRelease": false,
-        "signature": "cc315d40962a0383fe8246bee53836bdb1093c3f2976af81582027dfd7500c9f",
-        "status": "accepted",
-        "confirmationActor": "54db81e3062f25afb112cd1bdb3b10a933d4e0a469b82d1047b881d927b1273e",
-        "resumedAfterRestart": false
-      },
-      "eventHash": "1e112052f3d38efae6492b5de9986de9d9d0a0b0d92201a87b3a4e7bd7cb7bc2"
+      "eventHash": "866123fc3862ce0d438ea729f6ab3be79b974f85df2db5cfe8aa6be33c00d960"
     },
     {
       "sequence": 16,
-      "type": "britt_proposed",
-      "epochMs": 1793583282494,
-      "previousHash": "1e112052f3d38efae6492b5de9986de9d9d0a0b0d92201a87b3a4e7bd7cb7bc2",
+      "type": "consent_reviewed",
+      "epochMs": 1793584499582,
+      "previousHash": "866123fc3862ce0d438ea729f6ab3be79b974f85df2db5cfe8aa6be33c00d960",
       "data": {
-        "id": "a9c881b0-df5f-419b-a383-d88fb11ae76c",
-        "scope": "55c63e8d2c66af48d677866428c3951be9ab34668911eb48e8e8dd217d7e7d88",
-        "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
-        "decisionNonce": "396c16c4-02c6-4db4-b5c6-cb58f4e6877a",
+        "nonce": "bc36e52b-9d9e-4d75-b285-af647b83f5ad",
+        "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
+        "optionId": "wait_replenishment",
+        "planDigest": "d346901802ca24d5e334872fa7d213a8150488bed6b1e3d9cf7b6eab5938e597",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "operatorId": "local-admin",
+        "operatorRole": "admin",
+        "expires": 1793584799580,
+        "operationalRelease": false,
+        "signature": "834b8d6df658a4e7473c78d660543394c0a4d19fc3be6728f068a65caddb1e3f"
+      },
+      "eventHash": "ad46e450a5a2037e9c4c522348f3133dd704ae6dd9032ebd7b95ddf90e1c0e98"
+    },
+    {
+      "sequence": 17,
+      "type": "consent_reviewed",
+      "epochMs": 1793584501204,
+      "previousHash": "ad46e450a5a2037e9c4c522348f3133dd704ae6dd9032ebd7b95ddf90e1c0e98",
+      "data": {
+        "nonce": "0e1d2a7a-0658-4a0a-8a8b-3254cffafd5e",
+        "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
+        "optionId": "allocate_substitute",
+        "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "operatorId": "local-admin",
+        "operatorRole": "admin",
+        "expires": 1793584801203,
+        "operationalRelease": false,
+        "signature": "8176183fe2fe805d87932a46d6e6be1ea69fb6da07d12d49222678622a81d1b7"
+      },
+      "eventHash": "d229839ba7b336c880017aaa176d220cb3670d5c11ec0a1ea187707fc8131f08"
+    },
+    {
+      "sequence": 18,
+      "type": "decision_accepted",
+      "epochMs": 1793584504116,
+      "previousHash": "d229839ba7b336c880017aaa176d220cb3670d5c11ec0a1ea187707fc8131f08",
+      "data": {
+        "nonce": "0e1d2a7a-0658-4a0a-8a8b-3254cffafd5e",
+        "runId": "a44a3b5c-db02-4113-9ac1-d33d54eb9eb9",
+        "optionId": "allocate_substitute",
+        "planDigest": "88e385bfebef4ca7c2f91569ee022a5ec9d733c885fae3d5a1aab28658cd631f",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+        "actor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "operatorId": "local-admin",
+        "operatorRole": "admin",
+        "expires": 1793584801203,
+        "operationalRelease": false,
+        "signature": "8176183fe2fe805d87932a46d6e6be1ea69fb6da07d12d49222678622a81d1b7",
+        "status": "accepted",
+        "confirmationActor": "e4e2a30a46dbc8898246cd051d7bb73389c9a98e51a6902364b8df8aaa439ca0",
+        "resumedAfterRestart": false
+      },
+      "eventHash": "98ea178691fe8bef8f73c205ce0df98dabdbb9cf84d25f2fa2a989f84c4552a2"
+    },
+    {
+      "sequence": 19,
+      "type": "britt_proposed",
+      "epochMs": 1793584504173,
+      "previousHash": "98ea178691fe8bef8f73c205ce0df98dabdbb9cf84d25f2fa2a989f84c4552a2",
+      "data": {
+        "id": "33d7f881-ef1f-4d5f-941b-47e43e042bb2",
+        "scope": "b883466ebbdf8d00c3be378fddf42ab6570c575f529b6b692f890dda810403a0",
+        "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
+        "decisionNonce": "0e1d2a7a-0658-4a0a-8a8b-3254cffafd5e",
         "status": "pending",
         "board": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "optionId": "allocate_substitute",
           "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
           "tasks": [
@@ -2790,19 +2826,19 @@
         "model": "Sample",
         "provider": "sample",
         "fallbackUsed": false,
-        "expires": 1793583582493,
+        "expires": 1793584804171,
         "operatorId": "local-admin"
       },
-      "eventHash": "cb935b454573185afd9e13a398d8d9781ef890e4cf4b13fa464efd37cc5d6ab0"
+      "eventHash": "51da87bc948c4effa7a02700f56da38408c085be01eb238571ab999c4749b90f"
     },
     {
-      "sequence": 17,
+      "sequence": 20,
       "type": "task_created",
-      "epochMs": 1793583283212,
-      "previousHash": "cb935b454573185afd9e13a398d8d9781ef890e4cf4b13fa464efd37cc5d6ab0",
+      "epochMs": 1793584510738,
+      "previousHash": "51da87bc948c4effa7a02700f56da38408c085be01eb238571ab999c4749b90f",
       "data": {
         "board": {
-          "snapshotDigest": "810834dcdabbc35a925b08deb098278f0e6bc537547110dceeefdcb316a6c667",
+          "snapshotDigest": "f6cea70c81d9a7f9cdeec455a81c3790803bc9127f567ecbd723de9f41ce31fa",
           "optionId": "allocate_substitute",
           "summary": "Verify material, coordinate capacity and confirm the accepted recovery.",
           "tasks": [
@@ -2851,22 +2887,22 @@
             }
           ]
         },
-        "proposalId": "a9c881b0-df5f-419b-a383-d88fb11ae76c",
+        "proposalId": "33d7f881-ef1f-4d5f-941b-47e43e042bb2",
         "operatorId": "local-admin"
       },
-      "eventHash": "198850b06c2f7d7fc3491a7863415094b1f3e4198b4becd36f989513e2b69190"
+      "eventHash": "40d84a40a9ed2d38c545382eb46977ab936ad9cf1d03b225b048586c354b9323"
     },
     {
-      "sequence": 18,
+      "sequence": 21,
       "type": "britt_decided",
-      "epochMs": 1793583283231,
-      "previousHash": "198850b06c2f7d7fc3491a7863415094b1f3e4198b4becd36f989513e2b69190",
+      "epochMs": 1793584510757,
+      "previousHash": "40d84a40a9ed2d38c545382eb46977ab936ad9cf1d03b225b048586c354b9323",
       "data": {
-        "id": "a9c881b0-df5f-419b-a383-d88fb11ae76c",
+        "id": "33d7f881-ef1f-4d5f-941b-47e43e042bb2",
         "action": "approve",
         "operatorId": "local-admin"
       },
-      "eventHash": "6e6055aeaa1f027c9e0649b5e596e9bd33c76356177c6699cabe313c1dfaf2c5"
+      "eventHash": "68002860cdb6dfbe6ea9cdcaf048ffc1dbaedd1d1a1f5a1a6ecefd7f67b530f8"
     }
   ]
 }

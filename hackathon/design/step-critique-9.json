@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 9,
   "score": 8,
-  "wowScore": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Preserve coexistence: blocked prior tasks and approved revised plan remain distinct while replacement tasks stay proposed and untracked until approval."
+      "change": "Keep blocked prior tasks and proposed replacements in visually separate reserved groups, since an approved revised plan and awaiting-approval replacements correctly coexist."
     },
     {
       "priority": "medium",
-      "change": "Visually separate the blocked prior group with silver hatching and text from the proposed replacements in dashed emerald outline."
+      "change": "Mark blocked priors with silver hatching and a blocked marker while proposed replacements stay dashed and explicitly untracked until approval."
     },
     {
       "priority": "medium",
-      "change": "Refit side-zone task detail to 16px body so all three task selectors and approval status fit at 1366x768."
+      "change": "Add focus-linked glow between the side-zone task list and the matching scene task cards for keyboard and pointer parity."
     }
   ]
 }

@@ -116,9 +116,21 @@ try{
    }
   };
   await capturePlant('running');
+  if(process.argv.includes('--fps')){
+   await send('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'no-preference'}]});
+   await send('Emulation.setDeviceMetricsOverride',{width:1920,height:1080,deviceScaleFactor:1,mobile:false});
+   await evaluate(`(()=>{globalThis.__cascadeFpsSample={collecting:true,frames:[],last:0};const failure=document.querySelector('#plant-failure');failure.value='wrong-cert';failure.dispatchEvent(new Event('change'));document.querySelector('#plant-room .plant-controls button').click();})()`);
+   await delay(3600);
+   const fps=await evaluate(`(()=>{const s=globalThis.__cascadeFpsSample||{frames:[]};s.collecting=false;const frames=s.frames.filter(n=>n>0&&n<250);const avg=frames.length?frames.reduce((a,b)=>a+b,0)/frames.length:0;const sorted=frames.slice().sort((a,b)=>a-b);return {machineCount:${plantSize||0},samples:frames.length,avgFrameMs:Number(avg.toFixed(2)),fps:avg?Number((1000/avg).toFixed(1)):0,p95FrameMs:sorted.length?Number(sorted[Math.min(sorted.length-1,Math.floor(sorted.length*0.95))].toFixed(2)):0,reducedMotion:matchMedia('(prefers-reduced-motion: reduce)').matches};})()`);
+   writeEvidence(new URL('../evidence/'+evidenceRun()+'/cascade-fps.json',import.meta.url),JSON.stringify({...fps,plantFolder,viewport:'1920x1080'},null,2)+'\n');
+   assert.ok(fps.samples>=30,'cascade FPS profile needs sustained frames');
+  }
   const failures=await evaluate(`[...document.querySelector('#plant-failure').options].map(o=>o.value)`);
-  for(const failure of failures){await evaluate(`(()=>{const e=document.querySelector('#plant-failure');e.value=${JSON.stringify(failure)};e.dispatchEvent(new Event('change'));document.querySelector('#plant-room .plant-controls button').click();})()`);await delay(2500);await capturePlant(failure);
-   for(const strategy of ['reroute','expedite','rework']){await evaluate(`(()=>{const e=document.querySelector('#plant-strategy');e.value=${JSON.stringify(strategy)};e.dispatchEvent(new Event('change'));})()`);await capturePlant(failure+'-'+strategy+'-preview');await evaluate(`document.querySelectorAll('#plant-room .plant-controls button')[1].click()`);await until(()=>evaluate(`document.querySelector('.plant-consent')&&!document.querySelector('.plant-consent').hidden`),'plant consent opens');await evaluate(`(()=>{document.querySelector('#plant-approve').click();})()`);await until(()=>evaluate(`document.querySelector('#plant-authorize')?.open`),'plant authorize opens');await evaluate(`document.querySelector('#plant-authorize button')?.click()`);await until(()=>evaluate(`document.querySelector('.plant-consent').hidden && [...document.querySelectorAll('.plant-state')].some(e=>/RECOVERY ACCEPTED/.test(e.textContent))`),'plant recovery sealed');await capturePlant(failure+'-'+strategy+'-accepted');}
+  const leanPlant=Boolean(plantSize)&&plantSize>=1000;
+  const failurePass=leanPlant?failures.slice(0,1):failures;
+  for(const failure of failurePass){await evaluate(`(()=>{const e=document.querySelector('#plant-failure');e.value=${JSON.stringify(failure)};e.dispatchEvent(new Event('change'));document.querySelector('#plant-room .plant-controls button').click();})()`);await delay(2500);await capturePlant(failure);
+   const strategies=leanPlant?['reroute']:['reroute','expedite','rework'];
+   for(const strategy of strategies){await evaluate(`(()=>{const e=document.querySelector('#plant-strategy');e.value=${JSON.stringify(strategy)};e.dispatchEvent(new Event('change'));})()`);await capturePlant(failure+'-'+strategy+'-preview');await evaluate(`document.querySelectorAll('#plant-room .plant-controls button')[1].click()`);await until(()=>evaluate(`document.querySelector('.plant-consent')&&!document.querySelector('.plant-consent').hidden`),'plant consent opens');await evaluate(`(()=>{document.querySelector('#plant-approve').click();})()`);await until(()=>evaluate(`document.querySelector('#plant-authorize')?.open`),'plant authorize opens');await evaluate(`document.querySelector('#plant-authorize button')?.click()`);await until(()=>evaluate(`document.querySelector('.plant-consent').hidden && [...document.querySelectorAll('.plant-state')].some(e=>/RECOVERY ACCEPTED/.test(e.textContent))`),'plant recovery sealed');await capturePlant(failure+'-'+strategy+'-accepted');}
   }
   await evaluate(`document.querySelector('#plant-room .plant-tile').click()`);await capturePlant('department-drill-in');
 
@@ -138,6 +150,7 @@ try{
   await send('Emulation.setDeviceMetricsOverride',{width:1366,height:768,deviceScaleFactor:1,mobile:false});await send('Page.navigate',{url:base+'/judge-readme'});await delay(1200);
   const title=await evaluate(`document.querySelector('h1')?.textContent||''`);assert.match(title,/Factory Resilience/i,'judge readme preview must render the pitch page');
   const layout=await send('Page.getLayoutMetrics');const size=layout.cssContentSize??layout.contentSize;writeEvidence(new URL('../evidence/'+evidenceRun()+'/readme-preview.jpg',import.meta.url),Buffer.from((await send('Page.captureScreenshot',{format:'jpeg',quality:90,captureBeyondViewport:true,clip:{x:0,y:0,width:Math.min(size.width,1400),height:Math.min(size.height,4200),scale:1}})).data,'base64'));
+  await send('Page.navigate',{url:base});await until(()=>evaluate(`!document.querySelector('#room').hidden&&document.querySelector('#guide-title')`),'return to recovery room after readme preview');
  }
  if(!process.argv.includes('--plant-only')){
  const visited=[];const captures=[];

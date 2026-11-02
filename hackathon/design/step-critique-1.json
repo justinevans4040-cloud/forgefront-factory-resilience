@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 1,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Enlarge the factory scene within its reserved zone to at least 70% of main and reduce empty station-card height so flow, glow and depth read cinematically at 1366x768."
+      "change": "Enlarge the factory scene to at least 70% of main and refit station and job cards inside separate reserved zones so the discrepancy tracks, callouts and recovery options never compete for the same space."
     },
     {
       "priority": "medium",
-      "change": "Raise right-zone body copy to 16px/24 and keep evidence values tabular; preserve both logo placements unchanged."
+      "change": "Replace flat station boxes with layered machine depth, soft shadows and emerald glow only on held Receiving and feasible routes, keeping idle machines brushed silver."
     },
     {
       "priority": "medium",
-      "change": "Link Certificate 120 and Receiving 80 bars bidirectionally to their evidence cards with a 2px emerald focus ring."
+      "change": "Lift all body copy to 16px/24 and keep the second required logo placement in the opening story at native aspect without enlarging it into a banner."
     }
   ]
 }

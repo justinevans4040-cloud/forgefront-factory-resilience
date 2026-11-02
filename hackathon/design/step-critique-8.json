@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 8,
   "score": 8,
-  "wowScore": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep the constrained Split path non-selectable with reason text adjacent, not colour alone."
+      "change": "Show the constrained Split path with silver cross-hatching and plain CONSTRAINED text while keeping the selected substitute path as the only emerald-glowing feasible route."
     },
     {
       "priority": "medium",
-      "change": "Make the revised typed consent form the clear focus after selection, with status centre in the action bar reading prior acceptance invalidated."
+      "change": "Keep prior-acceptance-invalidated status in the action bar centre and the revised approval as the single primary, opening the typed consent form on selection."
     },
     {
-      "priority": "low",
-      "change": "Add one cinematic route trace to the substitute path on real state change, then static glow."
+      "priority": "medium",
+      "change": "Align revised metrics at 26px tabular size so the 35h and $3,115.00 tradeoff compares cleanly against 83h and $0.00."
     }
   ]
 }

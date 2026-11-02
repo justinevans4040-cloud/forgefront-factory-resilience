@@ -22,7 +22,9 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront factory recovery command center in black, emerald and silver" /></p>
 
-<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade with every machine across seven departments in black, emerald and silver" /></p>
+<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
+
+<p align="center"><em>Cascade step — every machine across the full shop, failure then recovery.</em></p>
 
 ## What you'll see
 

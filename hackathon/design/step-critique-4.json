@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 4,
-  "score": 8,
-  "wowScore": 6,
+  "score": 6,
+  "wowScore": 5,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep the typed consent form opened by selection, with the exact phrase, character count and disabled Accept state grouped as one labelled form."
+      "change": "Present the typed consent form as the clear next panel after selection, with the chosen path, plan reference and typed field grouped together and one primary action in the 56px action bar."
     },
     {
       "priority": "medium",
-      "change": "Give the consent input a 2px emerald focus ring and announce match state through aria-live polite."
+      "change": "Remove duplicate approval emphasis by keeping a single primary per viewport while the side zone shows status only."
     },
     {
       "priority": "medium",
-      "change": "Dim unselected paths in silver without removing their readable hours and cost."
+      "change": "Keep DOES NOT MATCH spanning the aligned 120 and 80 tracks inside stage bounds at every width down to 1366x768."
     }
   ]
 }

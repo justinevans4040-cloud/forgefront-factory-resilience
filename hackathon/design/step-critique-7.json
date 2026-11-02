@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 7,
-  "score": 8,
-  "wowScore": 7,
+  "score": 7,
+  "wowScore": 6,
   "fixes": [
     {
       "priority": "high",
-      "change": "Keep CELL-MILL-2 fully legible over hatching: raise label contrast, retain cross marker and OFFLINE text inside station bounds."
+      "change": "Give stopped CELL-MILL-2 the full silver cross-hatch treatment plus cross marker and OFFLINE label, and remove any remaining route line touching the cell."
     },
     {
       "priority": "high",
-      "change": "Separate provider-identity readiness from the investigation task exactly as on the earlier investigation step for consistency."
+      "change": "Separate provider-identity readiness from this reinvestigation task under its own heading so the evidence action is never conflated with a connection check."
     },
     {
       "priority": "medium",
-      "change": "Show only two feasible paths in emerald and mark Split as constrained in silver pattern and text."
+      "change": "Use living flow and glow only on the remaining feasible CELL-MILL-1 routes to make the reduced capacity instantly legible."
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 6,
-  "score": 9,
-  "wowScore": 8,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
       "priority": "high",
-      "change": "Preserve the strong preview: CELL-MILL-2 in silver cross-hatching with cross marker and plain OFFLINE text, never red, and no route through it."
+      "change": "Strengthen the shock preview by showing CELL-MILL-2 in silver cross-hatching with a cross marker and plain OFFLINE text before the shock is applied, with no route drawn through it."
     },
     {
       "priority": "medium",
-      "change": "Animate material flow rerouting around the offline cell once on apply, then settle static; disable that motion under reduced-motion preference."
+      "change": "Animate one cinematic reroute trace away from the stopped cell on apply, then settle static, with flow fully removed under reduced motion."
     },
     {
       "priority": "medium",
-      "change": "Enlarge the 24h to 0h preview metric and bind it bidirectionally to the station node."
+      "change": "Keep the invalidating consequence as one status sentence centred in the action bar so the cost of applying the shock is read before the primary."
     }
   ]
 }

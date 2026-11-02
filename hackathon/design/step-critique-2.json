@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 103,
+  "iteration": 106,
   "step": 2,
-  "score": 7,
-  "wowScore": 6,
+  "score": 6,
+  "wowScore": 4,
   "fixes": [
     {
       "priority": "high",
-      "change": "Separate connection readiness, labelled as checking provider identity, from the distinct investigation evidence task with individual headings, status lines and controls."
+      "change": "Separate connection readiness, which checks provider identity, from the investigation evidence task with distinct headings, status lines and controls in the side zone."
+    },
+    {
+      "priority": "high",
+      "change": "Fill the empty lower side zone with reserved evidence and route-selection slots at 16px type instead of leaving a large black void beside the scene."
     },
     {
       "priority": "medium",
-      "change": "Compress the connection panel so the investigation action remains visible without squeezing the scene below 70%."
-    },
-    {
-      "priority": "medium",
-      "change": "Add living flow only along the held route and a static silver state for idle machines, with reduced-motion fallback."
+      "change": "Add living emerald flow along the selected feasible route only, with a 240ms trace on state change and full removal under reduced motion."
     }
   ]
 }
