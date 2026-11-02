@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 7,
-  "score": 7,
-  "wowScore": 5,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Apply the same cross-hatching, x marker and OFFLINE treatment to the constrained Split option and the stopped cell so infeasibility reads consistently"
+      "priority": "P1",
+      "change": "Make the constrained Split path unselectable with silver hatching, x marker and the two-online-cells reason at 16px."
     },
     {
-      "priority": "medium",
-      "change": "Link each Select this path control to its scene route with emerald flow and glow on hover, focus and selection"
+      "priority": "P2",
+      "change": "On selection, present one-click Approve then the Authorize this decision wall; keep PRIOR ACCEPTANCE INVALIDATED in the action-bar centre."
     },
     {
-      "priority": "low",
-      "change": "Keep prior-acceptance-invalidated status centred in the action bar at 16px so the fresh-review requirement is unmissable"
+      "priority": "P2",
+      "change": "Glow the two remaining feasible paths in emerald and dim the constrained path to silver."
     }
   ]
 }

@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 10,
-  "score": 6,
-  "wowScore": 6,
+  "score": 9,
+  "wowScore": 9,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Enlarge department cards and machine icons so the full-shop cascade reads at 1366x768, with living emerald flow only between CNC mills and CNC lathes as feasible recovery"
+      "priority": "P1",
+      "change": "Strengthen living material flow across all seven departments: emerald animated routes into CNC mills and lathes, silver cross-hatching with x and OFFLINE on stopped machines."
     },
     {
-      "priority": "high",
-      "change": "Give every stopped department silver cross-hatching, x markers and plain OFFLINE inside the cards, matching the legend exactly"
+      "priority": "P2",
+      "change": "Fix bottom department labels so OFFLINE counts sit inside their cards and never overlap the pager controls at 1366x768."
     },
     {
-      "priority": "medium",
-      "change": "Add depth and state glow to running machines and raise metric and department labels to 16px minimum where space allows"
+      "priority": "P2",
+      "change": "Add depth via layered machine shadows and state glow on RUNNING machines, fully stilled under reduced motion while legend pattern and text remain."
     }
   ]
 }

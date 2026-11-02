@@ -17,14 +17,9 @@ export function createSampleClient(options = {}) {
       const analysis = request.analysis || null;
       const feasible = (analysis?.recovery?.options || []).filter((o) => o.feasible);
       const preferred = feasible[0] || null;
-      const text = [
-        label,
-        "Offline recovery walkthrough · no Meta model call.",
-        preferred
-          ? `Calculated recovery: ${{wait_replenishment:'Wait for replenishment',allocate_substitute:'Use verified substitute',split_capacity:'Split available capacity'}[preferred.optionId]??preferred.optionId}. Finish in ${preferred.finishHours} hours with USD ${preferred.incrementalCostUsd} incremental cost.`
-          : "No feasible recovery option in the bound analysis; request additional evidence.",
-        "Inspect source evidence and compare calculated options before accepting a recovery.",
-      ].join(" ");
+      const text = preferred
+        ? `Certificate quantity does not match receiving. Prefer ${{wait_replenishment:'Wait for replenishment',allocate_substitute:'Use verified substitute',split_capacity:'Split available capacity'}[preferred.optionId]??preferred.optionId}: finish in ${preferred.finishHours} hours with USD ${preferred.incrementalCostUsd} incremental cost. Compare the calculated paths before a human decision.`
+        : "No feasible recovery option in the bound analysis; request additional evidence before deciding.";
 
       return Object.freeze({
         ok: true,

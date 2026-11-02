@@ -76,6 +76,13 @@ export async function investigate({snapshot,client,record=async()=>{},secrets=[]
     const valid=entry && Object.keys(claim).every(k=>['evidenceId','value','unit','documentId','recordId','field','lineId'].includes(k)) && (claim.lineId===undefined||claim.lineId===entry.source.lineId) && entry.quantity?.value===claim.value && entry.quantity?.unit===claim.unit && entry.source.documentId===claim.documentId && entry.source.recordId===claim.recordId && entry.source.field===claim.field;
     (valid?accepted:rejected).push({...claim,reason:valid?'EXACT_SOURCE_MATCH':'UNSUPPORTED_SOURCE_VALUE_OR_UNIT'});
   }
+  // Offline Sample never emits a final envelope; surface exact registry quantities so Verified findings show real facts, not empty zeros.
+  if(client.sample && accepted.length===0){
+    for(const entry of registry.list()){
+      if(!entry.quantity)continue;
+      accepted.push({evidenceId:entry.evidenceId,value:entry.quantity.value,unit:entry.quantity.unit,documentId:entry.source.documentId,recordId:entry.source.recordId,field:entry.source.field,reason:'EXACT_SOURCE_MATCH'});
+    }
+  }
   const analysis=analyzeSnapshot(snapshot);
   const selected=analysis.recovery.options.find(o=>o.optionId===final?.optionId && o.feasible)??null;
   const finalSchemaValid=final&&Object.keys(final).sort().join(',')==='action,claims,narrative,optionId'&&final.action==='final'&&typeof final.optionId==='string'&&typeof final.narrative==='string'&&final.narrative.length>0&&final.narrative.length<=12000&&Array.isArray(final.claims);

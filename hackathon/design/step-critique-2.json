@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 2,
-  "score": 6,
-  "wowScore": 4,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Separate provider identity readiness from the investigation evidence task in the side zone, each with its own heading, status and control"
+      "priority": "P1",
+      "change": "Make verified findings highlight the matching SVG stations bidirectionally, with a 2px emerald focus ring on keyboard focus."
     },
     {
-      "priority": "high",
-      "change": "Replace the 0/0/3 verified-findings summary with legible 16px evidence rows linked bidirectionally to the Certificate and Receiving tracks"
+      "priority": "P2",
+      "change": "Add depth and a single cinematic trace from Certificate 120 to Receiving 80 when findings open, then settle static."
     },
     {
-      "priority": "medium",
-      "change": "Increase scene depth with animated feasible-route traces that settle after one pass, keeping DOES NOT MATCH fully inside stage bounds"
+      "priority": "P2",
+      "change": "Keep provider-identity readiness separate from this investigation evidence panel under distinct headings and controls."
     }
   ]
 }

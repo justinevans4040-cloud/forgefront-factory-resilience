@@ -1,0 +1,226 @@
+{
+  "model": "muse-wonder-1.0",
+  "primaryFailures": [],
+  "inputMode": "screenshots",
+  "documentation": "https://dev.meta.ai/docs/models",
+  "direction": {
+    "grid": "100vw x 100dvh at 1366x768, overflow hidden: 48px header / 40px compact horizontal rail / minmax(0,1fr) main / 56px action bar. Compact horizontal rail only, equal-width non-wrapping targets at least 36px with aria-current and arrow-key movement. Enlarge the rendered scene to at least 70% of main; reserve independent non-overlapping zones for callouts, stations and jobs, condensing side content inside its zone without inspector scrolling.",
+    "colorTokens": "Entirely black, emerald and brushed silver: bg #050705, panel #0B100B, raised #121A12, border rgba(197,204,212,.22); silver #C5CCD4 headings and machine bodies, dim silver rgba(197,204,212,.68) secondary text; emerald #A8F04A sole accent and primary fill with #050705 text, one primary per viewport. Stopped states: silver cross-hatching, x marker and plain OFFLINE text, never red. Official logo immutable in black, emerald and brushed silver at native aspect, exactly two placements: header and opening story.",
+    "typography": "System sans; 16px/24 body minimum, no label under 12px; header tabs span most of the header with labels at least 16px; 24/30 stage title, 18/24 panel title, 12/16 uppercase micro-labels, 26px tabular metrics; one verb-led instruction and one status sentence per step, minimal narration.",
+    "motion": "Living material flow, state glow, depth and cinematic transitions driven by real state: 160-220ms ease-out selection, one 240ms route trace on state change then settled; prefers-reduced-motion removes transitions and flow while pattern, x marker and OFFLINE text retain meaning. 2px emerald focus ring with 2px offset; pointer style only on enabled controls.",
+    "components": "Header with official logo left and Lock recovery room right; opening story carries the second required logo placement. Side zone keeps connection readiness checks for provider identity separate from the investigation evidence task under distinct headings, status and controls. Action bar: Back left, status centre, one primary right. Selecting a recovery option opens one-click Approve, then Authorize this decision wall. Pending task proposals stay deliberately untracked until human approval; blocked prior tasks and an approved recovery plan may coexist while replacement tasks await approval. Tab order: skip-to-stage, header, rail, SVG nodes, side zone, action bar; Enter/Space activate, Esc closes, aria-live polite for results.",
+    "visualizations": "Focusable cinematic factory SVG 960x540 enlarged to fill at least 70% of main from real state: MAT-ALLOY-A held, 40+30=70 units, feasible routes emerald only, silver idle machines, stopped CELL-MILL-2 in silver cross-hatching with x marker and plain OFFLINE, no route through it; aligned Certificate 120 versus Receiving 80 tracks with DOES NOT MATCH spanning the gap inside stage bounds; bidirectional SVG-to-side-zone highlighting; persistent Running/Held/Blocked/Offline/Feasible-Accepted legend using pattern, marker and text."
+  },
+  "steps": [
+    {
+      "step": 1,
+      "score": 7,
+      "wowScore": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Give the factory scene more cinematic depth: layered machine forms, emerald material particles flowing toward RECEIVING HOLD, and a stronger state glow on the held lot, static under reduced motion."
+        },
+        {
+          "priority": "high",
+          "change": "Raise rail and station secondary labels to at least 12px and body copy to 16px so the 1366x768 view reads without strain."
+        },
+        {
+          "priority": "medium",
+          "change": "Add a persistent legend and bidirectional highlight between Certificate/Receiving bars and the RECEIVING station."
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "score": 6,
+      "wowScore": 4,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Separate connection readiness for provider identity from the Verified findings evidence task with distinct headings, status and controls in the side zone."
+        },
+        {
+          "priority": "high",
+          "change": "Make findings scannable at 16px: replace the dense sample paragraph with three short verified/rejected/feasible rows tied to scene nodes."
+        },
+        {
+          "priority": "medium",
+          "change": "Animate one emerald trace from source evidence into CELL-MILL-1/2 on arrival, then settle; remove it under reduced motion."
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "score": 7,
+      "wowScore": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "On selection, enlarge the chosen path into an emerald route through the scene and dim unchosen routes, so the tradeoff is visible before Approve."
+        },
+        {
+          "priority": "medium",
+          "change": "Align the three side-zone path cards and bottom option cards with shared finish/cost columns and 16px labels."
+        },
+        {
+          "priority": "medium",
+          "change": "Clarify primary wording to Review recovery option, opening one-click Approve followed by Authorize this decision."
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Add depth to the board: proposed tasks t1-t3 as raised silver cards with emerald dependency flow t1 to t2 to t3, dashed until approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Increase small task metadata to at least 12px and due/awaiting lines to 16px within the reserved zones."
+        },
+        {
+          "priority": "medium",
+          "change": "Keep PROPOSED · UNTRACKED UNTIL APPROVAL beside Approve The Britt's proposal so untracked status remains explicit at the action bar."
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Strengthen the shock moment: one cinematic sweep as CELL-MILL-2 gains silver cross-hatching, x marker and OFFLINE text, with routes through it visibly severed, frozen under reduced motion."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise side-zone secondary copy to 16px and keep the machine selector at least 36px tall with a clear focus ring."
+        },
+        {
+          "priority": "medium",
+          "change": "Extend the existing glow into a living preview flow on CELL-MILL-1 only, showing the surviving feasible route."
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "score": 6,
+      "wowScore": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Correct CELL-MILL-2 treatment to consistent silver cross-hatching, x marker and plain OFFLINE text, with no route through it and Split marked constrained."
+        },
+        {
+          "priority": "high",
+          "change": "Fill the empty side zone within its reserved area: separate provider identity readiness from the Reinvestigate recovery evidence task, each with its own status and control."
+        },
+        {
+          "priority": "medium",
+          "change": "Show 3 to 2 feasible paths as an emerald route count change on the scene rather than only a top micro-label."
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "score": 7,
+      "wowScore": 5,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Visually strike the invalidated acceptance and highlight the two remaining feasible paths in emerald across scene and comparison cards."
+        },
+        {
+          "priority": "medium",
+          "change": "Give the constrained Split card the same silver cross-hatch and x treatment as OFFLINE stations, with its reason at 16px."
+        },
+        {
+          "priority": "medium",
+          "change": "Make Review revised option lead explicitly to one-click Approve then Authorize this decision for the fresh decision."
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Represent 3 BLOCKED prior tasks distinctly from the 3 PROPOSED replacements, since blocked prior work and the approved revised plan coexist while replacements await approval."
+        },
+        {
+          "priority": "medium",
+          "change": "Show CELL-MILL-2 as OFFLINE with cross-hatching and x marker inside the station zone to match steps 6-7."
+        },
+        {
+          "priority": "medium",
+          "change": "Add emerald dependency flow across revised t1-t3 with depth and glow on the ready task, static under reduced motion."
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "score": 7,
+      "wowScore": 6,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Make 18 events · One verified chain cinematic: an emerald verification trace linking 01-02-03 with depth on the active READY stage, settled after one pass."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise side-zone passphrase guidance and step status to 16px and enlarge the passphrase field and Verify ledger target beyond 36px."
+        },
+        {
+          "priority": "medium",
+          "change": "Clarify the tracked count in the action bar against the sealed 18-event chain so 3 tracked · 0 done · 0 blocked is not misread."
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Deepen the full-shop cascade: layered department depth, living emerald material flow along the feasible reroute, and a visible failure wave turning machines silver OFFLINE in sequence, frozen under reduced motion."
+        },
+        {
+          "priority": "high",
+          "change": "Enlarge machine OFFLINE labels and department counts to at least 12px, with x markers plus pattern so state is not text alone."
+        },
+        {
+          "priority": "medium",
+          "change": "Fit all departments or a clearer view 1 of 2 affordance inside 1366x768 without clipping the bottom navigation, keeping legend persistent."
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "score": 8,
+      "wowScore": 7,
+      "fixes": [
+        {
+          "priority": "high",
+          "change": "Keep the required order and strengthen cascade legibility: enlarge the full-shop visual and caption so emerald flow, silver OFFLINE wave and recovery restart read at a glance."
+        },
+        {
+          "priority": "medium",
+          "change": "Tighten the hero to the one-line pitch and Live demo link already present, letting the cascade image carry more width and impact."
+        },
+        {
+          "priority": "medium",
+          "change": "Raise small table and partner-role text size and contrast in silver so Powered by partners scans quickly before the hero."
+        }
+      ]
+    }
+  ],
+  "sanitized": false
+}

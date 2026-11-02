@@ -1175,10 +1175,19 @@ body[data-active-stage] .stage{animation:stage-cinematic .28s ease-out}
  body[data-guided=true][data-active-stage=board] .stage-area,
  body[data-guided=true][data-active-stage=proof] .stage-area,
  body[data-guided=true][data-active-stage=shock] .stage-area{grid-template-columns:minmax(0,2.05fr) minmax(340px,.95fr)!important}
- body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims{display:none!important}
- body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #run-summary{display:none!important}
- body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #investigation-highlights{margin:2px 0 6px!important}
- body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:26px!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims{display:grid!important;grid-template-columns:1fr!important;max-height:none!important;overflow:visible!important;gap:4px!important;margin:4px 0!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims .verified-finding{padding:6px 8px!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #claims .verified-finding>summary{font-size:16px!important;line-height:1.3!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #run-summary,
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #model-label{display:none!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #investigation-highlights{margin:2px 0 6px!important;display:grid!important;gap:6px!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric strong{font-size:28px!important;line-height:1.1!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .investigation-metric span{font-size:13px!important}
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .verified-finding>summary{font-size:16px!important;line-height:1.3!important}
+ /* Bidirectional evidence glow when a finding or factory node is linked */
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .evidence-card:focus-within,
+ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] .evidence-card:hover{box-shadow:0 0 0 2px #A8F04A88,0 0 18px #A8F04A33!important;border-color:#A8F04A!important}
+
  /* Never line-clamp narrative — clamped overflow fails the textClipping gate; keep the short JS summary fully visible */
  body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings=true] #narrative{max-height:none!important;-webkit-line-clamp:unset!important;display:block!important;overflow:visible!important;font-size:15px!important;line-height:1.3!important}
  body[data-active-stage=investigation] #model-output>summary{border:0!important;outline:0!important;box-shadow:none!important;background:linear-gradient(90deg,#A8F04A22,transparent)!important;border-radius:4px}
@@ -1196,8 +1205,13 @@ body[data-active-stage] .stage{animation:stage-cinematic .28s ease-out}
  body[data-guided=true][data-active-stage=board] #prior-work{display:none!important}
  body[data-guided=true][data-active-stage=board] #britt-proposal{max-height:42vh!important;overflow:hidden!important}
 }
-#factory-svg .machine-live-light{filter:drop-shadow(0 0 8px #A8F04Aaa);animation:live-light 1.4s ease-in-out infinite}
-#factory-svg .material-spark{filter:drop-shadow(0 0 6px #A8F04A88);animation:factory-lot-travel 1.6s linear infinite}
+#factory-svg .machine-live-light{filter:drop-shadow(0 0 10px #A8F04Acc);animation:live-light 1.2s ease-in-out infinite}
+#factory-svg .material-spark{filter:drop-shadow(0 0 8px #A8F04Abb);animation:factory-lot-travel 1.35s linear infinite}
+#factory-svg .material-flow{filter:drop-shadow(0 0 6px #A8F04A88);animation:lot-flow 1.15s linear infinite}
+#factory-svg .conveyor-belt{filter:drop-shadow(0 0 8px #56ff9a33)}
+.plant-metrics strong{font-size:30px!important}
+.plant-tile strong{font-size:20px!important}
+.plant-legend span{font-size:14px!important}
 #factory-svg .proof-chain-spine{filter:drop-shadow(0 0 10px #A8F04A66);stroke-dasharray:12 8;animation:spine-dash 1.4s linear infinite}
 #factory-svg .proof-chain-node.sealed{filter:drop-shadow(0 0 12px #A8F04Acc)}
 #factory-svg .proof-station.sealed{filter:drop-shadow(0 0 18px #A8F04A44)}

@@ -149,6 +149,6 @@ describe("Meta model clients", () => {
     const result = await client.complete({ analysis });
     assert.equal(result.sample, true);
     assert.match(result.label, /SAMPLE/);
-    assert.match(result.text, /Calculated recovery|No feasible/);
+    assert.match(result.text, /Prefer |No feasible|does not match receiving/);
   });
 });

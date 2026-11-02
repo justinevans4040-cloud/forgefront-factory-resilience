@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 11,
-  "score": 8,
-  "wowScore": 7,
+  "score": 9,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Enlarge the full-shop cascade visual and its caption type so judges can read departments, OFFLINE states and the feasible route without zooming"
+      "priority": "P1",
+      "change": "Keep the required order intact; enlarge the hero and cascade visuals so the full-shop flow, silver OFFLINE wave and emerald recovery are legible at first scroll."
     },
     {
-      "priority": "medium",
-      "change": "Tighten spacing between logo, one-line pitch, Live demo link and Powered by partners so the required order reaches the hero visual faster"
+      "priority": "P2",
+      "change": "Make the cascade caption a concrete three-beat legend matching the image: emerald flow, silver OFFLINE, emerald restart."
     },
     {
-      "priority": "medium",
-      "change": "Make the hero headline and Meet The Britt section more cinematic with emerald depth accents while retaining black, emerald and brushed silver only"
+      "priority": "P2",
+      "change": "Raise small table and caption text toward 16px for judge readability while preserving the one-line pitch and Live demo prominence near the top."
     }
   ]
 }

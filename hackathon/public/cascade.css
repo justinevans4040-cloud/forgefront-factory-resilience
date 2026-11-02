@@ -1,5 +1,5 @@
 ﻿.plant-room{position:fixed;inset:0;width:100vw;max-width:none;height:100dvh;max-height:none;margin:0;padding:18px 28px;border:0;color:#e0eae5;background:radial-gradient(ellipse at 40% 18%,#163a2b 0,transparent 58%),radial-gradient(ellipse at 80% 80%,#0a1f16 0,transparent 45%),#030807;box-sizing:border-box;overflow:hidden;font:16px/1.4 system-ui}
-.plant-room[open]{display:grid;grid-template-rows:44px auto minmax(88px,auto) 28px 28px minmax(0,1fr) 36px;gap:8px}.plant-room::backdrop{background:#020504}
+.plant-room[open]{display:grid;grid-template-rows:48px auto minmax(96px,auto) 36px 30px minmax(0,1fr) 36px;gap:8px}.plant-room::backdrop{background:#020504}
 .plant-room button:disabled,.plant-room button[disabled]{opacity:.45;pointer-events:none;filter:grayscale(.35)}
 .plant-consent{position:absolute;left:28px;right:28px;top:66px;z-index:5;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 16px;background:linear-gradient(120deg,#163528f2,#0a1410f5);border:1px solid #7fad93;border-radius:10px;box-shadow:inset 0 1px #c5ccd433,0 18px 40px #000a}
 .plant-consent[hidden]{display:none!important}.plant-consent label{font-size:16px;min-width:220px}.plant-consent input{flex:1 1 240px;min-height:40px;padding:8px 12px;font:inherit;color:#e8f6ee;background:#07110d;border:1px solid #7fad93;border-radius:8px}
@@ -11,7 +11,7 @@
 .plant-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .plant-metrics>div{padding:10px 18px;background:linear-gradient(120deg,#152c21e8,#0a1511),linear-gradient(180deg,#c5ccd418,transparent);border:1px solid #708c7b;border-radius:9px;box-shadow:inset 0 1px #c5ccd44d,0 8px 30px #0005}
 .plant-metrics strong{font-size:28px;color:#9affbd;display:block;line-height:1.1;font-variant-numeric:tabular-nums}.plant-metrics span{font-size:13px;letter-spacing:.04em;color:#a9c8b8}
-.plant-caption{margin:0;padding:0 4px;line-height:1.35;min-height:28px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#d5e6dc;min-width:0;align-self:center}
+.plant-caption{margin:0;padding:2px 6px;line-height:1.35;min-height:34px;font-size:17px;font-weight:600;letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#e8f6ee;min-width:0;align-self:center}
 .plant-legend{justify-content:center;gap:18px;min-height:28px}
 .plant-legend span{display:inline-flex;align-items:center;gap:8px;font-size:13px;letter-spacing:.06em;color:#c5ccd4}
 .plant-legend span::before{content:"";width:16px;height:16px;border-radius:3px;border:1px solid #c5ccd4;box-sizing:border-box}
@@ -28,7 +28,7 @@
 .plant-flow,.plant-tiles{position:absolute;inset:0;width:100%;height:100%}
 .plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:4px;padding:10px 14px;box-sizing:border-box;overflow:visible;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 0 1px #c5ccd414;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s,transform .35s ease-out;transform:perspective(900px) translateZ(0)}
 .plant-room .plant-tile:not(.cascade-hit){animation:plant-tile-breathe 2.8s ease-in-out infinite}
-.plant-tile strong{font-size:18px;line-height:1.2;text-shadow:0 1px 0 #0008;max-width:100%;overflow:visible;white-space:normal}.plant-sub,.plant-state{font-size:14px;line-height:1.25;max-width:100%;overflow:visible;display:block;white-space:normal}.plant-state{color:#a7fac3;font-weight:600}
+.plant-tile strong{font-size:20px;line-height:1.15;text-shadow:0 1px 0 #0008;max-width:100%;overflow:visible;white-space:normal}.plant-sub,.plant-state{font-size:14px;line-height:1.25;max-width:100%;overflow:visible;display:block;white-space:normal}.plant-state{color:#a7fac3;font-weight:700;letter-spacing:.03em;font-size:15px}
 .plant-flow{z-index:3;pointer-events:none;mix-blend-mode:screen}
 .plant-room .plant-tile.cascade-hit{animation:none;border-color:#c5ccd4;transform:perspective(900px) translateZ(calc(var(--depth,0)*-8px)) scale(.985);box-shadow:inset 0 0 18px #c5ccd418,0 0 22px #d2ece028,0 calc(var(--depth,0)*6px) calc(18px + var(--depth,0)*8px) #0008,0 18px 0 -14px #0006;background:linear-gradient(145deg,#1c2c24f2,#101913f8),repeating-linear-gradient(135deg,#c5ccd414 0 8px,transparent 8px 18px)}
 .plant-tile.cascade-hit .plant-state{color:#c5ccd4;font-weight:700;letter-spacing:.04em;font-size:16px}
@@ -38,11 +38,12 @@
 .plant-room .plant-tile[data-recovered=true],.plant-room .chain-linked{border-color:#80ffc1;box-shadow:0 0 28px #37ff9458,inset 0 0 22px #37ff9428;animation:recovery-glow 1.8s ease-in-out infinite}
 .plant-navigation{justify-content:center}.plant-navigation span{min-width:300px;text-align:center}
 .plant-room.recording{grid-template-rows:48px 86px 26px 28px minmax(0,1fr);padding:18px}.plant-room.recording .plant-controls,.plant-room.recording .plant-navigation,.plant-room.recording .plant-top>button:last-child{display:none}.plant-room.recording .plant-top>button{opacity:.25}.plant-room.recording .plant-top>button:hover{opacity:1}
-.plant-machinery{width:100%;min-height:96px;height:136px;flex:1 1 auto;filter:drop-shadow(0 9px 8px #0008)}.plant-machine-light{animation:machine-light 1.8s ease-in-out infinite}
+.plant-machinery{width:100%;min-height:110px;height:152px;flex:1 1 auto;filter:drop-shadow(0 10px 10px #0009)}.plant-machine-light{animation:machine-light 1.8s ease-in-out infinite}
 .cascade-hit .plant-machine-light{animation:none;fill:#c5ccd4}.cascade-hit .plant-machinery{filter:drop-shadow(0 7px 8px #0008) saturate(.3)}
 .plant-sub{min-height:18px}.plant-tile[data-recovered=true] .plant-machinery{filter:drop-shadow(0 0 10px #56ff9a66)}
 .plant-room .plant-tile:not(.cascade-hit) .plant-machine-light{filter:drop-shadow(0 0 6px #8affb8)}
 .plant-offline-mark{position:absolute;top:8px;right:10px;font-size:22px;line-height:1;color:#c5ccd4;text-shadow:0 0 10px #c5ccd466;pointer-events:none;z-index:2}
+.plant-offline-chip{position:absolute;left:12px;bottom:10px;padding:2px 8px;font-size:12px;font-weight:800;letter-spacing:.08em;color:#e8edf0;background:#1a2220ee;border:1px solid #c5ccd4;border-radius:4px;pointer-events:none;z-index:2;box-shadow:0 0 12px #c5ccd433}
 .plant-tile strong{padding-right:28px}
 .plant-machinery{margin-top:4px}
 @keyframes machine-light{50%{opacity:.4;filter:drop-shadow(0 0 10px #8affb8)}}

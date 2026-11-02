@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 1,
-  "score": 7,
-  "wowScore": 5,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Enlarge the factory SVG to at least 70% of main and add living emerald flow from Receiving through feasible cells, with depth and glow only on active stations"
+      "priority": "P1",
+      "change": "Enlarge the factory scene within its reserved zone so stations and jobs fill >=70% of main without crowding the right callout zone."
     },
     {
-      "priority": "medium",
-      "change": "Refit the three recovery options inside the scene bottom edge so they read as scene callouts, not a second action row competing with Inspect source evidence"
+      "priority": "P2",
+      "change": "Strengthen living flow along the DOCK-QA route with emerald state glow on RECEIVING hold, keeping reduced-motion pattern and x HOLD text intact."
     },
     {
-      "priority": "medium",
-      "change": "Raise rail and tab labels to at least 16px where space allows and keep the in-story logo at native aspect without crowding the 70/2/36h metrics"
+      "priority": "P2",
+      "change": "Raise small station detail text to 16px body where space allows and keep micro-labels >=12px with clearer silver contrast."
     }
   ]
 }

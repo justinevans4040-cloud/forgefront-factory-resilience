@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 3,
-  "score": 7,
-  "wowScore": 5,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Make selection in the side comparison instantly highlight the matching bottom scene option and feasible route, with focus ring visible on the selected path"
+      "priority": "P1",
+      "change": "On selecting a path, surface the one-click Approve action followed by the Authorize this decision wall, with status centre in the action bar."
     },
     {
-      "priority": "medium",
-      "change": "Enlarge finish and cost figures to tabular metric size so 83h/$0, 35h/$3,115 and 17.5h/$3,202.50 compare at a glance"
+      "priority": "P2",
+      "change": "Glow only the feasible selected route in emerald through CELL-MILL-1 and CELL-MILL-2; leave unselected routes dim silver."
     },
     {
-      "priority": "low",
-      "change": "Keep Review recovery option as the single primary and clarify it opens Approve then the authorization wall"
+      "priority": "P2",
+      "change": "Enlarge path finish and cost metrics to 26px tabular figures for faster comparison at 1366x768."
     }
   ]
 }

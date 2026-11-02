@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 6,
-  "score": 6,
-  "wowScore": 5,
+  "score": 8,
+  "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Replace the large blank lower side zone with the distinct investigation task, route choice and evidence status while keeping provider readiness separate above it"
+      "priority": "P1",
+      "change": "CELL-MILL-2 already reads OFFLINE with hatching; add a clear x marker and ensure no emerald route passes through it."
     },
     {
-      "priority": "medium",
-      "change": "Make CELL-MILL-2 read stopped at a glance: heavier silver cross-hatching, centred x marker and plain OFFLINE, with no route drawn through it"
+      "priority": "P2",
+      "change": "Restore living emerald flow only on the remaining feasible CELL-MILL-1 route, with reduced-motion fallback to pattern and text."
     },
     {
-      "priority": "medium",
-      "change": "Show 3 to 2 feasible paths as an animated reroute around CELL-MILL-2 ending on CELL-MILL-1"
+      "priority": "P2",
+      "change": "Separate provider-identity readiness checks from the reinvestigation evidence task in the side zone with distinct status lines."
     }
   ]
 }

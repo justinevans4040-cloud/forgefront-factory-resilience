@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 127,
+  "iteration": 132,
   "step": 8,
-  "score": 7,
-  "wowScore": 5,
+  "score": 9,
+  "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Visually distinguish the 3 blocked prior tasks from the 3 proposed replacements, showing both can coexist while replacements await approval"
+      "priority": "P1",
+      "change": "Keep 3 BLOCKED PRIOR and 3 PROPOSED visibly coexisting; label replacement tasks UNTRACKED UNTIL APPROVAL beside the approved revised plan status."
     },
     {
-      "priority": "medium",
-      "change": "Add OFFLINE with x marker and cross-hatching to CELL-MILL-2 on the board header to match the factory scene state"
+      "priority": "P2",
+      "change": "Show CELL-MILL-2 as OFFLINE with silver hatching and x marker in the station zone, matching step 6 and 7."
     },
     {
-      "priority": "low",
-      "change": "Enlarge the replacement-task progress bars and add depth to t1 as the ready-to-begin node"
+      "priority": "P2",
+      "change": "Add a brief cinematic replanning trace from CELL-MILL-1 to the three proposed tasks, removed under reduced motion."
     }
   ]
 }
