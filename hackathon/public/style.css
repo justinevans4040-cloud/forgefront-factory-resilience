@@ -1157,4 +1157,13 @@ body[data-guided=true] .stage[data-stage=proof] #plaintext-options{max-height:no
 @keyframes mismatch-crack{0%{opacity:0;letter-spacing:.4em;fill:#fff}40%{opacity:1;letter-spacing:.12em;fill:#A8F04A}100%{letter-spacing:normal}}
 body[data-active-stage] .stage{animation:stage-cinematic .28s ease-out}
 @keyframes stage-cinematic{from{opacity:.72;transform:translateY(6px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.britt-build-card,#factory-svg .mismatch-label,body[data-active-stage] .stage,#britt-panel.britt-signature{animation:none!important}}
+/* audit28: living factory glow, route spine, hold pulse */
+#factory-svg .factory-node.running rect{filter:drop-shadow(0 0 14px #A8F04A66);stroke:#A8F04A}
+#factory-svg .factory-node.material-stopped rect{animation:hold-pulse 1.6s ease-in-out infinite}
+#factory-svg .living-spine{filter:drop-shadow(0 0 6px #56ff9a55);animation:spine-dash 1.8s linear infinite}
+#factory-svg .route-running.selected-route{filter:drop-shadow(0 0 10px #A8F04A88);stroke-width:5}
+#factory-svg .lot-held{opacity:.55}
+#factory-stage{box-shadow:inset 0 0 80px #56ff9a12,0 24px 48px #000a}
+@keyframes hold-pulse{0%,100%{filter:drop-shadow(0 0 6px #C5CCD444)}50%{filter:drop-shadow(0 0 16px #C5CCD488)}}
+@keyframes spine-dash{to{stroke-dashoffset:-36}}
+@media(prefers-reduced-motion:reduce){.britt-build-card,#factory-svg .mismatch-label,body[data-active-stage] .stage,#britt-panel.britt-signature,#factory-svg .factory-node.material-stopped rect,#factory-svg .living-spine{animation:none!important}}

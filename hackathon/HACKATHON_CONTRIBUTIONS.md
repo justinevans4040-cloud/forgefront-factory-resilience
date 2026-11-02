@@ -2,6 +2,12 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit twenty-eight
+
+- Living cascade flow: curved emerald department-to-department particles, alarm sweep on failure, per-machine OFFLINE hatching, single-page seven-department overview, factory living spine and hold pulse. Visual audit gate re-proved under run31 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).
+- Judge README keeps owner pitch order with 70-parts stakes and a refreshed cascade showcase; design director scores README inside that required order. Genuine Muse Wonder reviews 113–118 recorded honestly (cascade best 8 / README best 8); retained direction remains iteration 82.
+- Bounded live Wonder and Baseten investigation both completed with validated claims; Fireworks never called. The Britt naming, Authorize wall and public-tree checks stay green.
+
 ## Independent audit twenty-seven
 
 - Visual audit gate re-proved at three desktop sizes with triggered full-shop cascade captures (51 captures / 0 failures under run30). Cascade department OFFLINE/RUNNING status stays wave-synced with machine art; metrics await failure selection before trigger.

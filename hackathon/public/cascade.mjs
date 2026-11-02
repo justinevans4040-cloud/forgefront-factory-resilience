@@ -30,23 +30,25 @@ export function mountCascade({loadPlant,launcher,workflow}){
  }
  function draw(){
   if(!plant||!dialog.open)return;
+  dialog.dataset.cascadeActive=String(active&&!recovered);
   result=calculate();const groups=plantGroups(result.machines),items=department?groups.find(g=>g.id===department).machines:groups;
-  const box=floor.getBoundingClientRect(),overviewMins=box.height<360?{minWidth:200,minHeight:148}:{minWidth:228,minHeight:188},layout=plantTiles(items,{width:box.width,height:box.height,minWidth:department?210:overviewMins.minWidth,minHeight:department?160:overviewMins.minHeight,page});page=layout.page;
+  // Keep every department on one overview page at 1366-wide: two rows beat pagination for the cascade wow moment.
+  const box=floor.getBoundingClientRect(),overviewMins=box.height<360?{minWidth:176,minHeight:156}:{minWidth:196,minHeight:188},layout=plantTiles(items,{width:box.width,height:box.height,minWidth:department?210:overviewMins.minWidth,minHeight:department?168:overviewMins.minHeight,page});page=layout.page;
   tiles.replaceChildren();
   for(const t of layout.tiles){const card=el('button',null,'plant-tile');card.dataset.plantNode=t.item.id;card.style.left=t.x+'px';card.style.top=t.y+'px';card.style.width=t.width+'px';card.style.height=t.height+'px';
    const members=t.item.machines??[t.item],ids=new Set(members.map(m=>m.id)),affected=result.cascade.filter(c=>ids.has(c.machineId)),depth=affected.reduce((min,c)=>Math.min(min,c.depth),Infinity);
    card.dataset.depth=String(depth);card.dataset.affected=String(affected.length>0);card.dataset.recovered=String(recovered);card.classList.toggle('chain-linked',members.some(m=>highlighted.has(m.id)));
    const affectedIds=new Set(affected.map(c=>c.machineId)),offlineCount=[...ids].filter(id=>affectedIds.has(id)).length,runningCount=Math.max(0,members.length-offlineCount);
-   card.dataset.offlineCount=String(offlineCount);card.dataset.memberCount=String(members.length);card.dataset.runningCount=String(runningCount);
+   card.dataset.offlineCount=String(offlineCount);card.dataset.memberCount=String(members.length);card.dataset.runningCount=String(runningCount);card.dataset.affectedIds=[...affectedIds].join(',');
    // Before the cascade wave reaches this tile, both lines read RUNNING from the same counts; after impact they share one OFFLINE derivation.
    const departmentState=departmentStatus({recovered,active,offlineCount,runningCount,members:members.length,hit:false});
-   const subLine=department?members[0].capacityHours+'h capacity · $'+members[0].hourlyCostUsd+'/h':members.length+' machines · '+(active?(offlineCount?offlineCount+' will go offline':members.length+' ready'):members.length+' ready');
+   const subLine=department?members[0].capacityHours+'h · $'+members[0].hourlyCostUsd+'/h':members.length+' machines';
    card.append(el('strong',t.item.label),el('span',subLine,'plant-sub'),el('span',departmentState,'plant-state'));
    const fullyOffline=active&&!recovered&&offlineCount>0&&offlineCount===members.length;
    if(fullyOffline)card.dataset.depthLayer=String(Math.min(4,Math.max(1,Math.round(depth)||1)));
    card.dataset.partialOffline=String(active&&!recovered&&offlineCount>0&&!fullyOffline);
    // Art stays running until the cascade wave hits the tile so glyphs never contradict the status line.
-   const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},recovered?affectedIds:new Set(),recovered);card.querySelector('.plant-state').before(art);
+   const art=machineArt(members,machine=>{selectedMachine=machine.id;highlighted=new Set();const operations=new Map(plant.operations.map(o=>[o.id,o]));for(const op of plant.operations.filter(op=>op.machineId===machine.id))for(const id of dependencyChain(plant,op.id))highlighted.add(operations.get(id).machineId);draw();},new Set(),recovered);card.querySelector('.plant-state').before(art);
    card.addEventListener('click',()=>{if(!department){department=t.item.id;page=0;draw();}else{highlighted=new Set();for(const op of plant.operations.filter(op=>op.machineId===t.item.id))for(const id of dependencyChain(plant,op.id)){const item=plant.operations.find(o=>o.id===id);highlighted.add(item.machineId);}caption.textContent='Dependency chain highlighted for '+t.item.label;draw();}});tiles.append(card);
   }
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;
@@ -74,32 +76,56 @@ export function mountCascade({loadPlant,launcher,workflow}){
    const stateEl=node.querySelector('.plant-state'),subEl=node.querySelector('.plant-sub');
    if(stateEl)stateEl.textContent=departmentStatus({recovered,active,offlineCount,runningCount,members:memberCount,hit:hit||partial});
    if(subEl&&!department)subEl.textContent=memberCount+' machines · '+(recovered?'recovery live':!active?memberCount+' ready':(hit||partial)?offlineCount+' offline · '+runningCount+' running':memberCount+' ready');
-   const mark=node.querySelector('.plant-offline-mark');if(hit&&!node.classList.contains('plant-tile-machine')){if(!mark){const badge=el('span','×','plant-offline-mark');badge.setAttribute('aria-hidden','true');node.append(badge);}}else if(mark)mark.remove();
+   // Machine glyphs already carry OFFLINE; skip the corner × so titles never collide with markers.
+   const mark=node.querySelector('.plant-offline-mark');if(mark)mark.remove();
    syncMachineArt(node,hit||partial||recovered);
   }
   const box=floor.getBoundingClientRect(),dpr=devicePixelRatio||1;if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,box.width,box.height);
   const nodes=[...tiles.children];
-  const drawFlow=(from,to,color,nowStamp,width=2.5)=>{
-   const ax=parseFloat(from.style.left)+parseFloat(from.style.width)/2,ay=parseFloat(from.style.top)+parseFloat(from.style.height)/2;
-   const bx=parseFloat(to.style.left)+parseFloat(to.style.width)/2,by=parseFloat(to.style.top)+parseFloat(to.style.height)/2;
-   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.setLineDash(reduced.matches?[]:[10,8]);ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();ctx.setLineDash([]);
-   if(!reduced.matches){const t=((nowStamp/14)%100)/100;ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=12;ctx.beginPath();ctx.arc(ax+(bx-ax)*t,ay+(by-ay)*t,6,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;}
+  const center=node=>{const x=parseFloat(node.style.left)+parseFloat(node.style.width)/2,y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;return {x,y};};
+  const drawFlow=(from,to,color,nowStamp,width=2.8,particles=3)=>{
+   const a=center(from),b=center(to);
+   const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-Math.min(48,Math.abs(b.x-a.x)*0.18);
+   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches?0:10;ctx.setLineDash(reduced.matches?[]:[14,10]);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.quadraticCurveTo(mx,my,b.x,b.y);ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;
+   if(reduced.matches)return;
+   for(let p=0;p<particles;p++){
+    const t=((nowStamp/12)+p*(1/particles))%1;
+    const ox=(1-t)*(1-t)*a.x+2*(1-t)*t*mx+t*t*b.x,oy=(1-t)*(1-t)*a.y+2*(1-t)*t*my+t*t*b.y;
+    ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=14;ctx.beginPath();ctx.arc(ox,oy,5+(p%2),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+   }
   };
-  if(recovered&&nodes.length>1){
-   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,3.5);
-   if(!reduced.matches){const sweep=(now/8)%box.width;const grad=ctx.createLinearGradient(sweep-120,0,sweep+120,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a55');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
-  }else if(active&&!recovered&&nodes.length>1){
-   const runningNodes=[...nodes].filter(n=>/RUNNING/.test(n.querySelector('.plant-state')?.textContent??'')||!n.classList.contains('cascade-hit'));
-   const path=runningNodes.length>1?runningNodes:nodes.filter(n=>!n.classList.contains('cascade-hit'));
-   for(let i=0;i<path.length-1;i++)drawFlow(path[i],path[i+1],'#56ff9a88',now);
-   ctx.strokeStyle='#27664c';ctx.lineWidth=1.5;
-   for(const node of nodes){const y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.stroke();}
-  }else{
-   ctx.strokeStyle='#27664c';ctx.lineWidth=2;
-   for(const node of nodes){const x=parseFloat(node.style.left),y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.stroke();ctx.fillStyle='#8cfbc0';const offset=reduced.matches?0:(now/12)%box.width;ctx.fillRect((x+offset)%box.width,y-3,18,6);}
+  const ordered=[...nodes].sort((left,right)=>parseFloat(left.style.left)-parseFloat(right.style.left)||parseFloat(left.style.top)-parseFloat(right.style.top));
+  if(recovered&&ordered.length>1){
+   for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a',now,3.8,4);
+   if(!reduced.matches){const sweep=(now/7)%(box.width+160)-80;const grad=ctx.createLinearGradient(sweep-140,0,sweep+140,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a66');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
+  }else if(active&&!recovered&&ordered.length>1){
+   const running=ordered.filter(n=>!n.classList.contains('cascade-hit'));
+   const path=running.length>1?running:ordered.filter(n=>n.dataset.partialOffline==='true'||!n.classList.contains('cascade-hit'));
+   for(let i=0;i<path.length-1;i++)drawFlow(path[i],path[i+1],'#56ff9a99',now,3,3);
+   if(!reduced.matches){
+    const alarm=(now/5)%(box.width+200)-100;
+    const alarmGrad=ctx.createLinearGradient(alarm-90,0,alarm+90,0);alarmGrad.addColorStop(0,'#c5ccd400');alarmGrad.addColorStop(.5,'#c5ccd433');alarmGrad.addColorStop(1,'#c5ccd400');
+    ctx.fillStyle=alarmGrad;ctx.fillRect(0,0,box.width,box.height);
+    for(const node of ordered.filter(n=>n.classList.contains('cascade-hit'))){
+     const c=center(node),pulse=12+((now/30)%20);
+     ctx.strokeStyle='#c5ccd466';ctx.lineWidth=2;ctx.beginPath();ctx.arc(c.x,c.y,pulse,0,Math.PI*2);ctx.stroke();
+    }
+   }
+   ctx.strokeStyle='#1f3d30';ctx.lineWidth=1.4;
+   for(const node of ordered){const y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.stroke();}
+  }else if(ordered.length){
+   ctx.strokeStyle='#27664c';ctx.lineWidth=2.2;
+   for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a77',now,2.6,3);
+   for(const node of ordered){
+    const y=parseFloat(node.style.top)+parseFloat(node.style.height)/2,x=parseFloat(node.style.left);
+    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.strokeStyle='#1f3d3088';ctx.stroke();
+    if(reduced.matches)continue;
+    const offset=(now/11)%box.width;
+    for(let n=0;n<4;n++){ctx.fillStyle='#8cfbc0';ctx.shadowColor='#56ff9a';ctx.shadowBlur=10;ctx.fillRect((x+offset+n*90)%box.width,y-3,16,6);ctx.shadowBlur=0;}
+   }
   }
   if(!reduced.matches||(sample&&sample.collecting))raf=requestAnimationFrame(animate);
- }
+}
  trigger.addEventListener('click',()=>{active=true;recovered=false;setConsent(false);start=performance.now();draw();});
  recover.addEventListener('click',async()=>{
   if(!result.recovery.feasible||busy||!workflow?.api)return;
@@ -142,8 +168,9 @@ export function departmentStatus({recovered,active,offlineCount,runningCount,mem
 }
 function syncMachineArt(node,showOffline){
  const svg=node.querySelector('.plant-machinery');if(!svg)return;
+ const affected=new Set((node.dataset.affectedIds||'').split(',').filter(Boolean));
  for(const g of svg.querySelectorAll('[data-plant-machine]')){
-  const want=showOffline&&node.dataset.affected==='true';
+  const want=showOffline&&(affected.size?affected.has(g.dataset.plantMachine):node.dataset.affected==='true');
   const has=g.dataset.artOffline==='true';
   if(want===has)continue;
   g.dataset.artOffline=String(want);
@@ -152,7 +179,7 @@ function syncMachineArt(node,showOffline){
   if(want){
    const hatch=document.createElementNS('http://www.w3.org/2000/svg','rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+svg.dataset.hatchId+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
    for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS('http://www.w3.org/2000/svg','path');line.setAttribute('data-offline-art','1');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
-   const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('data-offline-art','1');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','40');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','18');label.setAttribute('font-weight','800');g.append(label);
+   const label=document.createElementNS('http://www.w3.org/2000/svg','text');label.setAttribute('data-offline-art','1');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','42');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','16');label.setAttribute('font-weight','800');label.setAttribute('paint-order','stroke');label.setAttribute('stroke','#0a100c');label.setAttribute('stroke-width','3');g.append(label);
   }else{
    const window=document.createElementNS('http://www.w3.org/2000/svg','rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);
    const light=document.createElementNS('http://www.w3.org/2000/svg','circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);
@@ -170,7 +197,7 @@ function machineArt(machines,onMachine,affectedIds=new Set(),recovered=false){
   if(offline){
    const hatch=document.createElementNS(ns,'rect');hatch.setAttribute('data-offline-art','1');hatch.setAttribute('x','2');hatch.setAttribute('y','4');hatch.setAttribute('width','60');hatch.setAttribute('height','50');hatch.setAttribute('fill','url(#'+pattern.id+')');hatch.setAttribute('opacity','0.85');g.prepend(hatch);
    for(const d of ['M10 18 L52 46','M52 18 L10 46']){const line=document.createElementNS(ns,'path');line.setAttribute('data-offline-art','1');line.setAttribute('d',d);line.setAttribute('stroke','#c5ccd4');line.setAttribute('stroke-width','3');g.append(line);}
-   const label=document.createElementNS(ns,'text');label.setAttribute('data-offline-art','1');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','40');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','18');label.setAttribute('font-weight','800');label.setAttribute('letter-spacing','0.4');g.append(label);
+   const label=document.createElementNS(ns,'text');label.setAttribute('data-offline-art','1');label.textContent='OFFLINE';label.setAttribute('x','4');label.setAttribute('y','42');label.setAttribute('fill','#e8edf0');label.setAttribute('font-size','16');label.setAttribute('font-weight','800');label.setAttribute('letter-spacing','0.4');label.setAttribute('paint-order','stroke');label.setAttribute('stroke','#0a100c');label.setAttribute('stroke-width','3');g.append(label);
   }
   else{const window=document.createElementNS(ns,'rect');window.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({x:8,y:22,width:25,height:20,rx:2,fill:'#03100a',stroke:'#92ffc1'}))window.setAttribute(k,v);g.append(window);const light=document.createElementNS(ns,'circle');light.setAttribute('data-online-art','1');for(const [k,v]of Object.entries({cx:21,cy:31,r:4,fill:'#8affb8'}))light.setAttribute(k,v);light.classList.add('plant-machine-light');g.append(light);}
   svg.append(g);

@@ -347,8 +347,15 @@ function renderFactory(){
   }
   const bay=add('g',{'data-scene-band':'bay'},null,callouts);
   label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
-  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':8},null,routes);
-  for(let i=0;i<5;i++)add('rect',{x:210+i*90,y:bayY+8,width:28,height:12,rx:2,fill:accepted?'#A8F04A':'#71877a',class:accepted?'material-flow':'lot-held'},null,routes);
+  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':10},null,routes);
+  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':3,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
+  for(let i=0;i<8;i++)add('rect',{x:200+i*78,y:bayY+6,width:26,height:14,rx:3,fill:accepted?'#A8F04A':'#71877a',class:(accepted?'material-flow':'lot-held')+' lot-'+i},null,routes);
+  const legend=$('factory-legend');
+  if(legend){
+   const launcher=legend.querySelector('#plant-launcher');
+   legend.replaceChildren(document.createTextNode('RUNNING · emerald glow   HELD · silver edge   OFFLINE · hatch + ×   FEASIBLE · accepted path'));
+   if(launcher){legend.append(document.createTextNode(' · '),launcher);}
+  }
   const node=(x,y,title,sub,kind,parent,width=186,detail='')=>{
    const g=add('g',{class:'factory-node '+kind,'data-scene-band':parent===orders?'jobs':'machines','aria-label':title+' '+(title===previewOffline?'PREVIEW - not applied':sub)+(detail?' · '+detail:'')},null,parent);
    const stopped=kind==='held',preview=title===previewOffline,stroke=stopped?'#C5CCD4':preview?'#c5ccd4':kind==='running'?'#A8F04A':'#71877a';

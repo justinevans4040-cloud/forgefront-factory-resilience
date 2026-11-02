@@ -4,7 +4,7 @@
 
 **A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call.**
 
-Certificate says 120. Receiving counted 80. Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
+Certificate says 120. Receiving counted 80. **70 parts at risk.** Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
 
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
@@ -24,7 +24,7 @@ In production, every approval sits behind an authorization wall such as a passke
 
 <p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade: OFFLINE machines marked silver, running paths glowing emerald across seven departments" /></p>
 
-<p align="center"><em>Cascade step — every machine across the full shop, failure then recovery.</em></p>
+<p align="center"><em>Full-shop cascade — living emerald flow across every department, then silver OFFLINE as the failure wave hits, then recovery restarts the line.</em></p>
 
 ## What you'll see
 

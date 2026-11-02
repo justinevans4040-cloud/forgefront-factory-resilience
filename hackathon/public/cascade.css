@@ -26,9 +26,10 @@
  repeating-linear-gradient(90deg,transparent 0 34px,#8fffb710 35px);
  border:1px solid #2f4a3c;border-radius:12px;box-shadow:inset 0 0 40px #0008}
 .plant-flow,.plant-tiles{position:absolute;inset:0;width:100%;height:100%}
-.plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:4px;padding:12px 18px;box-sizing:border-box;overflow:hidden;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s}
-.plant-tile strong{font-size:22px;line-height:1.15;text-shadow:0 1px 0 #0008;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plant-sub,.plant-state{font-size:16px;line-height:1.25;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plant-state{color:#a7fac3;font-weight:600}
-.plant-room .plant-tile.cascade-hit{border-color:#c5ccd4;box-shadow:inset 0 0 18px #c5ccd418,0 0 22px #d2ece028,0 calc(var(--depth,0)*6px) calc(18px + var(--depth,0)*8px) #0008,0 18px 0 -14px #0006;background:linear-gradient(145deg,#1c2c24f2,#101913f8),repeating-linear-gradient(135deg,#c5ccd414 0 8px,transparent 8px 18px)}
+.plant-room .plant-tile{position:absolute;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:4px;padding:12px 18px;box-sizing:border-box;overflow:hidden;background:linear-gradient(145deg,#3a5748f0,#101b16f8 52%,#1c3226f2);border:1px solid #98b7a6;border-top:3px solid #bbd6c6;color:#edf8f1;border-radius:10px;box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 0 1px #c5ccd414;text-align:left;transition:background .3s,box-shadow .3s,border-color .3s,transform .35s ease-out;transform:perspective(900px) translateZ(0)}
+.plant-room .plant-tile:not(.cascade-hit){animation:plant-tile-breathe 2.8s ease-in-out infinite}
+.plant-tile strong{font-size:20px;line-height:1.15;text-shadow:0 1px 0 #0008;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plant-sub,.plant-state{font-size:15px;line-height:1.25;max-width:100%;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;white-space:normal}.plant-state{color:#a7fac3;font-weight:600}
+.plant-room .plant-tile.cascade-hit{animation:none;border-color:#c5ccd4;transform:perspective(900px) translateZ(calc(var(--depth,0)*-8px)) scale(.985);box-shadow:inset 0 0 18px #c5ccd418,0 0 22px #d2ece028,0 calc(var(--depth,0)*6px) calc(18px + var(--depth,0)*8px) #0008,0 18px 0 -14px #0006;background:linear-gradient(145deg,#1c2c24f2,#101913f8),repeating-linear-gradient(135deg,#c5ccd414 0 8px,transparent 8px 18px)}
 .plant-tile.cascade-hit .plant-state{color:#c5ccd4;font-weight:700;letter-spacing:.04em;font-size:16px}
 .plant-room .plant-tile.cascade-partial{border-color:#80ffc1;box-shadow:0 0 22px #37ff9438,inset 0 0 16px #37ff9418;background:linear-gradient(145deg,#1a3226f2,#101b16f8)}
 .plant-tile.cascade-partial .plant-state{color:#9affbd;font-size:16px}
@@ -40,9 +41,15 @@
 .cascade-hit .plant-machine-light{animation:none;fill:#c5ccd4}.cascade-hit .plant-machinery{filter:drop-shadow(0 7px 8px #0008) saturate(.3)}
 .plant-sub{min-height:18px}.plant-tile[data-recovered=true] .plant-machinery{filter:drop-shadow(0 0 10px #56ff9a66)}
 .plant-room .plant-tile:not(.cascade-hit) .plant-machine-light{filter:drop-shadow(0 0 6px #8affb8)}
-.plant-offline-mark{position:absolute;top:10px;right:14px;font-size:28px;line-height:1;color:#c5ccd4;text-shadow:0 0 10px #c5ccd466;pointer-events:none}
-@keyframes machine-light{50%{opacity:.4}}
+.plant-offline-mark{position:absolute;top:8px;right:10px;font-size:22px;line-height:1;color:#c5ccd4;text-shadow:0 0 10px #c5ccd466;pointer-events:none;z-index:2}
+.plant-tile strong{padding-right:28px}
+.plant-machinery{margin-top:4px}
+@keyframes machine-light{50%{opacity:.4;filter:drop-shadow(0 0 10px #8affb8)}}
 @keyframes recovery-glow{0%,100%{box-shadow:0 0 18px #37ff9438,inset 0 0 14px #37ff9418}50%{box-shadow:0 0 34px #37ff9468,inset 0 0 24px #37ff9430}}
+@keyframes plant-tile-breathe{0%,100%{box-shadow:0 12px 28px #0008,inset 2px 2px #def9e028,0 18px 0 -14px #0006,0 0 12px #56ff9a14}50%{box-shadow:0 14px 34px #0009,inset 2px 2px #def9e038,0 18px 0 -14px #0006,0 0 26px #56ff9a33}}
+.plant-floor::after{content:"";pointer-events:none;position:absolute;inset:0;background:radial-gradient(ellipse at 50% 20%,#56ff9a18,transparent 55%);mix-blend-mode:screen;opacity:.55}
+.plant-room[data-cascade-active=true] .plant-floor::before{content:"";pointer-events:none;position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,transparent, #c5ccd422 48%, transparent);animation:plant-alarm-sweep 1.6s linear infinite}
+@keyframes plant-alarm-sweep{from{transform:translateX(-35%)}to{transform:translateX(135%)}}
 @media(max-width:800px){
  .plant-room{padding:12px}
  .plant-room[open]{grid-template-rows:48px auto auto auto auto minmax(150px,1fr) auto;gap:8px}
@@ -52,8 +59,8 @@
  .plant-legend{flex-wrap:wrap;gap:10px;justify-content:flex-start}
 }
 @media(prefers-reduced-motion:reduce){
- .plant-room .plant-tile{transition:none}
- .plant-machine-light,.plant-room .plant-tile[data-recovered=true],.plant-room .chain-linked{animation:none!important}
+ .plant-room .plant-tile{transition:none;animation:none!important;transform:none}
+ .plant-machine-light,.plant-room .plant-tile[data-recovered=true],.plant-room .chain-linked,.plant-room[data-cascade-active=true] .plant-floor::before{animation:none!important}
 }
 
 .plant-authorize{border:1px solid #7fad93;border-radius:12px;padding:20px 24px;background:linear-gradient(140deg,#12251c,#070e0b);color:#e8f6ee;max-width:420px;}
