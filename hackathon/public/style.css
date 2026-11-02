@@ -1289,6 +1289,42 @@ body[data-guided=true][data-active-stage=investigation] .stage[data-has-findings
 body[data-guided=true][data-active-stage=shock] #factory-svg .preview-offline rect{stroke:#C5CCD4;stroke-dasharray:8 5}
 body[data-guided=true][data-active-stage=shock] #factory-svg [data-scene-callout=capacity-preview] text{filter:drop-shadow(0 0 6px #C5CCD466)}
 @media(prefers-reduced-motion:reduce){
- #factory-svg .living-spine,#factory-svg .material-flow,#factory-svg .finding-compare-trace{animation:none!important;filter:none}
+ #factory-svg .living-spine,#factory-svg .material-flow,#factory-svg .finding-compare-trace,#factory-svg .mismatch-crack,#factory-svg .capacity-drain{animation:none!important;filter:none}
  .plant-tile.cascade-hit{box-shadow:inset 0 0 0 2px #C5CCD4}
+}
+
+.findings-reserve{margin:8px 0;padding:10px 12px;border:1px dashed #63806b;border-radius:8px;background:linear-gradient(140deg,#152219,#0b130e);font-size:16px;line-height:1.35;color:#d7e8dc}
+.findings-reserve-active{border-color:#A8F04A66;box-shadow:0 0 14px #A8F04A22}
+#model-output.findings-empty,#model-output[hidden]{display:none!important}
+body[data-guided=true][data-active-stage=investigation] .route-preflight{border:1px solid #5f7a68;border-radius:10px;padding:6px 8px;margin-bottom:8px;background:#0e1812}
+body[data-guided=true][data-active-stage=investigation] .investigation-task{border:1px solid #5f7a68;border-radius:10px;padding:6px 8px;background:#101b14}
+#factory-svg .factory-node:focus{outline:2px solid #A8F04A;outline-offset:3px}
+#factory-svg .factory-node:focus>rect{stroke:#A8F04A!important;stroke-width:3}
+
+/* audit33: Wonder P1 cinematic floor — stage fill, living flow, board OFFLINE hatch, path selection, proof chain, FPS LOD companion */
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.85fr) minmax(280px,.55fr)!important}
+ body[data-guided=true] #factory-svg{min-height:400px!important}
+ body[data-guided=true][data-active-stage=decision] .option button[aria-checked=true]{min-height:48px!important;font-size:16px!important}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{font-size:16px!important;line-height:1.35}
+ body[data-guided=true][data-active-stage=board] .proposal-task strong{font-size:16px!important;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+ body[data-guided=true][data-active-stage=proof] .proof-action{min-height:40px;font-size:16px}
+ body[data-guided=true][data-active-stage=investigation] .route-preflight summary,
+ body[data-guided=true][data-active-stage=investigation] .investigation-task summary{font-size:16px!important;min-height:36px}
+ body[data-guided=true][data-active-stage=shock] #shock-cell{min-height:40px;font-size:16px}
+}
+#factory-svg .mismatch-crack{filter:drop-shadow(0 0 8px #A8F04Acc);animation:mismatch-flash .9s ease-out 1}
+@keyframes mismatch-flash{0%{opacity:0;stroke-width:1}35%{opacity:1;stroke-width:4}100%{opacity:.85;stroke-width:3}}
+#factory-svg .capacity-drain{animation:capacity-drain .24s ease-out 1}
+@keyframes capacity-drain{0%{opacity:.35;letter-spacing:.12em}100%{opacity:1;letter-spacing:0}}
+#factory-svg .material-flow.held-flow{animation:lot-flow 1.6s linear infinite;opacity:.85;filter:drop-shadow(0 0 8px #c5ccd466)}
+#factory-svg .material-spark.held-spark{animation:factory-lot-travel 1.5s linear infinite;opacity:.9}
+#factory-svg .scene-task-tile.britt-focus-task>rect{filter:drop-shadow(0 0 18px #A8F04A88)}
+#factory-svg .board-machine.held>rect{filter:drop-shadow(0 0 10px #C5CCD466)}
+#factory-svg .proof-chain-node.ready{filter:drop-shadow(0 0 14px #A8F04Acc);animation:live-light 1.1s ease-in-out infinite}
+#factory-svg .proof-station.ready{box-shadow:0 0 22px #A8F04A33}
+.shock-preview-hatch{border:1px dashed #C5CCD4;border-radius:8px;padding:8px 10px;background:repeating-linear-gradient(-45deg,#152019,#152019 6px,#1c2a22 6px,#1c2a22 12px);font-size:16px;color:#e8f6ee;min-height:40px}
+body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .numbers strong{color:#A8F04A;text-shadow:0 0 12px #A8F04A55}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .material-flow.held-flow,#factory-svg .material-spark.held-spark,#factory-svg .proof-chain-node.ready{animation:none!important}
 }

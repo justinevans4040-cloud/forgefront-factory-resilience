@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 4,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep PROPOSED and UNTRACKED UNTIL APPROVAL on every replacement card and in the action bar so the pending proposal never reads as tracked work."
+      "priority": "P1",
+      "change": "Correct the header count to match the scene: state blocked prior, approved plan and proposed replacements consistently in scene and side zone."
     },
     {
-      "priority": "medium",
-      "change": "Un-truncate task t3 with a two-line wrap inside its reserved card zone and keep all three cards equal depth for cinematic board rhythm."
+      "priority": "P2",
+      "change": "Emphasise PROPOSED and UNTRACKED UNTIL APPROVAL on all three task cards with dashed silver borders, not only the first card."
     },
     {
-      "priority": "low",
-      "change": "Add focus ring and arrow-key movement across the 1-2-3 proposal selector in the side zone."
+      "priority": "P2",
+      "change": "Enlarge task titles to 16px minimum and add depth and glow only to the current t1 card."
     }
   ]
 }

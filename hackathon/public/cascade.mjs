@@ -74,15 +74,15 @@ export function mountCascade({loadPlant,launcher,workflow}){
  function animate(now){if(!dialog.open)return;const sample=globalThis.__cascadeFpsSample;if(sample&&sample.collecting){if(sample.last)sample.frames.push(now-sample.last);sample.last=now;}
   const progress=reduced.matches?1:Math.min(1,(now-start)/2400);if(active)paintMetrics(progress);
   const plantScale=Math.max(1,plant?.machines?.length||1);
-  // Large plants keep motion but thin particles/pulses so the cascade stays fluid under 1k–5k machines.
-  const heavy=plantScale>=1000;
-  const extreme=plantScale>=4000;
+  // Viewport LOD only — never fewer machines. Heavy earlier so 1k/5k stay fluid toward 60fps.
+  const heavy=plantScale>=400;
+  const extreme=plantScale>=1000;
   const maxDepth=result.cascade.reduce((n,c)=>Math.max(n,c.depth),1);
-  // Throttle DOM status updates on large plants; canvas flow still runs every frame.
-  const domTick=!heavy||Math.floor(now/(extreme?140:90))!==Math.floor((animate.lastDom||0)/(extreme?140:90));
+  // Throttle DOM status updates on large plants; canvas flow still runs (or every other frame when extreme).
+  const domTick=!heavy||Math.floor(now/(extreme?160:110))!==Math.floor((animate.lastDom||0)/(extreme?160:110));
   animate.lastDom=now;
-  // Viewport LOD only: skip alternate canvas paints at 4k+ (DOM cascade still updates every rAF).
-  const paintCanvas=!extreme||!animate.skipPaint;animate.skipPaint=extreme?!animate.skipPaint:false;
+  // Skip alternate canvas paints from heavy upward (LOD only; machine count unchanged).
+  const paintCanvas=!heavy||!animate.skipPaint;animate.skipPaint=heavy?!animate.skipPaint:false;
   for(const node of tiles.children){
    const depthReady=active&&!recovered&&Number(node.dataset.depth)<=progress*maxDepth;
    const offlineCount=Number(node.dataset.offlineCount||0),memberCount=Number(node.dataset.memberCount||0),runningCount=Number(node.dataset.runningCount||0);
@@ -103,15 +103,19 @@ export function mountCascade({loadPlant,launcher,workflow}){
    }
   }
   if(!paintCanvas){if(!reduced.matches||(sample&&sample.collecting))raf=requestAnimationFrame(animate);return;}
-  const box=floor.getBoundingClientRect(),dpr=devicePixelRatio||1;if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}const ctx=canvas.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,box.width,box.height);
+  const box=floor.getBoundingClientRect();
+  // Cap devicePixelRatio on heavy plants (LOD only) — fewer canvas pixels, same machine count.
+  const dpr=heavy?1:Math.min(devicePixelRatio||1,1.5);
+  if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}
+  const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#050705';ctx.fillRect(0,0,box.width,box.height);
   const nodes=[...tiles.children];
   const center=node=>{const x=parseFloat(node.style.left)+parseFloat(node.style.width)/2,y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;return {x,y};};
   const drawFlow=(from,to,color,nowStamp,width=4.2,particles=9)=>{
    const a=center(from),b=center(to);
    const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-Math.min(72,Math.abs(b.x-a.x)*0.28);
-   const particleCount=extreme?Math.min(2,particles):heavy?Math.min(3,particles):particles;
+   const particleCount=extreme?Math.min(1,particles):heavy?Math.min(2,particles):particles;
    ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches||heavy?0:22;ctx.setLineDash(reduced.matches?[]:[16,8]);ctx.beginPath();ctx.moveTo(a.x,a.y);
-   // Straight routes on extreme plants (LOD only); quadratic depth retained under 4k.
+   // Straight routes on heavy plants (LOD only); quadratic depth retained under 400.
    if(heavy)ctx.lineTo(b.x,b.y);else ctx.quadraticCurveTo(mx,my,b.x,b.y);
    ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;
    if(reduced.matches||particles<=0)return;
@@ -119,7 +123,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
     const t=((nowStamp/8)+p*(1/Math.max(particleCount,1)))%1;
     const ox=heavy?a.x+(b.x-a.x)*t:(1-t)*(1-t)*a.x+2*(1-t)*t*mx+t*t*b.x;
     const oy=heavy?a.y+(b.y-a.y)*t:(1-t)*(1-t)*a.y+2*(1-t)*t*my+t*t*b.y;
-    ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=heavy?0:24;ctx.beginPath();ctx.arc(ox,oy,heavy?3:7+(p%4),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=heavy?0:24;ctx.beginPath();ctx.arc(ox,oy,heavy?2.5:7+(p%4),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
    }
   };
   const ordered=[...nodes].sort((left,right)=>parseFloat(left.style.left)-parseFloat(right.style.left)||parseFloat(left.style.top)-parseFloat(right.style.top));
@@ -133,17 +137,18 @@ export function mountCascade({loadPlant,launcher,workflow}){
    const lathes=ordered.find(n=>/cnc\s*lathes/i.test(deptLabel(n)));
    const inspect=ordered.find(n=>/inspect/i.test(deptLabel(n)));
    const finish=ordered.find(n=>/finish/i.test(deptLabel(n)));
-   for(let i=0;i<ordered.length-1;i++){
+   // Neighbor silver links only under lighter plants — heavy keeps the emerald spine only.
+   if(!heavy)for(let i=0;i<ordered.length-1;i++){
     const from=ordered[i],to=ordered[i+1];
     const hit=from.classList.contains('cascade-hit')||to.classList.contains('cascade-hit');
     drawFlow(from,to,hit?'#c5ccd433':'#c5ccd422',now,hit?2.0:2.2,0);
    }
    if(mills&&lathes){
     // Primary living emerald mills → lathes spine; reverse glow only under lighter plants.
-    drawFlow(mills,lathes,'#56ff9a',now,heavy?7.2:9.2,heavy?6:24);
+    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?3:24);
     if(!heavy)drawFlow(lathes,mills,'#8affb888',now,3.8,10);
    }
-   if(lathes&&inspect&&!inspect.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?4.2:5.6,heavy?3:14);
+   if(!extreme&&lathes&&inspect&&!inspect.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?3.6:5.6,heavy?2:14);
    if(!heavy&&inspect&&finish&&!finish.classList.contains('cascade-hit'))drawFlow(inspect,finish,'#8affb866',now,3.6,8);
    if(!reduced.matches){
     if(!heavy){
@@ -151,7 +156,8 @@ export function mountCascade({loadPlant,launcher,workflow}){
      const alarmGrad=ctx.createLinearGradient(alarm-90,0,alarm+90,0);alarmGrad.addColorStop(0,'#c5ccd400');alarmGrad.addColorStop(.5,'#c5ccd455');alarmGrad.addColorStop(1,'#c5ccd400');
      ctx.fillStyle=alarmGrad;ctx.fillRect(0,0,box.width,box.height);
     }
-    for(const node of ordered.filter(n=>n.classList.contains('cascade-hit'))){
+    // Pulse rings only on light plants; extreme skips them entirely (LOD).
+    if(!extreme)for(const node of ordered.filter(n=>n.classList.contains('cascade-hit'))){
      const c=center(node),pulse=14+((now/28)%24);
      ctx.strokeStyle='#c5ccd488';ctx.lineWidth=heavy?2:3;ctx.beginPath();ctx.arc(c.x,c.y,pulse,0,Math.PI*2);ctx.stroke();
     }

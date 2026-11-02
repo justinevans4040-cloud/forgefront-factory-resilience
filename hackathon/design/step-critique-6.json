@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 6,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep CELL-MILL-2 fully silver cross-hatched with cross marker and OFFLINE text and ensure no emerald route passes through it; retain the constrained Split card in the same stopped treatment."
+      "priority": "P1",
+      "change": "Show CELL-MILL-2 as OFFLINE with silver cross-hatching, x marker and 0h, and remove any feasible route through it."
     },
     {
-      "priority": "medium",
-      "change": "Clarify the side zone: label the investigation control as the evidence task, distinct from any provider-identity readiness check, with its own status line."
+      "priority": "P1",
+      "change": "Keep provider identity readiness separate from the Reinvestigate recovery evidence action under separate headings."
     },
     {
-      "priority": "low",
-      "change": "Reduce the empty verified-findings zone by vertically centring its collapsed header or adding the 3 to 2 feasible-paths summary at 16px."
+      "priority": "P2",
+      "change": "Fill the empty Verified findings zone with a concise cleared-state message at 16px instead of blank depth."
     }
   ]
 }

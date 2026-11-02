@@ -2,6 +2,13 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit thirty-three
+
+- Cinematic floor lifts: wider stage fill (3.85fr), living held-flow particles, DOES NOT MATCH crack cue, shock capacity-drain metric, board OFFLINE hatch without crossing diagonals, three-line task titles, findings-reserve after capacity shock, cascade LOD (heavy at 400, dpr cap, alternate-frame paint). Build stamp `audit33-cinematic-floor`. Visual audit gate re-proved under run37 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).
+- No-cap plant browser proof at 1,000 and 5,000 machines retained; cascade FPS profiles recorded honestly (headless ~9–13 fps after LOD — 60 fps target remains open).
+- Genuine Muse Wonder reviews 144–147: best cascade **9**, README **9**, guided **7–9**; retained direction remains iteration 82 (`promotedDirection: false`).
+- Bounded live Wonder and Baseten investigation both MODEL_STOP with 3 validated claims; Fireworks never called. The Britt naming, Authorize wall and public-tree checks stay green.
+
 ## Independent audit thirty-two
 
 - Wonder P1 visual lifts: larger factory stage fill, emerald selected-path fill, shock capacity preview OFFLINE chip in the reserved callout band (no text overlap), denser findings glow, fuller cascade OFFLINE/RUNNING chips, living mills→lathes spine. Visual audit gate re-proved under run36 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).

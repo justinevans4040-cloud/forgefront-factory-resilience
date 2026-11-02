@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 1,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Enlarge the factory scene depth: add layered machine depth and emerald material-flow trace from RECEIVING toward jobs so the 120 versus 80 mismatch reads cinematically at a glance."
+      "priority": "P1",
+      "change": "Enlarge the factory scene to at least 70% of main and tighten the right zone so Certificate and Receiving tracks gain depth, glow and clearer DOES NOT MATCH alignment."
     },
     {
-      "priority": "medium",
-      "change": "Tighten right-zone callouts to 16px body with larger 120/80 metrics and keep Source detail rows at least 36px tall for pointer and keyboard clarity."
+      "priority": "P2",
+      "change": "Add living emerald flow along the conveyor dots only where material can move; keep held material static."
     },
     {
-      "priority": "low",
-      "change": "Make DOES NOT MATCH span only the aligned track gap and add a focus ring to the focusable scene nodes."
+      "priority": "P2",
+      "change": "Raise small side-zone body copy to 16px and strengthen focus ring visibility on Source detail controls."
     }
   ]
 }

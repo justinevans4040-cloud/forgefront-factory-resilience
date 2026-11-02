@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 5,
   "score": 9,
   "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Strengthen the preview distinction: keep CELL-MILL-2 silver cross-hatched with cross marker and plain OFFLINE preview text, distinct from the applied offline state in later steps."
+      "priority": "P1",
+      "change": "Keep CELL-MILL-2 preview in silver cross-hatching with x marker and plain WILL GO OFFLINE text; ensure no route flows through it in preview."
     },
     {
-      "priority": "medium",
-      "change": "Enlarge the 24h to 0h capacity shift to headline metric scale and tie its glow to the highlighted feasible route."
+      "priority": "P2",
+      "change": "Animate the 24h to 0h capacity change as a single cinematic drain on state change, frozen under reduced motion."
     },
     {
-      "priority": "low",
-      "change": "Confirm the machine selector is at least 36px with visible focus ring and labelled effect: Will invalidate acceptance."
+      "priority": "P2",
+      "change": "Make the machine selector at least 36px tall with a visible 2px emerald focus ring."
     }
   ]
 }

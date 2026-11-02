@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 2,
   "score": 8,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Separate provider-identity readiness from the investigation evidence panel with distinct headings, status and controls when those panels appear; keep Verified findings as the evidence task."
+      "priority": "P1",
+      "change": "Separate connection readiness for provider identity from the Verified findings evidence task with distinct headings and controls in the side zone."
     },
     {
-      "priority": "medium",
-      "change": "Raise the three finding rows to full 16px labels and bind each verified fact to bidirectional highlighting with its scene track or station."
+      "priority": "P2",
+      "change": "Make the 3 / 0 / 3 metrics tabular 26px and link each finding row bidirectionally to its SVG node highlight."
     },
     {
-      "priority": "low",
-      "change": "Add a single emerald route-trace animation on findings opening, then hold static, fully removed under reduced motion."
+      "priority": "P2",
+      "change": "Deepen state glow on verified rows while keeping narration to one instruction and one status sentence."
     }
   ]
 }

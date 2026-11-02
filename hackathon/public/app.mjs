@@ -90,7 +90,10 @@ function render(){
  $('export').disabled=$('report').disabled=!$('plaintext-ack').checked;
  $('shock').disabled=!state.snapshot.cells.some(c=>c.online);
  if(state.operator?.role==='auditor')for(const id of ['investigate','confirm','shock','reset','revoke','guide-start'])$(id).disabled=true;
- $('model-output').hidden=!run;$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;document.querySelector('.route-preflight').open=false;$('model-output').open=true;}if(!run)document.querySelector('.route-preflight').open=true;
+ $('model-output').hidden=!run;$('model-output').toggleAttribute('hidden',!run);$('model-output').classList.toggle('findings-empty',!run);$('model-output').closest('.stage').dataset.hasFindings=String(Boolean(run));if(run&&$('model-output').dataset.runId!==run.runId){$('model-output').dataset.runId=run.runId;document.querySelector('.route-preflight').open=false;$('model-output').open=true;}if(!run){document.querySelector('.route-preflight').open=true;$('model-output').open=false;}
+ // After a capacity shock, keep a reserved findings summary so the side zone never reads as an empty box.
+ const findingsReserve=$('findings-reserve');
+ if(findingsReserve){const needsReserve=!run&&state.decision.status==='invalidated';findingsReserve.hidden=!needsReserve;findingsReserve.classList.toggle('findings-reserve-active',needsReserve);if(needsReserve)findingsReserve.textContent='Verified findings cleared by the capacity change · '+state.analysis.recovery.feasibleCount+' feasible paths remain · Reinvestigate to refill facts.';}
  if(!run&&$('investigation-pending').hidden)$('investigation-status').textContent=investigationStatus();
  $('comparison').replaceChildren(...state.runs.filter(r=>r.run.snapshotDigest===state.snapshot.snapshotDigest).map(r=>text('p',`${r.run.sample?'Sample · offline walkthrough; no live AI':r.calls.at(-1)?.returnedModel??'identity unavailable'} · ${(r.run.elapsedMs/1000).toFixed(1)}s · ${r.claims.accepted.length} validated / ${r.claims.rejected.length} rejected · ${r.proposalValid?'proposal valid':r.run.stopReason}`)));
  if(run){$('investigation-handoff').textContent=investigationHandoff(run,$('provider').value);$('investigation-highlights').replaceChildren(...investigationHighlights(run,state.analysis).map(({value,label})=>{const item=text('div','','investigation-metric');item.append(text('strong',value),text('span',label));return item;}));$('model-label').textContent=(run.run.sample?'Sample · offline walkthrough; no live AI':'LIVE META · '+(run.calls.at(-1)?.returnedModel??'identity unavailable')) ;$('run-summary').textContent=`${run.proposalValid?'Investigation complete':run.run.stopReason} · ${run.run.turns} turns · ${run.run.toolCalls} read-only calls · ${(run.run.elapsedMs/1000).toFixed(1)}s`;const analysis=summarizeAnalysis(run.narrative);$('narrative').textContent=analysis.summary;$('analysis-full').textContent=analysis.full;$('read-full-analysis').hidden=!analysis.truncated;$('read-full-analysis').disabled=reviewIndex!==null;
@@ -135,7 +138,7 @@ $('authorize-cancel').addEventListener('click',()=>closeAuthorize());
 $('authorize-confirm').addEventListener('click',()=>{if(!pendingAuthorize)return;const {onConfirm}=pendingAuthorize;onConfirm();});
 $('read-full-analysis').addEventListener('click',()=>{if(!$('analysis-full').textContent.trim())return;$('analysis-dialog').showModal();$('analysis-close').focus();});
 $('analysis-close').addEventListener('click',()=>{if($('analysis-dialog').open)$('analysis-dialog').close();});
- $('shock-cell').addEventListener('change',()=>{const preview=$('shock-preview');if(preview)preview.textContent=$('shock-cell').value+' PREVIEW - not applied · silver dashed preview until Apply second shock.';if(state){renderFactory();renderCapacity();}});
+ $('shock-cell').addEventListener('change',()=>{if(state){renderFactory();renderCapacity();}});
 $('shock').addEventListener('click',()=>busy($('shock'),async()=>{await api('shock',{cellId:$('shock-cell').value});await refresh();recap('The second shock changed the plan.','The prior acceptance is invalid. Investigate the recalculated capacity before a fresh decision.','capacity');notice('Machine outage applied. Prior acceptance is invalid; investigate the changed snapshot.');}));
 $('reset').addEventListener('click',()=>busy($('reset'),async()=>{await api('reset');guide=null;guideHistory=[];reviewIndex=null;reviewContext=null;$('guided-steps').replaceChildren();$('guide-back').hidden=true;envelope=null;showStage('incident');recap('The incident is ready.','Start the guided recovery to trace every decision.');$('typed').value='';$('export-passphrase').value='';$('passphrase-feedback').textContent=passphraseInputStatus('').message;$('plaintext-ack').checked=false;$('plaintext-options').open=false;await refresh();$('guide-title').textContent='Guided recovery story';$('guide-detail').textContent='Start the guide to follow a fresh recovery decision.';$('guide-next').hidden=true;$('guide-progress').value=0;
  $('guide-time').textContent='';focusPanel('incident');notice('Fresh recovery scenario loaded. A new investigation is required.');}));
@@ -270,7 +273,7 @@ function renderFactory(){
       const y=80+row*cardHeight,index=scene.tasks.indexOf(task),tile=add('g',{'data-scene-task':index,class:'scene-task-tile','aria-label':'Inspect tracked task '+task.title},null,hero);
       box(x+8,y,174,cardHeight-10,tile,index===inspectedTask?'#A8F04A':'#71877a');
       label(x+18,y+25,task.id,18,tile);
-      tileTitle(task.title,16,Math.max(1,Math.floor((cardHeight-80)/32))).forEach((line,n)=>label(x+18,y+58+n*32,line,18,tile));
+      tileTitle(task.title,16,Math.max(2,Math.floor((cardHeight-80)/28))).forEach((line,n)=>label(x+18,y+58+n*28,line,18,tile));
       activate(tile,()=>{inspectedTask=index;renderBoard();renderFactory();});
      });
     });
@@ -287,21 +290,26 @@ function renderFactory(){
    label(receivingSlot.x+16,stationY+110,state.snapshot.incident.heldMaterialId,18,receivingCard);
    scene.cells.forEach((cell,i)=>{
     const slot=factoryPositions(250,824,scene.cells.length,360)[i];
-    const card=add('g',{'data-scene-machine':cell.cellId,class:'factory-node board-machine'},null,machineContext);
+    const card=add('g',{'data-scene-machine':cell.cellId,class:'factory-node board-machine'+(!cell.online?' held':'')},null,machineContext);
     box(slot.x,stationY,slot.width,stationH,card,!cell.online?'#C5CCD4':accepted&&activeCells.has(cell.cellId)?'#A8F04A':'#71877a');
+    if(!cell.online){
+     card.querySelector('rect').setAttribute('fill','url(#preview-hatch)');
+     add('path',{d:`M ${slot.x+16} ${stationY+48} l ${slot.width-32} 70 m 0 -70 l -${slot.width-32} 70`,stroke:'#C5CCD4','stroke-width':2.5},null,card);
+     label(slot.x+slot.width-28,stationY+36,'×',26,card,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});
+    }
     label(slot.x+18,stationY+40,cell.cellId,24,card,{'font-weight':700});
-    label(slot.x+18,stationY+80,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',18,card,{fill:'#c5ccd4'});
+    label(slot.x+18,stationY+80,!cell.online?'OFFLINE':accepted&&activeCells.has(cell.cellId)?'IN ACCEPTED PLAN':'AVAILABLE',18,card,{fill:'#c5ccd4',class:!cell.online?'offline-label':''});
     label(slot.x+18,stationY+120,cell.online?cell.availableHours+'h capacity':'replan required',28,card,{'font-weight':700});
    });
    const taskSlots=proposalLayout(scene.tasks.length,height);
    scene.tasks.forEach((task,i)=>{
     const slot=taskSlots[i];if(slot.page!==taskSlots[inspectedTask]?.page)return;const {x,y}=slot,tileW=slot.width,tileH=slot.height;
-    const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'},null,hero);
+    const tile=add('g',{'data-scene-task':i,role:'button',tabindex:0,'aria-label':'Inspect proposed task '+(i+1)+': '+task.title,'aria-pressed':String(i===inspectedTask),class:'scene-task-tile'+(i===inspectedTask?' britt-focus-task':'')},null,hero);
     const select=()=>document.querySelector('[data-proposal-index="'+i+'"]')?.click();tile.addEventListener('click',select);tile.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();select();}});
     box(x,y,tileW,tileH,tile,i===inspectedTask?'#A8F04A':'#71877a',i===inspectedTask?'#1b3525':'#101b14');
     label(x+14,y+30,String(i+1).padStart(2,'0')+' · '+task.id,22,tile,{'font-weight':700,fill:'#88eba8'});
-    const titleLines=tileTitle(task.title,Math.floor((tileW-28)/10),slot.titleLines);
-    titleLines.forEach((line,n)=>label(x+14,y+62+n*32,line,20,tile,{'font-weight':600}));
+    const titleLines=tileTitle(task.title,Math.floor((tileW-28)/8),Math.max(3,slot.titleLines));
+    titleLines.forEach((line,n)=>label(x+14,y+58+n*26,line,16,tile,{'font-weight':600}));
     const dependsY=y+(slot.dependsY??slot.titleBottom+26);
     const dueY=y+(slot.dueY??tileH-58);
     const statusY=y+(slot.statusY??tileH-22);
@@ -357,9 +365,12 @@ function renderFactory(){
    label(40,40,cell?cell.cellId:'CAPACITY',24,panel,{'font-weight':700});
    label(40,72,'CAPACITY PREVIEW',18,panel,{fill:'#c5ccd4'});
    // Keep the 26px+ capacity metric alone in the center; OFFLINE chip sits in its own right column (no text/text overlap).
-   label(300,62,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700,class:'capacity-metric'});
+   label(300,62,cell?cell.availableHours+'h → 0h':'Outage applied',32,panel,{'font-weight':700,class:'capacity-metric capacity-drain'});
    label(560,40,'× WILL GO OFFLINE',18,panel,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});
    label(560,72,cell?'Apply → invalidate acceptance':'Fresh decision',18,panel,{fill:'#c5ccd4'});
+   // Side-zone preview mirror: hatched pattern + text for pattern-plus-text redundancy (Wonder step 5).
+   const shockPreviewEl=$('shock-preview');
+   if(shockPreviewEl){shockPreviewEl.classList.add('shock-preview-hatch');shockPreviewEl.textContent=cell?(cell.cellId+' · × WILL GO OFFLINE · '+cell.availableHours+'h → 0h'):'Selecting a machine previews the offline state on the factory line.';}
    // Leader ends in the bay band above stations — never through machine faces.
    if(cell){const idx=Math.max(0,cells.findIndex(c=>c.cellId===cell.cellId));const slot=machineSlots[idx]??{x:210,width:186};add('path',{d:`M ${slot.x+slot.width/2} 104 V ${bayY+16}`,class:'route-held',fill:'none','stroke-width':2,'stroke-dasharray':'4 4','data-scene-band':'callout'},null,routes);}
   }else{
@@ -371,14 +382,17 @@ function renderFactory(){
     label(24,y+28,allQuantities.length>2?(i?'Lowest source':'Highest source'):(i?'Receiving':'Certificate'),22,g);label(210,y+28,String(e.quantity.value),30,g,{'text-anchor':'end'});
     box(230,y+2,420,Math.min(34,compareRow-16),g);add('rect',{x:230,y:y+2,width:comparison.widths[i],height:Math.min(34,compareRow-16),rx:5,fill:i?'#A8F04A':'#c5ccd4'},null,g);
    });
-   label(660,40,'DOES NOT MATCH',22,callouts,{class:'mismatch-label scene-size-22'});
+   label(660,40,'DOES NOT MATCH',24,callouts,{class:'mismatch-label scene-size-22','font-weight':800});
+   // Crack/flash cue on the mismatch gap — static under prefers-reduced-motion via CSS.
+   add('path',{d:'M 640 18 L 652 40 L 640 62',class:'mismatch-crack',fill:'none',stroke:'#A8F04A','stroke-width':3},null,callouts);
   }
   const bay=add('g',{'data-scene-band':'bay'},null,callouts);
   label(24,bayY+18,'DOCK',20,bay,{class:'dock-bay scene-size-18'});label(110,bayY+18,'QA',20,bay,{class:'qa-gate scene-size-18'});
-  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':12},null,routes);
-  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':4,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
-  for(let i=0;i<12;i++)add('rect',{x:190+i*56,y:bayY+5,width:22,height:16,rx:3,fill:accepted?'#A8F04A':'#71877a',class:(accepted?'material-flow':'lot-held')+' lot-'+i},null,routes);
-  for(let i=0;i<6;i++)add('circle',{cx:210+i*110,cy:bayY+14,r:3,fill:accepted?'#dafb9a':'#9aada0',class:(accepted?'material-spark':'lot-held')+' spark-'+i},null,routes);
+  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:'conveyor-belt',stroke:'#496353','stroke-width':14},null,routes);
+  add('path',{d:`M 180 ${bayY+14} H ${lineRight}`,class:accepted?'route-running living-spine':'route-held living-spine',fill:'none','stroke-width':5,'stroke-dasharray':accepted?'0':'10 8'},null,routes);
+  // Living material flow along DOCK→mills even while held (amber/silver pulse); emerald when accepted.
+  for(let i=0;i<14;i++)add('rect',{x:188+i*48,y:bayY+4,width:24,height:18,rx:3,fill:accepted?'#A8F04A':'#8aa396',class:(accepted?'material-flow':'material-flow held-flow')+' lot-'+i},null,routes);
+  for(let i=0;i<8;i++)add('circle',{cx:200+i*90,cy:bayY+14,r:4,fill:accepted?'#dafb9a':'#c5ccd4',class:(accepted?'material-spark':'material-spark held-spark')+' spark-'+i},null,routes);
   const legend=$('factory-legend');
   if(legend){
    const launcher=legend.querySelector('#plant-launcher');
@@ -398,8 +412,8 @@ function renderFactory(){
    add('rect',{x:x+3,y:y+3,width:width-6,height:10,rx:3,fill:stopped?'#6d757c88':kind==='running'?'#A8F04A33':'#c5ccd422',class:'machine-bevel'},null,g);
    add('rect',{x:x+width-12,y:y+12,width:8,height:nodeH-18,rx:2,fill:stopped?'#3a424888':kind==='running'?'#163826aa':'#101a14aa',class:'machine-bevel'},null,g);
   if(stopped){g.querySelector('rect').setAttribute('fill','url(#preview-hatch)');}
-  // Hatch + corner × stay below the title band so diagonals never cross the CELL-* label (Wonder P1).
-  if(stopped){const hatchTop=y+Math.round(nodeH*0.34);add('path',{d:`M ${x+14} ${hatchTop} l ${width-28} ${Math.max(28,nodeH*0.42)} m 0 -${Math.max(28,nodeH*0.42)} l -${width-28} ${Math.max(28,nodeH*0.42)}`,stroke:'#C5CCD4','stroke-width':2.5},null,g);label(x+width-28,y+Math.round(nodeH*0.26),'×',26,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
+  // Pattern fill + corner × + plain OFFLINE text — no full-card diagonals crossing labels (Wonder P1 / audit33).
+  if(stopped){label(x+width-28,y+Math.round(nodeH*0.26),'×',26,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
   if(preview){g.classList.add('preview-offline');g.querySelector('rect').setAttribute('stroke-dasharray','8 5');label(x+width-30,y+Math.round(nodeH*0.28),'×',24,g,{fill:'#C5CCD4','font-weight':800,class:'offline-x'});}
   if(kind==='running')add('circle',{cx:x+width-18,cy:y+18,r:6,fill:'#A8F04A',class:'machine-live-light'},null,g);
   const clip=Math.max(18,Math.floor(width/9));

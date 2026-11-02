@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 10,
   "score": 7,
   "wowScore": 8,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Increase legibility of department counts: pair every OFFLINE icon group with Running counts in 16px text, as the current small machine glyphs are hard to tally at 1366x768."
+      "priority": "P1",
+      "change": "Clarify department state counts: several departments read OFFLINE with all machines crossed while mills and lathes show mixed running counts; align icons, counts and legend so stopped machines use silver cross-hatching, x marker and OFFLINE text."
     },
     {
-      "priority": "medium",
-      "change": "Strengthen the single emerald mills to lathes recovery arc with layered glow and one cinematic trace on state change, then static, removed under reduced motion."
+      "priority": "P1",
+      "change": "Strengthen the single emerald mills to lathes recovery arc with living flow, glow and depth, and dim non-feasible routes."
     },
     {
-      "priority": "low",
-      "change": "Raise the footer department navigation targets to at least 36px and add focus rings to Recording view and Return to recovery room."
+      "priority": "P2",
+      "change": "Enlarge department labels and machine icons, keep the four top metrics tabular, and ensure Accept calculated recovery is the sole primary."
     }
   ]
 }

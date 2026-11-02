@@ -31,10 +31,14 @@ export function proposalLayout(count,height){
   const page=Math.floor(i/pageSize),local=i%pageSize,pageCount=Math.min(pageSize,count-page*pageSize),columns=Math.min(maxColumns,pageCount),rows=Math.ceil(pageCount/columns);
   const width=(800-gap*(columns-1))/columns,cardHeight=(height-24-top-gap*(rows-1))/rows;
   // Fixed footer bands keep due/status clear of title at every card height (including dense 5–12 task grids).
+  // Prefer 2–3 title lines so task titles stay untruncated (Wonder guided board P1 / audit33).
   const statusY=cardHeight-12,dueY=cardHeight-56;
-  let titleLines=Math.max(1,Math.min(2,Math.floor((dueY-90)/32)));
-  let titleBottom=62+(titleLines-1)*32+8;
-  while(titleLines>1&&titleBottom>=dueY-26){titleLines-=1;titleBottom=62+(titleLines-1)*32+8;}
+  const maxTitle=count<=3&&cardHeight>=200?3:2;
+  let titleLines=Math.max(1,Math.min(maxTitle,Math.floor((dueY-72)/26)));
+  if(cardHeight>=168)titleLines=Math.max(titleLines,Math.min(2,maxTitle));
+  if(count<=3&&cardHeight>=210)titleLines=Math.max(titleLines,3);
+  let titleBottom=62+(titleLines-1)*26+8;
+  while(titleLines>1&&titleBottom>=dueY-26){titleLines-=1;titleBottom=62+(titleLines-1)*26+8;}
   if(titleBottom>=dueY-26)titleBottom=dueY-28;
   const dependsY=Math.min(titleBottom+20,dueY-28);
   const barY=Math.min(dueY-22,Math.max(dependsY+6,titleBottom+6));

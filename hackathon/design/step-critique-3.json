@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 3,
-  "score": 8,
+  "score": 9,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Ensure selecting any path visibly arms the one primary as Review recovery option, leading to one-click Approve and then the Authorize this decision wall; keep No acceptance recorded until that flow completes."
+      "priority": "P1",
+      "change": "Keep the three path cards at equal height, align 83h, 35h and 17.5h metrics, and show selected-path emerald glow before Approve."
     },
     {
-      "priority": "medium",
-      "change": "Add selected-path state glow and an emerald feasible route through the scene while the unselected paths stay silver and static."
+      "priority": "P2",
+      "change": "Clarify that selecting a path opens one-click Approve then the Authorize this decision wall, in 16px text beside the primary control."
     },
     {
-      "priority": "low",
-      "change": "Align side comparison finish and cost figures in tabular columns at 26px for faster tradeoff scanning."
+      "priority": "P2",
+      "change": "Add a cinematic route trace for the hovered or focused path across CELL-MILL-1 and CELL-MILL-2, static under reduced motion."
     }
   ]
 }

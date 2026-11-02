@@ -1,21 +1,21 @@
 {
   "model": "muse-wonder-1.0",
-  "iteration": 140,
+  "iteration": 147,
   "step": 7,
-  "score": 8,
+  "score": 9,
   "wowScore": 7,
   "fixes": [
     {
-      "priority": "high",
-      "change": "Keep the constrained Split path non-selectable with cross marker, hatching and the two-online-cells reason, while the two feasible paths keep clear radio targets at least 36px."
+      "priority": "P1",
+      "change": "Keep Split available capacity visibly constrained with cross-hatching, x marker and the two-online-cells reason in both scene and side zone."
     },
     {
-      "priority": "medium",
-      "change": "Make PRIOR ACCEPTANCE INVALIDATED the centre status in the action bar at 16px so the fresh-review requirement cannot be missed."
+      "priority": "P2",
+      "change": "Align finish and incremental metrics for the two feasible paths and highlight the recommended route with living emerald flow on focus."
     },
     {
-      "priority": "low",
-      "change": "Add emerald state glow to the newly feasible route only after a revised option is selected, animated once then static."
+      "priority": "P2",
+      "change": "Strengthen PRIOR ACCEPTANCE INVALIDATED status in the action bar without shrinking it below 16px."
     }
   ]
 }
