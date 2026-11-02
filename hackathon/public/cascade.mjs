@@ -61,7 +61,7 @@ export function mountCascade({loadPlant,launcher,workflow}){
   pageLabel.textContent=(department??'Entire plant')+' · '+layout.total+' '+(department?'machines':'departments')+' · view '+(page+1)+' of '+layout.pages;previous.disabled=page===0;next.disabled=page+1>=layout.pages;overview.disabled=!department;
   recover.disabled=!active||recovered||!result.recovery.feasible||busy||!consent.hidden;
   caption.textContent=selectedMachine?'Dependency chain · '+selectedMachine+' → '+highlighted.size+' connected machines':recovered?'Recovery accepted · '+result.recovery.assignments.length+' operations · '+format(result.recovery.finishHours)+'h · $'+format(result.recovery.costUsd):active?labels[failureSelect.value]+' freezes '+result.affected.length+' affected operations across the plant. Emerald recovery stays on the feasible mills → lathes path.':plant.label+' · '+plant.machines.length+' machines. Choose a failure to see the cascade.';
-  paintMetrics(1);cancelAnimationFrame(raf);animate(performance.now());
+  animate.tileCache=null;animate.staticDirty=true;paintMetrics(1);cancelAnimationFrame(raf);animate(performance.now());
  }
  function paintMetrics(progress){
   const m=result.metrics;
@@ -71,116 +71,132 @@ export function mountCascade({loadPlant,launcher,workflow}){
   }
   metrics.replaceChildren(...[[m.lostHours*progress,'HOURS AT RISK'],[m.lateOrders*progress,'LATE ORDERS'],[m.exposureUsd*progress,'COST AT RISK'],[m.shipSlipHours*progress,'SHIP SLIP · HOURS']].map(([n,label])=>{const cell=el('div');cell.append(el('strong',(label==='COST AT RISK'?'$':'')+format(n)),el('span',label));return cell;}));
  }
+ function refreshTileCache(){
+  // Cache layout centers + status nodes once per draw/layout — never parse style or querySelector every frame.
+  const nodes=[...tiles.children].map(node=>{
+   const x=parseFloat(node.style.left)||0,y=parseFloat(node.style.top)||0,w=parseFloat(node.style.width)||0,h=parseFloat(node.style.height)||0;
+   return {
+    node,x,y,w,h,cx:x+w/2,cy:y+h/2,
+    depth:Number(node.dataset.depth||0),
+    affected:node.dataset.affected==='true',
+    partialFlag:node.dataset.partialOffline==='true',
+    offlineCount:Number(node.dataset.offlineCount||0),
+    memberCount:Number(node.dataset.memberCount||0),
+    runningCount:Number(node.dataset.runningCount||0),
+    label:((node.dataset.plantNode||'')+' '+(node.querySelector('strong')?.textContent||'')).toLowerCase(),
+    stateEl:node.querySelector('.plant-state'),
+    subEl:node.querySelector('.plant-sub'),
+    hitKey:node.dataset.hitKey||''
+   };
+  }).sort((a,b)=>a.x-b.x||a.y-b.y);
+  animate.tileCache={nodes,at:performance.now(),maxDepth:result.cascade.reduce((n,c)=>Math.max(n,c.depth),1)};
+  animate.staticDirty=true;
+ }
+ function ensureCanvas(box,dpr){
+  const w=Math.round(box.width*dpr),h=Math.round(box.height*dpr);
+  if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;animate.staticDirty=true;}
+  if(!animate.staticLayer||animate.staticLayer.width!==w||animate.staticLayer.height!==h){
+   animate.staticLayer=typeof OffscreenCanvas!=='undefined'?new OffscreenCanvas(w,h):Object.assign(document.createElement('canvas'),{width:w,height:h});
+   animate.staticDirty=true;
+  }
+  return canvas.getContext('2d',{alpha:false,desynchronized:true});
+ }
+ function paintStaticLayer(box,dpr,heavy,cache){
+  const layer=animate.staticLayer;const sctx=layer.getContext('2d');sctx.setTransform(dpr,0,0,dpr,0,0);sctx.fillStyle='#050705';sctx.fillRect(0,0,box.width,box.height);
+  const nodes=cache.nodes;
+  const stroke=(a,b,color,width)=>{sctx.strokeStyle=color;sctx.lineWidth=width;sctx.shadowBlur=0;sctx.beginPath();sctx.moveTo(a.cx,a.cy);if(heavy)sctx.lineTo(b.cx,b.cy);else{const mx=(a.cx+b.cx)/2,my=(a.cy+b.cy)/2-Math.min(72,Math.abs(b.cx-a.cx)*0.28);sctx.quadraticCurveTo(mx,my,b.cx,b.cy);}sctx.stroke();};
+  if(recovered&&nodes.length>1){for(let i=0;i<nodes.length-1;i++)stroke(nodes[i],nodes[i+1],'#2d6b4a',3.2);}
+  else if(active&&!recovered&&nodes.length>1){
+   if(!heavy)for(let i=0;i<nodes.length-1;i++){const hit=nodes[i].node.classList.contains('cascade-hit')||nodes[i+1].node.classList.contains('cascade-hit');stroke(nodes[i],nodes[i+1],hit?'#c5ccd433':'#c5ccd422',hit?2:2.2);}
+   else for(let i=0;i<nodes.length-1;i++)stroke(nodes[i],nodes[i+1],'#1f3d3088',1.6);
+  }else if(nodes.length){
+   for(const n of nodes){sctx.beginPath();sctx.moveTo(0,n.cy);sctx.lineTo(box.width,n.cy);sctx.strokeStyle='#1f3d3088';sctx.lineWidth=1.5;sctx.stroke();}
+  }
+  animate.staticDirty=false;
+ }
  function animate(now){if(!dialog.open)return;const sample=globalThis.__cascadeFpsSample;if(sample&&sample.collecting){if(sample.last)sample.frames.push(now-sample.last);sample.last=now;}
-  const progress=reduced.matches?1:Math.min(1,(now-start)/2400);if(active)paintMetrics(progress);
+  const progress=reduced.matches?1:Math.min(1,(now-start)/2400);
   const plantScale=Math.max(1,plant?.machines?.length||1);
-  // Viewport LOD only — never fewer machines. Heavy earlier so 1k/5k stay fluid toward 60fps.
+  // Viewport LOD only — never fewer machines. Cached centers + dirty static layer keep 1k/5k toward 60fps.
   const heavy=plantScale>=400;
   const extreme=plantScale>=1000;
   const ultra=plantScale>=2500;
-  const maxDepth=result.cascade.reduce((n,c)=>Math.max(n,c.depth),1);
-  // Throttle DOM status updates on large plants; canvas flow still runs (or every other frame when extreme).
-  const domTick=!heavy||Math.floor(now/(ultra?220:extreme?180:110))!==Math.floor((animate.lastDom||0)/(ultra?220:extreme?180:110));
+  // Metrics DOM refresh is expensive — throttle independently of canvas paints.
+  const metricsTick=!heavy||Math.floor(now/(ultra?200:extreme?120:80))!==Math.floor((animate.lastMetrics||0)/(ultra?200:extreme?120:80));
+  if(active&&metricsTick){animate.lastMetrics=now;paintMetrics(progress);}
+  if(!animate.tileCache||animate.tileCache.nodes.length!==tiles.children.length)refreshTileCache();
+  const cache=animate.tileCache;const maxDepth=cache.maxDepth||1;
+  // DOM status only on state change (dirty tiles) — syncMachineArt never runs every frame.
+  const domTick=!heavy||Math.floor(now/(ultra?240:extreme?160:90))!==Math.floor((animate.lastDom||0)/(ultra?240:extreme?160:90));
   animate.lastDom=now;
-  // Skip canvas paints on a cadence from heavy upward (LOD only; machine count unchanged).
-  // heavy: every 2nd frame · extreme: every 3rd · ultra (5k+): every 4th
-  const paintStride=ultra?4:extreme?3:heavy?2:1;
-  animate.paintPhase=((animate.paintPhase||0)+1)%paintStride;
-  const paintCanvas=animate.paintPhase===0;
-  for(const node of tiles.children){
-   const depthReady=active&&!recovered&&Number(node.dataset.depth)<=progress*maxDepth;
-   const offlineCount=Number(node.dataset.offlineCount||0),memberCount=Number(node.dataset.memberCount||0),runningCount=Number(node.dataset.runningCount||0);
-   const hit=depthReady&&node.dataset.affected==='true'&&node.dataset.partialOffline!=='true';
-   const partial=depthReady&&node.dataset.partialOffline==='true';
-   if(domTick){
-    node.classList.toggle('cascade-hit',hit);node.classList.toggle('cascade-partial',partial);
-    const stateEl=node.querySelector('.plant-state'),subEl=node.querySelector('.plant-sub');
-    if(stateEl)stateEl.textContent=departmentStatus({recovered,active,offlineCount,runningCount,members:memberCount,hit:hit||partial});
-    if(subEl&&!department)subEl.textContent=memberCount+' machines';
-    let mark=node.querySelector('.plant-offline-mark');
+  if(domTick){
+   for(const tile of cache.nodes){
+    const depthReady=active&&!recovered&&tile.depth<=progress*maxDepth;
+    const hit=depthReady&&tile.affected&&!tile.partialFlag;
+    const partial=depthReady&&tile.partialFlag;
+    const key=(hit?'H':partial?'P':'')+(recovered?'R':'');
+    if(tile.hitKey===key)continue;
+    tile.hitKey=key;tile.node.dataset.hitKey=key;
+    tile.node.classList.toggle('cascade-hit',hit);tile.node.classList.toggle('cascade-partial',partial);
+    if(tile.stateEl)tile.stateEl.textContent=departmentStatus({recovered,active,offlineCount:tile.offlineCount,runningCount:tile.runningCount,members:tile.memberCount,hit:hit||partial});
+    if(tile.subEl&&!department)tile.subEl.textContent=tile.memberCount+' machines';
+    let mark=tile.node.querySelector('.plant-offline-mark');
     if(hit||partial){
-     if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');node.append(mark);}
-     let chip=node.querySelector('.plant-offline-chip');
-     if(!chip){chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');node.append(chip);}
-    }else if(mark){mark.remove();node.querySelector('.plant-offline-chip')?.remove();}
-    syncMachineArt(node,hit||partial||recovered);
+     if(!mark){mark=el('span','×','plant-offline-mark');mark.setAttribute('aria-hidden','true');tile.node.append(mark);}
+     if(!tile.node.querySelector('.plant-offline-chip')){const chip=el('span','OFFLINE','plant-offline-chip');chip.setAttribute('aria-hidden','true');tile.node.append(chip);}
+    }else if(mark){mark.remove();tile.node.querySelector('.plant-offline-chip')?.remove();}
+    // Extreme plants rely on tile CSS/hatch chips; glyph art flips only under lighter plants (LOD).
+    if(!extreme)syncMachineArt(tile.node,hit||partial||recovered);
+    // Heavy static layer is hit-agnostic — skip static-layer refreshes during the cascade wave.
+    if(!heavy)animate.staticDirty=true;
    }
   }
-  if(!paintCanvas){if(!reduced.matches||(sample&&sample.collecting))raf=requestAnimationFrame(animate);return;}
-  // Cache floor box between paints (LOD only) — same machine count, fewer layout reads.
-  if(!animate.boxCache||animate.boxCache.at<now-500){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
+  if(!animate.boxCache||animate.boxCache.at<now-1000){animate.boxCache={at:now,box:floor.getBoundingClientRect()};}
   const box=animate.boxCache.box;
-  // Cap devicePixelRatio on heavy plants (LOD only) — fewer canvas pixels, same machine count.
-  const dpr=heavy?1:Math.min(devicePixelRatio||1,1.5);
-  if(canvas.width!==Math.round(box.width*dpr)||canvas.height!==Math.round(box.height*dpr)){canvas.width=Math.round(box.width*dpr);canvas.height=Math.round(box.height*dpr);}
-  const ctx=canvas.getContext('2d',{alpha:false,desynchronized:true});ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle='#050705';ctx.fillRect(0,0,box.width,box.height);
-  const nodes=[...tiles.children];
-  const center=node=>{const x=parseFloat(node.style.left)+parseFloat(node.style.width)/2,y=parseFloat(node.style.top)+parseFloat(node.style.height)/2;return {x,y};};
-  const drawFlow=(from,to,color,nowStamp,width=4.2,particles=9)=>{
-   const a=center(from),b=center(to);
-   const mx=(a.x+b.x)/2,my=(a.y+b.y)/2-Math.min(72,Math.abs(b.x-a.x)*0.28);
-   const particleCount=ultra?0:extreme?Math.min(1,particles):heavy?Math.min(2,particles):particles;
-   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches||heavy?0:22;ctx.setLineDash(reduced.matches?[]:[16,8]);ctx.beginPath();ctx.moveTo(a.x,a.y);
-   // Straight routes on heavy plants (LOD only); quadratic depth retained under 400.
-   if(heavy)ctx.lineTo(b.x,b.y);else ctx.quadraticCurveTo(mx,my,b.x,b.y);
+  const dpr=heavy?1:Math.min(devicePixelRatio||1,1.25);
+  const ctx=ensureCanvas(box,dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+  // Extreme/ultra: skip offscreen blit — clear + living spine only (LOD; machine counts unchanged).
+  if(extreme){ctx.fillStyle='#050705';ctx.fillRect(0,0,box.width,box.height);}
+  else{
+   if(animate.staticDirty!==false)paintStaticLayer(box,dpr,heavy,cache);
+   ctx.drawImage(animate.staticLayer,0,0,box.width,box.height);
+  }
+  const nodes=cache.nodes;
+  const drawFlow=(a,b,color,nowStamp,width=4.2,particles=9)=>{
+   const mx=(a.cx+b.cx)/2,my=(a.cy+b.cy)/2-Math.min(72,Math.abs(b.cx-a.cx)*0.28);
+   const particleCount=ultra?0:extreme?Math.min(2,particles):heavy?Math.min(4,particles):particles;
+   ctx.strokeStyle=color;ctx.lineWidth=width;ctx.shadowColor=color;ctx.shadowBlur=reduced.matches||heavy?0:18;ctx.setLineDash(reduced.matches?[]:[16,8]);ctx.beginPath();ctx.moveTo(a.cx,a.cy);
+   if(heavy)ctx.lineTo(b.cx,b.cy);else ctx.quadraticCurveTo(mx,my,b.cx,b.cy);
    ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;
-   if(reduced.matches||particles<=0)return;
+   if(reduced.matches||particleCount<=0)return;
    for(let p=0;p<particleCount;p++){
     const t=((nowStamp/8)+p*(1/Math.max(particleCount,1)))%1;
-    const ox=heavy?a.x+(b.x-a.x)*t:(1-t)*(1-t)*a.x+2*(1-t)*t*mx+t*t*b.x;
-    const oy=heavy?a.y+(b.y-a.y)*t:(1-t)*(1-t)*a.y+2*(1-t)*t*my+t*t*b.y;
-    ctx.fillStyle=color;ctx.shadowColor=color;ctx.shadowBlur=heavy?0:24;ctx.beginPath();ctx.arc(ox,oy,heavy?2.5:7+(p%4),0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    const ox=heavy?a.cx+(b.cx-a.cx)*t:(1-t)*(1-t)*a.cx+2*(1-t)*t*mx+t*t*b.cx;
+    const oy=heavy?a.cy+(b.cy-a.cy)*t:(1-t)*(1-t)*a.cy+2*(1-t)*t*my+t*t*b.cy;
+    ctx.fillStyle=color;ctx.beginPath();ctx.arc(ox,oy,heavy?2.2:6+(p%3),0,Math.PI*2);ctx.fill();
    }
   };
-  const ordered=[...nodes].sort((left,right)=>parseFloat(left.style.left)-parseFloat(right.style.left)||parseFloat(left.style.top)-parseFloat(right.style.top));
-  if(recovered&&ordered.length>1){
-   for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a',now,5.2,10);
-   if(!reduced.matches){const sweep=(now/6)%(box.width+180)-90;const grad=ctx.createLinearGradient(sweep-160,0,sweep+160,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a88');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
-  }else if(active&&!recovered&&ordered.length>1){
-   // One clear emerald living cascade: CNC mills → CNC lathes → inspection/finishing when present; silver static elsewhere.
-   const deptLabel=node=>(node?.dataset?.plantNode||'')+' '+(node?.querySelector('strong')?.textContent||'');
-   const mills=ordered.find(n=>/cnc\s*mills/i.test(deptLabel(n)));
-   const lathes=ordered.find(n=>/cnc\s*lathes/i.test(deptLabel(n)));
-   const inspect=ordered.find(n=>/inspect/i.test(deptLabel(n)));
-   const finish=ordered.find(n=>/finish/i.test(deptLabel(n)));
-   // Neighbor silver links only under lighter plants — heavy keeps the emerald spine only.
-   if(!heavy)for(let i=0;i<ordered.length-1;i++){
-    const from=ordered[i],to=ordered[i+1];
-    const hit=from.classList.contains('cascade-hit')||to.classList.contains('cascade-hit');
-    drawFlow(from,to,hit?'#c5ccd433':'#c5ccd422',now,hit?2.0:2.2,0);
-   }
+  if(recovered&&nodes.length>1){
+   for(let i=0;i<nodes.length-1;i++)drawFlow(nodes[i],nodes[i+1],'#56ff9a',now,5.2,heavy?4:10);
+   if(!reduced.matches&&!extreme){const sweep=(now/6)%(box.width+180)-90;const grad=ctx.createLinearGradient(sweep-160,0,sweep+160,0);grad.addColorStop(0,'#56ff9a00');grad.addColorStop(.5,'#56ff9a66');grad.addColorStop(1,'#56ff9a00');ctx.fillStyle=grad;ctx.fillRect(0,0,box.width,box.height);}
+  }else if(active&&!recovered&&nodes.length>1){
+   const mills=nodes.find(n=>/cnc\s*mills/.test(n.label));
+   const lathes=nodes.find(n=>/cnc\s*lathes/.test(n.label));
+   const inspect=nodes.find(n=>/inspect/.test(n.label));
+   const finish=nodes.find(n=>/finish/.test(n.label));
    if(mills&&lathes){
-    // Primary living emerald mills → lathes spine; reverse glow only under lighter plants.
-    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?3:24);
+    drawFlow(mills,lathes,'#56ff9a',now,heavy?6.4:9.2,heavy?6:24);
     if(!heavy)drawFlow(lathes,mills,'#8affb888',now,3.8,10);
    }
-   if(!extreme&&lathes&&inspect&&!inspect.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?3.6:5.6,heavy?2:14);
-   if(!heavy&&inspect&&finish&&!finish.classList.contains('cascade-hit'))drawFlow(inspect,finish,'#8affb866',now,3.6,8);
-   if(!reduced.matches){
-    if(!heavy){
-     const alarm=(now/5)%(box.width+200)-100;
-     const alarmGrad=ctx.createLinearGradient(alarm-90,0,alarm+90,0);alarmGrad.addColorStop(0,'#c5ccd400');alarmGrad.addColorStop(.5,'#c5ccd455');alarmGrad.addColorStop(1,'#c5ccd400');
-     ctx.fillStyle=alarmGrad;ctx.fillRect(0,0,box.width,box.height);
-    }
-    // Pulse rings only on light plants; extreme skips them entirely (LOD).
-    if(!extreme)for(const node of ordered.filter(n=>n.classList.contains('cascade-hit'))){
-     const c=center(node),pulse=14+((now/28)%24);
-     ctx.strokeStyle='#c5ccd488';ctx.lineWidth=heavy?2:3;ctx.beginPath();ctx.arc(c.x,c.y,pulse,0,Math.PI*2);ctx.stroke();
-    }
-    if(!heavy)for(const node of ordered.filter(n=>!n.classList.contains('cascade-hit'))){
-     const c=center(node);
-     ctx.fillStyle='#8affb8';ctx.shadowColor='#56ff9a';ctx.shadowBlur=18;ctx.beginPath();ctx.arc(c.x,c.y,5,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
-    }
+   if(!extreme&&lathes&&inspect&&!inspect.node.classList.contains('cascade-hit'))drawFlow(lathes,inspect,'#56ff9acc',now,heavy?3.6:5.6,heavy?3:14);
+   if(!heavy&&inspect&&finish&&!finish.node.classList.contains('cascade-hit'))drawFlow(inspect,finish,'#8affb866',now,3.6,8);
+   if(!reduced.matches&&!extreme){
+    for(const tile of nodes){if(!tile.node.classList.contains('cascade-hit'))continue;const pulse=14+((now/28)%24);ctx.strokeStyle='#c5ccd466';ctx.lineWidth=2;ctx.beginPath();ctx.arc(tile.cx,tile.cy,pulse,0,Math.PI*2);ctx.stroke();}
    }
-  }else if(ordered.length){
-   ctx.strokeStyle='#27664c';ctx.lineWidth=2.2;
-   for(let i=0;i<ordered.length-1;i++)drawFlow(ordered[i],ordered[i+1],'#56ff9a77',now,2.6,3);
-   for(const node of ordered){
-    const y=parseFloat(node.style.top)+parseFloat(node.style.height)/2,x=parseFloat(node.style.left);
-    ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(box.width,y);ctx.strokeStyle='#1f3d3088';ctx.stroke();
-    if(reduced.matches)continue;
+  }else if(nodes.length&&!reduced.matches){
+   for(const tile of nodes){
     const offset=(now/11)%box.width;
-    for(let n=0;n<4;n++){ctx.fillStyle='#8cfbc0';ctx.shadowColor='#56ff9a';ctx.shadowBlur=10;ctx.fillRect((x+offset+n*90)%box.width,y-3,16,6);ctx.shadowBlur=0;}
+    for(let n=0;n<(heavy?1:3);n++){ctx.fillStyle='#8cfbc0';ctx.fillRect((tile.x+offset+n*90)%box.width,tile.cy-3,14,5);}
    }
   }
   if(!reduced.matches||(sample&&sample.collecting))raf=requestAnimationFrame(animate);

@@ -1377,3 +1377,35 @@ body[data-guided=true][data-active-stage=decision] .option[aria-checked=true] .n
 @media(prefers-reduced-motion:reduce){
  body[data-guided=true][data-active-stage=decision] .option[aria-checked=true]{outline-width:2px}
 }
+
+/* audit35: Wonder P1 - deeper floor, denser findings targets, cascade cache companion, Source detail 36px */
+@media(min-width:901px){
+ body[data-guided=true] .stage-area{grid-template-columns:minmax(0,3.95fr) minmax(300px,.58fr)!important}
+ body[data-guided=true] #factory-svg{min-height:420px!important}
+ body[data-guided=true][data-active-stage=investigation] .investigation-metric strong{font-size:26px!important;font-variant-numeric:tabular-nums}
+ body[data-guided=true][data-active-stage=investigation] #claims .verified-finding>summary{min-height:36px!important;font-size:15px!important;display:flex;align-items:center}
+ body[data-guided=true][data-active-stage=investigation] #read-full-analysis{min-height:36px!important;font-size:16px!important}
+ body[data-guided=true] .evidence-card .evidence-headline{font-size:16px!important;line-height:1.35}
+ body[data-guided=true] .evidence-card summary{min-height:36px;font-size:15px;display:flex;align-items:center}
+ body[data-guided=true][data-active-stage=board] #board-outcomes{font-size:16px!important;line-height:1.35;font-weight:650}
+ body[data-guided=true][data-active-stage=board] .proposal-pages button{min-width:36px;min-height:36px}
+ body[data-guided=true][data-active-stage=board] .proposal-task .proposal-badge{display:block!important}
+ /* Keep every inspected proposal card fully inside the reserved proposal box (no clip). */
+ body[data-guided=true][data-active-stage=board] #britt-proposal{max-height:48vh!important;overflow:hidden!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.britt-focus-task{max-height:none;overflow:visible;min-height:56px}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.britt-focus-task>small:not(.proposal-badge){display:block!important;font-size:12px;line-height:1.25}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-task.proposal-compact{max-height:28px;min-height:28px!important;overflow:hidden}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .britt-signature-line{display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-proposal .proposal-explain{font-size:13px!important;line-height:1.25;margin:0 0 2px!important}
+ body[data-guided=true][data-active-stage=board] #britt-activity{display:none!important}
+ body[data-guided=true][data-active-stage=board] #britt-signature-banner{display:block!important;font-size:14px;margin:0 0 4px}
+}
+#factory-svg .factory-floor-rear,#factory-svg .factory-floor-apron{pointer-events:none}
+#factory-svg .factory-floor-glow-line{pointer-events:none}
+#factory-svg .living-spine{stroke-width:7;filter:drop-shadow(0 0 16px #56ff9acc)}
+#factory-svg .material-flow{filter:drop-shadow(0 0 14px #A8F04Acc)}
+.plant-tile .plant-offline-chip{font-size:11px;letter-spacing:.08em;color:#C5CCD4;font-weight:800}
+.plant-controls label,.plant-controls select,.plant-controls button{font-size:16px;min-height:36px}
+@media(prefers-reduced-motion:reduce){
+ #factory-svg .factory-floor-glow-line{opacity:.05!important}
+}

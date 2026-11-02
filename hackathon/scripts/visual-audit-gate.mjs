@@ -143,6 +143,8 @@ try{
    await until(()=>evaluate(`document.querySelector('#authorize-wall')?.open`),'The Britt authorize');
    await click('#guide-next');
    await until(()=>evaluate(`!document.querySelector('#authorize-wall')?.open`),'The Britt sealed');
+   // Wait for the guide title to leave The Britt step before the next click, so Shock is captured.
+   await until(()=>evaluate(`!String(document.querySelector('#guide-title')?.textContent||'').includes('Britt')`),'post-Britt advance');
   }
   if(title.includes('Verify and retain')){
    await value('#export-passphrase','separate strong packet phrase');

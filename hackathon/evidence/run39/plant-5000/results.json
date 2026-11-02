@@ -1,0 +1,78 @@
+[
+  {
+    "state": "running",
+    "viewport": "1920x1080",
+    "screenshot": "plant-5000/running-1920.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 1,
+    "art": [
+      {
+        "groups": 48,
+        "viewBox": "0 0 480 150",
+        "rect": {
+          "w": 1838,
+          "h": 120
+        },
+        "transforms": [
+          {
+            "transform": "translate(17.4 2) scale(0.42)",
+            "x": 782.9199829101562,
+            "w": 20.83203125
+          },
+          {
+            "transform": "translate(77.4 2) scale(0.42)",
+            "x": 830.9199829101562,
+            "w": 20.83203125
+          },
+          {
+            "transform": "translate(137.4 2) scale(0.42)",
+            "x": 878.9199829101562,
+            "w": 20.83203125
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "state": "running",
+    "viewport": "1366x768",
+    "screenshot": "plant-5000/running-1366.jpg",
+    "clipped": [],
+    "hits": [],
+    "glyphHits": 0,
+    "glyphClipped": 0,
+    "pageScroll": false,
+    "tiles": 1,
+    "art": [
+      {
+        "groups": 48,
+        "viewBox": "0 0 480 150",
+        "rect": {
+          "w": 1284,
+          "h": 120
+        },
+        "transforms": [
+          {
+            "transform": "translate(17.4 2) scale(0.42)",
+            "x": 505.9200134277344,
+            "w": 20.832000732421875
+          },
+          {
+            "transform": "translate(77.4 2) scale(0.42)",
+            "x": 553.9200439453125,
+            "w": 20.83197021484375
+          },
+          {
+            "transform": "translate(137.4 2) scale(0.42)",
+            "x": 601.9199829101562,
+            "w": 20.83203125
+          }
+        ]
+      }
+    ]
+  }
+]

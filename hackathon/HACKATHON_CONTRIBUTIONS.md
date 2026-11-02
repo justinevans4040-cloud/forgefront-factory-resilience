@@ -2,6 +2,13 @@
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.
 
+## Independent audit thirty-five
+
+- Cascade animation cache: tile-center cache, offscreen static layer, dirty-tile art flips, metrics throttle, extreme skip of offscreen blit and glyph art flips (machine counts unchanged). Layered factory floor depth planes. Board status de-duplicated; Source detail / findings targets at 36px. Build stamp `audit35-cascade-cache`. Visual audit gate re-proved under run39 (51 captures / 0 failures at 1366 / 1536 / 1920 including Shock and triggered cascade). Visual gate waits for the title to leave The Britt board step so Shock is never skipped.
+- No-cap plant browser proof at 1,000 and 5,000 machines retained; cascade FPS re-profiled honestly (headless ~8–13 fps — 60 fps target remains open).
+- Genuine Muse Wonder reviews 154–156: best cascade **9**, README **8**, guided **7–9**; retained direction remains iteration 82 (`promotedDirection: false`).
+- Bounded live Wonder and Baseten investigation both MODEL_STOP with 3 validated claims; Fireworks never called. The Britt naming, Authorize wall and public-tree checks stay green.
+
 ## Independent audit thirty-four
 
 - Wonder P1 floor lifts: stage fill 3.9fr, equal-height recovery path cards with 26px tabular metrics, Authorize wall echoes the selected path name, board OFFLINE hatch without full-card diagonals, all three PROPOSED badges visible as compact strip plus focused card, proof READY/LOCKED legend markers, cascade paint-stride LOD (heavy/extreme/ultra) with corner × offline marks. Build stamp `audit34-wonder-floor`. Visual audit gate re-proved under run38 (51 captures / 0 failures at 1366 / 1536 / 1920 including triggered cascade).

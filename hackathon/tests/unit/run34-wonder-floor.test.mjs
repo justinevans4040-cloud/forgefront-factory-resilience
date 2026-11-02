@@ -7,8 +7,8 @@ const app=readFileSync(new URL('../../public/app.mjs',import.meta.url),'utf8');
 const css=readFileSync(new URL('../../public/style.css',import.meta.url),'utf8');
 const cascade=readFileSync(new URL('../../public/cascade.mjs',import.meta.url),'utf8');
 
-test('build stamp advances to audit34 wonder floor',()=>{
- assert.match(html,/ffr-build" content="audit34-wonder-floor"/);
+test('build stamp advances past audit33 cinematic floor',()=>{
+ assert.match(html,/ffr-build" content="audit3[45]-[a-z-]+"/);
  assert.doesNotMatch(html,/audit33-cinematic-floor/);
 });
 
@@ -21,13 +21,14 @@ test('board offline cells keep hatch and corner mark without full-card diagonals
  assert.match(app,/approved plan retained/);
 });
 
-test('cascade LOD uses paint stride and ultra tier without dropping machines',()=>{
+test('cascade LOD keeps heavy extreme ultra tiers without dropping machines',()=>{
  assert.match(cascade,/plantScale>=400/);
  assert.match(cascade,/plantScale>=1000/);
  assert.match(cascade,/plantScale>=2500/);
- assert.match(cascade,/paintStride/);
  assert.match(cascade,/never fewer machines/i);
  assert.match(cascade,/corner × only/);
+ // audit35 replaces paint-stride with cached static layer + dirty-tile art flips
+ assert.ok(cascade.includes('paintStride')||cascade.includes('refreshTileCache'));
 });
 
 test('audit34 wonder CSS equalizes path cards and proof READY LOCKED',()=>{

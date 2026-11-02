@@ -252,8 +252,13 @@ function renderFactory(){
  const defs=add('defs',{});const previewHatch=add('pattern',{id:'preview-hatch',width:10,height:10,patternUnits:'userSpaceOnUse',patternTransform:'rotate(45)'},null,defs);add('rect',{width:10,height:10,fill:'#19271f'},null,previewHatch);add('path',{d:'M 0 0 V 10',stroke:'#C5CCD4','stroke-width':2},null,previewHatch);
  const floorGlow=add('radialGradient',{id:'floor-glow',cx:'50%',cy:'35%',r:'65%'},null,defs);add('stop',{offset:'0%',['stop-color']:'#2a7a48',['stop-opacity']:.35},null,floorGlow);add('stop',{offset:'100%',['stop-color']:'#050705',['stop-opacity']:0},null,floorGlow);
  const zone=(name)=>add('g',{'data-layout-zone':name});
- const depth=zone('depth');add('rect',{x:0,y:0,width:900,height,fill:'url(#floor-glow)',class:'factory-floor-glow'},null,depth);add('path',{d:`M 40 ${height-18} L 180 ${height*.42} H 720 L 860 ${height-18} Z`,fill:'#0c1610',stroke:'#3a5444','stroke-width':1,opacity:.55,class:'factory-floor-plane'},null,depth);
- for(let g=0;g<8;g++)add('line',{x1:60+g*100,y1:height-16,x2:200+g*70,y2:height*.44,stroke:'#304e3b',['stroke-width']:1,opacity:.35,class:'factory-floor-grid'},null,depth);
+ const depth=zone('depth');add('rect',{x:0,y:0,width:900,height,fill:'url(#floor-glow)',class:'factory-floor-glow'},null,depth);
+ // Layered isometric floor: rear wall, mid plane, front apron (Wonder P1 depth without overlapping stations).
+ add('path',{d:`M 70 ${height*.38} L 180 ${height*.28} H 720 L 830 ${height*.38} Z`,fill:'#0a140f',stroke:'#2f4a3a','stroke-width':1,opacity:.42,class:'factory-floor-rear'},null,depth);
+ add('path',{d:`M 40 ${height-18} L 180 ${height*.42} H 720 L 860 ${height-18} Z`,fill:'#0c1610',stroke:'#3a5444','stroke-width':1,opacity:.58,class:'factory-floor-plane'},null,depth);
+ add('path',{d:`M 30 ${height-8} L 160 ${height*.58} H 740 L 870 ${height-8} Z`,fill:'#101c15',stroke:'#456555','stroke-width':1,opacity:.35,class:'factory-floor-apron'},null,depth);
+ for(let g=0;g<10;g++)add('line',{x1:50+g*85,y1:height-14,x2:190+g*62,y2:height*.40,stroke:'#304e3b',['stroke-width']:1,opacity:.32,class:'factory-floor-grid'},null,depth);
+ for(let g=0;g<6;g++)add('line',{x1:120+g*120,y1:height*.58,x2:210+g*90,y2:height*.30,stroke:'#A8F04A',['stroke-width']:1,opacity:.08,class:'factory-floor-glow-line'},null,depth);
  const callouts=zone('callouts'),machines=zone('machines'),routes=zone('routes'),orders=zone('orders'),paths=zone('paths');
  const label=(x,y,value,size=20,parent=callouts,extra={})=>add('text',{x,y,'font-size':size,class:'scene-size-'+size,fill:'#e4eee3',...extra},value,parent);
  const box=(x,y,width,h,parent,stroke='#71877a',fill='#132019')=>add('rect',{x,y,width,height:h,rx:8,fill,stroke,'stroke-width':2},null,parent);
