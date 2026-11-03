@@ -1,0 +1,153 @@
+.steps .step {
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+.ev-page {
+  height: var(--size-full);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-main-gap);
+  padding: var(--screen-padding-y) var(--screen-padding-x);
+  overflow: hidden;
+  background: var(--surface-page);
+}
+.ev-page .eyebrow {
+  color: var(--text-secondary);
+}
+.ev-head {
+  flex: var(--flex-none);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-headline-gap);
+  min-width: var(--size-zero);
+}
+.ev-title-block {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+}
+.ev-grid {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  display: grid;
+  grid-template-columns: var(--columns-main-aside);
+  gap: var(--layout-gap);
+  min-width: var(--size-zero);
+}
+.ev-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  overflow: hidden;
+}
+.ev-main .stats {
+  margin-top: var(--space-0);
+  flex: var(--flex-none);
+}
+.ev-quantities {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: var(--flex-none);
+  min-width: var(--size-zero);
+}
+.ev-page .metric {
+  border-color: var(--border-soft);
+  background: var(--surface-inset);
+}
+.ev-page .metric[data-ev-selected="true"] {
+  background: var(--surface-selected);
+  border-color: var(--border-strong);
+}
+.ev-detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  flex: var(--flex-none);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.ev-plain {
+  color: var(--text-secondary);
+}
+.ev-detail-button {
+  flex: var(--flex-none);
+}
+.ev-detail-facts {
+  display: flex;
+  gap: var(--space-7);
+  min-width: var(--size-zero);
+}
+.ev-fact {
+  display: grid;
+  gap: var(--space-1);
+  min-width: var(--size-zero);
+}
+.ev-fact-value {
+  font-weight: var(--font-weight-bold);
+  overflow-wrap: anywhere;
+}
+.ev-bottom {
+  flex: var(--flex-fill);
+  display: grid;
+  grid-template-columns: var(--columns-two);
+  gap: var(--layout-grid-gap);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.ev-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.ev-job-list {
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.ev-job-list .job-card {
+  flex: var(--flex-fill);
+}
+.ev-assump-list {
+  flex: var(--flex-fill);
+  display: flex;
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.ev-assump-list .list {
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+}
+.ev-assump-list .list-row {
+  flex: var(--flex-fill);
+}
+.ev-aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-side-gap);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  overflow: hidden;
+}
+.ev-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.ev-summary {
+  flex: var(--flex-fill);
+}
+.ev-export-text {
+  color: var(--text-secondary);
+}
+.ev-page .agent-line {
+  margin-top: auto;
+}

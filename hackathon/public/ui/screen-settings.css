@@ -1,0 +1,170 @@
+.settings-screen {
+  height: var(--size-full);
+  min-height: var(--size-zero);
+  padding: var(--screen-padding-y) var(--screen-padding-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-main-gap);
+  overflow: hidden;
+  background: var(--surface-page);
+  color: var(--text-primary);
+}
+.settings-head {
+  display: grid;
+  grid-template-columns: var(--columns-headline);
+  gap: var(--space-headline-gap);
+  align-items: start;
+  flex: var(--flex-none);
+  min-width: var(--size-zero);
+}
+.settings-head-main {
+  min-width: var(--size-zero);
+}
+.settings-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  color: var(--text-secondary);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-title);
+}
+.settings-eyebrow.is-danger {
+  color: var(--status-danger-text);
+}
+.settings-dot {
+  width: var(--flow-dot-size);
+  height: var(--flow-dot-size);
+  border-radius: var(--radius-circle);
+  background: var(--status-ok-dot);
+  flex: var(--flex-none);
+}
+.settings-dot.is-danger {
+  background: var(--status-danger-dot);
+}
+.settings-sub {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-secondary);
+}
+.settings-layout {
+  display: grid;
+  grid-template-columns: var(--columns-main-aside);
+  gap: var(--layout-gap);
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-main,
+.settings-aside {
+  display: flex;
+  flex-direction: column;
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-main {
+  gap: var(--space-main-gap);
+}
+.settings-aside {
+  gap: var(--space-side-gap);
+}
+.settings-panel-grow {
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-card-grow {
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-panel-body {
+  margin-top: var(--space-2);
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-rows {
+  display: flex;
+  flex-direction: column;
+  flex: var(--flex-none);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-rows.is-compact {
+  flex: var(--flex-none);
+}
+.settings-rows .stat-row {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+  font-size: var(--font-size-body);
+}
+.settings-tools-box {
+  display: grid;
+  gap: var(--space-2);
+  flex: var(--flex-none);
+}
+.settings-tools-box .section-label,
+.settings-tools-box .section-hint {
+  font-size: var(--font-size-body);
+}
+.settings-copy {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-secondary);
+}
+.settings-copy-strong {
+  color: var(--text-primary);
+}
+.settings-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  min-width: var(--size-zero);
+  flex: var(--flex-none);
+}
+.settings-action-note {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-secondary);
+}
+.settings-card-body {
+  margin-top: var(--space-2);
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.settings-return-card {
+  border-color: var(--border-strong);
+}
+.settings-return-line .preview-text {
+  white-space: normal;
+  font-size: var(--font-size-body);
+}
+.settings-held-value {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.settings-text-danger {
+  color: var(--status-danger-text);
+}
+.settings-dialog-copy {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-secondary);
+}

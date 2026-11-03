@@ -1,0 +1,351 @@
+.shop-screen {
+  height: var(--size-full);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-main-gap);
+  padding: var(--screen-padding-y) var(--screen-padding-x);
+  overflow: hidden;
+}
+
+.shop-head {
+  flex: var(--flex-none);
+  display: grid;
+  grid-template-columns: var(--columns-headline);
+  gap: var(--space-headline-gap);
+  align-items: start;
+}
+
+.shop-head-copy {
+  min-width: var(--size-zero);
+}
+
+.shop-grid {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  display: grid;
+  grid-template-columns: var(--columns-main-aside);
+  gap: var(--layout-gap);
+}
+
+.shop-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-factory-gap);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  overflow: hidden;
+}
+
+.shop-aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-side-gap);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  overflow: hidden;
+}
+
+.shop-cascade {
+  flex: var(--flex-none);
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-3);
+  min-width: var(--size-zero);
+}
+
+.shop-stage {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-inset);
+}
+
+.shop-stage.is-selected {
+  border-color: var(--border-strong);
+  background: var(--surface-selected);
+}
+
+.shop-stage-label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  white-space: nowrap;
+}
+
+.shop-stage-main {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-panel-raised);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+button.shop-stage-main:hover {
+  border-color: var(--border-strong);
+}
+
+.shop-stage-main-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: var(--size-zero);
+}
+
+.shop-stage-title,
+.shop-chip-name {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  white-space: nowrap;
+}
+
+.shop-stage-detail,
+.shop-chip-detail {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.shop-stage-chips {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.shop-stage-chip {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+  min-height: var(--control-height-xs);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-panel-raised);
+  color: var(--text-primary);
+  text-align: left;
+}
+
+button.shop-stage-chip:hover {
+  border-color: var(--border-strong);
+}
+
+.shop-stage-chip.is-selected {
+  border-color: var(--border-strong);
+  background: var(--surface-selected);
+}
+
+.shop-floor-head {
+  flex: var(--flex-none);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-7);
+  min-width: var(--size-zero);
+}
+
+.shop-floor-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-7);
+  min-width: var(--size-zero);
+}
+
+.shop-lanes {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  overflow: hidden;
+}
+
+.shop-lane {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-4);
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-inset);
+  overflow: hidden;
+}
+
+.shop-lane.is-selected {
+  background: var(--surface-selected);
+  border-color: var(--border-default);
+}
+
+.shop-lane.is-dimmed {
+  color: var(--text-tertiary);
+}
+
+.shop-dept-head {
+  flex: var(--flex-none);
+  width: var(--mismatch-label-width);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: var(--size-zero);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--text-primary);
+  text-align: left;
+}
+
+.shop-dept-head:hover {
+  background: var(--surface-inset);
+  border-color: var(--border-soft);
+}
+
+.shop-lane.is-selected .shop-dept-head {
+  background: var(--surface-panel-raised);
+  border-color: var(--border-soft);
+}
+
+.shop-lane.is-dimmed .shop-dept-head {
+  color: var(--text-tertiary);
+}
+
+.shop-dept-name {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  white-space: nowrap;
+}
+
+.shop-dept-count {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.shop-tiles {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+
+.shop-machine {
+  flex: var(--flex-fill);
+  min-width: var(--size-zero);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  border: var(--border-width) solid var(--border-default);
+  border-radius: var(--radius-md);
+  background: var(--surface-panel-raised);
+  color: var(--text-primary);
+  text-align: center;
+  transition: border-color var(--motion-fast) var(--ease-standard), background var(--motion-fast) var(--ease-standard), color var(--motion-fast) var(--ease-standard);
+}
+
+.shop-machine:hover {
+  border-color: var(--border-strong);
+}
+
+.shop-machine.is-linked {
+  border-color: var(--border-strong);
+}
+
+.shop-machine.is-selected {
+  background: var(--surface-selected);
+  border-color: var(--border-strong);
+}
+
+.shop-machine.is-dimmed {
+  background: var(--surface-inset);
+  border-color: var(--border-soft);
+  color: var(--text-tertiary);
+}
+
+.shop-machine-num {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  white-space: nowrap;
+}
+
+.shop-detail-rows {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.shop-detail-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  padding: var(--space-1) var(--space-4);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-inset);
+  min-width: var(--size-zero);
+}
+
+.shop-detail-label {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.shop-detail-value {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.shop-record {
+  margin-top: var(--space-3);
+  height: var(--control-height-xs);
+  min-height: var(--control-height-xs);
+}
+
+.shop-refresh {
+  height: var(--control-height-xs);
+  min-height: var(--control-height-xs);
+}
+
+.shop-loading {
+  flex: var(--flex-fill);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-6);
+  min-height: var(--size-zero);
+}

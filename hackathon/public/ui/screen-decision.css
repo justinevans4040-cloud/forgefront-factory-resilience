@@ -1,0 +1,124 @@
+.dec-screen {
+  height: var(--size-full);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-main-gap);
+  padding: var(--screen-padding-y) var(--screen-padding-x);
+  overflow: hidden;
+  background: var(--surface-page);
+}
+.dec-head {
+  display: grid;
+  grid-template-columns: var(--columns-headline);
+  gap: var(--space-headline-gap);
+  align-items: start;
+  flex: var(--flex-none);
+}
+.dec-head-main {
+  min-width: var(--size-zero);
+}
+.dec-sub {
+  white-space: normal;
+}
+.dec-grid {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  display: grid;
+  grid-template-columns: var(--columns-main-aside);
+  gap: var(--layout-gap);
+}
+.dec-main,
+.dec-aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-main-gap);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.dec-options-panel {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.dec-options {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  display: grid;
+  grid-template-columns: var(--columns-three);
+  gap: var(--layout-grid-gap);
+}
+.dec-jobs-panel {
+  flex: var(--flex-none);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.dec-jobs {
+  display: grid;
+  grid-template-columns: var(--columns-two);
+  gap: var(--layout-grid-gap);
+}
+.dec-unavailable {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+}
+.dec-confirm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.dec-confirm-name {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-title);
+}
+.dec-note {
+  color: var(--text-secondary);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+.dec-cover {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  color: var(--text-secondary);
+}
+.dec-cover b {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-semibold);
+}
+.dec-agent {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+}
+.dec-agent .agent-rows {
+  flex: var(--flex-fill);
+  align-content: space-between;
+}
+.dec-screen .option-card {
+  justify-content: space-between;
+}
+.dec-screen .option-footer {
+  margin-top: var(--size-zero);
+}
+.dec-screen .meta-grid {
+  grid-template-columns: var(--columns-three);
+}
+.dec-screen .option-name,
+.dec-screen .option-meaning,
+.dec-screen .option-assump,
+.dec-screen .preview-text,
+.dec-screen .job-detail,
+.dec-screen .source-text,
+.dec-screen .dec-cover {
+  white-space: normal;
+}
+.steps .step.is-active {
+  gap: var(--space-3);
+  padding-left: var(--space-5);
+  padding-right: var(--space-5);
+}

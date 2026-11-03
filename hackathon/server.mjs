@@ -116,6 +116,7 @@ export function createApp(options = {}) {
         guards.assertOrigin(req);
       }
       const assets={'/plant-engine.mjs':['plant-engine.mjs','text/javascript'],'/plant-layout.mjs':['plant-layout.mjs','text/javascript'],'/cascade.mjs':['cascade.mjs','text/javascript'],'/cascade.css':['cascade.css','text/css'],'/stage-scene.mjs':['stage-scene.mjs','text/javascript'],'/factory-layout.mjs':['factory-layout.mjs','text/javascript'],'/command-center.mjs':['command-center.mjs','text/javascript'],'/brand-emblem.png':['brand-emblem.png','image/png'],'/forgefront-systems-logo.png':['forgefront-systems-logo.png','image/png'],'/favicon.png':['favicon.png','image/png'],'/route-health.mjs':['route-health.mjs','text/javascript'],'/investigation-status.mjs':['investigation-status.mjs','text/javascript'],'/':['index.html','text/html'],'/app.mjs':['app.mjs','text/javascript'],'/guide.mjs':['guide.mjs','text/javascript'],'/passphrase.mjs':['passphrase.mjs','text/javascript'],'/style.css':['style.css','text/css']};
+      const uiM=/^\/ui\/([\w.-]+\.(mjs|css|svg|png))$/.exec(path);if(uiM)assets[path]=['ui/'+uiM[1],{mjs:'text/javascript',css:'text/css',svg:'image/svg+xml',png:'image/png'}[uiM[2]]];
       if(req.method==='GET' && assets[path]){
         const [name,type]=assets[path];const content=readFileSync(new URL('./public/'+name,import.meta.url));
         res.writeHead(200,{'Content-Type':type+'; charset=utf-8','Cache-Control':'no-store'});res.end(content);return;

@@ -1,0 +1,173 @@
+/* The Britt replan screen: layout built from shared ForgeFront tokens. */
+.step-state {
+  display: none;
+}
+.step {
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+  gap: var(--space-2);
+}
+.steps {
+  gap: var(--space-2);
+}
+.replan-shell {
+  height: var(--size-full);
+  padding: var(--screen-padding-y) var(--screen-padding-x);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-main-gap);
+  overflow: hidden;
+}
+.replan-head {
+  display: grid;
+  grid-template-columns: var(--columns-headline);
+  gap: var(--space-headline-gap);
+  align-items: start;
+  flex: var(--flex-none);
+  min-width: var(--size-zero);
+}
+.replan-grid {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  display: grid;
+  grid-template-columns: var(--columns-main-aside);
+  gap: var(--layout-gap);
+}
+.replan-main,
+.replan-aside {
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+  gap: var(--space-2);
+}
+.replan-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.replan-panel-grow {
+  flex: var(--flex-fill);
+  justify-content: flex-start;
+}
+.replan-options {
+  display: grid;
+  grid-template-columns: var(--columns-three);
+  gap: var(--layout-grid-gap);
+  min-width: var(--size-zero);
+}
+.replan-option {
+  width: var(--size-full);
+  text-align: left;
+  padding: var(--space-2) var(--space-4);
+}
+.replan-option-meaning {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  color: var(--text-secondary);
+}
+.replan-option-facts {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-width: var(--size-zero);
+}
+.replan-option-fact {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  white-space: nowrap;
+}
+.replan-option-fact span {
+  color: var(--text-secondary);
+}
+.replan-option-fact b {
+  color: var(--text-primary);
+  font-weight: var(--font-weight-bold);
+}
+.replan-flow {
+  min-width: var(--size-zero);
+}
+.replan-flow .station {
+  padding: var(--space-2) var(--space-4);
+}
+.replan-flow .flow-dot {
+  display: none;
+}
+.replan-assign-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.replan-assign-list .job-card {
+  flex: var(--flex-fill);
+  padding: var(--space-1) var(--space-4);
+  min-height: var(--size-zero);
+}
+.replan-capacity-list,
+.replan-checks {
+  display: grid;
+  gap: var(--space-2);
+  min-width: var(--size-zero);
+}
+.replan-capacity {
+  display: grid;
+  gap: var(--space-2);
+  min-width: var(--size-zero);
+}
+.replan-cap-row {
+  display: grid;
+  grid-template-columns: var(--columns-bar);
+  align-items: center;
+  gap: var(--space-4);
+  width: var(--size-full);
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: var(--surface-inset);
+  text-align: left;
+}
+.replan-cap-row:hover {
+  border-color: var(--border-strong);
+}
+.replan-cap-row.is-selected {
+  border-color: var(--border-strong);
+  background: var(--surface-selected);
+}
+.replan-cap-row .progress-track {
+  background: var(--surface-panel);
+}
+.replan-cap-row .progress-fill {
+  display: block;
+}
+.replan-cap-label {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-title);
+  white-space: nowrap;
+}
+.replan-cap-value {
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-title);
+  text-align: right;
+  white-space: nowrap;
+}
+.replan-job-meta {
+  font-size: var(--font-size-label);
+  line-height: var(--line-height-title);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.replan-checks {
+  margin-top: var(--space-3);
+}
+.replan-records {
+  margin-top: var(--space-3);
+}

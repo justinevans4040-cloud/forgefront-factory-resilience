@@ -1,0 +1,166 @@
+/* Incident layout only. Every measured, typed and colored value comes from
+   the shared tokens in theme.css; this file adds no values of its own. */
+.incident-layout {
+  display: grid;
+  grid-template-columns: var(--columns-main-aside);
+  gap: var(--layout-gap);
+  padding: var(--screen-padding-y) var(--screen-padding-x);
+  height: var(--size-full);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.incident-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.incident-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.incident-headline {
+  flex: var(--flex-none);
+  display: grid;
+  grid-template-columns: var(--columns-headline);
+  gap: var(--space-headline-gap);
+  align-items: center;
+}
+.incident-status-row {
+  flex: var(--flex-none);
+}
+.incident-factory {
+  flex: var(--flex-fill);
+  min-height: var(--size-zero);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  justify-content: space-between;
+}
+.incident-mismatch {
+  flex: var(--flex-none);
+  display: grid;
+  grid-template-columns: var(--columns-two);
+  gap: var(--space-mismatch-gap);
+  align-items: center;
+  padding: var(--space-2) var(--space-4);
+}
+.incident-mismatch-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-width: var(--size-zero);
+  min-height: var(--size-zero);
+}
+.incident-mismatch .section-label {
+  white-space: normal;
+}
+.incident-bars {
+  display: grid;
+  gap: var(--space-bars-gap);
+  min-width: var(--size-zero);
+}
+.incident-flow-group {
+  flex: var(--flex-none);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.incident-factory .flow {
+  flex: var(--flex-none);
+}
+.incident-factory .station {
+  justify-content: flex-start;
+  padding: var(--space-2) var(--space-4);
+}
+.incident-factory .flow-dot {
+  left: var(--space-3);
+  animation: none;
+}
+.incident-jobs-wrap {
+  flex: var(--flex-none);
+}
+.incident-jobs-wrap .job-card {
+  padding: var(--space-1) var(--space-4);
+}
+.incident-jobs .job-main {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.incident-jobs {
+  display: grid;
+  grid-template-columns: var(--columns-two);
+  gap: var(--layout-grid-gap);
+  min-width: var(--size-zero);
+}
+.incident-options {
+  flex: var(--flex-none);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: var(--size-zero);
+  min-width: var(--size-zero);
+}
+.incident-options-grid {
+  flex: var(--flex-none);
+  display: grid;
+  grid-template-columns: var(--columns-three);
+  gap: var(--layout-grid-gap);
+  min-width: var(--size-zero);
+}
+.incident-options .option-card {
+  padding: var(--space-2) var(--space-4);
+}
+.incident-options .meta-grid {
+  padding: var(--space-1) var(--space-3);
+}
+.incident-options .option-card .option-footer {
+  margin-top: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.incident-options .option-assump {
+  flex: var(--flex-fill);
+  white-space: normal;
+}
+.incident-options .option-footer .btn {
+  width: auto;
+  flex: var(--flex-none);
+}
+.incident-options .option-meaning {
+  white-space: normal;
+}
+.incident-options .option-meaning b {
+  color: var(--text-primary);
+}
+.incident-options .preview-text {
+  white-space: normal;
+}
+.incident-side .side-card {
+  padding: var(--space-3) var(--space-4);
+}
+.incident-side .evidence {
+  padding: var(--space-2) var(--space-4);
+}
+.incident-agent .agent-rows {
+  gap: var(--space-2);
+}
+.incident-agent .agent-row {
+  gap: var(--space-3);
+}
+.incident-agent .agent-line {
+  padding-top: var(--space-2);
+  gap: var(--space-3);
+}
+.incident-span {
+  grid-column: var(--grid-column-full);
+}
