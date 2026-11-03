@@ -1,79 +1,81 @@
-<p align="center"><img src="assets/brand/forgefront-systems-logo.png" width="360" alt="Forgefront Systems" /></p>
-
-# Forgefront Factory Resilience
-
-**A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call. The Britt turns that authorized decision into a live floor plan.**
-
-| | | |
-| ---: | ---: | ---: |
-| **120** certificate | **80** receiving | **70** parts at risk |
-
-Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
-
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
-<p align="center"><a href="https://forgefront-factory-resilience.onrender.com" style="display:inline-block;min-height:32px;padding:6px 4px;outline-offset:4px"><strong style="font-size:24px;line-height:1.35;color:#A8F04A;border-bottom:2px solid #A8F04A;letter-spacing:.02em">Open the recovery room</strong></a></p>
+<p align="center"><img src="assets/brand/forgefront-systems-logo.png" width="320" alt="ForgeFront Systems" /></p>
 
-In production, every approval sits behind an authorization wall such as a passkey, typed phrase, or other enterprise security control.
+# ForgeFront Factory Resilience
 
-## Powered by
+**The shop floor is in trouble. The Britt finds the way forward. You make the call.**
 
-| Partner | Their role |
-| --- | --- |
-| ![Meta](hackathon/public/partner-meta.svg) | **The models.** Muse Spark Open investigates; Muse Wonder weighs recovery choices and plans the work. |
-| ![Baseten](hackathon/public/partner-baseten.svg) | **Serves Spark Open.** Connects the investigator to the factory evidence. |
-| ![Fireworks AI](hackathon/public/partner-fireworks.svg) | **Standby inference route.** Hosts Meta's Spark Open. |
+Only **3 of 100 pieces arrived**. **10 of 45 machines are offline**, with **19 more starved downstream**. Two orders need 100 pieces, and the first is due in 36 hours. A shortage at receiving has become a factory emergency.
 
-<p align="center"><img src="assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront factory recovery command center in black, emerald and silver" /></p>
+ForgeFront Factory Resilience connects the material hold, source records, machine capacity and waiting jobs in one recovery room. **The Britt**, powered by **Meta Muse models**, investigates the discrepancy, explains calculated recovery choices and turns your authorized decision into a plan you can inspect.
 
-<p align="center"><img src="assets/showcase/full-shop-cascade.png" width="100%" style="max-width:100%;min-height:520px;object-fit:cover" alt="Full-shop failure cascade: emerald mills to lathes recovery route with silver × OFFLINE departments" /></p>
+## The emergency across the shop
 
-<p align="center"><em style="font-size:20px;line-height:1.4;color:#e8f6ee;font-weight:700">Cascade at a glance: 105 hours · 5 late orders · $11,100</em></p>
+![Shop: 45 machines across seven departments, with 10 offline and 19 starved downstream](assets/showcase/current/shop.png)
 
-<p align="center"><em style="font-size:16px;line-height:1.4;color:#c5ccd4;font-weight:600">Hero: command center · Cascade: emerald mills → lathes with silver × OFFLINE</em></p>
+**Shop.** Trace the held Alloy A lot through available cells and waiting jobs. The plant floor shows every machine across Saw, CNC mills, CNC lathes, Heat treat, Inspection, Finishing and Assembly, with filters for the held path, online machines and offline machines.
 
-<p align="center"><em style="font-size:32px;line-height:1.35;color:#A8F04A;font-weight:800">Full-shop cascade — three signals at a glance</em></p>
+## From incident to recovery
 
-| Signal | Marker | What judges see |
-| --- | --- | --- |
-| **Emerald mills → lathes** | ◆ emerald route | Living recovery path across the feasible route |
-| **Silver × OFFLINE** | ✕ hatch + text | Every stopped department marked by pattern and text |
-| **Live counters** | ● tabular 16px | Lost hours · late orders · cost · ship-date slip |
+### Incident
 
+![Incident: certificate lists 100 pieces, receiving counted 3, and two orders are waiting on the held lot](assets/showcase/current/incident.png)
 
-## What you'll see
+**Find the discrepancy.** The supplier certificate lists 100 pieces; receiving counted 3. Inspect the 97-piece gap, follow the held material into two waiting orders, and preview recovery paths before starting The Britt's investigation.
 
-| | Step |
-| ---: | --- |
-| **1** | **Find the fault.** Certificate 120 versus receiving 80 freezes seventy parts on the line. |
-| **2** | **Investigate with Meta AI.** Spark Open reads every source; Wonder weighs the calculated paths. |
-| **3** | **Approve the path.** One click, then authorize. The Britt builds the live board. |
-| **4** | **Survive the next shock.** A machine goes offline. The stale plan falls; you recover again. |
-| **5** | **Prove it.** Seal the ledger and keep the evidence packet with the decision. |
+### Findings
 
-## Meet The Britt
+![Findings: a 97-piece discrepancy, 100 pieces of verified Alloy B stock, and two waiting jobs traced to their cells](assets/showcase/current/findings.png)
 
-**The Britt** is Forgefront's sovereign recovery agent. After you authorize a recovery path, The Britt builds the floor's project board from the sealed decision.
+**Check the evidence.** The Britt brings certificate, receiving and substitute-stock records into one snapshot. Open the supporting record behind a quantity, station or job, then compare the calculated recovery paths.
 
-1. Reads the sealed path and the source evidence behind it.
-2. Drafts owners, deadlines and dependencies for every recovery move.
-3. Waits for your approve or decline. Never acts alone.
-4. Replans the board when a second shock invalidates the old plan.
+### Decision
 
-## Why it matters
+![Decision: compare replenishment, verified substitute and split capacity, with split capacity selected for authorization](assets/showcase/current/decision.png)
 
-A material hold burns hours across every connected machine. Forgefront keeps evidence, math, consent and tracked work in one recovery room that scales to full plants.
+**Choose the tradeoff.** Compare feasibility, time, cost and coverage. In this snapshot, verified substitute finishes in 40 hours for $4,500; splitting available capacity finishes in 26 hours for $4,570. Replenishment cannot cover the waiting orders with the available capacity.
 
-## How Meta models are used
+### Authorize
 
-**Muse Spark Open**, served by Baseten, investigates source records through read-only tools. **Muse Wonder** turns those findings into clear tradeoffs and helps **The Britt** draft the board for human approval. Factory math sets stock, hours and cost. The models explain. The human decides.
+![Authorize: review split capacity, 26-hour finish, $4,570 added cost and 100-piece coverage against the plant snapshot](assets/showcase/current/authorize.png)
 
-## Designed with Muse Wonder
+**Make the call.** Review the selected path, waiting orders, held lot and exact snapshot before recording your authorization. The Britt builds the recovery plan from that choice.
 
-Real screenshots drive Muse Wonder's design critiques of the Meta Hackathon build. The [saved review](hackathon/design/iteration-82.json) guides the black, emerald and brushed-silver recovery room.
+### The Britt plan
 
-Built by **Forgefront Systems**.
+![The Britt plan: Job 1001 assigned to Cell Mill 1 and Job 1002 to Cell Mill 2, with cell loads and recovery totals](assets/showcase/current/the-britt-plan.png)
 
-[Run it yourself](hackathon/RUN_GUIDE.md)
+**See how the work fits.** Inspect the replanned assignments, material, due times and remaining cell capacity. The screen keeps the selected recovery, 50 hours of planned work, available substitute stock and source records beside the job assignments.
+
+### Disrupt
+
+![Disrupt: preview Cell Mill 2 dropping from 24 hours to zero, leaving 40 hours available against 50 hours of work](assets/showcase/current/disrupt.png)
+
+**Test the next failure.** Preview Cell Mill 2 going offline. With 50 hours needed and 40 hours remaining elsewhere, the screen exposes a 10-hour shortfall and offers a fresh investigation of the changed capacity.
+
+### Evidence
+
+![Evidence: compare certificate, receiving and verified stock, inspect certificate line L3, and check all three retained excerpts](assets/showcase/current/evidence.png)
+
+**Keep the reasoning with the decision.** Inspect the source document, record and line behind each quantity. Check the packet against the analysis snapshot, review the waiting jobs and assumptions, and export a copy of the evidence.
+
+### Settings
+
+![Settings: connected Meta models, five available definitions, the signed-in session and a 45-machine plant snapshot](assets/showcase/current/settings.png)
+
+**Inspect the connection.** Check model availability, the session and the plant snapshot. Review what restoring the opening incident will replace, or return to Incident with the current work intact.
+
+## Powered by Meta models
+
+**Muse Spark Open on Baseten** powers The Britt's investigation of factory evidence through read-only calls. **Muse Wonder through the Meta Model API** reasons over recovery choices and supports recovery planning. The recovery engine computes stock, capacity, feasibility, hours and cost from the current snapshot. The models explain the options; your authorization records the decision.
+
+## Why ForgeFront
+
+A material hold spreads through connected work. ForgeFront makes that chain visible, puts source evidence beside the numbers, and carries the chosen recovery into job assignments. When capacity changes, you can see the shortfall and investigate again with the new facts.
+
+[Open the recovery room](https://forgefront-factory-resilience.onrender.com) � [Run it yourself](hackathon/RUN_GUIDE.md) � [Meta model integration](hackathon/docs/META_MODEL_USAGE.md)
+
+Built by **ForgeFront Systems**.

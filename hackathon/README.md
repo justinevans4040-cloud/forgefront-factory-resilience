@@ -1,60 +1,19 @@
-<p align="center"><img src="../assets/brand/forgefront-systems-logo.png" width="360" alt="Forgefront Systems" /></p>
-
-# Forgefront Factory Resilience
-
-**A factory disruption becomes a recovery plan—with Meta AI investigating and a human making the call.**
-
-Certificate says 120. Receiving counted 80. Forgefront turns that freeze into a sealed recovery with Meta on the evidence and a human on the call.
-
 <!-- live-demo:start -->
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
-In production, every approval sits behind an authorization wall such as a passkey, typed phrase, or other enterprise security control.
+# ForgeFront Factory Resilience
 
-## Powered by
+**The shop floor is in trouble. The Britt finds the way forward. You make the call.**
 
-| Partner | Their role |
-| --- | --- |
-| ![Meta](public/partner-meta.svg) | **The models.** Muse Spark Open investigates; Muse Wonder weighs recovery choices and plans the work. |
-| ![Baseten](public/partner-baseten.svg) | **Serves Spark Open.** Connects the investigator to the factory evidence. |
-| ![Fireworks AI](public/partner-fireworks.svg) | **Standby inference route.** Hosts Meta's Spark Open. |
+Only **3 of 100 pieces arrived**. **10 of 45 machines are offline**, and **19 more are starved downstream**. ForgeFront connects the held material, source evidence, machine capacity and waiting orders so you can choose and authorize a recovery.
 
-<p align="center"><img src="../assets/showcase/factory-resilience-hero.jpg" width="100%" alt="Forgefront factory recovery command center in black, emerald and silver" /></p>
+![Shop: 45 machines across seven departments, 10 offline, and 19 starved downstream](../assets/showcase/current/shop.png)
 
-<p align="center"><img src="../assets/showcase/full-shop-cascade.png" width="100%" alt="Full-shop failure cascade with every machine across seven departments in black, emerald and silver" /></p>
+**The Britt** investigates with **Meta Muse Spark Open on Baseten**, while **Muse Wonder through the Meta Model API** supports recovery reasoning and planning. The recovery engine calculates feasibility, time and cost from the current plant snapshot.
 
-<p align="center"><em style="font-size:22px;line-height:1.5;font-weight:700">Full-shop cascade — 35 affected operations freeze; living emerald mills → lathes recovery; silver × OFFLINE on every stopped department; live counters for lost hours · late orders · cost · ship-date slip.</em></p>
+Move through **Incident**, **Findings**, **Decision**, **The Britt plan**, **Disrupt**, **Evidence**, **Shop** and **Settings**. Compare recovery paths, authorize your choice, inspect the job assignments and test how another lost cell changes capacity.
 
-## What you'll see
+[See every screen and the full product walkthrough](../README.md) � [Run it yourself](RUN_GUIDE.md) � [Meta model integration](docs/META_MODEL_USAGE.md)
 
-1. **Find the fault.** Certificate 120 versus receiving 80 freezes seventy parts on the line.
-2. **Investigate with Meta AI.** Spark Open reads every source; Wonder weighs the calculated paths.
-3. **Approve the path.** One click, then authorize. The Britt builds the live board.
-4. **Survive the next shock.** A machine goes offline. The stale plan falls; you recover again.
-5. **Prove it.** Seal the ledger and keep the evidence packet with the decision.
-
-## Meet The Britt
-
-**The Britt** is Forgefront's sovereign recovery agent. After you authorize a recovery path, The Britt builds the floor's project board from the sealed decision.
-
-1. Reads the sealed path and the source evidence behind it.
-2. Drafts owners, deadlines and dependencies for every recovery move.
-3. Waits for your approve or decline. Never acts alone.
-4. Replans the board when a second shock invalidates the old plan.
-
-## Why it matters
-
-A material hold burns hours across every connected machine. Forgefront keeps evidence, math, consent and tracked work in one recovery room that scales to full plants.
-
-## How Meta models are used
-
-**Muse Spark Open**, served by Baseten, investigates source records through read-only tools. **Muse Wonder** turns those findings into clear tradeoffs and helps **The Britt** draft the board for human approval. Factory math sets stock, hours and cost. The models explain. The human decides.
-
-## Designed with Muse Wonder
-
-Real screenshots drive Muse Wonder's design critiques of the Meta Hackathon build. The [saved review](design/iteration-82.json) guides the black, emerald and brushed-silver recovery room.
-
-Built by **Forgefront Systems**.
-
-[Run it yourself](RUN_GUIDE.md)
+Built by **ForgeFront Systems**.

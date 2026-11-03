@@ -52,7 +52,7 @@ test('official Forgefront Systems logo is byte-identical in brand assets and wir
  assert.deepEqual(served,canonical);
  const readme=read(new URL('../../../README.md',import.meta.url),'utf8');
  assert.match(readme,/assets\/brand\/forgefront-systems-logo\.png/);
- assert.ok(readme.indexOf('assets/brand/forgefront-systems-logo.png')<readme.indexOf('assets/showcase/factory-resilience-hero.jpg'));
+ assert.ok(readme.indexOf('assets/brand/forgefront-systems-logo.png')<readme.indexOf('assets/showcase/current/shop.png'));
  const css=read(new URL('../../public/style.css',import.meta.url),'utf8');
  assert.match(css,/--accent:#c6ed8d/);
  assert.match(css,/background:#050705/);

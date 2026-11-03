@@ -14,19 +14,24 @@ test('public entry docs show the shared live URL before local instructions',asyn
   assert.doesNotMatch(text,/(?<![`\w])https?:\/\/(?:127\.0\.0\.1|localhost)[^`\s]*/i,file);
  }
 });
-test('partner badges precede the hero in model and serving order',()=>{
+test('public README gallery covers every current screen with complete widescreen captures',()=>{
  const text=read('README.md');
- const hero=text.indexOf('assets/showcase/factory-resilience-hero.jpg');
- const powered=text.indexOf('## Powered by');
- assert.ok(powered<hero&&powered>text.indexOf('# Forgefront Factory Resilience'));
- const block=text.slice(powered,hero);
- assert.ok(block.indexOf('partner-meta.svg')<block.indexOf('partner-baseten.svg'));
- assert.ok(block.indexOf('partner-baseten.svg')<block.indexOf('partner-fireworks.svg'));
- for(const partner of ['meta','baseten','fireworks']){
-  const badge=read('hackathon/public/partner-'+partner+'.svg');
-  assert.match(badge,/#00e59b/i);assert.doesNotMatch(badge,/#(?:ff0000|e5484d)/i);
+ assert.ok(text.indexOf('**Live demo:**')<text.indexOf('# ForgeFront Factory Resilience'));
+ assert.match(text,/Muse Spark Open on Baseten/);
+ assert.match(text,/The Britt/);
+ assert.doesNotMatch(text,/emerald|Hero:|command center|Cursor|Codex|\b20\d{2}[-/]\d/i);
+ const images=[...text.matchAll(/!\[[^\]]+\]\((assets\/showcase\/[^)]+)\)/g)].map(m=>m[1]);
+ const names=['shop','incident','findings','decision','authorize','the-britt-plan','disrupt','evidence','settings'];
+ assert.deepEqual(images,names.map(name=>'assets/showcase/current/'+name+'.png'));
+ for(const file of images){
+  const bytes=readFileSync(new URL('../../../'+file,import.meta.url));
+  assert.equal(bytes.subarray(1,4).toString(),'PNG',file);
+  assert.equal(bytes.readUInt32BE(16),1920,file);
+  assert.equal(bytes.readUInt32BE(20),1080,file);
  }
+ assert.doesNotMatch(read('hackathon/README.md'),/factory-resilience-hero|full-shop-cascade|emerald/i);
 });
+
 test('Render blueprint belongs to the exact public copy set',async()=>{
  const {publicFiles}=await import('../../scripts/public-set.mjs');
  assert.ok(publicFiles(fileURLToPath(new URL('../../../',import.meta.url))).includes('render.yaml'));
