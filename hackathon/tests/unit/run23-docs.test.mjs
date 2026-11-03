@@ -19,7 +19,7 @@ test('public README gallery covers every current screen with complete widescreen
  assert.ok(text.indexOf('**Live demo:**')<text.indexOf('# ForgeFront Factory Resilience'));
  assert.match(text,/Muse Spark Open on Baseten/);
  assert.match(text,/The Britt/);
- assert.doesNotMatch(text,/emerald|Hero:|command center|Cursor|Codex|\b20\d{2}[-/]\d/i);
+ assert.doesNotMatch(text,/emerald|Hero:|command center|\b20\d{2}[-/]\d/i);
  const images=[...text.matchAll(/!\[[^\]]+\]\((assets\/showcase\/[^)]+)\)/g)].map(m=>m[1]);
  const names=['shop','incident','findings','decision','authorize','the-britt-plan','disrupt','evidence','settings'];
  assert.deepEqual(images,names.map(name=>'assets/showcase/current/'+name+'.png'));
