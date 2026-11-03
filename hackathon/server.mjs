@@ -21,6 +21,7 @@ import { analyzeSnapshot } from "./src/domain/engine.mjs";
 import { buildDemoScenarioInput, createSnapshot } from "./src/domain/scenario.mjs";
 import { createToolDispatcher, listToolDefinitions } from "./src/agent/tools.mjs";
 import { createRequestGuards } from "./src/security/request.mjs";
+import { applySecurityHeaders } from './src/security/response-headers.mjs';
 
 const DEFAULT_PORT = Number(process.env.PORT || 8787);
 const DEFAULT_HOST = process.env.BIND_HOST || "127.0.0.1";
@@ -82,7 +83,8 @@ export function createApp(options = {}) {
   const quotaPersistence=env.HACKATHON_LEDGER_KEY?name=>({path:join(env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),'quota-'+name+'.json'),key:env.HACKATHON_LEDGER_KEY}):undefined;
   const publicBudget=publicHosting?createPublicBudget({...publicHosting,persistence:quotaPersistence?.('public-live')}):null;
   const workflowForSession=publicHosting&&env.HACKATHON_LEDGER_KEY?session=>createWorkflow({directory:join(env.HACKATHON_STATE_DIR?.trim()||join(process.cwd(),'data','hackathon'),'visitors',createHash('sha256').update(session).digest('hex')),key:env.HACKATHON_LEDGER_KEY,secrets:[...operatorSecrets,env.MUSE_API_KEY,env.MODEL_API_KEY,env.BASETEN_API_KEY,env.FIREWORKS_API_KEY,env.HACKATHON_ADMIN_TOKEN,env.HACKATHON_LEDGER_KEY]}):null;
-  const handleMeta = createMetaHandler({...options.models,workflow,quotaPersistence,publicBudget,identityFor,workflowForSession,secureFor:req=>Boolean(req.socket?.encrypted||(publicHosting&&trustProxy(req.socket?.remoteAddress)&&req.headers['x-forwarded-proto']==='https'))});
+  const isSecureRequest=req=>Boolean(req.socket?.encrypted||(publicHosting&&trustProxy(req.socket?.remoteAddress)&&req.headers['x-forwarded-proto']==='https'));
+  const handleMeta = createMetaHandler({...options.models,workflow,quotaPersistence,publicBudget,identityFor,workflowForSession,secureFor:isSecureRequest});
   let snapshot = options.snapshot || createSnapshot(buildDemoScenarioInput());
   let tools = createToolDispatcher(snapshot);
   const apiLimit=createClientLimiter({maximum:publicHosting?30:240,persistence:quotaPersistence?.(publicHosting?'public-api':'api'),identityFor});
@@ -101,13 +103,12 @@ export function createApp(options = {}) {
       const path = url.pathname;
       // Health probes must succeed even when a reverse-proxy Host is unexpected.
       if (req.method === "GET" && (path === "/health"||path==='/healthz')) {
+        applySecurityHeaders(res, { secure: isSecureRequest(req) });
         sendJson(res, 200, { ok: true, service: "forgefront-hackathon" });
         return;
       }
       guards.assertHost(req);
-      res.setHeader('Content-Security-Policy',"default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; frame-ancestors 'none'; form-action 'self'");
-      res.setHeader('X-Content-Type-Options','nosniff');
-      res.setHeader('Referrer-Policy','no-referrer');
+      applySecurityHeaders(res, { secure: isSecureRequest(req) });
 
       if(path.startsWith('/api/')){
         if(Number(req.headers['content-length'])>guards.maxBodyBytes){req.resume();throw Object.assign(new Error('Request body too large'),{status:413});}
