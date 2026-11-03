@@ -25,7 +25,7 @@ This policy covers the application under `hackathon/` (HTTP server, browser UI, 
 If you believe you have found a security issue in this repository or the public demo:
 
 1. **Do not** open a public issue with exploit details or live credentials.
-2. Email **security@forgefront.systems** with a concise description, reproduction steps, and impact. If you do not receive an acknowledgment within five business days, follow up once.
+2. Email **justin@wakeforged.com** with a concise description, reproduction steps, and impact. If you do not receive an acknowledgment within five business days, follow up once.
 3. Include whether the finding affects the public demo, persistent operator mode, or both.
 4. Safe harbor: good-faith research that avoids privacy violations, service disruption, and data destruction will not be pursued as unauthorized access, provided you report promptly.
 
