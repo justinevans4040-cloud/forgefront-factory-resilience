@@ -628,6 +628,18 @@ export async function render(root, kit) {
     return result;
   }
 
+  /* The Britt runs on Muse Spark Open through Baseten, the primary Meta route. */
+  async function runBritt() {
+    const started = await kit.api.post('/api/workflow/investigation-start', { provider: 'baseten' });
+    let job = started;
+    const wait = Number(started && started.pollAfterMs) || 2000;
+    while (job && job.status === 'running' && !disposed) {
+      await new Promise((resolve) => setTimeout(resolve, wait));
+      job = await kit.api.post('/api/workflow/investigation-status', { jobId: started.jobId });
+    }
+    return Boolean(job && job.status === 'completed');
+  }
+
   async function startInvestigation() {
     if (view.investigation === 'running') return;
     view.investigation = 'running';
@@ -636,11 +648,14 @@ export async function render(root, kit) {
     later(() => {
       if (view.investigation === 'running') setAgentMessage('<b>The Britt is comparing the records.</b> Certificate, receiving and stock are being checked.');
     }, kit.prefersReduced ? 60 : 480);
+    let live = false;
+    try { live = await runBritt(); } catch { live = false; }
+    if (disposed) return;
     const result = await kit.refreshData({ notifyOnError: false });
     if (disposed) return;
     const normalized = normalizeData(kit.state.workflow, kit.state.analysis, kit.state.plant);
     if (normalized) view.data = normalized;
-    if (result.ok && (kit.state.analysis || kit.state.workflow)) {
+    if (live && result.ok && (kit.state.analysis || kit.state.workflow)) {
       view.investigation = 'done';
       kit.setAgentStatus('Findings ready');
       kit.go('findings');
