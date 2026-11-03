@@ -431,13 +431,7 @@ function shellHtml() {
   return `
   <div class="shell">
     <header class="topbar">
-      <div class="brand" aria-label="ForgeFront Factory Resilience">
-        <div class="brand-mark">${icon('mark', true)}</div>
-        <div class="brand-text">
-          <span class="brand-name">ForgeFront</span>
-          <span class="brand-sub">Factory Resilience</span>
-        </div>
-      </div>
+      <div class="brand"><img class="brand-logo" src="/ui/forgefront-logo.webp" alt="ForgeFront Systems" width="300" height="200"></div>
       <button class="search-trigger" id="searchTrigger" type="button" aria-label="Open command bar">
         ${icon('search')}<span>Search or run a command</span><span class="kbd">Ctrl K</span>
       </button>

@@ -268,6 +268,7 @@ p, h1, h2, h3, dl, dd { margin: var(--space-0); }
   width: var(--brand-mark-size); height: var(--brand-mark-size); border-radius: var(--radius-md);
   display: grid; place-items: center; background: var(--color-action-primary); color: var(--text-on-action); flex: none;
 }
+.brand-logo { height: calc(var(--topbar-height) - var(--space-2)); width: auto; display: block; }
 .brand-text { display: grid; gap: var(--border-width); }
 .brand-name { font-size: var(--font-size-body); font-weight: var(--font-weight-bold); line-height: var(--line-height-title); letter-spacing: var(--letter-spacing-title); }
 .brand-sub { font-size: var(--font-size-label); color: var(--text-secondary); line-height: var(--line-height-title); }
