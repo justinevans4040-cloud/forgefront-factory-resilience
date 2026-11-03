@@ -441,66 +441,16 @@ export async function render(root, kit) {
     return Object.keys(args).length ? args : fallback;
   }
 
-  async function recordDecision(option, model) {
-    const payload = { optionId: option.optionId, snapshotDigest: model.digest || undefined };
-    const discovered = [];
-    collectWorkflowEndpoints(kit.state.workflow, discovered);
-    collectWorkflowEndpoints(kit.state.analysis, discovered);
-    const candidates = [
-      "/api/workflow/decide",
-      "/api/workflow/decision",
-      "/api/workflow/accept-option",
-      "/api/workflow/accept-recovery-option",
-      "/api/workflow/record-decision",
-      "/api/workflow/choose-option",
-      "/api/workflow/authorize-decision",
-      "/api/workflow/approve-decision",
-      "/api/workflow/acceptance",
-      "/api/workflow/accept",
-      "/api/workflow/approve",
-      "/api/workflow/authorize"
-    ];
-    const tried = new Set();
-    let lastError = null;
-    for (const path of discovered) {
-      if (!/(decide|decision|accept|author|choose|approve)/i.test(path) || tried.has(path)) continue;
-      tried.add(path);
-      try {
-        return await kit.api.post(path, payload);
-      } catch (error) {
-        lastError = error;
-        if (!isMissingEndpoint(error)) throw error;
-      }
-    }
-    let toolError = null;
-    try {
-      const toolsPayload = kit.state.tools || await kit.loadTools();
-      const tool = extractToolList(toolsPayload).find((entry) => {
-        const name = toolNameOf(entry);
-        return /(accept|approve|authoriz|consent|decision|decide|choose|record|submit)/i.test(name) && !/(get|list|status|read|preview|compare|analy)/i.test(name);
-      });
-      const toolName = toolNameOf(tool);
-      if (toolName) {
-        try {
-          return await kit.api.post("/api/tools/invoke", { name: toolName, arguments: buildToolArgs(tool, option, model) });
-        } catch (error) {
-          toolError = error;
-        }
-      }
-    } catch (error) {
-      toolError = error;
-    }
-    for (const path of candidates) {
-      if (tried.has(path)) continue;
-      tried.add(path);
-      try {
-        return await kit.api.post(path, payload);
-      } catch (error) {
-        lastError = error;
-        if (!isMissingEndpoint(error)) throw error;
-      }
-    }
-    throw toolError || lastError || new Error("The decision could not be recorded.");
+  /* Record the decision through the signed consent flow: review the option for the latest valid run, then confirm it. */
+  async function recordDecision(option) {
+    const status = await kit.api.post("/api/workflow/status", {});
+    if (status) kit.state.workflow = status;
+    const digest = status && status.snapshot && status.snapshot.snapshotDigest;
+    const runs = (status && Array.isArray(status.runs)) ? status.runs : [];
+    const run = [...runs].reverse().find((r) => r && r.proposalValid && (!digest || !r.run || !r.run.snapshotDigest || r.run.snapshotDigest === digest));
+    if (!run) throw new Error("Run the investigation on the Incident screen first, then authorize.");
+    const envelope = await kit.api.post("/api/workflow/review", { runId: run.runId, optionId: option.optionId });
+    return kit.api.post("/api/workflow/confirm", { nonce: envelope.nonce, typed: `APPROVE ${envelope.optionId}` });
   }
 
   function openAuthorizeWall() {

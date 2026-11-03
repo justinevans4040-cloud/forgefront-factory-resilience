@@ -132,7 +132,8 @@ async function request(path, options = {}) {
     let detail = '';
     try {
       const payload = await response.clone().json();
-      detail = payload && (payload.error || payload.message) ? String(payload.error || payload.message) : '';
+      const raw = payload && (payload.error || payload.message);
+      detail = raw ? String(typeof raw === 'object' ? (raw.message || raw.code || '') : raw) : '';
     } catch { detail = ''; }
     throw new Error(detail || `Request failed with ${response.status}`);
   }
