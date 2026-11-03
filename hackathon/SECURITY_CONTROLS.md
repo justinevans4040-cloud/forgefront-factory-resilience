@@ -92,7 +92,7 @@ Concrete controls protect the recovery decision from open room through evidence 
 | Plaintext export gate | Advanced/collapsed UI acknowledgement; API requires `acknowledgePlaintext: EXPORT PLAINTEXT` for packet/report; packet label and readable report open with `PLAINTEXT EXPORT` | `run5-controls.test.mjs`, `audit3-hardening.test.mjs`, `run6-export.test.mjs`, browser smoke | Checkpoints are integrity metadata only; trusted in-process script helpers still export plaintext by design; historical copies remain plaintext |
 | Meta-only product AI | Allowlisted Wonder + Spark Open Baseten routes; Fireworks retained as optional backup; explicit Sample client only; missing live keys fail closed (no Sample substitute) | `models.test.mjs`, `model-identity.test.mjs`, `security.test.mjs`, `routes.mjs`, `audit-hardening.test.mjs`, `run12-copy.test.mjs` | Provider identity is self-reported metadata |
 | Dependency risk | Zero npm runtime dependencies in the Meta Hackathon build | `package.json` inspection; no dependency installation required | Transitive OS/toolchain risk remains; browser binary used only by smoke tooling |
-| CSP / XSS posture | Strict CSP `script-src 'self'`; UI uses `textContent` for untrusted model/source text | `ui.test.mjs`, public app code | CSP does not stop malicious same-origin JS if static assets were replaced |
+| CSP / XSS posture | Strict CSP `script-src 'self'` via `response-headers.mjs`; `X-Frame-Options`, `Permissions-Policy`, COOP/CORP; HSTS on HTTPS behind trusted proxy; UI uses `textContent` for untrusted model/source text | `security-headers.test.mjs`, `ui.test.mjs`, public app code | CSP does not stop malicious same-origin JS if static assets were replaced |
 
 
 ## Operator custody
