@@ -257,7 +257,7 @@ p, h1, h2, h3, dl, dd { margin: var(--space-0); }
 
 /* Shell */
 .shell { height: var(--size-viewport); display: flex; flex-direction: column; overflow: hidden; background: var(--surface-page); }
-.screen-root { flex: var(--flex-fill); min-height: var(--size-zero); overflow: hidden; position: relative; z-index: var(--z-shell); }
+.screen-root { flex: var(--flex-fill); min-height: var(--size-zero); overflow-y: auto; overflow-x: hidden; position: relative; z-index: var(--z-shell); }
 .topbar {
   flex: none; height: var(--topbar-height); display: flex; align-items: center; gap: var(--space-8);
   padding: var(--space-0) var(--space-page-x); background: var(--surface-shell);

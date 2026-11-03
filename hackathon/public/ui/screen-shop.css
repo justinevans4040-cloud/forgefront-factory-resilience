@@ -1,10 +1,10 @@
 .shop-screen {
-  height: var(--size-full);
+  min-height: var(--size-full);
   display: flex;
   flex-direction: column;
-  gap: var(--space-main-gap);
+  gap: var(--space-8);
   padding: var(--screen-padding-y) var(--screen-padding-x);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .shop-head {
@@ -34,7 +34,7 @@
   gap: var(--space-factory-gap);
   min-height: var(--size-zero);
   min-width: var(--size-zero);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .shop-aside {
@@ -43,7 +43,7 @@
   gap: var(--space-side-gap);
   min-height: var(--size-zero);
   min-width: var(--size-zero);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .shop-cascade {

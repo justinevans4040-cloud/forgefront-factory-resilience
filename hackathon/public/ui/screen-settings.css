@@ -1,11 +1,10 @@
 .settings-screen {
-  height: var(--size-full);
-  min-height: var(--size-zero);
+  min-height: var(--size-full);
   padding: var(--screen-padding-y) var(--screen-padding-x);
   display: flex;
   flex-direction: column;
-  gap: var(--space-main-gap);
-  overflow: hidden;
+  gap: var(--space-8);
+  overflow: visible;
   background: var(--surface-page);
   color: var(--text-primary);
 }

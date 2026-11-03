@@ -3,12 +3,12 @@
   padding-right: var(--space-4);
 }
 .ev-page {
-  height: var(--size-full);
+  min-height: var(--size-full);
   display: flex;
   flex-direction: column;
-  gap: var(--space-main-gap);
+  gap: var(--space-8);
   padding: var(--screen-padding-y) var(--screen-padding-x);
-  overflow: hidden;
+  overflow: visible;
   background: var(--surface-page);
 }
 .ev-page .eyebrow {
@@ -40,7 +40,7 @@
   gap: var(--space-3);
   min-height: var(--size-zero);
   min-width: var(--size-zero);
-  overflow: hidden;
+  overflow: visible;
 }
 .ev-main .stats {
   margin-top: var(--space-0);
@@ -135,7 +135,7 @@
   gap: var(--space-side-gap);
   min-height: var(--size-zero);
   min-width: var(--size-zero);
-  overflow: hidden;
+  overflow: visible;
 }
 .ev-side {
   display: flex;

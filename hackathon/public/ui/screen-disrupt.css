@@ -1,10 +1,9 @@
 .disrupt-page {
-  height: var(--size-full);
+  min-height: var(--size-full);
   display: flex;
   flex-direction: column;
-  gap: var(--space-main-gap);
+  gap: var(--space-8);
   padding: var(--screen-padding-y) var(--screen-padding-x);
-  min-height: var(--size-zero);
   min-width: var(--size-zero);
 }
 

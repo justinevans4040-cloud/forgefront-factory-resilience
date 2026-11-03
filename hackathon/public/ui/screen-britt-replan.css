@@ -11,12 +11,12 @@
   gap: var(--space-2);
 }
 .replan-shell {
-  height: var(--size-full);
+  min-height: var(--size-full);
   padding: var(--screen-padding-y) var(--screen-padding-x);
   display: flex;
   flex-direction: column;
-  gap: var(--space-main-gap);
-  overflow: hidden;
+  gap: var(--space-8);
+  overflow: visible;
 }
 .replan-head {
   display: grid;
