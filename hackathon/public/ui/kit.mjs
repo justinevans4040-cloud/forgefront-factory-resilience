@@ -431,7 +431,7 @@ function shellHtml() {
   return `
   <div class="shell">
     <header class="topbar">
-      <div class="brand"><img class="brand-logo" src="/ui/forgefront-logo.webp" alt="ForgeFront Systems" width="300" height="200"></div>
+      <div class="brand"><img class="brand-logo" src="/ui/forgefront-logo.png" alt="ForgeFront Systems" width="300" height="200"></div>
       <button class="search-trigger" id="searchTrigger" type="button" aria-label="Open command bar">
         ${icon('search')}<span>Search or run a command</span><span class="kbd">Ctrl K</span>
       </button>
