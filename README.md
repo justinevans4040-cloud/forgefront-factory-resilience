@@ -76,6 +76,6 @@ ForgeFront Factory Resilience connects the material hold, source records, machin
 
 A material hold spreads through connected work. ForgeFront makes that chain visible, puts source evidence beside the numbers, and carries the chosen recovery into job assignments. When capacity changes, you can see the shortfall and investigate again with the new facts.
 
-[Open the recovery room](https://forgefront-factory-resilience.onrender.com) � [Run it yourself](hackathon/RUN_GUIDE.md) � [Meta model integration](hackathon/docs/META_MODEL_USAGE.md)
+[Open the recovery room](https://forgefront-factory-resilience.onrender.com)  [Run it yourself](hackathon/RUN_GUIDE.md)  [Meta model integration](hackathon/docs/META_MODEL_USAGE.md)
 
 Built by **ForgeFront Systems**.
