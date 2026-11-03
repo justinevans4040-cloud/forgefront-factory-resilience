@@ -1,8 +1,10 @@
 export function jobShopPlant(){
+ // Ten machines are down across the line; downstream work starves behind them.
+ const down=new Set(['mill-1','mill-2','mill-3','mill-4','mill-5','turn-1','turn-2','heat-1','inspect-1','finish-1']);
  const departments=[['Saw',5,'cut'],['CNC mills',12,'mill'],['CNC lathes',9,'turn'],['Heat treat',4,'heat'],['Inspection',5,'inspect'],['Finishing',5,'finish'],['Assembly',5,'assemble']];
- const machines=departments.flatMap(([department,count,capability])=>Array.from({length:count},(_,i)=>({id:capability+'-'+(i+1),label:department+' '+(i+1),department,capabilities:[capability],capacityHours:48,hourlyCostUsd:capability==='heat'?140:100,online:true})));
+ const machines=departments.flatMap(([department,count,capability])=>Array.from({length:count},(_,i)=>({id:capability+'-'+(i+1),label:department+' '+(i+1),department,capabilities:[capability],capacityHours:48,hourlyCostUsd:capability==='heat'?140:100,online:!down.has(capability+'-'+(i+1))})));
  const chain=['cut','mill','turn','heat','inspect','finish','assemble'];
  const operations=Array.from({length:5},(_,order)=>chain.map((capability,step)=>({id:'order-'+order+'-'+capability,label:capability+' order '+(order+1),machineId:capability+'-'+(order%departments.find(d=>d[2]===capability)[1]+1),capability,lotIds:step===0?['incoming-alloy']:[],hours:2+order/2,dueHours:24+order*4,dependsOn:step?['order-'+order+'-'+chain[step-1]]:[],orderId:'order-'+(order+1)}))).flat();
  const failurePolicies=Object.fromEntries([['wrong-cert',12,1,4,450],['wrong-material',24,3,6,850],['wrong-grain',18,4,5,600],['wrong-sticker',6,0.5,2,200],['failed-hardness',16,2,8,700]].map(([id,releaseHours,reworkHoursPerOperation,expediteLeadHours,expediteCostUsd])=>[id,{releaseHours,reworkHoursPerOperation,expediteLeadHours,expediteCostUsd}]));
- return {id:'full-shop',label:'Sample job shop',machines,operations,lots:[{id:'incoming-alloy',label:'Incoming alloy lot'}],failurePolicies,evidence:[{id:'certificate',comparisonKey:'incoming-alloy',label:'Certificate says',quantity:{value:120,unit:'each'}},{id:'receiving',comparisonKey:'incoming-alloy',label:'Receiving counted',quantity:{value:80,unit:'each'}}]};
+ return {id:'full-shop',label:'Sample job shop',machines,operations,lots:[{id:'incoming-alloy',label:'Incoming alloy lot'}],failurePolicies,evidence:[{id:'certificate',comparisonKey:'incoming-alloy',label:'Certificate says',quantity:{value:100,unit:'each'}},{id:'receiving',comparisonKey:'incoming-alloy',label:'Receiving counted',quantity:{value:3,unit:'each'}}]};
 }

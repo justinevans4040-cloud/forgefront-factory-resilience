@@ -587,8 +587,8 @@ export async function render(root, kit) {
   function renderAll() {
     const data = view.data;
     if (data) {
-      $('#incidentTitle').innerHTML = `<span class="page-title-line">The certificate says ${fmtInt(data.certificate)}, but receiving</span><span class="page-title-line">counted ${fmtInt(data.receiving)}, so this alloy lot is on hold.</span>`;
-      $('#incidentSub').textContent = `Supplier lists ${fmtInt(data.certificate)} pieces; receiving counted ${fmtInt(data.receiving)}. ${fmtInt(data.ordersAffected)} jobs are waiting on this lot.`;
+      $('#incidentTitle').innerHTML = `<span class="page-title-line">Only ${fmtInt(data.receiving)} of ${fmtInt(data.certificate)} pieces arrived, so ${fmtInt(data.ordersAffected)} orders are stopped.</span>`;
+      $('#incidentSub').textContent = `Supplier certificate lists ${fmtInt(data.certificate)} pieces; receiving counted ${fmtInt(data.receiving)}. ${fmtInt(data.partsAtRisk)} parts are at risk.`;
     }
     renderStatus();
     renderBars();

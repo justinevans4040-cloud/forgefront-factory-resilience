@@ -5,16 +5,16 @@ export function buildDemoScenarioInput() {
     label: "SYNTHETIC",
     incident: {
       incidentId: "inc-cert-alloy-hold",
-      summary: "Incoming alloy lot certificate quantity does not match receiving record; material held.",
+      summary: "Incoming alloy lot certificate quantity does not match receiving record; only 3 of 100 pieces arrived and the lot is held.",
       heldMaterialId: "MAT-ALLOY-A",
-      discrepancy: "certificate claims 120 each; receiving posted 80 each",
+      discrepancy: "certificate claims 100 each; receiving posted 3 each",
     },
     materials: [
       {
         materialId: "MAT-ALLOY-A",
         unit: "each",
-        onHand: 80,
-        held: 80,
+        onHand: 3,
+        held: 3,
         substitutes: ["MAT-ALLOY-B"],
         replenishmentHours: 48,
         unitCostUsd: 12,
@@ -49,7 +49,7 @@ export function buildDemoScenarioInput() {
       {
         jobId: "JOB-1001",
         materialId: "MAT-ALLOY-A",
-        unitsRequired: 40,
+        unitsRequired: 60,
         hoursPerUnit: 0.5,
         preferredCellId: "CELL-MILL-1",
         dueHours: 36,
@@ -57,7 +57,7 @@ export function buildDemoScenarioInput() {
       {
         jobId: "JOB-1002",
         materialId: "MAT-ALLOY-A",
-        unitsRequired: 30,
+        unitsRequired: 40,
         hoursPerUnit: 0.5,
         preferredCellId: "CELL-MILL-1",
         dueHours: 48,
@@ -70,8 +70,8 @@ export function buildDemoScenarioInput() {
         recordId: "rec-cert-line-3",
         lineId: "L3",
         field: "quantity",
-        quantity: { value: 120, unit: "each" },
-        excerpt: "Certificate line L3 quantity=120 each for lot ALLOY-A.",
+        quantity: { value: 100, unit: "each" },
+        excerpt: "Certificate line L3 quantity=100 each for lot ALLOY-A.",
       },
       {
         evidenceId: "ev-recv-qty",
@@ -79,8 +79,8 @@ export function buildDemoScenarioInput() {
         recordId: "rec-recv-posted",
         lineId: "R1",
         field: "quantity",
-        quantity: { value: 80, unit: "each" },
-        excerpt: "Receiving post R1 quantity=80 each for lot ALLOY-A; hold applied.",
+        quantity: { value: 3, unit: "each" },
+        excerpt: "Receiving post R1 quantity=3 each for lot ALLOY-A; hold applied.",
       },
       {
         evidenceId: "ev-sub-stock",

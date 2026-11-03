@@ -123,6 +123,51 @@ export async function render(root, kit) {
       .reduce((best, option) => (best === null ? num(option.finishHours) : Math.min(best, num(option.finishHours))), null);
 
     const onlineCount = machines.filter((machine) => machine.online).length;
+    const offlineCount = machines.length - onlineCount;
+    const ops = asArray(plant.operations);
+    const opById = new Map(ops.map((op)=> [String(op.id), op]));
+    const offlineIds = new Set(machines.filter((m)=> !m.online).map((m)=> String(m.id)));
+    const blockedMemo = new Map();
+    const causeMemo = new Map();
+    function opCause(opId, seen=new Set()){
+      if(!opId || seen.has(opId)) return '';
+      const op = opById.get(String(opId));
+      if(!op) return '';
+      if(causeMemo.has(String(opId))) return causeMemo.get(String(opId));
+      seen.add(String(opId));
+      const mid = String(op.machineId||'');
+      if(offlineIds.has(mid)){ causeMemo.set(String(opId), mid); return mid; }
+      const deps = asArray(op.dependsOn);
+      for(const d of deps){
+        const c = opCause(String(d), seen);
+        if(c){ causeMemo.set(String(opId), c); return c; }
+      }
+      causeMemo.set(String(opId), '');
+      return '';
+    }
+    function isBlocked(opId){
+      if(blockedMemo.has(String(opId))) return blockedMemo.get(String(opId));
+      const c = opCause(opId);
+      const v = Boolean(c);
+      blockedMemo.set(String(opId), v);
+      return v;
+    }
+    const starvedCause = new Map();
+    const starvedIds = new Set();
+    for(const op of ops){
+      const mid = String(op.machineId||'');
+      if(!mid || offlineIds.has(mid)) continue;
+      const m = machineById.get(mid);
+      if(!m || !m.online) continue;
+      if(isBlocked(String(op.id))){
+        const cause = opCause(String(op.id));
+        if(cause && !starvedIds.has(mid)){
+          starvedIds.add(mid);
+          starvedCause.set(mid, cause);
+        }
+      }
+    }
+    const starvedCount = starvedIds.size;
     const firstDue = jobs.reduce((best, job) => {
       if (!hasNum(job.dueHours)) return best;
       return best === null ? num(job.dueHours) : Math.min(best, num(job.dueHours));
@@ -155,7 +200,10 @@ export async function render(root, kit) {
       defaultDept,
       fastestFinish,
       onlineCount,
-      offlineCount: machines.length - onlineCount,
+      offlineCount,
+      starvedIds,
+      starvedCause,
+      starvedCount,
       totalCapacity: machines.reduce((sum, machine) => sum + num(machine.capacityHours), 0),
       firstDue,
       connection: kit.state.connection || "checking"
@@ -270,8 +318,8 @@ export async function render(root, kit) {
     return {
       title: String(machine.label || kit.friendlyName(machine.id)),
       subtitle: "Machine in this plant",
-      pill: machine.online ? "Online" : "Offline",
-      tone: machine.online ? "is-ok" : "is-danger",
+      pill: !machine.online ? "Offline" : (model.starvedIds && model.starvedIds.has(String(machine.id)) ? "Starved" : "Online"),
+      tone: !machine.online ? "is-danger" : (model.starvedIds && model.starvedIds.has(String(machine.id)) ? "is-held" : "is-ok"),
       rows: [
         { label: "Department", value: String(machine.department || "Department") },
         { label: "Capacity listed", value: kit.fmtHours(machine.capacityHours) },
@@ -341,7 +389,11 @@ export async function render(root, kit) {
         const selected = selectedKind === "machine" && selectedId === String(machine.id);
         const dimmed = !machineMatches(model, machine);
         const label = String(machine.label || kit.friendlyName(machine.id));
-        const dotTone = involved ? "" : machine.online ? " is-ok" : " is-danger";
+        const isStarved = model.starvedIds && model.starvedIds.has(String(machine.id));
+        const isOffline = !machine.online;
+        const causeId = model.starvedCause ? model.starvedCause.get(String(machine.id)) : '';
+        const causeLabel = causeId ? (model.machineById.get(causeId) ? String(model.machineById.get(causeId).label || causeId) : causeId) : '';
+        const dotTone = isOffline ? " is-danger" : isStarved ? " is-held" : involved ? "" : machine.online ? " is-ok" : " is-danger";
         return `
           <button class="shop-machine${selected ? " is-selected" : ""}${involved ? " is-linked" : ""}${dimmed ? " is-dimmed" : ""}" type="button"
             data-shop-machine="${esc(machine.id)}" data-shop-focus="machine:${esc(machine.id)}" aria-pressed="${selected}"
@@ -367,7 +419,7 @@ export async function render(root, kit) {
         <div class="shop-floor-title">
           <h3 class="section-label">Plant floor</h3>
           <div class="legend" aria-label="Machine status">
-            <span class="legend-item"><span class="legend-dot is-held" aria-hidden="true"></span>Held path</span>
+            <span class="legend-item"><span class="legend-dot is-held" aria-hidden="true"></span>Starved</span>
             <span class="legend-item"><span class="legend-dot is-ok" aria-hidden="true"></span>Available</span>
             <span class="legend-item"><span class="legend-dot is-danger" aria-hidden="true"></span>Offline</span>
           </div>
@@ -387,9 +439,12 @@ export async function render(root, kit) {
       ? [
           { value: `${kit.fmtInt(model.onlineCount)}/${kit.fmtInt(model.machines.length)}`, label: "Online" },
           { value: kit.fmtInt(model.departments.length), label: "Departments" },
-          { value: kit.fmtHours(model.involvedOpenHours), label: "Open on path" }
+          { value: kit.fmtInt(model.offlineCount), label: "Offline" },
+          { value: kit.fmtInt(model.starvedCount||0), label: "Starved" }
         ]
       : [
+          { value: kit.fmtInt(model.offlineCount), label: "Offline" },
+          { value: kit.fmtInt(model.starvedCount||0), label: "Starved" },
           { value: kit.fmtInt(model.machines.length), label: "Machines" },
           { value: kit.fmtInt(model.onlineCount), label: "Online" },
           { value: kit.fmtInt(model.departments.length), label: "Departments" }
@@ -553,9 +608,7 @@ export async function render(root, kit) {
       : model.connection === "offline"
         ? "Full shop · Plant records could not be reached"
         : "Full shop · Checking plant records";
-    const headline = model.heldMaterial
-      ? "The whole plant in one view, with the held lot's path lit."
-      : "The whole plant in one view, department by department.";
+    const headline = `${kit.fmtInt(model.offlineCount)} machines down, ${kit.fmtInt(model.starvedCount||0)} more starved downstream.`;
     const sub = hasMachines
       ? model.heldMaterial
         ? `${kit.fmtInt(model.machines.length)} machines in ${kit.fmtInt(model.departments.length)} departments · ${kit.fmtInt(model.jobs.length)} jobs waiting on the held lot.`
