@@ -9,7 +9,7 @@ This index describes the current eight-screen interface and server workflow. Ear
 | Responsive presentation | All eight screens checked at desktop and emulated mobile widths; zero console errors | Desktop/mobile proof |
 | Keyboard path | 44 keyboard actions through authorization, task approval and export | [Keyboard proof](run50/browser-keyboard.json) |
 | Public hosting request guards | Complete Sample recovery path: 26 successful API responses, zero 429 responses; limits unchanged | [Public-mode proof](run50/browser-public.json) |
-| Media integrity | Latest V14, 2:55.817, 33,132,466 bytes; public download matches SHA-256 | [Video metadata](run50/video.json), [video QA](../docs/VIDEO_QA.md) |
+| Media integrity | Latest V15, 2:55.817, 33,411,420 bytes; public download matches SHA-256 | [Video metadata](run50/video.json), [video QA](../docs/VIDEO_QA.md) |
 | Secret scanning | Working tree and 370-commit history: no leaks found | Verification summary |
 | Live Render deployment | Commit `1040363` on Node 24.22.2; health and prepared source match; live Spark investigation passed | [Deployment and model proof](run50/live-deployment.json) |
 

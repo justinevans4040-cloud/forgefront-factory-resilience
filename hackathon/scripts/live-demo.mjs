@@ -19,7 +19,7 @@ const rootBlock=()=>`<!-- live-demo:start -->
       <h3><a href="https://justinevans4040-cloud.github.io/forgefront-factory-resilience/">WATCH THE 2:55 DEMO →</a></h3>
       <strong>See the story in motion</strong><br />
       <sub>From incident to authorized recovery</sub><br />
-      <sub><a href="https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14">Video details &amp; MP4</a></sub>
+      <sub><a href="https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v15">Video details &amp; MP4</a></sub>
     </td>
     <td align="center" width="33%">
       <h3><a href="hackathon/docs/JUDGES_GUIDE.md">OPEN THE JUDGE GUIDE →</a></h3>

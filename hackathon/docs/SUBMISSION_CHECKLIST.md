@@ -11,7 +11,7 @@ The [judge guide](JUDGES_GUIDE.md) is the product entry point. The [evidence ind
 - [x] The explicit Sample route completes task approval, disruption, evidence checkpoint and shop-reference screens.
 - [x] Live task-draft validation rejects an invalid board before task creation; the repeatable Sample route demonstrates the complete task approval workflow.
 - [x] Latest video appears immediately below the README live-app link and plays publicly.
-- [x] Video runtime is at most three minutes; the current export is 2:55.817 and 33,132,466 bytes.
+- [x] Video runtime is at most three minutes; the current export is 2:55.817 and 33,411,420 bytes.
 - [x] Current eight-screen workflow, source quantities, model roles and calculation boundaries agree across documentation.
 - [x] Tests exercise current UI and real server transitions; retired UI checks are explicitly historical.
 - [x] Secrets scan passes; no provider credentials, private state, local profile paths or audit backups are published.

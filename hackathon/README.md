@@ -2,7 +2,7 @@
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
-**Demo video · 2:55:** [Play the demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and download](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
+**Demo video · 2:55:** [Play the demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and download](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v15)
 
 [![Play ForgeFront Factory Resilience demo — 2:55](../assets/showcase/current/forgefront-factory-resilience.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
 
