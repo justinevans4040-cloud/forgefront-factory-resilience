@@ -53,6 +53,25 @@ Factory Resilience directly answers both event themes: **Build for Your World**,
 
 For the most repeatable full judging path, select **Sample** on the Incident screen. To inspect the genuine model integration, run the live **Meta Muse Spark Open** route. Both modes are labeled in the interface and never masquerade as one another.
 
+## Meet The Britt: advanced AI for factory recovery
+
+<p align="center">
+  <img src="assets/showcase/current/the-britt-agent.jpg" width="100%" alt="ForgeFront Systems — The Britt, advanced factory resilience agent" />
+</p>
+
+**The Britt is the source-bound resilience agent at the center of Factory Resilience.** It does more than summarize an incident: it investigates the live recovery snapshot, connects material and receiving evidence to affected jobs and compatible machines, challenges unsupported claims, and turns the verified situation into an explainable recovery proposal for a human decision-maker.
+
+Its advanced design comes from combining Meta models with strict operational boundaries:
+
+- **Meta Muse Spark Open performs the investigation.** Running on Baseten, it can use five narrowly scoped, read-only factory tools to retrieve the certificate, receipt, inventory, job and capacity records needed for the incident.
+- **Every numerical claim is source-checked.** A claim is accepted only when its document, record, field, value and unit agree with the underlying evidence. Fluent language cannot override a mismatched fact.
+- **Meta Muse Wonder supports deeper recovery reasoning.** Through the Meta Model API, it can draft advisory recovery logic and structured tasks; the application rejects unavailable, malformed or unsupported output instead of treating it as a plan.
+- **The model reasons; the engine calculates.** Stock coverage, machine compatibility, capacity, completion time and cost come from deterministic code, so The Britt cannot improvise the operational math.
+- **Authority is snapshot-bound and human.** The Britt can recommend and explain, but it cannot release work. A person approves the current plan, and a changed factory state invalidates that prior authority.
+- **The system fails closed.** Model identity, tool access, response structure and evidence claims are validated before results enter the workflow. Errors remain visible; they are not silently converted into a successful answer.
+
+That separation—**Meta intelligence for investigation and reasoning, deterministic software for operational truth, and a human for authorization**—is what makes The Britt suitable for high-consequence manufacturing decisions.
+
 ## What drives The Britt—and what drives the math
 
 | Responsibility | System of record | Why it matters |
