@@ -4,14 +4,15 @@ The [judge guide](JUDGES_GUIDE.md) is the product entry point. The [evidence ind
 
 ## Repository and presentation
 
-- [ ] Current public branch and its CI checks verified after the final changes.
-- [ ] Live app and health endpoint open without a private account.
-- [ ] Latest video appears immediately below the README live-app link and plays publicly.
-- [ ] Video runtime is at most three minutes; the current export is 2:55.817 and 33,132,466 bytes.
-- [ ] Current eight-screen workflow, source quantities, model roles and calculation boundaries agree across documentation.
-- [ ] Tests exercise current UI and real server transitions; retired UI checks are explicitly historical.
-- [ ] Secrets scan passes; no provider credentials, private state, local profile paths or audit backups are published.
-- [ ] License and third-party notices are available; retained contribution history remains intact.
+- [x] Current public branch and its CI checks verified after the final changes.
+- [x] Live app and health endpoint open without a private account.
+- [ ] Render serves the audited source commit and the updated live primary-model workflow is verified.
+- [x] Latest video appears immediately below the README live-app link and plays publicly.
+- [x] Video runtime is at most three minutes; the current export is 2:55.817 and 33,132,466 bytes.
+- [x] Current eight-screen workflow, source quantities, model roles and calculation boundaries agree across documentation.
+- [x] Tests exercise current UI and real server transitions; retired UI checks are explicitly historical.
+- [x] Secrets scan passes; no provider credentials, private state, local profile paths or audit backups are published.
+- [x] License and third-party notices are available; retained contribution history remains intact.
 
 ## Submission form and human declarations
 
