@@ -54,7 +54,7 @@ export function checkJudgePitch(text){
  const headingIndex=lines.findIndex(line=>/^#\s+\S/.test(line));
  const liveIndex=lines.findIndex(line=>live.test(line));
  const videoIndex=lines.findIndex(line=>video.test(line));
- const largeCta=/<h3><a href="https:\/\/forgefront-factory-resilience\.onrender\.com">LAUNCH THE LIVE APP →<\/a><\/h3>[\s\S]*?<h3><a href="https:\/\/justinevans4040-cloud\.github\.io\/forgefront-factory-resilience\/">WATCH THE 2:55 DEMO →<\/a><\/h3>[\s\S]*?<h3><a href="hackathon\/docs\/JUDGES_GUIDE\.md">OPEN THE JUDGE GUIDE →<\/a><\/h3>/.test(prose);
+ const largeCta=/<h3><a href="https:\/\/forgefront-factory-resilience\.onrender\.com">LAUNCH THE LIVE APP →<\/a><\/h3>[\s\S]*?<h3><a href="https:\/\/youtu\.be\/CZSc0KaQ-Uc">WATCH THE 2:55 DEMO →<\/a><\/h3>[\s\S]*?<h3><a href="hackathon\/docs\/JUDGES_GUIDE\.md">OPEN THE JUDGE GUIDE →<\/a><\/h3>/.test(prose);
  const headingFirst=headingIndex===0;
  const liveFirst=liveIndex===0;
  if(largeCta){if(!headingFirst)errors.push({kind:'pitch-heading'});}

@@ -1,6 +1,6 @@
 # Current demo video
 
-[Play the demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Download MP4](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/download/demo-video-v14/Factory-Resilience-Demo.mp4) · [Public release](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
+[Play the demo on YouTube](https://youtu.be/CZSc0KaQ-Uc) · [Download MP4](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/download/demo-video-v14/Factory-Resilience-Demo.mp4) · [Public release](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
 
 | Property | Verified export |
 | --- | --- |

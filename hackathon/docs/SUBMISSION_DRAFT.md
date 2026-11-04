@@ -18,7 +18,7 @@ The competition build demonstrates the complete recovery decision cycle on a pop
 
 - Live app: https://forgefront-factory-resilience.onrender.com
 - Public source: https://github.com/justinevans4040-cloud/forgefront-factory-resilience
-- Demo video (2:55): https://justinevans4040-cloud.github.io/forgefront-factory-resilience/
+- Demo video (2:55): https://youtu.be/CZSc0KaQ-Uc
 - [Judge guide](JUDGES_GUIDE.md)
 - [Contributions](../HACKATHON_CONTRIBUTIONS.md)
 

@@ -1,6 +1,6 @@
 # Demo viewing and presentation guide
 
-The current edited demo is **2:55.817**, below the three-minute maximum. [Watch the latest demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/).
+The current edited demo is **2:55.817**, below the three-minute maximum. [Watch the latest demo on YouTube](https://youtu.be/CZSc0KaQ-Uc).
 
 The presentation introduces the held lot, live Spark Open investigation, supported Wonder route and standby Fireworks, then explains deterministic stock/capacity calculations. It compares 40h / $4,500 substitute recovery with 26h / $4,570 split capacity, records human authorization, shows the plan, previews the lost-mill shortfall and inspects evidence. The full-shop section explains why nineteen downstream machines are starved. Cerebral Valley is identified as event co-host, not an endorser of the product.
 

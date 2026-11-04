@@ -4,7 +4,7 @@
 
 <!-- live-demo:start -->
 <!-- **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com) -->
-<!-- **Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) -->
+<!-- **Demo video · 2:55:** [Watch the complete demonstration](https://youtu.be/CZSc0KaQ-Uc) -->
 <table>
   <tr>
     <td align="center" width="33%">
@@ -13,9 +13,9 @@
       <sub>Run the complete decision workflow</sub>
     </td>
     <td align="center" width="34%">
-      <h3><a href="https://justinevans4040-cloud.github.io/forgefront-factory-resilience/">WATCH THE 2:55 DEMO →</a></h3>
+      <h3><a href="https://youtu.be/CZSc0KaQ-Uc">WATCH THE 2:55 DEMO →</a></h3>
       <strong>See the story in motion</strong><br />
-      <sub>From incident to authorized recovery</sub><br />
+      <sub>YouTube · no account required</sub><br />
       <sub><a href="https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14">Video details &amp; MP4</a></sub>
     </td>
     <td align="center" width="33%">
@@ -27,7 +27,7 @@
 </table>
 <!-- live-demo:end -->
 
-[![Play the complete ForgeFront Factory Resilience demonstration — 2:55](assets/showcase/current/forgefront-factory-resilience.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
+[![Play the complete ForgeFront Factory Resilience demonstration — 2:55](assets/showcase/current/forgefront-factory-resilience.jpg)](https://youtu.be/CZSc0KaQ-Uc)
 
 ## The factory emergency
 
@@ -140,14 +140,14 @@ The repository keeps deep verification available for judges who want it, while t
 
 | Review area | Evidence |
 | --- | --- |
-| Working product | [Live recovery room](https://forgefront-factory-resilience.onrender.com) · [Complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) |
+| Working product | [Live recovery room](https://forgefront-factory-resilience.onrender.com) · [Complete demonstration](https://youtu.be/CZSc0KaQ-Uc) |
 | Judge path | [Judge walkthrough](hackathon/docs/JUDGES_GUIDE.md) · [Prepared submission narrative](hackathon/docs/SUBMISSION_DRAFT.md) |
 | Model integration | [Meta model usage](hackathon/docs/META_MODEL_USAGE.md) · [Architecture and model roles](hackathon/docs/ARCHITECTURE.md) |
 | Technical design | [Architecture](hackathon/docs/ARCHITECTURE.md) · [Calculation boundaries](hackathon/docs/FIXTURE_RUNTIME_ALIGNMENT.md) |
 | Trust and safety | [Security controls](hackathon/SECURITY_CONTROLS.md) · [Claim proof](hackathon/docs/CLAIM_PROOF.md) |
 | Verification | [Current evidence index](hackathon/evidence/README.md) · [Submission checklist](hackathon/docs/SUBMISSION_CHECKLIST.md) |
 
-[**Open the live app**](https://forgefront-factory-resilience.onrender.com) · [**Watch the 2:55 demo**](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Run it yourself](hackathon/RUN_GUIDE.md)
+[**Open the live app**](https://forgefront-factory-resilience.onrender.com) · [**Watch the 2:55 demo**](https://youtu.be/CZSc0KaQ-Uc) · [Run it yourself](hackathon/RUN_GUIDE.md)
 
 ---
 
