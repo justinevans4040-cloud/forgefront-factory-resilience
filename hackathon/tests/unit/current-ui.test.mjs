@@ -51,3 +51,10 @@ test('shared refresh fetches one authoritative workflow and caches the reference
  assert.match(source,/!state.plant \|\| options.refreshPlant === true/);
  assert.doesNotMatch(source,/api.get\('\/api\/(scenario|analysis)'\)/);
 });
+
+test('live task drafting keeps the browser open for the bounded server fallback',()=>{
+ const plan=read('ui/screen-britt-replan.mjs');
+ assert.match(kit,/post: \(path, body = \{\}, options = \{\}\)/);
+ assert.match(kit,/Math\.min\(120000, requestedTimeout\)/);
+ assert.match(plan,/\/api\/workflow\/britt-draft[\s\S]{0,180}timeoutMs:50000/);
+});

@@ -116,7 +116,11 @@ async function request(path, options = {}) {
     else if (typeof body !== 'string') body = JSON.stringify(body);
   }
   const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), 8000);
+  const requestedTimeout = Number(options.timeoutMs);
+  const timeoutMs = Number.isFinite(requestedTimeout)
+    ? Math.max(1000, Math.min(120000, requestedTimeout))
+    : 8000;
+  const timer = window.setTimeout(() => controller.abort(), timeoutMs);
   let response;
   try {
     response = await fetch(path, { method, credentials: 'same-origin', headers, body: method === 'GET' ? undefined : body, signal: controller.signal });
@@ -147,7 +151,7 @@ async function request(path, options = {}) {
 const api = {
   request,
   get: (path) => request(path, { method: 'GET' }),
-  post: (path, body = {}) => request(path, { method: 'POST', body }),
+  post: (path, body = {}, options = {}) => request(path, { ...options, method: 'POST', body }),
   demoEntry: () => ensureSession(true),
   workflowStatus: () => request('/api/workflow/status', { method: 'POST', body: {} }),
   resetDemo: () => request('/api/scenario/reset-demo', { method: 'POST', body: {} })

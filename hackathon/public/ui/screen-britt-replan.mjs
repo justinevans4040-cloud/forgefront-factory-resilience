@@ -572,7 +572,11 @@ export async function render(root, kit) {
       if(approvedBoard(data,option)){busy=false;kit.go('disrupt');return;}
       let proposal=taskProposal||data.workflow.britt?.proposal;
       if(!proposal||proposal.snapshotDigest!==data.snapshot.snapshotDigest){
-        proposal=await kit.api.post('/api/workflow/britt-draft',{provider:kit.state.modelProvider==='sample'?'sample':'wonder'});
+        proposal=await kit.api.post(
+          '/api/workflow/britt-draft',
+          {provider:kit.state.modelProvider==='sample'?'sample':'wonder'},
+          {timeoutMs:50000}
+        );
       }
       taskProposal=proposal;busy=false;paint();reviewTasks(proposal);
     }catch(error){
