@@ -26,7 +26,7 @@ test('public README gallery covers every current screen with complete widescreen
  assert.doesNotMatch(text,/emerald|Hero:|command center|\b20\d{2}[-/]\d/i);
  const images=[...text.matchAll(/!\[[^\]]+\]\((assets\/showcase\/[^)]+)\)/g)].map(m=>m[1]);
  const names=['shop','incident','findings','decision','authorize','the-britt-plan','disrupt','evidence','settings'];
- assert.equal(images[0],'assets/showcase/current/demo-video.jpg');
+ assert.equal(images[0],'assets/showcase/current/forgefront-factory-resilience.jpg');
  const poster=readFileSync(new URL('../../../'+images[0],import.meta.url));assert.equal(poster.readUInt16BE(0),0xffd8);
  images.shift();assert.deepEqual(images,names.map(name=>'assets/showcase/current/'+name+'.png'));
  for(const file of images){

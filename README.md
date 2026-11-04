@@ -19,7 +19,7 @@
   <a href="hackathon/docs/JUDGES_GUIDE.md"><strong>OPEN THE JUDGE GUIDE</strong></a>
 </p>
 
-[![Play the complete Factory Resilience demonstration — 2:55](assets/showcase/current/demo-video.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
+[![Play the complete ForgeFront Factory Resilience demonstration — 2:55](assets/showcase/current/forgefront-factory-resilience.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
 
 ## The factory emergency
 

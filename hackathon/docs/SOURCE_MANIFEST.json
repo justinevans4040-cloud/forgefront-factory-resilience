@@ -24,8 +24,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 13751,
-      "sha256": "632a06f4b6839b81578b06c973e4eb4b7868da72df5e7977a3ee35bc19524761"
+      "bytes": 13781,
+      "sha256": "a689ff8c080e907769b3663fa0322eaa3508f19e4b52bd2fbb4abe4c6d57d5fe"
     },
     {
       "path": "assets/brand/forgefront-systems-logo.png",
@@ -53,11 +53,6 @@
       "sha256": "8091de777a82c467b55aebf5c14d36da049565cfbfe595cfb0cfafdd89e7f314"
     },
     {
-      "path": "assets/showcase/current/demo-video.jpg",
-      "bytes": 404834,
-      "sha256": "87c81674ebb5964cde6286c0034df245b4794e717887f903409c995b64eee3f2"
-    },
-    {
       "path": "assets/showcase/current/disrupt.png",
       "bytes": 126530,
       "sha256": "f7356b59fb83008668e70c8fe54418e9067798c5189cf720c5bf4c99a072de8e"
@@ -71,6 +66,11 @@
       "path": "assets/showcase/current/findings.png",
       "bytes": 119414,
       "sha256": "2e8040425fce22933292842908e5cca6fe82e7fdca45e4ec72aa05b4f069f65f"
+    },
+    {
+      "path": "assets/showcase/current/forgefront-factory-resilience.jpg",
+      "bytes": 404834,
+      "sha256": "87c81674ebb5964cde6286c0034df245b4794e717887f903409c995b64eee3f2"
     },
     {
       "path": "assets/showcase/current/incident.png",
@@ -144,8 +144,8 @@
     },
     {
       "path": "hackathon/README.md",
-      "bytes": 2346,
-      "sha256": "fc657cb3905413f77ec9a693f466491baaa50e9eb64bd0ed44083ad13d2f7488"
+      "bytes": 2376,
+      "sha256": "00165bf52b1aabdd3392aed346f2e50761359dd6d2b477b72cae78eeb8381873"
     },
     {
       "path": "hackathon/RUN_GUIDE.md",
@@ -2914,8 +2914,8 @@
     },
     {
       "path": "hackathon/tests/unit/run23-docs.test.mjs",
-      "bytes": 4640,
-      "sha256": "2c7d6ef5877adee3aa8c962dbb249f602e545668ba5b9ba8f6ab25f69323a46d"
+      "bytes": 4659,
+      "sha256": "c7c24f85c38a784fe1915e83b3759538b8459e974df8ea18f7eb00e3a1a755f4"
     },
     {
       "path": "hackathon/tests/unit/run23-investigation-visual.test.mjs",

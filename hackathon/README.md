@@ -4,7 +4,7 @@
 
 **Demo video · 2:55:** [Play the demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and download](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
 
-[![Play Factory Resilience demo — 2:55](../assets/showcase/current/demo-video.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
+[![Play ForgeFront Factory Resilience demo — 2:55](../assets/showcase/current/forgefront-factory-resilience.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
 
 
 # ForgeFront Factory Resilience
