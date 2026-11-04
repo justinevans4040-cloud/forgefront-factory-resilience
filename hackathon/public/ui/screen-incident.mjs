@@ -59,11 +59,11 @@ function normalizeData(workflow, analysis, plant) {
   const cells = (Array.isArray(snapshot.cells) ? snapshot.cells : []).map((cell) => {
     const name = kitRef.friendlyName(cell.cellId, 'Mill cell');
     const compatible = (Array.isArray(cell.compatibleMaterials) ? cell.compatibleMaterials : []).map((m) => materialName(m));
-    let detail = `${kitRef.fmtHours(cell.availableHours)} open`;
+    let detail = `${kitRef.fmtHours(kitRef.openCellHours(cell))} open`;
     if (compatible.length > 1) detail += ` · ${compatible.join(' or ')}`;
     else if (compatible.length === 1 && compatible[0] === material) detail += ` · ${compatible[0]} only`;
     else if (compatible.length === 1) detail += ` · ${compatible[0]} alternative`;
-    return { id: String(cell.cellId), name, hours: cell.availableHours, cost: cell.hourlyCostUsd, online: cell.online !== false, compatible, detail, preferredJobs: 0 };
+    return { id: String(cell.cellId), name, hours: kitRef.openCellHours(cell), cost: cell.hourlyCostUsd, online: cell.online !== false, compatible, detail, preferredJobs: 0 };
   });
 
   const impactedJobs = analysisData.impacted && Array.isArray(analysisData.impacted.jobs) ? analysisData.impacted.jobs : (Array.isArray(snapshot.jobs) ? snapshot.jobs : []);
@@ -202,6 +202,9 @@ export async function render(root, kit) {
           <p class="page-sub" id="incidentSub">Checking the supplier and receiving records for the held lot.</p>
         </div>
         <div class="action-stack">
+          <label class="model-route-label" for="modelProvider">Investigation route
+            <select id="modelProvider"><option value="baseten">Meta Muse Spark Open · live</option><option value="sample">Sample · deterministic, no live AI</option></select>
+          </label>
           <div class="action-row">
             <button class="btn btn-soft" id="shopButton" type="button">${kit.ui.icon('box')}<span>Open full plant view</span></button>
             <button class="btn btn-primary" id="primaryButton" type="button"><span id="primaryLabel">Start investigation</span>${kit.ui.icon('arrow')}</button>
@@ -438,9 +441,9 @@ export async function render(root, kit) {
         name: option.name,
         meaning: option.jobsLine || option.meaning,
         meta: [
-          { label: 'Finish', value: fmtHours(option.hours) },
-          { label: 'Cost', value: fmtMoney(option.cost) },
-          { label: 'Covers', value: `${fmtInt(option.units)} pieces` }
+          { label: 'Finish', value: option.feasible ? fmtHours(option.hours) : 'Cannot run' },
+          { label: 'Cost', value: option.feasible ? fmtMoney(option.cost) : 'Not applicable' },
+          { label: 'Covers', value: option.feasible ? `${fmtInt(option.units)} pieces` : 'Not covered' }
         ],
         assumes: option.assumptionShort,
         recommended: option.recommended,
@@ -630,7 +633,7 @@ export async function render(root, kit) {
 
   /* The Britt runs on Muse Spark Open through Baseten, the primary Meta route. */
   async function runBritt() {
-    const started = await kit.api.post('/api/workflow/investigation-start', { provider: 'baseten' });
+    const started = await kit.api.post('/api/workflow/investigation-start', { provider: kit.state.modelProvider });
     let job = started;
     const wait = Number(started && started.pollAfterMs) || 2000;
     while (job && job.status === 'running' && !disposed) {
@@ -718,6 +721,10 @@ export async function render(root, kit) {
     });
   }
 
+  $('#modelProvider').value = kit.state.modelProvider;
+  $('#modelProvider').addEventListener('change', (event) => {
+    kit.setModelProvider(event.target.value);
+  });
   $('#primaryButton').addEventListener('click', startInvestigation);
   $('#shopButton').addEventListener('click', openShop);
   $('#retryLoad').addEventListener('click', loadData);

@@ -34,7 +34,7 @@ test('public visitors have independent snapshots and cannot reset another recove
  const after=await (await post(base,'status',b)).json();assert.equal(after.snapshot.snapshotDigest,before.snapshot.snapshotDigest);
  const changed=await (await post(base,'status',a)).json();assert.notEqual(changed.snapshot.snapshotDigest,before.snapshot.snapshotDigest);
 }));
-test('public Sample completes recovery, both human-approved task plans and encrypted proof within the request budget',async()=>withApp({},async base=>{
+test('public Sample approves a task plan, rejects an infeasible shocked recovery and exports encrypted proof within the request budget',async()=>withApp({},async base=>{
  const headers=await enter(base);let requests=1;
  const call=async(route,body={})=>{requests++;const r=await post(base,route,headers,body);assert.equal(r.status,200,route+': '+await r.clone().text());return r.json();};
  await call('reset');
@@ -42,7 +42,15 @@ test('public Sample completes recovery, both human-approved task plans and encry
   const job=await call('investigation-start',{provider:'sample'});assert.equal(job.pollAfterMs,5000);
   await new Promise(resolve=>setTimeout(resolve,20));
   const result=await call('investigation-status',{jobId:job.jobId});assert.equal(result.status,'completed');
-  const run=result.result;const optionId=run.analysis.recovery.options.find(o=>o.feasible).optionId;
+  const run=result.result;
+  if(stage===1){
+   assert.equal(run.analysis.recovery.feasibleCount,0);
+   assert.equal((await post(base,'review',headers,{runId:run.runId,optionId:'allocate_substitute'})).status,409);requests++;
+   assert.equal((await post(base,'britt-draft',headers,{provider:'sample'})).status,409);requests++;
+   const state=await call('status');assert.equal(state.decision.status,'invalidated');assert.ok(state.board.tasks.every(t=>t.status==='Blocked'));
+   break;
+  }
+  const optionId=run.analysis.recovery.options.find(o=>o.feasible).optionId;
   const envelope=await call('review',{runId:run.runId,optionId});await call('confirm',{nonce:envelope.nonce,typed:'APPROVE '+optionId});
   const proposal=await call('britt-draft',{provider:'sample'});await call('britt-decide',{proposalId:proposal.id,action:'approve'});
   if(stage===0)await call('shock',{cellId:'CELL-MILL-2'});

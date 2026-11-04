@@ -1,23 +1,28 @@
-# The Meta Hackathon build — Meta models on the evidence
+# Meta model integration
 
-**Spark Open investigates. Wonder explains. The engine calculates. The human decides.**
+**Spark Open investigates. The engine calculates. The Britt explains and proposes. The human decides.**
 
-| Model | Exact route | Server credential | Product role |
-| --- | --- | --- | --- |
-| Muse Wonder | https://api.meta.ai/v1/responses · muse-wonder-1.0 | MUSE_API_KEY, fallback MODEL_API_KEY | Recovery narrative and counterfactual tradeoff |
-| Muse Spark Open | Baseten · meta-models/muse-spark-open | BASETEN_API_KEY | Read-only evidence investigation |
-| Muse Spark Open | Fireworks · accounts/fireworks/models/muse-spark-open | FIREWORKS_API_KEY | Optional backup investigator host; reports GREEN/RED and never gates the demo |
+| Model | Allowlisted endpoint and identity | Role |
+| --- | --- | --- |
+| Muse Spark Open | Baseten `https://inference.baseten.co/v1/chat/completions` · `meta-models/muse-spark-open` | Primary live evidence investigation |
+| Muse Wonder | Meta Model API `https://api.meta.ai/v1/responses` · `muse-wonder-1.0` | Supported recovery reasoning and task drafting |
+| Muse Spark Open | Fireworks `https://us.api.fireworks.ai/inference/v1/chat/completions` · `accounts/fireworks/models/muse-spark-open` | Standby only; excluded from normal public-demo traffic |
+| Sample | Local deterministic template, no provider | Explicit offline workflow demonstration; no live AI |
 
-[src/models/routes.mjs](../src/models/routes.mjs) locks the documented endpoints and model IDs. Requests, returned identity, read-only tool trace, latency, supplied usage and source-validation outcomes are recorded. Exact structured facts are checked against the server registry; the model interpretation appears alongside them. Deterministic code computes feasibility, hours and cost.
+[routes.mjs](../src/models/routes.mjs) fixes endpoints and identities. Credentials come from the server environment only: `BASETEN_API_KEY`, `MUSE_API_KEY` (fallback `MODEL_API_KEY`) and optional standby `FIREWORKS_API_KEY`. Public launch removes the standby credential.
 
-The shared JSON-envelope investigation is bounded to six turns, ten read-only tools and one minute. Spark Open final responses allow 8,192 tokens for reasoning plus the structured answer; tool-selection turns retain 1,024 tokens. Wonder final responses retain 2,048 tokens. Every response still passes identity, envelope and exact-claim checks. Missing keys, HTTP errors, incorrect identity, malformed replies and deadline failures stop visibly. Every new attempt and route choice is explicit. Sample is the offline walkthrough and makes no live AI call.
+## What is demonstrated
 
-Run `npm run check:providers --prefix hackathon` for one nonce/identity request per primary route. The optional backup reports a RED light without a request in this standard check. In the room, **Check selected route** makes one eight-second request on the selected route and records its result. GREEN requires exact nonce and returned-model agreement. RED names failure; UNCHECKED requests a new check. Health expires after fifteen minutes. Provider-reported identity is the identity field tested by these checks.
+The submitted video records a successful Spark Open investigation on Baseten. Muse Wonder is an implemented integration; its availability depends on the Meta account and provider billing. A configured key, old successful packet or supported model definition is not a claim that Wonder answered the current investigation. The app and retained call records identify the actual responding route, failures and any bounded task-draft fallback.
 
-[Provider proof](../evidence/README.md) · [Live guided packet](../evidence/README.md) · [Same-snapshot comparison](MODEL_COMPARISON.md) · [API contract](API_CONTRACT.md).
+Read-only tools retrieve the incident, exact evidence, impacted jobs, capacity and calculated recovery choices. The server validates structured quantities, units, entities and source references against the immutable snapshot. Model prose does not replace deterministic arithmetic or authorize production. Usage values are provider-supplied; absent usage remains null.
 
-## Structured handoff map
+## Bounded execution and failures
 
-Spark Open on Baseten reads incident evidence and computed recovery options first. Wonder receives the validated Spark run identifier, snapshot digest, accepted claims and selected option, then independently invokes read-only tools for tradeoffs. Typed human consent binds the chosen option to its investigation. The Britt receives that accepted investigation, source evidence, approved option, prior board and scoped encrypted memory before proposing tasks. The second-shock guide repeats Spark then Wonder. Task proposals remain untracked until human approval; the ledger retains both model and human transitions.
+The investigation loop has at most six turns, ten read-only tool calls and one minute. Spark final replies allow 8,192 tokens; tool selection allows 1,024. Wonder final replies allow 2,048. Identity, JSON envelope and source validation still apply. Missing credentials, HTTP errors, malformed output, wrong identity and timeouts remain visible failures. A new investigation requires a deliberate action.
 
-Task drafting uses Wonder first with one bounded Baseten fallback when configured; both share a 45-second deadline and strict source/owner/deadline/dependency validation. Investigation failures remain explicit and require deliberate retry. Design review uses Wonder with screenshot inputs and Baseten structured fallback only.
+Task drafting is a separate request after a current human-accepted decision. Wonder-first drafting can make one bounded Baseten continuation within a shared 45-second deadline, retaining the actual route and failure metadata. That continuation never grants approval. Standby Fireworks is not part of this task fallback.
+
+`npm run check:providers --prefix hackathon` tests primary routes with nonce/identity requests; it does not call standby. Route health expires and provider-reported identity is checked, not independently attested. See the [evidence index](../evidence/README.md) for the distinction between live calls, controlled regressions, Sample and historical captures.
+
+[Architecture](ARCHITECTURE.md) · [Model comparison](MODEL_COMPARISON.md) · [API contract](API_CONTRACT.md)

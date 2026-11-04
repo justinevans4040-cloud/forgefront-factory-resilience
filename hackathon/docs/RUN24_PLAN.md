@@ -1,3 +1,5 @@
+> **Historical design / planning record.** This retained document describes an earlier interface and its original goals or observations. It is not the current operating guide or proof that the current candidate passes those checks. Use the [current judge guide](JUDGES_GUIDE.md) and [architecture](ARCHITECTURE.md) for the eight-screen implementation. Original review scores and incomplete gates below are preserved as recorded.
+
 # The Meta Hackathon build — execution plan
 
 Owner specification: feedback items 1–17 and the full working application order.

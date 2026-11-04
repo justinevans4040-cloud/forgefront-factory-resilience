@@ -14,7 +14,7 @@ test('public scan decodes wide-character evidence and checks dated folders',()=>
  writeFileSync(join(folder,'probe.txt'),Buffer.concat([Buffer.from([255,254]),Buffer.from(forbidden[0]+'\\owner','utf16le')]));
  const findings=auditPublicFiles({root}).findings;assert.ok(findings.some(f=>f.kind==='profile'));assert.ok(findings.some(f=>f.kind==='date'));
 });
-test('public scan allows CSS pointer property only in its stylesheet',()=>{
+test('public scan allows CSS pointer declarations only in public stylesheets',()=>{
  const root=mkdtempSync(join(tmpdir(),'ffr-scan-'));mkdirSync(join(root,'hackathon','public'),{recursive:true});
  const property=forbidden.at(-1);writeFileSync(join(root,'hackathon','public','style.css'),`button{${property}:pointer}`);assert.deepEqual(auditPublicFiles({root}).findings,[]);
  writeFileSync(join(root,'hackathon','public','style.css'),`/* ${property} */`);assert.ok(auditPublicFiles({root}).findings.length);

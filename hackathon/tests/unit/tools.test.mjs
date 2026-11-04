@@ -23,7 +23,7 @@ describe("read-only agent tools", () => {
     assert.equal(incident.incident.incidentId, "inc-cert-alloy-hold");
 
     const evidence = await tools.invoke("read_evidence", { evidenceId: "ev-recv-qty" });
-    assert.equal(evidence.quantity.value, 80);
+    assert.equal(evidence.quantity.value, 3);
     assert.equal(evidence.snapshotDigest, snapshot.snapshotDigest);
   });
 

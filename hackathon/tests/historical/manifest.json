@@ -1,0 +1,194 @@
+{
+  "architecture": "public/ui/kit.mjs and eight screen modules",
+  "replacement": [
+    "tests/unit/current-ui.test.mjs",
+    "tests/integration/ui.test.mjs",
+    "scripts/browser-smoke.mjs"
+  ],
+  "historical": [
+    {
+      "file": "accepted-flow.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs"
+    },
+    {
+      "file": "audit11-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, guide.mjs, style.css"
+    },
+    {
+      "file": "audit12-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, command-center.mjs, factory-layout.mjs, style.css"
+    },
+    {
+      "file": "audit13-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, command-center.mjs, guide.mjs, style.css"
+    },
+    {
+      "file": "audit14-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, factory-layout.mjs, style.css"
+    },
+    {
+      "file": "audit15-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, style.css"
+    },
+    {
+      "file": "audit16-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, command-center.mjs, factory-layout.mjs, style.css"
+    },
+    {
+      "file": "audit17-owner-layout.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, style.css"
+    },
+    {
+      "file": "audit19-owner-layout.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, style.css"
+    },
+    {
+      "file": "audit20-owner.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs"
+    },
+    {
+      "file": "audit21-layout.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs"
+    },
+    {
+      "file": "command-center.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: command-center.mjs, guide.mjs, investigation-status.mjs, style.css"
+    },
+    {
+      "file": "evidence-plain.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs"
+    },
+    {
+      "file": "guide.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: guide.mjs"
+    },
+    {
+      "file": "opening-stakes.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs"
+    },
+    {
+      "file": "path-keyboard.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs"
+    },
+    {
+      "file": "reinvestigation-order.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: guide.mjs"
+    },
+    {
+      "file": "run11-presentation.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, investigation-status.mjs, route-health.mjs"
+    },
+    {
+      "file": "run14-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: command-center.mjs"
+    },
+    {
+      "file": "run15-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: command-center.mjs"
+    },
+    {
+      "file": "run16-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs"
+    },
+    {
+      "file": "run20-layout.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs"
+    },
+    {
+      "file": "run21-layout.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs, stage-scene.mjs, style.css"
+    },
+    {
+      "file": "run22-owner.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, stage-scene.mjs, style.css"
+    },
+    {
+      "file": "run23-investigation-visual.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, factory-layout.mjs, guide.mjs, style.css"
+    },
+    {
+      "file": "run24-evidence.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: factory-layout.mjs"
+    },
+    {
+      "file": "run24-floor.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: plant-layout.mjs"
+    },
+    {
+      "file": "run24-model-resilience.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: guide.mjs"
+    },
+    {
+      "file": "run24-reduced-motion.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: style.css"
+    },
+    {
+      "file": "run25-authorize-wall.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs"
+    },
+    {
+      "file": "run26-visual-gate.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, factory-layout.mjs, style.css"
+    },
+    {
+      "file": "run27-direction-retain.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, style.css"
+    },
+    {
+      "file": "run33-cinematic-floor.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, stage-scene.mjs, style.css"
+    },
+    {
+      "file": "run34-wonder-floor.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, style.css"
+    },
+    {
+      "file": "run35-cascade-cache.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, style.css"
+    },
+    {
+      "file": "run36-wonder-lift.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, plant-layout.mjs, style.css"
+    },
+    {
+      "file": "run37-guided-lift.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, style.css"
+    },
+    {
+      "file": "run38-wonder-finish.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.css, cascade.mjs, style.css"
+    },
+    {
+      "file": "run39-cascade-restore.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.css, cascade.mjs, style.css"
+    },
+    {
+      "file": "run40-wonder-uniform.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.css, cascade.mjs, style.css"
+    },
+    {
+      "file": "run41-guided-nines.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.css, cascade.mjs, investigation-status.mjs, style.css"
+    },
+    {
+      "file": "run42-wonder-nines.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, style.css"
+    },
+    {
+      "file": "run43-wonder-finish.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, cascade.mjs, style.css"
+    },
+    {
+      "file": "run45-guided-nines.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, style.css"
+    },
+    {
+      "file": "run9-demo.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: investigation-status.mjs"
+    },
+    {
+      "file": "stage-scene.test.mjs",
+      "reason": "Superseded screen architecture; references removed public modules: app.mjs, stage-scene.mjs, style.css"
+    }
+  ]
+}

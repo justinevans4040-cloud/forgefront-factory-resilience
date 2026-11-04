@@ -9,7 +9,7 @@ describe("evidence registry", () => {
     const registry = buildEvidenceRegistry(snapshot);
     assert.equal(registry.size, 3);
     const entry = registry.get("ev-cert-qty");
-    assert.equal(entry.quantity.value, 120);
+    assert.equal(entry.quantity.value, 100);
     assert.equal(entry.snapshotDigest, snapshot.snapshotDigest);
   });
 

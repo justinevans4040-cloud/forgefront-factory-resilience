@@ -1,6 +1,6 @@
 # Security policy — ForgeFront Factory Resilience
 
-ForgeFront Systems operates the Meta Hackathon build as a Node.js web application on Render. The Britt recovery workflow uses Muse models through Baseten; Fireworks remains an optional backup route only.
+ForgeFront Systems operates the Meta Hackathon build as a Node.js web application on Render. The Britt uses Muse Spark Open through Baseten and supports Muse Wonder through the Meta Model API; Fireworks remains an optional backup route only.
 
 ## Scope
 

@@ -2,13 +2,18 @@
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
+**Demo video · 2:55:** [Play the demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and download](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
+
+[![Play Factory Resilience demo — 2:55](assets/showcase/current/demo-video.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
+
+
 <p align="center"><img src="assets/brand/forgefront-systems-logo.png" width="320" alt="ForgeFront Systems" /></p>
 
 # ForgeFront Factory Resilience
 
 **The shop floor is in trouble. The Britt finds the way forward. You make the call.**
 
-Only **3 of 100 pieces arrived**. **10 of 45 machines are offline**, with **19 more starved downstream**. Two orders need 100 pieces, and the first is due in 36 hours. A shortage at receiving has become a factory emergency.
+Only **3 of 100 pieces arrived**. **10 of 45 machines are offline**, with **19 more starved downstream**. Two orders need 100 pieces, and the first is due in 36 hours. A shortage at receiving has become a factory emergency. Starved downstream means a machine can be ready to run but idle because the upstream parts it needs have not arrived.
 
 ForgeFront Factory Resilience connects the material hold, source records, machine capacity and waiting jobs in one recovery room. **The Britt**, powered by **Meta Muse models**, investigates the discrepancy, explains calculated recovery choices and turns your authorized decision into a plan you can inspect.
 
@@ -16,7 +21,7 @@ ForgeFront Factory Resilience connects the material hold, source records, machin
 
 ![Shop: 45 machines across seven departments, with 10 offline and 19 starved downstream](assets/showcase/current/shop.png)
 
-**Shop.** Trace the held Alloy A lot through available cells and waiting jobs. The plant floor shows every machine across Saw, CNC mills, CNC lathes, Heat treat, Inspection, Finishing and Assembly, with filters for the held path, online machines and offline machines.
+**Shop.** The 45-machine reference floor illustrates how a held lot starves downstream work across Saw, CNC mills, CNC lathes, Heat treat, Inspection, Finishing and Assembly. Filter the held path, online machines and offline machines. The recovery comparison uses a separate, source-bound two-cell snapshot; its current capacity stays visible beside the reference floor.
 
 ## From incident to recovery
 
@@ -46,7 +51,7 @@ ForgeFront Factory Resilience connects the material hold, source records, machin
 
 ### The Britt plan
 
-![The Britt plan: Job 1001 assigned to Cell Mill 1 and Job 1002 to Cell Mill 2, with cell loads and recovery totals](assets/showcase/current/the-britt-plan.png)
+![The Britt plan: inspect job assignments, compatible cell loads and recovery totals](assets/showcase/current/the-britt-plan.png)
 
 **See how the work fits.** Inspect the replanned assignments, material, due times and remaining cell capacity. The screen keeps the selected recovery, 50 hours of planned work, available substitute stock and source records beside the job assignments.
 
@@ -70,7 +75,7 @@ ForgeFront Factory Resilience connects the material hold, source records, machin
 
 ## Powered by Meta models
 
-**Muse Spark Open on Baseten** powers The Britt's investigation of factory evidence through read-only calls. **Muse Wonder through the Meta Model API** reasons over recovery choices and supports recovery planning. The recovery engine computes stock, capacity, feasibility, hours and cost from the current snapshot. The models explain the options; your authorization records the decision.
+**Muse Spark Open on Baseten** powers The Britt's investigation of factory evidence through read-only calls. **Muse Wonder through the Meta Model API** is supported for recovery reasoning and task drafting. **Fireworks** is the standby Spark Open host, excluded from normal public-demo traffic. The recovery engine computes stock, capacity, feasibility, hours and cost from the current snapshot. The models explain the options; your authorization records the decision.
 
 ## Why ForgeFront
 
@@ -79,3 +84,9 @@ A material hold spreads through connected work. ForgeFront makes that chain visi
 [Open the recovery room](https://forgefront-factory-resilience.onrender.com)  [Run it yourself](hackathon/RUN_GUIDE.md)  [Meta model integration](hackathon/docs/META_MODEL_USAGE.md)
 
 Built by **ForgeFront Systems**.
+
+## For judges
+
+[Judge walkthrough](hackathon/docs/JUDGES_GUIDE.md) · [Architecture and model roles](hackathon/docs/ARCHITECTURE.md) · [Calculation boundaries](hackathon/docs/FIXTURE_RUNTIME_ALIGNMENT.md) · [Security controls](hackathon/SECURITY_CONTROLS.md) · [Verification evidence](hackathon/evidence/README.md)
+
+The factory records are synthetic demonstration data. Recorded authorization is advisory: `operationalRelease` remains `false`; the app does not send production commands to real machines. Due windows are shown for review; the throughput comparison is not a certified production schedule. Source code is available under the [MIT license](LICENSE).

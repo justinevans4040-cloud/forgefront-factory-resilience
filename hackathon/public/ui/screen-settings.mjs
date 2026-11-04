@@ -113,7 +113,7 @@ export async function render(root, kit) {
   function modelRouteText() {
     if (checking) return 'Checking';
     if (toolError) return 'Could not be checked';
-    if (toolsPayload()) return 'Connected';
+    if (toolsPayload()) return 'Definitions loaded';
     if (kit.state.connection === 'offline') return 'Could not be checked';
     return 'Not checked yet';
   }
@@ -145,7 +145,7 @@ export async function render(root, kit) {
       toolError || kit.state.connection === 'offline' ? 'is-danger' : checking ? 'is-info' : payload ? 'is-ok' : 'is-neutral'
     ));
     setHtml('[data-model-rows]', ui.statRows([
-      { label: 'Provider', value: 'Meta models' },
+      { label: 'Provider', value: 'Meta models · live access not checked here' },
       { label: 'Tools returned', value: checking ? 'Checking' : toolError ? 'Could not be checked' : payload ? kit.fmtInt(list.length) : 'Not loaded' },
       { label: 'Tool snapshot', value: toolSnapshotText() }
     ]));
@@ -271,7 +271,7 @@ export async function render(root, kit) {
     try {
       try { await kit.ensureSession(); } catch { /* the record check below reports the usable state */ }
       try {
-        const result = await kit.refreshData({ notifyOnError: false });
+        const result = await kit.refreshData({ notifyOnError: false, refreshPlant: manual });
         recordsOk = Boolean(result?.ok);
       } catch { recordsOk = false; }
       try {

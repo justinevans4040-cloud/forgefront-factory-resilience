@@ -1,6 +1,6 @@
 # Local API contract
 
-All /api routes enforce Host/Origin and rate limits; quotas return 429 plus Retry-After. Only static assets and minimal /health are public. JSON has a body-size cap; nonempty bodies require application/json. Unexpected errors are sanitized.
+All /api routes enforce Host/Origin and rate limits; quotas return 429 plus Retry-After. Static assets, minimal /health and /healthz, and the explicitly enabled visitor demo bootstrap are public; workflow requests still require a session and CSRF. JSON has a body-size cap; nonempty bodies require application/json. Unexpected errors are sanitized.
 
 POST /api/meta/session requires Bearer admin or named operator/auditor env token. It creates a ten-minute HttpOnly/SameSite=Strict cookie (Secure on direct TLS) and returns CSRF plus a session token for CLI compatibility. Browser uses cookie and X-CSRF-Token; tools may use X-Session-Token. Static HTML grants no seat. POST /api/meta/logout requires session/CSRF, revokes seat and clears cookie. No browser localStorage token.
 
@@ -40,3 +40,7 @@ Workflow status includes the recovery board and only the requesting session’s 
 POST /api/workflow/britt-decide accepts proposalId and action approve or decline. A proposal is single-use, session/operator/scenario-bound, bound to the accepted decision nonce and snapshot, and expires after five minutes. Approval creates tracked tasks; decline creates none. Auditors cannot draft, approve, decline or move tasks.
 
 POST /api/workflow/task-move accepts taskId, status and idempotencyKey. Status is To do, In progress, Blocked or Done. Dependencies must complete before dependent work starts or completes. Reusing the same actor/key/operation returns the existing state; conflicting key reuse fails. Keys and task transitions persist in the encrypted ledger. A second shock retains completed work and blocks unfinished tasks with a recorded change reason until fresh recovery and task approval. Encrypted packets include task state, all task events and scoped The Britt context.
+
+## Current browser contract
+
+The eight-screen UI uses the same authoritative workflow APIs. Public demo bootstrap grants a visitor-isolated demonstration seat; persistent operator mode requires the provisioned identity. The browser may construct the exact confirmation phrase after a deliberate authorization wall, while the server still validates the sealed review and single-use nonce. Applying a shock must call the server transition, not merely display a local preview. Current default post-shock capacity has no feasible complete recovery; fresh investigation is not a guarantee of a new acceptable option.

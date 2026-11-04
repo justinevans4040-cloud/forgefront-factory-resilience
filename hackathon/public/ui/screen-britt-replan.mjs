@@ -7,6 +7,7 @@ export async function render(root, kit) {
   let selectedCellId = "";
   let busy = false;
   let failed = false;
+  let taskProposal = null;
 
   try {
     if (!kit.state.analysis || !kit.state.workflow) {
@@ -24,7 +25,7 @@ export async function render(root, kit) {
 
   function readData() {
     const workflow = kit.state.workflow || {};
-    const analysis = kit.state.analysis || workflow.analysis || {};
+    const analysis = workflow.analysis || kit.state.analysis || {};
     const snapshot = workflow.snapshot || analysis.snapshot || {};
     const recovery = analysis.recovery || {};
     const impacted = analysis.impacted || recovery.impacted || {};
@@ -92,10 +93,6 @@ export async function render(root, kit) {
     return key.includes("substitute") || key.includes("split");
   }
 
-  function isSplitOption(option) {
-    return optionKey(option).includes("split");
-  }
-
   function recommendedOptionId(data) {
     const flagged = data.options.find((option) => option.recommended || option.isRecommended || option.selected || option.isChosen);
     if (flagged) return optionId(flagged);
@@ -110,104 +107,48 @@ export async function render(root, kit) {
   }
 
   function defaultOptionId(data) {
-    const pending = Array.isArray(data.workflow.pendingConsents) ? data.workflow.pendingConsents : [];
-    const candidates = [
-      kit.state.replanChoice && kit.state.replanChoice.optionId,
-      kit.state.decision && (kit.state.decision.optionId || kit.state.decision.selectedOptionId),
-      kit.state.selectedOptionId,
-      data.workflow.decision && (data.workflow.decision.optionId || data.workflow.decision.selectedOptionId),
-      data.workflow.acceptedOptionId,
-      data.workflow.board && data.workflow.board.optionId,
-      ...pending.map((item) => item && (item.optionId || item.strategyId || item.selectedOptionId))
-    ];
-    for (const candidate of candidates) {
-      if (candidate && data.options.some((option) => optionId(option) === String(candidate))) return String(candidate);
-    }
-    return recommendedOptionId(data);
+    return data.workflow.decision?.optionId || "";
   }
 
-  function effectiveMaterial(job, data, useSubstitute) {
-    const material = data.materials.find((item) => item.materialId === job.materialId);
-    const substituteId = material && Array.isArray(material.substitutes) ? material.substitutes[0] : "";
-    if (useSubstitute && substituteId) return substituteId;
-    return job.materialId;
+  function accepted(data, option) {
+    const decision=data.workflow.decision;
+    return Boolean(decision?.status==='accepted'&&decision.snapshotDigest===data.snapshot.snapshotDigest&&decision.optionId===optionId(option)&&option?.feasible);
+  }
+
+  function approvedBoard(data, option) {
+    const board=data.workflow.board;
+    return accepted(data,option)&&board?.snapshotDigest===data.snapshot.snapshotDigest&&board.optionId===optionId(option)&&board.tasks?.length>0;
   }
 
   function buildPlan(data, option) {
-    const sortedJobs = [...data.jobs].sort((a, b) => {
-      const aDue = finiteNumber(a.dueHours);
-      const bDue = finiteNumber(b.dueHours);
-      const aValue = aDue === null ? Number.POSITIVE_INFINITY : aDue;
-      const bValue = bDue === null ? Number.POSITIVE_INFINITY : bDue;
-      return aValue - bValue || String(a.jobId).localeCompare(String(b.jobId));
+    // Assignments are signed-plan inputs computed by the server engine. Preserve
+    // split job portions; whole-job browser scheduling changes the finish time.
+    const records=accepted(data,option)&&Array.isArray(option?.detail?.assignments)?option.detail.assignments:[];
+    const loads=new Map(data.cells.map(cell=>[cell.cellId,0]));
+    const assignments=records.map((record,index)=>{
+      const source=data.jobs.find(job=>job.jobId===record.jobId)||{};
+      const cell=data.cells.find(item=>item.cellId===record.cellId)||null;
+      loads.set(record.cellId,(loads.get(record.cellId)||0)+record.hours);
+      return {job:{...source,jobId:record.jobId,unitsRequired:record.units},sequence:index+1,
+        hours:record.hours,materialId:record.materialId,cell,finish:record.finishHours,
+        statusText:record.dueHours!==null&&record.finishHours>record.dueHours?'Due at risk':'On plan',
+        statusTone:record.dueHours!==null&&record.finishHours>record.dueHours?'is-held':'is-ok'};
     });
-    const loads = new Map(data.cells.map((cell) => [cell.cellId, 0]));
-    const useSubstitute = optionUsesSubstitute(option);
-    const waitOption = optionKey(option).includes("wait");
+    const totalWork=assignments.reduce((sum,a)=>sum+a.hours,0);
+    const totalOpen=data.cells.filter(cell=>cell.online!==false).reduce((sum,cell)=>sum+cell.availableHours,0);
+    return {assignments,loads,totalWork,totalOpen,leftHours:totalOpen-totalWork};
+  }
 
-    const assignments = sortedJobs.map((job, index) => {
-      const directHours = finiteNumber(job.totalHours);
-      const units = finiteNumber(job.unitsRequired);
-      const hoursPerUnit = finiteNumber(job.hoursPerUnit);
-      const hours = directHours === null ? ((units || 0) * (hoursPerUnit || 0)) : directHours;
-      const materialId = effectiveMaterial(job, data, useSubstitute);
-      let candidates = data.cells.filter((cell) => {
-        if (cell.online === false) return false;
-        if (!Array.isArray(cell.compatibleMaterials) || !cell.compatibleMaterials.length) return true;
-        return cell.compatibleMaterials.includes(materialId);
-      });
-      if (!candidates.length) candidates = data.cells.filter((cell) => cell.cellId === job.preferredCellId);
-      if (!candidates.length) candidates = data.cells.filter((cell) => cell.online !== false);
-
-      let cell = null;
-      if (candidates.length) {
-        if (isSplitOption(option)) {
-          cell = candidates.reduce((best, candidate) => {
-            if (!best) return candidate;
-            const bestFinish = (loads.get(best.cellId) || 0) + hours;
-            const candidateFinish = (loads.get(candidate.cellId) || 0) + hours;
-            if (candidateFinish < bestFinish) return candidate;
-            if (candidateFinish === bestFinish && candidate.cellId === job.preferredCellId) return candidate;
-            return best;
-          }, null);
-        } else {
-          cell = candidates.find((candidate) => candidate.cellId === job.preferredCellId) || candidates[0];
-        }
-      }
-
-      const previousLoad = cell ? (loads.get(cell.cellId) || 0) : 0;
-      const finish = previousLoad + hours;
-      if (cell) loads.set(cell.cellId, finish);
-      const capacity = cell ? finiteNumber(cell.availableHours) : null;
-      const due = finiteNumber(job.dueHours);
-      const capacityShort = capacity !== null && finish > capacity;
-
-      let statusText = "On plan";
-      let statusTone = "is-ok";
-      if (waitOption) {
-        statusText = "Waiting for lot";
-        statusTone = "is-held";
-      } else if (!cell) {
-        statusText = "No cell listed";
-        statusTone = "is-danger";
-      } else if (capacityShort) {
-        statusText = "Over capacity";
-        statusTone = "is-danger";
-      } else if (due !== null && finish > due) {
-        statusText = "Due at risk";
-        statusTone = "is-held";
-      }
-
-      return { job, sequence: index + 1, hours, materialId, cell, finish, statusText, statusTone };
-    });
-
-    const totalWork = assignments.reduce((sum, assignment) => sum + assignment.hours, 0);
-    const totalOpen = data.cells.reduce((sum, cell) => sum + (finiteNumber(cell.availableHours) || 0), 0);
-    return { assignments, loads, totalWork, totalOpen, leftHours: totalOpen - totalWork };
+  function taskRows(tasks, movable=false) {
+    return `<div class="step-list">${tasks.map(task=>`<div class="job-card">
+      <span class="job-main"><b>${esc(task.title)}</b><span class="job-detail">${esc(task.owner)} · due ${esc(kit.fmtHours(task.dueHours))} · ${esc(task.dependsOn?.length?'After '+task.dependsOn.join(', '):'No dependencies')}</span></span>
+      ${ui.pill(task.status||'Proposed','is-neutral')}
+      ${movable&&task.status!=='Done'&&!task.change?.requiresReview?ui.button({label:'Mark done',variant:'btn-secondary',size:'btn-small',attrs:`data-task-done="${esc(task.id)}"`,disabled:busy}):''}
+    </div>`).join('')}</div>`;
   }
 
   function cellDetail(cell, plan) {
-    const available = finiteNumber(cell.availableHours);
+    const available = finiteNumber(kit.openCellHours(cell));
     if (available === null) {
       const compatible = Array.isArray(cell.compatibleMaterials)
         ? cell.compatibleMaterials.map((item) => kit.friendlyName(item, "Material")).join(" or ")
@@ -220,14 +161,14 @@ export async function render(root, kit) {
 
   function cellStatus(cell, plan) {
     if (cell.online === false) return { text: "Offline", tone: "is-danger" };
-    const available = finiteNumber(cell.availableHours);
+    const available = finiteNumber(kit.openCellHours(cell));
     const load = plan.loads.get(cell.cellId) || 0;
     if (available !== null && load > available) return { text: "Over capacity", tone: "is-danger" };
     return { text: "Available", tone: "is-ok" };
   }
 
   function loadPercent(cell, plan) {
-    const available = finiteNumber(cell.availableHours);
+    const available = finiteNumber(kit.openCellHours(cell));
     if (available === null || available <= 0) return 0;
     return ((plan.loads.get(cell.cellId) || 0) / available) * 100;
   }
@@ -312,9 +253,7 @@ export async function render(root, kit) {
 
   function paint(focusSelector = "") {
     const data = readData();
-    if (!data.options.some((option) => optionId(option) === selectedOptionId)) {
-      selectedOptionId = defaultOptionId(data);
-    }
+    selectedOptionId = defaultOptionId(data);
     const option = data.options.find((item) => optionId(item) === selectedOptionId) || null;
     const recommendedId = recommendedOptionId(data);
     const plan = buildPlan(data, option);
@@ -372,13 +311,13 @@ export async function render(root, kit) {
           const covers = finiteNumber(item.impactedUnits ?? data.impactedUnits);
           const badge = !feasible ? ui.pill("Not feasible", "is-danger") : recommended ? '<span class="pill is-rec">Recommended</span>' : "";
           return `
-            <button class="option-card replan-option${selected ? " is-selected" : ""}${feasible ? "" : " is-infeasible"}" type="button" data-option-id="${esc(optionId(item))}" aria-pressed="${selected}"${!feasible || busy ? " disabled" : ""}>
+            <button class="option-card replan-option${selected ? " is-selected" : ""}${feasible ? "" : " is-infeasible"}" type="button" data-option-id="${esc(optionId(item))}" aria-pressed="${selected}" disabled>
               <span class="option-top"><span class="option-name">${esc(optionName(item))}</span>${badge}</span>
               <span class="replan-option-meaning">${esc(detail)}</span>
               <span class="replan-option-facts">
-                <span class="replan-option-fact"><b>${esc(kit.fmtHours(item.finishHours))}</b><span>finish</span></span>
-                <span class="replan-option-fact"><b>${esc(kit.fmtMoney(item.incrementalCostUsd))}</b><span>cost</span></span>
-                <span class="replan-option-fact"><b>${esc(covers === null ? "Listed" : kit.fmtInt(covers))}</b><span>pieces</span></span>
+                <span class="replan-option-fact"><b>${esc((feasible ? kit.fmtHours(item.finishHours) : "Cannot run"))}</b><span>finish</span></span>
+                <span class="replan-option-fact"><b>${esc((feasible ? kit.fmtMoney(item.incrementalCostUsd) : "Not applicable"))}</b><span>cost</span></span>
+                <span class="replan-option-fact"><b>${esc(!feasible ? "Not covered" : covers === null ? "Listed" : kit.fmtInt(covers))}</b><span>pieces</span></span>
               </span>
             </button>`;
         }).join("")}
@@ -411,8 +350,8 @@ export async function render(root, kit) {
             </button>`;
         }).join("")}
       </div>` : ui.emptyState({
-        title: "No waiting jobs are listed",
-        text: "The current snapshot does not list jobs waiting on the held material."
+        title: "No authorized job assignments",
+        text: "Authorize a feasible path on Decision before building its task plan."
       });
 
     const capacityHtml = data.cells.length ? `
@@ -422,7 +361,7 @@ export async function render(root, kit) {
           ${data.cells.map((cell) => {
             const load = plan.loads.get(cell.cellId) || 0;
             const selected = selectedCellId === cell.cellId;
-            return `<button class="replan-cap-row${selected ? " is-selected" : ""}" type="button" data-cell-station="${esc(cell.cellId)}" aria-pressed="${selected}" aria-label="${esc(`${kit.friendlyName(cell.cellId, "Cell")}: ${kit.fmtHours(load)} planned of ${kit.fmtHours(cell.availableHours)} open`)}">
+            return `<button class="replan-cap-row${selected ? " is-selected" : ""}" type="button" data-cell-station="${esc(cell.cellId)}" aria-pressed="${selected}" aria-label="${esc(`${kit.friendlyName(cell.cellId, "Cell")}: ${kit.fmtHours(load)} planned of ${kit.fmtHours(kit.openCellHours(cell))} open`)}">
               <span class="replan-cap-label">${esc(kit.friendlyName(cell.cellId, "Cell"))}</span>
               <span class="progress-track"><span class="progress-fill" data-metric-value="${esc(loadPercent(cell, plan))}"></span></span>
               <span class="replan-cap-value">${esc(kit.fmtHours(load))}</span>
@@ -443,14 +382,14 @@ export async function render(root, kit) {
       : "Refresh the plant records, then choose a calculated path.";
 
     const pathPanel = ui.panel({
-      title: "Decided recovery path",
+      title: accepted(data,option) ? "Authorized recovery path" : "Recovery authorization required",
       headExtra: ui.pill(`${kit.fmtInt(data.options.length)} paths calculated`, "is-neutral"),
       className: "replan-panel",
       body: optionsHtml
     });
 
     const assignmentPanel = ui.panel({
-      title: "Replanned assignments",
+      title: "Server-calculated job portions",
       headExtra: ui.pill(`${kit.fmtInt(data.jobs.length)} waiting`, data.jobs.length ? "is-held" : "is-ok"),
       className: "replan-panel replan-panel-grow",
       body: `
@@ -458,6 +397,13 @@ export async function render(root, kit) {
         ${assignmentsHtml}
         ${capacityHtml}`
     });
+
+    const proposal=taskProposal||data.workflow.britt?.proposal;
+    const board=data.workflow.board||{};
+    const taskPanel=ui.panel({title:'The Britt task plan',headExtra:ui.pill(approvedBoard(data,option)?'Human approved':proposal?'Awaiting your approval':'Draft required','is-neutral'),
+      body:proposal&&proposal.snapshotDigest===data.snapshot.snapshotDigest?`<p>${esc(proposal.board.summary)}</p>${taskRows(proposal.board.tasks)}${ui.button({label:'Review task plan',attrs:'data-review-tasks="true"',disabled:busy})}`:
+        board.tasks?.length?`<p>${esc(board.summary||'Recovery task board')}</p>${taskRows(board.tasks,approvedBoard(data,option))}`:
+        '<p>Build a source-bound task draft from your authorized recovery. Review and approve the tasks before they enter the board.</p>'});
 
     const glanceCard = ui.sideCard({
       title: "Plan at a glance",
@@ -485,7 +431,7 @@ export async function render(root, kit) {
         ${data.evidence.length ? `<button class="btn btn-soft btn-small btn-wide replan-records" type="button" data-records="true">View records used · ${esc(kit.fmtInt(data.evidence.length))}</button>` : ""}
         <div class="agent-line">
           <span class="agent-avatar">${ui.icon("mark")}<span class="presence-dot" aria-hidden="true"></span></span>
-          <span class="agent-line-text"><b>The Britt is ready.</b> Nothing has moved or been approved.</span>
+          <span class="agent-line-text"><b>The Britt is ready.</b> ${approvedBoard(data,option)?"Your task approval is recorded; the floor remains advisory.":"Tasks wait for your explicit approval; no operational release is issued."}</span>
         </div>`
     });
 
@@ -500,7 +446,7 @@ export async function render(root, kit) {
             <div class="action-row">
               ${ui.button({ label: "Refresh records", variant: "btn-ghost", size: "btn-small", iconName: "reset", attrs: 'data-refresh="true"', disabled: busy })}
               ${ui.button({ label: "Back to decision", variant: "btn-secondary", attrs: 'data-back="true"', disabled: busy })}
-              ${ui.button({ label: failed ? "Try the replan again" : "Replan and test disruption", variant: "btn-primary", attrs: 'data-primary="true"', disabled: busy || !option || (option && option.feasible === false) })}
+              ${ui.button({ label: failed ? "Try the replan again" : approvedBoard(data,option) ? "Test disruption" : proposal ? "Review task plan" : "Build The Britt task plan", variant: "btn-primary", attrs: 'data-primary="true"', disabled: busy || !accepted(data,option) })}
             </div>
             <span class="primary-helper"><span class="helper-dot is-held" aria-hidden="true"></span><span data-primary-helper>${esc(failed ? "Records could not be reached. Nothing moved." : option ? `${optionName(option)} selected · finish ${kit.fmtHours(option.finishHours)} · nothing moves yet` : "Choose a calculated path to continue")}</span></span>
           </div>
@@ -509,6 +455,7 @@ export async function render(root, kit) {
           <div class="stack replan-main">
             ${pathPanel}
             ${assignmentPanel}
+            ${taskPanel}
           </div>
           <aside class="stack replan-aside">
             ${glanceCard}
@@ -519,6 +466,15 @@ export async function render(root, kit) {
 
     ui.applyMetrics(root);
 
+    root.querySelector('[data-review-tasks]')?.addEventListener('click',()=>reviewTasks(proposal));
+    root.querySelectorAll('[data-task-done]').forEach(button=>button.addEventListener('click',async()=>{
+      if(busy)return;busy=true;button.disabled=true;
+      try{
+        kit.state.workflow=await kit.api.post('/api/workflow/task-move',{taskId:button.dataset.taskDone,status:'Done',idempotencyKey:crypto.randomUUID()});
+        failed=false;
+      }catch(error){kit.toast('Task could not move',{text:error.message});}
+      finally{busy=false;paint();}
+    }));
     const primaryButton = root.querySelector("[data-primary]");
     if (primaryButton) primaryButton.addEventListener("click", () => continueToDisrupt());
     const backButton = root.querySelector("[data-back]");
@@ -530,15 +486,6 @@ export async function render(root, kit) {
     const recordsButton = root.querySelector("[data-records]");
     if (recordsButton) recordsButton.addEventListener("click", openRecords);
 
-    root.querySelectorAll("[data-option-id]").forEach((button) => {
-      button.addEventListener("click", () => {
-        selectedOptionId = button.dataset.optionId || "";
-        failed = false;
-        selectedCellId = "";
-        kit.state.replanChoice = { optionId: selectedOptionId };
-        paint(`[data-option-id="${selectedOptionId}"]`);
-      });
-    });
     root.querySelectorAll("[data-job-id]").forEach((button) => {
       button.addEventListener("click", () => {
         selectedJobId = button.dataset.jobId || "";
@@ -563,7 +510,7 @@ export async function render(root, kit) {
       });
     }
 
-    kit.setAgentStatus(failed ? "Replan needs another try" : option ? "Replan ready" : "Checking records");
+    kit.setAgentStatus(failed ? "Replan needs another try" : accepted(data,option) ? "Replan ready" : "Authorization required");
     if (focusSelector) {
       const target = root.querySelector(focusSelector);
       if (target) target.focus({ preventScroll: true });
@@ -593,58 +540,43 @@ export async function render(root, kit) {
     paint('[data-refresh="true"]');
   }
 
+  async function syncWorkflow() {
+    const status=await kit.api.workflowStatus();
+    kit.state.workflow=status;kit.state.analysis=status.analysis;
+    return status;
+  }
+
+  function reviewTasks(proposal) {
+    if(!proposal)return;
+    kit.openDialog({title:'Review The Britt task plan',subtitle:proposal.sample?'SYNTHETIC · Sample task draft. Approval records an advisory board only.':'Meta model task draft · server-validated sources, owners and dependencies. Advisory only.',
+      bodyHtml:`<p>${esc(proposal.board.summary)}</p>${taskRows(proposal.board.tasks)}`,
+      actions:[
+        {label:'Decline task plan',variant:'btn-secondary',onClick:async()=>{
+          await kit.api.post('/api/workflow/britt-decide',{proposalId:proposal.id,action:'decline'});
+          taskProposal=null;await syncWorkflow();paint();return true;
+        }},
+        {label:'Approve task plan',variant:'btn-primary',onClick:async()=>{
+          await kit.api.post('/api/workflow/britt-decide',{proposalId:proposal.id,action:'approve'});
+          taskProposal=null;await syncWorkflow();paint();kit.toast('Task plan approved',{text:'The server recorded your approval. Test the next disruption when ready.'});return true;
+        }}
+      ]});
+  }
+
   async function continueToDisrupt() {
-    if (busy) return;
-    const beforeData = readData();
-    const beforeOption = beforeData.options.find((item) => optionId(item) === selectedOptionId) || null;
-    if (!beforeOption || beforeOption.feasible === false) return;
-
-    busy = true;
-    const button = root.querySelector("[data-primary]");
-    const helper = root.querySelector("[data-primary-helper]");
-    if (button) {
-      button.disabled = true;
-      button.innerHTML = `<span class="btn-spinner" aria-hidden="true"></span><span>Replanning</span>`;
-    }
-    if (helper) helper.textContent = "Checking plant records before the disruption test.";
-    kit.setAgentStatus("Replanning recovery");
-
-    try {
-      const result = await kit.refreshData({ notifyOnError: false });
-      if (!result.ok) throw new Error("Plant records could not be reached");
-      const data = readData();
-      const option = data.options.find((item) => optionId(item) === selectedOptionId) || null;
-      if (!option || option.feasible === false) throw new Error("The selected path is no longer available");
-      const plan = buildPlan(data, option);
-      kit.state.replanChoice = {
-        optionId: optionId(option),
-        optionName: optionName(option),
-        finishHours: option.finishHours,
-        incrementalCostUsd: option.incrementalCostUsd,
-        assignments: plan.assignments.map((assignment) => ({
-          jobId: assignment.job.jobId,
-          cellId: assignment.cell ? assignment.cell.cellId : (assignment.job.preferredCellId || ""),
-          materialId: assignment.materialId,
-          hours: assignment.hours,
-          dueHours: assignment.job.dueHours
-        }))
-      };
-      busy = false;
-      kit.setAgentStatus("Replan ready");
-      kit.toast("Recovery plan rebuilt", {
-        text: `${optionName(option)} is ready to test. Nothing has moved on the floor.`
-      });
-      kit.go("disrupt");
-    } catch {
-      busy = false;
-      failed = true;
-      kit.setAgentStatus("Replan needs another try");
-      paint('[data-primary="true"]');
-      kit.toast("The replan could not be checked", {
-        text: "Plant records could not be reached. Nothing has moved.",
-        actionLabel: "Try again",
-        onAction: () => continueToDisrupt()
-      });
+    if(busy)return;
+    busy=true;failed=false;paint();
+    try{
+      await syncWorkflow();
+      const data=readData(),option=data.options.find(item=>optionId(item)===defaultOptionId(data));
+      if(!accepted(data,option))throw Error('Authorize a feasible recovery on Decision first.');
+      if(approvedBoard(data,option)){busy=false;kit.go('disrupt');return;}
+      let proposal=taskProposal||data.workflow.britt?.proposal;
+      if(!proposal||proposal.snapshotDigest!==data.snapshot.snapshotDigest){
+        proposal=await kit.api.post('/api/workflow/britt-draft',{provider:kit.state.modelProvider==='sample'?'sample':'wonder'});
+      }
+      taskProposal=proposal;busy=false;paint();reviewTasks(proposal);
+    }catch(error){
+      busy=false;failed=true;paint();kit.toast('The task plan needs attention',{text:error.message,actionLabel:'Try again',onAction:()=>continueToDisrupt()});
     }
   }
 
@@ -652,7 +584,7 @@ export async function render(root, kit) {
   kit.setPageCommands([
     {
       title: "Replan recovery and test a disruption",
-      hint: "Checks the latest plant records, then opens the disruption step",
+      hint: "Builds and reviews a server task draft; an approved board can continue to disruption",
       run: () => continueToDisrupt()
     },
     {

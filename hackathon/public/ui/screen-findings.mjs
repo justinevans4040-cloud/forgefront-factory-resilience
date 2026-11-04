@@ -246,7 +246,7 @@ export async function render(root, kit) {
         const fits = asArray(cell.compatibleMaterials).map((id) => materialName(id)).join(", ") || "material fit not recorded";
         return {
           title: `${cellName(cell.cellId)} is ${cell.online ? "available" : "offline"}`,
-          text: `${kit.fmtHours(num(cell.availableHours))} open · fits ${fits}${preferredBy.length ? ` · preferred by ${preferredBy.join(", ")}` : ""}`,
+          text: `${kit.fmtHours(kit.openCellHours(cell))} open · fits ${fits}${preferredBy.length ? ` · preferred by ${preferredBy.join(", ")}` : ""}`,
           actionLabel: "View cell details"
         };
       }
@@ -325,7 +325,7 @@ export async function render(root, kit) {
       title: cellName(cell.cellId),
       subtitle: cell.online ? "This cell can take work from the current snapshot." : "This cell is offline in the current snapshot.",
       bodyHtml: kit.detailRowsHtml([
-        { label: "Available", value: kit.fmtHours(num(cell.availableHours)) },
+        { label: "Available", value: kit.fmtHours(kit.openCellHours(cell)) },
         { label: "Hourly cost", value: kit.fmtMoney(num(cell.hourlyCostUsd)) },
         { label: "Fits materials", value: asArray(cell.compatibleMaterials).map((id) => materialName(id)).join(", ") || "Not recorded" },
         { label: "Waiting jobs", value: preferredBy.length ? preferredBy.join(", ") : "No waiting job prefers this cell" }
@@ -462,7 +462,7 @@ export async function render(root, kit) {
     }
     try {
       const workflow = await kit.api.workflowStatus();
-      const analysis = await kit.api.get("/api/analysis");
+      const analysis = workflow?.analysis;
       if (workflow) kit.state.workflow = workflow;
       if (analysis) kit.state.analysis = analysis;
       advancing = false;
@@ -718,7 +718,7 @@ export async function render(root, kit) {
       const fits = asArray(cell.compatibleMaterials).map((id) => materialName(id)).join(", ") || "material fit not recorded";
       flowParts.push(ui.station({
         name: cellName(cell.cellId),
-        detail: `${kit.fmtHours(num(cell.availableHours))} open · fits ${fits}`,
+        detail: `${kit.fmtHours(kit.openCellHours(cell))} open · fits ${fits}`,
         status: cell.online ? "Available" : "Offline",
         tone: cell.online ? "is-ok" : "is-danger",
         selected: selected.kind === "cell" && selected.id === cell.cellId,

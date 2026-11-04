@@ -43,11 +43,9 @@ test('UI strings and public docs always say The Britt, never bare Britt',()=>{
  assert.deepEqual(hits,[],'bare Britt remains in:\n'+hits.join('\n'));
 });
 
-test('Investigate heading and approve copy use The Britt',()=>{
- const html=readFileSync(new URL('../../public/index.html',import.meta.url),'utf8');
- assert.match(html,/<h2>The Britt investigates\.<\/h2>/);
- assert.doesNotMatch(html,/<h2>Britt investigates\.<\/h2>/);
- assert.match(html,/Approve The Britt/);
- assert.match(html,/authorize-wall/);
- assert.match(html,/Approve recovery/);
+test('current investigation, task review and authorization surfaces consistently name The Britt',()=>{
+ const incident=readFileSync(new URL('../../public/ui/screen-incident.mjs',import.meta.url),'utf8');
+ const plan=readFileSync(new URL('../../public/ui/screen-britt-replan.mjs',import.meta.url),'utf8');
+ const kit=readFileSync(new URL('../../public/ui/kit.mjs',import.meta.url),'utf8');
+ assert.match(incident,/The Britt/);assert.match(plan,/Build The Britt task plan/);assert.match(plan,/Review The Britt task plan/);assert.match(plan,/Approve task plan/);assert.match(kit,/authorize-wall/);
 });

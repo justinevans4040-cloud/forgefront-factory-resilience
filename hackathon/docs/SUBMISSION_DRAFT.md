@@ -1,15 +1,27 @@
-# Submission draft
+# Submission text
 
-**Forgefront Factory Resilience**
+## Project
 
-A disputed material certificate can stop production while teams chase paperwork, substitute stock and a new schedule. Forgefront turns that scramble into one recovery room.
+ForgeFront Factory Resilience
 
-Meta Muse models investigate the source records with read-only tools. A deterministic engine computes wait, verified-substitute and split-capacity plans from the live factory snapshot. A human accepts one plan with typed, single-use consent.
+## Description
 
-Then a second shock takes a machine offline. Forgefront invalidates the stale acceptance, recalculates the choices and requires a fresh investigation and decision. An encrypted, hash-chained, tamper-evident ledger preserves sources, model calls and both decisions. Export the encrypted evidence packet and retain an independent checkpoint.
+Only three of one hundred pieces arrived. Two orders stop, and ready machines downstream run out of the parts they need. Factory Resilience brings the certificate, receiving count, substitute stock, machine capacity and waiting jobs into one recovery room.
 
-Meta models power every live AI call: Muse Wonder on the Meta Model API; Muse Spark Open on Baseten. Exact source claims are checked against the server registry. The recovery room displays model identity, observed latency, read-only traces and validated facts.
+The Britt investigates using Meta Muse Spark Open on Baseten through bounded read-only tools. Exact numerical claims are checked against source records. A deterministic engine calculates material coverage, compatible capacity, completion estimates and added cost; the model explains the tradeoffs. The integration also supports Muse Wonder through the Meta Model API for recovery reasoning and task drafting. Fireworks remains standby, outside normal public-demo traffic.
 
-[Live proof](../evidence/README.md) · [Original contributions](../HACKATHON_CONTRIBUTIONS.md) · [Source inventory](SOURCE_MANIFEST.json) · [Submission checklist](SUBMISSION_CHECKLIST.md).
+A human reviews and authorizes the chosen recovery against the exact plant snapshot. Task proposals require separate approval. When a mill goes offline, prior authority no longer applies: the app exposes the changed capacity and the shortfall rather than pretending the old plan still works. Source-linked evidence, encrypted workflow history and checkpoint support keep the reasoning reviewable.
 
-Built by Forgefront Systems.
+This is a synthetic manufacturing demonstration. Decisions are advisory and do not release work to real machines. The runtime comparison models divisible throughput; displayed due windows do not establish a certified production schedule.
+
+## Links
+
+- Live app: https://forgefront-factory-resilience.onrender.com
+- Public source: https://github.com/justinevans4040-cloud/forgefront-factory-resilience
+- Demo video (2:55): https://justinevans4040-cloud.github.io/forgefront-factory-resilience/
+- [Judge guide](JUDGES_GUIDE.md)
+- [Contributions](../HACKATHON_CONTRIBUTIONS.md)
+
+## Representative-only fields
+
+The authorized Representative must confirm contributors, rights, track/award selections, required model feedback, eligibility declarations and marketing choices against the actual form. These personal declarations are not inferred from tests. Save the submission receipt and verify the reopened entry. This document is prepared copy, not proof that an entry has been submitted.

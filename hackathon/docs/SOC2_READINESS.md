@@ -1,10 +1,12 @@
 # SOC 2 readiness — Trust Services Criteria
 
-This document maps ForgeFront Factory Resilience (Node on Render, Muse via Baseten, Fireworks backup only) to the AICPA Trust Services Criteria (Security, Availability, Confidentiality, Processing Integrity, Privacy). It lists **evidence already in the codebase** and **gaps a formal CPA SOC 2 examination would still require**.
+This document maps ForgeFront Factory Resilience (Node on Render, Muse Spark Open via Baseten, supported Muse Wonder via the Meta Model API, Fireworks standby only) to the AICPA Trust Services Criteria (Security, Availability, Confidentiality, Processing Integrity, Privacy). It lists **evidence already in the codebase** and **gaps a formal CPA SOC 2 examination would still require**.
 
 For control implementation detail and test names, see [SECURITY_CONTROLS.md](../SECURITY_CONTROLS.md) and [SECURITY_MODEL.md](SECURITY_MODEL.md).
 
 ---
+
+**This is an engineering control inventory, not a SOC 2 report, certification or assurance opinion.** Passing application tests does not establish organizational or operational compliance. Current execution results are in the [evidence index](../evidence/README.md).
 
 ## Executive summary
 
@@ -39,7 +41,7 @@ For control implementation detail and test names, see [SECURITY_CONTROLS.md](../
 | CSP and clickjacking | `response-headers.mjs`: CSP, `X-Frame-Options`, COOP/CORP | Same-origin compromise still possible if assets tampered |
 | HTTPS on public edge | HSTS when `X-Forwarded-Proto` from trusted Render proxy | Certificate management is Render’s control; document reliance |
 
-**Tests:** `tests/unit/security-headers.test.mjs`, `tests/unit/ui.test.mjs`
+**Tests:** `tests/unit/security-headers.test.mjs`, `tests/integration/ui.test.mjs`
 
 ### CC6.7 Transmission and disposal
 
@@ -47,7 +49,7 @@ For control implementation detail and test names, see [SECURITY_CONTROLS.md](../
 | --- | --- | --- |
 | TLS to clients | Render terminates TLS; Secure cookies when HTTPS detected | Need Render SOC 2 / DPA on file |
 | Secret redaction | `redact.mjs` on exports and model output | Operator screenshots outside app scope |
-| No secrets in repo | `gitleaks.toml`; `.env.example` names only | Developer workstation custody |
+| No secrets in repo | the CI gitleaks history and working-tree scans; `.env.example` names only | Developer workstation custody |
 
 **Tests:** `tests/unit/smoke.test.mjs`, `tests/unit/audit-hardening.test.mjs`
 
@@ -107,7 +109,7 @@ For control implementation detail and test names, see [SECURITY_CONTROLS.md](../
 | Input validation | JSON type/size; workflow field allowlists; prompt 1–4000 on `/api/meta/respond` | Not a universal JSON Schema layer |
 | Audit trail | Hash-chained HMAC ledger; model_call events | Independent witness of checkpoint prefix |
 
-**Tests:** `tests/unit/workflow.test.mjs`, `tests/unit/investigation.test.mjs`, `tests/unit/workflow-schema.test.mjs`
+**Tests:** `tests/unit/workflow.test.mjs`, `tests/unit/investigation.test.mjs`, `tests/integration/workflow-schema.test.mjs`
 
 ---
 
@@ -154,15 +156,15 @@ Organizational and operational items typically **outside** application code:
 
 | Area | Command / artifact |
 | --- | --- |
-| Full unit suite | `npm run test:unit` |
-| Security integration | `npm run test:integration` (includes `security.test.mjs`) |
-| Public budget caps | `node --test tests/unit/run23-public-budget.test.mjs` |
-| Security headers | `node --test tests/unit/security-headers.test.mjs` |
-| Secret scan | `gitleaks` per `gitleaks.toml` |
+| Full unit suite | `npm run test:unit --prefix hackathon` |
+| Security integration | `npm run test:integration --prefix hackathon` (includes `security.test.mjs`) |
+| Public budget caps | `node --test hackathon/tests/unit/run23-public-budget.test.mjs` |
+| Security headers | `node --test hackathon/tests/unit/security-headers.test.mjs` |
+| Secret scan | `gitleaks detect --source . --redact` and a working-tree scan |
 | Control map | [SECURITY_CONTROLS.md](../SECURITY_CONTROLS.md) |
 
 ---
 
 ## Dependency vulnerabilities
 
-The application declares **no runtime npm dependencies**. Development and smoke tooling use Node built-ins and optional local browsers. Run `npm audit` after introducing a lockfile; until then, supply-chain risk is limited to the Node.js runtime and host image (Render `NODE_VERSION` 20).
+The application declares **no runtime npm dependencies**. Development and smoke tooling use Node built-ins and optional local browsers. Run `npm audit` after introducing a lockfile; until then, the remaining supply-chain surface includes the Node.js runtime and host image (Render `NODE_VERSION` 24).

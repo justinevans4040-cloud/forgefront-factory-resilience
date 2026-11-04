@@ -20,7 +20,7 @@ test('evidence writers redact text and preserve binary screenshots and existing 
  writeEvidence(target,'third');assert.equal(readFileSync(target+'.1.bak','utf8'),'second');assert.match(readFileSync(target+'.bak','utf8'),/private-local-path/);
  const png=Buffer.from([137,80,78,71,0,255]);writeEvidence(join(dir,'image.png'),png);assert.deepEqual(readFileSync(join(dir,'image.png')),png);
 });
-test('tracked public text contains no profile paths or real contact coordinates',async()=>{
+test('public text contains no private paths or unapproved contact coordinates',async()=>{
  const {auditPublicFiles}=await import('../../scripts/judge-check.mjs');assert.deepEqual(auditPublicFiles().findings,[]);
 });
 test('public path scrub rejects Windows profile paths, file URL drives and mirror folder names',async()=>{
@@ -36,7 +36,7 @@ test('public path scrub rejects Windows profile paths, file URL drives and mirro
  assert.match(['Desktop/', 'Iz', 'zy_Brain/report.md'].join(''),new RegExp(['Iz','zy_'].join('')));
 });
 test('README npm quickstarts resolve scripts and fail for a nonexistent script',async()=>{
- const {checkReadmeCommands}=await import('../../scripts/judge-check.mjs');assert.deepEqual(checkReadmeCommands(),[]);assert.ok(checkReadmeCommands('npm run imaginary --prefix hackathon').length);
+ const {checkReadmeCommands}=await import('../../scripts/judge-check.mjs');assert.deepEqual(checkReadmeCommands(),[]);assert.deepEqual(checkReadmeCommands(readFileSync(new URL('../../RUN_GUIDE.md',import.meta.url),'utf8')),[]);assert.ok(checkReadmeCommands('npm run imaginary --prefix hackathon').length);
 });
 test('public docs point verification outcomes at in-tree evidence folders',()=>{
  const rootReadme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
@@ -49,9 +49,15 @@ test('public docs point verification outcomes at in-tree evidence folders',()=>{
  assert.match(hackReadme,/RUN_GUIDE\.md/);
  assert.match(gates,/evidence\/README\.md/);
 });
-test('tracked demo dependency closure needs no ignored or untracked files and detects omissions',async()=>{
- const {checkTrackedDemo}=await import('../../scripts/judge-check.mjs');const result=checkTrackedDemo();assert.deepEqual(result.missing,[]);assert.ok(result.required.includes('hackathon/public/passphrase.mjs'));assert.ok(result.required.includes('hackathon/fixtures/scenario-v1.json'));
- assert.ok(checkTrackedDemo({tracked:new Set()}).missing.includes('hackathon/server.mjs'));
+test('current demo closure checks checkout tracking or the isolated public copy and detects omissions',async()=>{
+ const {checkTrackedDemo}=await import('../../scripts/judge-check.mjs');
+ const {publicFiles}=await import('../../scripts/public-set.mjs');
+ const {fileURLToPath}=await import('node:url');const root=fileURLToPath(new URL('../../../',import.meta.url));
+ // The public-tree gate verifies Git tracking before copying. Its isolated test
+ // copy has no repository metadata and validates the exact copied file set.
+ const options=existsSync(join(root,'.git'))?{root}:{root,tracked:new Set(publicFiles(root))};
+ const result=checkTrackedDemo(options);assert.deepEqual(result.missing,[]);assert.ok(result.required.includes('hackathon/public/ui/kit.mjs'));assert.ok(result.required.includes('hackathon/public/ui/screen-incident.mjs'));assert.ok(result.required.includes('hackathon/fixtures/demo-scenario.mjs'));
+ assert.ok(checkTrackedDemo({root,tracked:new Set()}).missing.includes('hackathon/server.mjs'));
 });
 test('CI is pinned, read-only, credential-free and runs public suites and gitleaks',()=>{
  const ci=readFileSync(new URL('../../../.github/workflows/ci.yml',import.meta.url),'utf8');

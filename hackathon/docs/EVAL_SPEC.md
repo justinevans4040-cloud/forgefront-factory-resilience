@@ -2,11 +2,11 @@
 
 Evaluate the actual snapshot, calculation, investigation, decision and exported proof. [Current evidence](../evidence/README.md) records executed outcomes. [Claim proof](CLAIM_PROOF.md) maps product claims to tests and live packets.
 
-The runtime oracle checks the default 70-unit recovery and second-shock arithmetic. The independent planning fixtures retain a separate 120-piece scheduling model; [fixture alignment](FIXTURE_RUNTIME_ALIGNMENT.md) identifies its semantics. Expected fixture answers stay outside production calculations.
+The runtime oracle checks the default 100-piece recovery and second-shock arithmetic. The independent planning fixtures retain a separate 120-piece scheduling model; [fixture alignment](FIXTURE_RUNTIME_ALIGNMENT.md) identifies its semantics. Expected fixture answers stay outside production calculations.
 
 | Gate | Procedure | Required observation |
 | --- | --- | --- |
-| Runtime oracle | Independently derive the current default options and second shock | 70 impacted units; finish 83/35/17.5 hours; stock/capacity conservation; changed snapshot invalidates acceptance |
+| Runtime oracle | Independently derive the current default options and second shock | 100 impacted pieces; replenishment constrained, substitute 40h/$4,500 and split 26h/$4,570; stock/capacity conservation; changed snapshot invalidates acceptance |
 | Dynamic math | Independently vary quantities, stock, cycle/setup time, availability, compatibility and cost; derive fresh expected math | Computed outputs change; no fixture-answer lookup; held/incompatible inventory excluded |
 | Infeasibility | Run stock-short, incompatible, held-substitute and no-options | Invalid options excluded with reason; zero options requests evidence |
 | Input validation | Negative, missing, nonfinite/fractional pieces, inconsistent units | Reject before calculation; no coercion/default masking |
@@ -22,7 +22,7 @@ The runtime oracle checks the default 70-unit recovery and second-shock arithmet
 | Restart | Confirm, restart isolated app, retry consumed nonce/session/pending envelope | Consumption persists; old sessions invalid; unexpired pending envelopes resume only after original named-identity reauthentication; authoritative server status retained |
 | Ledger | Healthy control then modify/truncate/rollback disposable ledger; inject partial disk failure | Verify disk at startup/before acceptance/export; fail closed without clearing; only exact authenticated forward intent may complete interrupted persistence; committed truncation is rejected |
 | Secret/static boundary | Disposable synthetic secret effective NTFS access; traversal/dotfile/state/server-module probes | Secrets outside source/static root; broad inherited grants removed; unsafe ACL fails closed; no disclosure |
-| Browser | Keyboard full workflow, citation inspection, typed confirm, shock/re-review, verify/export, injected markup | Zero console errors; visible focus/readable excerpts; inert text; refresh uses server state; actual mode/model labels visible |
+| Browser | Current eight-screen keyboard workflow, citation inspection, deliberate authorization, shock/infeasibility, verification/export and injected markup | Zero console errors; visible focus/readable excerpts; inert text; refresh uses server state; actual mode/model labels visible |
 | Packet | Recompute exported run math/citations and verify retained anchor | Same snapshot/run/plan digests, actor/status, assumptions, shock history and verified identity or explicit offline label; no credential/raw dump leakage |
 
 

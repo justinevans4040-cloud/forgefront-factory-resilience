@@ -3,6 +3,7 @@ export function render(root, kit) {
   let loading = false;
   let loadFailed = false;
   let applying = false;
+  let shockApplied = false;
   let selectedCellId = "";
   let focusCellId = "";
 
@@ -92,9 +93,9 @@ export function render(root, kit) {
     const jobs = Array.isArray(snapshot.jobs) ? snapshot.jobs : impactedJobs || [];
     const options = analysis && analysis.recovery && Array.isArray(analysis.recovery.options) ? analysis.recovery.options : [];
     const otherCells = selected ? cells.filter((cell) => cell.cellId !== selected.cellId && cell.online !== false) : cells.filter((cell) => cell.online !== false);
-    const before = selected ? numberOrZero(selected.availableHours) : 0;
-    const remaining = otherCells.reduce((total, cell) => total + numberOrZero(cell.availableHours), 0);
-    const totalRecorded = cells.reduce((total, cell) => total + numberOrZero(cell.availableHours), 0);
+    const before = selected ? numberOrZero(kit.openCellHours(selected)) : 0;
+    const remaining = otherCells.reduce((total, cell) => total + numberOrZero(kit.openCellHours(cell)), 0);
+    const totalRecorded = cells.reduce((total, cell) => total + numberOrZero(kit.openCellHours(cell)), 0);
     const required = jobs.reduce((total, job) => total + jobHours(job), 0);
     const covered = Math.min(required, remaining);
     const shortfall = Math.max(0, required - remaining);
@@ -148,10 +149,10 @@ export function render(root, kit) {
     const preferredOut = Boolean(preferred && model.selected && preferred.cellId === model.selected.cellId);
     const preferredDown = Boolean(preferred && (preferredOut || preferred.online === false));
     const compatible = model.otherCells.filter((cell) => Array.isArray(cell.compatibleMaterials) && cell.compatibleMaterials.includes(job.materialId));
-    const compatibleText = compatible.map((cell) => `${cellLabel(cell)} (${kit.fmtHours(cell.availableHours)} open)`).join(", ");
+    const compatibleText = compatible.map((cell) => `${cellLabel(cell)} (${kit.fmtHours(kit.openCellHours(cell))} open)`).join(", ");
     if (preferred && !preferredDown) {
       return {
-        text: `Via ${preferredName} · preferred · ${kit.fmtHours(preferred.availableHours)} open`,
+        text: `Via ${preferredName} · preferred · ${kit.fmtHours(kit.openCellHours(preferred))} open`,
         pill: "Route still open",
         tone: "is-ok"
       };
@@ -279,8 +280,8 @@ export function render(root, kit) {
         { label: "Cell", value: cellLabel(cell) },
         { label: "Recorded as", value: String(cell.cellId || "") },
         { label: "Status in records", value: cell.online === false ? "Offline" : "Available" },
-        { label: "Open hours now", value: kit.fmtHours(cell.availableHours) },
-        { label: "Open in preview", value: isSelected ? kit.fmtHours(0) : kit.fmtHours(cell.availableHours) },
+        { label: "Open hours now", value: kit.fmtHours(kit.openCellHours(cell)) },
+        { label: "Open in preview", value: isSelected ? kit.fmtHours(0) : kit.fmtHours(kit.openCellHours(cell)) },
         { label: "Hourly cost", value: `${kit.fmtMoney(cell.hourlyCostUsd)} per hour` },
         { label: "Works with", value: materials || "No compatible material recorded" },
         { label: "Scenario", value: getScenarioId(model.snapshot) }
@@ -295,7 +296,7 @@ export function render(root, kit) {
           columns: [{ label: "Cell" }, { label: "Open", numeric: true }, { label: "Cost", numeric: true }, { label: "Status" }],
           rows: model.otherCells.map((cell) => [
             cellLabel(cell),
-            kit.fmtHours(cell.availableHours),
+            kit.fmtHours(kit.openCellHours(cell)),
             `${kit.fmtMoney(cell.hourlyCostUsd)}/h`,
             cell.online === false ? "Offline" : "Available"
           ])
@@ -356,8 +357,8 @@ export function render(root, kit) {
           columns: [{ label: "Recovery path" }, { label: "Finish", numeric: true }, { label: "Added cost", numeric: true }, { label: "Status" }],
           rows: model.options.map((option) => [
             optionLabel(option),
-            kit.fmtHours(option.finishHours),
-            kit.fmtMoney(option.incrementalCostUsd),
+            (option.feasible === false ? "Cannot run" : kit.fmtHours(option.finishHours)),
+            (option.feasible === false ? "Not applicable" : kit.fmtMoney(option.incrementalCostUsd)),
             option.feasible ? "Feasible" : "Not feasible"
           ])
         })
@@ -385,22 +386,23 @@ export function render(root, kit) {
     if (!model || !model.selected || applying) return;
     setApplying(true);
     try {
-      const status = await kit.api.workflowStatus();
-      if (status) kit.state.workflow = status;
-      const freshAnalysis = await kit.api.get("/api/analysis");
-      if (freshAnalysis) kit.state.analysis = freshAnalysis;
-      const freshSnapshot = getSnapshot();
-      kit.state.disruptionPreview = {
-        cellId: model.selected.cellId,
-        hoursBefore: model.before,
-        hoursAfter: 0,
-        remainingHours: model.remaining,
-        requiredHours: model.required,
-        coveredHours: model.covered,
-        shortfallHours: model.shortfall,
-        preferredJobCount: model.preferredCount,
-        snapshotDigest: (freshSnapshot && freshSnapshot.snapshotDigest) || (freshAnalysis && freshAnalysis.snapshotDigest) || model.snapshot.snapshotDigest || ""
-      };
+      // Apply the outage on the server; stale approvals and tracked tasks are invalidated there.
+      if (!shockApplied) {
+        await kit.api.post('/api/workflow/shock', { cellId: model.selected.cellId });
+        shockApplied = true;
+      }
+      kit.state.replanChoice = null;
+      kit.state.decision = null;
+      kit.state.selectedOptionId = null;
+      const started = await kit.api.post('/api/workflow/investigation-start', { provider: kit.state.modelProvider });
+      let job = started;
+      while (job && job.status === 'running' && !disposed) {
+        await new Promise((resolve) => setTimeout(resolve, Number(started.pollAfterMs) || 2000));
+        job = await kit.api.post('/api/workflow/investigation-status', { jobId: started.jobId });
+      }
+      if (!job || job.status !== 'completed') throw new Error('Changed capacity investigation did not complete');
+      await kit.refreshData({ notifyOnError: false });
+      kit.state.disruptionPreview = null;
       kit.setAgentStatus("Changed capacity ready to check");
       setApplying(false);
       kit.go("evidence");
@@ -415,7 +417,7 @@ export function render(root, kit) {
       await performPrimary();
     } catch {
       kit.toast("Plant records could not be checked", {
-        text: "The preview is unchanged. You can retry here or use the main button again.",
+        text: "The outage may already be recorded. Reload the plant records before trying again.",
         actionLabel: "Retry",
         onAction: async () => {
           await performPrimary();
@@ -488,8 +490,8 @@ export function render(root, kit) {
           return kit.ui.station({
             name: cellLabel(cell),
             detail: isSelected
-              ? `Currently ${kit.fmtHours(cell.availableHours)} open · 0h in this preview · ${kit.fmtMoney(cell.hourlyCostUsd)}/hour`
-              : `${kit.fmtHours(cell.availableHours)} open · ${kit.fmtMoney(cell.hourlyCostUsd)}/hour`,
+              ? `Currently ${kit.fmtHours(kit.openCellHours(cell))} open · 0h in this preview · ${kit.fmtMoney(cell.hourlyCostUsd)}/hour`
+              : `${kit.fmtHours(kit.openCellHours(cell))} open · ${kit.fmtMoney(cell.hourlyCostUsd)}/hour`,
             status: isSelected ? "Out in preview" : cell.online === false ? "Offline" : "Available",
             tone: isSelected || cell.online === false ? "is-danger" : "is-ok",
             selected: Boolean(isSelected),
@@ -660,7 +662,7 @@ export function render(root, kit) {
       { title: "Reinvestigate changed capacity", hint: "Checks plant records again, then opens Evidence", run: handlePrimary },
       ...model.cells.map((cell) => ({
         title: `Preview ${cellLabel(cell)} going offline`,
-        hint: `${kit.fmtHours(cell.availableHours)} open in the current records`,
+        hint: `${kit.fmtHours(kit.openCellHours(cell))} open in the current records`,
         run: () => selectCell(cell.cellId)
       })),
       { title: "Open full plant view", hint: "Departments, machines and waiting orders", run: () => kit.go("shop") }

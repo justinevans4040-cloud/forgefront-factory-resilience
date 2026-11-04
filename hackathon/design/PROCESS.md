@@ -1,3 +1,5 @@
+> **Historical design / planning record.** This retained document describes an earlier interface and its original goals or observations. It is not the current operating guide or proof that the current candidate passes those checks. Use the [current judge guide](../docs/JUDGES_GUIDE.md) and [architecture](../docs/ARCHITECTURE.md) for the eight-screen implementation. Original review scores and incomplete gates below are preserved as recorded.
+
 # Designed with Muse Wonder
 
 The Meta Hackathon build sends actual full-screen captures to Muse Wonder through the Meta Model API. The design director requests a component specification and scored, prioritized critiques. Muse Spark Open on Baseten is the bounded fallback for a failed Wonder request. API keys stay in the local process environment.

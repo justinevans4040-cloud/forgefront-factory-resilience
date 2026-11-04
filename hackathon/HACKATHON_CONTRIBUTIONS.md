@@ -1,3 +1,5 @@
+> **Retained contribution record.** Entries below preserve their original scope and observations. They are provenance, not current operating instructions or a claim that an earlier verification applies to this candidate. Use the [current judge guide](docs/JUDGES_GUIDE.md) and its evidence links for the submitted implementation.
+
 # The Meta Hackathon build — contribution inventory
 
 The Meta Hackathon build brings evidence investigation, calculated recovery, human consent and encrypted proof into one recovery room. The active source inventory is [SOURCE_MANIFEST.json](docs/SOURCE_MANIFEST.json); [current evidence](evidence/README.md) records executable verification.

@@ -7,6 +7,6 @@ test('full shop source requires session and CSRF and is served without a model c
   const session=await(await fetch(base+'/api/meta/demo-entry',{method:'POST'})).json();
   assert.equal((await fetch(base+'/api/plant',{headers:{'X-Session-Token':session.session}})).status,403);
   const response=await fetch(base+'/api/plant',{headers:{'X-Session-Token':session.session,'X-CSRF-Token':session.csrf}});assert.equal(response.status,200);const p=await response.json();assert.equal(p.machines.length,45);
-  for(const file of ['plant-engine.mjs','plant-layout.mjs','cascade.mjs','cascade.css'])assert.equal((await fetch(base+'/'+file)).status,200,file);
+  for(const file of ['plant-engine.mjs','ui/kit.mjs','ui/screen-shop.mjs','ui/screen-shop.css'])assert.equal((await fetch(base+'/'+file)).status,200,file);
  }finally{await app.close();}
 });

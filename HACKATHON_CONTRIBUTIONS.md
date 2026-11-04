@@ -1,3 +1,5 @@
+> **Retained contribution record.** Entries below preserve their original scope and observations. They are provenance, not current operating instructions or a claim that an earlier verification applies to this candidate. Use the [current judge guide](hackathon/docs/JUDGES_GUIDE.md) and its evidence links for the submitted implementation.
+
 # Hackathon contributions log
 
 Eligible-period work for the Meta Global AI Developer Hackathon (event window opens 2026-10-26; submission due 2026-11-04 6:00 PM PT). Dates are local PT.

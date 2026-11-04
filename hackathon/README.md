@@ -2,6 +2,11 @@
 **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
 <!-- live-demo:end -->
 
+**Demo video · 2:55:** [Play the demo](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and download](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
+
+[![Play Factory Resilience demo — 2:55](../assets/showcase/current/demo-video.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
+
+
 # ForgeFront Factory Resilience
 
 **The shop floor is in trouble. The Britt finds the way forward. You make the call.**
@@ -10,10 +15,16 @@ Only **3 of 100 pieces arrived**. **10 of 45 machines are offline**, and **19 mo
 
 ![Shop: 45 machines across seven departments, 10 offline, and 19 starved downstream](../assets/showcase/current/shop.png)
 
-**The Britt** investigates with **Meta Muse Spark Open on Baseten**, while **Muse Wonder through the Meta Model API** supports recovery reasoning and planning. The recovery engine calculates feasibility, time and cost from the current plant snapshot.
+**The Britt** investigates with **Meta Muse Spark Open on Baseten**, with a supported **Muse Wonder / Meta Model API** integration for recovery reasoning and task drafting. **Fireworks** remains standby only. The recovery engine calculates feasibility, time and cost from the current two-cell snapshot. The 45-machine reference floor illustrates downstream dependencies.
 
 Move through **Incident**, **Findings**, **Decision**, **The Britt plan**, **Disrupt**, **Evidence**, **Shop** and **Settings**. Compare recovery paths, authorize your choice, inspect the job assignments and test how another lost cell changes capacity.
 
-[See every screen and the full product walkthrough](../README.md) � [Run it yourself](RUN_GUIDE.md) � [Meta model integration](docs/META_MODEL_USAGE.md)
+[See every screen and the full product walkthrough](../README.md) · [Run it yourself](RUN_GUIDE.md) · [Meta model integration](docs/META_MODEL_USAGE.md)
 
 Built by **ForgeFront Systems**.
+
+## For judges
+
+[Judge walkthrough](docs/JUDGES_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [Verification evidence](evidence/README.md)
+
+The factory records are synthetic demonstration data. Recorded authorization is advisory: `operationalRelease` remains `false`; the app does not send production commands to real machines. Due windows are shown for review; the throughput comparison is not a certified production schedule. Source code is available under the [MIT license](../LICENSE).

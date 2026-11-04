@@ -743,3 +743,43 @@ dialog::backdrop { background: var(--color-overlay); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+.demo-mode-label { margin: 0; padding: 6px 18px; color: var(--text-secondary); font-size: 12px; }
+.model-route-label { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--text-secondary); font-size: 12px; }
+.model-route-label select { min-height: 36px; max-width: 100%; color: var(--text-primary); background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
+
+/* Narrow screens retain every control and source record in a single-column reading order. */
+@media (max-width: 760px) {
+  :root { --columns-main-aside: minmax(0, 1fr); --columns-headline: minmax(0, 1fr); --columns-two: minmax(0, 1fr); --columns-three: minmax(0, 1fr); --columns-mismatch: minmax(0, 1fr); --columns-dialog-split: minmax(0, 1fr); --screen-padding-x: 12px; --layout-aside-width: auto; }
+  .topbar { gap: 8px; padding-left: 12px; padding-right: 12px; }
+  .brand { min-width: 70px; }
+  .search-trigger { width: 42px; min-width: 42px; justify-content: center; padding: 8px; }
+  .search-trigger > span { display: none; }
+  .top-actions { gap: 8px; }
+  .presence-status { display: none; }
+  .steps-bar { padding: 6px 12px; }
+  .steps { overflow-x: auto; padding-bottom: 4px; }
+  .step { flex: 0 0 auto; min-height: 44px; }
+  .action-stack { align-items: stretch; }
+  .action-row, .row-between, .row { flex-wrap: wrap; }
+  .btn { white-space: normal; height: auto; padding-top: 8px; padding-bottom: 8px; }
+  .flow { flex-direction: column; }
+  .flow .connector { min-height: 18px; }
+  .preview-line { flex-wrap: wrap; }
+  .preview-text, .source-text { white-space: normal; overflow-wrap: anywhere; }
+  .dialog-actions { flex-wrap: wrap; }
+  .dialog-card { max-width: calc(100vw - 20px); }
+  .demo-mode-label { font-size: 12px; padding: 6px 12px; }
+}
+@media (max-width: 760px) {
+  :root { --toast-width: calc(100vw - 24px); }
+  .toast-region { right: 12px; bottom: 12px; }
+  #screenRoot .page-title-line, #screenRoot .page-sub, #screenRoot .primary-helper,
+  #screenRoot .section-label, #screenRoot .section-hint, #screenRoot .legend,
+  #screenRoot .station-name, #screenRoot .station-detail, #screenRoot .job-detail,
+  #screenRoot .option-name, #screenRoot .option-meaning, #screenRoot .option-assump,
+  #screenRoot .ev-title, #screenRoot .ev-sub, #screenRoot .stat-label,
+  #screenRoot .step-list-title, #screenRoot .step-list-sub { white-space: normal; overflow-wrap: anywhere; }
+  #screenRoot .card-head, #screenRoot .section-label-row, #screenRoot .incident-mismatch-head,
+  #screenRoot .job-main, #screenRoot .job-card { flex-wrap: wrap; }
+  #screenRoot .incident-headline > *, #screenRoot .action-stack { min-width: 0; }
+}

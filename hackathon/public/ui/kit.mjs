@@ -36,13 +36,13 @@ const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({ '&': '
 const clone = (value) => (value === undefined ? value : JSON.parse(JSON.stringify(value)));
 const fmtInt = (value) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(Number(value) || 0);
 const fmtHours = (value) => {
-  const n = Number(value);
+  const n = value === null || value === undefined || String(value).trim() === '' ? NaN : Number(value);
   if (!Number.isFinite(n)) return 'time pending';
   return `${Number.isInteger(n) ? n : n.toFixed(1)}h`;
 };
 const fmtMoney = (value) => {
-  const n = Number(value);
-  if (!Number.isFinite(n)) return '$0';
+  const n = value === null || value === undefined || String(value).trim() === '' ? NaN : Number(value);
+  if (!Number.isFinite(n)) return 'cost pending';
   return `$${new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(Math.round(n))}`;
 };
 function friendlyName(raw, fallback = 'Plant item') {
@@ -57,6 +57,7 @@ function friendlyName(raw, fallback = 'Plant item') {
    same snapshot, analysis, plant and session instead of refetching its own. */
 const state = {
   currentScreen: 'incident',
+  modelProvider: 'baseten',
   connection: 'checking',
   csrf: '',
   operator: null,
@@ -158,35 +159,38 @@ function setConnection(next) {
   notify();
 }
 
-/* Loads the four shared reads in parallel under one session. A failure keeps
-   the last good payloads and surfaces a retry the operator can see and use. */
+/* The signed workflow response owns both snapshot and analysis. The reference
+   plant is fetched once per session, or again on an explicit plant refresh. */
+let refreshPromise = null;
 async function refreshData(options = {}) {
-  const notifyOnError = options.notifyOnError !== false;
-  setConnection('checking');
-  const results = await Promise.allSettled([
-    api.get('/api/scenario'),
-    api.workflowStatus(),
-    api.get('/api/plant'),
-    api.get('/api/analysis')
-  ]);
-  const keys = ['scenario', 'workflow', 'plant', 'analysis'];
-  let ok = false;
-  results.forEach((result, index) => {
-    if (result.status === 'fulfilled' && result.value) {
-      state[keys[index]] = result.value;
-      ok = true;
+  if (refreshPromise) return refreshPromise;
+  refreshPromise = (async () => {
+    setConnection('checking');
+    try {
+      const [workflow, plant] = await Promise.all([
+        api.workflowStatus(),
+        !state.plant || options.refreshPlant === true ? api.get('/api/plant') : Promise.resolve(state.plant)
+      ]);
+      if (!workflow?.snapshot || !workflow.analysis || workflow.analysis.snapshotDigest !== workflow.snapshot.snapshotDigest) {
+        throw new Error('The workflow snapshot and analysis do not match');
+      }
+      state.workflow = workflow;
+      state.scenario = workflow.snapshot;
+      state.analysis = workflow.analysis;
+      state.plant = plant;
+      setConnection('connected');
+      notify();
+      return { ok: true, scenario: state.scenario, workflow, plant, analysis: state.analysis };
+    } catch {
+      setConnection('offline');
+      if (options.notifyOnError !== false) toast('Plant records could not be reached', {
+        text: 'The last complete snapshot stays on screen. Try the connection again.',
+        actionLabel: 'Retry', onAction: () => refreshData(options)
+      });
+      return { ok: false, scenario: state.scenario, workflow: state.workflow, plant: state.plant, analysis: state.analysis };
     }
-  });
-  setConnection(ok ? 'connected' : 'offline');
-  if (!ok && notifyOnError) {
-    toast('Plant records could not be reached', {
-      text: 'The current screen has not changed. Check the connection, then try again.',
-      actionLabel: 'Retry',
-      onAction: () => refreshData(options)
-    });
-  }
-  notify();
-  return { ok, scenario: state.scenario, workflow: state.workflow, plant: state.plant, analysis: state.analysis };
+  })();
+  try { return await refreshPromise; } finally { refreshPromise = null; }
 }
 
 async function loadTools() {
@@ -457,6 +461,7 @@ function shellHtml() {
     <div class="steps-bar">
       <nav class="steps" aria-label="Recovery steps" id="stepsNav"></nav>
     </div>
+    <p class="demo-mode-label" id="demoModeLabel" role="status">Demo scenario data · illustrative costs · human approval required · no operational release</p>
     <main class="screen-root" id="screenRoot" data-screen="incident"></main>
   </div>
   <div class="toast-region" id="toastRegion" aria-live="polite"></div>
@@ -465,6 +470,12 @@ function shellHtml() {
 }
 
 function syncShellState() {
+  const modeLabel = document.getElementById('demoModeLabel');
+  const digest = state.workflow?.snapshot?.snapshotDigest;
+  const latestRun = [...(state.workflow?.runs || [])].reverse().find(entry => entry.run?.snapshotDigest === digest);
+  const mode = latestRun?.run?.sample ? 'Sample result · deterministic, no live AI · ' : state.modelProvider === 'sample' ? 'Sample selected · deterministic, no live AI · ' : '';
+  if (modeLabel) modeLabel.textContent = `${mode}Demo scenario data · illustrative costs · human approval required · no operational release`;
+
   const presenceConnection = document.getElementById('presenceConnection');
   if (presenceConnection) {
     presenceConnection.textContent = state.connection === 'connected'
@@ -662,6 +673,9 @@ async function resetDemo() {
     state.workflow = null;
     state.analysis = null;
     state.plant = null;
+    state.replanChoice = null;
+    state.decision = null;
+    state.selectedOptionId = null;
     await refreshData({ notifyOnError: false });
     toast('Opening state restored', { text: 'The incident is back to its opening state.' });
     if (state.currentScreen !== 'incident') go('incident');
@@ -717,6 +731,7 @@ export const kit = {
   fmtInt,
   fmtHours,
   fmtMoney,
+  openCellHours(cell) { return cell?.online === false ? 0 : cell?.availableHours; },
   friendlyName,
   prefersReduced,
   go,
@@ -739,6 +754,11 @@ export const kit = {
   nextId(id) {
     const index = SCREEN_FLOW.findIndex((step) => step.id === id);
     return index >= 0 && index < SCREEN_FLOW.length - 1 ? SCREEN_FLOW[index + 1].id : null;
+  },
+  setModelProvider(provider) {
+    if (!['baseten', 'sample'].includes(provider)) throw new Error('Unsupported investigation route');
+    state.modelProvider = provider;
+    syncShellState();
   },
   async advance(fromId) {
     const next = kit.nextId(fromId);

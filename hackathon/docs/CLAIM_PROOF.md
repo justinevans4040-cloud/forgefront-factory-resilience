@@ -1,26 +1,18 @@
-# The Meta Hackathon build — product claim proof
+# Claim-to-proof map
 
-Every headline follows a working path. Use this map to move from the pitch to executable proof.
-
-| Pitch claim | Test or public proof |
+| Claim | Source or executable verification |
 | --- | --- |
-| A disputed certificate affects two jobs and 70 units | [Runtime oracle](../tests/unit/runtime-oracle.test.mjs), [source scenario](../src/domain/scenario.mjs) |
-| Three recovery options are calculated from current stock/capacity | [Engine tests](../tests/unit/engine.test.mjs), runtime oracle, [live desktop packet](../evidence/README.md) |
-| Muse Spark Open investigates with read-only tools | [Investigation tests](../tests/unit/investigation.test.mjs), [live packet](../evidence/README.md) |
-| Muse Wonder explains the same snapshot | [Guided live proof](../evidence/README.md), live packet |
-| Exact structured source claims are checked | [Evidence tests](../tests/unit/evidence.test.mjs), investigation tests, accepted/rejected claims in packet |
-| Only Meta models power live AI | [Model tests](../tests/unit/models.test.mjs), [route allowlist](../src/models/routes.mjs), [provider checks](../evidence/README.md) |
-| Sample is explicit and offline | [Fail-closed integration](../tests/integration/security.test.mjs), [offline keyboard proof](../evidence/README.md) |
-| A RED route stays visible and requires manual choice | [Selected-route HTTP tests](../tests/integration/run11-routes.test.mjs), [presentation tests](../tests/unit/run11-presentation.test.mjs), [controlled browser proof](../evidence/README.md) |
-| Human acceptance is typed, sealed and single-use | [Workflow tests](../tests/unit/workflow.test.mjs), [persistent consent tests](../tests/unit/run5-persistence.test.mjs), live packet |
-| The second shock invalidates the earlier decision | Runtime oracle, workflow tests, [mobile guided proof](../evidence/README.md) |
-| Evidence is encrypted and tamper-evident | [Storage tests](../tests/unit/storage.test.mjs), [export tests](../tests/unit/run6-export.test.mjs), [security controls](../SECURITY_CONTROLS.md) |
-| Interrupted ledger appends recover forward | [Persistence tests](../tests/unit/run5-persistence.test.mjs), [hardening tests](../tests/unit/audit-hardening.test.mjs) |
-| Checkpoints support independent prefix verification | Storage tests and [retained checkpoint](../evidence/README.md) |
-| Session/CSRF, roles, Host/Origin, quotas and secret redaction are enforced | [Security integration](../tests/integration/security.test.mjs), [operators](../tests/integration/operators.test.mjs), [control map](../SECURITY_CONTROLS.md) |
-| Keyboard and mobile presentation work | [Offline keyboard proof](../evidence/README.md), [mobile screenshot](../evidence/README.md) |
-| One command and zero runtime dependencies | [Package](../package.json), [cold start](../tests/integration/run7-cold-start.test.mjs), [isolated public tree](../evidence/README.md) |
-| The public set is scrubbed and self-contained | [Judge check](../evidence/README.md), [public tree](../evidence/README.md) |
-| The five showcase image bytes are preserved | [Integrity proof](../evidence/README.md) |
+| Certificate 100, receiving 3, two jobs demanding 100 pieces | [Current scenario](../src/domain/scenario.mjs), [runtime oracle](../tests/unit/runtime-oracle.test.mjs) |
+| Stock, compatible capacity, time and cost are computed | [Engine](../src/domain/engine.mjs), [engine tests](../tests/unit/engine.test.mjs) |
+| Investigation uses bounded read-only tools and exact source claims | [Investigation tests](../tests/unit/investigation.test.mjs), [evidence tests](../tests/unit/evidence.test.mjs), [routes](../src/models/routes.mjs) |
+| Human authorization binds the selected option and snapshot | [Workflow tests](../tests/unit/workflow.test.mjs), [security integration](../tests/integration/security.test.mjs) |
+| Losing Cell Mill 2 invalidates old authority and exposes infeasibility | Runtime oracle, workflow and current browser smoke |
+| Task proposals require separate human approval | [The Britt workflow](../tests/unit/britt-workflow.test.mjs), [API contract](API_CONTRACT.md) |
+| Evidence is encrypted and tamper-evident | [Storage tests](../tests/unit/storage.test.mjs), [export tests](../tests/unit/run6-export.test.mjs), [security mapping](../SECURITY_CONTROLS.md) |
+| Session/CSRF, roles, Host/Origin and quotas remain enforced | [Security integration](../tests/integration/security.test.mjs), [operator tests](../tests/integration/operators.test.mjs) |
+| Public model budgets remain enabled | [Budget tests](../tests/unit/run23-public-budget.test.mjs), [public integration](../tests/integration/run23-public.test.mjs) |
+| Current browser and public entry work | [Verification evidence](../evidence/README.md), [run guide](../RUN_GUIDE.md) |
 
-Manufacturing-context images show where the recovery workflow applies: aircraft production, mission-critical programs, connected assembly and independent suppliers. The images describe contexts; runtime proof comes from the recovery-room packets above.
+The video demonstrates Spark Open on Baseten. Supported Wonder integration and standby Fireworks configuration are distinct from a successful current call. Historical captures, design scores, mocks and Sample do not establish new live-model success.
+
+Synthetic data and advisory authorization are explicit boundaries. `operationalRelease` stays false; this repository does not prove real-plant safety, on-time delivery, end-to-end full-plant dispatch or SOC 2 certification.

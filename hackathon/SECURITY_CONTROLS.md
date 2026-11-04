@@ -1,3 +1,5 @@
+> **Control inventory and retained audit history.** Backend security contracts below remain review targets; earlier guided-interface control IDs and browser reports are historical. The current UI is `public/ui/kit.mjs` with eight screens. Use the [current security model](docs/SECURITY_MODEL.md), [API contract](docs/API_CONTRACT.md) and [fresh verification index](evidence/README.md) for candidate status. No SOC 2 certification is claimed. The public demonstration seat is visitor-isolated; authorization stays advisory with `operationalRelease: false`.
+
 # The Meta Hackathon build — SOC 2-style control mapping
 
 Concrete controls protect the recovery decision from open room through evidence export. This map ties every control theme to implementation and executable verification.
@@ -161,4 +163,3 @@ The layout changes preserve session, CSRF, identity, consent, provider allowlist
 | Large task validation | Iterative dependency cycle/deadline validation without task count or two-digit identifier ceilings; schema, owner and source constraints retained | run24-uncapped-board test |
 | Source detail isolation | Modal detail preserves underlying card layout; native modal focus handling and Escape close | Every source-detail open state in current geometry evidence |
 | Reduced motion | Animation stops while static SVG transforms retain machine identity and placement | run24-reduced-motion and machine glyph geometry |
-

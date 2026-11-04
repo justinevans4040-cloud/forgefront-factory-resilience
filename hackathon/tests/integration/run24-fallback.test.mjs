@@ -6,7 +6,7 @@ test('HTTP investigation records both rejected Wonder attempts and a validated B
  const app=createApp({models:{env:{HACKATHON_DEMO_MODE:'1',HACKATHON_ADMIN_TOKEN:'test-only-admin-code',HACKATHON_LEDGER_KEY:'test-only-ledger-key',HACKATHON_STATE_DIR:directory,MUSE_API_KEY:'test-only-wonder',BASETEN_API_KEY:'test-only-baseten',FIREWORKS_API_KEY:'never-use-standby'},fetchImpl:async(url,init)=>{
   const b=JSON.parse(init.body);if(url.includes('api.meta.ai')){wonder++;return new Response('{}',{status:503});}
   assert.ok(url.includes('baseten'));baseten++;const prompt=b.messages.map(m=>m.content).join('\n');
-  const envelope=prompt.includes('Next call get_incident')?{action:'tool',name:'get_incident',arguments:{}}:prompt.includes('Next call compare_recovery_options')?{action:'tool',name:'compare_recovery_options',arguments:{}}:{action:'final',optionId:'allocate_substitute',narrative:'Use verified substitute after human review.',claims:[{evidenceId:'ev-cert-qty',value:120,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}]};
+  const envelope=prompt.includes('Next call get_incident')?{action:'tool',name:'get_incident',arguments:{}}:prompt.includes('Next call compare_recovery_options')?{action:'tool',name:'compare_recovery_options',arguments:{}}:{action:'final',optionId:'allocate_substitute',narrative:'Use verified substitute after human review.',claims:[{evidenceId:'ev-cert-qty',value:100,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}]};
   return new Response(JSON.stringify({model:'meta-models/muse-spark-open',choices:[{message:{content:JSON.stringify(envelope)}}]}));
  }}});const address=await app.listen(0),base='http://127.0.0.1:'+address.port;
  try{

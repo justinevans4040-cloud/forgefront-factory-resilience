@@ -88,7 +88,15 @@ describe("server skeleton", () => {
     assert.equal(res.status, 200);
     const body = await res.json();
     assert.equal(body.ok, true);
-    assert.equal(body.result.impactedUnits, 70);
+    assert.equal(body.result.impactedUnits, 100);
+  });
+
+  it("returns a safe 404 for removed or unknown public assets", async () => {
+    for(const path of ['/app.mjs','/style.css','/ui/does-not-exist.mjs']){
+      const res=await fetch(baseUrl+path);assert.equal(res.status,404,path);
+      const body=await res.json();assert.equal(body.error.code,'NOT_FOUND');
+      assert.doesNotMatch(JSON.stringify(body),/ENOENT|Users|stack|server\.mjs/);
+    }
   });
 
   it("rejects unknown tool invocations", async () => {

@@ -5,13 +5,12 @@
   "type": "module",
   "description": "Meta Hackathon build under hackathon/ (reference-only ancestry outside this folder).",
   "engines": {
-    "node": ">=20"
+    "node": ">=24 <25"
   },
   "scripts": {
     "smoke:meta": "node scripts/smoke-meta.mjs",
     "smoke:investigation": "node scripts/live-investigation.mjs",
     "smoke:browser": "node scripts/browser-smoke.mjs",
-    "smoke:browser:live": "node scripts/browser-smoke.mjs --live",
     "demo": "node scripts/rehearse.mjs",
     "verify:checkpoint": "node scripts/verify-checkpoint.mjs",
     "migrate:state": "node scripts/migrate-state.mjs",
@@ -26,8 +25,8 @@
     "check:a11y": "node scripts/browser-smoke.mjs --keyboard",
     "design:review": "node scripts/design-director.mjs",
     "smoke:guide": "node scripts/primary-guide-smoke.mjs",
-    "smoke:guide:mock": "node scripts/primary-guide-smoke.mjs --mock-live",
     "audit:visual": "node scripts/visual-audit-gate.mjs",
-    "serve:public": "node scripts/serve-public.mjs"
+    "serve:public": "node scripts/serve-public.mjs",
+    "smoke:browser:sample": "node scripts/browser-smoke.mjs"
   }
 }

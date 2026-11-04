@@ -116,13 +116,14 @@ export async function render(root, kit) {
 
   function optionMeta(option, model) {
     return [
-      { label: "Finish", value: kit.fmtHours(option.finishHours) },
-      { label: "Cost", value: kit.fmtMoney(option.incrementalCostUsd) },
+      { label: "Finish", value: (option.feasible === false ? "Cannot run" : kit.fmtHours(option.finishHours)) },
+      { label: "Cost", value: (option.feasible === false ? "Not applicable" : kit.fmtMoney(option.incrementalCostUsd)) },
       { label: "Orders", value: kit.fmtInt(model.jobCount) }
     ];
   }
 
   function coversText(option, model) {
+    if (option.feasible === false) return "not covered on the current records";
     const count = Number(model.jobCount) || 0;
     return `${kit.fmtInt(count)} ${count === 1 ? "order" : "orders"} · ${kit.fmtInt(optionUnits(option, model))} pieces`;
   }
@@ -180,7 +181,7 @@ export async function render(root, kit) {
     return `<section class="side-card dec-confirm">
       <div class="card-head"><h2 class="side-title">Your decision</h2>${ui.pill("Ready to authorize", "is-ok")}</div>
       <p class="dec-confirm-name">${esc(optionDisplayName(option))}</p>
-      <p class="dec-cover">Finish <b>${esc(kit.fmtHours(option.finishHours))}</b> · Cost <b>${esc(kit.fmtMoney(option.incrementalCostUsd))}</b> · Covers <b>${esc(kit.fmtInt(optionUnits(option, model)))} pieces</b></p>
+      <p class="dec-cover">Finish <b>${esc((option.feasible === false ? "Cannot run" : kit.fmtHours(option.finishHours)))}</b> · Cost <b>${esc((option.feasible === false ? "Not applicable" : kit.fmtMoney(option.incrementalCostUsd)))}</b> · Covers <b>${esc(kit.fmtInt(optionUnits(option, model)))} pieces</b></p>
       <p class="dec-note">Selected for authorization. Nothing moves until you authorize this path.</p>
       <button class="btn btn-primary btn-wide" type="button" data-dec-authorize>Authorize this decision</button>
     </section>`;
@@ -200,7 +201,7 @@ export async function render(root, kit) {
     }
     if (!rows.length) return "";
     return `<section class="side-card dec-agent">
-      <h2 class="side-title">The Britt’s summary</h2>
+      <h2 class="side-title">The Britt's summary</h2>
       <div class="agent-rows">${rows.join("")}</div>
     </section>`;
   }
@@ -265,7 +266,7 @@ export async function render(root, kit) {
       model.feasible.length ? "is-ok" : "is-danger"
     );
     const previewHtml = preview
-      ? `<span class="preview-text"><b>${esc(optionDisplayName(preview))} preview:</b> finishes in ${esc(kit.fmtHours(preview.finishHours))} · added cost ${esc(kit.fmtMoney(preview.incrementalCostUsd))} · covers ${esc(coversText(preview, model))}.${preview.feasible === false ? " This path cannot run." : ""}</span><button class="btn btn-ghost" type="button" data-dec-detail>See calculation detail</button>`
+      ? `<span class="preview-text"><b>${esc(optionDisplayName(preview))} preview:</b> finishes in ${esc((preview.feasible === false ? "Cannot run" : kit.fmtHours(preview.finishHours)))} · added cost ${esc((preview.feasible === false ? "Not applicable" : kit.fmtMoney(preview.incrementalCostUsd)))} · covers ${esc(coversText(preview, model))}.${preview.feasible === false ? " This path cannot run." : ""}</span><button class="btn btn-ghost" type="button" data-dec-detail>See calculation detail</button>`
       : `<span class="preview-text">No recovery path is available to preview on this snapshot.</span>`;
     const heldLine = model.incident.heldMaterialId
       ? `Held lot ${String(model.incident.heldMaterialId)}${model.heldMaterial && model.heldMaterial.held !== null && model.heldMaterial.held !== undefined ? `, ${kit.fmtInt(model.heldMaterial.held)} pieces held` : ""}`
@@ -273,7 +274,7 @@ export async function render(root, kit) {
     root.innerHTML = `<div class="dec-screen">
       ${headerHtml(model)}
       <div class="dec-grid">
-        <main class="dec-main">
+        <div class="dec-main">
           <section class="panel dec-options-panel">
             <div class="card-head"><div><h2 class="card-title">Recovery paths from plant records</h2><p class="card-desc">Compare time, cost and coverage from the same snapshot.</p></div>${feasiblePill}</div>
             ${model.options.length
@@ -286,7 +287,7 @@ export async function render(root, kit) {
               ? `<div class="dec-jobs">${model.jobs.map((job) => jobCard(job)).join("")}</div>`
               : ui.emptyState({ title: "No waiting orders were returned", text: "The current snapshot lists no orders for the held lot.", compact: true })}
           </section>
-        </main>
+        </div>
         <aside class="dec-aside">
           <section class="side-card">
             <h2 class="side-title">Impact at a glance</h2>
@@ -308,7 +309,7 @@ export async function render(root, kit) {
     for (const option of model.feasible) {
       commands.push({
         title: `Choose ${optionDisplayName(option)}`,
-        hint: `${kit.fmtHours(option.finishHours)} · ${kit.fmtMoney(option.incrementalCostUsd)} from plant records`,
+        hint: `${(option.feasible === false ? "Cannot run" : kit.fmtHours(option.finishHours))} · ${(option.feasible === false ? "Not applicable" : kit.fmtMoney(option.incrementalCostUsd))} from plant records`,
         run: () => chooseOption(option.optionId, true)
       });
     }
@@ -338,8 +339,8 @@ export async function render(root, kit) {
     const assumptions = asArray(option.assumptions).filter(hasText).map(String);
     const evidence = asArray(option.evidenceIds).map((id) => model.evidenceById.get(id)).filter(Boolean);
     const rows = [
-      { label: "Finish", value: kit.fmtHours(option.finishHours) },
-      { label: "Added cost", value: kit.fmtMoney(option.incrementalCostUsd) },
+      { label: "Finish", value: (option.feasible === false ? "Cannot run" : kit.fmtHours(option.finishHours)) },
+      { label: "Added cost", value: (option.feasible === false ? "Not applicable" : kit.fmtMoney(option.incrementalCostUsd)) },
       { label: "Covers", value: `${kit.fmtInt(optionUnits(option, model))} pieces` },
       { label: "Waiting orders", value: `${kit.fmtInt(model.jobCount)} ${Number(model.jobCount) === 1 ? "order" : "orders"}` },
       { label: "Key limits", value: constraints.length ? constraints.join(" · ") : "No limit was recorded for this path." },
@@ -384,7 +385,7 @@ export async function render(root, kit) {
       { label: "Preferred cell", value: job.preferredCellId || "Not recorded" }
     ];
     if (cell) {
-      rows.push({ label: "Cell open", value: `${kit.fmtHours(cell.availableHours)} at ${kit.fmtMoney(cell.hourlyCostUsd)} per hour` });
+      rows.push({ label: "Cell open", value: `${kit.fmtHours(kit.openCellHours(cell))} at ${kit.fmtMoney(cell.hourlyCostUsd)} per hour` });
       rows.push({ label: "Cell can run", value: asArray(cell.compatibleMaterials).join(", ") || "Not recorded" });
     }
     kit.openDialog({
@@ -471,8 +472,8 @@ export async function render(root, kit) {
       summary: `You are authorizing <b>${esc(optionDisplayName(option))}</b> for the waiting orders. The Britt will build the recovery plan only after this authorization is recorded.`,
       rows: [
         { label: "Path", value: optionDisplayName(option) },
-        { label: "Finish", value: kit.fmtHours(option.finishHours) },
-        { label: "Added cost", value: kit.fmtMoney(option.incrementalCostUsd) },
+        { label: "Finish", value: (option.feasible === false ? "Cannot run" : kit.fmtHours(option.finishHours)) },
+        { label: "Added cost", value: (option.feasible === false ? "Not applicable" : kit.fmtMoney(option.incrementalCostUsd)) },
         { label: "Covers", value: `${kit.fmtInt(optionUnits(option, model))} pieces` },
         { label: "Waiting orders", value: `${kit.fmtInt(model.jobCount)} ${Number(model.jobCount) === 1 ? "order" : "orders"}` },
         { label: "Held lot", value: model.incident.heldMaterialId || "From the current snapshot" },

@@ -1,3 +1,5 @@
+> **Historical design / planning record.** This retained document describes an earlier interface and its original goals or observations. It is not the current operating guide or proof that the current candidate passes those checks. Use the [current judge guide](JUDGES_GUIDE.md) and [architecture](ARCHITECTURE.md) for the eight-screen implementation. Original review scores and incomplete gates below are preserved as recorded.
+
 # The Meta Hackathon build — plan coverage
 
 The recovery room connects each product claim to working code and observable proof. [Claim proof](CLAIM_PROOF.md) is the review map; [current evidence](../evidence/README.md) holds the latest outcomes.
@@ -68,4 +70,3 @@ Large workspace tabs share the header width and identify the selected stage. Fac
 | Large-plant model coverage | Page/summary helpers and plant/snapshot tools cover every machine, operation, evidence and recovery assignment across offsets; investigation projects tool history with truncated:false and idDigest; 1,000-entity unit proof |
 
 The full-shop calculation/view path and the secured guided Meta/decision workflow have separate execution evidence. Integration gates for full-plant Meta orchestration, persisted cascade decisions and plant-derived The Britt work remain in the submission checklist.
-

@@ -1,13 +1,9 @@
-# The Meta Hackathon build — entry evidence register
+# Submission requirements and evidence
 
-The entry demonstrates manufacturing recovery through Meta investigation, deterministic planning and human decision. The owner verifies current official Indie and bonus controls in the actual signed-in form before selecting them.
+Primary references are the [official participant guide](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/details), the [submission form](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit) and the [event page](https://events.cerebralvalley.ai/e/meta-ai-developer-hackathon).
 
-| Entry evidence | Review location |
-| --- | --- |
-| Partner-hosted Spark Open investigation | [Meta usage](META_MODEL_USAGE.md), current live packet |
-| Bounded read-only agent workflow | [Architecture](ARCHITECTURE.md), investigation/tool tests |
-| Wonder recovery tradeoff | Same-snapshot guide and model comparison |
-| Original scoped implementation | [Contributions](../HACKATHON_CONTRIBUTIONS.md), [source inventory](SOURCE_MANIFEST.json) |
-| Actual presentation | [Camera path](DEMO_RUNBOOK.md), owner film and full playback QA |
+The inspected guide requests a public repository and an accessible three-minute demo video. The signed-in form labels the field “3-Minute Demo Video” and accepts a URL. Neither inspected surface states an MP4 megabyte cap. The current video is 2:55.817. The Representative must still verify any changed field requirements at submission.
 
-Verify contributors, rights/license, new-work eligibility, account credits, exact form controls and approved signed-out source/video links. Retain the actual receipt and reopened entry. [Submission checklist](SUBMISSION_CHECKLIST.md) tracks completion.
+Meta and Cerebral Valley co-host the event. Their involvement does not imply endorsement of this product. Track, bonus, contributor, rights and eligibility declarations must reflect the actual form and real project history; successful provider calls alone do not establish award eligibility.
+
+[Model usage](META_MODEL_USAGE.md) documents exact routes and availability boundaries. [Submission checklist](SUBMISSION_CHECKLIST.md) records the remaining human form gates.

@@ -86,7 +86,7 @@ export async function render(root, kit) {
         || (heldId && compatible.includes(String(heldId)))
         || substitutes.some((substitute) => compatible.includes(substitute));
     });
-    const involvedOpenHours = involvedCells.reduce((sum, cell) => sum + num(cell.availableHours), 0);
+    const involvedOpenHours = involvedCells.reduce((sum, cell) => sum + num(kit.openCellHours(cell)), 0);
 
     const involvedMachineIds = new Set();
     involvedCells.forEach((cell) => {
@@ -272,7 +272,7 @@ export async function render(root, kit) {
           pill: cell.online ? "Online" : "Offline",
           tone: cell.online ? "is-ok" : "is-danger",
           rows: [
-            { label: "Open capacity", value: kit.fmtHours(cell.availableHours) },
+            { label: "Open capacity", value: kit.fmtHours(kit.openCellHours(cell)) },
             { label: "Can run", value: asArray(cell.compatibleMaterials).map(materialName).join(", ") || "Not listed" },
             { label: "Hourly cost", value: `${kit.fmtMoney(cell.hourlyCostUsd)} per hour` }
           ]
@@ -341,7 +341,7 @@ export async function render(root, kit) {
       ? model.involvedCells.map((cell) => `
           <button class="shop-stage-chip${selectedKind === "cell" && selectedId === String(cell.cellId) ? " is-selected" : ""}" type="button" data-shop-cell="${esc(cell.cellId)}" data-shop-focus="cell:${esc(cell.cellId)}" aria-pressed="${selectedKind === "cell" && selectedId === String(cell.cellId)}">
             <span class="shop-chip-name">${esc(cellDisplay(model, cell))}</span>
-            <span class="shop-chip-detail">${esc(`${kit.fmtHours(cell.availableHours)} open`)}</span>
+            <span class="shop-chip-detail">${esc(`${cell.online === false ? "Offline · " : ""}${kit.fmtHours(kit.openCellHours(cell))} open`)}</span>
           </button>`).join("")
       : `<div class="shop-stage-chip"><span class="shop-chip-name">No cells listed</span><span class="shop-chip-detail">No cell can run this lot.</span></div>`;
 
@@ -431,7 +431,7 @@ export async function render(root, kit) {
           { id: "offline", label: "Offline" }
         ], activeFilter)}
       </div>
-      <div class="shop-lanes">${lanes}</div>`;
+      <p class="card-desc">Reference floor graph. Recovery cell hours above come from the current workflow snapshot; the floor graph uses its own machine and dependency records.</p><div class="shop-lanes">${lanes}</div>`;
   }
 
   function glanceHtml(model) {
@@ -538,7 +538,7 @@ export async function render(root, kit) {
         { label: "Record", value: String(cell.cellId || "") },
         { label: "Runs as", value: cellDisplay(model, cell) },
         { label: "Status", value: cell.online ? "Online" : "Offline" },
-        { label: "Open capacity", value: kit.fmtHours(cell.availableHours) },
+        { label: "Open capacity", value: kit.fmtHours(kit.openCellHours(cell)) },
         { label: "Hourly cost", value: `${kit.fmtMoney(cell.hourlyCostUsd)} per hour` },
         { label: "Can run", value: asArray(cell.compatibleMaterials).map(materialName).join(", ") || "Not listed in the record" }
       ];

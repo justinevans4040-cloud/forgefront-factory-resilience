@@ -5,7 +5,7 @@ import {resolve,join} from 'node:path';import {fileURLToPath} from 'node:url';
 export function entityCaps(source){
  return source.split(/\r?\n/).flatMap((text,i)=>{
   const slice=/\b(?:machines|cells|jobs|tasks|records|evidence|quantities|memory|operations)\b[^;\n]*\.slice\(\s*(?:0\s*,\s*\d+|-\d+)\s*\)/;
-  const count=/\b(?:tasks|machines|cells|jobs|operations|claims)\.length\s*(?:>|<=)\s*\d+/;
+  const count=/\b(?:tasks|machines|cells|jobs|operations|claims)\.length\s*(?:>\s*[1-9]\d*|<=\s*\d+)/;
   return slice.test(text)||count.test(text)?[{line:i+1,text:text.trim()}]:[];
  });
 }

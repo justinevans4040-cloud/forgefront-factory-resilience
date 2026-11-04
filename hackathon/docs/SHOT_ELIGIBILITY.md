@@ -1,16 +1,14 @@
-# The Meta Hackathon build — shot-to-contribution map
+# Demonstrated features and source
 
-The camera path shows the implementation under hackathon/. Repository history supplies authorship and timestamps; [source inventory](SOURCE_MANIFEST.json) supplies active hashes. The owner reviews rights, contributor declarations and eligibility against that inventory.
+| Feature | Current source |
+| --- | --- |
+| Eight-screen recovery room | `public/index.html`, `public/ui/kit.mjs`, `public/ui/screen-*.mjs` |
+| Immutable source records and calculated recovery | `src/domain/scenario.mjs`, `evidence.mjs`, `engine.mjs` |
+| Meta read-only investigation | `src/agent/investigation.mjs`, `tools.mjs`, `src/models/` |
+| Human decision, shock invalidation and task approval | `src/workflow.mjs`, `src/security/meta-handler.mjs` |
+| Evidence integrity and export | State codec, encrypted ledger, export and checkpoint verifier |
+| Full-shop dependency view | `public/plant-engine.mjs` and current Shop screen |
 
-| Shot | Source | Proof |
-| --- | --- | --- |
-| S1 | public/index.html, app.mjs, guide.mjs, scripts/rehearse.mjs | Guided browser launch |
-| S2 | src/domain/scenario.mjs, evidence.mjs, engine.mjs | Runtime oracle and source inspection |
-| S3 | src/agent/investigation.mjs, tools.mjs, src/models/spark-open.mjs | Live Spark Open tool trace |
-| S4 | src/models/wonder.mjs and same-snapshot comparison | Live Wonder packet |
-| S5 | src/workflow.mjs, src/security/meta-handler.mjs | Typed consent, replay/race tests |
-| S6 | Workflow and engine shock transition | Changed digest, invalidation and renewed acceptance |
-| S7 | State codec, ledger, packet and checkpoint verifier | Encryption/recovery tests and retained checkpoint |
-| S8 | Contribution inventory and evidence packet | Guide completion and public source inventory |
+The source inventory records current source hashes. Repository history and [contributions](../HACKATHON_CONTRIBUTIONS.md) preserve provenance; this feature map is not an eligibility ruling. Earlier camera plans and screenshots are retained history, not current UI instructions.
 
-The film uses this recovery room. Root UI, PM/Kanban and earlier recordings remain outside the shot list. [Current proof](../evidence/README.md) · [Contributions](../HACKATHON_CONTRIBUTIONS.md).
+[Judge guide](JUDGES_GUIDE.md) · [Current video](VIDEO_QA.md) · [Source inventory](SOURCE_MANIFEST.json)

@@ -1,11 +1,13 @@
-# The Meta Hackathon build — components and rights
+# Components, media and rights
 
-Forgefront Systems delivers the recovery room with Node built-ins, plain HTML/CSS/JavaScript and local system fonts. Zero runtime npm dependencies. The public source set bundles application code, scenario fixtures and evidence; installed Node and browser platforms supply their own runtimes and terms.
+ForgeFront Systems delivers the recovery room with Node built-ins, HTML, CSS, JavaScript and local system fonts. There are zero npm runtime dependencies. Node, Chrome/Edge and the hosting platforms supply their own runtimes and terms.
 
-Muse Wonder and Muse Spark Open run through server-side APIs. Model weights stay with their providers. Account access and inference credits follow the applicable provider terms.
+Muse Spark Open runs through Baseten, Muse Wonder is supported through the Meta Model API, and Fireworks is the standby host. Model weights remain with the providers. Account access, inference and credits follow the applicable provider terms; this repository does not redistribute model weights.
 
-Factory scenario records are authored demo data. The independent planning fixtures provide a separate arithmetic evaluation; the runtime engine calculates the recovery room from its immutable snapshot. [Fixture alignment](docs/FIXTURE_RUNTIME_ALIGNMENT.md) specifies both contracts.
+Factory records are authored synthetic demo data. Independent planning fixtures use a separate arithmetic contract from the runtime recovery engine. [Fixture alignment](docs/FIXTURE_RUNTIME_ALIGNMENT.md) describes the distinction.
 
-The existing winged emblem and five manufacturing showcase images supply the Forgefront Systems identity. The app serves a web-sized derivative of the existing emblem; original brand and showcase assets retain their source bytes. Athere Mesh appears as a product-family reference where relevant.
+Current README showcase images are captures of this application. The ForgeFront identity and generated presentation artwork accompany the demo. Partner names and marks identify integrations or event hosts; they remain the property of their respective owners and do not imply product endorsement.
 
-[Repository license](../LICENSE) governs source rights. The [contribution inventory](HACKATHON_CONTRIBUTIONS.md) and [submission checklist](docs/SUBMISSION_CHECKLIST.md) support the owner's contributor and third-party rights review. Browser verification uses installed Chrome or Edge through the DevTools protocol.
+The demo soundtrack was selected from the video-production service's music catalog. It is not a commercial recording by the artist referenced as creative direction. Media-use rights follow the source service's applicable terms; the source-code MIT license does not grant trademark rights or relicense third-party audio.
+
+The [MIT license](../LICENSE) governs repository source. Retained [contribution records](HACKATHON_CONTRIBUTIONS.md) preserve provenance; the authorized Representative confirms contributor and third-party rights in the actual submission.

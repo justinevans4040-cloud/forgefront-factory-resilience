@@ -19,8 +19,14 @@ test('task move idempotency survives restart and rejects reuse for a different o
  const resumed=createWorkflow(options);resumed.moveTask('t1','Done',actor,'move-one');assert.equal(resumed.status().ledger.head,head);
  assert.throws(()=>resumed.moveTask('t1','Blocked',actor,'move-one'),/IDEMPOTENCY/);
 });
-test('fresh task approval retains completed work across the second shock',async()=>{
+test('fresh task approval retains completed work and the second shock blocks an infeasible recovery',async()=>{
  const {w}=await setup();let p=await w.draftTasks(createModelClient('sample'),'session',actor);w.decideTasks(p.id,'approve','session',actor);w.moveTask('t1','Done',actor);const completed=w.status().board.tasks[0].title;
- w.shock('CELL-MILL-2',actor);const r=await w.investigate(createModelClient('sample'),actor);const option=r.analysis.recovery.options.find(o=>o.feasible);const e=w.review(r.runId,option.optionId,'session',actor);w.confirm(e.nonce,'APPROVE '+option.optionId,'session',actor);p=await w.draftTasks(createModelClient('sample'),'session',actor);w.decideTasks(p.id,'approve','session',actor);
+ const r=await w.investigate(createModelClient('sample'),actor);const option=r.analysis.recovery.options.find(o=>o.feasible);const e=w.review(r.runId,option.optionId,'session',actor);w.confirm(e.nonce,'APPROVE '+option.optionId,'session',actor);p=await w.draftTasks(createModelClient('sample'),'session',actor);w.decideTasks(p.id,'approve','session',actor);
  assert.ok(w.status().board.tasks.some(t=>t.status==='Done'&&t.title===completed));
+ w.shock('CELL-MILL-2',actor);const failed=await w.investigate(createModelClient('sample'),actor);
+ assert.equal(failed.analysis.recovery.feasibleCount,0);assert.equal(w.status().decision.status,'invalidated');
+ assert.ok(w.status().board.tasks.some(t=>t.status==='Done'&&t.title===completed));
+ assert.ok(w.status().board.tasks.filter(t=>t.status!=='Done').every(t=>t.status==='Blocked'));
+ assert.throws(()=>w.review(failed.runId,'allocate_substitute','session',actor),/STALE_OR_FAILED_INVESTIGATION|INFEASIBLE_OPTION/);
+ await assert.rejects(w.draftTasks(createModelClient('sample'),'session',actor),/ACCEPT_RECOVERY_FIRST/);
 });

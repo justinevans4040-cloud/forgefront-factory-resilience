@@ -6,36 +6,17 @@ import {fileURLToPath} from 'node:url';
 const root=fileURLToPath(new URL('../../../',import.meta.url));
 const read=rel=>readFileSync(new URL(rel,import.meta.url),'utf8');
 
-test('demo and judge pitches open without sign-in and keep manufacturing contexts after highlights',()=>{
- const readme=readFileSync(new URL('../../../README.md',import.meta.url),'utf8');
- const hack=read('../../README.md');
- const guide=read('../../RUN_GUIDE.md');
- const controls=read('../../SECURITY_CONTROLS.md');
- for(const s of [readme,hack,guide,controls]){
-  assert.doesNotMatch(s,/sign in with the rehearsal token|enter the rehearsal token|Operator test token|synthetic-browser-rehearsal/i);
-  assert.doesNotMatch(s,/operationalRelease|advisory only|records are synthetic|costs illustrative|local engineering demonstration|does not control machinery|not certification|not claimed|outside this guarantee/i);
-  assert.doesNotMatch(s,new RegExp(['\\bCur','sor\\b'].join('')));
-  assert.doesNotMatch(s,new RegExp(['\\bCod','ex\\b'].join('')));
-  assert.doesNotMatch(s,new RegExp(['\\brebu','ild\\b'].join(''),'i'));
+test('judge introductions and local guide describe the current eight-screen workflow and explicit sample boundary',()=>{
+ for(const file of ['../../../README.md','../../README.md']){
+  const text=read(file);assert.match(text,/ForgeFront Factory Resilience/);assert.match(text,/Live demo/);assert.match(text,/Demo video/);assert.match(text,/The Britt/);
+  assert.doesNotMatch(text,/synthetic-browser-rehearsal|enter the rehearsal token/i);
  }
- assert.match(readme,/Live demo/i);
- assert.match(guide,/opens straight into the recovery room/i);
- assert.ok(readme.indexOf("## What you'll see")<readme.indexOf('## Why it matters'));
- assert.doesNotMatch(readme,/MUSE_API_KEY|MODEL_API_KEY|BASETEN_API_KEY|FIREWORKS_API_KEY|npm run|Run locally/);
- assert.match(readme,/Run it yourself/);
- assert.match(readme,/Forgefront Factory Resilience/);
- assert.match(readme,/Forgefront Systems/);
- assert.doesNotMatch(readme,/ForgeFront Systems/);
+ const guide=read('../../RUN_GUIDE.md');for(const name of ['Incident','Findings','Decision','The Britt plan','Disrupt','Evidence','Shop','Settings'])assert.ok(guide.includes(name));
+ assert.match(guide,/no live AI request/);assert.match(guide,/no feasible/);assert.match(guide,/npm run demo --prefix hackathon/);
 });
-
-test('visible recovery room brand uses Forgefront spelling',()=>{
- const html=read('../../public/index.html');
- assert.match(html,/<title>Forgefront Systems - Factory Resilience<\/title>/);
- assert.match(html,/Forgefront Systems <small>FACTORY RESILIENCE<\/small>/);
- assert.match(html,/forgefront-systems-logo\.png/);
- assert.match(html,/rel="icon"[^>]*href="\/favicon\.png"|href="\/favicon\.png"[^>]*rel="icon"/);
- assert.doesNotMatch(html,/synthetic-browser-rehearsal/);
- assert.doesNotMatch(html,/ForgeFront ·/);
+test('current visible brand is consistent in entry title and shell logo',()=>{
+ const html=read('../../public/index.html'),kit=read('../../public/ui/kit.mjs');
+ assert.match(html,/<title>ForgeFront Factory Resilience<\/title>/);assert.match(kit,/alt="ForgeFront Systems"/);assert.match(kit,/src="\/ui\/forgefront-logo.png"/);assert.match(html,/href="\/favicon.png"/);
 });
 
 test('provider preflight treats Fireworks as optional backup that never fails the overall check',async()=>{

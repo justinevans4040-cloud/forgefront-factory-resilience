@@ -1,7 +1,9 @@
-# The Meta Hackathon build — release gates
+# Release verification
 
-Run the product/root suites, judge/public-tree checks, offline keyboard path, live desktop/mobile guide and secret scan. Verify showcase hashes, active source manifest, report mirrors and cleanup of owned server/browser processes. [Current evidence](../evidence/README.md) records exact outcomes.
+Verify the actual public candidate: current unit/integration suite, judge/link/dependency checks, isolated public-tree check, current browser workflow and secret scan. Inspect the default GitHub branch and its final CI result; verify the live app, health endpoint and latest video without private credentials. Preserve failed results and historical artifacts with their true scope.
 
-Independent review examines the uncommitted diff and new files. Repeat affected checks after corrections, select the candidate and authorize integration separately. Complete the physical-phone test, contributor/rights/account review, filming, caption retiming, full video QA, upload, signed-out link checks and actual Representative submission. Retain the receipt and reopened stored entry.
+The browser path must cover explicit Sample labeling, evidence inspection, real human-authorized server transitions, task approval, snapshot-changing disruption and infeasibility. Live provider success is separate from mocked or Sample regression success. Public budget caps remain enabled.
 
-[Owner checklist](SUBMISSION_CHECKLIST.md) · [Run guide](../RUN_GUIDE.md) · [Control mapping](../SECURITY_CONTROLS.md).
+Submission readiness additionally requires contributor/rights/eligibility declarations, the actual form and a saved receipt. Source preparation and published media do not mean that the contest entry has been submitted.
+
+[Current evidence](../evidence/README.md) · [Submission checklist](SUBMISSION_CHECKLIST.md) · [Run guide](../RUN_GUIDE.md)

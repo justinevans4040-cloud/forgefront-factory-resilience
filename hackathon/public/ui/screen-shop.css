@@ -348,4 +348,15 @@ button.shop-stage-chip:hover {
   justify-content: center;
   gap: var(--space-6);
   min-height: var(--size-zero);
+}@media (max-width: 760px) {
+  .shop-cascade, .shop-floor-head, .shop-floor-title, .shop-lane { flex-direction: column; align-items: stretch; }
+  .shop-stage-label, .shop-stage-title, .shop-stage-detail, .shop-chip-name, .shop-chip-detail,
+  .shop-detail-label, .shop-detail-value, .shop-dept-name, .shop-dept-count { white-space: normal; overflow-wrap: anywhere; }
+  .shop-stage-chip, .shop-stage-main-top, .shop-detail-row { flex-wrap: wrap; }
+  .shop-cascade > .connector { min-height: 20px; }
+  .shop-floor-head .tabs { display: flex; flex-wrap: wrap; }
+  .shop-dept-head { width: 100%; min-height: 44px; }
+  .shop-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .shop-machine { min-height: 44px; }
+  .shop-lanes, .shop-lane { overflow: visible; }
 }

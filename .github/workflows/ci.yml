@@ -19,11 +19,12 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38
         with:
-          node-version: "20"
+          node-version: "24"
       - run: npm test --prefix hackathon
       - name: Root suite when the full repository package is present
         if: hashFiles('package.json') != ''
         run: npm test
+      - run: node hackathon/scripts/source-manifest.mjs
       - run: npm run check:judge --prefix hackathon
       - run: npm run check:public-tree --prefix hackathon
       - name: Scan full history and tracked working tree without credentials

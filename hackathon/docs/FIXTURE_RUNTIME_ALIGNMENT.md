@@ -1,20 +1,20 @@
-# Planning fixtures and runtime calculation boundary
+# Planning fixtures and runtime calculations
 
-The planning fixture evaluates indivisible job scheduling. The recovery room calculates divisible production throughput from its own immutable source snapshot. Each has an explicit input contract and an independent arithmetic oracle. Product code reads src/domain/scenario.mjs and src/domain/engine.mjs; fixtures/expected-outputs.json supplies the planning evaluation. Tests unit/runtime-oracle.test.mjs and engine.test.mjs verify runtime results.
+The independent planning fixture and the recovery-room runtime solve different declared problems. Expected fixture answers never drive production calculations.
 
-| Dimension | Independent planning fixture | Runtime engine |
+| Dimension | Independent planning fixture | Current recovery-room runtime |
 | --- | --- | --- |
-| Input contract | fixtureSchema independent-evaluation-v1; id, pieces, units | validated snapshot; materialId, available, unitsRequired, hoursPerUnit |
-| Incident and demand | grade discrepancy; three jobs 60 + 40 + 20 = 120 pieces | certificate quantity discrepancy 120 vs receiving 80; two held-lot jobs 40 + 30 = 70 units |
-| Processing | indivisible jobs, per-job setup 0.5 h; A cycle 0.05 h/piece and B 0.075 | divisible aggregate processing hours; 0.5 h/unit in default affected jobs; no setup term |
-| Scheduling | due-hour then ID queues; hard horizon 16 h; job-assignment enumeration | cost-first capacity fill for substitute; capped water-fill for parallel split; no queue or hard horizon feasibility rule |
-| Availability | earliest start; shock B earliest start 24 h | availableHours is usable capacity; online false excludes a cell |
-| Due time | used to calculate late jobs | reported on jobs but not used to compute lateness or feasibility |
-| Money | planning credits; busy cost minus original-material baseline plus premium | scenario USD; substitute/split labor plus nonnegative material premium; wait incremental cost explicitly zero |
-| Replenishment | earliest start 8 h, then 7.5 h processing | documented lead 48 h plus total 35 h processing; aggregate compatible capacity checked |
-| Baseline results | wait 15.5 h / 0 credits; substitute 7.5 h / 240; split 5 h / 410 | wait 83 h / USD 0; substitute 35 h / USD 3115; split 17.5 h / USD 3202.50 |
-| Shock results | nonempty B assignment misses hard horizon; split infeasible | CELL-MILL-2 offline removes second compatible cell; split infeasible, substitute stays 35 h |
-| Precision | independent arithmetic tolerance 1e-9 | per-step two-decimal rounding |
-| Validation evidence | fixtures/CALCULATION_NOTES.md and fixtures/expected-outputs.json are hand-derived expectations | tests/unit/runtime-oracle.test.mjs checks default arithmetic; engine.test.mjs covers changed quantities, capacity and stock |
+| Incident / demand | Separate 120-piece scheduling case | Certificate 100, receiving 3; jobs 60 + 40 = 100 pieces |
+| Work model | Indivisible jobs, setup, queue order and hard horizon | Divisible processing at 0.5 hour/piece: 50 work-hours; no setup term |
+| Available mills | Fixture-specific earliest starts | Cell Mill 1: 40 usable hours; Cell Mill 2: 24; material compatibility enforced |
+| Due windows | Used by fixture lateness rules | Job due windows 36h / 48h are displayed, not a lateness guarantee |
+| Verified substitute | Fixture-specific inventory | 100 pieces of Alloy B; stock is conserved across all assignments |
+| Substitute result | 7.5h / 240 planning credits | 40h / $4,500: 40h on Cell 1 + 10h on Cell 2, $200 material premium |
+| Split result | 5h / 410 planning credits | 26h / $4,570: 26h on Cell 1 + 24h on Cell 2, same $200 premium |
+| Replenishment | 15.5h / 0 incremental credits | Constrained: Alloy A-compatible capacity cannot cover all 50 work-hours; no zero-hour completion claim |
+| Cell Mill 2 outage | Fixture-specific horizon constraint | 40 usable hours remain for 50 needed; no feasible complete recovery, 10h shortfall |
+| Units | Planning credits | Scenario USD, pieces and hours |
 
-Present runtime values in the recovery room, model comparison and evidence packets. The planning oracle evaluates its own setup, job-queue and horizon rules. Runtime capacity is usable hours; planning availability is an earliest start. Costs use their respective scenario units. These explicit contracts keep the displayed recovery calculations reproducible as quantities, stock and cell availability change.
+The substitute estimate is elapsed processing under a cost-first allocation; the split estimate is parallel processing under compatible capacity bounds. Neither is a full factory dispatch schedule. Server-produced job portions must sum to the same material and machine totals; the browser must not invent a contradictory whole-job allocation.
+
+[Runtime oracle](../tests/unit/runtime-oracle.test.mjs) and [engine tests](../tests/unit/engine.test.mjs) independently derive the runtime arithmetic and vary demand, stock, compatibility and capacity. [Calculation notes](../fixtures/CALCULATION_NOTES.md) document the separate planning oracle.

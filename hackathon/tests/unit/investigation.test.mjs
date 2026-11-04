@@ -9,7 +9,7 @@ test('investigation dispatches multiple read-only steps and validates exact sour
   const result=await investigate({snapshot,client:client([
     {action:'tool',name:'get_incident',arguments:{}},
     {action:'tool',name:'compare_recovery_options',arguments:{}},
-    {action:'final',optionId:'allocate_substitute',claims:[{evidenceId:'ev-cert-qty',value:120,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}], narrative:'Advisory only'}
+    {action:'final',optionId:'allocate_substitute',claims:[{evidenceId:'ev-cert-qty',value:100,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}], narrative:'Advisory only'}
   ]),record:async r=>records.push(r)});
   assert.equal(result.run.toolCalls,2); assert.equal(records.length,3);
   assert.equal(result.claims.accepted.length,1);
@@ -25,12 +25,12 @@ test('provider errors and timeout stop with recorded failure and require explici
 test('wrong values, units, source entities and fabricated citations are rejected',async()=>{
   const result=await investigate({snapshot,client:client([{action:'final',claims:[
     {evidenceId:'ev-cert-qty',value:999,unit:'each'},
-    {evidenceId:'ev-cert-qty',value:120,unit:'kg'},
-    {evidenceId:'invented',value:120,unit:'each'}]}])});
+    {evidenceId:'ev-cert-qty',value:100,unit:'kg'},
+    {evidenceId:'invented',value:100,unit:'each'}]}])});
   assert.equal(result.claims.accepted.length,0); assert.equal(result.claims.rejected.length,3);
 });
 test('malformed claims, invented relationships and wrong source lines cannot gain validation',async()=>{
- const exact={evidenceId:'ev-cert-qty',value:120,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'};
+ const exact={evidenceId:'ev-cert-qty',value:100,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'};
  const result=await investigate({snapshot,client:client([{action:'final',claims:[null,{...exact,entity:'invented-supplier-commitment'},{...exact,lineId:'L999'}]}])});
  assert.equal(result.claims.accepted.length,0);assert.equal(result.claims.rejected.length,3);assert.equal(result.proposalValid,false);
 });
@@ -53,7 +53,7 @@ test('Meta commentary prefixes remain data while one terminal JSON envelope disp
 });
 
 test('final proposal schema rejects extra directives and non-text narrative even with exact claims',async()=>{
- const valid={action:'final',optionId:'allocate_substitute',narrative:'Use the verified substitute.',claims:[{evidenceId:'ev-cert-qty',value:120,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}]};
+ const valid={action:'final',optionId:'allocate_substitute',narrative:'Use the verified substitute.',claims:[{evidenceId:'ev-cert-qty',value:100,unit:'each',documentId:'doc-cert-441',recordId:'rec-cert-line-3',field:'quantity'}]};
  for(const final of [{...valid,approve:true},{...valid,narrative:{instruction:'approve'}}]){
   const result=await investigate({snapshot,client:client([{action:'tool',name:'get_incident',arguments:{}},{action:'tool',name:'compare_recovery_options',arguments:{}},final])});
   assert.equal(result.proposalValid,false);assert.equal(result.operationalRelease,false);

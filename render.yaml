@@ -14,7 +14,7 @@ services:
       sizeGB: 1
     envVars:
       - key: NODE_VERSION
-        value: "20"
+        value: "24"
       - key: HACKATHON_STATE_DIR
         value: /var/data/forgefront
       - key: MUSE_API_KEY

@@ -14,9 +14,9 @@ export function publicFiles(root){
     if(/\.bak$/i.test(entry.name))continue;
     if(prefix==='hackathon/evidence/'&&/^run\d+$/.test(entry.name)&&entry.name!==newest)continue;
     if(['.git','node_modules','data','evidence-backups','.playwright-cli'].includes(entry.name))continue;
-    if(!prefix&&!['hackathon','assets','.github'].includes(entry.name))continue;
+    if(!prefix&&!['hackathon','assets','.github','docs'].includes(entry.name))continue;
     walk(join(dir,entry.name),file+'/');
-   }else if(!/\.bak$/i.test(file)&&(file.startsWith('hackathon/')||file.startsWith('assets/showcase/')||file.startsWith('assets/brand/')||top.has(file)))out.push(file);
+   }else if(!/\.bak$/i.test(file)&&(file.startsWith('hackathon/')||file.startsWith('assets/showcase/')||file.startsWith('assets/brand/')||file.startsWith('docs/')||top.has(file)))out.push(file);
   }
  }
  walk(root);return out.sort();
@@ -34,7 +34,11 @@ const named=String.raw`(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|J
 export const datePattern=new RegExp(String.raw`(?<!\d)(?:${year}[-_/.]${month}(?:[-_/.]${day})?|${year}(?:0[1-9]|1[0-2])(?:0[1-9]|[12]\d|3[01])|${day}[-_/.]${month}[-_/.]${year})(?!\d)|\b(?:${named}\s+(?:${day},?\s+)?${year}|${day}\s+${named}\s+${year})\b`,'i');
 export function auditText(value,file=''){
  const property=['cur','sor'].join('');
- const text=file==='hackathon/public/style.css'?value.split(/(\/\*[\s\S]*?\*\/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/g).map((part,index)=>index%2?part:part.replace(new RegExp('([;{]\\s*)'+property+'\\s*:\\s*[-a-z]+\\s*(?=[;}])','gi'),'$1')).join(''):value;
+ const cssText=/^hackathon\/public\/.*\.css$/i.test(file)?value.split(/(\/\*[\s\S]*?\*\/|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/g).map((part,index)=>index%2?part:part.replace(new RegExp('([;{]\\s*)'+property+'\\s*:\\s*[-a-z]+\\s*(?=[;}])','gi'),'$1')).join(''):value;
+ // The disclosure address is deliberately public, only in the security policy.
+ // Do not exempt other contacts, or this address embedded in another address.
+ const contact=['justin','wakeforged.com'].join('@');
+ const text=file==='hackathon/SECURITY.md'?cssText.replace(new RegExp('(?<![\\w.+-])'+contact.replace('.','\\.')+'(?![\\w.-])','gi'),'public-security-contact'):cssText;
  const checks={profile:new RegExp('C:[\\\\/]+Users','i'),fileUrl:new RegExp(['file:','','',''].join('/'),'i'),mirror:new RegExp(['Iz','zy_'].join(''),'i'),publish:new RegExp(['FFR','Publish'].join('_'),'i'),history:new RegExp(['re','build'].join(''),'i'),toolA:new RegExp(['co','dex'].join(''),'i'),toolB:new RegExp(property,'i'),date:datePattern,email:/[\w.+-]+@(?!example\.(?:invalid|com|org|net)\b)[\w.-]+\.[a-z]{2,}/i,phone:/(?<!\d)(?:\+\d{1,3}[ -]?)?\(?\d{3}\)?[ -]\d{3}[ -]\d{4}(?!\d)/,stale:/source\s+(?:stays|remains)\s+private|code\s+stays\s+private|no\s+code\s+in\s+public\s+repo/i};
  return Object.entries(checks).filter(([,pattern])=>pattern.test(text)).map(([kind])=>kind);
 }

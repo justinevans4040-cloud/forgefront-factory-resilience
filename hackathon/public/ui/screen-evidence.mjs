@@ -55,35 +55,32 @@ export async function render(root, kit) {
     return `${kind.label}${linePart} records ${formatQuantity(quantity)}${unit ? ` ${unit}` : ''}${onHand ? ' on hand' : ''}.`;
   };
 
+  function downloadJson(name, payload) {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
+    const link = document.createElement('a'); link.href = url; link.download = name; link.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
   function exportPacket() {
-    const records = getRecords();
-    if (!records.length) {
-      kit.toast('No evidence packet to export', { text: 'Re-check the plant records, then export once source records are shown.' });
-      return;
-    }
-    const snapshot = getSnapshot() || {};
-    const analysis = getAnalysis() || {};
-    const packet = {
-      scenarioId: snapshot.scenarioId || kit.state.scenario?.scenarioId || '',
-      snapshotDigest: snapshot.snapshotDigest || kit.state.scenario?.snapshotDigest || '',
-      incident: snapshot.incident || kit.state.scenario?.incident || null,
-      evidenceRecords: records,
-      materials: Array.isArray(snapshot.materials) ? snapshot.materials : [],
-      jobs: getJobs(),
-      assumptions: getAssumptions(),
-      impacted: analysis.impacted || null,
-      recoveryOptions: getOptions()
-    };
-    const blob = new Blob([JSON.stringify(packet, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `${packet.scenarioId || 'forgefront'}-evidence.json`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    window.setTimeout(() => URL.revokeObjectURL(url), 0);
-    kit.toast('Evidence packet exported', { text: `${kit.fmtInt(records.length)} source records were downloaded with the snapshot reference.` });
+    kit.openDialog({
+      title: 'Export encrypted evidence packet',
+      subtitle: 'The server verifies the ledger and seals the complete recovery record. Keep the passphrase with your retained copy.',
+      bodyHtml: '<label for="evidencePassphrase">Passphrase (at least 12 characters)</label><input id="evidencePassphrase" type="password" autocomplete="new-password" minlength="12">',
+      actions: [
+        { label: 'Back', onClick: () => true },
+        { label: 'Seal and download', variant: 'btn-primary', onClick: async () => {
+          const input = document.getElementById('evidencePassphrase');
+          const passphrase = input.value;
+          if (passphrase.length < 12) throw new Error('Enter a passphrase of at least 12 characters');
+          const verified = await kit.api.post('/api/workflow/verify');
+          if (!verified.ok) throw new Error('Ledger verification failed');
+          const packet = await kit.api.post('/api/workflow/encrypted-export', { passphrase });
+          input.value = '';
+          downloadJson('forgefront-encrypted-evidence.json', packet);
+          kit.toast('Encrypted evidence packet downloaded', { text: 'The full recovery, source records and human approvals are included.' });
+          return true;
+        }}
+      ]
+    });
   }
 
   function openSource(record) {
@@ -140,8 +137,12 @@ export async function render(root, kit) {
       const snapshotDigest = getSnapshot()?.snapshotDigest || kit.state.scenario?.snapshotDigest || '';
       const analysisDigest = getAnalysis()?.snapshotDigest || '';
       if (snapshotDigest && analysisDigest && snapshotDigest !== analysisDigest) throw new Error('Snapshot check failed');
+      const verification = await kit.api.post('/api/workflow/verify');
+      if (!verification.ok) throw new Error('Ledger verification failed');
+      const checkpoint = await kit.api.post('/api/workflow/checkpoint');
+      downloadJson('forgefront-evidence-checkpoint.json', checkpoint);
       isRetaining = false;
-      kit.toast('Evidence retained', { text: `${kit.fmtInt(records.length)} source records are tied to this snapshot.` });
+      kit.toast('Verified checkpoint downloaded', { text: `${kit.fmtInt(records.length)} source records remain tied to this snapshot. Keep the checkpoint with the encrypted packet.` });
       kit.go('shop');
     } catch (error) {
       isRetaining = false;
@@ -186,7 +187,7 @@ export async function render(root, kit) {
     const feasibleOptions = getOptions().filter((option) => option && option.feasible !== false && Number.isFinite(Number(option.finishHours)));
     const fastestOption = feasibleOptions.reduce((fastest, option) => (!fastest || Number(option.finishHours) < Number(fastest.finishHours) ? option : fastest), null);
     const busy = isChecking || isRetaining;
-    const primaryLabel = isRetaining ? 'Verifying and retaining' : 'Verify, retain and open shop';
+    const primaryLabel = isRetaining ? 'Verifying and retaining' : 'Verify, download checkpoint and open shop';
     const selectedKind = selected ? sourceKind(selected) : null;
     const selectedQuantity = selected ? quantityOf(selected) : null;
 
@@ -306,7 +307,7 @@ export async function render(root, kit) {
             ${ui.sideCard({
               title: 'Export a copy',
               className: 'ev-side',
-              body: `<div class="row-between"><span class="ev-export-text">Downloads a copy of this packet.</span><button class="btn btn-secondary btn-small" type="button" data-ev-export${busy || !records.length ? ' disabled' : ''}>Export packet</button></div>`
+              body: `<div class="row-between"><span class="ev-export-text">Seals and downloads the complete server record.</span><button class="btn btn-secondary btn-small" type="button" data-ev-export${busy || !records.length ? ' disabled' : ''}>Export encrypted packet</button></div>`
             })}
           </aside>
         </div>
@@ -331,7 +332,7 @@ export async function render(root, kit) {
     }
     kit.setAgentStatus(records.length ? 'Evidence ready to retain' : 'Evidence records needed');
     kit.setPageCommands([
-      { title: 'Verify, retain and open shop', hint: 'Check the current snapshot, retain its evidence, then continue', run: retainAndContinue },
+      { title: 'Verify, download checkpoint and open shop', hint: 'Check the current snapshot, retain its evidence, then continue', run: retainAndContinue },
       { title: 'Export the evidence packet', hint: 'Download the source records and snapshot reference', run: exportPacket },
       { title: 'Re-check plant records', hint: 'Load the newest scenario, snapshot, plant and analysis', run: recheckRecords },
       { title: 'Open the selected source record', hint: selected ? `${selectedKind.label} from ${selected.documentId || 'the current snapshot'}` : 'Choose a source record first', run: () => openSource(selectedRecord()) }
