@@ -1,0 +1,34 @@
+{
+  "scope": "Current eight-screen UI, authoritative server workflow and prepared public source; local verification with explicit Sample and controlled providers, not a new live model benchmark.",
+  "runtime": "Node 24.14.1; deployment and CI configured for supported Node 24 LTS",
+  "tests": {
+    "command": "npm test --prefix hackathon",
+    "total": 267,
+    "passed": 264,
+    "failed": 0,
+    "historicalSkips": 3
+  },
+  "historicalUiFiles": 46,
+  "retainedApplicableMixedRegressions": 13,
+  "browser": {
+    "desktopMobileLayouts": 16,
+    "keyboardActions": 44,
+    "publicApiResponses": 26,
+    "rateLimitedResponses": 0,
+    "providerCalls": 0,
+    "consoleErrors": 0,
+    "physicalDeviceTest": false
+  },
+  "secretScans": {
+    "workingTree": "no leaks found",
+    "history": "no leaks found",
+    "commitsScanned": 370
+  },
+  "boundaries": [
+    "Synthetic records",
+    "Advisory authorization; operationalRelease false",
+    "Divisible throughput, not certified integer-batch dispatch",
+    "Reference floor distinct from two-cell recovery snapshot",
+    "No new live Wonder or Spark call claimed by these regressions"
+  ]
+}

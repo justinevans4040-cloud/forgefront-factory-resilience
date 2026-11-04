@@ -1,0 +1,366 @@
+{
+  "ok": true,
+  "publicHosting": false,
+  "apiRequestCount": 44,
+  "rateLimitedResponses": 0,
+  "route": "explicit Sample; zero live model requests",
+  "mobile": "Chrome viewport emulation, not physical phone",
+  "keyboardOnly": false,
+  "keyboardActions": 0,
+  "providerCalls": 0,
+  "checks": [
+    "current strict-CSP shell and deterministic server data",
+    "infeasible options do not claim zero finish or complete coverage",
+    "source record opens exact document and record identity",
+    "explicit Sample investigation completes with a validated server run",
+    "cancel authorization preserves unaccepted state",
+    "explicit decision authorization records nonce consent without operational release",
+    "task draft stays untracked until separate human approval",
+    "real second shock invalidates decision and board; fresh analysis has no feasible path",
+    "all post-shock views share the changed digest and 40 online cell hours",
+    "post-shock no-feasible state blocks fresh authorization",
+    "verified encrypted full record and independent checkpoint downloaded",
+    "all eight current screens inspected at desktop and emulated mobile widths"
+  ],
+  "consoleErrors": [],
+  "layouts": [
+    {
+      "label": "incident-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "findings-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "decision-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "britt-replan-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1425,
+      "screenScrollWidth": 1425,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "disrupt-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "evidence-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "shop-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "settings-1440",
+      "failures": [],
+      "width": 1440,
+      "scrollWidth": 1440,
+      "screenWidth": 1440,
+      "screenScrollWidth": 1440,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "incident-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "findings-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "decision-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "britt-replan-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "disrupt-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "evidence-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "shop-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    },
+    {
+      "label": "settings-390",
+      "failures": [],
+      "width": 390,
+      "scrollWidth": 390,
+      "screenWidth": 390,
+      "screenScrollWidth": 390,
+      "main": 1,
+      "language": "en"
+    }
+  ],
+  "requests": [
+    {
+      "path": "/api/meta/demo-entry",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/plant",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/tools",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/investigation-start",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/investigation-status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/review",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/confirm",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/britt-draft",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/britt-decide",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/shock",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/investigation-start",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/investigation-status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/encrypted-export",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/verify",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/checkpoint",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/tools",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/workflow/status",
+      "status": 200
+    },
+    {
+      "path": "/api/tools",
+      "status": 200
+    }
+  ]
+}

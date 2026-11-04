@@ -1,0 +1,68 @@
+{
+  "scope": "deployed public service and fresh visitor sessions",
+  "liveUrl": "https://forgefront-factory-resilience.onrender.com/",
+  "deployedCommit": "1040363256c8a1bf446551873345093c56e69262",
+  "deploymentId": "dep-dblf20rbc2fs73e3qc1g",
+  "runtime": "Node.js 24.22.2",
+  "health": {
+    "status": 200,
+    "body": {
+      "ok": true,
+      "service": "forgefront-hackathon"
+    }
+  },
+  "sourceMatch": {
+    "result": "passed",
+    "files": [
+      "index.html",
+      "ui/kit.mjs",
+      "ui/screen-britt-replan.mjs",
+      "ui/screen-disrupt.mjs",
+      "ui/screen-evidence.mjs"
+    ]
+  },
+  "liveInvestigation": {
+    "result": "passed",
+    "route": "Baseten",
+    "model": "meta-models/muse-spark-open",
+    "sample": false,
+    "verifiedFacts": {
+      "certificatePieces": 100,
+      "receivedPieces": 3,
+      "differencePieces": 97,
+      "waitingPieces": 100
+    },
+    "recovery": {
+      "selectedOption": "split_capacity",
+      "finishHours": 26,
+      "incrementalCostUsd": 4570,
+      "humanAuthorizationRequired": true,
+      "operationalRelease": false
+    }
+  },
+  "liveTaskDraft": {
+    "result": "rejected",
+    "route": "Muse Wonder with bounded Muse Spark Open continuation",
+    "failure": "INVALID_TASK_DRAFT",
+    "failClosed": true,
+    "proposalCreated": false,
+    "boardCreated": false
+  },
+  "sampleBrowserWalkthrough": {
+    "result": "passed",
+    "taskApproval": "recorded",
+    "changedCapacity": {
+      "requiredHours": 50,
+      "onlineHours": 40,
+      "shortfallHours": 10
+    },
+    "checkpointDownloaded": true,
+    "shopReference": {
+      "machines": 45,
+      "departments": 7,
+      "offlineMachines": 10,
+      "starvedMachines": 19
+    }
+  },
+  "boundary": "The deployed Spark investigation and human decision path passed. The account-dependent live task draft returned a structurally invalid model draft and was rejected without creating tasks. The explicit Sample route completed the full browser workflow."
+}

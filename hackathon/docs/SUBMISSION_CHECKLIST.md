@@ -6,7 +6,10 @@ The [judge guide](JUDGES_GUIDE.md) is the product entry point. The [evidence ind
 
 - [x] Current public branch and its CI checks verified after the final changes.
 - [x] Live app and health endpoint open without a private account.
-- [ ] Render serves the audited source commit and the updated live primary-model workflow is verified.
+- [x] Render serves audited commit `1040363` on Node 24.22.2; `/healthz` and prepared source files match.
+- [x] Fresh live Muse Spark Open investigation, recovery math and the separate human authorization wall are verified.
+- [x] The explicit Sample route completes task approval, disruption, evidence checkpoint and shop-reference screens.
+- [ ] Account-dependent live task drafting completes with a valid server-checked board. The latest Wonder-to-Spark attempt returned `INVALID_TASK_DRAFT` and failed closed without creating tasks.
 - [x] Latest video appears immediately below the README live-app link and plays publicly.
 - [x] Video runtime is at most three minutes; the current export is 2:55.817 and 33,132,466 bytes.
 - [x] Current eight-screen workflow, source quantities, model roles and calculation boundaries agree across documentation.

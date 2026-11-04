@@ -4,17 +4,20 @@ This index describes the current eight-screen interface and server workflow. Ear
 
 | Verification | Result | Retained evidence |
 | --- | --- | --- |
-| Full unit/integration suite | 264 passed, 0 failed, 3 explicitly historical skips | [Test output](run49/tests.txt), [summary](run49/verification.json) |
-| Current browser workflow | Real source inspection, nonce authorization, separate task approval, outage invalidation, encrypted export and checkpoint | [Desktop/mobile proof](run49/browser-desktop.json) |
+| Full unit/integration suite | 265 passed, 0 failed, 3 explicitly historical skips | [Latest GitHub CI](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/actions/runs/41802114076), [prior local output](run50/tests.txt), [prior summary](run50/verification.json) |
+| Current browser workflow | Real source inspection, nonce authorization, separate task approval, outage invalidation, encrypted export and checkpoint | [Desktop/mobile proof](run50/browser-desktop.json) |
 | Responsive presentation | All eight screens checked at desktop and emulated mobile widths; zero console errors | Desktop/mobile proof |
-| Keyboard path | 44 keyboard actions through authorization, task approval and export | [Keyboard proof](run49/browser-keyboard.json) |
-| Public hosting request guards | Complete Sample recovery path: 26 successful API responses, zero 429 responses; limits unchanged | [Public-mode proof](run49/browser-public.json) |
-| Media integrity | Latest V14, 2:55.817, 33,132,466 bytes; public download matches SHA-256 | [Video metadata](run49/video.json), [video QA](../docs/VIDEO_QA.md) |
+| Keyboard path | 44 keyboard actions through authorization, task approval and export | [Keyboard proof](run50/browser-keyboard.json) |
+| Public hosting request guards | Complete Sample recovery path: 26 successful API responses, zero 429 responses; limits unchanged | [Public-mode proof](run50/browser-public.json) |
+| Media integrity | Latest V14, 2:55.817, 33,132,466 bytes; public download matches SHA-256 | [Video metadata](run50/video.json), [video QA](../docs/VIDEO_QA.md) |
 | Secret scanning | Working tree and 370-commit history: no leaks found | Verification summary |
+| Live Render deployment | Commit `1040363` on Node 24.22.2; health and prepared source match; live Spark investigation passed | [Deployment and model proof](run50/live-deployment.json) |
 
 The browser checks use explicitly selected **Sample** with zero provider requests. They prove workflow behavior and request-budget compliance, not live AI execution or physical-phone behavior. Current README images are 1920×1080 captures from this working flow, with the Sample label visible.
 
 The video records a real Spark Open investigation on Baseten. Muse Wonder is an implemented, account-dependent route; Fireworks is standby and excluded from normal public traffic. Earlier [same-snapshot investigation observations](investigation/summary.json) are retained with their original scope. Model identity, source validation, failures and provider availability must be read from actual call records.
+
+The fresh deployed check confirmed a real Baseten-hosted Muse Spark Open investigation, the 100-versus-3 source comparison, the 26h / $4,570 recovery and the separate human authorization wall. The account-dependent Muse Wonder task-draft route, including its bounded Spark continuation, returned `INVALID_TASK_DRAFT`; the server rejected it without creating a proposal or board. The explicit Sample route then completed task approval, the 50h-versus-40h disruption, retained checkpoint and full-shop reference view. This is a fail-closed model-availability boundary, not a successful live task-draft claim.
 
 Forty-six obsolete UI test files are explicitly classified as historical; thirteen applicable backend/provider/design regressions extracted from mixed files run in the current suite. [Historical test manifest](../tests/historical/manifest.json) explains the retired contracts. These files and the three historical skips are not presented as passing current tests.
 
