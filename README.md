@@ -1,19 +1,11 @@
-<!-- live-demo:start -->
-**Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
-<!-- live-demo:end -->
-**Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and MP4](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
-
 # ForgeFront Factory Resilience
 
 <p align="center"><strong>The shop floor is in trouble. The Britt finds the way forward. You make the call.</strong></p>
 
-<p align="center">
-  <a href="https://forgefront-factory-resilience.onrender.com"><strong>LAUNCH THE LIVE APP</strong></a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://justinevans4040-cloud.github.io/forgefront-factory-resilience/"><strong>WATCH THE 2:55 DEMO</strong></a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="hackathon/docs/JUDGES_GUIDE.md"><strong>OPEN THE JUDGE GUIDE</strong></a>
-</p>
+<!-- live-demo:start -->
+**Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
+<!-- live-demo:end -->
+**Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and MP4](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14) · [Open the judge guide](hackathon/docs/JUDGES_GUIDE.md)
 
 [![Play the complete ForgeFront Factory Resilience demonstration — 2:55](assets/showcase/current/forgefront-factory-resilience.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
 

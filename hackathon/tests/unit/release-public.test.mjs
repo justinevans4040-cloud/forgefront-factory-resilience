@@ -6,9 +6,9 @@ import {join} from 'node:path';
 import {auditText} from '../../scripts/public-set.mjs';
 import {checkJudgePitch,checkTrackedDemo,checkReadmeCommands} from '../../scripts/judge-check.mjs';
 
-const pitch=`**Live demo:** [Open the app](https://example.org/app)
+const pitch=`# Factory Resilience
+**Live demo:** [Open the app](https://example.org/app)
 **Demo video:** [Watch the walkthrough](https://example.org/demo.mp4)
-# Factory Resilience
 ![Incident](assets/showcase/current/incident.png)
 The Britt uses Meta Muse Spark Open on Baseten to investigate plant evidence.
 [Run it yourself](hackathon/RUN_GUIDE.md) [Model integration](hackathon/docs/META_MODEL_USAGE.md)

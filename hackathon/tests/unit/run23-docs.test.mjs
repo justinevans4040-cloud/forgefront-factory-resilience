@@ -20,7 +20,7 @@ test('public entry docs show the shared live URL before local instructions',asyn
 });
 test('public README gallery covers every current screen with complete widescreen captures',()=>{
  const text=read('README.md');
- assert.ok(text.indexOf('**Live demo:**')<text.indexOf('# ForgeFront Factory Resilience'));
+ assert.ok(text.indexOf('# ForgeFront Factory Resilience')<text.indexOf('**Live demo:**'));
  assert.match(text,/Muse Spark Open on Baseten/);
  assert.match(text,/The Britt/);
  assert.doesNotMatch(text,/emerald|Hero:|command center|\b20\d{2}[-/]\d/i);

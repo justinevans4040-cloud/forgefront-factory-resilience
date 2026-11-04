@@ -51,9 +51,15 @@ export function checkJudgePitch(text){
  const lines=prose.split(/\r?\n/).map(line=>line.trim()).filter(Boolean);
  const live=/^\*\*Live demo:\*\*\s*\[[^\]]+\]\((https:\/\/[^\s)]+)\)$/i;
  const video=/^\*\*Demo video(?:\s*·\s*[^*\r\n]+)?:\*\*\s*(?:\[[^\]]+\]|\[!\[[^\]]*\]\([^)]+\)\])\((https:\/\/[^\s)]+)\)/i;
- if(!live.test(lines[0]??''))errors.push({kind:'pitch-live-entry'});
- if(!video.test(lines[1]??''))errors.push({kind:'pitch-video-placement'});
- if(!/^#\s+\S/m.test(prose))errors.push({kind:'pitch-heading'});
+ const headingIndex=lines.findIndex(line=>/^#\s+\S/.test(line));
+ const liveIndex=lines.findIndex(line=>live.test(line));
+ const videoIndex=lines.findIndex(line=>video.test(line));
+ const headingFirst=headingIndex===0;
+ const liveFirst=liveIndex===0;
+ if(!headingFirst&&!liveFirst)errors.push({kind:'pitch-heading'});
+ if(headingFirst&&(liveIndex<1||liveIndex>3))errors.push({kind:'pitch-live-entry'});
+ if(liveFirst&&headingIndex<2)errors.push({kind:'pitch-heading'});
+ if(videoIndex!==liveIndex+1)errors.push({kind:'pitch-video-placement'});
  if(!/!\[[^\]]+\]\((?:\.\.\/)?assets\/showcase\/current\/[^)]+\)/.test(prose))errors.push({kind:'pitch-current-screenshot'});
  if(!/Meta/i.test(prose)||!/Muse Spark Open/i.test(prose)||!/Baseten/i.test(prose))errors.push({kind:'pitch-model-integration'});
  if(!/\[[^\]]+\]\((?:hackathon\/)?docs\/META_MODEL_USAGE\.md\)/.test(prose))errors.push({kind:'pitch-model-guide'});
