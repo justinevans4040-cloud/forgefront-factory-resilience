@@ -2,13 +2,12 @@ import {readFileSync,writeFileSync,copyFileSync,existsSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {resolve} from 'node:path';
 export const LIVE_DEMO_URL='https://forgefront-factory-resilience.onrender.com';
-export const DEMO_VIDEO_URL='https://youtu.be/CZSc0KaQ-Uc';
 const root=new URL('../../',import.meta.url);
 const files=['README.md','hackathon/README.md','hackathon/RUN_GUIDE.md'];
 const standardBlock=()=>`<!-- live-demo:start -->\n**Live demo:** [Open the recovery room](${LIVE_DEMO_URL})\n<!-- live-demo:end -->`;
 const rootBlock=()=>`<!-- live-demo:start -->
 <!-- **Live demo:** [Open the recovery room](${LIVE_DEMO_URL}) -->
-<!-- **Demo video · 2:55:** [Watch the complete demonstration](${DEMO_VIDEO_URL}) -->
+<!-- **Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) -->
 <table>
   <tr>
     <td align="center" width="33%">
@@ -17,9 +16,9 @@ const rootBlock=()=>`<!-- live-demo:start -->
       <sub>Run the complete decision workflow</sub>
     </td>
     <td align="center" width="34%">
-      <h3><a href="${DEMO_VIDEO_URL}">WATCH THE 2:55 DEMO →</a></h3>
+      <h3><a href="https://justinevans4040-cloud.github.io/forgefront-factory-resilience/">WATCH THE 2:55 DEMO →</a></h3>
       <strong>See the story in motion</strong><br />
-      <sub>YouTube · no account required</sub><br />
+      <sub>From incident to authorized recovery</sub><br />
       <sub><a href="https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14">Video details &amp; MP4</a></sub>
     </td>
     <td align="center" width="33%">

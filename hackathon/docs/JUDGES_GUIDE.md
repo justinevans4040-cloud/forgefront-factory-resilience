@@ -1,6 +1,6 @@
 # Judge walkthrough
 
-[Open the live app](https://forgefront-factory-resilience.onrender.com) · [Watch the demo (2:55)](https://youtu.be/CZSc0KaQ-Uc) · [Project overview](../../README.md)
+[Open the live app](https://forgefront-factory-resilience.onrender.com) · [Watch the demo (2:55)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Project overview](../../README.md)
 
 ForgeFront Factory Resilience helps a shop understand a material hold before it spreads into idle machines. The Britt connects source evidence and explains calculated recovery options; a human chooses and authorizes the response.
 
