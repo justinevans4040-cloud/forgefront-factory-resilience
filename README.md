@@ -3,9 +3,29 @@
 <p align="center"><strong>The shop floor is in trouble. The Britt finds the way forward. You make the call.</strong></p>
 
 <!-- live-demo:start -->
-**Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com)
+<!-- **Live demo:** [Open the recovery room](https://forgefront-factory-resilience.onrender.com) -->
+<!-- **Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) -->
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <h3><a href="https://forgefront-factory-resilience.onrender.com">LAUNCH THE LIVE APP →</a></h3>
+      <strong>Enter the recovery room</strong><br />
+      <sub>Run the complete decision workflow</sub>
+    </td>
+    <td align="center" width="34%">
+      <h3><a href="https://justinevans4040-cloud.github.io/forgefront-factory-resilience/">WATCH THE 2:55 DEMO →</a></h3>
+      <strong>See the story in motion</strong><br />
+      <sub>From incident to authorized recovery</sub><br />
+      <sub><a href="https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14">Video details &amp; MP4</a></sub>
+    </td>
+    <td align="center" width="33%">
+      <h3><a href="hackathon/docs/JUDGES_GUIDE.md">OPEN THE JUDGE GUIDE →</a></h3>
+      <strong>Follow the winning path</strong><br />
+      <sub>Rubric, model roles and verification</sub>
+    </td>
+  </tr>
+</table>
 <!-- live-demo:end -->
-**Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and MP4](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14) · [Open the judge guide](hackathon/docs/JUDGES_GUIDE.md)
 
 [![Play the complete ForgeFront Factory Resilience demonstration — 2:55](assets/showcase/current/forgefront-factory-resilience.jpg)](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/)
 

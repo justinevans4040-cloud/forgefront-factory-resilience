@@ -54,12 +54,16 @@ export function checkJudgePitch(text){
  const headingIndex=lines.findIndex(line=>/^#\s+\S/.test(line));
  const liveIndex=lines.findIndex(line=>live.test(line));
  const videoIndex=lines.findIndex(line=>video.test(line));
+ const largeCta=/<h3><a href="https:\/\/forgefront-factory-resilience\.onrender\.com">LAUNCH THE LIVE APP →<\/a><\/h3>[\s\S]*?<h3><a href="https:\/\/justinevans4040-cloud\.github\.io\/forgefront-factory-resilience\/">WATCH THE 2:55 DEMO →<\/a><\/h3>[\s\S]*?<h3><a href="hackathon\/docs\/JUDGES_GUIDE\.md">OPEN THE JUDGE GUIDE →<\/a><\/h3>/.test(prose);
  const headingFirst=headingIndex===0;
  const liveFirst=liveIndex===0;
- if(!headingFirst&&!liveFirst)errors.push({kind:'pitch-heading'});
- if(headingFirst&&(liveIndex<1||liveIndex>3))errors.push({kind:'pitch-live-entry'});
- if(liveFirst&&headingIndex<2)errors.push({kind:'pitch-heading'});
- if(videoIndex!==liveIndex+1)errors.push({kind:'pitch-video-placement'});
+ if(largeCta){if(!headingFirst)errors.push({kind:'pitch-heading'});}
+ else{
+  if(!headingFirst&&!liveFirst)errors.push({kind:'pitch-heading'});
+  if(headingFirst&&(liveIndex<1||liveIndex>3))errors.push({kind:'pitch-live-entry'});
+  if(liveFirst&&headingIndex<2)errors.push({kind:'pitch-heading'});
+  if(videoIndex!==liveIndex+1)errors.push({kind:'pitch-video-placement'});
+ }
  if(!/!\[[^\]]+\]\((?:\.\.\/)?assets\/showcase\/current\/[^)]+\)/.test(prose))errors.push({kind:'pitch-current-screenshot'});
  if(!/Meta/i.test(prose)||!/Muse Spark Open/i.test(prose)||!/Baseten/i.test(prose))errors.push({kind:'pitch-model-integration'});
  if(!/\[[^\]]+\]\((?:hackathon\/)?docs\/META_MODEL_USAGE\.md\)/.test(prose))errors.push({kind:'pitch-model-guide'});
