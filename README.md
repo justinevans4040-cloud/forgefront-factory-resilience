@@ -3,10 +3,6 @@
 <!-- live-demo:end -->
 **Demo video · 2:55:** [Watch the complete demonstration](https://justinevans4040-cloud.github.io/forgefront-factory-resilience/) · [Video details and MP4](https://github.com/justinevans4040-cloud/forgefront-factory-resilience/releases/tag/demo-video-v14)
 
-<p align="center">
-  <img src="assets/showcase/commercial-production-resilience.jpg" width="100%" alt="ForgeFront Factory Resilience — protect the flow, recover the plan" />
-</p>
-
 # ForgeFront Factory Resilience
 
 <p align="center"><strong>The shop floor is in trouble. The Britt finds the way forward. You make the call.</strong></p>
