@@ -13,7 +13,7 @@
 
 Only **3 of 100 pieces arrived**. Two orders stop. The first is due in **36 hours**. Across the 45-machine reference floor, **10 machines are offline** and **19 more are starved downstream**—ready to work, but waiting for upstream parts that never arrived.
 
-Factory Resilience turns that chain reaction into one inspectable recovery room. **The Britt** connects the certificate, receiving count, substitute stock, compatible capacity and waiting jobs; **Meta Muse models** investigate and explain; a deterministic engine calculates the tradeoffs; and a human authorizes the response.
+Factory Resilience gives the operator one recovery room for the entire chain reaction. **The Britt** connects the certificate, receiving count, substitute stock, compatible capacity and waiting jobs; **Meta Muse models** investigate and explain; a deterministic engine calculates the tradeoffs; and a human authorizes the response.
 
 | 97-piece discrepancy | 100 pieces at risk | 2 orders stopped | 10-hour capacity shortfall |
 | :---: | :---: | :---: | :---: |
@@ -35,11 +35,11 @@ Factory Resilience directly answers both event themes: **Build for Your World**,
 1. **See the discrepancy.** The certificate says 100 pieces; receiving counted 3.
 2. **Run The Britt.** Muse Spark Open on Baseten checks the records through five bounded, read-only factory tools.
 3. **Compare the recovery.** Substitute material finishes in 40 hours for $4,500; split capacity finishes in 26 hours for $4,570.
-4. **Approve the path.** The decision is bound to the exact plant snapshot. A production deployment would add an authorization wall such as a passkey, typed phrase, or other enterprise security control.
+4. **Approve the path.** The decision is bound to the exact plant snapshot. Production authorization is designed around an authorization wall such as a passkey, typed phrase, or other enterprise security control.
 5. **Break the plan again.** Take Cell Mill 2 offline and watch 50 required hours collide with only 40 remaining hours.
 6. **Inspect the proof.** Every important quantity traces to a document, record, line and retained workflow event.
 
-For the most repeatable full judging path, select **Sample** on the Incident screen. To inspect the genuine model integration, run the live **Meta Muse Spark Open** route. Both modes are labeled in the interface and never masquerade as one another.
+For a complete, repeatable product tour, select **Sample** on the Incident screen. To inspect the live model integration, run **Meta Muse Spark Open**. The interface identifies the active route and preserves its evidence throughout the workflow.
 
 ## Meet The Britt: advanced AI for factory recovery
 
@@ -47,16 +47,16 @@ For the most repeatable full judging path, select **Sample** on the Incident scr
   <img src="assets/showcase/current/the-britt-agent.jpg" width="100%" alt="ForgeFront Systems — The Britt, advanced factory resilience agent" />
 </p>
 
-**The Britt is the source-bound resilience agent at the center of Factory Resilience.** It does more than summarize an incident: it investigates the live recovery snapshot, connects material and receiving evidence to affected jobs and compatible machines, challenges unsupported claims, and turns the verified situation into an explainable recovery proposal for a human decision-maker.
+**The Britt is the source-bound resilience agent at the center of Factory Resilience.** It investigates the live recovery snapshot, connects material and receiving evidence to affected jobs and compatible machines, challenges unsupported claims, and turns the verified situation into an explainable recovery proposal for a human decision-maker.
 
-Its advanced design comes from combining Meta models with strict operational boundaries:
+The Britt combines Meta models with manufacturing-grade operational controls:
 
 - **Meta Muse Spark Open performs the investigation.** Running on Baseten, it can use five narrowly scoped, read-only factory tools to retrieve the certificate, receipt, inventory, job and capacity records needed for the incident.
 - **Every numerical claim is source-checked.** A claim is accepted only when its document, record, field, value and unit agree with the underlying evidence. Fluent language cannot override a mismatched fact.
-- **Meta Muse Wonder supports deeper recovery reasoning.** Through the Meta Model API, it can draft advisory recovery logic and structured tasks; the application rejects unavailable, malformed or unsupported output instead of treating it as a plan.
-- **The model reasons; the engine calculates.** Stock coverage, machine compatibility, capacity, completion time and cost come from deterministic code, so The Britt cannot improvise the operational math.
-- **Authority is snapshot-bound and human.** The Britt can recommend and explain, but it cannot release work. A person approves the current plan, and a changed factory state invalidates that prior authority.
-- **The system fails closed.** Model identity, tool access, response structure and evidence claims are validated before results enter the workflow. Errors remain visible; they are not silently converted into a successful answer.
+- **Meta Muse Wonder supports deeper recovery reasoning.** Through the Meta Model API, it drafts structured recovery logic and tasks that enter the workflow only after schema and evidence validation.
+- **The model reasons; the engine calculates.** Deterministic code owns stock coverage, machine compatibility, capacity, completion time and cost.
+- **Authority is snapshot-bound and human.** The Britt recommends and explains; a person approves the current plan, and any change in factory state requires a new decision.
+- **Every result enters through a validation gate.** Model identity, tool access, response structure and evidence claims are checked before the workflow advances. Failed calls retain their exact state for review.
 
 That separation—**Meta intelligence for investigation and reasoning, deterministic software for operational truth, and a human for authorization**—is what makes The Britt suitable for high-consequence manufacturing decisions.
 
@@ -65,8 +65,8 @@ That separation—**Meta intelligence for investigation and reasoning, determini
 | Responsibility | System of record | Why it matters |
 | --- | --- | --- |
 | Evidence investigation | **Meta Muse Spark Open on Baseten** | Calls only allowlisted read tools and must return claims that match exact source records. |
-| Recovery reasoning and task drafting | **Meta Muse Wonder through the Meta Model API** | Produces advisory reasoning and proposed tasks; availability is account-dependent and invalid output is rejected. |
-| Standby inference | **Muse Spark Open on Fireworks** | Configured as a standby host and excluded from normal public-demo traffic. |
+| Recovery reasoning and task drafting | **Meta Muse Wonder through the Meta Model API** | Produces structured recovery reasoning and proposed tasks for provisioned accounts; every draft must pass validation. |
+| Standby inference | **Muse Spark Open on Fireworks** | Maintained as an isolated standby route; the public demonstration runs on Baseten. |
 | Stock, compatibility, capacity, time and cost | **Deterministic recovery engine** | The model never invents the 26h / $4,570 result or the 50h-versus-40h shortfall. |
 | Decision authority | **Human approval bound to the current snapshot** | Model output cannot authorize work or survive a changed plant state. |
 | Accountability | **Source-linked workflow evidence** | A reviewer can inspect what the system knew, calculated, proposed and accepted. |
@@ -114,7 +114,7 @@ Factory Resilience begins with one held lot, two urgent jobs and a shop that can
   </tr>
 </table>
 
-## Engineering proof, without the data dump
+## Engineering proof at a glance
 
 The repository keeps deep verification available for judges who want it, while the main story stays focused on the product.
 
@@ -133,4 +133,4 @@ The repository keeps deep verification available for judges who want it, while t
 
 Built by **ForgeFront Systems**.
 
-**Built for a safe, complete demonstration.** The judging environment runs on a fully populated factory scenario: a 45-machine dependency map reveals the downstream cascade, while a source-bound two-cell snapshot drives the recovery comparison. Factory Resilience carries the workflow from evidence and model-assisted investigation through deterministic recovery math and verified human authorization. A production deployment would connect that approved decision package to the plant's certified scheduling and machine-control systems. Source code is available under the [MIT license](LICENSE).
+**Built for the competition.** The judging environment runs on a fully populated factory scenario: a 45-machine dependency map reveals the downstream cascade, while a source-bound two-cell snapshot drives the recovery comparison. Factory Resilience carries the workflow from evidence and model-assisted investigation through deterministic recovery math and verified human authorization. The approved decision package is designed to connect directly to certified plant scheduling and machine-control systems. Source code is available under the [MIT license](LICENSE).

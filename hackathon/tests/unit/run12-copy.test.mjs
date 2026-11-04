@@ -12,7 +12,7 @@ test('judge introductions and local guide describe the current eight-screen work
   assert.doesNotMatch(text,/synthetic-browser-rehearsal|enter the rehearsal token/i);
  }
  const guide=read('../../RUN_GUIDE.md');for(const name of ['Incident','Findings','Decision','The Britt plan','Disrupt','Evidence','Shop','Settings'])assert.ok(guide.includes(name));
- assert.match(guide,/no live AI request/);assert.match(guide,/no feasible/);assert.match(guide,/npm run demo --prefix hackathon/);
+ assert.match(guide,/Sample[^.\n]*without a provider call/i);assert.match(guide,/no feasible/);assert.match(guide,/npm run demo --prefix hackathon/);
 });
 test('current visible brand is consistent in entry title and shell logo',()=>{
  const html=read('../../public/index.html'),kit=read('../../public/ui/kit.mjs');

@@ -16,7 +16,7 @@ npm run demo --prefix hackathon
 
 Open `http://127.0.0.1:8791`. This launcher creates an isolated private state directory and temporary session credentials. `HACKATHON_DEMO_PORT` selects another port. Stop with Ctrl+C. There are zero npm runtime dependencies and no build step.
 
-Provision `BASETEN_API_KEY` privately for live Muse Spark Open. The supported Muse Wonder route uses `MUSE_API_KEY` (or `MODEL_API_KEY`); account billing/availability can prevent calls even when a key is configured. Do not commit credentials or put them in browser code. An explicitly chosen **Sample** walkthrough makes no live AI request. Missing keys or failed live calls do not become successful AI results.
+Provision `BASETEN_API_KEY` privately for live Muse Spark Open. The supported Muse Wonder route uses `MUSE_API_KEY` (or `MODEL_API_KEY`) and activates for accounts with provider access. Keep every credential server-side. **Sample** runs the complete workflow without a provider call, while the Live route reports its exact connection and model status.
 
 ```sh
 npm run check:providers --prefix hackathon

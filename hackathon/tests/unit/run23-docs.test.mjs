@@ -69,7 +69,7 @@ test('public operation documents limits, disk, secret names and the shared URL c
  assert.match(guide,/(?:billing|availability|unavailable)/i);
  assert.match(guide,/Fireworks[^.\n]*(?:standby|backup)/i);
  assert.match(guide,/standby[^.\n]*(?:not called|not requested|removed|removes)/i);
- assert.match(guide,/Sample[^.\n]*(?:no live AI|no provider request|offline)/i);
+ assert.match(guide,/Sample[^.\n]*(?:without a provider call|offline)/i);
  const controls=read('hackathon/SECURITY_CONTROLS.md');
  for(const phrase of ['public-budget.mjs','run23-public','trusted','session'])assert.ok(controls.includes(phrase),phrase);
 });

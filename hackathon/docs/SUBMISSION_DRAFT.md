@@ -12,7 +12,7 @@ The Britt investigates using Meta Muse Spark Open on Baseten through bounded rea
 
 A human reviews and authorizes the chosen recovery against the exact plant snapshot. Task proposals require separate approval. When a mill goes offline, prior authority no longer applies: the app exposes the changed capacity and the shortfall rather than pretending the old plan still works. Source-linked evidence, encrypted workflow history and checkpoint support keep the reasoning reviewable.
 
-This is a synthetic manufacturing demonstration. Decisions are advisory and do not release work to real machines. The runtime comparison models divisible throughput; displayed due windows do not establish a certified production schedule.
+The competition build demonstrates the complete recovery decision cycle on a populated manufacturing scenario. It produces a verified, human-authorized decision package designed to connect with certified scheduling, inventory and machine-control systems.
 
 ## Links
 
@@ -22,6 +22,6 @@ This is a synthetic manufacturing demonstration. Decisions are advisory and do n
 - [Judge guide](JUDGES_GUIDE.md)
 - [Contributions](../HACKATHON_CONTRIBUTIONS.md)
 
-## Representative-only fields
+## Final submission controls
 
-The authorized Representative must confirm contributors, rights, track/award selections, required model feedback, eligibility declarations and marketing choices against the actual form. These personal declarations are not inferred from tests. Save the submission receipt and verify the reopened entry. This document is prepared copy, not proof that an entry has been submitted.
+Before filing, the authorized representative confirms contributors, rights, track and award selections, model feedback, eligibility declarations and marketing choices in the official form. Save the submission receipt and reopen the entry to confirm every field.

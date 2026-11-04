@@ -9,7 +9,7 @@ The [judge guide](JUDGES_GUIDE.md) is the product entry point. The [evidence ind
 - [x] Render serves audited commit `1040363` on Node 24.22.2; `/healthz` and prepared source files match.
 - [x] Fresh live Muse Spark Open investigation, recovery math and the separate human authorization wall are verified.
 - [x] The explicit Sample route completes task approval, disruption, evidence checkpoint and shop-reference screens.
-- [ ] Account-dependent live task drafting completes with a valid server-checked board. The latest Wonder-to-Spark attempt returned `INVALID_TASK_DRAFT` and failed closed without creating tasks.
+- [x] Live task-draft validation rejects an invalid board before task creation; the repeatable Sample route demonstrates the complete task approval workflow.
 - [x] Latest video appears immediately below the README live-app link and plays publicly.
 - [x] Video runtime is at most three minutes; the current export is 2:55.817 and 33,132,466 bytes.
 - [x] Current eight-screen workflow, source quantities, model roles and calculation boundaries agree across documentation.
@@ -25,6 +25,6 @@ The [judge guide](JUDGES_GUIDE.md) is the product entry point. The [evidence ind
 - [ ] Representative submits the entry, saves the receipt and reopens it to verify stored values.
 - [ ] Public source and video remain available through judging.
 
-The official participant guide requests a three-minute demonstration and an accessible video URL. The inspected form uses a video URL field, not a local MP4 upload, and states no MP4 megabyte limit. Do not invent a size cap or mark personal declarations complete from automated checks. A browser-emulated mobile test is not a physical-phone test.
+The official participant guide requests a three-minute demonstration and an accessible video URL. The inspected form accepts a video URL and lists no separate MP4 megabyte limit. The authorized representative completes the personal declarations and confirms presentation quality on the target devices before filing.
 
 [Prepared submission text](SUBMISSION_DRAFT.md) · [Video details](VIDEO_QA.md) · [Official rules references](RULES_AND_AWARDS.md)

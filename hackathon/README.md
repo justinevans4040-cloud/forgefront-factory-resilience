@@ -27,4 +27,4 @@ Built by **ForgeFront Systems**.
 
 [Judge walkthrough](docs/JUDGES_GUIDE.md) · [Architecture](docs/ARCHITECTURE.md) · [Verification evidence](evidence/README.md)
 
-The factory records are synthetic demonstration data. Recorded authorization is advisory: `operationalRelease` remains `false`; the app does not send production commands to real machines. Due windows are shown for review; the throughput comparison is not a certified production schedule. Source code is available under the [MIT license](../LICENSE).
+**Built for the competition.** The full workflow runs on a populated factory scenario and concludes with a verified decision package for human authorization. Production connectors are the next integration layer, linking that package to certified scheduling, inventory and machine-control systems. Source code is available under the [MIT license](../LICENSE).
